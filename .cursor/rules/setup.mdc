@@ -7,7 +7,7 @@ alwaysApply: true
 
 ## When to trigger setup
 
-**If you are in the core repo** (repo name is `design-core` and git origin points to `BUnglaub/design-core`): the user is a developer maintaining the tool. **Do not run this setup flow** — skip it entirely and follow `design-tool.mdc` in core repo mode. Company setup is for teams that fork the repo to their own org; the core repo is the source tool, not a company instance.
+**If you are in the core repo** (repo name is `design-core` and git origin points to `BUnglaub/design-core`): the user is a developer maintaining the tool. **Do not run this setup flow** — skip it entirely and follow `design-tool.mdc` in core repo mode.
 
 Check if the file `.designer` exists in the repo root. If it **does not exist**, the user has not completed setup yet. When they ask to "set up" or "get started" or paste a getting-started prompt, walk them through the setup flow below.
 
@@ -15,12 +15,10 @@ If `.designer` already exists, setup is done -- skip this entirely and follow th
 
 ## Detecting setup type
 
-There are two setup paths. Detect which one based on what the user says:
+There are two setup paths:
 
-- **Company setup** -- they say things like "setting up for my company", "first time", or they cloned from the original `BUnglaub/design-core` repo. They're the first person at their org. They need the full setup: fork to their org, identity, company info, team members.
-- **Designer joining** -- they say things like "joining my team", "my company already has this", or they cloned from their org's fork (not `BUnglaub/design-core`). They just need their personal identity set up.
-
-You can also detect this by checking the git remote: run `git remote -v`. If the origin points to `BUnglaub/design-core`, this is a company setup. If it points to another org, this is a designer joining.
+- **Company setup** -- the user is the first person at their org setting up Design Core. They need the full setup: clone the public repo, create a new company repo on GitHub, connect them, identity, team members. Detect this when: they say "setting up for my company" or "first time", or their prompt uses the company setup prompt from GETTING_STARTED.md.
+- **Designer joining** -- the user's company already has a Design Core repo. They just clone their company's repo and set up their identity. Detect this when: they say "joining my team" or their prompt uses the designer joining prompt from GETTING_STARTED.md, or git origin already points to a company repo (not `BUnglaub/design-core`).
 
 If unclear, ask: "Are you setting this up for your company for the first time, or joining a team that already has it?"
 
@@ -28,62 +26,96 @@ If unclear, ask: "Are you setting this up for your company for the first time, o
 
 Walk the user through these steps conversationally. Ask one thing at a time -- don't dump everything at once. Be friendly and non-technical.
 
-### 1. Clone the repo
-
-If the repo isn't already cloned and open in Cursor, clone it for them. The user's prompt should include the repo URL. Clone it to a sensible location (e.g. `~/Documents` or `~/Projects`), then open the folder in Cursor.
-
-**Important:** If the current workspace is already the `design-core` repo with origin pointing to `BUnglaub/design-core`, that's the **source/tool repo** -- not a company's working copy. Don't treat it as "already cloned." For company setup, this repo still needs to be forked to their org (step 4 handles that). Proceed with the setup flow normally.
-
-### 2. Check Cursor settings
-
-Before going further, remind the user to set up Cursor for the best experience:
-
-- **Agent mode** should be active (it's the default in the chat panel). This lets you create files, run commands, and build things for them.
-- **Model set to Auto** -- tell them to check the model dropdown at the bottom of the chat and pick **Auto**. It's the fastest and cheapest option.
-
-### 3. Install Node.js
-
-Run `node --version` to check if Node.js is installed. If it's not:
-- On macOS: try `brew install node`. If Homebrew isn't installed either, guide them to download Node.js from [nodejs.org](https://nodejs.org).
-- On Windows/Linux: guide them to download from [nodejs.org](https://nodejs.org) (LTS version).
-
-### 4. Install dependencies
-
-Run `npm install` for them. Wait for it to finish. If it fails, help troubleshoot.
-
-### 5. Company setup: collect company info and fork
-
-**This step only applies to company setup (first person at the org).**
-
-**Critical:** We are creating a **new repo** by forking the **public** repo (`BUnglaub/design-core`). The public repo is **never modified**. All setup (GETTING_STARTED, .designer, etc.) happens **only in the new fork**, so the new repo can pull updates from the main repo. Never edit the main/public repo during company setup.
+### 1. Collect company info
 
 Ask these two questions (one at a time):
 
-1. **"What's your company or team name?"** (e.g. `Acme Design`) -- needed to name the repo and configure the tool.
-2. **"What's your GitHub organization or account name?"** (e.g. `acme-design`) -- where the fork will live.
+1. **"What's your company or team name?"** (e.g. `Acme Design`)
+2. **"What's your GitHub organization or account name?"** (e.g. `acme-design`) -- where the new repo will live.
 
-Then fork and configure the repo. Use `gh` CLI to do this automatically:
+The new repo will be named **`design-core-<company-slug>`** (lowercase, hyphenated). Examples: "Jack Henry" → `design-core-jack-henry`, "Acme Design" → `design-core-acme-design`.
 
-1. **Fork the public repo** to their org/account with a company-specific name. Use the naming convention **`design-core-<company-slug>`** (lowercase, hyphenated). Examples: "Jack Henry" → `design-core-jack-henry`, "Acme Design" → `design-core-acme-design`. This creates a **new** repo (e.g. `THEIR_ORG/design-core-jack-henry`) that can pull updates from `BUnglaub/design-core`.
-   ```
-   gh repo fork BUnglaub/design-core --org THEIR_ORG --fork-name design-core-THEIR_COMPANY_SLUG --remote=true
-   ```
-   (Omit `--org` if forking to a personal account.) Forking preserves the upstream connection so the new repo can receive updates from the public repo.
-2. **In the new fork only** (the workspace must be the fork, not the public repo): update `GETTING_STARTED.md` — replace `YOUR_ORG` and `YOUR_REPO` with the fork's org and repo name, so teammates get the right clone URL.
-3. **Commit and push** these changes to the new fork (never to the public repo).
-4. **Enable GitHub Pages** so prototypes get shareable links automatically:
-   ```
-   gh api repos/THEIR_ORG/THEIR_REPO_NAME/pages -X POST -f build_type=workflow
-   ```
-   If it succeeds, tell the user their prototypes will be live at `https://THEIR_ORG.github.io/THEIR_REPO_NAME/` after each push. If it fails (e.g. `gh` not installed or not authenticated), fall back to telling them to enable it manually: go to `https://github.com/THEIR_ORG/THEIR_REPO_NAME/settings/pages` and set **Source** to **GitHub Actions**.
+### 2. Ensure tools are available
 
-Skip this step entirely for designers joining -- they already cloned from their org's fork.
+The setup needs `git`, `node`, `npm`, and `gh` (GitHub CLI). Check for each and install any that are missing:
 
-### 6. Collect identity info
+1. **git** -- run `git --version`. Should already be installed. If not, on macOS: `xcode-select --install`.
+2. **Node.js** -- run `node --version`. If missing, on macOS: `brew install node`. Otherwise: download from [nodejs.org](https://nodejs.org).
+3. **gh (GitHub CLI)** -- run `gh --version`. If missing, install it: on macOS: `brew install gh`. Otherwise: see [cli.github.com](https://cli.github.com).
+4. **gh auth** -- run `gh auth status`. If not logged in, run `gh auth login` and walk the user through the prompts (browser login is easiest).
+
+### 3. Clone, create company repo, and connect
+
+**Critical:** The public repo (`BUnglaub/design-core`) is **never modified**. We clone it, create a new company repo, and point the clone at the new repo. The public repo stays as an upstream so the company can pull updates later.
+
+Run these steps automatically:
+
+1. **Clone the public repo** with the company name:
+   ```
+   git clone https://github.com/BUnglaub/design-core.git design-core-COMPANY_SLUG
+   ```
+   This creates a local folder (e.g. `design-core-jack-henry`) with all the tool files.
+
+2. **Create a new empty repo** on GitHub under their org/account:
+   ```
+   gh repo create THEIR_ORG/design-core-COMPANY_SLUG --private --description "Design Core for COMPANY_NAME"
+   ```
+   (Use `--public` if they prefer a public repo. Omit `THEIR_ORG/` and use just the repo name if creating under a personal account.)
+
+3. **Swap remotes** so the clone points to the new repo and keeps the public repo as upstream:
+   ```
+   cd design-core-COMPANY_SLUG
+   git remote rename origin upstream
+   git remote add origin https://github.com/THEIR_ORG/design-core-COMPANY_SLUG.git
+   ```
+   Now `origin` = their company repo (push here), `upstream` = public repo (pull updates from here).
+
+4. **Install dependencies:**
+   ```
+   npm install
+   ```
+
+5. **Update `GETTING_STARTED.md`** -- replace `YOUR_ORG` and `YOUR_REPO` with the company's org and repo name so teammates get the right clone URL.
+
+6. **Update `.designer.example`** with the company name (see step 5 below for the format).
+
+7. **Commit and push** to the new company repo:
+   ```
+   git add -A
+   git commit -m "Set up Design Core for COMPANY_NAME"
+   git push -u origin main
+   ```
+
+8. **Enable GitHub Pages** (optional, for shareable prototype links):
+   ```
+   gh api repos/THEIR_ORG/design-core-COMPANY_SLUG/pages -X POST -f build_type=workflow
+   ```
+   If it succeeds, prototypes will be live at `https://THEIR_ORG.github.io/design-core-COMPANY_SLUG/` after each push. If it fails, tell the user to enable it manually: repo **Settings → Pages → Source → GitHub Actions**.
+
+### Pulling updates from the public repo later
+
+To get updates from the public Design Core repo at any time:
+```
+git fetch upstream
+git merge upstream/main
+```
+
+### For designers joining (skip steps 1–3 above)
+
+Designers joining an existing team just clone the company repo directly. There's no fork or repo creation — the admin already did that. They only need identity setup (step 5 below).
+
+### 4. Check Cursor settings
+
+Before going further, remind the user to set up Cursor for the best experience:
+
+- **Agent mode** should be active (it's the default in the chat panel). This lets the AI create files, run commands, and build things for them.
+- **Model set to Auto** -- tell them to check the model dropdown at the bottom of the chat and pick **Auto**. It's the fastest and cheapest option.
+
+### 5. Collect identity info
 
 #### Company setup (first person at the org)
 
-You already have the company name from step 5. Now ask:
+You already have the company name from step 1. Now ask:
 
 1. **"What's your name?"** -- their display name for attribution on projects
 2. **"Who else is on your design team?"** -- optional, they can add people later. If they provide names, collect them.
@@ -138,11 +170,11 @@ Create `.designer` in the repo root:
 
 The team array only needs them -- they don't need to list the whole org. The `company` field should match what the admin set up.
 
-### 7. Start the preview server
+### 6. Start the preview server
 
 Run `npm run dev` and tell them the URL to open in their browser. Explain what they'll see: the home page with a project hub.
 
-### 8. Offer next steps
+### 7. Offer next steps
 
 #### For company setup
 
