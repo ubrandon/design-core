@@ -8,8 +8,12 @@ export default defineConfig({
   base: "./",
   server: { port: 3000 },
   plugins: [
-    // Do NOT auto-reload on data/style changes. Canvas and design-system pages
-    // stay put; users press Refresh to see edits. This avoids losing pan/zoom.
+    {
+      name: "suppress-public-reload",
+      handleHotUpdate({ file }) {
+        if (file.includes("/public/")) return [];
+      },
+    },
   ],
   build: {
     rollupOptions: {
