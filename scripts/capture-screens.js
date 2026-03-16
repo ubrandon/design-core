@@ -3,16 +3,29 @@ import { readFileSync, mkdirSync, existsSync, writeFileSync } from 'fs';
 import { resolve, join } from 'path';
 
 const ROOT = resolve(import.meta.dirname, '..');
-const CONFIG_PATH = join(ROOT, '.app-screens.json');
+const SHARED_CONFIG_PATH = join(ROOT, 'public', 'data', 'captures', 'config.json');
+const LOCAL_CONFIG_PATH = join(ROOT, '.app-screens.json');
 const OUTPUT_DIR = join(ROOT, 'public', 'data', 'captures');
 
-if (!existsSync(CONFIG_PATH)) {
-  console.error('\n  Missing .app-screens.json in repo root.');
-  console.error('  Copy .app-screens.example.json and fill in your app details.\n');
+let sharedConfig = {};
+let localConfig = {};
+
+if (existsSync(SHARED_CONFIG_PATH)) {
+  sharedConfig = JSON.parse(readFileSync(SHARED_CONFIG_PATH, 'utf-8'));
+}
+if (existsSync(LOCAL_CONFIG_PATH)) {
+  localConfig = JSON.parse(readFileSync(LOCAL_CONFIG_PATH, 'utf-8'));
+}
+
+const config = { ...sharedConfig, ...localConfig };
+
+if (!config.appUrl) {
+  console.error('\n  No app URL configured.');
+  console.error('  Either use the Captures page in the browser to enter a URL,');
+  console.error('  or create .app-screens.json with { "appUrl": "https://..." }\n');
   process.exit(1);
 }
 
-const config = JSON.parse(readFileSync(CONFIG_PATH, 'utf-8'));
 const baseUrl = config.appUrl.replace(/\/$/, '');
 const viewport = config.viewport || { width: 390, height: 844 };
 const extraDismissSelectors = config.dismissSelectors || [];
@@ -120,6 +133,149 @@ async function runLoginSteps(page, steps) {
       }
       default:
         console.warn(`  Unknown login step action: ${step.action}`);
+    }
+  }
+}
+
+const USERNAME_SELECTORS = [
+  'input[type="email"]',
+  'input[name="username"]',
+  'input[name="email"]',
+  'input[name="user"]',
+  'input[name="login"]',
+  'input[name="userId"]',
+  'input[name="user_id"]',
+  'input[name="loginId"]',
+  'input[autocomplete="username"]',
+  'input[autocomplete="email"]',
+  'input[id*="user" i]',
+  'input[id*="email" i]',
+  'input[id*="login" i]',
+  'input[placeholder*="email" i]',
+  'input[placeholder*="username" i]',
+  'input[placeholder*="user" i]',
+  'input[aria-label*="email" i]',
+  'input[aria-label*="username" i]',
+  'input[aria-label*="user" i]',
+];
+
+const PASSWORD_SELECTORS = [
+  'input[type="password"]',
+  'input[name="password"]',
+  'input[name="passwd"]',
+  'input[name="pass"]',
+  'input[autocomplete="current-password"]',
+  'input[id*="password" i]',
+  'input[id*="passwd" i]',
+];
+
+const SUBMIT_SELECTORS = [
+  'button[type="submit"]',
+  'input[type="submit"]',
+  'button:has-text("Sign in")',
+  'button:has-text("Log in")',
+  'button:has-text("Login")',
+  'button:has-text("Sign In")',
+  'button:has-text("Log In")',
+  'button:has-text("Continue")',
+  'button:has-text("Next")',
+  'button:has-text("Submit")',
+  '[role="button"]:has-text("Sign in")',
+  '[role="button"]:has-text("Log in")',
+];
+
+async function findVisible(page, selectors) {
+  for (const sel of selectors) {
+    try {
+      const el = await page.$(sel);
+      if (el && await el.isVisible()) return el;
+    } catch { /* selector syntax not supported, skip */ }
+  }
+  return null;
+}
+
+async function autoLogin(page, login) {
+  const username = login.username;
+  const password = login.password;
+
+  console.log('  Auto-detecting login fields...');
+
+  // Try to find username field
+  let usernameField = await findVisible(page, USERNAME_SELECTORS);
+
+  if (!usernameField) {
+    // Fallback: first visible text input that isn't a search box
+    usernameField = await page.evaluate(() => {
+      const inputs = document.querySelectorAll('input[type="text"], input:not([type])');
+      for (const inp of inputs) {
+        const rect = inp.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) continue;
+        const name = (inp.name + inp.id + inp.placeholder + inp.getAttribute('aria-label')).toLowerCase();
+        if (name.includes('search') || name.includes('query')) continue;
+        return true;
+      }
+      return false;
+    });
+    if (usernameField === true) {
+      usernameField = await page.$('input[type="text"], input:not([type])');
+    }
+  }
+
+  if (usernameField) {
+    console.log('    ⤷ Found username field');
+    await usernameField.fill(username);
+    await page.waitForTimeout(500);
+  } else {
+    console.log('    ⤷ No username field found, trying password directly');
+  }
+
+  // Check if password field is visible (single-page login)
+  let passwordField = await findVisible(page, PASSWORD_SELECTORS);
+
+  if (passwordField) {
+    // Both fields on same page
+    console.log('    ⤷ Found password field');
+    await passwordField.fill(password);
+    await page.waitForTimeout(500);
+
+    let submitBtn = await findVisible(page, SUBMIT_SELECTORS);
+    if (submitBtn) {
+      console.log('    ⤷ Clicking submit button');
+      await submitBtn.click();
+    } else {
+      console.log('    ⤷ Pressing Enter to submit');
+      await page.keyboard.press('Enter');
+    }
+    await page.waitForTimeout(2000);
+  } else {
+    // Multi-step login: submit username first, then look for password
+    console.log('    ⤷ No password field yet — trying multi-step login');
+    let submitBtn = await findVisible(page, SUBMIT_SELECTORS);
+    if (submitBtn) {
+      await submitBtn.click();
+    } else {
+      await page.keyboard.press('Enter');
+    }
+    await page.waitForTimeout(3000);
+
+    // Now look for password on the new page/step
+    passwordField = await findVisible(page, PASSWORD_SELECTORS);
+    if (passwordField) {
+      console.log('    ⤷ Found password field on step 2');
+      await passwordField.fill(password);
+      await page.waitForTimeout(500);
+
+      submitBtn = await findVisible(page, SUBMIT_SELECTORS);
+      if (submitBtn) {
+        console.log('    ⤷ Clicking submit button');
+        await submitBtn.click();
+      } else {
+        console.log('    ⤷ Pressing Enter to submit');
+        await page.keyboard.press('Enter');
+      }
+      await page.waitForTimeout(2000);
+    } else {
+      console.log('    ⤷ Still no password field — login form may need manual steps');
     }
   }
 }
@@ -389,19 +545,38 @@ async function main() {
   const page = await context.newPage();
 
   if (config.login) {
-    const loginUrl = config.login.url.startsWith('http')
-      ? config.login.url
-      : `${baseUrl}${config.login.url}`;
+    const loginPath = config.login.url || '/login';
+    const loginUrl = loginPath.startsWith('http')
+      ? loginPath
+      : `${baseUrl}${loginPath}`;
 
     console.log(`\n  Logging in at ${loginUrl}`);
     await page.goto(loginUrl, { waitUntil: 'domcontentloaded', timeout: 20000 });
     await page.waitForTimeout(2000);
-    await runLoginSteps(page, config.login.steps);
 
-    if (page.url().includes('/login')) {
+    if (config.login.steps && config.login.steps.length > 0) {
+      // Manual steps provided — use them
+      console.log('  Using configured login steps...');
+      await runLoginSteps(page, config.login.steps);
+    } else if (config.login.username && config.login.password) {
+      // Just credentials — auto-detect the form
+      await autoLogin(page, config.login);
+    } else {
+      console.log('  Login config found but no credentials or steps — skipping auto-login.');
+    }
+
+    const isStillOnLogin = (() => {
+      const url = page.url().toLowerCase();
+      return url.includes('/login') || url.includes('/sign-in') || url.includes('/signin') || url.includes('/auth');
+    })();
+
+    if (isStillOnLogin) {
       console.log('\n  ⏳ Waiting for you to complete login (MFA, etc) in the browser window...');
       console.log('  The script will continue automatically once you\'re past the login page.\n');
-      await page.waitForURL(url => !url.toString().includes('/login'), { timeout: 120000 });
+      await page.waitForURL(url => {
+        const u = url.toString().toLowerCase();
+        return !u.includes('/login') && !u.includes('/sign-in') && !u.includes('/signin') && !u.includes('/auth');
+      }, { timeout: 120000 });
     }
 
     await page.waitForTimeout(5000);

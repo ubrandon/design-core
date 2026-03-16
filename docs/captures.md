@@ -4,51 +4,72 @@ Automatically screenshot every screen of a web app. The tool logs in, crawls nav
 
 ## Quick start
 
-1. Copy the example config:
+### From the UI (easiest)
 
-   ```
-   cp .app-screens.example.json .app-screens.json
-   ```
+1. Open Design Core (`npm run dev`) and click **Captures** in the nav.
+2. Enter your app's URL and click **Capture**.
+3. The tool opens a browser, discovers screens, and shows progress in real time.
 
-2. Edit `.app-screens.json` with your app's URL and login credentials.
+### From the command line
 
-3. Install Playwright browsers (first time only):
+1. Install Playwright browsers (first time only):
 
    ```
    npx playwright install chromium
    ```
 
-4. Run the capture:
+2. Run the capture:
 
    ```
    npm run capture
    ```
 
-5. Open Design Core (`npm run dev`) and click **Captures** in the nav.
-
 ## Configuration
 
-The `.app-screens.json` file controls everything. It is gitignored since it contains credentials.
+Configuration is split into two files — shared settings that the whole team sees, and local credentials that stay on your machine.
 
-### Required
+### Shared config (committed to git)
 
-| Field | Description |
-|-------|-------------|
-| `appUrl` | Base URL of the app to capture (e.g. `https://your-app.com`) |
+**`public/data/captures/config.json`** — created automatically when you capture from the UI, or by the AI when you describe your app. Contains everything except login credentials.
 
-### Optional
+```json
+{
+  "appUrl": "https://your-app.com",
+  "viewport": { "width": 390, "height": 844 },
+  "discover": true,
+  "dismissSelectors": [],
+  "screens": []
+}
+```
 
 | Field | Default | Description |
 |-------|---------|-------------|
-| `login` | — | Login configuration (see below) |
-| `viewport` | `{ width: 390, height: 844 }` | Browser viewport size. Width also sets the screenshot width. |
-| `discover` | `false` | When `true`, automatically finds screens by crawling navigation links |
+| `appUrl` | — | Base URL of the app to capture (required) |
+| `viewport` | `{ width: 390, height: 844 }` | Browser viewport size |
+| `discover` | `false` | Automatically find screens by crawling navigation links |
 | `screens` | `[]` | Explicit list of screens to capture (used when `discover` is `false`) |
 | `dismissSelectors` | `[]` | Extra CSS selectors for app-specific close/dismiss buttons |
 
-### Login
+### Local credentials (gitignored)
 
-If your app requires authentication, add a `login` block:
+**`.app-screens.json`** — optional, only needed for apps behind login. Each designer creates their own copy with their credentials. Never committed to git.
+
+**Simple format** (recommended) — just provide your username and password. The script auto-detects login fields, handles single-page and multi-step login flows, finds submit buttons, and waits for MFA if needed:
+
+```json
+{
+  "login": {
+    "username": "user@example.com",
+    "password": "password123"
+  }
+}
+```
+
+You can optionally add `"url": "/login"` if the login page isn't at the default `/login` path.
+
+Copy `.app-screens.example.json` and fill in your credentials, or ask the AI to set it up for you.
+
+**Advanced format** — if auto-detection doesn't work for your app (custom login components, non-standard forms), use explicit steps with CSS selectors:
 
 ```json
 {
@@ -65,7 +86,31 @@ If your app requires authentication, add a `login` block:
 }
 ```
 
-#### Login step actions
+If `steps` are provided, the script uses them instead of auto-detection.
+
+The local file is merged on top of the shared config, so you can also override any shared setting locally (e.g. a different viewport for testing).
+
+### How merging works
+
+The capture script loads both files and merges them: shared config first, then local overrides on top. This means:
+
+- **Team lead** sets up `appUrl`, `viewport`, `screens`, `dismissSelectors` once → committed and shared via git
+- **Each designer** only needs `.app-screens.json` with their `login` credentials (if the app requires auth)
+- **Public apps** need no local file at all — the shared config is enough
+
+### Login auto-detection
+
+When you provide just `username` and `password` (no `steps`), the script automatically:
+
+1. Navigates to the login URL (default `/login`, or specify with `"url"`)
+2. Finds the username/email field by checking common selectors (`input[type="email"]`, `input[name="username"]`, `input[autocomplete="username"]`, etc.)
+3. Fills the username and looks for a password field
+4. If the password field is on the same page (single-page login), fills it and submits
+5. If no password field yet (multi-step login like SSO), submits the username first, waits for the next step, then finds and fills the password field
+6. Detects submit buttons by type, text content ("Sign in", "Log in", "Continue", etc.)
+7. If still on a login page after submitting (MFA, CAPTCHA, etc.), pauses and waits for you to complete login manually in the browser window
+
+### Login step actions (advanced)
 
 | Action | Fields | Description |
 |--------|--------|-------------|
@@ -74,8 +119,6 @@ If your app requires authentication, add a `login` block:
 | `submit` | — | Press Enter |
 | `wait` | `ms` | Wait a number of milliseconds |
 | `waitForUrl` | `pattern`, `timeout` | Wait for the URL to match a glob pattern |
-
-If the script detects the URL still contains `/login` after running the steps, it pauses and waits for you to complete login manually (useful for MFA). The browser window stays open — just finish logging in and the script continues automatically.
 
 ### Discovery mode
 
@@ -132,7 +175,7 @@ Screenshots are saved to `public/data/captures/` along with a `manifest.json` th
   - `url` — full URL
   - `capturedAt` — ISO timestamp
 
-The entire `public/data/captures/` directory is gitignored since screenshots contain environment-specific data.
+Screenshots and the manifest are committed to git so the whole team can see them. The shared config (`config.json`) is also committed. Only `.app-screens.json` (credentials) is gitignored.
 
 ## Captures page
 
