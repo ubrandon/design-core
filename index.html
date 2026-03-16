@@ -3,17 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Design Core</title>
+  <title>Projects — Design Core</title>
   <link rel="stylesheet" href="styles/shared.css">
   <link rel="stylesheet" href="styles/app.css">
 </head>
 <body>
   <div class="page-shell">
     <div class="home-hero">
-      <h1 class="home-hero__title">
-        <span class="gradient-text">Design</span> Core
-      </h1>
-      <p class="home-hero__subtitle">UI exploration, prototyping, and design system reference.</p>
+      <h1 class="home-hero__title">Projects</h1>
+      <p class="home-hero__subtitle">Your design projects — screens, prototypes, and explorations.</p>
     </div>
 
     <div id="projects" class="home-grid">
@@ -34,21 +32,6 @@
       }
     });
 
-    const dsCard = `
-      <a href="design-system.html" class="ds-entry-card">
-        <div class="ds-entry-card__icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
-            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
-            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
-            <rect x="14" y="14" width="7" height="7" rx="1.5"/>
-          </svg>
-        </div>
-        <div class="ds-entry-card__name">Design System</div>
-        <div class="ds-entry-card__desc">Colors, typography, buttons, cards, and all shared components.</div>
-      </a>
-    `;
-
     fetchJSON("data/projects/index.json")
       .then(data => {
         const grid = document.getElementById("projects");
@@ -58,10 +41,10 @@
               <p class="empty-state__title">No projects yet</p>
               <p class="empty-state__hint">Ask the AI to create your first project — just describe what you want to design.</p>
             </div>
-          ` + dsCard;
+          `;
           return;
         }
-        const cards = data.projects.map(p => `
+        grid.innerHTML = data.projects.map(p => `
           <a href="project.html?id=${p.id}" class="project-card">
             <div class="project-card__name">${p.name}</div>
             <div class="project-card__desc">${p.description}</div>
@@ -72,11 +55,9 @@
             </div>
           </a>
         `).join("");
-
-        grid.innerHTML = cards + dsCard;
       })
       .catch(() => {
-        document.getElementById("projects").innerHTML = '<div class="empty-state">Could not load projects.</div>' + dsCard;
+        document.getElementById("projects").innerHTML = '<div class="empty-state">Could not load projects.</div>';
       });
   </script>
 </body>
