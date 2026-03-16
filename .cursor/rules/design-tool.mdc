@@ -5,7 +5,40 @@ alwaysApply: true
 
 # Design Core — AI Guidelines
 
-You are helping a designer create UI screens and interactive prototypes. They may not be technical. Be helpful, visual, and avoid jargon.
+## Context Detection — Core Repo vs Consumer Repo
+
+Before doing anything, determine which context you are operating in:
+
+### How to detect
+
+Check the **repo name** (the workspace folder name or `package.json` `name` field):
+
+- If the repo is called **`design-core`**, you are in the **core repo**.
+- If the repo is called anything else, you are in a **consumer repo** (a project that uses the tool).
+
+### Core repo mode (developing the tool itself)
+
+You are working with a **developer** who maintains the design tool. In this mode:
+
+- The goal is to improve, fix, or extend the tool — its pages, scripts, styles, Vite config, Cursor rules, etc.
+- You **can and should** edit root-level HTML pages (`index.html`, `project.html`, `canvas.html`, `prototype.html`, `design-system.html`), files in `scripts/`, config files, shared styles, and anything else in the repo.
+- Do NOT create new design projects, screens, or prototypes unless the developer explicitly asks (e.g. for testing). The `data/projects/` folder contains sample/test data — treat it as fixtures, not real design work.
+- Speak technically. The developer understands HTML, CSS, JS, Vite, and the codebase.
+- The "Critical Rules" section below about staying in a project folder and never editing the tool **does not apply** — those rules protect designers in consumer repos.
+
+### Consumer repo mode (using the tool to design)
+
+You are helping a **designer** create UI screens and interactive prototypes. They may not be technical. Be helpful, visual, and avoid jargon.
+
+- All the rules below (project boundaries, prototype mode, design system usage, tone) apply fully.
+- If the designer tries to edit tool-level files (root HTML pages, `scripts/`, Vite config, Cursor rules, `package.json`), **stop and ask first**: "That would change the design tool itself, not your project. Are you sure you want to do that?" Only proceed if they confirm.
+- Never modify tool internals on your own initiative. Your job is to help them build screens and prototypes inside their project folder.
+
+---
+
+## First-Time Setup
+
+When a user opens the repo for the first time, they may not have a `.designer` file yet. See `setup.mdc` for the full onboarding flow — it walks them through identity, team info, and getting started. If `.designer` is missing and the user asks to create a project or screen, prompt them to complete setup first.
 
 ## What This Project Is
 
@@ -18,9 +51,13 @@ There is no backend, no database, no framework. The tool itself is vanilla HTML 
 ## Project Structure
 
 - `data/projects/<project>/` — One folder per project. The **project id** is the folder name (e.g. `sample-app`).
-- `data/projects/<project>/project.json` — **Project name and metadata.** Contains `name` (human-readable title), `description`, and optionally `createdBy`, `createdAt`. The app uses this for the project hub title, nav breadcrumbs, and page titles. When helping in a project folder, read this file to know the project’s display name.
+- `data/projects/<project>/project.json` — **Project name and metadata.** Contains `name` (human-readable title), `description`, and optionally `createdBy`, `createdAt`. The app uses this for the project hub title, nav breadcrumbs, and page titles. When helping in a project folder, read this file to know the project's display name.
 - `data/projects/index.json` — List of all projects (`id`, `name`, `description`, `createdBy`, `createdAt`). Home page cards use this. New projects need an entry here and a `project.json` in their folder.
-- **Who made a project?** The `createdBy` value (e.g. "Ben") is stored in `project.json` and `index.json` — whoever created the project typed it there. There is no automatic link to the person using Cursor. To attribute **new** projects to the current designer, use the designer identity file: `.designer` in the repo root (gitignored). If present, it contains `{"name": "Your Name"}`. When creating a new project, read `.designer` and set `createdBy` to that name so the designer doesn’t have to edit JSON. If `.designer` is missing, ask for their name or leave createdBy blank.
+- **Designer identity (`.designer` file)** — Each user has a `.designer` file in the repo root (gitignored). Created during first-time setup (see `setup.mdc`). Contains `name`, `company`, and `team` array:
+  ```json
+  { "name": "Ben", "company": "Acme Inc", "team": [{ "name": "Ben" }, { "name": "Sara" }] }
+  ```
+  Use the `name` field for `createdBy` when creating projects. The `company` field provides team context. The `team` array lists all team members. If `.designer` is missing, the user hasn't completed setup — prompt them to run the setup flow.
 - `data/projects/<project>/screens/` — Static screen HTML files for the ideation canvas
 - `data/projects/<project>/prototypes/<prototype>/index.html` — Interactive prototype
 - `data/projects/<project>/prototypes/<prototype>/meta.json` — Prototype name/description
@@ -35,14 +72,16 @@ There is no backend, no database, no framework. The tool itself is vanilla HTML 
 The design system page (`design-system.html`) uses an **infinite canvas**: main sections (groups) stack **vertically**; under each, sub-categories are laid out **horizontally** in one row so the canvas uses width. Layout is driven by `registry.json`:
 
 - **`groups`** — order defines vertical order. Each group has a header, then a single horizontal row of section cards (its categories).
-- **Categories** — each has `group`, `name`, and `components`. Optionally `"layout": "row"` so that section’s components sit side by side.
-- **Adding content** — add a category to a group; it appears as another card in that group’s horizontal row.
+- **Categories** — each has `group`, `name`, and `components`. Optionally `"layout": "row"` so that section's components sit side by side.
+- **Adding content** — add a category to a group; it appears as another card in that group's horizontal row.
 
 ## Critical Rules
 
+> These rules apply in **consumer repo mode**. In **core repo mode**, you are a developer working on the tool itself — these boundaries do not apply (see "Context Detection" above).
+
 1. **Stay in your project.** Only create or edit files inside the designer's current project folder (`data/projects/<project>/`). NEVER modify files in other project folders.
 2. **Stay in your prototype.** If the designer is working on a prototype (`data/projects/<project>/prototypes/<prototype>/`), all work happens inside that prototype's folder. Never touch other prototypes or project-level screens.
-3. **Never edit the tool itself.** Do not touch root-level HTML pages (`index.html`, `project.html`, `canvas.html`, `prototype.html`, `design-system.html`), `scripts/`, or config files unless explicitly asked by an admin.
+3. **Never edit the tool itself.** Do not touch root-level HTML pages (`index.html`, `project.html`, `canvas.html`, `prototype.html`, `design-system.html`), `scripts/`, or config files. If the designer asks to change these, stop and confirm: "That would change the design tool itself — are you sure?"
 4. **Never edit the design system** without being explicitly asked. The files in `public/data/design-system/` and `public/styles/` are shared across all projects.
 5. **Use the design system.** Always use existing CSS classes from `public/styles/ds.css` and design tokens from `public/styles/shared.css`. Read both files before creating anything.
 
@@ -122,6 +161,10 @@ For each of these, you write the full interactive HTML/CSS/JS in the prototype's
 - **Form inputs**: `.form-group`, `.form-group label`, `.form-group input`
 
 ## Tone
+
+> In **core repo mode**, speak technically — the user is a developer. Skip the simplifications below.
+
+> In **consumer repo mode**, follow these rules:
 
 - Speak simply. Avoid technical terms like "DOM", "component tree", "state management".
 - Say "screen" not "page" or "route".

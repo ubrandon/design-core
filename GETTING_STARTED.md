@@ -1,232 +1,125 @@
-# Getting Started — Design Core
+# Getting Started with Design Core
 
-Welcome! This guide will get you from zero to creating screens and prototypes in about 10 minutes. No coding experience needed.
+Design Core is a visual design tool for teams. You prompt AI to build interactive prototypes and screens -- no coding needed.
 
----
+Pick your path below:
 
-## 1. Install Cursor
-
-Cursor is the editor you'll use to create and preview screens. It has built-in AI that helps you design.
-
-1. Go to [cursor.com](https://www.cursor.com) and download Cursor for your computer (Mac, Windows, or Linux)
-2. Open the installer and follow the prompts
-3. When it asks about settings, the defaults are fine — just click through
+- **Setting up for your company?** You're the first person bringing Design Core to your org. Start at [Company Setup](#company-setup).
+- **Joining your team's repo?** Your company already has Design Core and someone shared a link with you. Skip to [Designer Setup](#designer-setup).
 
 ---
 
-## 2. Install Node.js
+## Company Setup
 
-Node.js runs the preview server so you can see your screens in a browser.
+You're setting up Design Core for your organization for the first time.
 
-1. Go to [nodejs.org](https://nodejs.org) and download the **LTS** version (the green button)
-2. Open the installer and follow the prompts
-3. To verify it worked, open Cursor's terminal (see step 4) and type `node --version` — you should see a version number
+### Step 1: Fork the repo
 
----
+1. Click the **Fork** button at the top of this GitHub page
+2. Choose your company's GitHub organization as the owner
+3. Keep the repo name as `design-core` (or rename it -- up to you)
+4. Click **Create fork**
 
-## 3. Clone the project
+You now have your own copy at `https://github.com/YOUR_ORG/design-core`
 
-"Cloning" downloads the project files to your computer.
+### Step 2: Download Cursor + Node.js
 
-1. Open Cursor
-2. Click **File → Open Folder** (or **Cmd+O** on Mac)
-3. If you don't have the project yet:
-   - Open the terminal in Cursor: press **Ctrl+`** (backtick, the key above Tab)
-   - Navigate to where you want the project:
-     ```
-     cd ~/Documents
-     ```
-   - Clone the repo:
-     ```
-     git clone https://github.com/YOUR_ORG/design-core.git
-     ```
-   - Then open that folder in Cursor: **File → Open Folder → Documents → design-core**
+**[Download Cursor](https://www.cursor.com)** -- the AI-powered editor that runs Design Core. Install it, default settings are fine.
 
----
+**[Download Node.js](https://nodejs.org)** -- click the **LTS** button. Install with defaults.
 
-## 3b. Set your designer name (optional)
+### Step 3: Paste this into Cursor
 
-So that new projects show you as the creator (e.g. "Ben" on the home page):
+Open Cursor, press **Cmd+L** (Mac) or **Ctrl+L** (Windows) to open the AI chat, and paste:
 
-1. Copy the example file: `.designer.example` → `.designer` (same folder as the project)
-2. Open `.designer` and replace `"Your Name"` with your name
-
-The `.designer` file is not committed to git, so each designer can have their own. If you skip this, you can still edit `project.json` and `data/projects/index.json` by hand when you create a project.
-
----
-
-## 4. Start the preview server
-
-This lets you see your work in a browser with live reload — changes appear instantly.
-
-1. Open the terminal in Cursor: press **Ctrl+`** (backtick key)
-2. The first time only, install dependencies:
-   ```
-   npm install
-   ```
-3. Start the server:
-   ```
-   npm run dev
-   ```
-4. You'll see something like:
-   ```
-   VITE ready in 300 ms
-   ➜ Local: http://localhost:3000/
-   ```
-5. Open that URL in your browser (Chrome, Safari, etc.)
-6. **Leave the terminal running.** Don't close it while you're working.
-
-To stop the server later, click in the terminal and press **Ctrl+C**.
-
----
-
-## 5. Create a screen (for the canvas)
-
-Canvas screens are static HTML files — no interactivity, just visual design exploration.
-
-### Ask the AI (recommended)
-
-1. Open the AI chat in Cursor: press **Cmd+L** (Mac) or **Ctrl+L** (Windows)
-2. Type something like:
-
-   > Create a settings screen for the sample-app project with a user avatar, name, and toggle switches for notifications and dark mode
-
-3. The AI will create an HTML file in `public/data/projects/sample-app/screens/` using the design system
-4. Check your browser — refresh the canvas page to see it
-
----
-
-## 6. Create a prototype
-
-Prototypes are **interactive mini web apps** — they have working forms, buttons, animations, and real behavior. This is the main feature of the tool.
-
-### How to create one
-
-1. Create a new folder: `public/data/projects/sample-app/prototypes/my-feature/`
-2. Create `meta.json` inside it:
-   ```json
-   {
-     "name": "My Feature",
-     "description": "Description of what this prototype does"
-   }
-   ```
-3. Add your prototype to the index: open `public/data/projects/sample-app/prototypes/index.json` and add an entry
-4. Create `index.html` inside the folder — this is where the AI builds the interactive prototype
-5. Open that `index.html` and prompt the AI:
-
-   > Build a login flow with email validation, password strength meter, and a success animation
-
-6. The AI writes the full interactive HTML/CSS/JS using the design system
-7. Preview it: go to the project page and click your prototype
-
-### Example prompts
-
-- "Build a signup form with email, password, confirm password. Show inline validation. On submit, show a success screen with confetti."
-- "Create a multi-step onboarding: welcome, pick interests, set profile photo, done."
-- "Make a settings page with toggles for notifications, dark mode, and location sharing."
-- "Build a search experience — type in a search bar, show filtered results below."
-
----
-
-## 7. Edit a screen or prototype
-
-### Using the AI
-
-Open any file and press **Cmd+L** to chat with the AI. Try things like:
-
-- "Add a search bar at the top"
-- "Make the button animate on hover"
-- "Add form validation to the email field"
-- "Change the color scheme to use more teal accents"
-- "Add a transition when switching between steps"
-
-The AI knows the design system and will use the right colors, fonts, and components automatically.
-
----
-
-## 8. Share your work
-
-### Push to Git (publishes to GitHub Pages)
-
-1. Click the **Source Control** icon in the left sidebar (it looks like a branch/fork)
-2. You'll see your changed files listed
-3. Type a short message describing what you did (e.g. "Add login prototype")
-4. Click the **checkmark** button to commit
-5. Click the **sync/push** button to push to the team
-
-Once pushed to `main`, your prototypes are live at:
 ```
-https://YOUR_ORG.github.io/design-core/prototype.html?project=sample-app&proto=YOUR_PROTOTYPE
+I'm setting up Design Core for my company for the first time. Please help me:
+
+1. Clone our forked repo to my computer
+2. Install dependencies
+3. Set up my identity and company info
+4. Start the preview server and walk me through the tool
+
+Our repo is at: https://github.com/YOUR_ORG/design-core.git
 ```
 
-### Copy a shareable link
+> Replace `YOUR_ORG` with your GitHub organization name.
 
-On the project page, click **Copy link** next to any prototype. This gives you the direct URL.
+The AI will clone the repo, ask your name and company, set everything up, and walk you through the tool.
+
+### Step 4: Share with your team
+
+Once you're set up, share the link to **your fork's** Getting Started page with your designers:
+
+```
+https://github.com/YOUR_ORG/design-core/blob/main/GETTING_STARTED.md#designer-setup
+```
+
+They'll follow the Designer Setup below.
+
+---
+
+## Designer Setup
+
+Your company already has Design Core. Someone shared a repo link with you.
+
+### Step 1: Download Cursor + Node.js
+
+**[Download Cursor](https://www.cursor.com)** -- the AI-powered editor you'll use. Install it, default settings are fine.
+
+**[Download Node.js](https://nodejs.org)** -- click the **LTS** button. Install with defaults.
+
+### Step 2: Paste this into Cursor
+
+Open Cursor, press **Cmd+L** (Mac) or **Ctrl+L** (Windows) to open the AI chat, and paste:
+
+```
+I'm joining my team's Design Core repo. Please help me get set up:
+
+1. Clone the repo to my computer
+2. Install dependencies
+3. Set up my designer identity
+4. Start the preview server and show me around
+
+The repo is at: https://github.com/YOUR_ORG/design-core.git
+```
+
+> Replace `YOUR_ORG` with your company's GitHub organization name (your admin can tell you this).
+
+The AI will clone the repo, ask your name, set up your identity, and walk you through the tool.
+
+---
+
+## What happens next?
+
+Whether you're an admin or a designer, once setup is done you just chat with the AI to build things:
+
+- *"Create a new project called Mobile App Redesign"*
+- *"Build a login screen with email and password fields"*
+- *"Make an interactive onboarding flow with 3 steps"*
 
 ---
 
 ## Quick reference
 
-| What you want to do | How |
+| What | How |
 |---|---|
 | Open AI chat | **Cmd+L** (Mac) or **Ctrl+L** (Windows) |
-| Open terminal | **Ctrl+`** (backtick) |
+| Open terminal | **Ctrl+`** (backtick, the key above Tab) |
 | Start preview server | `npm run dev` in terminal |
 | Stop preview server | **Ctrl+C** in terminal |
-| See your changes | Check browser at http://localhost:3000 |
+| See your designs | Browser at the URL shown in terminal |
 | Save to Git | Source Control sidebar → type message → checkmark → sync |
-| Find a file | **Cmd+P** (Mac) or **Ctrl+P** (Windows), then type the filename |
-
----
-
-## Where do my files go?
-
-```
-public/data/
-  projects/
-    sample-app/                     ← Your project
-      screens/
-        homepage.html               ← Static canvas screen
-        discover.html               ← Another canvas screen
-      canvas.json                   ← Screen positions on the canvas
-      prototypes/
-        index.json                  ← List of all prototypes
-        onboarding/                 ← A prototype
-          meta.json                 ← Name and description
-          index.html                ← The interactive prototype (HTML/CSS/JS)
-        settings-flow/              ← Another prototype
-          meta.json
-          index.html
-```
-
-**Key rules:**
-- Canvas screens = HTML + CSS only (no JavaScript)
-- Prototypes = interactive HTML + CSS + JavaScript
-- When working on a prototype, only edit files inside that prototype's folder
-- Don't edit files in `public/styles/` or other project folders unless asked
 
 ---
 
 ## Troubleshooting
 
 **"npm: command not found"**
-→ Node.js isn't installed. Go back to step 2.
+→ Node.js isn't installed. Go back and download it from [nodejs.org](https://nodejs.org).
 
 **"npm run dev" shows an error**
-→ Make sure you ran `npm install` first. If it still fails, close the terminal, open a new one, and try again.
+→ Make sure you ran `npm install` first. Close the terminal, open a new one, try again.
 
-**Browser shows a blank page**
-→ Make sure the terminal says "VITE ready" and the URL matches what it shows. Try a hard refresh: **Cmd+Shift+R** (Mac) or **Ctrl+Shift+R** (Windows).
-
-**"I accidentally edited the wrong file"**
-→ No worries. In the terminal, run `git checkout -- path/to/file` to undo your changes. Or ask the AI: "Undo my changes to public/styles/shared.css".
-
----
-
-## Tips
-
-- **Be specific with the AI.** "Build a login form with email validation and a forgot password link" works better than "make a login".
-- **Reference existing prototypes.** "Make it work like the onboarding prototype but for settings" helps the AI match the pattern.
-- **Prototypes are interactive.** Don't be afraid to ask for working forms, animations, state changes, and transitions.
-- **Save often.** Commit and push after each prototype so you don't lose work.
-- **Preview on mobile.** Prototypes are displayed in a 390×844 phone frame. Resize your browser to test.
+**Browser shows blank page**
+→ Check the terminal says "VITE ready" and the URL matches. Try **Cmd+Shift+R** to hard refresh.

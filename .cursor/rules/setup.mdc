@@ -1,0 +1,127 @@
+---
+description: Guides new users through first-time setup of Design Core -- identity, team info, and getting started
+alwaysApply: true
+---
+
+# First-Time Setup Guide
+
+## When to trigger setup
+
+Check if the file `.designer` exists in the repo root. If it **does not exist**, the user has not completed setup yet. When they ask to "set up" or "get started" or paste a getting-started prompt, walk them through the setup flow below.
+
+If `.designer` already exists, setup is done -- skip this entirely and follow the normal `design-tool.mdc` rules.
+
+## Detecting setup type
+
+There are two setup paths. Detect which one based on what the user says:
+
+- **Company setup** -- they say things like "setting up for my company", "first time", "forked the repo", or they're the admin. They need the full setup: identity, company info, team members.
+- **Designer joining** -- they say things like "joining my team", "my company already has this", or they cloned an existing fork. They just need their personal identity set up. The company info may already be in `.designer.example` or other team members' projects.
+
+If unclear, ask: "Are you setting this up for your company for the first time, or joining a team that already has it?"
+
+## Setup flow
+
+Walk the user through these steps conversationally. Ask one thing at a time -- don't dump everything at once. Be friendly and non-technical.
+
+### 1. Prerequisites check
+
+Before anything else, verify:
+- The repo is cloned and open in Cursor (if they're reading this, it probably is)
+- Node.js is installed: run `node --version` in the terminal. If it fails, tell them to download it from [nodejs.org](https://nodejs.org)
+
+### 2. Install dependencies
+
+Run `npm install` for them. Wait for it to finish. If it fails, help troubleshoot.
+
+### 3. Collect identity info
+
+#### Company setup (first person at the org)
+
+Ask the user:
+
+1. **"What's your name?"** -- their display name for attribution on projects
+2. **"What's your company or team name?"** -- the organization using Design Core
+3. **"Who else is on your design team?"** -- optional, they can add people later. If they provide names, collect them.
+
+Create `.designer` in the repo root:
+
+```json
+{
+  "name": "Their Name",
+  "company": "Their Company",
+  "team": [
+    { "name": "Their Name" },
+    { "name": "Teammate 1" },
+    { "name": "Teammate 2" }
+  ]
+}
+```
+
+Also update `.designer.example` so future teammates see the right format with the company name pre-filled:
+
+```json
+{
+  "name": "Your Name",
+  "company": "Their Company",
+  "team": [
+    { "name": "Your Name" }
+  ]
+}
+```
+
+Commit the updated `.designer.example` to git so teammates get it when they clone.
+
+#### Designer joining (team already exists)
+
+Ask the user:
+
+1. **"What's your name?"** -- their display name for attribution
+
+Read `.designer.example` to get the company name and pre-fill it. If the example file doesn't have a company name, ask them.
+
+Create `.designer` in the repo root:
+
+```json
+{
+  "name": "Their Name",
+  "company": "Company from .designer.example",
+  "team": [
+    { "name": "Their Name" }
+  ]
+}
+```
+
+The team array only needs them -- they don't need to list the whole org. The `company` field should match what the admin set up.
+
+### 4. Start the preview server
+
+Run `npm run dev` and tell them the URL to open in their browser. Explain what they'll see: the home page with a project hub.
+
+### 5. Offer next steps
+
+#### For company setup
+
+> "You're all set! A few things you might want to do:
+> - **Create your first project** -- just tell me a name and I'll set it up
+> - **Share with your team** -- send them the link to your repo's Getting Started page. They'll have their own setup prompt to paste.
+> - **Explore the design system** -- click Design System in the nav to see available components
+>
+> What would you like to do first?"
+
+#### For designer joining
+
+> "You're all set! Here's what you can do:
+> - **Create a project** -- just tell me a name and I'll set it up
+> - **Look at existing projects** -- check the home page to see what your team has built
+> - **Explore the design system** -- click Design System in the nav to see available components
+>
+> What would you like to build?"
+
+## Important notes
+
+- The `.designer` file is gitignored -- each person on the team creates their own when they first set up
+- `.designer.example` IS committed to git -- the admin updates it with the company name so new designers get it pre-filled
+- The `company` field helps the AI understand the team context
+- The `team` array is a local reference -- each person's file only needs their own name (the admin's file may list everyone)
+- Do NOT commit `.designer` to git. Only `.designer.example` gets committed.
