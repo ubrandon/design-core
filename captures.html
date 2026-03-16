@@ -151,6 +151,9 @@
       align-items: center;
       gap: 16px;
       margin-top: 24px;
+    }
+
+    #cap-empty .cap-form {
       pointer-events: auto;
     }
 
@@ -238,6 +241,211 @@
       text-align: center;
       line-height: 1.5;
     }
+
+    /* ---- Capture modal ---- */
+    .cap-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .cap-modal-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cap-modal {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 28px 28px;
+      width: 440px;
+      max-width: calc(100vw - 40px);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+      transform: translateY(12px) scale(0.97);
+      transition: transform 0.2s;
+    }
+    .cap-modal-overlay.is-open .cap-modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .cap-modal-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: rgba(0, 0, 0, 0.8);
+      margin-bottom: 6px;
+    }
+
+    .cap-modal-desc {
+      font-size: 0.82rem;
+      color: rgba(0, 0, 0, 0.4);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .cap-modal .cap-form {
+      margin-top: 0;
+      align-items: stretch;
+    }
+
+    .cap-modal .cap-form-row {
+      max-width: none;
+    }
+
+    .cap-modal .cap-progress {
+      max-width: none;
+    }
+
+    .cap-modal .cap-form-hint {
+      max-width: none;
+      text-align: left;
+    }
+
+    .cap-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: rgba(0, 0, 0, 0.06);
+      border-radius: 50%;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      color: rgba(0, 0, 0, 0.4);
+      font-size: 1.1rem;
+      transition: background 0.15s;
+    }
+    .cap-modal-close:hover {
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    /* ---- Scout checklist ---- */
+    .cap-scout-list {
+      max-height: 340px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin: 12px 0;
+    }
+
+    .cap-scout-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.12s;
+      user-select: none;
+    }
+    .cap-scout-item:hover { background: rgba(0, 0, 0, 0.04); }
+
+    .cap-scout-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: rgba(59, 130, 246, 1);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .cap-scout-item-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.75);
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cap-scout-item-path {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.3);
+      text-align: right;
+      flex-shrink: 0;
+      max-width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .cap-scout-item-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: rgba(59, 130, 246, 0.7);
+      background: rgba(59, 130, 246, 0.08);
+      padding: 2px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .cap-scout-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .cap-scout-toggle {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(59, 130, 246, 0.8);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 0;
+      font-family: inherit;
+    }
+    .cap-scout-toggle:hover { text-decoration: underline; }
+
+    .cap-progress-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cap-copy-btn {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.35);
+      background: rgba(0, 0, 0, 0.06);
+      border: none;
+      border-radius: 6px;
+      padding: 3px 10px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s, color 0.15s;
+    }
+    .cap-copy-btn:hover { background: rgba(0, 0, 0, 0.1); color: rgba(0, 0, 0, 0.55); }
+
+    .cap-modal-steps {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .cap-modal-step {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.06);
+      color: rgba(0, 0, 0, 0.35);
+    }
+    .cap-modal-step.is-active {
+      background: rgba(59, 130, 246, 0.1);
+      color: rgba(59, 130, 246, 0.9);
+    }
   </style>
 </head>
 <body>
@@ -247,12 +455,70 @@
   </div>
 
   <div class="zoom-controls">
+    <button class="zoom-btn zoom-btn--tidy" onclick="openCaptureModal()" title="New capture">New Capture</button>
     <button class="zoom-btn zoom-btn--tidy" onclick="refreshCaptures()" title="Reload captures">Refresh</button>
     <div class="zoom-controls__zoom-group">
       <button class="zoom-btn" onclick="pz.zoomBy(-0.04)" title="Zoom out">&minus;</button>
       <span id="zoom-label" class="zoom-level">100%</span>
       <button class="zoom-btn" onclick="pz.zoomBy(0.04)" title="Zoom in">+</button>
       <button class="zoom-btn" onclick="pz.resetView()" title="Reset view" style="font-size:0.8rem">&#8962;</button>
+    </div>
+  </div>
+
+  <div id="cap-modal-overlay" class="cap-modal-overlay" onclick="closeCaptureModal(event)">
+    <div class="cap-modal" style="position:relative;" onclick="event.stopPropagation()">
+      <button class="cap-modal-close" onclick="closeCaptureModal()" title="Close">&times;</button>
+
+      <!-- Step 1: URL input + scout -->
+      <div id="modal-step-url">
+        <div class="cap-modal-steps">
+          <span class="cap-modal-step is-active">1. Find screens</span>
+          <span class="cap-modal-step">2. Capture</span>
+        </div>
+        <div class="cap-modal-title">New Capture</div>
+        <div class="cap-modal-desc">Enter your app's URL to discover available screens.</div>
+        <form class="cap-form" onsubmit="startScout(event)">
+          <div class="cap-form-row">
+            <input id="modal-cap-url" class="cap-form-input" type="url" placeholder="https://your-app.com" required>
+            <button id="modal-scout-btn" class="cap-form-btn" type="submit">Find Screens</button>
+          </div>
+          <div id="modal-scout-progress" class="cap-progress">
+            <div class="cap-progress-header">
+              <div id="modal-scout-status" class="cap-progress-status"></div>
+              <button class="cap-copy-btn" onclick="copyLog('modal-scout-log')">Copy log</button>
+            </div>
+            <div id="modal-scout-log" class="cap-progress-log"></div>
+          </div>
+          <div class="cap-form-hint">
+            For apps behind login, set up <code style="padding:1px 6px;border-radius:5px;background:rgba(0,0,0,0.06);font-size:0.9em;font-weight:600;">.app-screens.json</code> with your credentials.
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 2: Scout results checklist + deep capture -->
+      <div id="modal-step-select" style="display:none;">
+        <div class="cap-modal-steps">
+          <span class="cap-modal-step">1. Find screens</span>
+          <span class="cap-modal-step is-active">2. Capture</span>
+        </div>
+        <div class="cap-modal-title">Select screens to capture</div>
+        <div class="cap-modal-desc">Pick the features you want to deep-capture. Each one will be explored for sub-pages, tabs, and interactions.</div>
+        <div id="modal-scout-list" class="cap-scout-list"></div>
+        <div class="cap-scout-actions">
+          <button class="cap-scout-toggle" onclick="toggleAllScout()">Select all</button>
+          <div style="display:flex;gap:8px;">
+            <button class="cap-form-btn" style="background:rgba(0,0,0,0.08);color:rgba(0,0,0,0.6);" onclick="backToUrl()">Back</button>
+            <button id="modal-deep-btn" class="cap-form-btn" onclick="startDeepCapture()">Capture Selected</button>
+          </div>
+        </div>
+        <div id="modal-deep-progress" class="cap-progress" style="margin-top:12px;">
+          <div class="cap-progress-header">
+            <div id="modal-deep-status" class="cap-progress-status"></div>
+            <button class="cap-copy-btn" onclick="copyLog('modal-deep-log')">Copy log</button>
+          </div>
+          <div id="modal-deep-log" class="cap-progress-log"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -442,7 +708,10 @@
             '<button id="cap-submit" class="cap-form-btn" type="submit">Capture</button>' +
           '</div>' +
           '<div id="cap-progress" class="cap-progress">' +
-            '<div id="cap-status" class="cap-progress-status"></div>' +
+            '<div class="cap-progress-header">' +
+              '<div id="cap-status" class="cap-progress-status"></div>' +
+              '<button class="cap-copy-btn" onclick="copyLog(\'cap-log\')">Copy log</button>' +
+            '</div>' +
             '<div id="cap-log" class="cap-progress-log"></div>' +
           '</div>' +
           '<div class="cap-form-hint">' +
@@ -458,33 +727,64 @@
       if (el) el.remove();
     }
 
-    function startCapture(e) {
-      e.preventDefault();
-      var urlInput = document.getElementById("cap-url");
-      var submitBtn = document.getElementById("cap-submit");
-      var progress = document.getElementById("cap-progress");
-      var status = document.getElementById("cap-status");
-      var log = document.getElementById("cap-log");
-      var appUrl = urlInput.value.trim();
+    function copyLog(logId) {
+      var logEl = document.getElementById(logId);
+      if (!logEl) return;
+      var text = logEl.innerText;
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = logEl.previousElementSibling
+          ? logEl.previousElementSibling.querySelector(".cap-copy-btn")
+          : null;
+        if (!btn) {
+          var header = logEl.parentElement.querySelector(".cap-progress-header");
+          if (header) btn = header.querySelector(".cap-copy-btn");
+        }
+        if (btn) {
+          var orig = btn.textContent;
+          btn.textContent = "Copied!";
+          setTimeout(function() { btn.textContent = orig; }, 1500);
+        }
+      });
+    }
 
-      if (!appUrl) return;
+    var scoutedItems = [];
 
-      urlInput.disabled = true;
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Capturing...";
-      progress.classList.add("is-active");
-      status.textContent = "Starting capture...";
-      log.innerHTML = "";
+    function openCaptureModal() {
+      var overlay = document.getElementById("cap-modal-overlay");
+      overlay.classList.add("is-open");
+      var input = document.getElementById("modal-cap-url");
+      if (!input.value) {
+        fetch("data/captures/config.json?t=" + Date.now())
+          .then(function(r) { return r.ok ? r.json() : null; })
+          .then(function(cfg) { if (cfg && cfg.appUrl) input.value = cfg.appUrl; })
+          .catch(function() {});
+      }
+      setTimeout(function() { input.focus(); }, 200);
+    }
 
-      fetch("/api/capture", {
+    function closeCaptureModal(e) {
+      if (e && e.target && !e.target.classList.contains("cap-modal-overlay")) return;
+      document.getElementById("cap-modal-overlay").classList.remove("is-open");
+    }
+
+    function backToUrl() {
+      document.getElementById("modal-step-url").style.display = "";
+      document.getElementById("modal-step-select").style.display = "none";
+    }
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") closeCaptureModal();
+    });
+
+    function streamSSE(url, body, handlers) {
+      return fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: appUrl }),
+        body: JSON.stringify(body),
       }).then(function(res) {
         if (!res.ok) {
           return res.json().then(function(err) { throw new Error(err.error || "Request failed"); });
         }
-
         var reader = res.body.getReader();
         var decoder = new TextDecoder();
         var buffer = "";
@@ -492,11 +792,9 @@
         function processChunk() {
           return reader.read().then(function(result) {
             if (result.done) return;
-
             buffer += decoder.decode(result.value, { stream: true });
             var lines = buffer.split("\n");
             buffer = lines.pop();
-
             var currentEvent = "";
             for (var i = 0; i < lines.length; i++) {
               var line = lines[i];
@@ -505,35 +803,217 @@
               } else if (line.startsWith("data: ")) {
                 var data;
                 try { data = JSON.parse(line.slice(6)); } catch { continue; }
-
-                if (currentEvent === "log") {
-                  var div = document.createElement("div");
-                  div.textContent = data.text;
-                  log.appendChild(div);
-                  log.scrollTop = log.scrollHeight;
-                } else if (currentEvent === "status") {
-                  status.textContent = data.message;
-                } else if (currentEvent === "done") {
-                  status.textContent = "Done! Loading screenshots...";
-                  removeEmpty();
-                  loadCaptures();
-                  return;
-                } else if (currentEvent === "error") {
-                  status.textContent = "Error: " + data.message;
-                  status.style.color = "rgba(220, 38, 38, 0.9)";
-                  urlInput.disabled = false;
-                  submitBtn.disabled = false;
-                  submitBtn.textContent = "Retry";
-                  return;
-                }
+                if (handlers[currentEvent]) handlers[currentEvent](data);
               }
             }
-
             return processChunk();
           });
         }
-
         return processChunk();
+      });
+    }
+
+    function startScout(e) {
+      e.preventDefault();
+      var urlInput = document.getElementById("modal-cap-url");
+      var btn = document.getElementById("modal-scout-btn");
+      var progress = document.getElementById("modal-scout-progress");
+      var status = document.getElementById("modal-scout-status");
+      var log = document.getElementById("modal-scout-log");
+      var appUrl = urlInput.value.trim();
+      if (!appUrl) return;
+
+      urlInput.disabled = true;
+      btn.disabled = true;
+      btn.textContent = "Scanning...";
+      progress.classList.add("is-active");
+      status.textContent = "Opening browser and scanning...";
+      status.style.color = "";
+      log.innerHTML = "";
+
+      streamSSE("/api/capture/scout", { url: appUrl }, {
+        log: function(d) {
+          var div = document.createElement("div");
+          div.textContent = d.text;
+          log.appendChild(div);
+          log.scrollTop = log.scrollHeight;
+        },
+        status: function(d) { status.textContent = d.message; },
+        scout: function(d) {
+          scoutedItems = d.items || [];
+          showScoutResults();
+        },
+        done: function() {
+          urlInput.disabled = false;
+          btn.disabled = false;
+          btn.textContent = "Find Screens";
+          if (scoutedItems.length > 0) {
+            showScoutResults();
+          } else {
+            status.textContent = "No screens found. Try a different URL.";
+          }
+        },
+        error: function(d) {
+          status.textContent = "Error: " + d.message;
+          status.style.color = "rgba(220, 38, 38, 0.9)";
+          urlInput.disabled = false;
+          btn.disabled = false;
+          btn.textContent = "Retry";
+        },
+      }).catch(function(err) {
+        status.textContent = "Error: " + err.message;
+        status.style.color = "rgba(220, 38, 38, 0.9)";
+        urlInput.disabled = false;
+        btn.disabled = false;
+        btn.textContent = "Retry";
+      });
+    }
+
+    function showScoutResults() {
+      document.getElementById("modal-step-url").style.display = "none";
+      document.getElementById("modal-step-select").style.display = "";
+      var list = document.getElementById("modal-scout-list");
+      list.innerHTML = "";
+
+      // Add Home as the first item
+      var homeRow = document.createElement("label");
+      homeRow.className = "cap-scout-item";
+      homeRow.innerHTML =
+        '<input type="checkbox" checked data-idx="home">' +
+        '<span class="cap-scout-item-label">Home</span>' +
+        '<span class="cap-scout-item-path">/</span>';
+      list.appendChild(homeRow);
+
+      for (var i = 0; i < scoutedItems.length; i++) {
+        var item = scoutedItems[i];
+        var displayLabel = item.label.replace(/-/g, " ");
+        if (displayLabel === "(unlabeled)") displayLabel = item.path;
+        var row = document.createElement("label");
+        row.className = "cap-scout-item";
+        row.innerHTML =
+          '<input type="checkbox" checked data-idx="' + i + '">' +
+          '<span class="cap-scout-item-label">' + displayLabel + '</span>' +
+          '<span class="cap-scout-item-path">' + (item.path || "") + '</span>' +
+          (item.source === "menu" ? '<span class="cap-scout-item-badge">menu</span>' : '');
+        list.appendChild(row);
+      }
+    }
+
+    function toggleAllScout() {
+      var boxes = document.querySelectorAll("#modal-scout-list input[type='checkbox']");
+      var allChecked = true;
+      for (var i = 0; i < boxes.length; i++) {
+        if (!boxes[i].checked) { allChecked = false; break; }
+      }
+      for (var i = 0; i < boxes.length; i++) {
+        boxes[i].checked = !allChecked;
+      }
+    }
+
+    function startDeepCapture() {
+      var boxes = document.querySelectorAll("#modal-scout-list input[type='checkbox']");
+      var selected = [];
+      var includeHome = false;
+      for (var i = 0; i < boxes.length; i++) {
+        if (!boxes[i].checked) continue;
+        if (boxes[i].dataset.idx === "home") {
+          includeHome = true;
+        } else {
+          selected.push(scoutedItems[parseInt(boxes[i].dataset.idx)]);
+        }
+      }
+      if (selected.length === 0 && !includeHome) return;
+
+      var btn = document.getElementById("modal-deep-btn");
+      var progress = document.getElementById("modal-deep-progress");
+      var status = document.getElementById("modal-deep-status");
+      var log = document.getElementById("modal-deep-log");
+
+      btn.disabled = true;
+      btn.textContent = "Capturing...";
+      progress.classList.add("is-active");
+      status.textContent = "Starting deep capture...";
+      status.style.color = "";
+      log.innerHTML = "";
+
+      streamSSE("/api/capture/deep", { items: selected, includeHome: includeHome }, {
+        log: function(d) {
+          var div = document.createElement("div");
+          div.textContent = d.text;
+          log.appendChild(div);
+          log.scrollTop = log.scrollHeight;
+        },
+        status: function(d) { status.textContent = d.message; },
+        done: function() {
+          status.textContent = "Done! Loading screenshots...";
+          btn.disabled = false;
+          btn.textContent = "Capture Selected";
+          removeEmpty();
+          closeCaptureModal();
+          loadCaptures();
+        },
+        error: function(d) {
+          status.textContent = "Error: " + d.message;
+          status.style.color = "rgba(220, 38, 38, 0.9)";
+          btn.disabled = false;
+          btn.textContent = "Retry";
+        },
+      }).catch(function(err) {
+        status.textContent = "Error: " + err.message;
+        status.style.color = "rgba(220, 38, 38, 0.9)";
+        btn.disabled = false;
+        btn.textContent = "Retry";
+      });
+    }
+
+    function startCapture(e, source) {
+      e.preventDefault();
+      var urlInput = document.getElementById("cap-url");
+      var submitBtn = document.getElementById("cap-submit");
+      var progress = document.getElementById("cap-progress");
+      var status = document.getElementById("cap-status");
+      var log = document.getElementById("cap-log");
+      var appUrl = urlInput.value.trim();
+      if (!appUrl) return;
+
+      urlInput.disabled = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Scanning...";
+      progress.classList.add("is-active");
+      status.textContent = "Scanning for screens...";
+      status.style.color = "";
+      log.innerHTML = "";
+
+      streamSSE("/api/capture/scout", { url: appUrl }, {
+        log: function(d) {
+          var div = document.createElement("div");
+          div.textContent = d.text;
+          log.appendChild(div);
+          log.scrollTop = log.scrollHeight;
+        },
+        status: function(d) { status.textContent = d.message; },
+        scout: function(d) {
+          scoutedItems = d.items || [];
+        },
+        done: function() {
+          if (scoutedItems.length > 0) {
+            removeEmpty();
+            openCaptureModal();
+            showScoutResults();
+          } else {
+            status.textContent = "No screens found.";
+          }
+          urlInput.disabled = false;
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Capture";
+        },
+        error: function(d) {
+          status.textContent = "Error: " + d.message;
+          status.style.color = "rgba(220, 38, 38, 0.9)";
+          urlInput.disabled = false;
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Retry";
+        },
       }).catch(function(err) {
         status.textContent = "Error: " + err.message;
         status.style.color = "rgba(220, 38, 38, 0.9)";
