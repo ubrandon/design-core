@@ -35,7 +35,6 @@
   <script src="scripts/canvas-pan-zoom.js"></script>
   <script>
     const CARD_GAP = 40;
-    const POLL_INTERVAL_MS = 2000;
 
     const projectId = getParam("project");
     if (!projectId) window.location.href = "index.html";
@@ -99,7 +98,7 @@
     }
 
     function loadCanvas() {
-      fetch("data/projects/" + projectId + "/canvas.json?t=" + Date.now())
+      return fetch("data/projects/" + projectId + "/canvas.json?t=" + Date.now())
         .then(r => {
           if (!r.ok) throw new Error(r.status);
           return r.json();
@@ -139,12 +138,12 @@
     }
 
     function refreshScreens() {
-      const t = Date.now();
-      screens.forEach((s, i) => {
-        const iframe = document.querySelector("#card-" + i + " iframe");
-        if (iframe) {
-          iframe.src = "data/projects/" + projectId + "/screens/" + s.file + "?t=" + t;
-        }
+      screens = [];
+      const btn = document.querySelector('[onclick="refreshScreens()"]');
+      if (btn) { btn.textContent = "Refreshing…"; btn.disabled = true; }
+      loadCanvas().then(() => {
+        if (btn) { btn.textContent = "Refresh"; btn.disabled = false; }
+        showToast("Screens refreshed");
       });
     }
 
@@ -186,7 +185,6 @@
     }
 
     loadCanvas();
-    setInterval(loadCanvas, POLL_INTERVAL_MS);
 
     function renderCards() {
       const bust = "?t=" + Date.now();

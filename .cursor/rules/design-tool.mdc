@@ -380,14 +380,30 @@ This is a common flow: the designer shows what their app looks like and wants th
 
 ### Color component conventions
 
-When creating color palette components for the design system page, render visual swatches:
+When creating color palette components for the design system page, render visual swatches so they look good on the design system page.
+
+**Layout — use a grid, not a vertical stack.**
+
+- **Do not** stack swatches in a single column (e.g. one swatch per row). Use a **grid layout** so multiple swatches sit side-by-side and wrap into rows.
+- **Preferred:** CSS Grid with a fixed or responsive column count so swatches align in a neat grid:
+  - Example: `display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;` for a 4-column grid (use 4–6 columns depending on swatch size).
+  - Or responsive: `grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 12px;` so columns adapt to container width.
+- **Alternative:** Flexbox with wrap is acceptable: `display: flex; flex-wrap: wrap; gap: 12px;` — but ensure the container is wide enough that multiple swatches fit per row (do not use a narrow column or `flex-direction: column` for the swatch list).
+
+**Swatch structure (per color):**
+
+- Square (or rounded square) showing the color — e.g. `width` and `height` 48–56px, `border-radius: 10px`, optional thin border for light colors (`border: 1px solid rgba(0,0,0,0.1)`).
+- Label below: token name and hex (or value), small font (e.g. `font-size: 0.65rem`), muted color.
+
+**Example (grid of swatches):**
 
 ```html
-<div style="display:flex;flex-wrap:wrap;gap:10px;">
+<div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:12px;">
   <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
     <div style="width:56px;height:56px;border-radius:10px;background:var(--bg-0);border:1px solid rgba(0,0,0,0.1);"></div>
     <span style="font-size:0.65rem;font-weight:700;color:rgba(0,0,0,0.45);"><strong>BG 0</strong> #ffffff</span>
   </div>
+  <!-- repeat for each color -->
 </div>
 ```
 
