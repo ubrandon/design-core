@@ -212,6 +212,16 @@ A prototype is a **self-contained interactive HTML file** that the designer buil
 - Categories and groups from `registry.json`
 - Shows colors, typography, buttons, cards, rows, tags, chips, forms, radii, shadows
 
+**Company repos -- user content separation:**
+
+All user-created content stays under `public/data/`. Tool files (`shared.css`, `ds.css`, `scripts/`, root HTML pages) are never edited in company repos.
+
+- **Components**: Put in a company subfolder: `components/<company-slug>/` (e.g. `components/acme/`). Reference in registry as `"file": "acme/card-payment.html"`.
+- **Brand overrides**: Create `data/design-system/company.css` for color, font, and spacing overrides. Auto-loaded after `shared.css` and `ds.css`.
+- **Registry**: `registry.json` ships empty; the company fills it with their groups and categories.
+
+This keeps company content separate from the tool, avoids merge conflicts on upstream pulls, and makes it clear what's "yours" vs "tool."
+
 ## Sharing & Deployment
 
 ### GitHub Pages
@@ -308,12 +318,13 @@ Others clone or fork the core repo and get updates with standard Git:
 
 ### What's shared vs. what's local
 
-| Shared (core repo)                              | Local (each business repo)                 |
-| ----------------------------------------------- | ------------------------------------------ |
-| HTML pages, `scripts/`, `public/styles/`        | `public/data/projects/*` (your designs)    |
-| `package.json`, `vite.config.js`                | `.designer` config                         |
-| `docs/`, `GETTING_STARTED.md`                   | Business-specific design system overrides  |
-| Generic design system components                | `.cursor/rules/` if business-specific      |
+| Shared (core repo -- never edit in company repos) | User content (each company repo)                    |
+| -------------------------------------------------- | --------------------------------------------------- |
+| HTML pages, `scripts/`, `public/styles/`           | `public/data/projects/*` (projects, screens, protos)|
+| `package.json`, `vite.config.js`                   | `public/data/design-system/components/<slug>/*`     |
+| `public/styles/shared.css`, `public/styles/ds.css` | `public/data/design-system/registry.json`           |
+| `.cursor/rules/`, `docs/`                          | `public/data/design-system/company.css`             |
+| `GETTING_STARTED.md` (after initial setup)         | `.designer` (gitignored)                            |
 
 ## Design Principles
 

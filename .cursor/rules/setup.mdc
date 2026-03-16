@@ -33,7 +33,7 @@ Ask these two questions (one at a time):
 1. **"What's your company or team name?"** (e.g. `Acme Design`)
 2. **"What's your GitHub organization or account name?"** (e.g. `acme-design`) -- where the new repo will live.
 
-The new repo will be named **`design-core-<company-slug>`** (lowercase, hyphenated). Examples: "Jack Henry" → `design-core-jack-henry`, "Acme Design" → `design-core-acme-design`.
+The new repo will be named **`design-core-<company-slug>`** (lowercase, hyphenated). Examples: "Acme Design" → `design-core-acme-design`, "Globex Corp" → `design-core-globex-corp`.
 
 ### 2. Ensure tools are available
 

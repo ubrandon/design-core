@@ -98,8 +98,10 @@ data/
           meta.json
           index.html      Interactive prototype (HTML/CSS/JS)
   design-system/
-    registry.json
+    registry.json         Ships empty; company fills with their groups/categories
+    company.css           (Company repos) Brand overrides -- auto-loaded after shared.css/ds.css
     components/           Component HTML snippets
+      <company-slug>/     Company repos put components here (e.g. acme/)
 ```
 
 ### Local development

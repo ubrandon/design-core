@@ -146,6 +146,18 @@
       const stage = document.getElementById("stage");
       const pz = initPanZoom(viewport, stage, { navHeight: 52 });
 
+      // Auto-load company.css if it exists (brand overrides for company repos)
+      fetch("data/design-system/company.css?t=" + Date.now(), { method: "HEAD" })
+        .then(r => {
+          if (r.ok) {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = "data/design-system/company.css?t=" + Date.now();
+            document.head.appendChild(link);
+          }
+        })
+        .catch(() => {});
+
       async function loadDesignSystem() {
         const bust = "?t=" + Date.now();
         let registry;

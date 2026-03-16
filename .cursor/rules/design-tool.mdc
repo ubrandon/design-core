@@ -54,11 +54,14 @@ You are helping a **designer** create UI screens and interactive prototypes. The
 - If a tool-level fix or improvement is needed, tell the user: "This change belongs in the core Design Core repo, not your company repo. Make the change there and pull it down with `git fetch upstream && git merge upstream/main`."
 - The ONLY tool-level files a company repo should modify during setup are `GETTING_STARTED.md` (to set the company's clone URL) and `.designer.example` (to set the company name). After that initial setup commit, these files should only change via upstream pulls.
 
-**What you CAN create and edit in a company repo:**
+**What you CAN create and edit in a company repo (user content):**
+
+All user-created content lives under `public/data/`. This is the boundary between the tool and the team's work.
 
 - `public/data/projects/` -- all project folders, screens, prototypes, and project JSON files
-- `public/data/design-system/components/` -- company-specific design system component HTML previews
-- `public/data/design-system/registry.json` -- to register company-specific components
+- `public/data/design-system/components/<company-slug>/` -- company-specific design system component previews. **Always use a company subfolder** (e.g. `components/acme/`), never put files directly in `components/`. See "User content separation" below.
+- `public/data/design-system/registry.json` -- registry for your design system components (ships empty, you fill it)
+- `public/data/design-system/company.css` -- company brand overrides (colors, fonts, radii). Loaded automatically after `shared.css` and `ds.css`. Use this instead of editing `shared.css` or `ds.css`.
 - `.designer` -- the local identity file (gitignored, never committed)
 
 ### Git rules
@@ -105,10 +108,11 @@ All paths below are **disk paths** (relative to repo root):
 - `public/data/projects/<project>/prototypes/<prototype>/index.html` -- Interactive prototype
 - `public/data/projects/<project>/prototypes/<prototype>/meta.json` -- Prototype name and description
 - `public/data/projects/<project>/prototypes/index.json` -- Prototype list (`id`, `name`, `description`, optional `device`)
-- `public/data/design-system/components/` -- Shared design system component HTML files
-- `public/data/design-system/registry.json` -- Category list + groups (order controls layout)
-- `public/styles/shared.css` -- Design tokens (colors, fonts, spacing, radii)
-- `public/styles/ds.css` -- Reusable component styles
+- `public/data/design-system/components/` -- Design system component HTML previews. In company repos, use `components/<company-slug>/` subfolder.
+- `public/data/design-system/registry.json` -- Category list + groups (order controls layout). Ships empty; company fills it.
+- `public/data/design-system/company.css` -- (Company repos only) Brand overrides for colors, fonts, radii. Auto-loaded after `shared.css` and `ds.css`.
+- `public/styles/shared.css` -- Design tokens (colors, fonts, spacing, radii). **Tool file -- do not edit in company repos.**
+- `public/styles/ds.css` -- Reusable component styles. **Tool file -- do not edit in company repos.**
 - **Designer identity (`.designer` file)** -- In the repo root (gitignored). Created during first-time setup (see `setup.mdc`). Contains `name`, `company`, and `team` array:
   ```json
   { "name": "Ben", "company": "Acme Inc", "team": [{ "name": "Ben" }, { "name": "Sara" }] }
@@ -265,9 +269,17 @@ The design system starts empty. When a designer asks for components -- either by
 
 ### Creating a component
 
+**In the core repo** (developing the tool):
+
 1. **Add CSS classes** to `public/styles/ds.css`. Use design tokens from `shared.css` (colors, radii, fonts, spacing). Follow the naming convention: `.ds-<component>` for the main class, `.ds-<component>-<part>` for sub-elements.
 2. **Create a preview HTML file** at `public/data/design-system/components/<name>.html`. This is a pure HTML fragment -- no `<!doctype>`, no `<html>`, no `<head>`, no `<body>`, no style imports. The design system page injects it into a container that already has `shared.css` and `ds.css` loaded.
 3. **Register it** in `public/data/design-system/registry.json` -- add it to an existing group/category or create new ones.
+
+**In a company repo** (using the tool):
+
+1. **Create a preview HTML file** at `public/data/design-system/components/<company-slug>/<name>.html`. Same format -- pure HTML fragment. Use inline styles or classes from `company.css` for company-specific styling.
+2. **Register it** in `public/data/design-system/registry.json` with `"file": "<company-slug>/<name>.html"`.
+3. **If you need new CSS classes**, add them to `public/data/design-system/company.css` (not `ds.css`). Prefix with the company slug (e.g. `.jh-card`). Or use inline styles in the preview HTML -- that's fine for simple components.
 
 ### Preview HTML file format
 
@@ -312,22 +324,59 @@ The `registry.json` file controls the design system page layout:
 - Use `"layout": "row"` on a category to lay out its components side-by-side (good for color swatches, button variants, icon sets).
 - Group IDs should be lowercase, hyphenated (e.g. `cards-content`, `inputs-controls`).
 
+### User content separation
+
+All user-created content in a company repo must stay cleanly separated from tool files. The rule is simple: **everything the team creates goes under `public/data/`**. Never edit tool-level files (`shared.css`, `ds.css`, `scripts/`, root HTML pages, etc.).
+
+#### Design system components: use a company subfolder
+
+Put components in `public/data/design-system/components/<company-slug>/`, not directly in `components/`. The company slug comes from the repo name (e.g. `design-core-acme` → `acme`).
+
+- **Path**: `public/data/design-system/components/<company-slug>/<component>.html` (e.g. `components/acme/card-payment.html`)
+- **Registry**: Set `file` to include the subfolder: `"file": "acme/card-payment.html"`
+
+This avoids merge conflicts when pulling upstream and makes it obvious which components belong to the team.
+
+#### Brand overrides: use `company.css`
+
+**Never edit `shared.css` or `ds.css` in a company repo.** Those are tool files that update via upstream pulls.
+
+Instead, create `public/data/design-system/company.css` for brand-specific overrides. The design system page (and prototypes) auto-load this file if it exists. It loads after `shared.css` and `ds.css`, so overrides take effect via CSS specificity.
+
+Use it for:
+
+- **Colors**: Override `--bg-0`, `--bg-1`, `--neon-blue`, `--neon-blue-rgb`, `--neon-teal`, `--neon-teal-rgb`, `--text`, `--muted`, `--muted-2`, or add new brand tokens
+- **Typography**: Override `--font-body`, `--font-display`, add `@import` for Google Fonts
+- **Shape**: Override `--radius-sm`, `--radius-md`, `--radius-lg`, `--radius-xl`, `--shadow`, `--shadow-soft`
+- **New component classes**: Add company-specific CSS classes (prefix with your company slug, e.g. `.jh-card`)
+
+Example `company.css`:
+```css
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
+:root {
+  --neon-blue: #2563eb;
+  --neon-blue-rgb: 37, 99, 235;
+  --font-body: "Open Sans", sans-serif;
+}
+```
+
 ### When the designer shares screenshots or describes their brand
 
 This is a common flow: the designer shows what their app looks like and wants the design system to match. Follow this process:
 
-1. **Extract colors** from the screenshots or description. Map them to CSS custom properties in `public/styles/shared.css`:
-   - Update `--bg-0`, `--bg-1` for backgrounds
-   - Update `--neon-blue`, `--neon-blue-rgb` for the primary accent
-   - Update `--neon-teal`, `--neon-teal-rgb` for the secondary accent
+1. **Extract colors** from the screenshots or description. Map them to CSS custom properties in `public/data/design-system/company.css` (NOT `shared.css`):
+   - Override `--bg-0`, `--bg-1` for backgrounds
+   - Override `--neon-blue`, `--neon-blue-rgb` for the primary accent
+   - Override `--neon-teal`, `--neon-teal-rgb` for the secondary accent
    - Add new tokens for any additional brand colors (e.g. `--brand-red`, `--brand-red-rgb`)
-   - Update `--text`, `--muted`, `--muted-2` for text hierarchy
-2. **Extract typography** -- if they want different fonts, update `--font-body` and `--font-display` in `shared.css` and add the corresponding Google Fonts `@import`.
-3. **Extract spacing and shape** -- update `--radius-*` tokens if their design uses different corner radii. Update `--shadow` and `--shadow-soft` if they use different elevation styles.
+   - Override `--text`, `--muted`, `--muted-2` for text hierarchy
+2. **Extract typography** -- if they want different fonts, add the `@import` and override `--font-body` and `--font-display` in `company.css`.
+3. **Extract spacing and shape** -- override `--radius-*` tokens if their design uses different corner radii. Override `--shadow` and `--shadow-soft` if they use different elevation styles.
 4. **Build matching components** using the updated tokens. Each component needs:
-   - CSS class(es) in `ds.css`
-   - Preview HTML file in `components/`
+   - Preview HTML file in `components/<company-slug>/`
    - Entry in `registry.json`
+   - Optionally, CSS classes in `company.css` (prefix with company slug)
 
 ### Color component conventions
 
