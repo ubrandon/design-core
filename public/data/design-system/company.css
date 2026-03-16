@@ -1,0 +1,389 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --jh-navy: #1e3a5f;
+  --jh-navy-rgb: 30, 58, 95;
+  --jh-blue: #2563eb;
+  --jh-blue-rgb: 37, 99, 235;
+  --jh-green: #16a34a;
+  --jh-green-rgb: 22, 163, 74;
+  --jh-red: #ef4444;
+  --jh-red-rgb: 239, 68, 68;
+
+  --neon-blue: #2563eb;
+  --neon-blue-rgb: 37, 99, 235;
+
+  --font-body: "Open Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.jh-card {
+  background: var(--bg-0);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-soft);
+  padding: 20px;
+}
+
+.jh-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.85);
+  margin-bottom: 12px;
+}
+
+.jh-amount {
+  font-weight: 700;
+  color: var(--jh-blue);
+}
+
+.jh-amount-positive {
+  font-weight: 700;
+  color: var(--jh-green);
+}
+
+.jh-amount-negative {
+  font-weight: 700;
+  color: var(--jh-red);
+}
+
+.jh-label {
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.jh-section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.jh-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.jh-row:last-child {
+  border-bottom: none;
+}
+
+/* Action row: grey icons + grey text, subtle (not prominent buttons) */
+.jh-action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.jh-action-item svg {
+  color: rgba(0, 0, 0, 0.45);
+}
+.jh-action-item span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.jh-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(var(--jh-blue-rgb), 0.15);
+  color: var(--jh-blue);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.jh-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  background: #fff;
+  border: 1px solid var(--jh-blue);
+  color: var(--jh-blue);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.jh-sidebar {
+  background: var(--bg-0);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.jh-sidebar-item {
+  padding: 10px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+  min-width: 0;
+}
+
+.jh-sidebar-item-label {
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.jh-sidebar-item svg {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.jh-sidebar-item.is-active {
+  background: var(--jh-blue);
+  color: #fff;
+  border-left: 3px solid rgba(0, 0, 0, 0.2);
+  margin-left: -3px;
+  padding-left: 15px;
+}
+
+.jh-sidebar-item.is-active svg {
+  color: #fff;
+}
+
+.jh-footer {
+  background: var(--jh-navy);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.8rem;
+}
+
+/* Account / page header (dark blue bar) */
+.jh-header-bar {
+  background: var(--jh-navy);
+  color: #fff;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.jh-header-bar-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.jh-header-bar-sub {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 2px;
+}
+
+.jh-header-bar-balance {
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-align: right;
+}
+
+/* Card header with label + action icon */
+.jh-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+/* Pagination row: dots + arrows + button */
+.jh-pagination-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.jh-pagination-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.jh-pagination-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.jh-pagination-dot.is-active {
+  background: var(--jh-blue);
+}
+
+/* Tag variants */
+.jh-tag-new {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--jh-green);
+  background: rgba(var(--jh-green-rgb), 0.12);
+}
+
+.jh-tag-closed {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--jh-red);
+}
+
+/* Transaction list header */
+.jh-transaction-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.jh-transaction-header-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.jh-transaction-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Action list (desktop: icon + title + description rows) */
+.jh-action-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+}
+
+.jh-action-list-item:last-child {
+  border-bottom: none;
+}
+
+/* Let content shrink and wrap so text isn't cut off in narrow containers */
+.jh-action-list-item > div:last-child {
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.jh-action-list-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: rgba(var(--jh-blue-rgb), 0.1);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.jh-action-list-icon svg {
+  color: var(--jh-blue);
+}
+
+.jh-action-list-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.jh-action-list-desc {
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+/* Mobile action grid: square blue buttons on dark blue */
+.jh-action-grid-mobile {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 16px;
+}
+
+.jh-action-grid-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: var(--radius-md);
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.jh-action-grid-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Sidebar user profile */
+.jh-sidebar-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  margin-top: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+.jh-sidebar-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(var(--jh-blue-rgb), 0.2);
+  flex-shrink: 0;
+}
+
+.jh-sidebar-profile-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+  flex: 1;
+  min-width: 0;
+}
