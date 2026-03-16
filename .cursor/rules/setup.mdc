@@ -7,7 +7,7 @@ alwaysApply: true
 
 ## When to trigger setup
 
-**If you are in the core repo** (repo name is `design-core` and git origin points to `BUnglaub/design-core`): the user is a developer maintaining the tool. **Do not run this setup flow** — skip it entirely and follow `design-tool.mdc` in core repo mode.
+**If you are in the core repo** (repo name is `design-core` and git origin points to `ubrandon/design-core`): the user is a developer maintaining the tool. **Do not run this setup flow** — skip it entirely and follow `design-tool.mdc` in core repo mode.
 
 Check if the file `.designer` exists in the repo root. If it **does not exist**, the user has not completed setup yet. When they ask to "set up" or "get started" or paste a getting-started prompt, walk them through the setup flow below.
 
@@ -18,7 +18,7 @@ If `.designer` already exists, setup is done -- skip this entirely and follow th
 There are two setup paths:
 
 - **Company setup** -- the user is the first person at their org setting up Design Core. They need the full setup: clone the public repo, create a new company repo on GitHub, connect them, identity, team members. Detect this when: they say "setting up for my company" or "first time", or their prompt uses the company setup prompt from GETTING_STARTED.md.
-- **Designer joining** -- the user's company already has a Design Core repo. They just clone their company's repo and set up their identity. Detect this when: they say "joining my team" or their prompt uses the designer joining prompt from GETTING_STARTED.md, or git origin already points to a company repo (not `BUnglaub/design-core`).
+- **Designer joining** -- the user's company already has a Design Core repo. They just clone their company's repo and set up their identity. Detect this when: they say "joining my team" or their prompt uses the designer joining prompt from GETTING_STARTED.md, or git origin already points to a company repo (not `ubrandon/design-core`).
 
 If unclear, ask: "Are you setting this up for your company for the first time, or joining a team that already has it?"
 
@@ -46,13 +46,13 @@ The setup needs `git`, `node`, `npm`, and `gh` (GitHub CLI). Check for each and 
 
 ### 3. Clone, create company repo, and connect
 
-**Critical:** The public repo (`BUnglaub/design-core`) is **never modified**. We clone it, create a new company repo, and point the clone at the new repo. The public repo stays as an upstream so the company can pull updates later.
+**Critical:** The public repo (`ubrandon/design-core`) is **never modified**. We clone it, create a new company repo, and point the clone at the new repo. The public repo stays as an upstream so the company can pull updates later.
 
 Run these steps automatically:
 
 1. **Clone the public repo** with the company name:
    ```
-   git clone https://github.com/BUnglaub/design-core.git design-core-COMPANY_SLUG
+   git clone https://github.com/ubrandon/design-core.git design-core-COMPANY_SLUG
    ```
    This creates a local folder (e.g. `design-core-jack-henry`) with all the tool files.
 
@@ -202,3 +202,9 @@ Run `npm run dev` and tell them the URL to open in their browser. Explain what t
 - The `company` field helps the AI understand the team context
 - The `team` array is a local reference -- each person's file only needs their own name (the admin's file may list everyone)
 - Do NOT commit `.designer` to git. Only `.designer.example` gets committed.
+
+## Tool updates belong in the core repo ONLY
+
+**NEVER make tool-level changes in a company repo.** Company repos pull tool updates from the upstream core repo (`ubrandon/design-core`) via `git fetch upstream && git merge upstream/main`. If you edit tool files (Cursor rules, root HTML pages, scripts, styles, config, docs) directly in a company repo, those changes will conflict with future upstream merges.
+
+The only tool-level files modified in a company repo are `GETTING_STARTED.md` and `.designer.example` -- and only during the initial setup commit (step 3.5 and 3.6 above). After that, all tool changes flow from the core repo downstream.

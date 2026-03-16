@@ -17,7 +17,7 @@ Open Cursor, press **Cmd+L** (Mac) or **Ctrl+L** (Windows) to open the AI chat, 
 ```
 I want to set up Design Core for my company. Please:
 
-1. Clone the repo from https://github.com/BUnglaub/design-core.git
+1. Clone the repo from https://github.com/ubrandon/design-core.git
 2. Open the cloned folder in Cursor
 3. Once open, read the .cursor/rules/setup.mdc file and follow the company setup flow to walk me through the rest
 ```
