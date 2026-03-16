@@ -284,10 +284,10 @@
 
       function refreshDS() {
         const btn = document.querySelector('[onclick="refreshDS()"]');
-        if (btn) { btn.textContent = "Refreshing…"; btn.disabled = true; }
+        if (btn) { btn.disabled = true; }
         loadDesignSystem().then(() => {
           if (btn) {
-            btn.textContent = "✓";
+            btn.textContent = "✓ Refresh";
             btn.disabled = false;
             setTimeout(() => { btn.textContent = "Refresh"; }, 1500);
           }
