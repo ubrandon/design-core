@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Core</title>
+  <link rel="stylesheet" href="styles/shared.css">
+  <link rel="stylesheet" href="styles/app.css">
+</head>
+<body>
+  <div class="page-shell">
+    <div class="home-hero">
+      <h1 class="home-hero__title">
+        <span class="gradient-text">Design</span> Core
+      </h1>
+      <p class="home-hero__subtitle">UI exploration, prototyping, and design system reference.</p>
+    </div>
+
+    <div id="projects" class="home-grid">
+      <div class="empty-state">Loading projects...</div>
+    </div>
+  </div>
+
+  <script src="scripts/shared.js"></script>
+  <script src="scripts/nav.js"></script>
+  <script>
+    renderNav();
+
+    function formatDate(iso) {
+      try {
+        const d = new Date(iso);
+        return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+      } catch { return ""; }
+    }
+
+    function initials(name) {
+      return name.split(/\s+/).map(w => w[0]).join("").slice(0, 2);
+    }
+
+    // Radial glow follows cursor on project cards
+    document.addEventListener("mousemove", (e) => {
+      for (const card of document.querySelectorAll(".project-card")) {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mouse-x", (e.clientX - rect.left) + "px");
+        card.style.setProperty("--mouse-y", (e.clientY - rect.top) + "px");
+      }
+    });
+
+    fetch("data/projects/index.json")
+      .then(r => r.json())
+      .then(data => {
+        const grid = document.getElementById("projects");
+        if (!data.projects.length) {
+          grid.innerHTML = '<div class="empty-state">No projects yet.</div>';
+          return;
+        }
+        const cards = data.projects.map(p => `
+          <a href="project.html?id=${p.id}" class="project-card">
+            <div class="project-card__name">${p.name}</div>
+            <div class="project-card__desc">${p.description}</div>
+            <div class="project-card__footer">
+              <div class="project-card__avatar">${initials(p.createdBy)}</div>
+              <span class="project-card__meta">${p.createdBy}${p.createdAt ? " · " + formatDate(p.createdAt) : ""}</span>
+              <span class="project-card__arrow">&rarr;</span>
+            </div>
+          </a>
+        `).join("");
+
+        const dsCard = `
+          <a href="design-system.html" class="ds-entry-card">
+            <div class="ds-entry-card__icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+                <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+                <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+              </svg>
+            </div>
+            <div class="ds-entry-card__name">Design System</div>
+            <div class="ds-entry-card__desc">Colors, typography, buttons, cards, and all shared components.</div>
+          </a>
+        `;
+
+        grid.innerHTML = cards + dsCard;
+      });
+  </script>
+</body>
+</html>

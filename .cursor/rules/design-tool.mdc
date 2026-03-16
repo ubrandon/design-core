@@ -1,0 +1,130 @@
+---
+description: Core rules for the Design Core tool — guides AI to help designers create screens and interactive prototypes
+alwaysApply: true
+---
+
+# Design Core — AI Guidelines
+
+You are helping a designer create UI screens and interactive prototypes. They may not be technical. Be helpful, visual, and avoid jargon.
+
+## What This Project Is
+
+This is a design prototyping tool. Designers create:
+- **Canvas screens** — Static HTML/CSS files for UI ideation. No JavaScript.
+- **Prototypes** — Interactive HTML/CSS/JS mini apps that feel like real features. JavaScript is expected.
+
+There is no backend, no database, no framework. The tool itself is vanilla HTML served by Vite.
+
+## Project Structure
+
+- `data/projects/<project>/` — One folder per project. The **project id** is the folder name (e.g. `sample-app`).
+- `data/projects/<project>/project.json` — **Project name and metadata.** Contains `name` (human-readable title), `description`, and optionally `createdBy`, `createdAt`. The app uses this for the project hub title, nav breadcrumbs, and page titles. When helping in a project folder, read this file to know the project’s display name.
+- `data/projects/index.json` — List of all projects (`id`, `name`, `description`, `createdBy`, `createdAt`). Home page cards use this. New projects need an entry here and a `project.json` in their folder.
+- **Who made a project?** The `createdBy` value (e.g. "Ben") is stored in `project.json` and `index.json` — whoever created the project typed it there. There is no automatic link to the person using Cursor. To attribute **new** projects to the current designer, use the designer identity file: `.designer` in the repo root (gitignored). If present, it contains `{"name": "Your Name"}`. When creating a new project, read `.designer` and set `createdBy` to that name so the designer doesn’t have to edit JSON. If `.designer` is missing, ask for their name or leave createdBy blank.
+- `data/projects/<project>/screens/` — Static screen HTML files for the ideation canvas
+- `data/projects/<project>/prototypes/<prototype>/index.html` — Interactive prototype
+- `data/projects/<project>/prototypes/<prototype>/meta.json` — Prototype name/description
+- `data/projects/<project>/prototypes/index.json` — Prototype list shown on project page (`id`, `name`, `description`, optional `device`)
+- `data/design-system/components/` — Shared design system component HTML files
+- `data/design-system/registry.json` — Category list + groups (order controls layout)
+- `public/styles/shared.css` — Design tokens (colors, fonts, spacing, radii)
+- `public/styles/ds.css` — Reusable component styles (cards, buttons, chips, tags, rows)
+
+### Design System Page Layout
+
+The design system page (`design-system.html`) uses an **infinite canvas**: main sections (groups) stack **vertically**; under each, sub-categories are laid out **horizontally** in one row so the canvas uses width. Layout is driven by `registry.json`:
+
+- **`groups`** — order defines vertical order. Each group has a header, then a single horizontal row of section cards (its categories).
+- **Categories** — each has `group`, `name`, and `components`. Optionally `"layout": "row"` so that section’s components sit side by side.
+- **Adding content** — add a category to a group; it appears as another card in that group’s horizontal row.
+
+## Critical Rules
+
+1. **Stay in your project.** Only create or edit files inside the designer's current project folder (`data/projects/<project>/`). NEVER modify files in other project folders.
+2. **Stay in your prototype.** If the designer is working on a prototype (`data/projects/<project>/prototypes/<prototype>/`), all work happens inside that prototype's folder. Never touch other prototypes or project-level screens.
+3. **Never edit the tool itself.** Do not touch root-level HTML pages (`index.html`, `project.html`, `canvas.html`, `prototype.html`, `design-system.html`), `scripts/`, or config files unless explicitly asked by an admin.
+4. **Never edit the design system** without being explicitly asked. The files in `public/data/design-system/` and `public/styles/` are shared across all projects.
+5. **Use the design system.** Always use existing CSS classes from `public/styles/ds.css` and design tokens from `public/styles/shared.css`. Read both files before creating anything.
+
+## Canvas Screens — Static Ideation
+
+Files in `public/data/projects/<project>/screens/` are canvas screens.
+
+- **HTML + CSS only.** No JavaScript. No interactivity.
+- Used for quick visual exploration on the ideation canvas.
+- Wrap in a container with standard background and max-width:
+
+```html
+<div style="padding: 16px; max-width: 390px; margin: 0 auto; background: var(--bg-0); border-radius: var(--radius-lg);">
+  <!-- Screen content here -->
+</div>
+```
+
+## Prototype Mode — Interactive Features
+
+Files in `public/data/projects/<project>/prototypes/<prototype>/` are interactive prototypes.
+
+### How to detect prototype mode
+
+The designer is in prototype mode when the file path matches `data/projects/*/prototypes/*`.
+
+### What a prototype is
+
+A prototype is a **self-contained interactive mini web app**. It lives in a single `index.html` (or a small set of files in the same folder). The designer prompts you to build it, and it handles its own:
+- Form state (inputs, validation, error messages)
+- Navigation between views/steps (tabs, multi-step flows)
+- Animations and transitions
+- Conditional rendering (show/hide based on state)
+- Any interactive behavior that makes it feel like a real app feature
+
+### Rules for prototype mode
+
+1. **Read context first.** Read `meta.json` in the prototype folder to understand the prototype's name and purpose.
+2. **Ask device type before building new prototypes.** When creating a new prototype (or if unclear), ask: "Should this prototype be mobile, desktop, or responsive?" Save the answer as `device` in `data/projects/<project>/prototypes/index.json`.
+3. **JavaScript is expected.** Prototypes are interactive — write real JS for state, transitions, validation, etc.
+4. **Use the design system.** Import styles in the prototype HTML using relative paths: `<link rel="stylesheet" href="../../../../../styles/shared.css">` and `<link rel="stylesheet" href="../../../../../styles/ds.css">` (5 levels up from `public/data/projects/<project>/prototypes/<proto>/`). Use tokens and component classes as the foundation.
+5. **Add new styles inline.** If the designer asks for something not in the design system, use `<style>` blocks inside the prototype. Keep the shared design system files untouched.
+6. **Self-contained.** Everything the prototype needs goes in its folder. No external npm packages or CDN scripts unless the designer explicitly asks.
+7. **Look at the design system.** Read existing component HTML files in `public/data/design-system/components/` for visual patterns.
+8. **One file preferred.** Keep the prototype in a single `index.html` unless it grows large enough to justify splitting.
+
+### Example prompts a designer might give in prototype mode
+
+- "Build a signup flow with email, password, and confirm password. Show inline validation errors."
+- "Make a settings page with toggles for notifications, dark mode, and location sharing."
+- "Create a search experience — type in a search bar, show filtered results below."
+- "Build a multi-step onboarding: welcome, pick interests, set profile photo, done."
+- "Add a bottom tab bar that switches between Home, Discover, and Profile views."
+
+For each of these, you write the full interactive HTML/CSS/JS in the prototype's `index.html`.
+
+## Design Tokens (quick reference)
+
+- Backgrounds: `var(--bg-0)` (#ffffff), `var(--bg-1)` (#f8f9fb)
+- Accent: `var(--neon-blue)` (#3b82f6), `var(--neon-teal)` (#06b6d4)
+- Text: `var(--text)`, `var(--muted)`, `var(--muted-2)` (dark text tokens)
+- Border: `var(--border)`
+- Radii: `var(--radius-sm)` 10px, `var(--radius-md)` 16px, `var(--radius-lg)` 22px, `var(--radius-xl)` 32px
+- Font: Plus Jakarta Sans (loaded via Google Fonts in shared.css)
+
+## Available Component Classes
+
+- **Buttons**: `.btn`, `.btn-primary`, `.btn-dark`, `.btn-sm`
+- **Cards**: `.plan-card`, `.event-card`, `.ds-activity-row`, `.ds-interest-card`, `.ds-group-card`, `.ds-friend-card`
+- **Plan carousel**: `.ds-plan-carousel`, `.plan-card-mini`
+- **Event mini**: `.ds-event-mini-card`, `.ds-event-mini-grid`
+- **Chips**: `.ds-chip`, `.ds-chip.is-active`, `.ds-chip-row`
+- **Tags**: `.ds-tag`, `.ds-tag-tone-sunset`, `.ds-tag-tone-teal`, `.ds-tag-tone-green`, `.ds-tag-tone-mint`, `.ds-tag-tone-gold`, `.ds-tag-tone-dark`
+- **Type pills**: `.ds-type-pill`, `.ds-type-plan`, `.ds-type-activity`, `.ds-type-event`, `.ds-type-place`
+- **Avatars**: `.ds-recent-activity`, `.ds-recent-item`, `.ds-avatar-stack`
+- **Section titles**: `.ds-section-title`, `.ds-home-header`
+- **Plan rows**: `.ds-plan-row`, `.ds-plan-rows`
+- **Form inputs**: `.form-group`, `.form-group label`, `.form-group input`
+
+## Tone
+
+- Speak simply. Avoid technical terms like "DOM", "component tree", "state management".
+- Say "screen" not "page" or "route".
+- Say "design system" not "CSS framework".
+- If a designer asks for something that requires tool code changes, tell them to ask a developer.
+- Be proactive: suggest design system components that fit what they're building.

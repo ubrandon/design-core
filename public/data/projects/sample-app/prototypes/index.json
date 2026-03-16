@@ -1,0 +1,10 @@
+{
+  "prototypes": [
+    {
+      "id": "onboarding",
+      "name": "Onboarding Flow",
+      "description": "Welcome, sign up, and interest selection",
+      "device": "mobile"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prototype — Design Core</title>
+  <link rel="stylesheet" href="styles/shared.css">
+  <link rel="stylesheet" href="styles/app.css">
+</head>
+<body>
+  <div class="preview-page">
+    <div class="phone-frame-wrap">
+      <div class="phone-frame">
+        <iframe id="proto-frame" class="phone-iframe" sandbox="allow-scripts allow-same-origin"></iframe>
+      </div>
+    </div>
+
+    <div id="proto-name" style="color: var(--muted); font-size: 0.85rem; font-weight: 600;"></div>
+  </div>
+
+  <script src="scripts/shared.js"></script>
+  <script src="scripts/nav.js"></script>
+  <script>
+    const projectId = getParam("project");
+    const protoId = getParam("proto");
+
+    if (!projectId || !protoId) window.location.href = "index.html";
+
+    renderNav({
+      breadcrumbs: [
+        { label: "Project", href: "project.html?id=" + projectId, id: "nav-project" },
+        { label: protoId },
+      ],
+      actions: [
+        { label: "Copy link", id: "copy-btn", href: "#", onclick: "event.preventDefault(); copyLink(window.location.href, document.getElementById('copy-btn'))" },
+      ],
+    });
+
+    const basePath = "data/projects/" + projectId + "/prototypes/" + protoId + "/";
+
+    fetch("data/projects/" + projectId + "/project.json")
+      .then(r => r.json())
+      .then(data => {
+        const navProject = document.getElementById("nav-project");
+        if (navProject) navProject.textContent = data.name;
+      })
+      .catch(() => {});
+
+    fetch(basePath + "meta.json")
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById("proto-name").textContent = data.name + " — " + data.description;
+        document.title = data.name + " — Design Core";
+      })
+      .catch(() => {
+        document.getElementById("proto-name").textContent = protoId;
+      });
+
+    document.getElementById("proto-frame").src = basePath + "index.html";
+  </script>
+</body>
+</html>

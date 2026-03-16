@@ -1,0 +1,147 @@
+/* Infinite canvas workspace */
+
+.canvas-space-viewport {
+  position: fixed;
+  inset: 0;
+  top: 52px;
+  overflow: hidden;
+  cursor: grab;
+  background-color: #b8b8b8;
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+}
+
+.canvas-space-viewport:active {
+  cursor: grabbing;
+}
+
+.canvas-space-viewport.dragging-card {
+  cursor: default;
+}
+
+.canvas-space-stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  will-change: transform;
+  min-width: 1px;
+  min-height: 1px;
+}
+
+/* Screen card on canvas — full-screen device frame */
+.canvas-card {
+  position: absolute;
+  border-radius: 32px;
+  overflow: hidden;
+  border: 8px solid #0a0a0a;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 24px 64px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  background: #000;
+  cursor: move;
+  user-select: none;
+}
+
+.canvas-card:hover {
+  border-color: #111;
+  box-shadow:
+    0 0 0 1px rgba(var(--neon-teal-rgb), 0.3),
+    0 24px 64px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.canvas-card-header {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.canvas-card-remove {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.canvas-card-remove:hover {
+  background: rgba(255, 80, 80, 0.3);
+  color: #ff6b6b;
+}
+
+.canvas-card-body {
+  overflow: auto;
+  max-height: 400px;
+}
+
+.canvas-card-body iframe {
+  display: block;
+  border: none;
+  pointer-events: none;
+}
+
+/* Palette */
+.canvas-space-palette {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  z-index: 150;
+  width: 180px;
+  padding: 16px;
+  background: rgba(1, 11, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.palette-title {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 10px;
+}
+
+.palette-item {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.palette-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.palette-item:last-of-type {
+  margin-bottom: 0;
+}

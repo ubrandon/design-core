@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project — Design Core</title>
+  <link rel="stylesheet" href="styles/shared.css">
+  <link rel="stylesheet" href="styles/app.css">
+</head>
+<body>
+  <div class="page-shell">
+    <div class="page-content">
+      <header class="project-hero">
+        <h1 id="project-name" class="project-hero__title">Loading...</h1>
+        <p id="project-desc" class="project-hero__desc"></p>
+        <div id="project-meta" class="project-hero__meta"></div>
+      </header>
+
+      <section class="project-section">
+        <a id="canvas-link" href="#" class="canvas-cta">
+          <span class="canvas-cta__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18M9 21V9"/>
+            </svg>
+          </span>
+          <div class="canvas-cta__text">
+            <span class="canvas-cta__label">Ideation space</span>
+            <span class="canvas-cta__desc">Arrange screens, explore layouts, and iterate on ideas before building prototypes.</span>
+          </div>
+          <span class="canvas-cta__arrow">&rarr;</span>
+        </a>
+      </section>
+
+      <section class="project-section project-section--prototypes">
+        <div class="section-header section-header--lg">
+          <h2>Prototypes</h2>
+        </div>
+        <p class="project-section__intro">Interactive flows and click-through prototypes. Share links and open each prototype directly.</p>
+        <div id="prototypes" class="card-grid card-grid--prototypes">
+          <div class="empty-state">Loading prototypes...</div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="scripts/shared.js"></script>
+  <script src="scripts/nav.js"></script>
+  <script>
+    const projectId = getParam("id");
+    if (!projectId) window.location.href = "index.html";
+
+    renderNav({
+      breadcrumbs: [
+        { label: "Project", id: "nav-title" },
+      ],
+    });
+
+    document.getElementById("canvas-link").href = "canvas.html?project=" + projectId;
+
+    function formatDate(iso) {
+      try {
+        return new Date(iso).toLocaleDateString("en-US", { month: "short", year: "numeric" });
+      } catch { return ""; }
+    }
+
+    function getPrototypeDevice(deviceRaw) {
+      const device = (deviceRaw || "responsive").toLowerCase();
+      if (device === "mobile" || device === "desktop" || device === "responsive") return device;
+      return "responsive";
+    }
+
+    function getPrototypeDeviceMeta(deviceRaw) {
+      const device = getPrototypeDevice(deviceRaw);
+      if (device === "mobile") {
+        return {
+          label: "Mobile",
+          icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <line x1="12" y1="18" x2="12.01" y2="18"/>
+          </svg>`,
+        };
+      }
+      if (device === "desktop") {
+        return {
+          label: "Desktop",
+          icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="12" rx="2"/>
+            <path d="M8 20h8M12 16v4"/>
+          </svg>`,
+        };
+      }
+      return {
+        label: "Responsive",
+        icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="12" height="10" rx="2"/>
+          <rect x="17" y="6" width="4" height="12" rx="1"/>
+        </svg>`,
+      };
+    }
+
+    fetch("data/projects/" + projectId + "/project.json")
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById("project-name").textContent = data.name;
+        document.getElementById("project-desc").textContent = data.description;
+        document.getElementById("nav-title").textContent = data.name;
+        document.title = data.name + " — Design Core";
+        const meta = document.getElementById("project-meta");
+        if (data.createdBy || data.createdAt) {
+          meta.textContent = [data.createdBy, data.createdAt ? formatDate(data.createdAt) : ""].filter(Boolean).join(" · ");
+          meta.hidden = false;
+        } else {
+          meta.hidden = true;
+        }
+      });
+
+    fetch("data/projects/" + projectId + "/prototypes/index.json")
+      .then(r => r.json())
+      .then(data => {
+        const grid = document.getElementById("prototypes");
+        if (!data.prototypes.length) {
+          grid.innerHTML = `
+            <div class="empty-state empty-state--in-grid">
+              <p class="empty-state__title">No prototypes yet</p>
+              <p class="empty-state__hint">Add a folder under <code>data/projects/${projectId}/prototypes/</code> with a <code>meta.json</code> and <code>index.html</code> to get started.</p>
+            </div>`;
+          return;
+        }
+        grid.innerHTML = data.prototypes.map(p => {
+          const url = prototypeUrl(projectId, p.id);
+          const previewHref = "prototype.html?project=" + projectId + "&proto=" + p.id;
+          const deviceMeta = getPrototypeDeviceMeta(p.device);
+          return `
+            <a href="${previewHref}" class="tile-card tile-card--prototype">
+              <span class="tile-card__icon" aria-hidden="true">
+                ${deviceMeta.icon}
+              </span>
+              <p class="tile-meta">${deviceMeta.label}</p>
+              <span class="tile-title">${p.name}</span>
+              <p class="tile-desc">${p.description || "Interactive prototype"}</p>
+              <div class="tile-actions">
+                <span role="button" tabindex="0" class="btn-tool" onclick="event.preventDefault(); event.stopPropagation(); copyLink('${url}', this)" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); copyLink('${url}', this); }">Copy link</span>
+              </div>
+            </a>
+          `;
+        }).join("");
+      });
+
+    // Cursor-follow glow on canvas CTA and prototype cards
+    document.addEventListener("mousemove", (e) => {
+      for (const el of document.querySelectorAll(".canvas-cta, .tile-card--prototype")) {
+        const rect = el.getBoundingClientRect();
+        el.style.setProperty("--mouse-x", (e.clientX - rect.left) + "px");
+        el.style.setProperty("--mouse-y", (e.clientY - rect.top) + "px");
+      }
+    });
+  </script>
+</body>
+</html>
