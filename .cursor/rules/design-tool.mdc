@@ -137,6 +137,18 @@ The design system page (`design-system.html`) uses an **infinite canvas**: main 
 4. **Never edit the design system** without being explicitly asked. The files in `public/data/design-system/` and `public/styles/` are shared across all projects.
 5. **Use the design system.** Always use existing CSS classes from `public/styles/ds.css` and design tokens from `public/styles/shared.css`. Read both files before creating anything.
 
+## Before Creating Anything
+
+When a designer asks you to create screens, prototypes, or any design work, **always check existing projects first** before creating anything new.
+
+1. **Read `public/data/projects/index.json`** to see what projects already exist.
+2. **If the user explicitly says "create a new project"**, proceed with the project creation flow below.
+3. **If the user does NOT mention creating a new project** (e.g. they say "make me a home screen" or "design a login flow"), list the existing projects and ask where they want the work to go:
+   - "You have these projects: **Project A**, **Project B**. Which one should I add this to, or would you like to create a new project?"
+4. **If there are no projects yet**, tell the user you'll create one and ask for a name:
+   - "There aren't any projects yet. What would you like to call this project?"
+5. **Never auto-generate a project name** like "New Project" or "Untitled". Always ask the user.
+
 ## How to Create Things
 
 ### Creating a new project
