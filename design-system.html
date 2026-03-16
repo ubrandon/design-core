@@ -144,7 +144,26 @@
 
       const viewport = document.getElementById("viewport");
       const stage = document.getElementById("stage");
-      const pz = initPanZoom(viewport, stage, { navHeight: 52 });
+
+      const DS_STORAGE_KEY = "design-core-canvas-ds";
+      let restoreState = null;
+      try {
+        const s = sessionStorage.getItem(DS_STORAGE_KEY);
+        if (s) restoreState = JSON.parse(s);
+      } catch (_) {}
+
+      const pz = initPanZoom(viewport, stage, { navHeight: 52, restoreState });
+
+      function savePanZoom() {
+        try {
+          sessionStorage.setItem(DS_STORAGE_KEY, JSON.stringify({
+            panX: pz.panX,
+            panY: pz.panY,
+            zoom: pz.zoom,
+          }));
+        } catch (_) {}
+      }
+      window.addEventListener("pagehide", savePanZoom);
 
       // Auto-load company.css if it exists (brand overrides for company repos)
       fetch("data/design-system/company.css?t=" + Date.now(), { method: "HEAD" })

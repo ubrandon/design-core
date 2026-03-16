@@ -10,7 +10,10 @@ function initPanZoom(viewport, stage, opts) {
   const MIN_ZOOM = 0.2;
   const MAX_ZOOM = 2;
 
-  var panX = 0, panY = 0, zoom = 1;
+  var restore = opts && opts.restoreState;
+  var panX = restore && typeof restore.panX === "number" ? restore.panX : 0;
+  var panY = restore && typeof restore.panY === "number" ? restore.panY : 0;
+  var zoom = restore && typeof restore.zoom === "number" ? Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, restore.zoom)) : 1;
   var isPanning = false, panStartX = 0, panStartY = 0, panOriginX = 0, panOriginY = 0;
   var spaceHeld = false;
   var lastTouchDist = 0, lastTouchMidX = 0, lastTouchMidY = 0;

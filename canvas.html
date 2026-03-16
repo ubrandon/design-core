@@ -60,7 +60,25 @@
     const viewport = document.getElementById("viewport");
     const stage = document.getElementById("stage");
 
-    const pz = initPanZoom(viewport, stage, { navHeight: 52 });
+    const STORAGE_KEY = "design-core-canvas-" + (projectId || "default");
+    let restoreState = null;
+    try {
+      const s = sessionStorage.getItem(STORAGE_KEY);
+      if (s) restoreState = JSON.parse(s);
+    } catch (_) {}
+
+    const pz = initPanZoom(viewport, stage, { navHeight: 52, restoreState });
+
+    function savePanZoom() {
+      try {
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify({
+          panX: pz.panX,
+          panY: pz.panY,
+          zoom: pz.zoom,
+        }));
+      } catch (_) {}
+    }
+    window.addEventListener("pagehide", savePanZoom);
 
     let screens = [];
     let isDragging = false, dragCard = null, dragOffX = 0, dragOffY = 0;
