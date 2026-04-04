@@ -298,8 +298,38 @@
       }
     });
 
+    function releaseViewportCaptureSafe(pointerId) {
+      try {
+        if (pointerId != null && viewport.releasePointerCapture) {
+          viewport.releasePointerCapture(pointerId);
+        }
+      } catch (_) {}
+    }
+
+    function endCanvasPointerSession(e) {
+      const pid = e.pointerId;
+      if (cardPointer && cardPointer.pointerId === pid) {
+        if (cardPointer.moved) {
+          viewport.classList.remove("dragging-card");
+          saveCanvas();
+        } else if (!cardPointer.shiftHeld) {
+          setSelected([cardPointer.idx]);
+        }
+        cardPointer = null;
+        releaseViewportCaptureSafe(pid);
+        return true;
+      }
+      if (marquee && marquee.pointerId === pid) {
+        if (marqueeEl) { marqueeEl.remove(); marqueeEl = null; }
+        marquee = null;
+        releaseViewportCaptureSafe(pid);
+        return true;
+      }
+      return false;
+    }
+
     viewport.addEventListener("pointermove", (e) => {
-      if (cardPointer) {
+      if (cardPointer && e.pointerId === cardPointer.pointerId) {
         const dx = e.clientX - cardPointer.startX;
         const dy = e.clientY - cardPointer.startY;
         if (!cardPointer.moved && Math.abs(dx) < DRAG_THRESHOLD && Math.abs(dy) < DRAG_THRESHOLD) return;
@@ -335,7 +365,7 @@
         return;
       }
 
-      if (marquee) {
+      if (marquee && e.pointerId === marquee.pointerId) {
         const dx = e.clientX - marquee.startX;
         const dy = e.clientY - marquee.startY;
         if (!marquee.moved && Math.abs(dx) < DRAG_THRESHOLD && Math.abs(dy) < DRAG_THRESHOLD) return;
@@ -372,7 +402,19 @@
     });
 
     viewport.addEventListener("pointerup", (e) => {
-      if (cardPointer) {
+      if (endCanvasPointerSession(e)) return;
+
+      if (!pz.didPan && !e.target.closest(".canvas-card") && !e.target.closest(".canvas-context-menu")) {
+        clearSelection();
+      }
+    });
+
+    viewport.addEventListener("pointercancel", (e) => {
+      endCanvasPointerSession(e);
+    });
+
+    viewport.addEventListener("lostpointercapture", (e) => {
+      if (cardPointer && cardPointer.pointerId === e.pointerId) {
         if (cardPointer.moved) {
           viewport.classList.remove("dragging-card");
           saveCanvas();
@@ -380,17 +422,10 @@
           setSelected([cardPointer.idx]);
         }
         cardPointer = null;
-        return;
       }
-
-      if (marquee) {
+      if (marquee && marquee.pointerId === e.pointerId) {
         if (marqueeEl) { marqueeEl.remove(); marqueeEl = null; }
         marquee = null;
-        return;
-      }
-
-      if (!pz.didPan && !e.target.closest(".canvas-card") && !e.target.closest(".canvas-context-menu")) {
-        clearSelection();
       }
     });
 

@@ -24,7 +24,7 @@
       background-size: 24px 24px;
       background-position: 0 0, 12px 12px;
     }
-    .cap-viewport:active { cursor: grabbing; }
+    .cap-viewport.is-panning { cursor: grabbing; }
     .cap-viewport.dragging-card { cursor: grabbing; }
 
     .cap-stage {
@@ -936,8 +936,39 @@
       }
     });
 
+    function releaseViewportCaptureSafe(pointerId) {
+      try {
+        if (pointerId != null && viewport.releasePointerCapture) {
+          viewport.releasePointerCapture(pointerId);
+        }
+      } catch (_) {}
+    }
+
+    function endCanvasPointerSession(e) {
+      var pid = e.pointerId;
+      if (cardPointer && cardPointer.pointerId === pid) {
+        if (cardPointer.moved) {
+          viewport.classList.remove("dragging-card");
+          updateSectionHeaders();
+          saveManifest();
+        } else if (!cardPointer.shiftHeld) {
+          setSelected([cardPointer.idx]);
+        }
+        cardPointer = null;
+        releaseViewportCaptureSafe(pid);
+        return true;
+      }
+      if (marquee && marquee.pointerId === pid) {
+        if (marqueeEl) { marqueeEl.remove(); marqueeEl = null; }
+        marquee = null;
+        releaseViewportCaptureSafe(pid);
+        return true;
+      }
+      return false;
+    }
+
     viewport.addEventListener("pointermove", function(e) {
-      if (cardPointer) {
+      if (cardPointer && e.pointerId === cardPointer.pointerId) {
         var dx = e.clientX - cardPointer.startX;
         var dy = e.clientY - cardPointer.startY;
         if (!cardPointer.moved && Math.abs(dx) < DRAG_THRESHOLD && Math.abs(dy) < DRAG_THRESHOLD) return;
@@ -971,7 +1002,7 @@
         return;
       }
 
-      if (marquee) {
+      if (marquee && e.pointerId === marquee.pointerId) {
         var mdx = e.clientX - marquee.startX;
         var mdy = e.clientY - marquee.startY;
         if (!marquee.moved && Math.abs(mdx) < DRAG_THRESHOLD && Math.abs(mdy) < DRAG_THRESHOLD) return;
@@ -1008,7 +1039,19 @@
     });
 
     viewport.addEventListener("pointerup", function(e) {
-      if (cardPointer) {
+      if (endCanvasPointerSession(e)) return;
+
+      if (!pz.didPan && !e.target.closest(".cap-card") && !e.target.closest(".canvas-context-menu") && !e.target.closest(".canvas-selection-bar")) {
+        clearSelection();
+      }
+    });
+
+    viewport.addEventListener("pointercancel", function(e) {
+      endCanvasPointerSession(e);
+    });
+
+    viewport.addEventListener("lostpointercapture", function(e) {
+      if (cardPointer && cardPointer.pointerId === e.pointerId) {
         if (cardPointer.moved) {
           viewport.classList.remove("dragging-card");
           updateSectionHeaders();
@@ -1017,17 +1060,10 @@
           setSelected([cardPointer.idx]);
         }
         cardPointer = null;
-        return;
       }
-
-      if (marquee) {
+      if (marquee && marquee.pointerId === e.pointerId) {
         if (marqueeEl) { marqueeEl.remove(); marqueeEl = null; }
         marquee = null;
-        return;
-      }
-
-      if (!pz.didPan && !e.target.closest(".cap-card") && !e.target.closest(".canvas-context-menu") && !e.target.closest(".canvas-selection-bar")) {
-        clearSelection();
       }
     });
 
