@@ -85,6 +85,7 @@ function initPanZoom(viewport, stage, opts) {
 
   viewport.addEventListener("pointerdown", function (e) {
     if (spaceHeld || e.button === 1) {
+      didPan = false;
       isPanning = true;
       panStartX = e.clientX;
       panStartY = e.clientY;
@@ -98,6 +99,7 @@ function initPanZoom(viewport, stage, opts) {
     }
     if (e.button === 0 && !e.ctrlKey && !e.metaKey) {
       e.preventDefault();
+      didPan = false;
       panPending = { x: e.clientX, y: e.clientY, id: e.pointerId };
     }
   });
