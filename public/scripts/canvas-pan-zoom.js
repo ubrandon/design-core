@@ -7,7 +7,7 @@
  */
 function initPanZoom(viewport, stage, opts) {
   const navHeight = (opts && opts.navHeight) || 52;
-  const MIN_ZOOM = 0.2;
+  const MIN_ZOOM = 0.05;
   const MAX_ZOOM = 2;
 
   var restore = opts && opts.restoreState;
