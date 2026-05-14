@@ -11,6 +11,35 @@
   <link rel="stylesheet" href="styles/app.css">
   <style>
     .canvas-card-body { overflow: hidden; max-height: none; }
+    .export-toast {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999; opacity: 0; transition: opacity 0.18s ease;
+      pointer-events: none;
+    }
+    .export-toast.is-visible { opacity: 1; pointer-events: auto; }
+    .export-toast__panel {
+      background: #1b1b1b; color: #fff;
+      padding: 32px 40px; border-radius: 14px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      display: flex; flex-direction: column; align-items: center; gap: 18px;
+      min-width: 320px; max-width: 420px; text-align: center;
+      font: 16px/1.4 -apple-system, system-ui, sans-serif;
+      transform: scale(0.96); transition: transform 0.18s ease;
+    }
+    .export-toast.is-visible .export-toast__panel { transform: scale(1); }
+    .export-toast__spinner {
+      width: 36px; height: 36px;
+      border: 3px solid rgba(255,255,255,0.18);
+      border-top-color: #fff; border-radius: 50%;
+      animation: export-spin 0.8s linear infinite;
+    }
+    .export-toast__label { font-size: 16px; font-weight: 500; }
+    .export-toast--done .export-toast__spinner,
+    .export-toast--error .export-toast__spinner { display: none; }
+    .export-toast--error .export-toast__panel { background: #6b1d1d; }
+    @keyframes export-spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
@@ -229,15 +258,36 @@
         }
         const btn = document.createElement("button");
         btn.className = "canvas-context-menu-item" + (item.danger ? " canvas-context-menu-item--danger" : "");
-        // Icons are trusted constants in this file; the label may contain a
-        // file name, so append it as text to avoid HTML injection.
-        if (item.icon) {
-          const iconWrap = document.createElement("span");
-          iconWrap.innerHTML = item.icon;
-          btn.appendChild(iconWrap);
-        }
-        btn.appendChild(document.createTextNode(item.label));
-        btn.addEventListener("click", () => { closeContextMenu(); item.action(); });
+        const iconWrap = document.createElement("span");
+        iconWrap.className = "canvas-context-menu-icon";
+        if (item.icon) iconWrap.innerHTML = item.icon;
+        btn.appendChild(iconWrap);
+        const labelEl = document.createElement("span");
+        labelEl.className = "canvas-context-menu-label";
+        labelEl.textContent = item.label;
+        btn.appendChild(labelEl);
+        btn.addEventListener("click", () => {
+          if (btn.dataset.busy === "1") return;
+          if (item.async) {
+            const startBusy = (text) => {
+              btn.dataset.busy = "1";
+              btn.disabled = true;
+              iconWrap.innerHTML = SPINNER_SVG;
+              if (text) labelEl.textContent = text;
+              for (const other of ctxMenu.querySelectorAll(".canvas-context-menu-item")) {
+                if (other !== btn) other.disabled = true;
+              }
+              window.removeEventListener("pointerdown", onCtxOutside);
+            };
+            const setLabel = (text) => { if (text) labelEl.textContent = text; };
+            Promise.resolve(item.action({ startBusy, setLabel }))
+              .catch(err => { console.error(err); })
+              .finally(() => { closeContextMenu(); });
+          } else {
+            closeContextMenu();
+            item.action();
+          }
+        });
         ctxMenu.appendChild(btn);
       }
       ctxMenu.style.left = x + "px";
@@ -251,8 +301,119 @@
       setTimeout(() => window.addEventListener("pointerdown", onCtxOutside), 0);
     }
 
+    const SPINNER_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" class="canvas-context-menu-spinner"><path d="M21 12a9 9 0 1 1-6.2-8.55"/></svg>';
+
     const ICON_SELECT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>';
     const ICON_DELETE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
+    const ICON_DOWNLOAD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>';
+
+    let jszipPromise = null;
+    function loadJSZip() {
+      if (!jszipPromise) {
+        jszipPromise = import("https://esm.sh/jszip@3.10.1").then(m => m.default || m);
+      }
+      return jszipPromise;
+    }
+
+    let exportToastEl = null;
+    let exportToastTimer = null;
+    function showExportToast(message, state) {
+      if (!exportToastEl) {
+        exportToastEl = document.createElement("div");
+        exportToastEl.className = "export-toast";
+        exportToastEl.innerHTML = '<div class="export-toast__panel"><span class="export-toast__spinner"></span><span class="export-toast__label"></span></div>';
+        document.body.appendChild(exportToastEl);
+      }
+      clearTimeout(exportToastTimer);
+      exportToastEl.classList.remove("export-toast--done", "export-toast--error");
+      if (state) exportToastEl.classList.add("export-toast--" + state);
+      exportToastEl.querySelector(".export-toast__label").textContent = message;
+      requestAnimationFrame(() => exportToastEl.classList.add("is-visible"));
+    }
+    function hideExportToast(delay) {
+      if (!exportToastEl) return;
+      exportToastTimer = setTimeout(() => {
+        exportToastEl && exportToastEl.classList.remove("is-visible");
+      }, delay || 0);
+    }
+
+    async function renderScreenToPng(idx) {
+      const screen = screens[idx];
+      if (!screen) return null;
+      const file = "data/projects/" + encProjectId + "/screens/" + screen.file;
+      const width = screen.width || 390;
+      const url = "/api/render-png?file=" + encodeURIComponent(file) + "&width=" + width + "&scale=2";
+      const resp = await fetch(url);
+      if (!resp.ok) {
+        console.error("render-png failed", resp.status, await resp.text().catch(() => ""));
+        return null;
+      }
+      return await resp.blob();
+    }
+
+    function triggerDownload(dataUrl, name) {
+      const a = document.createElement("a");
+      a.href = dataUrl;
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    async function downloadScreensAsPng(indices) {
+      const list = indices.filter(i => screens[i]);
+      if (!list.length) return;
+
+      try {
+        if (list.length === 1) {
+          showExportToast("Rendering screen…");
+          const idx = list[0];
+          const blob = await renderScreenToPng(idx);
+          if (!blob) {
+            showExportToast("Couldn't render screen — see console.", "error");
+            hideExportToast(2800);
+            return;
+          }
+          const url = URL.createObjectURL(blob);
+          triggerDownload(url, screens[idx].file.replace(/\.html$/, "") + ".png");
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+          showExportToast("Downloaded 1 screen", "done");
+          hideExportToast(1600);
+          return;
+        }
+
+        showExportToast("Rendering 1 of " + list.length + "…");
+        const JSZip = await loadJSZip();
+        const zip = new JSZip();
+        const skipped = [];
+        for (let i = 0; i < list.length; i++) {
+          const idx = list[i];
+          showExportToast("Rendering " + (i + 1) + " of " + list.length + "…");
+          const blob = await renderScreenToPng(idx);
+          if (!blob) {
+            skipped.push(screens[idx].file);
+            continue;
+          }
+          zip.file(screens[idx].file.replace(/\.html$/, "") + ".png", blob);
+        }
+        showExportToast("Zipping " + (list.length - skipped.length) + " screens…");
+        const blob = await zip.generateAsync({ type: "blob" });
+        const url = URL.createObjectURL(blob);
+        const stamp = new Date().toISOString().slice(0, 10);
+        triggerDownload(url, "screens-" + stamp + ".zip");
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        const doneCount = list.length - skipped.length;
+        const doneMsg = skipped.length
+          ? "Downloaded " + doneCount + " — skipped " + skipped.length + " (render failed)"
+          : "Downloaded " + doneCount + " screens";
+        showExportToast(doneMsg, "done");
+        hideExportToast(skipped.length ? 3200 : 1800);
+      } catch (err) {
+        console.error("Screen export failed", err);
+        showExportToast("Couldn't export — see console for details.", "error");
+        hideExportToast(3200);
+      }
+    }
 
     viewport.addEventListener("contextmenu", (e) => {
       e.preventDefault();
@@ -265,11 +426,14 @@
 
         const count = selected.size;
         const label = count === 1 ? screens[idx].file.replace(".html", "") : count + " screens";
-        showContextMenu(e.clientX, e.clientY, [
+        const downloadLabel = count === 1 ? "Download as PNG" : "Download " + count + " as PNG";
+        const items = [
           { label: "Select All", icon: ICON_SELECT, action: () => setSelected(screens.map((_, i) => i)) },
+          { label: downloadLabel, icon: ICON_DOWNLOAD, action: () => downloadScreensAsPng([...selected]) },
           { sep: true },
           { label: "Delete " + label, icon: ICON_DELETE, danger: true, action: deleteSelected },
-        ]);
+        ];
+        showContextMenu(e.clientX, e.clientY, items);
       } else {
         clearSelection();
         showContextMenu(e.clientX, e.clientY, [
