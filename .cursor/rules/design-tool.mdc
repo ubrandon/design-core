@@ -216,20 +216,27 @@ When a designer asks you to create screens, prototypes, or any design work, **al
 
 ### Creating a new canvas screen
 
-1. Create the HTML file: `public/data/projects/<project>/screens/<name>.html`
-2. **Add an entry to `canvas.json`** -- this is required or the screen won't appear on the canvas:
+**Mount the screen on the canvas first, then build it in place.** The designer should see an empty card appear immediately and watch the screen fill in as you work — not wait for the whole file to be written before anything shows up. Edits to a file that already exists stream into the canvas live; new screens need the same feel, which means the file and the `canvas.json` entry must exist before you write the real content.
+
+1. **Create a minimal placeholder HTML file** at `public/data/projects/<project>/screens/<name>.html`. Just the wrapper, empty inside:
+   ```html
+   <div style="background: var(--bg-0);"></div>
+   ```
+   Write this first, as its own step, before doing anything else for this screen.
+2. **Immediately add an entry to `canvas.json`** -- this is what makes the (currently empty) card appear on the canvas:
    ```json
    { "file": "<name>.html", "x": 0, "y": 0, "width": 390 }
    ```
    Space screens apart by adjusting `x` (add the width + 40px gap for each new screen). Standard widths: **390** for mobile, **1024** for tablet, **1440** for desktop. Match the width to what the screen is designed for -- a desktop dashboard should be 1440, a mobile screen should be 390.
-3. Use the standard screen wrapper:
+3. **Now build the screen by editing that same file.** Replace the empty wrapper with the real content. Each edit streams live into the card on the canvas, so prefer one larger write of the finished screen over many tiny edits (each edit causes the card to refresh). Use the standard screen wrapper:
    ```html
    <div style="background: var(--bg-0);">
      <!-- Screen content -->
    </div>
    ```
    The wrapper is just a background container. Do NOT add `padding`, `max-width`, or `margin: 0 auto` to it -- those prevent full-width elements (nav bars, hero backgrounds, footers) from reaching the edges. Individual content sections inside the wrapper handle their own padding (e.g. `padding: 16px`).
-4. **HTML + CSS only.** No JavaScript. No interactivity.
+4. **When creating multiple new screens at once**, mount all of them as empty placeholders + `canvas.json` entries first (so every card shows up on the canvas right away), then fill them in one at a time. Don't build screen 1 to completion before screen 2's card even exists.
+5. **HTML + CSS only.** No JavaScript. No interactivity.
 
 #### Canvas screen content rules
 
