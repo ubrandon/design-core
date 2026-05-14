@@ -205,7 +205,11 @@
     }
 
     function saveCanvas() {
-      const payload = { screens: screens.map(s => ({ file: s.file, x: Math.round(s.x), y: Math.round(s.y), width: s.width })) };
+      const payload = { screens: screens.map(s => {
+        const out = { file: s.file, x: Math.round(s.x), y: Math.round(s.y), width: s.width };
+        if (s.name && s.name.trim()) out.name = s.name.trim();
+        return out;
+      }) };
       fetch("data/projects/" + encProjectId + "/canvas.json", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -425,7 +429,7 @@
         if (!selected.has(idx)) setSelected([idx]);
 
         const count = selected.size;
-        const label = count === 1 ? screens[idx].file.replace(".html", "") : count + " screens";
+        const label = count === 1 ? screenDisplayName(screens[idx]) : count + " screens";
         const downloadLabel = count === 1 ? "Download as PNG" : "Download " + count + " as PNG";
         const items = [
           { label: "Select All", icon: ICON_SELECT, action: () => setSelected(screens.map((_, i) => i)) },
@@ -708,10 +712,11 @@
             const x = s.x != null ? s.x : autoX;
             const y = s.y != null ? s.y : 0;
             autoX = x + w + CARD_GAP;
-            return { file: s.file, x, y, width: w };
+            const name = typeof s.name === "string" ? s.name : "";
+            return { file: s.file, x, y, width: w, name };
           });
           const structureSame = screens.length === next.length && next.every((n, i) =>
-            screens[i] && n.file === screens[i].file && n.width === screens[i].width
+            screens[i] && n.file === screens[i].file && n.width === screens[i].width && (n.name || "") === (screens[i].name || "")
           );
           if (!structureSame) {
             screens = next;
@@ -816,11 +821,26 @@
       }
     };
 
+    function screenDisplayName(s) {
+      if (s.name && s.name.trim()) return s.name.trim();
+      return (s.file || "").replace(/\.html$/, "");
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
     function renderCards() {
       const bust = "?t=" + Date.now();
       stage.innerHTML = screens.map((s, i) => `
         <div class="canvas-card${selected.has(i) ? " is-selected" : ""}" id="card-${i}"
              style="left:${s.x}px; top:${s.y}px; width:${s.width}px;">
+          <div class="canvas-card-label" data-idx="${i}" title="Double-click to rename">${escapeHtml(screenDisplayName(s))}</div>
           <div class="canvas-card-body">
             <iframe src="${screenUrl(s.file, bust)}"
                     width="${s.width}"
@@ -835,6 +855,80 @@
       stage.querySelectorAll(".canvas-card").forEach((card, i) => {
         card.addEventListener("pointerdown", (e) => onCardPointerDown(e, i));
       });
+      stage.querySelectorAll(".canvas-card-label").forEach((label) => {
+        // Block the card's pointerdown so its preventDefault doesn't swallow the
+        // double-click and so dragging the title doesn't move the card.
+        label.addEventListener("pointerdown", (e) => {
+          if (label.querySelector("input")) return;
+          e.stopPropagation();
+        });
+        label.addEventListener("mousedown", (e) => {
+          if (label.querySelector("input")) return;
+          e.stopPropagation();
+        });
+        label.addEventListener("click", (e) => e.stopPropagation());
+        label.addEventListener("dblclick", (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          const idx = parseInt(label.dataset.idx, 10);
+          if (!isNaN(idx)) startLabelEdit(idx);
+        });
+      });
+    }
+
+    function startLabelEdit(idx) {
+      const card = document.getElementById("card-" + idx);
+      if (!card) return;
+      const label = card.querySelector(".canvas-card-label");
+      if (!label || label.querySelector("input")) return;
+      const current = screenDisplayName(screens[idx]);
+      const input = document.createElement("input");
+      input.type = "text";
+      input.className = "canvas-card-label-input";
+      input.value = current;
+      label.textContent = "";
+      label.appendChild(input);
+      input.focus();
+      input.select();
+
+      const stop = (e) => e.stopPropagation();
+      input.addEventListener("pointerdown", stop);
+      input.addEventListener("mousedown", stop);
+      input.addEventListener("click", stop);
+      input.addEventListener("dblclick", stop);
+
+      let committed = false;
+      const commit = () => {
+        if (committed) return;
+        committed = true;
+        const next = input.value.trim();
+        const defaultName = (screens[idx].file || "").replace(/\.html$/, "");
+        const nameToStore = (!next || next === defaultName) ? "" : next;
+        const changed = (screens[idx].name || "") !== nameToStore;
+        screens[idx].name = nameToStore;
+        label.textContent = screenDisplayName(screens[idx]);
+        if (changed) saveCanvas();
+      };
+      const cancel = () => {
+        if (committed) return;
+        committed = true;
+        label.textContent = current;
+      };
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") { e.preventDefault(); commit(); input.blur(); }
+        else if (e.key === "Escape") { e.preventDefault(); cancel(); input.blur(); }
+      });
+      input.addEventListener("blur", () => {
+        commit();
+        window.removeEventListener("pointerdown", onOutside, true);
+      });
+      // Capture-phase: fires before pan-zoom and card handlers can preventDefault.
+      const onOutside = (e) => {
+        if (e.target === input || input.contains(e.target)) return;
+        commit();
+        window.removeEventListener("pointerdown", onOutside, true);
+      };
+      setTimeout(() => window.addEventListener("pointerdown", onOutside, true), 0);
     }
 
     function autoSizeIframe(iframe) {
