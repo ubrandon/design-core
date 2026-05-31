@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv } from "vite";
 import { resolve, dirname, sep, relative } from "path";
 import { fileURLToPath } from "url";
-import { writeFileSync, readFileSync, unlinkSync, existsSync, mkdirSync, rmSync } from "fs";
+import { writeFileSync, readFileSync, unlinkSync, existsSync, mkdirSync, rmSync, copyFileSync } from "fs";
 import { spawn, execSync } from "child_process";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -69,6 +69,17 @@ function readJsonBody(req) {
 }
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const SCREEN_FILE_RE = /^[a-zA-Z0-9][a-zA-Z0-9._-]*\.html$/;
+
+function uniqueScreenCopyFile(screensDir, file) {
+  const base = file.replace(/\.html$/i, "");
+  for (let i = 1; i < 1000; i++) {
+    const suffix = i === 1 ? "-copy" : `-copy-${i}`;
+    const candidate = `${base}${suffix}.html`;
+    if (!existsSync(resolve(screensDir, candidate))) return candidate;
+  }
+  throw new Error("Could not find an available copy filename.");
+}
 
 function parseGithubRemoteForPages(raw) {
   if (!raw) return null;
@@ -286,6 +297,43 @@ function localDevDataApiPlugin() {
           } catch (e) {
             res.writeHead(400, { "Content-Type": "application/json" });
             res.end(JSON.stringify({ error: e.message || "Bad JSON" }));
+          }
+          return;
+        }
+
+        if (pathOnly === "/api/duplicate-screen" && req.method === "POST") {
+          res.setHeader("Content-Type", "application/json");
+          try {
+            const data = await readJsonBody(req);
+            const projectId = typeof data.projectId === "string" ? data.projectId.trim() : "";
+            const file = typeof data.file === "string" ? data.file.trim() : "";
+            if (!SLUG_RE.test(projectId) || !SCREEN_FILE_RE.test(file)) {
+              res.writeHead(400);
+              res.end(JSON.stringify({ error: "Invalid project or screen file." }));
+              return;
+            }
+
+            const screensDir = resolve(PUBLIC_DATA_ROOT, "projects", projectId, "screens");
+            if (!screensDir.startsWith(resolve(PUBLIC_DATA_ROOT, "projects") + sep)) {
+              res.writeHead(403);
+              res.end(JSON.stringify({ error: "Forbidden" }));
+              return;
+            }
+
+            const source = resolve(screensDir, file);
+            if (!source.startsWith(screensDir + sep) || !existsSync(source)) {
+              res.writeHead(404);
+              res.end(JSON.stringify({ error: "Screen file not found." }));
+              return;
+            }
+
+            const nextFile = uniqueScreenCopyFile(screensDir, file);
+            copyFileSync(source, resolve(screensDir, nextFile));
+            res.writeHead(200);
+            res.end(JSON.stringify({ ok: true, file: nextFile }));
+          } catch (e) {
+            res.writeHead(500);
+            res.end(JSON.stringify({ error: e.message || "Server error" }));
           }
           return;
         }

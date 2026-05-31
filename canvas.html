@@ -90,6 +90,7 @@
     const CARD_GAP = 40;
     const DRAG_THRESHOLD = 5;
     const TITLE_FONT_SIZE = 48;
+    const DUPLICATE_OFFSET = 64;
     /** Stage-space snap when dragging cards (px). */
     const GRID_SNAP = 32;
 
@@ -220,6 +221,13 @@
         'Delete</button>';
     }
 
+    function selectedObjectLabel() {
+      const parts = [];
+      if (selected.size) parts.push(selected.size === 1 ? "1 screen" : selected.size + " screens");
+      if (selectedTexts.size) parts.push(selectedTexts.size === 1 ? "1 title" : selectedTexts.size + " titles");
+      return parts.join(" + ") || "selection";
+    }
+
     /* ── Delete selected canvas objects ── */
     function deleteSelected() {
       if (selected.size === 0 && selectedTexts.size === 0) return;
@@ -257,11 +265,72 @@
       if (texts.length) {
         payload.texts = texts.map(t => ({ text: t.text, x: Math.round(t.x), y: Math.round(t.y), size: t.size }));
       }
-      fetch("data/projects/" + encProjectId + "/canvas.json", {
+      return fetch("data/projects/" + encProjectId + "/canvas.json", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload, null, 2),
       }).catch(() => {});
+    }
+
+    async function duplicateScreenFile(file) {
+      const resp = await fetch("/api/duplicate-screen", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ projectId, file }),
+      });
+      let data = {};
+      try { data = await resp.json(); } catch (_) {}
+      if (!resp.ok || !data.file) {
+        throw new Error(data.error || "Could not duplicate screen file.");
+      }
+      return data.file;
+    }
+
+    async function duplicateSelection(options) {
+      const opts = options || {};
+      const offsetX = opts.offsetX == null ? DUPLICATE_OFFSET : opts.offsetX;
+      const offsetY = opts.offsetY == null ? DUPLICATE_OFFSET : opts.offsetY;
+      const screenIndices = Array.from(selected).sort((a, b) => a - b).filter(i => screens[i]);
+      const textIndices = Array.from(selectedTexts).sort((a, b) => a - b).filter(i => texts[i]);
+      if (!screenIndices.length && !textIndices.length) return null;
+
+      const copiedScreens = [];
+      try {
+        for (const i of screenIndices) {
+          const s = screens[i];
+          const file = await duplicateScreenFile(s.file);
+          copiedScreens.push({
+            file,
+            x: snapToGrid(s.x + offsetX),
+            y: snapToGrid(s.y + offsetY),
+            width: s.width,
+            name: s.name && s.name.trim() ? s.name.trim() + " Copy" : "",
+          });
+        }
+      } catch (err) {
+        console.error(err);
+        showToast("Could not copy screen file");
+        return null;
+      }
+
+      const copiedTexts = textIndices.map(i => ({
+        text: texts[i].text,
+        x: snapToGrid(texts[i].x + offsetX),
+        y: snapToGrid(texts[i].y + offsetY),
+        size: texts[i].size,
+      }));
+
+      const firstScreenIdx = screens.length;
+      const firstTextIdx = texts.length;
+      screens.push(...copiedScreens);
+      texts.push(...copiedTexts);
+
+      const nextScreens = copiedScreens.map((_, i) => firstScreenIdx + i);
+      const nextTexts = copiedTexts.map((_, i) => firstTextIdx + i);
+      setCanvasSelection(nextScreens, nextTexts);
+      renderCards();
+      if (opts.save !== false) saveCanvas();
+      return { screens: nextScreens, texts: nextTexts };
     }
 
     /* ── Keyboard shortcuts ── */
@@ -362,6 +431,7 @@
     const SPINNER_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" class="canvas-context-menu-spinner"><path d="M21 12a9 9 0 1 1-6.2-8.55"/></svg>';
 
     const ICON_SELECT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z"/></svg>';
+    const ICON_COPY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
     const ICON_DELETE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
     const ICON_DOWNLOAD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>';
 
@@ -475,18 +545,36 @@
 
     viewport.addEventListener("contextmenu", (e) => {
       e.preventDefault();
+      const textEl = e.target.closest(".canvas-text");
       const card = e.target.closest(".canvas-card");
 
-      if (card) {
+      if (textEl) {
+        const idx = parseInt(textEl.dataset.idx, 10);
+        if (isNaN(idx)) return;
+        if (!selectedTexts.has(idx)) {
+          clearSelection();
+          selectText(idx);
+        }
+
+        const label = selectedObjectLabel();
+        showContextMenu(e.clientX, e.clientY, [
+          { label: "Select All", icon: ICON_SELECT, action: setAllSelected },
+          { label: "Duplicate " + label, icon: ICON_COPY, async: true, action: ({ startBusy }) => { startBusy("Duplicating…"); return duplicateSelection(); } },
+          { sep: true },
+          { label: "Delete " + label, icon: ICON_DELETE, danger: true, action: deleteSelected },
+        ]);
+      } else if (card) {
         const idx = parseInt(card.id.replace("card-", ""), 10);
         if (isNaN(idx)) return;
         if (!selected.has(idx)) setSelected([idx]);
 
         const count = selected.size;
-        const label = count === 1 ? screenDisplayName(screens[idx]) : count + " screens";
+        const label = selectedTexts.size ? selectedObjectLabel() : (count === 1 ? screenDisplayName(screens[idx]) : count + " screens");
         const downloadLabel = count === 1 ? "Download as PNG" : "Download " + count + " as PNG";
+        const duplicateLabel = "Duplicate " + label;
         const items = [
           { label: "Select All", icon: ICON_SELECT, action: setAllSelected },
+          { label: duplicateLabel, icon: ICON_COPY, async: true, action: ({ startBusy }) => { startBusy("Duplicating…"); return duplicateSelection(); } },
           { label: downloadLabel, icon: ICON_DOWNLOAD, action: () => downloadScreensAsPng([...selected]) },
           { sep: true },
           { label: "Delete " + label, icon: ICON_DELETE, danger: true, action: deleteSelected },
@@ -527,9 +615,15 @@
         idx,
         startX: e.clientX,
         startY: e.clientY,
+        lastX: e.clientX,
+        lastY: e.clientY,
         moved: false,
         shiftHeld,
+        duplicateOnDrag: e.altKey,
+        duplicateReady: !e.altKey,
+        duplicatePromise: null,
         dragOffsets: null,
+        textDragOffsets: null,
         pointerId: e.pointerId,
       };
       viewport.setPointerCapture(e.pointerId);
@@ -573,6 +667,80 @@
       } catch (_) {}
     }
 
+    function stagePointFromClient(clientX, clientY) {
+      const rect = viewport.getBoundingClientRect();
+      return {
+        x: (clientX - rect.left - pz.panX - rect.width / 2) / pz.zoom,
+        y: (clientY - rect.top - pz.panY - rect.height / 2 + 52) / pz.zoom,
+      };
+    }
+
+    function beginSelectionDrag(pointer) {
+      pointer.moved = true;
+      viewport.classList.add("dragging-card");
+      const start = stagePointFromClient(pointer.startX, pointer.startY);
+      pointer.dragOffsets = [];
+      selected.forEach(i => {
+        const s = screens[i];
+        if (s) pointer.dragOffsets.push({ idx: i, offX: start.x - s.x, offY: start.y - s.y });
+      });
+      pointer.textDragOffsets = [];
+      selectedTexts.forEach(i => {
+        const t = texts[i];
+        if (t) pointer.textDragOffsets.push({ idx: i, offX: start.x - t.x, offY: start.y - t.y });
+      });
+    }
+
+    function moveSelectionDragToClient(pointer, clientX, clientY) {
+      const point = stagePointFromClient(clientX, clientY);
+      pointer.dragOffsets.forEach(d => {
+        const s = screens[d.idx];
+        if (!s) return;
+        s.x = snapToGrid(point.x - d.offX);
+        s.y = snapToGrid(point.y - d.offY);
+        const el = document.getElementById("card-" + d.idx);
+        if (el) {
+          el.style.left = s.x + "px";
+          el.style.top = s.y + "px";
+        }
+      });
+      pointer.textDragOffsets.forEach(d => {
+        const t = texts[d.idx];
+        if (!t) return;
+        t.x = snapToGrid(point.x - d.offX);
+        t.y = snapToGrid(point.y - d.offY);
+        const el = textLayer && textLayer.querySelector('.canvas-text[data-idx="' + d.idx + '"]');
+        if (el) { el.style.left = t.x + "px"; el.style.top = t.y + "px"; }
+      });
+    }
+
+    function startAltDuplicateDrag(pointer, isActive) {
+      if (pointer.duplicatePromise) return;
+      pointer.duplicatePromise = duplicateSelection({ offsetX: 0, offsetY: 0, save: false })
+        .then((result) => {
+          if (!isActive()) {
+            if (result) saveCanvas();
+            return;
+          }
+          if (!result) {
+            pointer.duplicateOnDrag = false;
+            pointer.duplicateReady = true;
+            return;
+          }
+          pointer.duplicateReady = true;
+          beginSelectionDrag(pointer);
+          moveSelectionDragToClient(pointer, pointer.lastX, pointer.lastY);
+        })
+        .catch((err) => {
+          console.error(err);
+          if (isActive()) {
+            pointer.duplicateOnDrag = false;
+            pointer.duplicateReady = true;
+            showToast("Could not copy selection");
+          }
+        });
+    }
+
     function endCanvasPointerSession(e) {
       const pid = e.pointerId;
       if (textPointer && textPointer.pointerId === pid) { return endTextPointer(e); }
@@ -596,51 +764,21 @@
     viewport.addEventListener("pointermove", (e) => {
       if (textPointer && e.pointerId === textPointer.pointerId) { onTextPointerMove(e); return; }
       if (cardPointer && e.pointerId === cardPointer.pointerId) {
+        cardPointer.lastX = e.clientX;
+        cardPointer.lastY = e.clientY;
         const dx = e.clientX - cardPointer.startX;
         const dy = e.clientY - cardPointer.startY;
         if (!cardPointer.moved && Math.abs(dx) < DRAG_THRESHOLD && Math.abs(dy) < DRAG_THRESHOLD) return;
 
         if (!cardPointer.moved) {
-          cardPointer.moved = true;
-          viewport.classList.add("dragging-card");
-
-          const rect = viewport.getBoundingClientRect();
-          const sX = (cardPointer.startX - rect.left - pz.panX - rect.width / 2) / pz.zoom;
-          const sY = (cardPointer.startY - rect.top - pz.panY - rect.height / 2 + 52) / pz.zoom;
-
-          cardPointer.dragOffsets = [];
-          selected.forEach(i => {
-            cardPointer.dragOffsets.push({ idx: i, offX: sX - screens[i].x, offY: sY - screens[i].y });
-          });
-          cardPointer.textDragOffsets = [];
-          selectedTexts.forEach(i => {
-            const t = texts[i];
-            if (t) cardPointer.textDragOffsets.push({ idx: i, offX: sX - t.x, offY: sY - t.y });
-          });
+          if (cardPointer.duplicateOnDrag && !cardPointer.duplicateReady) {
+            startAltDuplicateDrag(cardPointer, () => cardPointer && cardPointer.pointerId === e.pointerId);
+            return;
+          }
+          beginSelectionDrag(cardPointer);
         }
 
-        const rect = viewport.getBoundingClientRect();
-        const stageX = (e.clientX - rect.left - pz.panX - rect.width / 2) / pz.zoom;
-        const stageY = (e.clientY - rect.top - pz.panY - rect.height / 2 + 52) / pz.zoom;
-
-        cardPointer.dragOffsets.forEach(d => {
-          const s = screens[d.idx];
-          s.x = snapToGrid(stageX - d.offX);
-          s.y = snapToGrid(stageY - d.offY);
-          const el = document.getElementById("card-" + d.idx);
-          if (el) {
-            el.style.left = s.x + "px";
-            el.style.top = s.y + "px";
-          }
-        });
-        cardPointer.textDragOffsets.forEach(d => {
-          const t = texts[d.idx];
-          if (!t) return;
-          t.x = snapToGrid(stageX - d.offX);
-          t.y = snapToGrid(stageY - d.offY);
-          const el = textLayer && textLayer.querySelector('.canvas-text[data-idx="' + d.idx + '"]');
-          if (el) { el.style.left = t.x + "px"; el.style.top = t.y + "px"; }
-        });
+        moveSelectionDragToClient(cardPointer, e.clientX, e.clientY);
         return;
       }
 
@@ -1167,7 +1305,20 @@
         clearSelection();
         selectText(idx);
       }
-      textPointer = { idx, startX: e.clientX, startY: e.clientY, moved: false, pointerId: e.pointerId };
+      textPointer = {
+        idx,
+        startX: e.clientX,
+        startY: e.clientY,
+        lastX: e.clientX,
+        lastY: e.clientY,
+        moved: false,
+        duplicateOnDrag: e.altKey,
+        duplicateReady: !e.altKey,
+        duplicatePromise: null,
+        dragOffsets: null,
+        textDragOffsets: null,
+        pointerId: e.pointerId,
+      };
       window.addEventListener("pointermove", onTextWindowPointerMove, true);
       window.addEventListener("pointerup", onTextWindowPointerEnd, true);
       window.addEventListener("pointercancel", onTextWindowPointerEnd, true);
@@ -1193,45 +1344,19 @@
 
     function onTextPointerMove(e) {
       if (!textPointer || e.pointerId !== textPointer.pointerId) return false;
+      textPointer.lastX = e.clientX;
+      textPointer.lastY = e.clientY;
       const dx = e.clientX - textPointer.startX;
       const dy = e.clientY - textPointer.startY;
       if (!textPointer.moved && Math.abs(dx) < DRAG_THRESHOLD && Math.abs(dy) < DRAG_THRESHOLD) return true;
       if (!textPointer.moved) {
-        textPointer.moved = true;
-        viewport.classList.add("dragging-card");
-        const rect = viewport.getBoundingClientRect();
-        const sX = (textPointer.startX - rect.left - pz.panX - rect.width / 2) / pz.zoom;
-        const sY = (textPointer.startY - rect.top - pz.panY - rect.height / 2 + 52) / pz.zoom;
-        textPointer.textDragOffsets = [];
-        selectedTexts.forEach(i => {
-          const t = texts[i];
-          if (t) textPointer.textDragOffsets.push({ idx: i, offX: sX - t.x, offY: sY - t.y });
-        });
-        textPointer.screenDragOffsets = [];
-        selected.forEach(i => {
-          const s = screens[i];
-          if (s) textPointer.screenDragOffsets.push({ idx: i, offX: sX - s.x, offY: sY - s.y });
-        });
+        if (textPointer.duplicateOnDrag && !textPointer.duplicateReady) {
+          startAltDuplicateDrag(textPointer, () => textPointer && textPointer.pointerId === e.pointerId);
+          return true;
+        }
+        beginSelectionDrag(textPointer);
       }
-      const rect = viewport.getBoundingClientRect();
-      const stageX = (e.clientX - rect.left - pz.panX - rect.width / 2) / pz.zoom;
-      const stageY = (e.clientY - rect.top - pz.panY - rect.height / 2 + 52) / pz.zoom;
-      textPointer.textDragOffsets.forEach(d => {
-        const t = texts[d.idx];
-        if (!t) return;
-        t.x = snapToGrid(stageX - d.offX);
-        t.y = snapToGrid(stageY - d.offY);
-        const el = textLayer.querySelector('.canvas-text[data-idx="' + d.idx + '"]');
-        if (el) { el.style.left = t.x + "px"; el.style.top = t.y + "px"; }
-      });
-      textPointer.screenDragOffsets.forEach(d => {
-        const s = screens[d.idx];
-        if (!s) return;
-        s.x = snapToGrid(stageX - d.offX);
-        s.y = snapToGrid(stageY - d.offY);
-        const el = document.getElementById("card-" + d.idx);
-        if (el) { el.style.left = s.x + "px"; el.style.top = s.y + "px"; }
-      });
+      moveSelectionDragToClient(textPointer, e.clientX, e.clientY);
       return true;
     }
 
