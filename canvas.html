@@ -934,16 +934,30 @@
     function autoSizeIframe(iframe) {
       try {
         const doc = iframe.contentDocument || iframe.contentWindow.document;
-        let max = doc.documentElement.scrollHeight;
+        const win = iframe.contentWindow;
         const scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop || 0;
+        let max = 0;
         const all = doc.body.getElementsByTagName("*");
         for (let i = 0; i < all.length; i++) {
-          const r = all[i].getBoundingClientRect();
+          const el = all[i];
+          if (isClippedByAncestor(el, win)) continue;
+          const r = el.getBoundingClientRect();
           const bottom = r.bottom + scrollTop;
           if (bottom > max) max = bottom;
         }
+        if (!max) max = doc.documentElement.scrollHeight;
         iframe.style.height = Math.ceil(max) + "px";
       } catch (e) {}
+    }
+
+    function isClippedByAncestor(el, win) {
+      let p = el.parentElement;
+      while (p && p !== el.ownerDocument.body) {
+        const ov = win.getComputedStyle(p).overflowY;
+        if (ov === "hidden" || ov === "auto" || ov === "scroll") return true;
+        p = p.parentElement;
+      }
+      return false;
     }
   </script>
 </body>
