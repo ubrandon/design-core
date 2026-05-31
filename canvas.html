@@ -40,6 +40,26 @@
     .export-toast--error .export-toast__spinner { display: none; }
     .export-toast--error .export-toast__panel { background: #6b1d1d; }
     @keyframes export-spin { to { transform: rotate(360deg); } }
+
+    .canvas-space-viewport.placing-text { cursor: crosshair; }
+    .canvas-space-viewport.placing-text .canvas-card { cursor: crosshair; }
+    .canvas-text-layer { position: absolute; inset: 0; pointer-events: none; }
+    .canvas-text {
+      position: absolute; pointer-events: auto; cursor: grab;
+      font-family: -apple-system, system-ui, sans-serif;
+      font-weight: 800; line-height: 1.1; letter-spacing: -0.02em;
+      color: rgba(0,0,0,0.82); white-space: pre; max-width: none;
+      padding: 4px 6px; border-radius: 8px; border: 1.5px solid transparent;
+      user-select: none;
+    }
+    .canvas-text:hover { background: rgba(0,0,0,0.03); }
+    .canvas-text.is-selected { border-color: #4a8cff; background: rgba(74,140,255,0.06); cursor: grab; }
+    .dragging-card .canvas-text { cursor: grabbing; }
+    .canvas-text-input {
+      font-family: inherit; font-weight: inherit; line-height: inherit; letter-spacing: inherit;
+      color: inherit; background: transparent; border: none; outline: none; padding: 0; margin: 0;
+      box-sizing: content-box; overflow: visible; min-width: 120px; width: 120px;
+    }
   </style>
 </head>
 <body>
@@ -49,6 +69,7 @@
   </div>
 
   <div class="zoom-controls">
+    <button class="zoom-btn zoom-btn--tidy" onclick="addText()" title="Add a title (T)">Title</button>
     <button class="zoom-btn zoom-btn--tidy" onclick="refreshScreens()" title="Reload screens to see edits">Refresh</button>
     <div class="zoom-controls__zoom-group">
       <button class="zoom-btn" onclick="pz.zoomBy(-0.04)" title="Zoom out">&minus;</button>
@@ -68,6 +89,7 @@
   <script>
     const CARD_GAP = 40;
     const DRAG_THRESHOLD = 5;
+    const TITLE_FONT_SIZE = 48;
     /** Stage-space snap when dragging cards (px). */
     const GRID_SNAP = 32;
 
@@ -128,6 +150,7 @@
     window.addEventListener("pagehide", savePanZoom);
 
     let screens = [];
+    let texts = [];
 
     /* ── Selection state ── */
     const selected = new Set();
@@ -210,6 +233,9 @@
         if (s.name && s.name.trim()) out.name = s.name.trim();
         return out;
       }) };
+      if (texts.length) {
+        payload.texts = texts.map(t => ({ text: t.text, x: Math.round(t.x), y: Math.round(t.y), size: t.size }));
+      }
       fetch("data/projects/" + encProjectId + "/canvas.json", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -219,11 +245,19 @@
 
     /* ── Keyboard shortcuts ── */
     window.addEventListener("keydown", function (e) {
+      const inField = e.target.closest("input, textarea, [contenteditable]");
       if (e.key === "Delete" || e.key === "Backspace") {
-        if (selected.size > 0 && !e.target.closest("input, textarea, [contenteditable]")) {
+        if (!inField && selectedText >= 0) {
+          e.preventDefault();
+          deleteSelectedText();
+        } else if (selected.size > 0 && !inField) {
           e.preventDefault();
           deleteSelected();
         }
+      }
+      if ((e.key === "t" || e.key === "T") && !inField && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        e.preventDefault();
+        addText();
       }
       if ((e.key === "a" || e.key === "A") && (e.metaKey || e.ctrlKey)) {
         if (!e.target.closest("input, textarea, [contenteditable]")) {
@@ -234,6 +268,8 @@
       if (e.key === "Escape") {
         closeContextMenu();
         clearSelection();
+        clearTextSelection();
+        cancelPlaceText();
       }
     });
 
@@ -453,6 +489,7 @@
 
     function onCardPointerDown(e, idx) {
       if (e.button !== 0) return;
+      if (placingText) return;
       if (pz.spaceHeld) return;
       e.stopPropagation();
       e.preventDefault();
@@ -482,6 +519,12 @@
 
     viewport.addEventListener("pointerdown", (e) => {
       if (e.button !== 0) return;
+      if (placingText) {
+        e.preventDefault();
+        e.stopPropagation();
+        placeTextAt(e.clientX, e.clientY);
+        return;
+      }
       if (pz.spaceHeld) return;
       if (e.target.closest(".canvas-card")) return;
 
@@ -498,6 +541,7 @@
       } else {
         closeContextMenu();
         clearSelection();
+        clearTextSelection();
       }
     });
 
@@ -511,6 +555,7 @@
 
     function endCanvasPointerSession(e) {
       const pid = e.pointerId;
+      if (textPointer && textPointer.pointerId === pid) { return endTextPointer(e); }
       if (cardPointer && cardPointer.pointerId === pid) {
         if (cardPointer.moved) {
           viewport.classList.remove("dragging-card");
@@ -532,6 +577,7 @@
     }
 
     viewport.addEventListener("pointermove", (e) => {
+      if (textPointer && e.pointerId === textPointer.pointerId) { onTextPointerMove(e); return; }
       if (cardPointer && e.pointerId === cardPointer.pointerId) {
         const dx = e.clientX - cardPointer.startX;
         const dy = e.clientY - cardPointer.startY;
@@ -617,6 +663,7 @@
     });
 
     viewport.addEventListener("lostpointercapture", (e) => {
+      if (textPointer && textPointer.pointerId === e.pointerId) { endTextPointer(e); return; }
       if (cardPointer && cardPointer.pointerId === e.pointerId) {
         if (cardPointer.moved) {
           viewport.classList.remove("dragging-card");
@@ -715,8 +762,17 @@
             const name = typeof s.name === "string" ? s.name : "";
             return { file: s.file, x, y, width: w, name };
           });
+          const nextTexts = Array.isArray(data.texts) ? data.texts.map(t => ({
+            text: typeof t.text === "string" ? t.text : "",
+            x: t.x != null ? t.x : 0,
+            y: t.y != null ? t.y : 0,
+            size: t.size || TITLE_FONT_SIZE,
+          })) : [];
           const structureSame = screens.length === next.length && next.every((n, i) =>
             screens[i] && n.file === screens[i].file && n.width === screens[i].width && (n.name || "") === (screens[i].name || "")
+          );
+          const textsSame = texts.length === nextTexts.length && nextTexts.every((n, i) =>
+            texts[i] && n.text === texts[i].text && n.x === texts[i].x && n.y === texts[i].y && n.size === texts[i].size
           );
           if (!structureSame) {
             screens = next;
@@ -725,6 +781,10 @@
             if (empty) empty.remove();
           } else if (changedFiles && changedFiles.length) {
             reloadChangedIframes(changedFiles);
+          }
+          if (!textsSame) {
+            texts = nextTexts;
+            renderTexts();
           }
         })
         .catch(() => {
@@ -761,6 +821,7 @@
 
     function refreshScreens() {
       screens = [];
+      texts = [];
       clearSelection();
       const btn = document.querySelector('[onclick="refreshScreens()"]');
       if (btn) { btn.disabled = true; }
@@ -874,6 +935,9 @@
           if (!isNaN(idx)) startLabelEdit(idx);
         });
       });
+      // stage.innerHTML reset above drops the text layer; rebuild it.
+      textLayer = null;
+      renderTexts();
     }
 
     function startLabelEdit(idx) {
@@ -929,6 +993,243 @@
         window.removeEventListener("pointerdown", onOutside, true);
       };
       setTimeout(() => window.addEventListener("pointerdown", onOutside, true), 0);
+    }
+
+    /* ── Canvas titles (free-floating text) ── */
+    let textLayer = null;
+    let selectedText = -1;
+    let textPointer = null;
+
+    function ensureTextLayer() {
+      if (!textLayer) {
+        textLayer = document.createElement("div");
+        textLayer.className = "canvas-text-layer";
+        stage.appendChild(textLayer);
+      }
+      return textLayer;
+    }
+
+    function selectText(idx) {
+      selectedText = idx;
+      if (!textLayer) return;
+      textLayer.querySelectorAll(".canvas-text").forEach((el) => {
+        el.classList.toggle("is-selected", parseInt(el.dataset.idx, 10) === idx);
+      });
+    }
+
+    function clearTextSelection() { selectText(-1); }
+
+    function singleLineText(str) {
+      return String(str || "").replace(/\s*\n+\s*/g, " ").trim();
+    }
+
+    function renderTexts() {
+      const layer = ensureTextLayer();
+      layer.innerHTML = texts.map((t, i) => `
+        <div class="canvas-text${selectedText === i ? " is-selected" : ""}" data-idx="${i}"
+             style="left:${t.x}px; top:${t.y}px; font-size:${t.size}px;">${escapeHtml(singleLineText(t.text) || "Title")}</div>
+      `).join("");
+      layer.querySelectorAll(".canvas-text").forEach((el) => {
+        const idx = parseInt(el.dataset.idx, 10);
+        el.addEventListener("pointerdown", (e) => onTextPointerDown(e, idx));
+        el.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (e.detail >= 2) {
+            e.preventDefault();
+            startTextEdit(idx);
+          }
+        });
+        el.addEventListener("dblclick", (e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          startTextEdit(idx);
+        });
+      });
+    }
+
+    // Arm placement: the next click on the canvas drops the title where you click.
+    let placingText = false;
+    function addText() {
+      placingText = true;
+      viewport.classList.add("placing-text");
+    }
+    function cancelPlaceText() {
+      placingText = false;
+      viewport.classList.remove("placing-text");
+    }
+    function placeTextAt(clientX, clientY) {
+      const rect = viewport.getBoundingClientRect();
+      const x = (clientX - rect.left - pz.panX - rect.width / 2) / pz.zoom;
+      const y = (clientY - rect.top - pz.panY - rect.height / 2 + 52) / pz.zoom;
+      texts.push({ text: "", x: snapToGrid(x), y: snapToGrid(y), size: TITLE_FONT_SIZE });
+      cancelPlaceText();
+      renderTexts();
+      const idx = texts.length - 1;
+      selectText(idx);
+      startTextEdit(idx);
+    }
+
+    function onTextPointerDown(e, idx) {
+      if (e.button !== 0) return;
+      if (placingText) return;
+      if (pz.spaceHeld) return;
+      const el = e.currentTarget;
+      if (el.querySelector("input, textarea")) return;
+      e.stopPropagation();
+      closeContextMenu();
+      clearSelection();
+      selectText(idx);
+      textPointer = { idx, startX: e.clientX, startY: e.clientY, moved: false, pointerId: e.pointerId };
+      window.addEventListener("pointermove", onTextWindowPointerMove, true);
+      window.addEventListener("pointerup", onTextWindowPointerEnd, true);
+      window.addEventListener("pointercancel", onTextWindowPointerEnd, true);
+    }
+
+    function clearTextPointerListeners() {
+      window.removeEventListener("pointermove", onTextWindowPointerMove, true);
+      window.removeEventListener("pointerup", onTextWindowPointerEnd, true);
+      window.removeEventListener("pointercancel", onTextWindowPointerEnd, true);
+    }
+
+    function onTextWindowPointerMove(e) {
+      if (textPointer && e.pointerId === textPointer.pointerId) {
+        onTextPointerMove(e);
+      }
+    }
+
+    function onTextWindowPointerEnd(e) {
+      if (textPointer && e.pointerId === textPointer.pointerId) {
+        endTextPointer(e);
+      }
+    }
+
+    function onTextPointerMove(e) {
+      if (!textPointer || e.pointerId !== textPointer.pointerId) return false;
+      const dx = e.clientX - textPointer.startX;
+      const dy = e.clientY - textPointer.startY;
+      if (!textPointer.moved && Math.abs(dx) < DRAG_THRESHOLD && Math.abs(dy) < DRAG_THRESHOLD) return true;
+      if (!textPointer.moved) {
+        textPointer.moved = true;
+        viewport.classList.add("dragging-card");
+        const t = texts[textPointer.idx];
+        const rect = viewport.getBoundingClientRect();
+        const sX = (textPointer.startX - rect.left - pz.panX - rect.width / 2) / pz.zoom;
+        const sY = (textPointer.startY - rect.top - pz.panY - rect.height / 2 + 52) / pz.zoom;
+        textPointer.offX = sX - t.x;
+        textPointer.offY = sY - t.y;
+      }
+      const rect = viewport.getBoundingClientRect();
+      const stageX = (e.clientX - rect.left - pz.panX - rect.width / 2) / pz.zoom;
+      const stageY = (e.clientY - rect.top - pz.panY - rect.height / 2 + 52) / pz.zoom;
+      const t = texts[textPointer.idx];
+      t.x = snapToGrid(stageX - textPointer.offX);
+      t.y = snapToGrid(stageY - textPointer.offY);
+      const el = textLayer.querySelector('.canvas-text[data-idx="' + textPointer.idx + '"]');
+      if (el) { el.style.left = t.x + "px"; el.style.top = t.y + "px"; }
+      return true;
+    }
+
+    function endTextPointer(e) {
+      if (!textPointer || textPointer.pointerId !== e.pointerId) return false;
+      if (textPointer.moved) {
+        viewport.classList.remove("dragging-card");
+        saveCanvas();
+      }
+      textPointer = null;
+      clearTextPointerListeners();
+      releaseViewportCaptureSafe(e.pointerId);
+      return true;
+    }
+
+    function startTextEdit(idx) {
+      const el = textLayer && textLayer.querySelector('.canvas-text[data-idx="' + idx + '"]');
+      if (!el || el.querySelector("input, textarea")) return;
+      const current = singleLineText(texts[idx].text);
+      const input = document.createElement("input");
+      input.type = "text";
+      input.className = "canvas-text-input";
+      input.value = current;
+      input.style.fontSize = texts[idx].size + "px";
+      el.textContent = "";
+      el.appendChild(input);
+      const measure = document.createElement("span");
+      measure.style.cssText = "position:absolute;left:-99999px;top:-99999px;visibility:hidden;white-space:pre;font:inherit;letter-spacing:inherit;";
+      el.appendChild(measure);
+      const autoSize = () => {
+        measure.textContent = input.value || input.placeholder || "Title";
+        const measured = measure.offsetWidth || (measure.getBoundingClientRect().width / pz.zoom);
+        input.style.width = Math.max(120, Math.ceil(measured) + 24) + "px";
+      };
+      autoSize();
+      requestAnimationFrame(() => {
+        input.focus();
+        const caret = input.value.length;
+        input.setSelectionRange(caret, caret);
+        autoSize();
+      });
+
+      const stop = (e) => e.stopPropagation();
+      input.addEventListener("pointerdown", stop);
+      input.addEventListener("mousedown", stop);
+      input.addEventListener("click", stop);
+      input.addEventListener("dblclick", stop);
+      input.addEventListener("input", autoSize);
+
+      let committed = false;
+      let removeOutsideListeners = () => {};
+      const commit = () => {
+        if (committed) return;
+        committed = true;
+        const next = singleLineText(input.value);
+        if (!next) {
+          texts.splice(idx, 1);
+          clearTextSelection();
+          renderTexts();
+          saveCanvas();
+          removeOutsideListeners();
+          return;
+        }
+        const changed = texts[idx].text !== next;
+        texts[idx].text = next;
+        renderTexts();
+        selectText(idx);
+        if (changed) saveCanvas();
+        removeOutsideListeners();
+      };
+      const cancel = () => {
+        if (committed) return;
+        committed = true;
+        if (!current) { texts.splice(idx, 1); clearTextSelection(); }
+        renderTexts();
+        removeOutsideListeners();
+      };
+      input.addEventListener("keydown", (e) => {
+        e.stopPropagation();
+        if (e.key === "Enter") { e.preventDefault(); commit(); }
+        else if (e.key === "Escape") { e.preventDefault(); cancel(); }
+      });
+      input.addEventListener("blur", commit);
+      const onOutside = (e) => {
+        if (e.target === input || input.contains(e.target)) return;
+        commit();
+      };
+      setTimeout(() => {
+        if (committed) return;
+        window.addEventListener("pointerdown", onOutside, true);
+        window.addEventListener("mousedown", onOutside, true);
+        removeOutsideListeners = () => {
+          window.removeEventListener("pointerdown", onOutside, true);
+          window.removeEventListener("mousedown", onOutside, true);
+        };
+      }, 0);
+    }
+
+    function deleteSelectedText() {
+      if (selectedText < 0) return;
+      texts.splice(selectedText, 1);
+      clearTextSelection();
+      renderTexts();
+      saveCanvas();
     }
 
     function autoSizeIframe(iframe) {
