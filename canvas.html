@@ -154,12 +154,28 @@
 
     /* ── Selection state ── */
     const selected = new Set();
+    const selectedTexts = new Set();
+
+    function setCanvasSelection(screenIndices, textIndices) {
+      selected.clear();
+      screenIndices.forEach(i => selected.add(i));
+      selectedTexts.clear();
+      textIndices.forEach(i => selectedTexts.add(i));
+      selectedText = selectedTexts.size ? Math.min(...selectedTexts) : -1;
+      applySelectionClasses();
+      applyTextSelectionClasses();
+      updateSelectionBar();
+    }
 
     function setSelected(indices) {
-      selected.clear();
-      indices.forEach(i => selected.add(i));
-      applySelectionClasses();
-      updateSelectionBar();
+      setCanvasSelection(indices, []);
+    }
+
+    function setAllSelected() {
+      setCanvasSelection(
+        screens.map((_, i) => i),
+        texts.map((_, i) => i),
+      );
     }
 
     function toggleSelected(idx) {
@@ -169,9 +185,7 @@
     }
 
     function clearSelection() {
-      selected.clear();
-      applySelectionClasses();
-      updateSelectionBar();
+      setCanvasSelection([], []);
     }
 
     function applySelectionClasses() {
@@ -185,7 +199,8 @@
     let selectionBar = null;
 
     function updateSelectionBar() {
-      if (selected.size === 0) {
+      const total = selected.size + selectedTexts.size;
+      if (total === 0) {
         if (selectionBar) { selectionBar.remove(); selectionBar = null; }
         return;
       }
@@ -194,7 +209,10 @@
         selectionBar.className = "canvas-selection-bar";
         document.body.appendChild(selectionBar);
       }
-      const label = selected.size === 1 ? "1 screen" : selected.size + " screens";
+      const parts = [];
+      if (selected.size) parts.push(selected.size === 1 ? "1 screen" : selected.size + " screens");
+      if (selectedTexts.size) parts.push(selectedTexts.size === 1 ? "1 title" : selectedTexts.size + " titles");
+      const label = parts.join(" + ");
       selectionBar.innerHTML =
         '<span class="canvas-selection-bar-label">' + label + ' selected</span>' +
         '<button class="canvas-selection-bar-btn" onclick="deleteSelected()">' +
@@ -202,15 +220,18 @@
         'Delete</button>';
     }
 
-    /* ── Delete selected screens ── */
+    /* ── Delete selected canvas objects ── */
     function deleteSelected() {
-      if (selected.size === 0) return;
-      const indices = Array.from(selected).sort((a, b) => b - a);
-      const filesToDelete = indices.map(i => screens[i].file);
-      indices.forEach(i => screens.splice(i, 1));
+      if (selected.size === 0 && selectedTexts.size === 0) return;
+      const screenIndices = Array.from(selected).sort((a, b) => b - a);
+      const textIndices = Array.from(selectedTexts).sort((a, b) => b - a);
+      const filesToDelete = screenIndices.map(i => screens[i].file);
+      screenIndices.forEach(i => screens.splice(i, 1));
+      textIndices.forEach(i => texts.splice(i, 1));
       clearSelection();
       renderCards();
       saveCanvas();
+      if (!filesToDelete.length) return;
       let failures = 0;
       Promise.all(filesToDelete.map(f =>
         fetch(screenUrl(f), { method: "DELETE" })
@@ -247,10 +268,7 @@
     window.addEventListener("keydown", function (e) {
       const inField = e.target.closest("input, textarea, [contenteditable]");
       if (e.key === "Delete" || e.key === "Backspace") {
-        if (!inField && selectedText >= 0) {
-          e.preventDefault();
-          deleteSelectedText();
-        } else if (selected.size > 0 && !inField) {
+        if (!inField && (selected.size > 0 || selectedTexts.size > 0)) {
           e.preventDefault();
           deleteSelected();
         }
@@ -262,7 +280,7 @@
       if ((e.key === "a" || e.key === "A") && (e.metaKey || e.ctrlKey)) {
         if (!e.target.closest("input, textarea, [contenteditable]")) {
           e.preventDefault();
-          setSelected(screens.map((_, i) => i));
+          setAllSelected();
         }
       }
       if (e.key === "Escape") {
@@ -468,7 +486,7 @@
         const label = count === 1 ? screenDisplayName(screens[idx]) : count + " screens";
         const downloadLabel = count === 1 ? "Download as PNG" : "Download " + count + " as PNG";
         const items = [
-          { label: "Select All", icon: ICON_SELECT, action: () => setSelected(screens.map((_, i) => i)) },
+          { label: "Select All", icon: ICON_SELECT, action: setAllSelected },
           { label: downloadLabel, icon: ICON_DOWNLOAD, action: () => downloadScreensAsPng([...selected]) },
           { sep: true },
           { label: "Delete " + label, icon: ICON_DELETE, danger: true, action: deleteSelected },
@@ -477,7 +495,7 @@
       } else {
         clearSelection();
         showContextMenu(e.clientX, e.clientY, [
-          { label: "Select All", icon: ICON_SELECT, action: () => setSelected(screens.map((_, i) => i)) },
+          { label: "Select All", icon: ICON_SELECT, action: setAllSelected },
         ]);
       }
     });
@@ -537,7 +555,9 @@
           moved: false,
           pointerId: e.pointerId,
         };
-        viewport.setPointerCapture(e.pointerId);
+        window.addEventListener("pointermove", onMarqueeWindowPointerMove, true);
+        window.addEventListener("pointerup", onMarqueeWindowPointerEnd);
+        window.addEventListener("pointercancel", onMarqueeWindowPointerEnd);
       } else {
         closeContextMenu();
         clearSelection();
@@ -568,10 +588,7 @@
         return true;
       }
       if (marquee && marquee.pointerId === pid) {
-        if (marqueeEl) { marqueeEl.remove(); marqueeEl = null; }
-        marquee = null;
-        releaseViewportCaptureSafe(pid);
-        return true;
+        return endMarqueePointer(e);
       }
       return false;
     }
@@ -595,6 +612,11 @@
           selected.forEach(i => {
             cardPointer.dragOffsets.push({ idx: i, offX: sX - screens[i].x, offY: sY - screens[i].y });
           });
+          cardPointer.textDragOffsets = [];
+          selectedTexts.forEach(i => {
+            const t = texts[i];
+            if (t) cardPointer.textDragOffsets.push({ idx: i, offX: sX - t.x, offY: sY - t.y });
+          });
         }
 
         const rect = viewport.getBoundingClientRect();
@@ -611,44 +633,94 @@
             el.style.top = s.y + "px";
           }
         });
+        cardPointer.textDragOffsets.forEach(d => {
+          const t = texts[d.idx];
+          if (!t) return;
+          t.x = snapToGrid(stageX - d.offX);
+          t.y = snapToGrid(stageY - d.offY);
+          const el = textLayer && textLayer.querySelector('.canvas-text[data-idx="' + d.idx + '"]');
+          if (el) { el.style.left = t.x + "px"; el.style.top = t.y + "px"; }
+        });
         return;
       }
 
+      if (marquee && e.pointerId === marquee.pointerId) { updateMarqueeSelection(e); return; }
+    });
+
+    function clearMarqueePointerListeners() {
+      window.removeEventListener("pointermove", onMarqueeWindowPointerMove, true);
+      window.removeEventListener("pointerup", onMarqueeWindowPointerEnd);
+      window.removeEventListener("pointercancel", onMarqueeWindowPointerEnd);
+    }
+
+    function onMarqueeWindowPointerMove(e) {
       if (marquee && e.pointerId === marquee.pointerId) {
-        const dx = e.clientX - marquee.startX;
-        const dy = e.clientY - marquee.startY;
-        if (!marquee.moved && Math.abs(dx) < DRAG_THRESHOLD && Math.abs(dy) < DRAG_THRESHOLD) return;
+        updateMarqueeSelection(e);
+      }
+    }
 
-        if (!marquee.moved) {
-          marquee.moved = true;
-          pz.isPanning = false;
-          marqueeEl = document.createElement("div");
-          marqueeEl.className = "canvas-marquee";
-          document.body.appendChild(marqueeEl);
+    function onMarqueeWindowPointerEnd(e) {
+      if (marquee && e.pointerId === marquee.pointerId) {
+        endMarqueePointer(e);
+      }
+    }
+
+    function updateMarqueeSelection(e) {
+      if (!marquee || e.pointerId !== marquee.pointerId) return false;
+      const dx = e.clientX - marquee.startX;
+      const dy = e.clientY - marquee.startY;
+      if (!marquee.moved && Math.abs(dx) < DRAG_THRESHOLD && Math.abs(dy) < DRAG_THRESHOLD) return true;
+
+      if (!marquee.moved) {
+        marquee.moved = true;
+        pz.isPanning = false;
+        marqueeEl = document.createElement("div");
+        marqueeEl.className = "canvas-marquee";
+        document.body.appendChild(marqueeEl);
+      }
+
+      const x = Math.min(marquee.startX, e.clientX);
+      const y = Math.min(marquee.startY, e.clientY);
+      const w = Math.abs(dx);
+      const h = Math.abs(dy);
+      marqueeEl.style.left = x + "px";
+      marqueeEl.style.top = y + "px";
+      marqueeEl.style.width = w + "px";
+      marqueeEl.style.height = h + "px";
+
+      const hits = [];
+      const textHits = [];
+      screens.forEach((s, i) => {
+        const card = document.getElementById("card-" + i);
+        if (card) {
+          const cr = card.getBoundingClientRect();
+          if (cr.right > x && cr.left < x + w && cr.bottom > y && cr.top < y + h) {
+            hits.push(i);
+          }
         }
-
-        const x = Math.min(marquee.startX, e.clientX);
-        const y = Math.min(marquee.startY, e.clientY);
-        const w = Math.abs(dx);
-        const h = Math.abs(dy);
-        marqueeEl.style.left = x + "px";
-        marqueeEl.style.top = y + "px";
-        marqueeEl.style.width = w + "px";
-        marqueeEl.style.height = h + "px";
-
-        const hits = [];
-        screens.forEach((s, i) => {
-          const card = document.getElementById("card-" + i);
-          if (card) {
-            const cr = card.getBoundingClientRect();
-            if (cr.right > x && cr.left < x + w && cr.bottom > y && cr.top < y + h) {
-              hits.push(i);
-            }
+      });
+      if (textLayer) {
+        textLayer.querySelectorAll(".canvas-text").forEach((el) => {
+          const tr = el.getBoundingClientRect();
+          if (tr.right > x && tr.left < x + w && tr.bottom > y && tr.top < y + h) {
+            const idx = parseInt(el.dataset.idx, 10);
+            if (!isNaN(idx)) textHits.push(idx);
           }
         });
-        setSelected(hits);
       }
-    });
+      setCanvasSelection(hits, textHits);
+      return true;
+    }
+
+    function endMarqueePointer(e) {
+      if (!marquee || marquee.pointerId !== e.pointerId) return false;
+      if (marquee.moved) updateMarqueeSelection(e);
+      if (marqueeEl) { marqueeEl.remove(); marqueeEl = null; }
+      marquee = null;
+      clearMarqueePointerListeners();
+      releaseViewportCaptureSafe(e.pointerId);
+      return true;
+    }
 
     viewport.addEventListener("pointerup", (e) => {
       if (endCanvasPointerSession(e)) return;
@@ -674,8 +746,7 @@
         cardPointer = null;
       }
       if (marquee && marquee.pointerId === e.pointerId) {
-        if (marqueeEl) { marqueeEl.remove(); marqueeEl = null; }
-        marquee = null;
+        endMarqueePointer(e);
       }
     });
 
@@ -1011,13 +1082,25 @@
 
     function selectText(idx) {
       selectedText = idx;
+      selectedTexts.clear();
+      if (idx >= 0) selectedTexts.add(idx);
+      applyTextSelectionClasses();
+      updateSelectionBar();
+    }
+
+    function applyTextSelectionClasses() {
       if (!textLayer) return;
       textLayer.querySelectorAll(".canvas-text").forEach((el) => {
-        el.classList.toggle("is-selected", parseInt(el.dataset.idx, 10) === idx);
+        el.classList.toggle("is-selected", selectedTexts.has(parseInt(el.dataset.idx, 10)));
       });
     }
 
-    function clearTextSelection() { selectText(-1); }
+    function clearTextSelection() {
+      selectedText = -1;
+      selectedTexts.clear();
+      applyTextSelectionClasses();
+      updateSelectionBar();
+    }
 
     function singleLineText(str) {
       return String(str || "").replace(/\s*\n+\s*/g, " ").trim();
@@ -1026,7 +1109,7 @@
     function renderTexts() {
       const layer = ensureTextLayer();
       layer.innerHTML = texts.map((t, i) => `
-        <div class="canvas-text${selectedText === i ? " is-selected" : ""}" data-idx="${i}"
+        <div class="canvas-text${selectedTexts.has(i) ? " is-selected" : ""}" data-idx="${i}"
              style="left:${t.x}px; top:${t.y}px; font-size:${t.size}px;">${escapeHtml(singleLineText(t.text) || "Title")}</div>
       `).join("");
       layer.querySelectorAll(".canvas-text").forEach((el) => {
@@ -1075,10 +1158,15 @@
       if (pz.spaceHeld) return;
       const el = e.currentTarget;
       if (el.querySelector("input, textarea")) return;
+      if (e.ctrlKey || e.metaKey) return;
       e.stopPropagation();
       closeContextMenu();
-      clearSelection();
-      selectText(idx);
+      if (selectedTexts.has(idx)) {
+        selectedText = idx;
+      } else {
+        clearSelection();
+        selectText(idx);
+      }
       textPointer = { idx, startX: e.clientX, startY: e.clientY, moved: false, pointerId: e.pointerId };
       window.addEventListener("pointermove", onTextWindowPointerMove, true);
       window.addEventListener("pointerup", onTextWindowPointerEnd, true);
@@ -1111,21 +1199,39 @@
       if (!textPointer.moved) {
         textPointer.moved = true;
         viewport.classList.add("dragging-card");
-        const t = texts[textPointer.idx];
         const rect = viewport.getBoundingClientRect();
         const sX = (textPointer.startX - rect.left - pz.panX - rect.width / 2) / pz.zoom;
         const sY = (textPointer.startY - rect.top - pz.panY - rect.height / 2 + 52) / pz.zoom;
-        textPointer.offX = sX - t.x;
-        textPointer.offY = sY - t.y;
+        textPointer.textDragOffsets = [];
+        selectedTexts.forEach(i => {
+          const t = texts[i];
+          if (t) textPointer.textDragOffsets.push({ idx: i, offX: sX - t.x, offY: sY - t.y });
+        });
+        textPointer.screenDragOffsets = [];
+        selected.forEach(i => {
+          const s = screens[i];
+          if (s) textPointer.screenDragOffsets.push({ idx: i, offX: sX - s.x, offY: sY - s.y });
+        });
       }
       const rect = viewport.getBoundingClientRect();
       const stageX = (e.clientX - rect.left - pz.panX - rect.width / 2) / pz.zoom;
       const stageY = (e.clientY - rect.top - pz.panY - rect.height / 2 + 52) / pz.zoom;
-      const t = texts[textPointer.idx];
-      t.x = snapToGrid(stageX - textPointer.offX);
-      t.y = snapToGrid(stageY - textPointer.offY);
-      const el = textLayer.querySelector('.canvas-text[data-idx="' + textPointer.idx + '"]');
-      if (el) { el.style.left = t.x + "px"; el.style.top = t.y + "px"; }
+      textPointer.textDragOffsets.forEach(d => {
+        const t = texts[d.idx];
+        if (!t) return;
+        t.x = snapToGrid(stageX - d.offX);
+        t.y = snapToGrid(stageY - d.offY);
+        const el = textLayer.querySelector('.canvas-text[data-idx="' + d.idx + '"]');
+        if (el) { el.style.left = t.x + "px"; el.style.top = t.y + "px"; }
+      });
+      textPointer.screenDragOffsets.forEach(d => {
+        const s = screens[d.idx];
+        if (!s) return;
+        s.x = snapToGrid(stageX - d.offX);
+        s.y = snapToGrid(stageY - d.offY);
+        const el = document.getElementById("card-" + d.idx);
+        if (el) { el.style.left = s.x + "px"; el.style.top = s.y + "px"; }
+      });
       return true;
     }
 
@@ -1225,8 +1331,8 @@
     }
 
     function deleteSelectedText() {
-      if (selectedText < 0) return;
-      texts.splice(selectedText, 1);
+      if (selectedTexts.size === 0) return;
+      Array.from(selectedTexts).sort((a, b) => b - a).forEach(i => texts.splice(i, 1));
       clearTextSelection();
       renderTexts();
       saveCanvas();
