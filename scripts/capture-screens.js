@@ -533,6 +533,9 @@ async function captureCurrentPage(page, name, usedNames, screens, retries = 1) {
   const dedupedName = dedupeFilename(name, usedNames);
   const filename = `${dedupedName}${screenshotExt}`;
 
+  // Strip the browser's default body margin so captures have no white edges.
+  try { await page.addStyleTag({ content: "html,body{margin:0;padding:0;}" }); } catch {}
+
   const bodyHeight = await page.evaluate(() => document.body ? document.body.scrollHeight : 0);
 
   const screenshotOpts = {

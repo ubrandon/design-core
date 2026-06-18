@@ -596,6 +596,8 @@ function screenPngPlugin() {
           page = await ctx.newPage();
           await page.goto(target, { waitUntil: "networkidle", timeout: 30000 });
           try { await page.evaluate(() => document.fonts && document.fonts.ready); } catch {}
+          // Strip the browser's default body margin so exports have no white edges.
+          await page.addStyleTag({ content: "html,body{margin:0;padding:0;}" });
           // Sticky/fixed elements would otherwise stamp mid-document on a full-page
           // screenshot. Inject a screenshot-only stylesheet that pins them to the
           // bottom of the document. The bottom nav anchors at bottom:0; smaller

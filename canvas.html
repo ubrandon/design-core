@@ -1467,6 +1467,13 @@
       try {
         const doc = iframe.contentDocument || iframe.contentWindow.document;
         const win = iframe.contentWindow;
+        // Strip the browser's default body margin so screens sit flush in the card (no white edges).
+        if (doc && !doc.getElementById("dc-reset")) {
+          const reset = doc.createElement("style");
+          reset.id = "dc-reset";
+          reset.textContent = "html,body{margin:0;padding:0;}";
+          (doc.head || doc.documentElement).appendChild(reset);
+        }
         const scrollTop = doc.documentElement.scrollTop || doc.body.scrollTop || 0;
         let max = 0;
         const all = doc.body.getElementsByTagName("*");
