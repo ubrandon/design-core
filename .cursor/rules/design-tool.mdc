@@ -165,9 +165,9 @@ All paths below are **disk paths** (relative to repo root):
 The design system page (`design-system.html`) uses an **infinite canvas** with a registry-driven masonry layout. Categories pack into balanced vertical columns so short sections do not inherit empty space from taller neighbors.
 
 - **`groups`** -- top-level libraries or themes. Groups normally stack vertically; groups with the same `pair` render side by side.
-- **Light/dark themes** -- set `theme` to `"dark"` or `"light"` and give both groups the same `pair`. The canvas applies matching section chrome and theme tokens. IDs/names containing “dark” and “light” are inferred for backward compatibility.
+- **Light/dark themes** -- set `theme` to `"dark"` or `"light"` and give both groups the same `pair`. Each group becomes one continuous flat themed surface; categories use internal headings rather than card shells. IDs/names containing “dark” and “light” are inferred for backward compatibility.
 - **Group layout** -- masonry is the default. Configure top-level `layout` defaults or a group's `layout` with `columns`, `columnWidth`, `maxColumnWidth`, and `gap`.
-- **Categories** -- each has `group`, `name`, and `components`. Use `span: "all"` for a wide visual anchor and optional `column` hints to keep related categories together.
+- **Categories** -- each has `group`, `name`, and `components`. Add `section` to the first category of a major chapter to create a full-width divider; use `span: "all"` for a wide visual anchor and optional `column` hints to keep related categories together.
 - **Component layout** -- `"layout": "row"` still means the components inside one category sit side by side. A multi-component row automatically becomes full width unless explicitly constrained.
 - **Full reference** -- read `docs/design-system.md` before creating or restructuring a company design system.
 
@@ -543,7 +543,7 @@ The `registry.json` file controls the design system page layout:
 ```
 
 - **Groups** are top-level libraries. Paired groups appear side by side; unpaired groups stack vertically.
-- **Categories** belong to a group and pack into its masonry columns.
+- **Categories** belong to a group and pack into its masonry columns as plain headed sections. `section` on the first category of a major chapter inserts a large full-width divider and resets the masonry run. Do not add decorative outer cards around previews; the displayed component should be the only UI chrome.
 - Each category has a `components` array -- each component gets its own preview file.
 - Use `"layout": "row"` on a category to lay out its components side-by-side (good for color swatches, button variants, icon sets).
 - Use `"span": "all"` only for foundations, typography, or another category that should reset the visual flow. Normal categories should remain one column.

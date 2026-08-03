@@ -1,6 +1,6 @@
 # Design system canvas
 
-The Design System page turns `public/data/design-system/registry.json` into an infinite canvas of component previews. The default layout is designed for scanning: categories are packed into balanced vertical columns, wide categories become full-width anchors, and paired light/dark groups sit beside each other.
+The Design System page turns `public/data/design-system/registry.json` into an infinite canvas of component previews. Each group renders as one continuous flat reference surface: categories are organized by headings and whitespace instead of card shells. Categories pack into balanced vertical columns, wide categories become full-width anchors, and paired light/dark surfaces sit beside each other.
 
 ## Recommended registry
 
@@ -31,6 +31,7 @@ The Design System page turns `public/data/design-system/registry.json` into an i
     {
       "group": "dark-mode",
       "name": "Foundations",
+      "section": "Foundations",
       "span": "all",
       "layout": "row",
       "components": [
@@ -95,17 +96,18 @@ Example group override:
 
 Categories normally need no placement metadata. Use these fields only when the visual hierarchy calls for them:
 
+- `"section": "Foundations"` inserts a full-width chapter divider before that category and starts a new masonry run. Put it only on the first category in each major chapter.
 - `"span": "all"` makes a category a full-width anchor. Use this for color foundations, typography specimens, large navigation systems, or dense collections that should visually reset the page.
 - `"span": 1` keeps a category in a normal column and disables automatic full-width promotion unless its content physically cannot fit.
 - `"column": 1` (or another one-based column number) pins a category to a preferred masonry stack. Use this sparingly to keep related categories together.
-- `"layout": "row"` controls the components inside the category card; it does not change the group layout mode.
+- `"layout": "row"` controls the components inside the category section; it does not change the group layout mode.
 - The object form can combine component layout and placement: `"layout": { "mode": "row", "span": "all", "column": 1 }`.
 
-Good canvases use a few wide anchors and many compact sections. Making every category full width recreates the long page this layout is intended to avoid.
+Good canvases use a small number of chapter dividers, a few wide anchors, and many compact sections. The renderer deliberately avoids wrapping each category in a decorative card, because that extra shell can be mistaken for part of the product UI. Making every category full width recreates the long page this layout is intended to avoid.
 
 ## Light and dark modes
 
-Set `theme` on a group to `dark` or `light`. Design Core applies matching section chrome and rebinds the standard tokens inherited by component previews:
+Set `theme` on a group to `dark` or `light`. Design Core applies the matching flat background and rebinds the standard tokens inherited by component previews:
 
 - `--bg-0`, `--bg-1`, and `--surface`
 - `--border`
@@ -119,11 +121,11 @@ Prefer token-driven preview fragments that can be reused in both theme groups. C
 Company CSS still loads after the core styles. To customize the canvas chrome, scope overrides to the theme group so broad legacy dark rules cannot leak into the light column:
 
 ```css
-.ds-canvas-stage .ds-group[data-ds-theme="light"] .ds-section {
+.ds-canvas-stage .ds-group[data-ds-theme="light"] {
   border-color: var(--border-subtle);
 }
 
-.ds-canvas-stage .ds-group[data-ds-theme="dark"] .ds-section {
+.ds-canvas-stage .ds-group[data-ds-theme="dark"] {
   border-color: var(--border-strong);
 }
 ```
@@ -144,7 +146,8 @@ Within each theme, keep the category order intentional:
 8. Feedback: banners, toasts, dialogs, empty states, loading
 
 Use a full-width anchor at the start of a major block only when it helps scanning. The masonry algorithm preserves registry order while balancing each run of normal-width categories between anchors.
+Use `section` on the first category of a major block when the board needs a stronger visual divider. Six or fewer chapters is a useful target for most systems.
 
 ## Compatibility
 
-Existing registries do not need to change. Groups without theme or layout metadata use neutral light section chrome and automatic masonry defaults. `"layout": "row"` continues to lay out components inside a category side by side.
+Existing registries do not need to change. Groups without theme or layout metadata use a neutral light board and automatic masonry defaults. `"layout": "row"` continues to lay out components inside a category side by side.

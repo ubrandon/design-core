@@ -45,42 +45,60 @@
       }
       .ds-group-pair {
         display: flex;
-        align-items: flex-start;
+        align-items: stretch;
         gap: var(--ds-pair-gap, 40px);
         width: max-content;
       }
       .ds-group {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 28px;
         width: max-content;
+        box-sizing: border-box;
+        padding: 40px;
+        border-radius: 0;
+        background: linear-gradient(180deg, #ffffff, #f8fafc);
+        border: 0;
+        box-shadow: none;
+        --bg-0: #ffffff;
+        --bg-1: #f3f4f6;
+        --surface: #ffffff;
+        --border: rgba(15, 23, 42, 0.12);
+        --text: #1a2332;
+        --muted: #5c6b7d;
+        --muted-2: #858b94;
+        --shadow: 0 18px 60px rgba(15, 23, 42, 0.12);
+        --shadow-soft: 0 10px 40px rgba(15, 23, 42, 0.08);
+        color: var(--text);
+        overflow: visible;
       }
-      .ds-group-header {
-        font-size: 0.7rem;
-        font-weight: 800;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: rgba(0, 0, 0, 0.45);
-        padding-bottom: 6px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      #stage .ds-group > .ds-group-header {
+        font-size: 2rem;
+        line-height: 1.15;
+        font-weight: 850;
+        letter-spacing: -0.035em;
+        text-transform: none;
+        color: var(--text);
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border);
       }
       .ds-group-row {
         display: flex;
         flex-direction: column;
-        gap: var(--ds-layout-gap, 20px);
+        gap: var(--ds-layout-gap, 32px);
         width: max-content;
       }
       .ds-group-band {
         display: grid;
         grid-template-columns: repeat(var(--ds-layout-columns, 1), var(--ds-column-width, 520px));
-        gap: var(--ds-layout-gap, 20px);
+        gap: var(--ds-layout-gap, 32px);
         align-items: start;
         width: max-content;
       }
       .ds-group-column {
         display: flex;
         flex-direction: column;
-        gap: var(--ds-layout-gap, 20px);
+        gap: var(--ds-layout-gap, 32px);
         width: var(--ds-column-width, 520px);
         min-width: 0;
       }
@@ -92,29 +110,20 @@
       .ds-group-row--column {
         flex-direction: column;
       }
-      .ds-section {
-        padding: 20px;
-        border-radius: var(--radius-lg);
-        background: #ffffff;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      #stage .ds-group > .ds-group-row :where(.ds-section) {
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
         min-width: 280px;
         width: var(--ds-column-width, max-content);
         box-sizing: border-box;
         flex-shrink: 0;
         overflow: visible;
-        --bg-0: #ffffff;
-        --bg-1: #f8f9fb;
-        --surface: rgba(0, 0, 0, 0.03);
-        --border: rgba(0, 0, 0, 0.1);
-        --text: rgba(0, 0, 0, 0.88);
-        --muted: rgba(0, 0, 0, 0.55);
-        --muted-2: rgba(0, 0, 0, 0.38);
-        --shadow: 0 18px 60px rgba(0, 0, 0, 0.1);
-        --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.06);
-        color: var(--text);
+        color: inherit;
       }
-      .ds-section--full {
+      #stage .ds-group > .ds-group-row :where(.ds-section--full) {
         width: var(--ds-group-width, max-content);
       }
       .ds-layout-measure {
@@ -125,11 +134,11 @@
         pointer-events: none;
       }
 
-      /* Theme groups set both their canvas chrome and the standard tokens inherited by previews. */
-      .ds-canvas-stage .ds-group[data-ds-theme="dark"] :where(.ds-section) {
+      /* A theme is one continuous board; categories are sections inside it. */
+      .ds-canvas-stage .ds-group[data-ds-theme="dark"] {
         background: linear-gradient(180deg, #101827, #0a111d);
-        border-color: rgba(255, 255, 255, 0.12);
-        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+        border-color: transparent;
+        box-shadow: none;
         --bg-0: #090f19;
         --bg-1: #101827;
         --surface: rgba(255, 255, 255, 0.07);
@@ -142,44 +151,47 @@
         color: var(--text);
         color-scheme: dark;
       }
-      .ds-canvas-stage .ds-group[data-ds-theme="dark"] :where(.ds-section-header) {
+      .ds-canvas-stage .ds-group[data-ds-theme="light"] {
+        background: linear-gradient(180deg, #ffffff, #f8fafc);
+        border-color: transparent;
+        box-shadow: none;
+        color-scheme: light;
+      }
+      .ds-canvas-stage .ds-group[data-ds-theme="dark"] :where(.ds-group-header, .ds-chapter-header, .ds-section-header) {
         color: rgba(255, 255, 255, 0.92);
-        border-bottom-color: rgba(255, 255, 255, 0.12);
+        border-bottom-color: rgba(255, 255, 255, 0.14);
       }
       .ds-canvas-stage .ds-group[data-ds-theme="dark"] :where(.ds-component-label) {
         color: rgba(255, 255, 255, 0.5);
       }
-      .ds-canvas-stage .ds-group[data-ds-theme="light"] :where(.ds-section) {
-        background: linear-gradient(180deg, #ffffff, #f8fafc);
-        border-color: rgba(15, 23, 42, 0.1);
-        box-shadow: 0 8px 28px rgba(15, 23, 42, 0.1);
-        --bg-0: #ffffff;
-        --bg-1: #f3f4f6;
-        --surface: #ffffff;
-        --border: rgba(15, 23, 42, 0.12);
-        --text: #1a2332;
-        --muted: #5c6b7d;
-        --muted-2: #858b94;
-        --shadow: 0 18px 60px rgba(15, 23, 42, 0.12);
-        --shadow-soft: 0 10px 40px rgba(15, 23, 42, 0.08);
-        color: var(--text);
-        color-scheme: light;
-      }
-      .ds-canvas-stage .ds-group[data-ds-theme="light"] :where(.ds-section-header) {
+      .ds-canvas-stage .ds-group[data-ds-theme="light"] :where(.ds-group-header, .ds-chapter-header, .ds-section-header) {
         color: #1a2332;
-        border-bottom-color: rgba(15, 23, 42, 0.1);
+        border-bottom-color: rgba(15, 23, 42, 0.12);
       }
       .ds-canvas-stage .ds-group[data-ds-theme="light"] :where(.ds-component-label) {
         color: #697586;
       }
+      #stage .ds-group > .ds-group-row > .ds-chapter-header {
+        width: var(--ds-group-width, 100%);
+        box-sizing: border-box;
+        margin: 8px 0 -16px;
+        padding: 0 0 14px;
+        border-bottom: 2px solid var(--border);
+        font-size: 1.65rem;
+        line-height: 1.2;
+        font-weight: 850;
+        letter-spacing: -0.03em;
+        color: var(--text);
+      }
       .ds-section-header {
-        font-size: 1.1rem;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        color: rgba(0, 0, 0, 0.8);
-        margin-bottom: 20px;
+        font-size: 1.3rem;
+        line-height: 1.25;
+        font-weight: 850;
+        letter-spacing: -0.025em;
+        color: var(--text);
+        margin-bottom: 18px;
         padding-bottom: 12px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        border-bottom: 1px solid var(--border);
       }
       .ds-component-grid {
         display: flex;
@@ -345,7 +357,7 @@
           columns: Math.round(dsNumber(local.columns ?? defaults.columns, automaticColumns, 1, 4)),
           columnWidth: Math.round(dsNumber(local.columnWidth ?? defaults.columnWidth, 520, 280, 1600)),
           maxColumnWidth: Math.round(dsNumber(local.maxColumnWidth ?? defaults.maxColumnWidth, 1600, 280, 2400)),
-          gap: Math.round(dsNumber(local.gap ?? defaults.gap, 20, 8, 80)),
+          gap: Math.round(dsNumber(local.gap ?? defaults.gap, 32, 8, 80)),
           pairGap: Math.round(dsNumber(registryLayout.pairGap, 40, 16, 120)),
         };
       }
@@ -411,6 +423,7 @@
               full,
               height: Math.ceil(section.getBoundingClientRect().height),
               column: Math.round(dsNumber(section.dataset.column, 0, 0, columns)),
+              chapter: section.dataset.sectionName || "",
             });
           }
           return { measured, requiredColumnWidth };
@@ -444,8 +457,15 @@
         }
 
         for (const item of result.measured) {
-          const { section, full, height, column } = item;
+          const { section, full, height, column, chapter } = item;
           section.style.width = "";
+          if (chapter) {
+            band = null;
+            const heading = document.createElement("h3");
+            heading.className = "ds-chapter-header";
+            heading.textContent = chapter;
+            body.appendChild(heading);
+          }
           if (full) {
             band = null;
             body.appendChild(section);
@@ -466,11 +486,20 @@
           .sort((a, b) => Number(a.dataset.categoryIndex) - Number(b.dataset.categoryIndex));
         body.className = `ds-group-row ds-group-row--${record.layout.mode}`;
         body.style.setProperty("--ds-layout-gap", record.layout.gap + "px");
-        body.replaceChildren(...sections);
+        const nodes = [];
         for (const section of sections) {
+          const chapter = section.dataset.sectionName || "";
+          if (chapter) {
+            const heading = document.createElement("h3");
+            heading.className = "ds-chapter-header";
+            heading.textContent = chapter;
+            nodes.push(heading);
+          }
           section.classList.remove("ds-section--full");
           section.style.width = "max-content";
+          nodes.push(section);
         }
+        body.replaceChildren(...nodes);
       }
 
       let activeGroupRecords = [];
@@ -581,7 +610,7 @@
             const column = Math.round(dsNumber(cat.column ?? categoryLayout.column, 0, 0, 4));
 
             sections.push(`
-              <section class="ds-section" data-category-index="${index}" data-span="${span}" data-column="${column}">
+              <section class="ds-section" data-category-index="${index}" data-span="${span}" data-column="${column}" data-section-name="${dsEscape(cat.section || cat.chapter || "")}">
                 <h2 class="ds-section-header">${dsEscape(cat.name)}</h2>
                 <div class="${gridClass}">
                   ${cat.components.map(comp => `
