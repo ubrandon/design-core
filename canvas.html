@@ -538,18 +538,24 @@
       }, delay || 0);
     }
 
-    async function renderScreenToPng(idx) {
+    async function renderScreenToPng(idx, scale) {
       const screen = screens[idx];
       if (!screen) return null;
       const file = "data/projects/" + encProjectId + "/screens/" + screen.file;
       const width = screen.width || 390;
-      const url = "/api/render-png?file=" + encodeURIComponent(file) + "&width=" + width + "&scale=2";
+      const exportScale = scale === 2 ? 2 : 1;
+      const url = "/api/render-png?file=" + encodeURIComponent(file) + "&width=" + width + "&scale=" + exportScale;
       const resp = await fetch(url);
       if (!resp.ok) {
         console.error("render-png failed", resp.status, await resp.text().catch(() => ""));
         return null;
       }
       return await resp.blob();
+    }
+
+    function pngFilename(file, scale) {
+      const base = file.replace(/\.html$/, "");
+      return base + (scale === 2 ? "@2x" : "") + ".png";
     }
 
     function triggerDownload(dataUrl, name) {
@@ -561,22 +567,23 @@
       a.remove();
     }
 
-    async function downloadScreensAsPng(indices) {
+    async function downloadScreensAsPng(indices, scale) {
       const list = indices.filter(i => screens[i]);
       if (!list.length) return;
+      const exportScale = scale === 2 ? 2 : 1;
 
       try {
         if (list.length === 1) {
           showExportToast("Rendering screen…");
           const idx = list[0];
-          const blob = await renderScreenToPng(idx);
+          const blob = await renderScreenToPng(idx, exportScale);
           if (!blob) {
             showExportToast("Couldn't render screen — see console.", "error");
             hideExportToast(2800);
             return;
           }
           const url = URL.createObjectURL(blob);
-          triggerDownload(url, screens[idx].file.replace(/\.html$/, "") + ".png");
+          triggerDownload(url, pngFilename(screens[idx].file, exportScale));
           setTimeout(() => URL.revokeObjectURL(url), 1000);
           showExportToast("Downloaded 1 screen", "done");
           hideExportToast(1600);
@@ -590,18 +597,18 @@
         for (let i = 0; i < list.length; i++) {
           const idx = list[i];
           showExportToast("Rendering " + (i + 1) + " of " + list.length + "…");
-          const blob = await renderScreenToPng(idx);
+          const blob = await renderScreenToPng(idx, exportScale);
           if (!blob) {
             skipped.push(screens[idx].file);
             continue;
           }
-          zip.file(screens[idx].file.replace(/\.html$/, "") + ".png", blob);
+          zip.file(pngFilename(screens[idx].file, exportScale), blob);
         }
         showExportToast("Zipping " + (list.length - skipped.length) + " screens…");
         const blob = await zip.generateAsync({ type: "blob" });
         const url = URL.createObjectURL(blob);
         const stamp = new Date().toISOString().slice(0, 10);
-        triggerDownload(url, "screens-" + stamp + ".zip");
+        triggerDownload(url, "screens-" + stamp + (exportScale === 2 ? "@2x" : "") + ".zip");
         setTimeout(() => URL.revokeObjectURL(url), 1000);
         const doneCount = list.length - skipped.length;
         const doneMsg = skipped.length
@@ -658,12 +665,14 @@
 
         const count = selected.size;
         const label = selectedTexts.size ? selectedObjectLabel() : (count === 1 ? screenDisplayName(screens[idx]) : count + " screens");
-        const downloadLabel = count === 1 ? "Download as PNG" : "Download " + count + " as PNG";
+        const exactLabel = count === 1 ? "Download PNG · Exact size" : "Download " + count + " PNGs · Exact size";
+        const retinaLabel = count === 1 ? "Download PNG · 2×" : "Download " + count + " PNGs · 2×";
         const duplicateLabel = "Duplicate " + label;
         const items = [
           { label: "Select All", icon: ICON_SELECT, action: setAllSelected },
           { label: duplicateLabel, icon: ICON_COPY, async: true, action: ({ startBusy }) => { startBusy("Duplicating…"); return duplicateSelection(); } },
-          { label: downloadLabel, icon: ICON_DOWNLOAD, action: () => downloadScreensAsPng([...selected]) },
+          { label: exactLabel, icon: ICON_DOWNLOAD, action: () => downloadScreensAsPng([...selected], 1) },
+          { label: retinaLabel, icon: ICON_DOWNLOAD, action: () => downloadScreensAsPng([...selected], 2) },
           { sep: true },
           { label: "Delete " + label, icon: ICON_DELETE, danger: true, action: deleteSelected },
         ];
