@@ -1,0 +1,218 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .mr-var-label {
+    padding: 14px 16px 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.42);
+  }
+  .mr-var-section {
+    padding: 32px 16px 8px;
+    margin-top: 32px;
+    position: relative;
+  }
+  .mr-var-section:first-of-type {
+    margin-top: 0;
+    padding-top: 20px;
+  }
+  .mr-var-section:not(:first-of-type)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 16px;
+    right: 16px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .mr-var-section-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .mr-var-section-sub {
+    margin-top: 6px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.55);
+  }
+  .mr-var-section-rule {
+    display: none;
+  }
+  .mr-greeting {
+    padding: 6px 16px 18px;
+  }
+  .mr-greeting-headline {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    color: var(--text);
+  }
+  .mr-greeting-tail {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: rgba(255, 255, 255, 0.62);
+    margin-top: 8px;
+  }
+  .mr-greeting-weather {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.62);
+  }
+  .mr-greeting-weather i {
+    font-size: 16px;
+    color: var(--neon-teal);
+  }
+  .mr-greeting-weather .mr-greeting-sep {
+    color: rgba(255, 255, 255, 0.22);
+  }
+  .mr-greeting-weather .mr-greeting-loc {
+    color: rgba(255, 255, 255, 0.42);
+    font-weight: 500;
+  }
+</style>
+
+<div style="background: var(--bg-0); overflow-x: clip; position: relative">
+  <div class="mr-scope" style="padding-bottom: 24px">
+
+    <header class="mr-top-nav-home">
+      <a class="mr-top-nav-home-logo" href="#" aria-label="MixedRoutes home">
+        <img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" width="36" height="36" alt="" loading="lazy" />
+        <span class="mr-top-nav-home-wordmark">MixedRoutes</span>
+      </a>
+      <div class="mr-top-nav-home-actions">
+        <div class="mr-nav-icon-wrap">
+          <button type="button" class="mr-nav-icon-btn" aria-label="Notifications">
+            <i class="ph-fill ph-bell" aria-hidden="true"></i>
+          </button>
+          <span class="mr-notif-dot" aria-hidden="true"></span>
+        </div>
+        <img class="mr-top-nav-avatar" src="https://i.pravatar.cc/72?img=11" alt="" width="36" height="36" loading="lazy" />
+      </div>
+    </header>
+
+    <div class="mr-var-section">
+      <div class="mr-var-section-title">Upcoming plans</div>
+      <div class="mr-var-section-sub">Surface what's on the calendar — or nudge a plan if the day is wide open.</div>
+    </div>
+
+    <div class="mr-greeting">
+      <div class="mr-greeting-headline">
+        <span class="gradient-text">Plans tonight,</span> Brandon
+        <span class="mr-greeting-tail">Sara's birthday at Antidote, 8pm — 2 friends still to reply 🍷</span>
+      </div>
+      <div class="mr-greeting-weather">
+        <i class="ph-fill ph-moon-stars" aria-hidden="true"></i>
+        <span>62° · Clear skies</span>
+        <span class="mr-greeting-sep">·</span>
+        <span class="mr-greeting-loc">Asheville</span>
+      </div>
+    </div>
+
+    <div class="mr-divider"></div>
+    <div class="mr-greeting">
+      <div class="mr-greeting-headline">
+        <span class="gradient-text">Tonight's the night,</span> Brandon
+        <span class="mr-greeting-tail">Sara's birthday dinner at 7 🎉</span>
+      </div>
+      <div class="mr-greeting-weather">
+        <i class="ph-fill ph-moon" aria-hidden="true"></i>
+        <span>60° · Clear</span>
+        <span class="mr-greeting-sep">·</span>
+        <span class="mr-greeting-loc">Downtown</span>
+      </div>
+    </div>
+
+    <div class="mr-divider"></div>
+    <div class="mr-greeting">
+      <div class="mr-greeting-headline">
+        <span class="gradient-text">Quiet day,</span> Brandon
+        <span class="mr-greeting-tail">Nothing on the calendar — make a plan? ✨</span>
+      </div>
+      <div class="mr-greeting-weather">
+        <i class="ph-fill ph-cloud" aria-hidden="true"></i>
+        <span>66° · Overcast</span>
+        <span class="mr-greeting-sep">·</span>
+        <span class="mr-greeting-loc">Asheville</span>
+      </div>
+    </div>
+
+    <div class="mr-var-section">
+      <div class="mr-var-section-title">Time of day</div>
+      <div class="mr-var-section-sub">Daily check-ins keyed to the clock — a return visit or a fresh morning.</div>
+    </div>
+
+    <div class="mr-greeting">
+      <div class="mr-greeting-headline">
+        <span class="gradient-text">Morning,</span> Brandon
+        <span class="mr-greeting-tail">Coffee run at 9 with the trail crew ☕</span>
+      </div>
+      <div class="mr-greeting-weather">
+        <i class="ph-fill ph-sun-dim" aria-hidden="true"></i>
+        <span>58° · Cool start</span>
+        <span class="mr-greeting-sep">·</span>
+        <span class="mr-greeting-loc">Asheville</span>
+      </div>
+    </div>
+
+    <div class="mr-divider"></div>
+    <div class="mr-greeting">
+      <div class="mr-greeting-headline">
+        <span class="gradient-text">Welcome back,</span> Brandon
+        <span class="mr-greeting-tail">A few things need you 👋</span>
+      </div>
+      <div class="mr-greeting-weather">
+        <i class="ph-fill ph-sun" aria-hidden="true"></i>
+        <span>74° · Sunny</span>
+        <span class="mr-greeting-sep">·</span>
+        <span class="mr-greeting-loc">Asheville</span>
+      </div>
+    </div>
+
+    <div class="mr-var-section">
+      <div class="mr-var-section-title">Interests</div>
+      <div class="mr-var-section-sub">Generic templates that swap in whatever interest the user picked — no AI needed.</div>
+    </div>
+
+    <div class="mr-greeting">
+      <div class="mr-greeting-headline">
+        <span class="gradient-text">Into hiking,</span> Brandon?
+        <span class="mr-greeting-tail">3 new things in your feed today 🥾</span>
+      </div>
+      <div class="mr-greeting-weather">
+        <i class="ph-fill ph-compass" aria-hidden="true"></i>
+        <span>Based on your interests</span>
+        <span class="mr-greeting-sep">·</span>
+        <span class="mr-greeting-loc">Asheville</span>
+      </div>
+    </div>
+
+    <div class="mr-divider"></div>
+    <div class="mr-greeting">
+      <div class="mr-greeting-headline">
+        <span class="gradient-text">For the gamers,</span> Brandon
+        <span class="mr-greeting-tail">4 friends online, 2 lobbies open 🎮</span>
+      </div>
+      <div class="mr-greeting-weather">
+        <i class="ph-fill ph-game-controller" aria-hidden="true"></i>
+        <span>Gaming · Tonight</span>
+        <span class="mr-greeting-sep">·</span>
+        <span class="mr-greeting-loc">Online</span>
+      </div>
+    </div>
+
+  </div>
+</div>

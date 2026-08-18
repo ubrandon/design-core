@@ -1,0 +1,128 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .v4-scope { --v4-bg: #06080e; --v4-line: rgba(255,255,255,0.08); }
+  .v4-scope, .v4-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .v4-scope::-webkit-scrollbar, .v4-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .v4-wrap { background: var(--v4-bg); height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .v4-body { flex: 1; overflow-y: auto; padding-bottom: 8px; }
+
+  .v4-header { display: grid; grid-template-columns: 1fr 28px; align-items: center; padding: 22px 20px 12px; }
+  .v4-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .v4-close { background: transparent; border: 0; color: rgba(255,255,255,0.85); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .v4-close i { font-size: 22px; }
+
+  .v4-toggle { margin: 4px 20px 16px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,0.06); display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .v4-toggle button { min-height: 40px; border: 0; border-radius: 999px; background: transparent; color: rgba(255,255,255,0.6); font-size: 0.92rem; font-weight: 850; display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+  .v4-toggle button i { font-size: 17px; }
+  .v4-toggle button.is-active { background: #fff; color: #061016; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+
+  .v4-chips { display: flex; gap: 8px; padding: 0 20px 14px; overflow-x: auto; flex-wrap: nowrap; }
+  .v4-chips .mr-pp-chip { flex: 0 0 auto; }
+
+  .v4-search { display: grid; grid-template-columns: 20px 1fr; align-items: center; gap: 10px; margin: 0 20px 16px; padding: 12px 15px; background: rgba(255,255,255,0.07); border-radius: 999px; }
+  .v4-search i { color: rgba(255,255,255,0.54); font-size: 17px; }
+  .v4-search input { width: 100%; border: 0; outline: 0; padding: 0; background: transparent; color: #fff; font: inherit; font-size: 0.94rem; }
+
+  .v4-label { display: flex; align-items: baseline; justify-content: space-between; padding: 10px 20px 12px; color: #fff; font-size: 1.25rem; font-weight: 850; letter-spacing: -0.005em; }
+  .v4-label .count { color: rgba(255,255,255,0.5); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+  .v4-sublabel { padding: 4px 20px 6px; color: rgba(255,255,255,0.55); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .v4-list { padding: 0 20px; display: flex; flex-direction: column; }
+  .v4-row { display: grid; grid-template-columns: 44px 1fr 22px; align-items: center; gap: 13px; padding: 11px 8px; margin: 0 -4px; border-radius: 14px; }
+  .v4-row.is-on { background: rgba(32,224,207,0.09); }
+  .v4-row .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; background: var(--neon-teal); color: #061016; font-weight: 900; }
+  .v4-row .av.muted { background: #4a5462; color: #fff; }
+  .v4-name { color: #fff; font-size: 0.98rem; font-weight: 850; line-height: 1.15; }
+  .v4-handle { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+
+  .v4-cta { padding: 14px 20px 22px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 12px; }
+  .v4-cta button { min-height: 50px; border: 0; border-radius: 999px; color: #fff; font-size: 0.98rem; font-weight: 850; }
+  .v4-cta .ghost { background: rgba(255,255,255,0.08); }
+  .v4-cta .primary { background: linear-gradient(135deg, #24b8aa, #4c87cf); }
+
+
+</style>
+
+<div class="mr-scope v4-scope">
+  <div class="v4-wrap">
+    <div class="v4-body">
+      <header class="v4-header">
+        <div class="v4-title">Who's going?</div>
+        <button type="button" class="v4-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      </header>
+
+      <div class="v4-toggle">
+        <button type="button" class="is-active"><i class="ph ph-user"></i>Invite friends</button>
+        <button type="button"><i class="ph ph-users-three"></i>Add to group</button>
+      </div>
+
+      <div class="v4-search">
+        <i class="ph ph-magnifying-glass"></i>
+        <input type="search" placeholder="Search people" />
+      </div>
+
+      <div class="v4-chips">
+        <span class="mr-pp-chip">
+          <img class="mr-pp-chip-avatar" src="https://i.pravatar.cc/64?img=12" alt="" loading="lazy" />
+          Nova
+          <button type="button" class="mr-pp-chip-remove" aria-label="Remove"><i class="ph ph-x"></i></button>
+        </span>
+        <span class="mr-pp-chip">
+          <span class="mr-pp-chip-avatar is-initials">M</span>
+          Milo
+          <button type="button" class="mr-pp-chip-remove" aria-label="Remove"><i class="ph ph-x"></i></button>
+        </span>
+      </div>
+
+      <div class="v4-label"><span>Friends</span><span class="count">2 selected</span></div>
+      <div class="v4-list">
+        <div class="v4-row is-on">
+          <img class="av" src="https://i.pravatar.cc/96?img=12" alt="" loading="lazy" />
+          <div><div class="v4-name">Nova Finch</div><div class="v4-handle">@novafinch</div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v4-row is-on">
+          <span class="av">M</span>
+          <div><div class="v4-name">Milo Wren</div><div class="v4-handle">@milowren</div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v4-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=49" alt="" loading="lazy" />
+          <div><div class="v4-name">Lila Quill</div><div class="v4-handle">@lilaquill</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+        <div class="v4-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=44" alt="" loading="lazy" />
+          <div><div class="v4-name">Wren Holt</div><div class="v4-handle">@wrenholt</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+      </div>
+      <div class="v4-label"><span>Suggested</span></div>
+      <div class="v4-list">
+        <div class="v4-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=33" alt="" loading="lazy" />
+          <div><div class="v4-name">Soren Vale</div><div class="v4-handle">@sorenvale</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+        <div class="v4-row">
+          <span class="av muted">PS</span>
+          <div><div class="v4-name">Piper Sol</div><div class="v4-handle">@pipersol</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+        <div class="v4-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=22" alt="" loading="lazy" />
+          <div><div class="v4-name">Iris Mae</div><div class="v4-handle">@irismae</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="v4-cta">
+      <button type="button" class="ghost">Cancel</button>
+      <button type="button" class="primary">Add 2 to plan</button>
+    </div>
+  </div>
+</div>

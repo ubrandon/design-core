@@ -1,0 +1,124 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .cv-scope { --pv-bg: #0a0f14; --pv-card: #161d27; --pv-card-2: #1a2230; --pv-green: #34c759; --pv-green-soft: rgba(52,199,89,0.16); --pv-amber: #f5b400; --pv-red: #ff5a5f; }
+  .cv-scope, .cv-scope * { scrollbar-width: none; -ms-overflow-style: none; box-sizing: border-box; }
+  .cv-scope::-webkit-scrollbar, .cv-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .cv-scope .cv-wrap { background: var(--pv-bg); padding: 24px 20px; }
+
+  .cv-scope .cv-h { font-size: 1.05rem; font-weight: 800; color: rgba(255,255,255,0.35); letter-spacing: 0.06em; text-transform: uppercase; margin: 0 2px 14px; }
+
+  /* One unified attendee card */
+  .cv-scope .cv-card { background: linear-gradient(165deg, #1c2533 0%, #141b26 100%); border-radius: 26px; padding: 22px 20px; box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+
+  .cv-scope .cv-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+  .cv-scope .cv-head .ht1 { font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+  .cv-scope .cv-head .ht2 { display: inline-flex; align-items: center; gap: 7px; font-size: 0.86rem; font-weight: 700; color: #8ab4ff; margin-top: 6px; }
+  .cv-scope .cv-head .ht2 i { font-size: 15px; }
+  .cv-scope .cv-share { width: 44px; height: 44px; border-radius: 13px; border: 0; background: rgba(255,255,255,0.1); color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
+  .cv-scope .cv-share i { font-size: 21px; }
+
+  /* Stacked status bar */
+  .cv-scope .cv-bar { display: flex; height: 12px; border-radius: 999px; overflow: hidden; margin-bottom: 10px; background: rgba(255,255,255,0.06); }
+  .cv-scope .cv-bar .seg-go { width: 40%; background: var(--pv-green); }
+  .cv-scope .cv-bar .seg-mb { width: 60%; background: #5a687c; }
+  .cv-scope .cv-barkey { display: flex; gap: 18px; margin-bottom: 22px; }
+  .cv-scope .cv-barkey .k { display: inline-flex; align-items: center; gap: 7px; font-size: 0.86rem; color: rgba(255,255,255,0.7); font-weight: 700; }
+  .cv-scope .cv-barkey .k .d { width: 9px; height: 9px; border-radius: 50%; }
+  .cv-scope .cv-barkey .k .d.go { background: var(--pv-green); }
+  .cv-scope .cv-barkey .k .d.mb { background: #8a97ab; }
+  .cv-scope .cv-barkey .k .d.no { background: var(--pv-red); }
+  .cv-scope .cv-barkey .k b { color: #fff; }
+
+  /* Host highlighted at top of list */
+  .cv-scope .cv-host { display: flex; align-items: center; gap: 13px; padding: 13px; border-radius: 16px; background: rgba(245,180,0,0.08); border: 1px solid rgba(245,180,0,0.22); margin-bottom: 8px; cursor: pointer; }
+  .cv-scope .cv-host img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .cv-scope .cv-host .hb { flex: 1; min-width: 0; }
+  .cv-scope .cv-host .hb .nm { font-size: 1.04rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px; }
+  .cv-scope .cv-host .hb .nm i { color: var(--pv-amber); font-size: 16px; }
+  .cv-scope .cv-host .hb .sub { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+  .cv-scope .cv-host .msg { width: 38px; height: 38px; border-radius: 11px; background: rgba(255,255,255,0.1); color: #fff; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .cv-scope .cv-host .msg i { font-size: 18px; }
+
+  .cv-scope .cv-row { display: flex; align-items: center; gap: 13px; padding: 11px 13px; border-radius: 16px; cursor: pointer; }
+  .cv-scope .cv-row:active { background: rgba(255,255,255,0.05); }
+  .cv-scope .cv-row .ra { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; flex-shrink: 0; position: relative; }
+  .cv-scope .cv-avwrap { position: relative; flex-shrink: 0; }
+  .cv-scope .cv-avwrap .ra.initials { background: #5a687c; color: #fff; font-size: 0.92rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .cv-scope .cv-avwrap .st { position: absolute; bottom: -1px; right: -2px; width: 17px; height: 17px; border-radius: 50%; border: 2.5px solid #161d27; display: inline-flex; align-items: center; justify-content: center; }
+  .cv-scope .cv-avwrap .st.go { background: var(--pv-green); }
+  .cv-scope .cv-avwrap .st.mb { background: #8a97ab; }
+  .cv-scope .cv-avwrap .st i { font-size: 8px; color: #06210f; line-height: 1; }
+  .cv-scope .cv-row .rn { flex: 1; min-width: 0; }
+  .cv-scope .cv-row .rn .nm { font-size: 1rem; font-weight: 700; color: #fff; }
+  .cv-scope .cv-row .rn .sub { font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-top: 1px; }
+  .cv-scope .cv-row .chev { color: rgba(255,255,255,0.3); font-size: 19px; flex-shrink: 0; }
+
+  .cv-scope .cv-more { text-align: center; font-size: 0.92rem; font-weight: 700; color: rgba(255,255,255,0.55); padding: 14px; cursor: pointer; }
+
+  .cv-scope .cv-foot { display: flex; gap: 12px; margin-top: 14px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.07); }
+  .cv-scope .cv-foot button { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; border-radius: 15px; font-size: 0.98rem; font-weight: 800; cursor: pointer; border: 0; }
+  .cv-scope .cv-foot .inv { background: var(--pv-green); color: #06210f; }
+  .cv-scope .cv-foot .shr { background: rgba(255,255,255,0.08); color: #fff; }
+  .cv-scope .cv-foot button i { font-size: 18px; }
+</style>
+
+<div class="mr-scope cv-scope">
+  <div class="cv-wrap">
+
+    <div class="cv-card">
+      <div class="cv-head">
+        <div>
+          <div class="ht1">10 guests</div>
+          <div class="ht2"><i class="ph-fill ph-lock-simple"></i> Private &middot; invite only</div>
+        </div>
+        <button type="button" class="cv-share" aria-label="Share"><i class="ph ph-share-network"></i></button>
+      </div>
+
+      <div class="cv-bar">
+        <span class="seg-go"></span>
+        <span class="seg-mb"></span>
+      </div>
+      <div class="cv-barkey">
+        <span class="k"><span class="d go"></span><b>4</b> going</span>
+        <span class="k"><span class="d mb"></span><b>6</b> maybe</span>
+        <span class="k"><span class="d no"></span><b>0</b> out</span>
+      </div>
+
+      <div class="cv-host">
+        <img src="https://i.pravatar.cc/120?img=12" alt="" />
+        <div class="hb">
+          <div class="nm">Brandon Unglaub <i class="ph-fill ph-crown-simple"></i></div>
+          <div class="sub">Host &middot; You're going</div>
+        </div>
+        <span class="msg"><i class="ph-fill ph-chat-circle"></i></span>
+      </div>
+
+      <div class="cv-row">
+        <span class="cv-avwrap"><span class="ra initials">MG</span><span class="st go"><i class="ph-fill ph-check"></i></span></span>
+        <div class="rn"><div class="nm">Maya Greene</div><div class="sub">Going</div></div>
+        <i class="ph ph-caret-right chev"></i>
+      </div>
+      <div class="cv-row">
+        <span class="cv-avwrap"><img class="ra" src="https://i.pravatar.cc/120?img=32" alt="" /><span class="st go"><i class="ph-fill ph-check"></i></span></span>
+        <div class="rn"><div class="nm">Diego Ruiz</div><div class="sub">Going</div></div>
+        <i class="ph ph-caret-right chev"></i>
+      </div>
+      <div class="cv-row">
+        <span class="cv-avwrap"><img class="ra" src="https://i.pravatar.cc/120?img=45" alt="" /><span class="st mb"><i class="ph-fill ph-question"></i></span></span>
+        <div class="rn"><div class="nm">Sofia Park</div><div class="sub">Maybe</div></div>
+        <i class="ph ph-caret-right chev"></i>
+      </div>
+
+      <div class="cv-more">Show all 10 guests</div>
+
+      <div class="cv-foot">
+        <button type="button" class="shr"><i class="ph ph-share-network"></i> Share</button>
+        <button type="button" class="inv"><i class="ph ph-user-plus"></i> Invite</button>
+      </div>
+    </div>
+
+  </div>
+</div>

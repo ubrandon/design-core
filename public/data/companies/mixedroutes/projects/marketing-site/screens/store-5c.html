@@ -1,0 +1,168 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  .st5c { position: relative; width: 1284px; height: 2778px; overflow: hidden; background: #f5f2ec; font-family: "Geist", -apple-system, sans-serif; box-sizing: border-box; }
+  .st5c * { box-sizing: border-box; }
+  .st5c-texture { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .st5c-texture svg { display: block; width: 100%; height: 100%; }
+  .st5c-headline { position: absolute; top: 170px; left: 0; right: 0; z-index: 1; margin: 0; text-align: center; font-size: 124px; font-weight: 800; line-height: 1.06; letter-spacing: -0.02em; color: #1a2332; }
+  .st5c-headline i { font-style: normal; background: linear-gradient(145deg, #14b8a6, #3b82f6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .st5c-sub { position: absolute; top: 462px; left: 0; right: 0; z-index: 1; margin: 0; text-align: center; font-size: 56px; font-weight: 400; color: #5c6b7d; }
+  .st5c-phone { position: absolute; top: 650px; left: 162px; z-index: 2; width: 960px; height: 1960px; border-radius: 130px; background: #1a1a1c; border: 5px solid #55555a; padding: 20px; box-shadow: 0 60px 140px rgba(26, 35, 50, 0.3); }
+  .st5c-screen { position: relative; width: 100%; height: 100%; border-radius: 112px; background: #f2f2f7; overflow: hidden; padding: 50px 46px 0; }
+  .st5c-island { position: absolute; top: 44px; left: 50%; transform: translateX(-50%); width: 260px; height: 72px; border-radius: 60px; background: #000; z-index: 5; }
+  .st5c-header { display: flex; align-items: center; gap: 36px; margin-top: 60px; }
+  .st5c-header h2 { margin: 0; font-size: 48px; font-weight: 800; color: #1a2332; }
+  .st5c-header i { font-size: 48px; color: #1a2332; -webkit-text-stroke: 2px #1a2332; }
+  .st5c-banner { position: relative; height: 400px; margin-top: 28px; border-radius: 48px; overflow: hidden; }
+  .st5c-banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .st5c-banner-btns { position: absolute; left: 0; right: 0; bottom: 48px; display: flex; align-items: center; justify-content: center; gap: 14px; }
+  .st5c-banner-btn { display: inline-flex; align-items: center; justify-content: center; gap: 14px; height: 84px; padding: 0 40px; border-radius: 24px; background: rgba(97, 97, 97, 0.2); backdrop-filter: blur(8px); border: 3px solid rgba(255, 255, 255, 0.2); color: #ffffff; font-size: 28px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55); }
+  .st5c-banner-btn i { font-size: 40px; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.55)); }
+  .st5c-name { position: relative; display: flex; align-items: center; margin-top: 24px; min-height: 128px; padding: 0 112px; border-radius: 64px; background: rgba(118, 118, 128, 0.12); }
+  .st5c-name .st5c-smiley { position: absolute; left: 40px; font-size: 44px; }
+  .st5c-name .st5c-clear { position: absolute; right: 40px; font-size: 48px; color: #070c13; }
+  .st5c-name b { font-size: 44px; font-weight: 400; color: #1a2332; }
+  .st5c-tags { display: flex; gap: 14px; margin-top: 14px; }
+  .st5c-chip { display: inline-flex; align-items: center; gap: 14px; height: 72px; padding: 0 28px; border-radius: 100px; background: rgba(118, 118, 128, 0.12); border: 3px solid transparent; color: #3d4a5c; font-size: 28px; font-weight: 400; }
+  .st5c-chip i { font-size: 36px; }
+  .st5c-chip.is-on { background: #ffffff; border-color: rgba(0, 0, 0, 0.12); color: #1a2332; font-weight: 700; box-shadow: 0 6px 16px rgba(26, 35, 50, 0.08); }
+  /* Details card floating over the phone, like the original store shot but light */
+  .st5c-card { position: absolute; z-index: 3; top: 1580px; left: 127px; width: 1030px; padding: 50px 54px 58px; border-radius: 64px; background: #ffffff; border: 3px solid rgba(0, 0, 0, 0.1); box-shadow: 0 30px 60px rgba(26, 35, 50, 0.16), 0 70px 140px rgba(26, 35, 50, 0.16); }
+  .st5c-card-head { display: flex; align-items: center; gap: 34px; }
+  .st5c-card-head .st5c-card-icon { flex: none; width: 120px; height: 120px; border-radius: 36px; background: #e4eefe; display: flex; align-items: center; justify-content: center; font-size: 68px; color: #1a6fb5; }
+  .st5c-card-head h4 { flex: 1; margin: 0; font-size: 58px; font-weight: 800; color: #1a2332; }
+  .st5c-desc { margin-top: 38px; padding: 40px 44px; border-radius: 44px; background: rgba(118, 118, 128, 0.1); }
+  .st5c-desc b { display: block; font-size: 42px; font-weight: 800; color: #1a2332; }
+  .st5c-desc p { margin: 14px 0 0; font-size: 42px; font-weight: 400; line-height: 1.35; color: #3d4a5c; }
+  .st5c-linkrow { display: flex; align-items: center; gap: 32px; margin-top: 30px; padding: 28px 40px 28px 28px; border-radius: 44px; background: #e4eefe; }
+  .st5c-linkrow img { flex: none; width: 128px; height: 128px; border-radius: 26px; object-fit: cover; }
+  .st5c-linkrow-body { flex: 1; min-width: 0; }
+  .st5c-linkrow-body b { display: block; font-size: 42px; font-weight: 800; color: #1a2332; }
+  .st5c-linkrow-body span { display: block; margin-top: 6px; font-size: 35px; font-weight: 400; color: #1a6fb5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .st5c-linkrow .st5c-linkrow-x { flex: none; font-size: 46px; color: #5c6b7d; }
+  .st5c-card-foot { display: flex; align-items: center; gap: 24px; margin-top: 38px; }
+  .st5c-card-foot .st5c-foot-plus { font-size: 58px; color: #1a2332; }
+  .st5c-foot-chip { display: inline-flex; align-items: center; gap: 15px; height: 88px; padding: 0 34px; border-radius: 24px; background: rgba(118, 118, 128, 0.12); color: #1a2332; font-size: 33px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .st5c-foot-chip i { font-size: 42px; }
+  .st5c-share { position: absolute; right: -30px; bottom: -66px; display: inline-flex; align-items: center; justify-content: center; height: 146px; padding: 0 82px; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; font-size: 50px; font-weight: 700; box-shadow: 0 34px 70px rgba(26, 35, 50, 0.35), 0 14px 30px rgba(20, 130, 190, 0.3); }
+</style>
+
+<div class="st5c">
+  <!-- Super subtle interest line art scattered on the warm paper ground -->
+  <div class="st5c-texture">
+    <svg viewBox="0 0 1284 2778" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g stroke="#1a2332" stroke-width="4" opacity="0.055">
+        <g transform="translate(-10 590) scale(0.75) rotate(4)">
+          <path d="M262 312 C 216 288 160 284 96 300 V 158 C 160 142 216 146 262 170 Z" />
+          <path d="M262 312 C 308 288 364 284 428 300 V 158 C 364 142 308 146 262 170 Z" />
+          <path d="M262 170 V 312" opacity="0.6" />
+        </g>
+        <g transform="translate(940 570) scale(0.7) rotate(-10)">
+          <path d="M215 336 c -50 0 -82 -33 -82 -72 c 0 -30 20 -47 42 -53 c 19 -5 32 -17 36 -35 c 4 18 17 30 36 35 c 22 6 42 23 42 53 c 0 39 -32 72 -74 72 Z" />
+          <circle cx="215" cy="258" r="24" />
+          <path d="M205 176 L201 84 M225 176 L229 84" />
+          <path d="M197 84 L233 84 L238 34 L192 34 Z" />
+        </g>
+        <g transform="translate(30 1450) scale(0.8) rotate(-5)">
+          <path d="M55 340 L140 190 L225 340 Z" />
+          <path d="M114 340 L140 262 L166 340" />
+          <path d="M140 190 V 158 M140 158 L170 167 L140 176" />
+          <path d="M232 340 L320 200 L408 340" opacity="0.6" />
+          <line x1="40" y1="340" x2="440" y2="340" />
+        </g>
+        <g transform="translate(950 1950) scale(0.55) rotate(8)">
+          <rect x="130" y="148" width="300" height="184" rx="24" />
+          <path d="M228 148 L244 116 h72 L332 148" />
+          <circle cx="280" cy="238" r="64" />
+          <circle cx="280" cy="238" r="40" />
+        </g>
+        <g transform="translate(50 2400) scale(0.6) rotate(-8)">
+          <path d="M140 160 h190 v66 a 95 95 0 0 1 -190 0 Z" />
+          <path d="M330 176 h26 a 36 36 0 0 1 0 72 h-30" />
+          <path d="M130 342 a 105 22 0 0 0 210 0" opacity="0.7" />
+        </g>
+        <path d="M620 610 v26 M607 623 h26" />
+        <circle cx="150" cy="200" r="3.5" /><circle cx="1160" cy="230" r="3.5" />
+        <circle cx="1240" cy="1350" r="3.5" /><circle cx="100" cy="2690" r="3.5" />
+      </g>
+      <g stroke="#f2945c" stroke-width="4" opacity="0.11">
+        <g transform="translate(-10 590) scale(0.75) rotate(4)">
+          <path d="M330 152 V 234 L 348 216 L 366 234 V 158" />
+        </g>
+        <g transform="translate(940 570) scale(0.7)">
+          <path d="M390 268 V 212 c 11 4 18 11 20 22" />
+          <circle cx="379" cy="270" r="12" />
+        </g>
+        <g transform="translate(30 1450) scale(0.8) rotate(-5)">
+          <path d="M242 332 C 234 312 246 298 258 278 C 268 296 278 310 272 330 C 264 338 250 338 242 332 Z" />
+        </g>
+        <g transform="translate(50 2400) scale(0.6) rotate(-8)">
+          <path d="M190 128 c -8 -14 8 -22 0 -38 M235 130 c -8 -14 8 -22 0 -38 M280 128 c -8 -14 8 -22 0 -38" />
+        </g>
+        <path d="M1150 140 v30 M1135 155 h30" />
+      </g>
+    </svg>
+  </div>
+
+  <h1 class="st5c-headline">Idea to plan in<br /><i>seconds</i></h1>
+  <p class="st5c-sub">Add details, invite friends, done</p>
+
+  <div class="st5c-phone">
+    <div class="st5c-screen">
+      <div class="st5c-island"></div>
+
+      <div class="st5c-header">
+        <i class="ph ph-arrow-left"></i>
+        <h2>Plan activity</h2>
+      </div>
+
+      <div class="st5c-banner">
+        <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=75" alt="" />
+        <div class="st5c-banner-btns">
+          <span class="st5c-banner-btn"><i class="ph ph-pencil-simple"></i>Edit banner</span>
+        </div>
+      </div>
+
+      <div class="st5c-name">
+        <span class="st5c-smiley">🌴</span>
+        <b>Friend Trip!</b>
+        <i class="ph ph-x st5c-clear"></i>
+      </div>
+
+      <div class="st5c-tags">
+        <span class="st5c-chip is-on">🧳 Travel</span>
+        <span class="st5c-chip is-on">🥥 Beaches</span>
+        <span class="st5c-chip">More tags</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="st5c-card">
+    <div class="st5c-card-head">
+      <span class="st5c-card-icon"><i class="ph-fill ph-list-checks"></i></span>
+      <h4>What&rsquo;s happening?</h4>
+    </div>
+    <div class="st5c-desc">
+      <b>Description</b>
+      <p>Five days on the Big Island. Snorkeling, volcanoes, and probably matching shirts.</p>
+    </div>
+    <div class="st5c-linkrow">
+      <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=400&q=75" alt="" />
+      <div class="st5c-linkrow-body">
+        <b>Our Airbnb link</b>
+        <span>https://www.airbnb.com/rooms/23&hellip;</span>
+      </div>
+      <i class="ph ph-x st5c-linkrow-x"></i>
+    </div>
+    <div class="st5c-card-foot">
+      <i class="ph ph-plus st5c-foot-plus"></i>
+      <span class="st5c-foot-chip"><i class="ph-fill ph-cardholder"></i>Cost</span>
+      <span class="st5c-foot-chip"><i class="ph-fill ph-t-shirt"></i>Bring</span>
+      <span class="st5c-share">Share plan</span>
+    </div>
+  </div>
+
+</div>

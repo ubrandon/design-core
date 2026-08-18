@@ -1,12 +1,12 @@
 # Screen Capture Tool
 
-Automatically screenshot every screen of a web app. The tool logs in, crawls navigation links, and saves full-page screenshots to `public/data/captures/`. View the results on the **Captures** page in the Design Core nav.
+Automatically screenshot every screen of a web app. The tool logs in, crawls navigation links, and saves full-page screenshots to `public/data/companies/<company-slug>/captures/`. View the results on the **Captures** page in the Design Core nav (with that company selected).
 
 ## Quick start
 
 ### From the UI (easiest)
 
-1. Open Design Core (`npm run dev`) and click **Captures** in the nav.
+1. Open Design Core (`npm run dev`), pick the company, and click **Captures** in the nav.
 2. Enter your app's URL and click **Capture**.
 3. The tool opens a browser, discovers screens, and shows progress in real time.
 
@@ -21,16 +21,18 @@ Automatically screenshot every screen of a web app. The tool logs in, crawls nav
 2. Run the capture:
 
    ```
-   npm run capture
+   npm run capture -- --company <slug>
    ```
+
+   The `--company` flag (or `DESIGN_CORE_COMPANY`) can be omitted when the repo has only one company.
 
 ## Configuration
 
-Configuration is split into two files — shared settings that the whole team sees, and local credentials that stay on your machine.
+Configuration is split into two files: per-company settings that are committed, and local credentials that stay on your machine.
 
-### Shared config (committed to git)
+### Company config (committed to git)
 
-**`public/data/captures/config.json`** — created automatically when you capture from the UI, or by the AI when you describe your app. Contains everything except login credentials.
+**`public/data/companies/<company-slug>/captures/config.json`** is created automatically when you capture from the UI, or by the AI when you describe your app. Contains everything except login credentials.
 
 ```json
 {
@@ -44,22 +46,22 @@ Configuration is split into two files — shared settings that the whole team se
 
 | Field | Default | Description |
 |-------|---------|-------------|
-| `appUrl` | — | Base URL of the app to capture (required) |
+| `appUrl` | (none) | Base URL of the app to capture (required) |
 | `viewport` | `{ width: 390, height: 844 }` | Browser viewport size |
 | `discover` | `true` | Automatically find screens by crawling navigation links |
 | `screens` | `[]` | Explicit list of screens to capture (used when `discover` is `false`) |
 | `dismissSelectors` | `[]` | Extra CSS selectors for app-specific close/dismiss buttons |
 | `dismissAcceptButtons` | `true` | When `true`, auto-dismiss may click **Accept** / **OK** (e.g. cookie banners). Set to `false` if that risks submitting real forms. |
 
-When you start a capture from the **Captures** UI, only `appUrl` is updated. All other keys in `config.json` are preserved so team settings (explicit `screens`, `dismissSelectors`, etc.) are not reset.
+When you start a capture from the **Captures** UI, only `appUrl` is updated. All other keys in `config.json` are preserved so explicit `screens`, `dismissSelectors`, etc. are not reset.
 
 ### Local credentials (gitignored)
 
-**`.app-screens.json`** — optional, only needed for apps behind login. Each designer creates their own copy with their credentials. Never committed to git.
+**`.app-screens.json`** in the repo root is optional, only needed for apps behind login. Never committed to git. It is one file for the whole repo, so update it when capturing a different company's app.
 
 While `npm run dev` is running, the capture API can read and write saved username/password for the modal UI. Treat the dev server as **local-trust only** (same as any tool that stores credentials on disk).
 
-**Simple format** (recommended) — just provide your username and password. The script auto-detects login fields, handles single-page and multi-step login flows, finds submit buttons, and waits for MFA if needed:
+**Simple format** (recommended): just provide your username and password. The script auto-detects login fields, handles single-page and multi-step login flows, finds submit buttons, and waits for MFA if needed:
 
 ```json
 {
@@ -74,7 +76,7 @@ You can optionally add `"url": "/login"` if the login page isn't at the default 
 
 Copy `.app-screens.example.json` and fill in your credentials, or ask the AI to set it up for you.
 
-**Advanced format** — if auto-detection doesn't work for your app (custom login components, non-standard forms), use explicit steps with CSS selectors:
+**Advanced format**: if auto-detection doesn't work for your app (custom login components, non-standard forms), use explicit steps with CSS selectors:
 
 ```json
 {
@@ -93,15 +95,15 @@ Copy `.app-screens.example.json` and fill in your credentials, or ask the AI to 
 
 If `steps` are provided, the script uses them instead of auto-detection.
 
-The local file is merged on top of the shared config, so you can also override any shared setting locally (e.g. a different viewport for testing).
+The local file is merged on top of the company config, so you can also override any setting locally (e.g. a different viewport for testing).
 
 ### How merging works
 
-The capture script loads both files and merges them: shared config first, then local overrides on top. This means:
+The capture script loads both files and merges them: company config first, then local overrides on top. This means:
 
-- **Team lead** sets up `appUrl`, `viewport`, `screens`, `dismissSelectors` once → committed and shared via git
-- **Each designer** only needs `.app-screens.json` with their `login` credentials (if the app requires auth)
-- **Public apps** need no local file at all — the shared config is enough
+- `appUrl`, `viewport`, `screens`, `dismissSelectors` live in the committed company config
+- `.app-screens.json` only needs the `login` credentials (if the app requires auth)
+- Public apps need no local file at all: the company config is enough
 
 ### Login auto-detection
 
@@ -121,7 +123,7 @@ When you provide just `username` and `password` (no `steps`), the script automat
 |--------|--------|-------------|
 | `fill` | `selector`, `value` | Type text into a form field |
 | `click` | `selector` | Click an element |
-| `submit` | — | Press Enter |
+| `submit` | (none) | Press Enter |
 | `wait` | `ms` | Wait a number of milliseconds |
 | `waitForUrl` | `pattern`, `timeout` | Wait for the URL to match a glob pattern |
 
@@ -169,18 +171,18 @@ The script automatically tries to dismiss modals, popups, and toasts using commo
 
 ## Output
 
-Screenshots are saved to `public/data/captures/` along with a `manifest.json` that records:
+Screenshots are saved to `public/data/companies/<company-slug>/captures/` along with a `manifest.json` that records:
 
-- `viewport` — the viewport size used for capture
-- `captures` — array of captured screens, each with:
-  - `name` — screen name
-  - `file` — screenshot filename
-  - `group` — group name (for organizing on the Captures page)
-  - `path` — URL path
-  - `url` — full URL
-  - `capturedAt` — ISO timestamp
+- `viewport`: the viewport size used for capture
+- `captures`: array of captured screens, each with:
+  - `name`: screen name
+  - `file`: screenshot filename
+  - `group`: group name (for organizing on the Captures page)
+  - `path`: URL path
+  - `url`: full URL
+  - `capturedAt`: ISO timestamp
 
-Screenshots and the manifest are committed to git so the whole team can see them. The shared config (`config.json`) is also committed. Only `.app-screens.json` (credentials) is gitignored.
+Screenshots, the manifest, and `config.json` are committed to git. Only `.app-screens.json` (credentials) is gitignored.
 
 ## Captures page
 

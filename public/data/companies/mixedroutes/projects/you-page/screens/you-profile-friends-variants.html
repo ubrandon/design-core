@@ -1,0 +1,308 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .mr-scope .mr-section-action.is-sm {
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    padding: 2px 0;
+  }
+  .variant-label {
+    padding: 0 16px 6px;
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .variant-desc {
+    padding: 0 16px 10px;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.35;
+  }
+  .variant-section { padding-bottom: 22px; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 18px; }
+  .variant-section:last-child { border-bottom: none; }
+
+  .mr-privacy-banner {
+    margin: 0 16px 10px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.65);
+  }
+  .mr-privacy-banner i { color: rgba(255,255,255,0.55); font-size: 13px; }
+  .mr-privacy-banner strong { color: var(--text); font-weight: 700; }
+
+  .mr-friend-card {
+    flex: 0 0 auto;
+    width: 116px;
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)) var(--bg-1);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 14px 10px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    position: relative;
+  }
+  .mr-friend-avatar-wrap { position: relative; }
+  .mr-friend-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.06);
+    display: block;
+  }
+  .mr-friend-name {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--text);
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.1;
+    margin-top: 2px;
+  }
+
+  .mr-friend-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: rgba(255,255,255,0.78);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 3px 8px 3px 7px;
+    border-radius: 999px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .mr-friend-tag i.lock { font-size: 9px; color: rgba(255,255,255,0.45); }
+  .mr-friend-tag .caret { font-size: 9px; color: rgba(255,255,255,0.5); margin-left: 1px; }
+  .mr-friend-tag.t-family { color: #ffb8c6; background: rgba(255,107,138,0.12); border-color: rgba(255,107,138,0.28); }
+  .mr-friend-tag.t-family i.lock { color: rgba(255,184,198,0.7); }
+  .mr-friend-tag.t-location { color: #b8d7ff; background: rgba(91,165,255,0.12); border-color: rgba(91,165,255,0.28); }
+  .mr-friend-tag.t-location i.lock { color: rgba(184,215,255,0.7); }
+  .mr-friend-tag.t-interest { color: var(--neon-teal); background: rgba(var(--neon-teal-rgb),0.12); border-color: rgba(var(--neon-teal-rgb),0.28); }
+  .mr-friend-tag.t-interest i.lock { color: rgba(var(--neon-teal-rgb),0.75); }
+  .mr-friend-tag.t-add {
+    color: rgba(255,255,255,0.6);
+    background: transparent;
+    border: 1px dashed rgba(255,255,255,0.22);
+  }
+
+  .mr-friend-tag-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+  }
+  .mr-friend-tag.is-mini {
+    font-size: 0.58rem;
+    padding: 2px 6px;
+  }
+
+  .mr-friend-edit-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+  }
+  .mr-friend-edit-badge i { font-size: 11px; }
+
+  .mr-nav-icon-wrap { position: relative; }
+  .mr-notif-dot {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e74c3c;
+    border: 2px solid var(--bg-0);
+  }
+</style>
+
+<div style="background: var(--bg-0); overflow-x: clip; min-height: 100vh">
+  <div class="mr-scope" style="padding: 18px 0 32px">
+
+    <div style="padding: 0 16px 18px">
+      <div style="font-size: 1.4rem; font-weight: 800; color: var(--text); letter-spacing: -0.01em">Friend row variants</div>
+      <div style="font-size: 0.82rem; color: rgba(255,255,255,0.6); margin-top: 4px; line-height: 1.4">Private tags you set on people — only you see them. Each version below shows a different way to surface and edit them.</div>
+    </div>
+
+    <!-- Variant A: tag below name with lock + caret -->
+    <div class="variant-section">
+      <div class="variant-label">Variant A · Single tag with lock</div>
+      <div class="variant-desc">Padlock makes it clear the tag is private. Caret = tap to change.</div>
+      <div class="mr-privacy-banner">
+        <i class="ph-fill ph-lock-simple"></i>
+        <span>Tags are <strong>private to you</strong> — friends never see them.</span>
+      </div>
+      <div style="padding: 0 16px 12px; display: flex; align-items: center; justify-content: space-between">
+        <span style="font-size: 1.05rem; font-weight: 800; color: var(--text)">Your friends</span>
+        <button type="button" class="mr-section-action is-sm">All people · 42</button>
+      </div>
+      <div class="ds-scroll-x" style="display: flex; gap: 10px; padding: 0 16px 6px">
+        <div class="mr-friend-card">
+          <div class="mr-friend-avatar-wrap">
+            <img class="mr-friend-avatar" src="https://i.pravatar.cc/144?img=5" alt="" loading="lazy" />
+          </div>
+          <div class="mr-friend-name">Sara</div>
+          <span class="mr-friend-tag t-family"><i class="ph-fill ph-lock-simple lock"></i>Sister<i class="ph ph-caret-down caret"></i></span>
+        </div>
+        <div class="mr-friend-card">
+          <div class="mr-friend-avatar-wrap">
+            <img class="mr-friend-avatar" src="https://i.pravatar.cc/144?img=33" alt="" loading="lazy" />
+          </div>
+          <div class="mr-friend-name">Marcus</div>
+          <span class="mr-friend-tag t-location"><i class="ph-fill ph-lock-simple lock"></i>Asheville<i class="ph ph-caret-down caret"></i></span>
+        </div>
+        <div class="mr-friend-card">
+          <div class="mr-friend-avatar-wrap">
+            <img class="mr-friend-avatar" src="https://i.pravatar.cc/144?img=47" alt="" loading="lazy" />
+          </div>
+          <div class="mr-friend-name">Devon</div>
+          <span class="mr-friend-tag t-interest"><i class="ph-fill ph-lock-simple lock"></i>Hiking<i class="ph ph-caret-down caret"></i></span>
+        </div>
+        <div class="mr-friend-card">
+          <div class="mr-friend-avatar-wrap">
+            <img class="mr-friend-avatar" src="https://i.pravatar.cc/144?img=23" alt="" loading="lazy" />
+          </div>
+          <div class="mr-friend-name">Priya</div>
+          <span class="mr-friend-tag t-add"><i class="ph ph-plus" style="font-size: 9px"></i> Add private tag</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Variant B: stacked multiple tags -->
+    <div class="variant-section">
+      <div class="variant-label">Variant B · Multiple stacked tags</div>
+      <div class="variant-desc">A person can carry more than one tag (e.g. Family + Asheville). Tap any to edit.</div>
+      <div class="mr-privacy-banner">
+        <i class="ph-fill ph-eye-slash"></i>
+        <span><strong>Only you see these.</strong> Tags help you filter and remember context.</span>
+      </div>
+      <div style="padding: 0 16px 12px; display: flex; align-items: center; justify-content: space-between">
+        <span style="font-size: 1.05rem; font-weight: 800; color: var(--text)">Your friends</span>
+        <button type="button" class="mr-section-action is-sm">All people · 42</button>
+      </div>
+      <div class="ds-scroll-x" style="display: flex; gap: 10px; padding: 0 16px 6px">
+        <div class="mr-friend-card">
+          <div class="mr-friend-avatar-wrap">
+            <img class="mr-friend-avatar" src="https://i.pravatar.cc/144?img=5" alt="" loading="lazy" />
+          </div>
+          <div class="mr-friend-name">Sara</div>
+          <div class="mr-friend-tag-stack">
+            <span class="mr-friend-tag t-family is-mini"><i class="ph-fill ph-lock-simple lock"></i>Sister</span>
+            <span class="mr-friend-tag t-location is-mini"><i class="ph-fill ph-lock-simple lock"></i>Asheville</span>
+          </div>
+        </div>
+        <div class="mr-friend-card">
+          <div class="mr-friend-avatar-wrap">
+            <img class="mr-friend-avatar" src="https://i.pravatar.cc/144?img=33" alt="" loading="lazy" />
+          </div>
+          <div class="mr-friend-name">Marcus</div>
+          <div class="mr-friend-tag-stack">
+            <span class="mr-friend-tag t-interest is-mini"><i class="ph-fill ph-lock-simple lock"></i>Concerts</span>
+            <span class="mr-friend-tag t-add is-mini"><i class="ph ph-plus" style="font-size: 8px"></i> Add tag</span>
+          </div>
+        </div>
+        <div class="mr-friend-card">
+          <div class="mr-friend-avatar-wrap">
+            <img class="mr-friend-avatar" src="https://i.pravatar.cc/144?img=47" alt="" loading="lazy" />
+          </div>
+          <div class="mr-friend-name">Devon</div>
+          <div class="mr-friend-tag-stack">
+            <span class="mr-friend-tag t-interest is-mini"><i class="ph-fill ph-lock-simple lock"></i>Foodies</span>
+            <span class="mr-friend-tag t-location is-mini"><i class="ph-fill ph-lock-simple lock"></i>Brooklyn</span>
+          </div>
+        </div>
+        <div class="mr-friend-card">
+          <div class="mr-friend-avatar-wrap">
+            <img class="mr-friend-avatar" src="https://i.pravatar.cc/144?img=23" alt="" loading="lazy" />
+          </div>
+          <div class="mr-friend-name">Priya</div>
+          <div class="mr-friend-tag-stack">
+            <span class="mr-friend-tag t-family is-mini"><i class="ph-fill ph-lock-simple lock"></i>Cousin</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Variant C: edit pencil badge on card -->
+    <div class="variant-section">
+      <div class="variant-label">Variant C · Edit pencil on card</div>
+      <div class="variant-desc">Tag stays minimal. A small pencil in the corner of each card opens the tag editor.</div>
+      <div class="mr-privacy-banner">
+        <i class="ph-fill ph-lock-simple"></i>
+        <span>Private tags · <strong>tap the pencil</strong> to add or change.</span>
+      </div>
+      <div style="padding: 0 16px 12px; display: flex; align-items: center; justify-content: space-between">
+        <span style="font-size: 1.05rem; font-weight: 800; color: var(--text)">Your friends</span>
+        <button type="button" class="mr-section-action is-sm">All people · 42</button>
+      </div>
+      <div class="ds-scroll-x" style="display: flex; gap: 10px; padding: 0 16px 6px">
+        <div class="mr-friend-card">
+          <button type="button" class="mr-friend-edit-badge" aria-label="Edit tag"><i class="ph ph-pencil-simple"></i></button>
+          <div class="mr-friend-avatar-wrap">
+            <img class="mr-friend-avatar" src="https://i.pravatar.cc/144?img=5" alt="" loading="lazy" />
+          </div>
+          <div class="mr-friend-name">Sara</div>
+          <span class="mr-friend-tag t-family">Sister</span>
+        </div>
+        <div class="mr-friend-card">
+          <button type="button" class="mr-friend-edit-badge" aria-label="Edit tag"><i class="ph ph-pencil-simple"></i></button>
+          <div class="mr-friend-avatar-wrap">
+            <img class="mr-friend-avatar" src="https://i.pravatar.cc/144?img=33" alt="" loading="lazy" />
+          </div>
+          <div class="mr-friend-name">Marcus</div>
+          <span class="mr-friend-tag t-location">Asheville</span>
+        </div>
+        <div class="mr-friend-card">
+          <button type="button" class="mr-friend-edit-badge" aria-label="Edit tag"><i class="ph ph-pencil-simple"></i></button>
+          <div class="mr-friend-avatar-wrap">
+            <img class="mr-friend-avatar" src="https://i.pravatar.cc/144?img=47" alt="" loading="lazy" />
+          </div>
+          <div class="mr-friend-name">Devon</div>
+          <span class="mr-friend-tag t-interest">Hiking</span>
+        </div>
+        <div class="mr-friend-card">
+          <button type="button" class="mr-friend-edit-badge" aria-label="Edit tag"><i class="ph ph-plus"></i></button>
+          <div class="mr-friend-avatar-wrap">
+            <img class="mr-friend-avatar" src="https://i.pravatar.cc/144?img=23" alt="" loading="lazy" />
+          </div>
+          <div class="mr-friend-name">Priya</div>
+          <span class="mr-friend-tag t-add">Untagged</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

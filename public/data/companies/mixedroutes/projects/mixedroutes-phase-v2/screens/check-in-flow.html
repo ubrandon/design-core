@@ -1,0 +1,116 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&display=swap");
+
+  .mrv2-chkin, .mrv2-chkin * { box-sizing: border-box; font-family: "Geist", sans-serif; margin: 0; }
+  .mrv2-chkin { background: #f6f8fa; color: #101724; padding: 24px 16px 32px; display: flex; flex-direction: column; gap: 26px; }
+  .mrv2-chkin .state { display: flex; flex-direction: column; gap: 10px; }
+  .mrv2-chkin .state-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #5c6b7d; }
+  .mrv2-chkin .state-note { font-size: 13px; color: #8b98a8; line-height: 1.4; margin-top: -4px; }
+
+  /* Check-in sheet */
+  .mrv2-chkin .sheet { border-radius: 28px 28px 22px 22px; background: #ffffff; box-shadow: 0 2px 6px rgba(16, 24, 40, 0.05), 0 14px 32px rgba(16, 24, 40, 0.12); padding: 10px 18px 18px; display: flex; flex-direction: column; gap: 14px; }
+  .mrv2-chkin .sheet .handle { width: 40px; height: 4px; border-radius: 999px; background: #d6dce3; margin: 0 auto; }
+  .mrv2-chkin .sheet h3 { font-size: 22px; font-weight: 800; }
+  .mrv2-chkin .sheet .sub { font-size: 14px; color: #5c6b7d; margin-top: -8px; }
+
+  .mrv2-chkin .place-row { display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 16px; border: 1.5px solid rgba(32, 36, 42, 0.12); }
+  .mrv2-chkin .place-row.selected { border-color: #3b82f6; background: rgba(59, 130, 246, 0.05); }
+  .mrv2-chkin .place-row img { width: 44px; height: 44px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
+  .mrv2-chkin .place-row .p-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .mrv2-chkin .place-row strong { font-size: 15px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-chkin .place-row span { font-size: 13px; color: #5c6b7d; }
+  .mrv2-chkin .place-row .radio { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #c6cdd5; flex-shrink: 0; }
+  .mrv2-chkin .place-row.selected .radio { border: 0; background: linear-gradient(145deg, #14b8a6, #3b82f6); display: grid; place-items: center; color: #fff; font-size: 13px; }
+
+  .mrv2-chkin .doing { display: flex; gap: 7px; flex-wrap: wrap; }
+  .mrv2-chkin .doing .chip { height: 34px; padding: 0 13px; border-radius: 999px; border: 1.5px solid rgba(32, 36, 42, 0.16); background: #ffffff; color: #1a2332; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+  .mrv2-chkin .doing .chip.selected { background: #101724; border-color: #101724; color: #ffffff; }
+
+  .mrv2-chkin .audience { display: flex; align-items: center; gap: 11px; border-radius: 16px; background: #f6f8fa; padding: 12px 14px; }
+  .mrv2-chkin .audience .a-icon { width: 38px; height: 38px; border-radius: 50%; background: rgba(59, 130, 246, 0.12); color: #2563eb; display: grid; place-items: center; font-size: 19px; flex-shrink: 0; }
+  .mrv2-chkin .audience .a-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .mrv2-chkin .audience strong { font-size: 14px; font-weight: 700; }
+  .mrv2-chkin .audience span { font-size: 13px; color: #5c6b7d; line-height: 1.35; }
+
+  .mrv2-chkin .btn-grad { width: 100%; height: 50px; border: 0; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #fff; font-size: 16px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+
+  /* Checked-in status line, as it appears under the Home greeting */
+  .mrv2-chkin .home-bit { border-radius: 22px; background: #ffffff; box-shadow: 0 2px 6px rgba(16, 24, 40, 0.05), 0 14px 32px rgba(16, 24, 40, 0.12); padding: 18px 16px; display: flex; flex-direction: column; gap: 12px; }
+  .mrv2-chkin .home-bit .greet { font-size: 28px; font-weight: 800; line-height: 1.15; color: #1a2332; }
+  .mrv2-chkin .stat-line { display: flex; align-items: center; gap: 10px; }
+  .mrv2-chkin .stat-line .avw { position: relative; width: 40px; height: 40px; flex-shrink: 0; }
+  .mrv2-chkin .stat-line .avw img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; display: block; }
+  .mrv2-chkin .stat-line .dot { position: absolute; right: -1px; bottom: -1px; width: 13px; height: 13px; border-radius: 50%; background: #22c55e; border: 2px solid #ffffff; }
+  .mrv2-chkin .stat-line .m-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .mrv2-chkin .stat-line strong { font-size: 15px; font-weight: 700; color: #101724; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-chkin .stat-line span { font-size: 12px; color: #5c6b7d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-chkin .checkout { height: 34px; padding: 0 12px; border: 1.5px solid rgba(180, 35, 24, 0.3); border-radius: 999px; background: #ffffff; color: #b42318; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; flex-shrink: 0; }
+</style>
+
+<div class="mrv2-chkin" style="background: #f6f8fa;">
+  <div class="state">
+    <span class="state-label">1 · Check in sheet</span>
+    <span class="state-note">Opens from the status line. Nearby places first, no typing needed.</span>
+    <div class="sheet">
+      <span class="handle"></span>
+      <h3>Check in</h3>
+      <span class="sub">Near you now</span>
+
+      <div class="place-row selected">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=120&h=120&q=80" alt="" />
+        <div class="p-txt"><strong>Ultra Coffeebar</strong><span>120 ft away</span></div>
+        <span class="radio"><i class="ph-fill ph-check"></i></span>
+      </div>
+      <div class="place-row">
+        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=120&h=120&q=80" alt="" />
+        <div class="p-txt"><strong>The Well</strong><span>0.3 mi away</span></div>
+        <span class="radio"></span>
+      </div>
+      <div class="place-row">
+        <img src="https://images.unsplash.com/photo-1519331379826-f10be5486c6f?auto=format&fit=crop&w=120&h=120&q=80" alt="" />
+        <div class="p-txt"><strong>Pritchard Park</strong><span>0.4 mi away</span></div>
+        <span class="radio"></span>
+      </div>
+
+      <div class="doing">
+        <span class="chip selected">☕ Coffee</span>
+        <span class="chip">💻 Working</span>
+        <span class="chip">🍻 Drinks</span>
+        <span class="chip">🥾 On a walk</span>
+      </div>
+
+      <div class="audience">
+        <span class="a-icon"><i class="ph-fill ph-users"></i></span>
+        <div class="a-txt">
+          <strong>Friends can see this</strong>
+          <span>Clears on its own after 2 hours, or check out anytime.</span>
+        </div>
+      </div>
+
+      <button class="btn-grad"><i class="ph-fill ph-map-pin"></i>Check in at Ultra Coffeebar</button>
+    </div>
+  </div>
+
+  <div class="state">
+    <span class="state-label">2 · Checked in, on Home</span>
+    <span class="state-note">The status line under the greeting carries the check-in until it expires.</span>
+    <div class="home-bit">
+      <span class="greet">Evening, Brandon</span>
+      <div class="stat-line">
+        <span class="avw">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+          <span class="dot"></span>
+        </span>
+        <span class="m-txt">
+          <strong>At Ultra Coffeebar ☕</strong>
+          <span>Since 4:15 PM</span>
+        </span>
+        <button class="checkout">Check out</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,233 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+  .ntv-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px 6px;
+  }
+  .ntv-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ntv-wordmark {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #1a2332;
+  }
+  .ntv-header-actions {
+    display: flex;
+    gap: 6px;
+  }
+  .ntv-icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(118, 118, 128, 0.12);
+    color: #1a2332;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ntv-icon-btn i {
+    font-size: 20px;
+  }
+  .ntv-greeting {
+    padding: 18px 16px 10px;
+    font-size: 2.35rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    color: #1a2332;
+  }
+  .ntv-greeting-tail {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #5c6b7d;
+    margin-top: 10px;
+  }
+  .ntv-gradient-text {
+    background: linear-gradient(145deg, #14b8a6, #3b82f6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .ntv-scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 35, 50, 0.45);
+    z-index: 10;
+  }
+  .ntv-sheet {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 11;
+    background: #ffffff;
+    border-radius: 28px 28px 0 0;
+    padding: 10px 20px 24px;
+    filter: brightness(0.75);
+  }
+  .ntv-grabber {
+    width: 40px;
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(118, 118, 128, 0.3);
+    margin: 0 auto 14px;
+  }
+  .ntv-sheet-img {
+    width: 100%;
+    max-width: 320px;
+    display: block;
+    margin: 0 auto;
+  }
+  .ntv-sheet-title {
+    margin: 14px 0 0;
+    font-size: 1.6rem;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.2;
+    color: #1a2332;
+  }
+  .ntv-sheet-body {
+    margin: 10px 0 0;
+    font-size: 1rem;
+    color: #5c6b7d;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .ntv-sheet-footer {
+    display: flex;
+    gap: 12px;
+    margin-top: 22px;
+  }
+  .ntv-btn-skip {
+    flex: 1;
+    height: 52px;
+    border-radius: 999px;
+    background: rgba(118, 118, 128, 0.12);
+    color: #1a2332;
+    font-size: 1.05rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ntv-btn-enable {
+    flex: 2;
+    height: 52px;
+    border-radius: 999px;
+    background: linear-gradient(145deg, #14b8a6, #3b82f6);
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ntv-alert {
+    position: absolute;
+    top: 280px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 270px;
+    z-index: 20;
+    background: rgba(247, 247, 247, 0.97);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(26, 35, 50, 0.35);
+    font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  }
+  .ntv-alert-content {
+    padding: 19px 16px 18px;
+    text-align: center;
+  }
+  .ntv-alert-title {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #000000;
+  }
+  .ntv-alert-body {
+    font-size: 13px;
+    line-height: 1.35;
+    color: #1c1c1e;
+    margin-top: 5px;
+  }
+  .ntv-alert-buttons {
+    display: flex;
+    border-top: 0.5px solid rgba(60, 60, 67, 0.29);
+  }
+  .ntv-alert-btn {
+    flex: 1;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    color: #007aff;
+  }
+  .ntv-alert-btn.is-allow {
+    font-weight: 600;
+    border-left: 0.5px solid rgba(60, 60, 67, 0.29);
+  }
+</style>
+
+<div style="height: 844px; overflow: hidden; position: relative; background: #f2f2f7; font-family: 'Geist', sans-serif; color: #1a2332;">
+
+  <header class="ntv-header">
+    <a class="ntv-logo" href="#" aria-label="MixedRoutes home">
+      <img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" width="36" height="36" alt="" loading="lazy" />
+      <span class="ntv-wordmark">MixedRoutes</span>
+    </a>
+    <div class="ntv-header-actions">
+      <button type="button" class="ntv-icon-btn" aria-label="Find people">
+        <i class="ph ph-user-plus" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="ntv-icon-btn" aria-label="Notifications">
+        <i class="ph ph-bell" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="ntv-icon-btn" aria-label="Settings">
+        <i class="ph ph-gear-six" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="ntv-greeting">
+    <span class="ntv-gradient-text">Evening</span>, Brandon
+    <span class="ntv-greeting-tail">Find something to do tonight &#127769;</span>
+  </div>
+
+  <div class="ntv-scrim"></div>
+
+  <div class="ntv-sheet">
+    <div class="ntv-grabber"></div>
+    <img class="ntv-sheet-img" src="../img/push-notification.png" alt="" loading="lazy" />
+    <h2 class="ntv-sheet-title">Don&rsquo;t miss your next plan! &#128276;</h2>
+    <p class="ntv-sheet-body">Turn on notifications to get updates on new plans, invites, and activity changes, right when they happen.</p>
+    <div class="ntv-sheet-footer">
+      <div class="ntv-btn-skip">Skip</div>
+      <div class="ntv-btn-enable">Turn on</div>
+    </div>
+  </div>
+
+  <div class="ntv-alert">
+    <div class="ntv-alert-content">
+      <div class="ntv-alert-title">&ldquo;MixedRoutes&rdquo; Would Like to Send You Notifications</div>
+      <div class="ntv-alert-body">Notifications may include alerts, sounds, and icon badges. These can be configured in Settings.</div>
+    </div>
+    <div class="ntv-alert-buttons">
+      <div class="ntv-alert-btn">Don&rsquo;t Allow</div>
+      <div class="ntv-alert-btn is-allow">Allow</div>
+    </div>
+  </div>
+</div>

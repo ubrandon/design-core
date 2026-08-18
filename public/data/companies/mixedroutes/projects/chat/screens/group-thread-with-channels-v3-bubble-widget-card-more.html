@@ -1,0 +1,172 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .chat-scope-v3wm { --chat-bg: #0b0f14; --chat-surface: #1b2027; --chat-out: #2f7a72; --bubble-radius: 18px; }
+  .chat-scope-v3wm .chat-wrap { background: var(--chat-bg); height: 844px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .chat-scope-v3wm .chat-body { overflow-y: auto; }
+  .chat-scope-v3wm .chat-pattern { position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/telegramdesktop/tdesktop/dev/Telegram/Resources/art/bg/pattern.png'); background-size: 420px; opacity: 0.06; pointer-events: none; mix-blend-mode: screen; }
+  .chat-scope-v3wm .chat-header { position: sticky; top: 0; z-index: 3; display: grid; grid-template-columns: 28px 36px 1fr 28px; align-items: center; gap: 10px; padding: 10px 12px; background: rgba(11,15,20,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .chat-scope-v3wm .chat-header .back { background: transparent; border: 0; color: rgba(255,255,255,0.95); display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
+  .chat-scope-v3wm .chat-header .back i { font-size: 22px; }
+  .chat-scope-v3wm .chat-header .avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
+  .chat-scope-v3wm .chat-header .avatar.emoji { display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #5eb3ff, #2f7a72); font-size: 18px; }
+  .chat-scope-v3wm .chat-header .title { font-size: 1rem; font-weight: 800; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .chat-scope-v3wm .chat-header .tag-btn { background: transparent; border: 0; color: rgba(255,255,255,0.85); padding: 0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+  .chat-scope-v3wm .chat-header .tag-btn i { font-size: 20px; }
+
+  .chat-scope-v3wm .chat-body { position: relative; z-index: 1; flex: 1; padding: 12px 10px 8px; display: flex; flex-direction: column; gap: 10px; }
+
+  .chat-scope-v3wm .msg-row { display: grid; grid-template-columns: 36px 1fr; gap: 8px; align-items: flex-start; }
+  .chat-scope-v3wm .msg-row.out { grid-template-columns: 1fr; }
+  .chat-scope-v3wm .msg-row .avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; align-self: flex-start; }
+  .chat-scope-v3wm .msg-row .avatar.initials { background: #4b5563; color: #fff; font-size: 0.7rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; letter-spacing: 0.02em; }
+  .chat-scope-v3wm .msg-stack { display: flex; flex-direction: column; gap: 4px; max-width: 78%; }
+  .chat-scope-v3wm .msg-row.out .msg-stack { margin-left: auto; align-items: flex-end; }
+
+  .chat-scope-v3wm .bubble { padding: 9px 12px 10px; border-radius: var(--bubble-radius); color: #fff; font-size: 0.95rem; line-height: 1.3; word-wrap: break-word; }
+  .chat-scope-v3wm .bubble.in { background: var(--chat-surface); border-bottom-left-radius: 6px; }
+  .chat-scope-v3wm .bubble.out { background: var(--chat-out); border-bottom-right-radius: 6px; }
+  .chat-scope-v3wm .bubble .sender { font-size: 0.82rem; font-weight: 800; color: #5eb3ff; margin-bottom: 2px; }
+
+  .chat-scope-v3wm .day-divider { text-align: center; color: rgba(255,255,255,0.55); font-size: 0.85rem; padding: 6px 0; }
+  .chat-scope-v3wm .seen { text-align: center; color: rgba(255,255,255,0.45); font-size: 0.78rem; padding: 6px 0 2px; }
+
+  /* V3 widget card, quiet more: +N more with caret under last reply, icon actions in header */
+  .chat-scope-v3wm .ch-card-row { display: grid; grid-template-columns: 36px 1fr; gap: 8px; align-items: flex-start; }
+  .chat-scope-v3wm .ch-card-row .ch-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #7dd3fc, #38bdf8); color: #fff; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; }
+  .chat-scope-v3wm .ch-card { position: relative; max-width: 92%; background: var(--chat-surface); border-radius: var(--bubble-radius); overflow: hidden; border: 1px solid rgba(56,189,248,0.25); }
+  .chat-scope-v3wm .ch-card-head { display: flex; align-items: center; gap: 8px; padding: 8px 10px 8px 12px; background: rgba(56,189,248,0.08); border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .chat-scope-v3wm .ch-card-head .head-name { font-size: 0.88rem; font-weight: 800; color: #fff; white-space: nowrap; }
+  .chat-scope-v3wm .ch-card-head .new-pill { min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; background: #16a34a; color: #fff; font-size: 0.72rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .chat-scope-v3wm .ch-card-head .head-actions { margin-left: auto; display: flex; align-items: center; gap: 4px; }
+  .chat-scope-v3wm .ch-card-head .head-icon-btn { width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.9); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+  .chat-scope-v3wm .ch-card-head .head-icon-btn i { font-size: 16px; }
+  .chat-scope-v3wm .ch-card-body { padding: 4px 12px 8px; }
+  .chat-scope-v3wm .ch-reply { display: grid; grid-template-columns: 22px 1fr; gap: 7px; align-items: flex-start; padding: 4px 0; }
+  .chat-scope-v3wm .ch-reply + .ch-reply { border-top: 1px solid rgba(255,255,255,0.05); }
+  .chat-scope-v3wm .ch-reply img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; margin-top: 1px; }
+  .chat-scope-v3wm .ch-reply .ch-init { width: 22px; height: 22px; border-radius: 50%; background: #4b5563; color: #fff; font-size: 0.62rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .chat-scope-v3wm .ch-reply .ch-name { font-size: 0.78rem; font-weight: 800; color: #5eb3ff; }
+  .chat-scope-v3wm .ch-reply .ch-text { color: #fff; font-size: 0.92rem; line-height: 1.3; }
+  .chat-scope-v3wm .ch-more { display: inline-flex; align-items: center; gap: 2px; margin-left: 29px; padding: 3px 0 1px; font-size: 0.78rem; font-weight: 700; color: rgba(255,255,255,0.5); cursor: pointer; }
+  .chat-scope-v3wm .ch-more i { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+  /* Channel tabs above composer */
+  .chat-scope-v3wm .channel-tabs { position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; padding: 8px 10px 8px 12px; overflow-x: auto; background: rgba(11,15,20,0.92); border-top: 1px solid rgba(255,255,255,0.05); }
+  .chat-scope-v3wm .channel-tabs::-webkit-scrollbar { display: none; }
+  .chat-scope-v3wm .ch-tab { position: relative; display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 999px; background: transparent; border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.9); font-weight: 700; font-size: 0.9rem; white-space: nowrap; cursor: pointer; flex-shrink: 0; }
+  .chat-scope-v3wm .ch-tab.active { background: #fff; color: #111; border-color: #fff; }
+  .chat-scope-v3wm .ch-tab .tab-emoji { font-size: 14px; line-height: 1; }
+  .chat-scope-v3wm .ch-tab .tab-badge { position: absolute; top: -6px; right: -4px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #16a34a; color: #fff; font-size: 0.72rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; border: 2px solid #0b0f14; }
+  .chat-scope-v3wm .ch-tab-edit { width: 32px; height: 32px; border-radius: 50%; background: transparent; border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.7); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0; }
+  .chat-scope-v3wm .ch-tab-edit i { font-size: 14px; }
+
+  .chat-scope-v3wm .composer { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 44px; align-items: center; gap: 10px; padding: 6px 12px 18px; background: rgba(11,15,20,0.92); }
+  .chat-scope-v3wm .composer .input-pill { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 999px; background: #1b2027; }
+  .chat-scope-v3wm .composer .input-pill .placeholder { color: rgba(255,255,255,0.5); font-size: 0.98rem; padding-left: 4px; }
+  .chat-scope-v3wm .composer .icon-btn { background: transparent; border: 0; color: rgba(255,255,255,0.55); width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+  .chat-scope-v3wm .composer .icon-btn i { font-size: 22px; }
+  .chat-scope-v3wm .composer .plus-btn { color: rgba(255,255,255,0.75); }
+  .chat-scope-v3wm .composer .send-btn { width: 44px; height: 44px; border-radius: 50%; background: #2c333d; color: rgba(255,255,255,0.85); border: 0; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+  .chat-scope-v3wm .composer .send-btn i { font-size: 20px; }
+</style>
+
+<div class="mr-scope chat-scope-v3wm">
+  <div class="chat-wrap">
+    <div class="chat-pattern" aria-hidden="true"></div>
+
+    <header class="chat-header">
+      <button type="button" class="back" aria-label="Back"><i class="ph ph-caret-left"></i></button>
+      <div class="avatar emoji" aria-hidden="true">🍻</div>
+      <div class="title">The Bois</div>
+      <button type="button" class="tag-btn" aria-label="Tag"><i class="ph ph-tag"></i></button>
+    </header>
+
+    <div class="chat-body">
+      <div class="msg-row out">
+        <div class="msg-stack">
+          <div class="bubble out">Just so we can get it out and I get start getting people on without having to test more</div>
+        </div>
+      </div>
+
+      <div class="msg-row">
+        <img class="avatar" src="https://i.pravatar.cc/64?img=12" alt="" />
+        <div class="msg-stack">
+          <div class="bubble in">
+            <div class="sender">Eric Hechavarria</div>
+            It's not meant to work on iOS
+          </div>
+          <div class="bubble in">It's android only</div>
+        </div>
+      </div>
+
+      <div class="day-divider">Today</div>
+
+      <!-- V3 widget card, quiet more: +N more caret under last reply -->
+      <div class="ch-card-row">
+        <div class="ch-avatar">✈️</div>
+        <div class="ch-card" role="button" aria-label="Open Trips channel">
+          <div class="ch-card-head">
+            <span class="head-name">Trips channel</span>
+            <span class="new-pill">14</span>
+            <span class="head-actions">
+              <button type="button" class="head-icon-btn" aria-label="Mark read"><i class="ph ph-checks"></i></button>
+              <button type="button" class="head-icon-btn" aria-label="Quick reply"><i class="ph ph-arrow-bend-up-left"></i></button>
+            </span>
+          </div>
+
+          <div class="ch-card-body">
+            <div class="ch-reply">
+              <img src="https://i.pravatar.cc/40?img=32" alt="" />
+              <div><span class="ch-name" style="color:#c084fc">Maya</span> <span class="ch-text">Cabin or hotel this time?</span></div>
+            </div>
+            <div class="ch-reply">
+              <img src="https://i.pravatar.cc/40?img=45" alt="" />
+              <div><span class="ch-name" style="color:#fbbf24">Devon</span> <span class="ch-text">Cabin, way more room for everyone</span></div>
+            </div>
+            <div class="ch-reply">
+              <div class="ch-init">B</div>
+              <div><span class="ch-name">Brandon</span> <span class="ch-text">Sending the booking link tonight</span></div>
+            </div>
+            <div class="ch-more">+11 more <i class="ph ph-caret-right"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="msg-row">
+        <div class="avatar initials" aria-hidden="true">B</div>
+        <div class="msg-stack">
+          <div class="bubble in">
+            <div class="sender">Brandon Unglaub</div>
+            Cool I'm in
+          </div>
+        </div>
+      </div>
+
+      <div class="seen">Seen by 1 other</div>
+    </div>
+
+    <div class="channel-tabs">
+      <button type="button" class="ch-tab active">Main</button>
+      <button type="button" class="ch-tab">
+        <span class="tab-emoji">✈️</span> Trips
+        <span class="tab-badge">14</span>
+      </button>
+      <button type="button" class="ch-tab"><span class="tab-emoji">🗓️</span> Plans</button>
+      <button type="button" class="ch-tab"><span class="tab-emoji">🪨</span> Rocks</button>
+      <button type="button" class="ch-tab-edit" aria-label="Manage channels"><i class="ph ph-pencil-simple"></i></button>
+    </div>
+
+    <div class="composer">
+      <div class="input-pill">
+        <button type="button" class="icon-btn plus-btn" aria-label="Add"><i class="ph ph-plus"></i></button>
+        <span class="placeholder">Message</span>
+        <button type="button" class="icon-btn" aria-label="Photo"><i class="ph ph-image"></i></button>
+        <button type="button" class="icon-btn" aria-label="Emoji"><i class="ph ph-smiley"></i></button>
+      </div>
+      <button type="button" class="send-btn" aria-label="Send"><i class="ph ph-paper-plane-right"></i></button>
+    </div>
+  </div>
+</div>

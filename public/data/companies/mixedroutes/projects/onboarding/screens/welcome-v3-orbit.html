@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  .wob-root { background: #f2f2f7; height: 844px; display: flex; flex-direction: column; font-family: 'Geist', sans-serif; color: #1a2332; overflow: hidden; position: relative; }
+  .wob-blob-a { position: absolute; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(20,184,166,0.18), transparent 70%); top: -60px; left: -80px; }
+  .wob-blob-b { position: absolute; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(59,130,246,0.15), transparent 70%); top: 180px; right: -120px; }
+  .wob-stage { position: relative; height: 420px; flex-shrink: 0; margin-top: 48px; }
+  .wob-hub { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 92px; height: 92px; border-radius: 50%; background: linear-gradient(145deg, #14b8a6, #3b82f6); display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 32px rgba(59,130,246,0.35); z-index: 3; }
+  .wob-ring { position: absolute; left: 50%; top: 50%; border: 1.5px dashed rgba(26,35,50,0.18); border-radius: 50%; }
+  .wob-ring-1 { width: 210px; height: 210px; margin: -105px 0 0 -105px; animation: wob-spin 36s linear infinite; }
+  .wob-ring-2 { width: 330px; height: 330px; margin: -165px 0 0 -165px; animation: wob-spin 56s linear infinite reverse; }
+  .wob-sat { position: absolute; width: 48px; height: 48px; margin: -24px 0 0 -24px; }
+  .wob-chip { width: 48px; height: 48px; border-radius: 50%; background: #ffffff; box-shadow: 0 4px 14px rgba(26,35,50,0.12); display: flex; align-items: center; justify-content: center; font-size: 22px; }
+  .wob-ring-1 .wob-chip { animation: wob-spin 36s linear infinite reverse; }
+  .wob-ring-2 .wob-chip { animation: wob-spin 56s linear infinite; }
+  .wob-ava { font-size: 17px; font-weight: 700; color: #ffffff; }
+  @keyframes wob-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+</style>
+
+<div class="wob-root">
+  <div class="wob-blob-a"></div>
+  <div class="wob-blob-b"></div>
+
+  <div class="wob-stage">
+    <div class="wob-hub"><i class="ph-fill ph-path" style="font-size: 44px; color: #ffffff;"></i></div>
+
+    <div class="wob-ring wob-ring-1">
+      <div class="wob-sat" style="left: 50%; top: 0;"><div class="wob-chip">🌮</div></div>
+      <div class="wob-sat" style="left: 100%; top: 50%;"><div class="wob-chip wob-ava" style="background: #e8880a;">M</div></div>
+      <div class="wob-sat" style="left: 50%; top: 100%;"><div class="wob-chip">🎬</div></div>
+      <div class="wob-sat" style="left: 0; top: 50%;"><div class="wob-chip wob-ava" style="background: #14b8a6;">J</div></div>
+    </div>
+
+    <div class="wob-ring wob-ring-2">
+      <div class="wob-sat" style="left: 85%; top: 14.6%;"><div class="wob-chip">🥾</div></div>
+      <div class="wob-sat" style="left: 85%; top: 85.4%;"><div class="wob-chip wob-ava" style="background: #3b82f6;">S</div></div>
+      <div class="wob-sat" style="left: 15%; top: 85.4%;"><div class="wob-chip">🎳</div></div>
+      <div class="wob-sat" style="left: 15%; top: 14.6%;"><div class="wob-chip wob-ava" style="background: #8b5cf6;">A</div></div>
+    </div>
+  </div>
+
+  <div style="flex: 1; padding: 12px 28px 0; text-align: center; position: relative;">
+    <div style="font-size: 15px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #14b8a6; margin-bottom: 10px;">MixedRoutes</div>
+    <h1 style="margin: 0 0 12px; font-size: 34px; font-weight: 700; line-height: 1.15;">Your people, in one orbit</h1>
+    <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #5c6b7d;">Round up friends, pick a spot, and make the plan actually happen.</p>
+  </div>
+
+  <div style="flex-shrink: 0; padding: 8px 16px 20px; position: relative;">
+    <div style="height: 48px; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; font-size: 18px; font-weight: 700; display: flex; align-items: center; justify-content: center;">Get started</div>
+    <div style="text-align: center; padding-top: 16px; font-size: 14px; color: #5c6b7d;">Already have an account? <span style="color: #e8880a; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05rem;">Log in</span></div>
+  </div>
+</div>

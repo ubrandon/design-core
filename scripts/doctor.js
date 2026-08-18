@@ -1,18 +1,11 @@
 #!/usr/bin/env node
-// Health check for Design Core repos. Run with: npm run doctor
-// Explains in plain language which repo this is, what is broken, and how to fix it.
+// Health check for Design Core. Run with: npm run doctor
+// Checks Node, dependencies, and every company's data files, then explains any problems in plain language.
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
-import {
-  root,
-  CORE_SLUG,
-  classifyRepo,
-  upstreamPushDisabled,
-  readJsonSafe,
-  sh,
-  COMPANY_OWNED_PATHS,
-} from "./lib/repo-info.js";
+import { root, readJsonSafe } from "./lib/repo-info.js";
 
+const COMPANIES_DIR = resolve(root, "public/data/companies");
 const oks = [];
 const notes = [];
 const problems = [];
@@ -23,254 +16,134 @@ const problem = (msg, fix) => problems.push({ msg, fix });
 function checkNode() {
   const major = parseInt(process.versions.node.split(".")[0], 10);
   if (major >= 18) ok(`Node ${major} is new enough`);
-  else
-    problem(
-      `Node ${process.versions.node} is too old for the dev server`,
-      "Install the current Node from nodejs.org (or on a Mac: brew install node), then reopen your editor.",
-    );
+  else problem(`Node ${process.versions.node} is too old for the dev server`, "Install the current Node from nodejs.org, then reopen your editor.");
+  if (existsSync(resolve(root, "node_modules/vite"))) ok("Dependencies are installed");
+  else problem("Dependencies are not installed, so the tool cannot start", "Run: npm install");
 }
 
-function checkIdentityFiles(repo) {
-  if (repo.kind !== "company" && repo.kind !== "mid-setup") return;
-  const p = resolve(root, ".designer");
-  if (!existsSync(p)) {
-    note("No .designer file yet. The AI creates it during your setup conversation, so this is normal mid-setup.");
-    return;
+function listCompanies() {
+  const idxPath = resolve(COMPANIES_DIR, "index.json");
+  if (!existsSync(idxPath)) {
+    note("No companies yet (public/data/companies/index.json is missing). Create one from the home page or run: npm run import-company");
+    return [];
   }
-  const r = readJsonSafe(p);
-  if (!r.ok) {
-    problem(
-      ".designer exists but is not valid JSON, so the tool cannot read your name",
-      "Ask the AI to recreate .designer, or copy .designer.example to .designer and fill in your name.",
-    );
-  } else if (!r.data.name) {
-    note(".designer has no name set. Ask the AI to finish your identity setup.");
-  } else {
-    ok(`.designer found (${r.data.name})`);
+  const r = readJsonSafe(idxPath);
+  if (!r.ok || !Array.isArray(r.data.companies)) {
+    problem("public/data/companies/index.json has broken JSON, so no company can load", "Ask the AI to fix the JSON (usually a missing or extra comma).");
+    return [];
   }
+  const listed = r.data.companies.map((c) => c && c.slug).filter(Boolean);
+  const onDisk = existsSync(COMPANIES_DIR)
+    ? readdirSync(COMPANIES_DIR, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name)
+    : [];
+  for (const slug of onDisk) {
+    if (!listed.includes(slug)) note(`Company folder "${slug}" exists on disk but is not in companies/index.json, so it does not show in the switcher.`);
+  }
+  for (const slug of listed) {
+    if (!existsSync(resolve(COMPANIES_DIR, slug))) problem(`Company "${slug}" is listed but its folder is missing`, `Ask the AI to remove it from companies/index.json or recreate public/data/companies/${slug}/.`);
+  }
+  if (listed.length) ok(`${listed.length} compan${listed.length === 1 ? "y" : "ies"}: ${listed.join(", ")}`);
+  return listed;
 }
 
-function checkPlaceholders(repo) {
-  if (repo.kind !== "company") return;
-  const p = resolve(root, "GETTING_STARTED.md");
-  if (!existsSync(p)) {
-    note("GETTING_STARTED.md is missing, so teammates have no joining instructions. Run: npm run finish-setup");
-    return;
-  }
-  const text = readFileSync(p, "utf8");
-  if (text.includes("YOUR_ORG") || text.includes("Setting up for your company")) {
-    problem(
-      "GETTING_STARTED.md still has the template's placeholder instructions. New teammates following it will clone the wrong repo",
-      "Run: npm run finish-setup (it writes joining instructions with your company's real repo link).",
-    );
-  } else {
-    ok("GETTING_STARTED.md is customized for your company");
-  }
-}
-
-function checkRemoteWiring(repo) {
-  if (repo.kind === "company" && repo.upstream) {
-    if (upstreamPushDisabled(repo.remotes)) {
-      ok("Connected to the tool's update source (upstream), push-protected");
-    } else {
-      problem(
-        "The upstream connection to the public tool repo allows pushes. An accidental push could send company work to the public repo (GitHub would likely refuse it, but keep the seatbelt on)",
-        "Run: git remote set-url --push upstream no-push-allowed",
-      );
-    }
-  } else if (repo.kind === "company") {
-    note("No upstream link to the public tool repo on this computer. That is fine for designers; npm run update-tool adds it when someone wants tool updates.");
-  }
-  if (repo.kind === "mid-setup") {
-    if (upstreamPushDisabled(repo.remotes)) ok("Upstream remote is wired correctly and push-protected");
-    else
-      problem(
-        "The upstream remote allows pushes",
-        "Run: git remote set-url --push upstream no-push-allowed",
-      );
-  }
-}
-
-function diskProjectDirs() {
-  const dir = resolve(root, "public/data/projects");
-  if (!existsSync(dir)) return [];
-  return readdirSync(dir, { withFileTypes: true })
-    .filter((d) => d.isDirectory())
-    .map((d) => d.name);
-}
-
-// Projects the tool actually shows: the ones listed in projects/index.json.
-function listedProjects() {
-  const r = readJsonSafe(resolve(root, "public/data/projects/index.json"));
+function listedProjects(base) {
+  const r = readJsonSafe(resolve(base, "projects/index.json"));
   if (!r.ok || !Array.isArray(r.data.projects)) return [];
   return r.data.projects.map((p) => p.id).filter(Boolean);
 }
 
-function checkDataJson() {
-  const targets = [];
-  const add = (rel, required) => targets.push({ rel, required });
-  add("public/data/projects/index.json", true);
-  add("public/data/design-system/registry.json", false);
-  add("public/data/site.json", false);
-  for (const id of listedProjects()) {
-    add(`public/data/projects/${id}/project.json`, true);
-    add(`public/data/projects/${id}/canvas.json`, true);
-    add(`public/data/projects/${id}/prototypes/index.json`, false);
+function checkCompanyData(slug) {
+  const base = resolve(COMPANIES_DIR, slug);
+  const rel = (p) => `public/data/companies/${slug}/${p}`;
+  const targets = [{ rel: "projects/index.json", required: true }, { rel: "design-system/registry.json", required: false }, { rel: "captures/config.json", required: false }];
+  const projects = listedProjects(base);
+  for (const id of projects) {
+    targets.push({ rel: `projects/${id}/project.json`, required: true });
+    targets.push({ rel: `projects/${id}/canvas.json`, required: true });
+    targets.push({ rel: `projects/${id}/prototypes/index.json`, required: false });
   }
-  const listed = new Set(listedProjects());
-  for (const id of diskProjectDirs()) {
-    if (listed.has(id)) continue;
-    const hasFiles = readdirSync(resolve(root, `public/data/projects/${id}`)).length > 0;
-    if (hasFiles)
-      note(`Project folder "${id}" exists on disk but is not on the home page list, so it is invisible in the tool. Ask the AI to re-add it to public/data/projects/index.json (or delete the folder if it is old).`);
-    else note(`Empty leftover project folder "${id}" (safe to delete).`);
+  const projectsDir = resolve(base, "projects");
+  const onDisk = existsSync(projectsDir) ? readdirSync(projectsDir, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name) : [];
+  for (const id of onDisk) {
+    if (!projects.includes(id)) note(`${slug}: project folder "${id}" is on disk but not in projects/index.json, so it is invisible in the tool.`);
   }
   let checked = 0;
   let bad = 0;
   for (const t of targets) {
-    const abs = resolve(root, t.rel);
+    const abs = resolve(base, t.rel);
     if (!existsSync(abs)) {
-      if (t.required)
-        problem(
-          `${t.rel} is missing, so part of the tool will show nothing`,
-          "Ask the AI to recreate it (it can rebuild the file from the project folder contents).",
-        );
+      if (t.required) problem(`${rel(t.rel)} is missing, so part of the tool will show nothing`, "Ask the AI to recreate it from the folder contents.");
       continue;
     }
     checked++;
     const r = readJsonSafe(abs);
     if (!r.ok) {
       bad++;
-      problem(
-        `${t.rel} has broken JSON (${r.error}). Anything that reads it will show nothing`,
-        `Ask the AI to fix the JSON in ${t.rel} (usually a missing or extra comma).`,
-      );
+      problem(`${rel(t.rel)} has broken JSON (${r.error})`, "Ask the AI to fix the JSON (usually a missing or extra comma).");
     }
   }
-  if (checked && !bad) ok(`All ${checked} design data files are valid JSON`);
-}
+  if (checked && !bad) ok(`${slug}: all ${checked} data files are valid JSON`);
 
-function checkCanvasScreens() {
   let missing = 0;
   let orphans = 0;
-  let screensTotal = 0;
-  for (const id of listedProjects()) {
-    const canvasPath = resolve(root, `public/data/projects/${id}/canvas.json`);
-    const screensDir = resolve(root, `public/data/projects/${id}/screens`);
-    const r = readJsonSafe(canvasPath);
+  let total = 0;
+  for (const id of projects) {
+    const r = readJsonSafe(resolve(base, `projects/${id}/canvas.json`));
     if (!r.ok || !Array.isArray(r.data.screens)) continue;
-    const onDisk = existsSync(screensDir)
-      ? readdirSync(screensDir).filter((f) => f.endsWith(".html"))
-      : [];
+    const screensDir = resolve(base, `projects/${id}/screens`);
+    const files = existsSync(screensDir) ? readdirSync(screensDir).filter((f) => f.endsWith(".html")) : [];
     const inCanvas = new Set(r.data.screens.map((s) => s.file));
-    screensTotal += inCanvas.size;
+    total += inCanvas.size;
     for (const s of r.data.screens) {
-      if (!s.file || !onDisk.includes(s.file)) {
+      if (!s.file || !files.includes(s.file)) {
         missing++;
-        problem(
-          `Project "${id}": canvas.json lists "${s.file}" but that screen file does not exist, so the canvas shows a broken card`,
-          `Ask the AI to either create the screen file or remove its entry from canvas.json in project "${id}".`,
-        );
+        problem(`${slug}/${id}: canvas.json lists "${s.file}" but that screen file does not exist`, "Ask the AI to create the screen file or remove its canvas.json entry.");
       }
     }
-    for (const f of onDisk) {
-      if (!inCanvas.has(f)) orphans++;
-    }
+    for (const f of files) if (!inCanvas.has(f)) orphans++;
   }
-  if (screensTotal && !missing) ok("All canvas screens point to files that exist");
-  if (orphans)
-    note(
-      `${orphans} screen file(s) exist on disk but are not on any canvas. If a design "disappeared", ask the AI to add it back to that project's canvas.json.`,
-    );
+  if (total && !missing) ok(`${slug}: all canvas screens point to files that exist`);
+  if (orphans) note(`${slug}: ${orphans} screen file(s) exist on disk but are not on any canvas.`);
+
+  checkStylesheetDepth(slug, base);
 }
 
-function checkDrift(repo) {
-  if (repo.kind !== "company" || !repo.upstream) return;
-  const fetched = sh("git fetch upstream --quiet", { timeout: 20000 });
-  const hasRef = sh("git rev-parse --verify upstream/main") !== null;
-  if (!hasRef) {
-    note("Could not reach GitHub to compare against the official tool, so the tool-files check was skipped this time.");
-    return;
-  }
-  if (fetched === null) {
-    note("Could not reach GitHub just now; comparing tool files against the last downloaded copy of the official tool.");
-  }
-  const excludes = COMPANY_OWNED_PATHS.map((p) => `":(exclude)${p}"`).join(" ");
-  // Real drift = changed on the company side AND still different from the official tip.
-  const changedHere = sh(`git diff --name-only upstream/main...HEAD -- . ${excludes}`);
-  const differsNow = sh(`git diff --name-only upstream/main HEAD -- . ${excludes}`);
-  if (changedHere === null || differsNow === null) {
-    note("Tool-files comparison could not run (git diff failed).");
-    return;
-  }
-  const stillDifferent = new Set(differsNow.split("\n").filter(Boolean));
-  const files = changedHere.split("\n").filter(Boolean).filter((f) => stillDifferent.has(f));
-  if (!files.length) {
-    ok("No tool files modified in this repo (design work only, as intended)");
-    return;
-  }
-  problem(
-    `These tool files were changed in this company repo and now differ from the official tool:\n      ${files.join("\n      ")}\n   Changed tool files conflict with future updates and can break the tool for the whole team`,
-    `If the changes were not intentional, restore each file with: git checkout upstream/main -- <file>\n   If a tool change is genuinely needed, it belongs in the core repo: contact Brandon Unglaub.`,
-  );
-}
-
-function describeRepo(repo) {
-  switch (repo.kind) {
-    case "no-git":
-      problem(
-        "This folder is not a git repository, so there is no history, sharing, or updates",
-        "Re-clone your repo following GETTING_STARTED.md (cloning through your editor's Clone Repository flow handles GitHub sign-in for you).",
-      );
-      return "not a git repository";
-    case "core":
-      note(
-        `This is the public Design Core template (${CORE_SLUG}), the tool itself. If you are developing the tool, all good. If you meant to USE Design Core: designers joining a team should clone their company's repo instead (ask your admin for the link); first-time company setup should follow the company prompt in GETTING_STARTED.md.`,
-      );
-      return "the public Design Core template (core repo)";
-    case "mid-setup":
-      note("Company setup is in progress: the repo is wired to the template but not yet published to GitHub. Next step: publish it (Source Control, then Publish Branch), then run npm run finish-setup.");
-      return "a company repo mid-setup (not published yet)";
-    case "company": {
-      const where = repo.originInfo ? `${repo.originInfo.owner}/${repo.originInfo.repo}` : repo.origin;
-      return `a company repo (${where})`;
+// Screens and prototypes link to the tool's CSS with relative paths; a wrong depth means unstyled pages.
+function checkStylesheetDepth(slug, base) {
+  let wrong = 0;
+  const walk = (dir, depth) => {
+    if (!existsSync(dir)) return;
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const fp = resolve(dir, entry.name);
+      if (entry.isDirectory()) { walk(fp, depth + 1); continue; }
+      if (!entry.name.endsWith(".html")) continue;
+      const html = readFileSync(fp, "utf8");
+      const m = html.match(/href="((?:\.\.\/)+)styles\/(?:shared|ds)\.css"/);
+      if (m && m[1].length / 3 !== depth) {
+        wrong++;
+        if (wrong <= 5) problem(`${slug}: ${fp.replace(root + "/", "")} links the tool CSS with the wrong number of ../ (has ${m[1].length / 3}, needs ${depth})`, "Ask the AI to fix the stylesheet links so the page is styled.");
+      }
     }
-    case "double-remote":
-      problem(
-        "This clone points at the public template as origin AND has an upstream remote. The setup steps were only half-applied",
-        "If this should be a company repo: run git remote remove origin, then publish through your editor (Source Control, Publish Branch). If unsure, ask the AI to run the company setup checks from .cursor/rules/setup.mdc.",
-      );
-      return "a half-configured clone";
-    default:
-      note("This repo has no origin remote and no recognizable upstream, so the doctor cannot tell what it is. If you just cloned, something went wrong; re-clone following GETTING_STARTED.md.");
-      return "unrecognized";
-  }
+  };
+  // public/data/companies/<slug>/projects is 4 levels below public/, so a file directly in projects/ needs 4 ../
+  walk(resolve(base, "projects"), 4);
+  if (wrong > 5) note(`${slug}: ${wrong - 5} more files have the same stylesheet depth problem.`);
+  if (!wrong) ok(`${slug}: screens and prototypes link the tool CSS correctly`);
 }
 
 function main() {
   console.log("Design Core doctor\n");
-  const repo = classifyRepo();
-  const label = describeRepo(repo);
-  console.log(`Repo: ${label}\n`);
-
   checkNode();
-  checkRemoteWiring(repo);
-  checkPlaceholders(repo);
-  checkIdentityFiles(repo);
-  checkDataJson();
-  checkCanvasScreens();
-  checkDrift(repo);
-
+  for (const slug of listCompanies()) checkCompanyData(slug);
   for (const m of oks) console.log(`[ok] ${m}`);
   for (const m of notes) console.log(`[note] ${m}`);
   for (const p of problems) {
     console.log(`\n[problem] ${p.msg}`);
     console.log(`   Fix: ${p.fix}`);
   }
-
   console.log("");
   if (problems.length) {
-    console.log(`${problems.length} problem(s) found. Fixes are listed above; your AI assistant can apply them for you.`);
+    console.log(`${problems.length} problem(s) found. Your AI assistant can apply the fixes above.`);
     process.exit(1);
   }
   console.log("Everything looks good.");

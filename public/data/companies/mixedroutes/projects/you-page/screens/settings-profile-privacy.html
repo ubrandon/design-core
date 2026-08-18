@@ -1,0 +1,184 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .set-section-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0 20px 8px;
+  }
+  .set-card {
+    margin: 0 16px 18px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+  }
+  .set-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    color: var(--text);
+    background: transparent;
+    border: 0;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+  }
+  .set-row + .set-row {
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .set-row-body { flex: 1; min-width: 0 }
+  .set-row-title {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .set-row-desc {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+    margin-top: 3px;
+  }
+  .set-helper {
+    padding: 0 22px 18px;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+  }
+  .set-quiet-card {
+    margin: 0 16px 22px;
+    border-radius: 18px;
+    padding: 16px 18px;
+    background: linear-gradient(160deg, rgba(244,197,66,0.16), rgba(244,197,66,0.04));
+    border: 1px solid rgba(244,197,66,0.22);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .set-quiet-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(244,197,66,0.18);
+    color: #f4c542;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex: 0 0 auto;
+  }
+</style>
+
+<div style="background: var(--bg-0); overflow-x: clip; min-height: 100vh">
+  <div class="mr-scope" style="padding-bottom: 32px">
+
+    <header style="display: flex; align-items: center; gap: 14px; padding: 18px 18px 22px">
+      <button type="button" aria-label="Back" style="background: transparent; border: 0; color: var(--text); cursor: pointer; padding: 0; display: inline-flex; align-items: center; justify-content: center">
+        <i class="ph ph-arrow-left" style="font-size: 22px"></i>
+      </button>
+      <span style="font-size: 1.3rem; font-weight: 800; color: var(--text); letter-spacing: -0.01em">Profile privacy</span>
+    </header>
+
+    <div class="set-helper">
+      By default, your friends can see what you're up to — events you save, places you list, groups you're in. Dial any of it back below.
+    </div>
+
+    <div class="set-quiet-card">
+      <span class="set-quiet-icon"><i class="ph ph-moon"></i></span>
+      <span class="set-row-body">
+        <span class="set-row-title">Quiet mode</span>
+        <span class="set-row-desc">Temporarily hide all activity from friends</span>
+      </span>
+      <button type="button" class="mr-toggle" aria-label="Quiet mode off"></button>
+    </div>
+
+    <div class="set-section-label">Activity friends can see</div>
+    <div class="set-card">
+      <div class="set-row">
+        <span class="set-row-body">
+          <span class="set-row-title">Events I save</span>
+          <span class="set-row-desc">Friends see what you're interested in</span>
+        </span>
+        <button type="button" class="mr-toggle mr-toggle-on" aria-label="On"></button>
+      </div>
+      <div class="set-row">
+        <span class="set-row-body">
+          <span class="set-row-title">Events I'm going to</span>
+          <span class="set-row-desc">Friends see your RSVPs</span>
+        </span>
+        <button type="button" class="mr-toggle mr-toggle-on" aria-label="On"></button>
+      </div>
+      <div class="set-row">
+        <span class="set-row-body">
+          <span class="set-row-title">Places I save</span>
+          <span class="set-row-desc">Friends see new saves to public lists</span>
+        </span>
+        <button type="button" class="mr-toggle mr-toggle-on" aria-label="On"></button>
+      </div>
+      <div class="set-row">
+        <span class="set-row-body">
+          <span class="set-row-title">Lists I create</span>
+          <span class="set-row-desc">Only shared lists, never private ones</span>
+        </span>
+        <button type="button" class="mr-toggle mr-toggle-on" aria-label="On"></button>
+      </div>
+    </div>
+
+    <div class="set-section-label">On your profile</div>
+    <div class="set-card">
+      <div class="set-row">
+        <span class="set-row-body">
+          <span class="set-row-title">Show interests</span>
+          <span class="set-row-desc">Anyone</span>
+        </span>
+        <button type="button" class="mr-toggle mr-toggle-on" aria-label="On"></button>
+      </div>
+      <div class="set-row">
+        <span class="set-row-body">
+          <span class="set-row-title">Show groups</span>
+          <span class="set-row-desc">Friends only</span>
+        </span>
+        <button type="button" class="mr-toggle mr-toggle-on" aria-label="On"></button>
+      </div>
+      <div class="set-row">
+        <span class="set-row-body">
+          <span class="set-row-title">Show friend count</span>
+          <span class="set-row-desc">Friends only</span>
+        </span>
+        <button type="button" class="mr-toggle mr-toggle-on" aria-label="On"></button>
+      </div>
+    </div>
+
+    <div class="set-section-label">Discovery</div>
+    <div class="set-card">
+      <div class="set-row">
+        <span class="set-row-body">
+          <span class="set-row-title">Findable by email</span>
+          <span class="set-row-desc">People with your email can find you</span>
+        </span>
+        <button type="button" class="mr-toggle mr-toggle-on" aria-label="On"></button>
+      </div>
+      <div class="set-row">
+        <span class="set-row-body">
+          <span class="set-row-title">Findable by phone</span>
+          <span class="set-row-desc">People with your number can find you</span>
+        </span>
+        <button type="button" class="mr-toggle mr-toggle-on" aria-label="On"></button>
+      </div>
+      <div class="set-row">
+        <span class="set-row-body">
+          <span class="set-row-title">Suggest me to others</span>
+          <span class="set-row-desc">Appear in "people you may know"</span>
+        </span>
+        <button type="button" class="mr-toggle" aria-label="Off"></button>
+      </div>
+    </div>
+
+  </div>
+</div>

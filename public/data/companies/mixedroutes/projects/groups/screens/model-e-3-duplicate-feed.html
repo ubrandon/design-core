@@ -1,0 +1,72 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<div style="background: var(--bg-0); overflow-x: clip">
+  <div class="mr-scope" style="padding-bottom: 8px">
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 18px 16px 10px">
+      <span style="font-size: 1.6rem; font-weight: 800; color: var(--text)">Plans</span>
+      <div style="display: flex; align-items: center; gap: 12px">
+        <button type="button" class="mr-nav-icon-btn" aria-label="Notifications"><i class="ph ph-bell" aria-hidden="true"></i></button>
+        <img class="mr-top-nav-avatar" src="https://i.pravatar.cc/72?img=11" alt="" width="36" height="36" loading="lazy" />
+      </div>
+    </header>
+
+    <div style="padding: 0 16px 8px">
+      <div class="mr-chip-row" style="padding: 2px 0">
+        <button type="button" class="mr-chip mr-chip-active">Upcoming</button>
+        <button type="button" class="mr-chip">Past</button>
+      </div>
+    </div>
+
+    <div style="padding: 14px 16px 0">
+      <div style="font-size: 0.7rem; font-weight: 800; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; text-transform: uppercase; padding-bottom: 12px">Next month</div>
+
+      <div class="mr-plan-rows" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px">
+        <div class="mr-plan-row" style="background: linear-gradient(135deg, rgba(91, 109, 248, 0.4), rgba(173, 130, 255, 0.25)); position: relative">
+          <div class="mr-plan-row-media mr-plan-row-media--emoji" style="background: linear-gradient(135deg,#5b6df8,#ad82ff)" aria-hidden="true">
+            <span style="font-size: 36px">🍼</span>
+          </div>
+          <div class="mr-plan-row-content">
+            <div class="plan-card-mini-time">Sat, May 11 · 2 PM</div>
+            <div class="mr-plan-row-title">Baby shower for Mia</div>
+            <div style="display: flex; align-items: center; gap: 6px; margin-top: 4px">
+              <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&amp;fit=crop&amp;w=80&amp;h=80&amp;q=80" alt="" style="width: 14px; height: 14px; border-radius: 4px; object-fit: cover" loading="lazy" />
+              <span style="font-size: 0.74rem; color: rgba(255,255,255,0.65)">Hiking Crew · 7 going</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mr-plan-row" style="background: linear-gradient(135deg, rgba(255, 99, 132, 0.4), rgba(173, 130, 255, 0.25)); position: relative">
+          <div class="mr-plan-row-media mr-plan-row-media--emoji" style="background: linear-gradient(135deg,#ff5c8a,#ad82ff)" aria-hidden="true">
+            <span style="font-size: 36px">🍼</span>
+          </div>
+          <div class="mr-plan-row-content">
+            <div class="plan-card-mini-time">Sat, May 11 · 2 PM</div>
+            <div class="mr-plan-row-title">Baby shower for Mia</div>
+            <div style="display: flex; align-items: center; gap: 6px; margin-top: 4px">
+              <span style="font-size: 12px">👨‍👩‍👧</span>
+              <span style="font-size: 0.74rem; color: rgba(255,255,255,0.65)">Family · 5 going</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 14px; border-radius: 14px; background: rgba(255, 99, 132, 0.06); border: 1px solid rgba(255, 99, 132, 0.22); display: flex; gap: 10px; margin-bottom: 14px">
+        <i class="ph-fill ph-warning-circle" style="font-size: 18px; color: #ff6384; flex-shrink: 0; margin-top: 2px"></i>
+        <div style="flex: 1">
+          <div style="font-size: 0.84rem; font-weight: 800; color: var(--text); margin-bottom: 4px">Showing twice</div>
+          <div style="font-size: 0.76rem; color: rgba(255,255,255,0.65); line-height: 1.5">You're in both groups, so the same plan appears once per group. App can dedupe on read, but data stores both copies.</div>
+        </div>
+      </div>
+
+      <div style="padding: 14px; border-radius: 14px; background: rgba(173, 130, 255, 0.06); border: 1px solid rgba(173, 130, 255, 0.18); display: flex; gap: 10px">
+        <i class="ph-fill ph-info" style="font-size: 18px; color: #c8b3ff; flex-shrink: 0; margin-top: 2px"></i>
+        <div style="flex: 1">
+          <div style="font-size: 0.84rem; font-weight: 800; color: var(--text); margin-bottom: 4px">Cross-circle introduction · misses</div>
+          <div style="font-size: 0.76rem; color: rgba(255,255,255,0.65); line-height: 1.5">Each group only sees their own RSVPs. Defeats the "introduce my circles to each other" use case.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

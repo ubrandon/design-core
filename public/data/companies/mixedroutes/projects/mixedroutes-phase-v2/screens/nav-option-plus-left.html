@@ -1,0 +1,162 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .nav-plusleft-board,
+  .nav-plusleft-board * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  .nav-plusleft-board {
+    padding: 16px;
+    background: #e8edf2;
+    color: #101724;
+    font-family: "Geist", "DM Sans", sans-serif;
+  }
+
+  .nav-plusleft-board .sample + .sample {
+    margin-top: 14px;
+  }
+
+  .nav-plusleft-board .sample-label {
+    margin: 0 0 6px 2px;
+    color: #667487;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .nav-plusleft-board .nav-shell {
+    position: relative;
+    min-height: 66px;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(16, 23, 36, 0.08);
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(16, 23, 36, 0.08);
+  }
+
+  .nav-plusleft-board .slot-start {
+    justify-self: start;
+  }
+
+  .nav-plusleft-board .slot-end {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .nav-plusleft-board .brand {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .nav-plusleft-board .brand img {
+    width: 34px;
+    height: 34px;
+    display: block;
+    object-fit: contain;
+  }
+
+  .nav-plusleft-board .brand span,
+  .nav-plusleft-board .page-title {
+    color: #1a2332;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .nav-plusleft-board .icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    display: inline-grid;
+    place-items: center;
+    color: #1a2332;
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .nav-plusleft-board .badge {
+    position: absolute;
+    top: -9px;
+    right: -10px;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 4px;
+    display: grid;
+    place-items: center;
+    border: 2px solid #ffffff;
+    border-radius: 999px;
+    background: #0ca678;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+</style>
+
+<div class="nav-plusleft-board ds-no-scrollbar">
+  <section class="sample">
+    <div class="sample-label">Home</div>
+    <div class="nav-shell">
+      <span class="slot-start icon" aria-label="Create"><i class="ph ph-plus-circle" aria-hidden="true"></i></span>
+      <div class="brand">
+        <span>MixedRoutes</span>
+      </div>
+      <div class="slot-end">
+        <span class="icon" aria-label="Notifications"><i class="ph ph-bell" aria-hidden="true"></i><span class="badge">2</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sample">
+    <div class="sample-label">Discover</div>
+    <div class="nav-shell">
+      <span class="slot-start icon" aria-label="Create"><i class="ph ph-plus-circle" aria-hidden="true"></i></span>
+      <span class="page-title">Discover</span>
+      <div class="slot-end"></div>
+    </div>
+  </section>
+
+  <section class="sample">
+    <div class="sample-label">Profile</div>
+    <div class="nav-shell">
+      <span class="slot-start icon" aria-label="Create"><i class="ph ph-plus-circle" aria-hidden="true"></i></span>
+      <span class="page-title">You</span>
+      <div class="slot-end">
+        <span class="icon" aria-label="Settings"><i class="ph ph-gear-six" aria-hidden="true"></i></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sample">
+    <div class="sample-label">Plans</div>
+    <div class="nav-shell">
+      <span class="slot-start icon" aria-label="Create"><i class="ph ph-plus-circle" aria-hidden="true"></i></span>
+      <span class="page-title">Plans</span>
+      <div class="slot-end"></div>
+    </div>
+  </section>
+
+  <section class="sample">
+    <div class="sample-label">Chat</div>
+    <div class="nav-shell">
+      <span class="slot-start icon" aria-label="Create"><i class="ph ph-plus-circle" aria-hidden="true"></i></span>
+      <span class="page-title">Chats</span>
+      <div class="slot-end">
+        <span class="icon" aria-label="New chat"><i class="ph ph-note-pencil" aria-hidden="true"></i></span>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,104 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  .bbgh { --bone:#fbf8f3; --espresso:#241f19; --amber:#e8880a; --haze:#efe6d8; --dusk:#4a4238; font-family:"DM Sans",sans-serif; color:var(--espresso); background:var(--bone); padding:36px 32px 42px; overflow:hidden; }
+  .bbgh * { box-sizing:border-box; }
+  .bbgh-head { position:relative; min-height:250px; overflow:hidden; border-radius:16px; background:var(--espresso); }
+  .bbgh-head img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(1.05); }
+  .bbgh-head:after { content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(15,14,12,.82), rgba(15,14,12,0) 62%); }
+  .bbgh-head-copy { position:absolute; inset:auto 24px 22px; z-index:1; color:#fff; }
+  .bbgh-kicker { margin:0 0 9px; font-family:"Inter",sans-serif; font-size:10px; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:#ffb75c; }
+  .bbgh-title { max-width:620px; margin:0; font-family:"Inter",sans-serif; font-weight:800; font-size:44px; line-height:1.02; letter-spacing:-.025em; }
+  .bbgh-sub { max-width:560px; margin:11px 0 0; font-size:13px; line-height:1.6; color:rgba(255,255,255,.85); }
+  .bbgh-label { margin:28px 0 11px; font-family:"Inter",sans-serif; font-size:10px; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:rgba(36,31,25,.55); }
+  .bbgh-swatches { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+  .bbgh-swatch { min-width:0; background:#fff; border-radius:12px; border:1px solid rgba(36,31,25,.1); overflow:hidden; }
+  .bbgh-chip { height:68px; }
+  .bbgh-swatch-copy { padding:9px 11px 11px; }
+  .bbgh-swatch b { display:block; font-size:11px; }
+  .bbgh-swatch span { display:block; margin-top:2px; font-size:9px; line-height:1.4; color:rgba(36,31,25,.58); }
+  .bbgh-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .bbgh-card { padding:18px 19px; background:#fff; border-radius:14px; border:1px solid rgba(36,31,25,.1); }
+  .bbgh-card h3 { margin:0 0 5px; font-family:"Inter",sans-serif; font-weight:800; font-size:17px; letter-spacing:-.015em; }
+  .bbgh-card p { margin:0; font-size:12px; line-height:1.58; color:rgba(36,31,25,.66); }
+  .bbgh-type { display:grid; grid-template-columns:1.15fr .85fr; gap:12px; }
+  .bbgh-type-main { min-height:176px; padding:24px; border-radius:14px; background:var(--haze); }
+  .bbgh-display { margin:0; font-family:"Inter",sans-serif; font-weight:800; font-size:42px; line-height:1.05; letter-spacing:-.025em; }
+  .bbgh-display i { color:var(--amber); font-style:normal; }
+  .bbgh-type-meta { margin:16px 0 0; font-family:"Inter",sans-serif; font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:rgba(36,31,25,.5); }
+  .bbgh-type-side { padding:20px; background:#fff; border-radius:14px; border:1px solid rgba(36,31,25,.1); }
+  .bbgh-wordmark { font-family:"Inter",sans-serif; font-weight:800; font-size:26px; letter-spacing:-.02em; }
+  .bbgh-body { margin:12px 0 0; font-size:12px; line-height:1.65; color:rgba(36,31,25,.66); }
+  .bbgh-images { display:grid; grid-template-columns:.75fr 1.25fr; gap:12px; }
+  .bbgh-photo { position:relative; min-height:235px; overflow:hidden; border-radius:14px; background:var(--haze); }
+  .bbgh-photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(1.02); }
+  .bbgh-caption { position:absolute; left:10px; bottom:10px; max-width:82%; padding:6px 10px; border-radius:999px; background:rgba(24,20,14,.62); backdrop-filter:blur(4px); color:#fff; font-family:"Inter",sans-serif; font-size:9px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; }
+  .bbgh-rules { display:grid; gap:12px; }
+  .bbgh-rule { padding:15px 16px; border-radius:12px; background:#fff; border:1px solid rgba(36,31,25,.1); font-size:11px; line-height:1.55; color:rgba(36,31,25,.7); }
+  .bbgh-rule b { color:var(--amber); }
+  .bbgh-signature { display:grid; grid-template-columns:230px 1fr; gap:16px; align-items:stretch; }
+  .bbgh-plan { position:relative; min-height:300px; overflow:hidden; border-radius:14px; background:var(--espresso); }
+  .bbgh-plan img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .bbgh-plan:after { content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(24,20,14,.8), rgba(24,20,14,0) 55%); }
+  .bbgh-plan-copy { position:absolute; inset:auto 14px 14px; z-index:1; color:#fff; }
+  .bbgh-plan-title { display:block; font-family:"Inter",sans-serif; font-weight:800; font-size:19px; line-height:1.08; letter-spacing:-.015em; }
+  .bbgh-plan-meta { display:block; margin-top:6px; font-size:9px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.8); }
+  .bbgh-plan-going { display:inline-block; margin-top:9px; padding:4px 10px; border-radius:999px; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.4); backdrop-filter:blur(4px); font-family:"Inter",sans-serif; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+  .bbgh-manifesto { display:flex; flex-direction:column; justify-content:center; padding:26px; border-radius:14px; background:var(--espresso); color:var(--bone); }
+  .bbgh-manifesto q { font-family:"Inter",sans-serif; font-weight:800; font-size:25px; line-height:1.15; letter-spacing:-.02em; quotes:none; }
+  .bbgh-manifesto q i { color:var(--amber); font-style:normal; }
+  .bbgh-manifesto p { margin:14px 0 0; font-size:11px; line-height:1.6; color:rgba(251,248,243,.75); }
+  .bbgh-foot { margin:14px 0 0; font-size:10px; line-height:1.55; color:rgba(36,31,25,.55); }
+</style>
+
+<div class="bbgh">
+  <header class="bbgh-head">
+    <img src="https://images.unsplash.com/photo-1521336575822-6da63fb45455?auto=format&fit=crop&w=1200&q=75" alt="Friends around a campfire at night" />
+    <div class="bbgh-head-copy">
+      <p class="bbgh-kicker">Identity D · Golden Hour</p>
+      <h1 class="bbgh-title">Go where life is.</h1>
+      <p class="bbgh-sub">Every direction makes the same promise: real people, out in the world, in real light. What changes is how that promise gets dressed.</p>
+    </div>
+  </header>
+
+  <p class="bbgh-label">Palette · almost nothing, on purpose</p>
+  <div class="bbgh-swatches">
+    <div class="bbgh-swatch"><div class="bbgh-chip" style="background:#241f19"></div><div class="bbgh-swatch-copy"><b>Espresso · #241F19</b><span>Text, dark bands, night sections</span></div></div>
+    <div class="bbgh-swatch"><div class="bbgh-chip" style="background:#fbf8f3"></div><div class="bbgh-swatch-copy"><b>Bone · #FBF8F3</b><span>Default ground, warm not white</span></div></div>
+    <div class="bbgh-swatch"><div class="bbgh-chip" style="background:#e8880a"></div><div class="bbgh-swatch-copy"><b>Amber · #E8880A</b><span>The one accent, dusk in a hex</span></div></div>
+    <div class="bbgh-swatch"><div class="bbgh-chip" style="background:#efe6d8"></div><div class="bbgh-swatch-copy"><b>Haze · #EFE6D8</b><span>Wells, cards, quiet fills</span></div></div>
+    <div class="bbgh-swatch"><div class="bbgh-chip" style="background:#4a4238"></div><div class="bbgh-swatch-copy"><b>Dusk · #4A4238</b><span>Secondary text and settled states</span></div></div>
+  </div>
+
+  <p class="bbgh-label">Principles</p>
+  <div class="bbgh-grid">
+    <div class="bbgh-card"><h3>Photos carry everything.</h3><p>Every surface leads with a real moment in real light. The UI is a frame: warm neutrals, hairlines, and one amber accent.</p></div>
+    <div class="bbgh-card"><h3>Modern by restraint.</h3><p>No aging tricks and no decoration. What keeps it current is confidence: big type, generous space, clean 14px radii.</p></div>
+    <div class="bbgh-card"><h3>Night is a section, not a mode.</h3><p>Espresso bands appear where the content is an evening. The product itself stays light, warm, and readable.</p></div>
+    <div class="bbgh-card"><h3>Say it flat.</h3><p>Headlines are short declarative sentences with a period. The heavy, tight setting makes plain words feel like conviction.</p></div>
+  </div>
+
+  <p class="bbgh-label">Type · one family, set heavy</p>
+  <div class="bbgh-type">
+    <div class="bbgh-type-main"><p class="bbgh-display">Go where<br />life <i>is.</i></p><p class="bbgh-type-meta">Inter 800 · -0.025em · sentence case, terminal period</p></div>
+    <div class="bbgh-type-side"><div class="bbgh-wordmark">MixedRoutes</div><p class="bbgh-body">Inter 800 is the logo, the headline, and the plan name. DM Sans does the reading. No thin weights anywhere, ever.</p></div>
+  </div>
+
+  <p class="bbgh-label">Imagery · warm, unposed, film-like</p>
+  <div class="bbgh-images">
+    <div class="bbgh-rules">
+      <figure class="bbgh-photo" style="min-height:150px"><img src="https://images.unsplash.com/photo-1533240332313-0db49b459ad6?auto=format&fit=crop&w=700&q=75" alt="Friends in warm evening light" /><figcaption class="bbgh-caption">Dusk, string lights, firelight</figcaption></figure>
+      <div class="bbgh-rule"><b>The hour is the filter.</b> No sepia, no desaturation, no moody edits. If the photo was taken in good light, it needs nothing.</div>
+    </div>
+    <figure class="bbgh-photo"><img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1000&q=75" alt="A crowd of friends at an evening gathering" /><figcaption class="bbgh-caption">Small groups · mid-motion · no phones</figcaption></figure>
+  </div>
+
+  <p class="bbgh-label">Signature object · the plan card</p>
+  <div class="bbgh-signature">
+    <figure class="bbgh-plan"><img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=700&q=75" alt="A small concert in warm light" /><figcaption class="bbgh-plan-copy"><span class="bbgh-plan-title">Backyard show &amp; chili</span><span class="bbgh-plan-meta">Saturday · 6 PM · Kira's yard</span><span class="bbgh-plan-going">7 going</span></figcaption></figure>
+    <div class="bbgh-manifesto"><q>A photo, a name, a time. <i>That is the brand.</i></q><p>The card is unchanged from the redesign2 anatomy: 3:4 photo, warm scrim, white heavy title, one meta line, frosted count pill. This direction bets everything on it.</p></div>
+  </div>
+  <p class="bbgh-foot">The most contemporary of the set: zero nostalgia, all warmth. Grounded because the photography is real, not because the surface pretends to be paper.</p>
+</div>

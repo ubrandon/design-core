@@ -1,0 +1,94 @@
+{
+  "screens": [
+    {
+      "file": "you-v19-hero-header.html",
+      "x": -448,
+      "y": -1088,
+      "width": 390
+    },
+    {
+      "file": "you-v20-cover-banner.html",
+      "x": 0,
+      "y": -1088,
+      "width": 390
+    },
+    {
+      "file": "you-v10-bento.html",
+      "x": 1504,
+      "y": -1088,
+      "width": 390
+    },
+    {
+      "file": "you-v12-timeline.html",
+      "x": 1920,
+      "y": -1088,
+      "width": 390
+    },
+    {
+      "file": "you-v14-wallet.html",
+      "x": 1088,
+      "y": -1088,
+      "width": 390
+    },
+    {
+      "file": "edit-profile.html",
+      "x": -32,
+      "y": -3680,
+      "width": 390
+    },
+    {
+      "file": "you-v1-dashboard.html",
+      "x": -448,
+      "y": 864,
+      "width": 390
+    },
+    {
+      "file": "you-v3-action-first.html",
+      "x": -32,
+      "y": 864,
+      "width": 390
+    },
+    {
+      "file": "you-v5-condensed.html",
+      "x": 448,
+      "y": 864,
+      "width": 390
+    },
+    {
+      "file": "you-v6-magazine.html",
+      "x": 896,
+      "y": 864,
+      "width": 390
+    },
+    {
+      "file": "you-profile-friends-variants.html",
+      "x": 480,
+      "y": -1088,
+      "width": 390
+    },
+    {
+      "file": "you-profile-v2.html",
+      "x": -448,
+      "y": -3680,
+      "width": 390
+    },
+    {
+      "file": "you-profile-example-interests.html",
+      "x": 1344,
+      "y": 864,
+      "width": 390
+    },
+    {
+      "file": "settings.html",
+      "x": 544,
+      "y": -3680,
+      "width": 390
+    },
+    {
+      "file": "settings-profile-privacy.html",
+      "x": 960,
+      "y": -3680,
+      "width": 390
+    }
+  ]
+}

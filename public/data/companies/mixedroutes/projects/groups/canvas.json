@@ -1,0 +1,508 @@
+{
+  "screens": [
+    {
+      "file": "friends-my-groups.html",
+      "x": 7904,
+      "y": 9824,
+      "width": 390
+    },
+    {
+      "file": "friends-empty-groups.html",
+      "x": 7488,
+      "y": 9824,
+      "width": 390
+    },
+    {
+      "file": "invite-picker-default-v2.html",
+      "x": 8928,
+      "y": 9824,
+      "width": 390
+    },
+    {
+      "file": "invite-picker-group-locked-v2.html",
+      "x": 9344,
+      "y": 9824,
+      "width": 390
+    },
+    {
+      "file": "invite-picker-people-selected-v3.html",
+      "x": 9760,
+      "y": 9824,
+      "width": 390
+    },
+    {
+      "file": "activity-guests-list-compact-row.html",
+      "x": 10432,
+      "y": 9824,
+      "width": 390
+    },
+    {
+      "file": "activity-guests-list-fab-with-link.html",
+      "x": 11328,
+      "y": 9824,
+      "width": 390
+    },
+    {
+      "file": "activity-detail-in-group-v3.html",
+      "x": 9056,
+      "y": 11776,
+      "width": 390
+    },
+    {
+      "file": "activity-detail-in-group-v3a.html",
+      "x": 9472,
+      "y": 11776,
+      "width": 390
+    },
+    {
+      "file": "activity-detail-in-group-v3b.html",
+      "x": 9888,
+      "y": 11776,
+      "width": 390
+    },
+    {
+      "file": "activity-invite-from-group.html",
+      "x": 10304,
+      "y": 11776,
+      "width": 390
+    },
+    {
+      "file": "people-page-with-suggested.html",
+      "x": 8320,
+      "y": 9824,
+      "width": 390
+    },
+    {
+      "file": "profile-with-groups.html",
+      "x": 9408,
+      "y": 13536,
+      "width": 390
+    },
+    {
+      "file": "profile-empty-groups.html",
+      "x": 8992,
+      "y": 13536,
+      "width": 390
+    },
+    {
+      "file": "chats-tab-mixed-types.html",
+      "x": 7488,
+      "y": 11776,
+      "width": 390
+    },
+    {
+      "file": "chats-tab-groups-filter.html",
+      "x": 7904,
+      "y": 11776,
+      "width": 390
+    },
+    {
+      "file": "chats-empty.html",
+      "x": 8320,
+      "y": 11776,
+      "width": 390
+    },
+    {
+      "file": "notifications-groups-only.html",
+      "x": 7520,
+      "y": 13536,
+      "width": 390
+    },
+    {
+      "file": "other-user-profile.html",
+      "x": 9824,
+      "y": 13536,
+      "width": 390
+    },
+    {
+      "file": "plans-tab-with-group-plans.html",
+      "x": 10464,
+      "y": 13536,
+      "width": 390
+    },
+    {
+      "file": "plans-tab-group-plus-people.html",
+      "x": 10880,
+      "y": 13536,
+      "width": 390
+    },
+    {
+      "file": "create-group-v7-basics-with-card.html",
+      "x": 11072,
+      "y": 11776,
+      "width": 390
+    },
+    {
+      "file": "create-group-v8-with-options.html",
+      "x": 11488,
+      "y": 11776,
+      "width": 390
+    },
+    {
+      "file": "invite-preview.html",
+      "x": 224,
+      "y": 9888,
+      "width": 390
+    },
+    {
+      "file": "invite-already-member.html",
+      "x": 672,
+      "y": 9888,
+      "width": 390
+    },
+    {
+      "file": "invite-expired.html",
+      "x": 1120,
+      "y": 9888,
+      "width": 390
+    },
+    {
+      "file": "group-home-v2.html",
+      "x": 12512,
+      "y": 11776,
+      "width": 390
+    },
+    {
+      "file": "group-home-empty-v2.html",
+      "x": 12096,
+      "y": 11776,
+      "width": 390
+    },
+    {
+      "file": "group-chat.html",
+      "x": 1664,
+      "y": 9888,
+      "width": 390
+    },
+    {
+      "file": "create-group-plan-v2-modular.html",
+      "x": 7936,
+      "y": 13536,
+      "width": 390
+    },
+    {
+      "file": "attach-list-sheet-v2.html",
+      "x": 8352,
+      "y": 13536,
+      "width": 390
+    },
+    {
+      "file": "group-members.html",
+      "x": 10848,
+      "y": 9824,
+      "width": 390
+    },
+    {
+      "file": "member-options-sheet.html",
+      "x": 9472,
+      "y": 15264,
+      "width": 390
+    },
+    {
+      "file": "group-settings.html",
+      "x": 9888,
+      "y": 15264,
+      "width": 390
+    },
+    {
+      "file": "member-options-sheet-admin.html",
+      "x": 10304,
+      "y": 15264,
+      "width": 390
+    },
+    {
+      "file": "member-options-sheet-self.html",
+      "x": 10720,
+      "y": 15264,
+      "width": 390
+    },
+    {
+      "file": "leave-group-confirm.html",
+      "x": 7520,
+      "y": 15264,
+      "width": 390
+    },
+    {
+      "file": "delete-group-confirm.html",
+      "x": 7936,
+      "y": 15264,
+      "width": 390
+    },
+    {
+      "file": "invite-link-regenerate-confirm.html",
+      "x": 8352,
+      "y": 15264,
+      "width": 390
+    },
+    {
+      "file": "invite-link-disable-confirm.html",
+      "x": 8768,
+      "y": 15264,
+      "width": 390
+    },
+    {
+      "file": "model-a-1-new-plan.html",
+      "x": 7488,
+      "y": 16832,
+      "width": 390
+    },
+    {
+      "file": "model-a-2-add-outsider-blocked.html",
+      "x": 7904,
+      "y": 16832,
+      "width": 390
+    },
+    {
+      "file": "model-a-3-group-home.html",
+      "x": 8320,
+      "y": 16832,
+      "width": 390
+    },
+    {
+      "file": "model-b-row-label.html",
+      "x": 224,
+      "y": 11168,
+      "width": 480
+    },
+    {
+      "file": "model-b-1-share-link.html",
+      "x": 768,
+      "y": 11168,
+      "width": 390
+    },
+    {
+      "file": "model-b-2-rsvp-confirm.html",
+      "x": 1216,
+      "y": 11168,
+      "width": 390
+    },
+    {
+      "file": "model-b-3-group-home-after.html",
+      "x": 1664,
+      "y": 11168,
+      "width": 390
+    },
+    {
+      "file": "model-c-row-label.html",
+      "x": 2272,
+      "y": 11168,
+      "width": 480
+    },
+    {
+      "file": "model-c-1-multi-attach.html",
+      "x": 2816,
+      "y": 11168,
+      "width": 390
+    },
+    {
+      "file": "model-c-2-add-non-member.html",
+      "x": 3264,
+      "y": 11168,
+      "width": 390
+    },
+    {
+      "file": "model-c-3-group-home-shared.html",
+      "x": 3712,
+      "y": 11168,
+      "width": 390
+    },
+    {
+      "file": "model-d-row-label.html",
+      "x": 224,
+      "y": 12160,
+      "width": 480
+    },
+    {
+      "file": "model-d-1-circle-picker.html",
+      "x": 768,
+      "y": 12160,
+      "width": 390
+    },
+    {
+      "file": "model-d-2-circles-tab.html",
+      "x": 1216,
+      "y": 12160,
+      "width": 390
+    },
+    {
+      "file": "model-d-3-plan-card.html",
+      "x": 1664,
+      "y": 12160,
+      "width": 390
+    },
+    {
+      "file": "model-e-row-label.html",
+      "x": 2240,
+      "y": 12160,
+      "width": 480
+    },
+    {
+      "file": "model-e-1-broadcast-picker.html",
+      "x": 2784,
+      "y": 12160,
+      "width": 390
+    },
+    {
+      "file": "model-e-2-fork-view.html",
+      "x": 3232,
+      "y": 12160,
+      "width": 390
+    },
+    {
+      "file": "model-e-3-duplicate-feed.html",
+      "x": 3680,
+      "y": 12160,
+      "width": 390
+    },
+    {
+      "file": "model-d-flow-row-label.html",
+      "x": 224,
+      "y": 13120,
+      "width": 480
+    },
+    {
+      "file": "model-d-flow-1-friends-tab.html",
+      "x": 768,
+      "y": 13120,
+      "width": 390
+    },
+    {
+      "file": "model-d-flow-2-friend-profile.html",
+      "x": 1216,
+      "y": 13120,
+      "width": 390
+    },
+    {
+      "file": "model-d-flow-3-add-to-circle-sheet.html",
+      "x": 1664,
+      "y": 13120,
+      "width": 390
+    },
+    {
+      "file": "model-d-flow-8-create-circle.html",
+      "x": 2112,
+      "y": 13120,
+      "width": 390
+    },
+    {
+      "file": "model-d-flow-4-circle-detail.html",
+      "x": 2560,
+      "y": 13120,
+      "width": 390
+    },
+    {
+      "file": "model-d-flow-5-audience-picker.html",
+      "x": 3008,
+      "y": 13120,
+      "width": 390
+    },
+    {
+      "file": "model-d-flow-6-new-plan-with-circle.html",
+      "x": 3456,
+      "y": 13120,
+      "width": 390
+    },
+    {
+      "file": "model-d-flow-7-explainer-sheet.html",
+      "x": 3904,
+      "y": 13120,
+      "width": 390
+    },
+    {
+      "file": "model-d-tags-1-friends-tab.html",
+      "x": 9024,
+      "y": 16832,
+      "width": 390
+    },
+    {
+      "file": "model-d-tags-2-filtered-list.html",
+      "x": 9440,
+      "y": 16832,
+      "width": 390
+    },
+    {
+      "file": "model-d-tags-3-tag-as-popover.html",
+      "x": 9856,
+      "y": 16832,
+      "width": 390
+    },
+    {
+      "file": "model-d-tags-4-friend-profile.html",
+      "x": 10272,
+      "y": 16832,
+      "width": 390
+    },
+    {
+      "file": "model-d-tags-5-audience-picker.html",
+      "x": 10688,
+      "y": 16832,
+      "width": 390
+    },
+    {
+      "file": "model-d-tags-6-tag-prompt.html",
+      "x": 11104,
+      "y": 16832,
+      "width": 390
+    },
+    {
+      "file": "model-d-borrow-row-label.html",
+      "x": 224,
+      "y": 14528,
+      "width": 480
+    },
+    {
+      "file": "model-d-borrow-1-audience-picker.html",
+      "x": 768,
+      "y": 14528,
+      "width": 390
+    },
+    {
+      "file": "model-d-borrow-2-pick-members.html",
+      "x": 1216,
+      "y": 14528,
+      "width": 390
+    },
+    {
+      "file": "model-d-borrow-3-new-plan.html",
+      "x": 1664,
+      "y": 14528,
+      "width": 390
+    },
+    {
+      "file": "model-d-borrow-4-group-home-clean.html",
+      "x": 2112,
+      "y": 14528,
+      "width": 390
+    },
+    {
+      "file": "model-d-borrow-alt-row-label.html",
+      "x": 224,
+      "y": 15424,
+      "width": 480
+    },
+    {
+      "file": "model-d-borrow-alt-a-primary-secondary.html",
+      "x": 768,
+      "y": 15424,
+      "width": 390
+    },
+    {
+      "file": "model-d-borrow-alt-b-tap-sheet.html",
+      "x": 1216,
+      "y": 15424,
+      "width": 390
+    },
+    {
+      "file": "model-d-borrow-alt-c-overflow.html",
+      "x": 1664,
+      "y": 15424,
+      "width": 390
+    },
+    {
+      "file": "model-d-borrow-alt-d-mode-toggle.html",
+      "x": 2112,
+      "y": 15424,
+      "width": 390
+    }
+  ]
+}

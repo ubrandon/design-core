@@ -1,0 +1,194 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .pplpage-scope { --vb-bg: #0c121b; }
+  .pplpage-scope, .pplpage-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .pplpage-scope::-webkit-scrollbar, .pplpage-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .pplpage-wrap { background: var(--vb-bg); min-height: 844px; position: relative; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .pplpage-body { flex: 1; padding-bottom: 32px; }
+
+  .pplpage-header { display: grid; grid-template-columns: 28px 1fr; align-items: center; gap: 16px; padding: 22px 20px 10px; }
+  .pplpage-header button { background: transparent; border: 0; color: #fff; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .pplpage-header button i { font-size: 23px; }
+  .pplpage-title { color: #fff; font-size: 1.55rem; font-weight: 850; letter-spacing: -0.01em; padding-left: 4px; }
+
+  .pplpage-search { margin: 6px 20px 14px; display: flex; align-items: center; gap: 11px; padding: 14px 18px; border-radius: 999px; background: rgba(255,255,255,0.07); }
+  .pplpage-search i { font-size: 19px; color: rgba(255,255,255,0.45); }
+  .pplpage-search input { flex: 1; background: transparent; border: 0; outline: none; color: #fff; font-size: 1rem; font-weight: 600; font-family: inherit; }
+  .pplpage-search input::placeholder { color: rgba(255,255,255,0.42); }
+
+  .pplpage-section { display: flex; align-items: baseline; justify-content: space-between; padding: 16px 20px 10px; }
+  .pplpage-section .slabel { color: #fff; font-size: 1.4rem; font-weight: 850; letter-spacing: -0.01em; }
+
+  .pplpage-row { display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 14px; padding: 11px 20px; }
+  .pplpage-row .av { width: 48px; height: 48px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: #4a8fa0; color: #fff; font-size: 1.15rem; font-weight: 850; }
+  .pplpage-row .av.muted { background: #4a5462; font-size: 0.98rem; }
+  .pplpage-row .av img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+  .pplpage-name { color: #fff; font-size: 1.05rem; font-weight: 850; line-height: 1.2; }
+  .pplpage-handle { color: rgba(255,255,255,0.5); font-size: 0.9rem; font-weight: 650; margin-top: 2px; }
+  .pplpage-sent { display: inline-flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.09); border: 0; border-radius: 999px; padding: 9px 16px; color: #fff; font-size: 0.88rem; font-weight: 850; }
+  .pplpage-sent i { font-size: 15px; }
+  .pplpage-add { display: inline-flex; align-items: center; background: rgba(255,255,255,0.09); border: 0; border-radius: 999px; padding: 9px 18px; color: #fff; font-size: 0.88rem; font-weight: 850; }
+  .pplpage-hint { margin: 14px 20px 6px; padding: 14px 16px; border-radius: 14px; background: rgba(255,255,255,0.04); display: flex; align-items: center; gap: 11px; }
+  .pplpage-hint i { font-size: 18px; color: rgba(255,255,255,0.45); flex-shrink: 0; }
+  .pplpage-hint span { color: rgba(255,255,255,0.55); font-size: 0.86rem; font-weight: 650; line-height: 1.4; }
+
+  .pplpage-invitecard { margin: 12px 20px 6px; padding: 16px 18px; border-radius: 18px; background: rgba(255,255,255,0.05); display: grid; grid-template-columns: 46px 1fr auto; align-items: center; gap: 14px; }
+  .pplpage-invitecard .emo { width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,0.07); display: inline-flex; align-items: center; justify-content: center; font-size: 21px; }
+  .pplpage-ic-title { color: #fff; font-size: 1rem; font-weight: 850; }
+  .pplpage-ic-sub { color: rgba(255,255,255,0.5); font-size: 0.86rem; font-weight: 650; margin-top: 2px; }
+  .pplpage-invitecard > i { font-size: 18px; color: rgba(255,255,255,0.55); }
+
+  .pplpage-empty { display: none; padding: 18px 20px; color: rgba(255,255,255,0.45); font-size: 0.92rem; font-weight: 650; }
+</style>
+
+<div class="mr-scope pplpage-scope">
+  <div class="pplpage-wrap">
+    <div class="pplpage-body">
+      <header class="pplpage-header">
+        <button type="button" aria-label="Back"><i class="ph ph-arrow-left"></i></button>
+        <div class="pplpage-title">Friends</div>
+      </header>
+
+      <div class="pplpage-search">
+        <i class="ph ph-magnifying-glass"></i>
+        <input type="text" placeholder="Search people" />
+      </div>
+
+      <div class="pplpage-invitecard">
+        <span class="emo">🔗</span>
+        <div>
+          <div class="pplpage-ic-title">Invite friends</div>
+          <div class="pplpage-ic-sub">Plans are better together.</div>
+        </div>
+        <i class="ph ph-caret-right"></i>
+      </div>
+
+      <div class="pplpage-section" data-sect="friends">
+        <span class="slabel">Friends</span>
+      </div>
+
+      <div class="pplpage-row" data-name="eric hechavarria erichech">
+        <span class="av"><img src="https://i.pravatar.cc/96?img=12" alt="" loading="lazy" /></span>
+        <div>
+          <div class="pplpage-name">Eric Hechavarria</div>
+          <div class="pplpage-handle">@erichech</div>
+        </div>
+      </div>
+
+      <div class="pplpage-row" data-name="brandon unglaub mixyboi">
+        <span class="av">B</span>
+        <div>
+          <div class="pplpage-name">Brandon Unglaub</div>
+          <div class="pplpage-handle">@mixyboi</div>
+        </div>
+      </div>
+
+      <div class="pplpage-row" data-name="carol unglaub clu">
+        <span class="av"><img src="https://i.pravatar.cc/96?img=47" alt="" loading="lazy" /></span>
+        <div>
+          <div class="pplpage-name">Carol Unglaub</div>
+          <div class="pplpage-handle">@clu</div>
+        </div>
+      </div>
+
+      <div class="pplpage-row" data-name="test test">
+        <span class="av muted">TT</span>
+        <div>
+          <div class="pplpage-name">Test Test</div>
+          <div class="pplpage-handle">@test</div>
+        </div>
+      </div>
+
+      <div class="pplpage-row" data-name="tom unglaub tru">
+        <span class="av"><img src="https://i.pravatar.cc/96?img=59" alt="" loading="lazy" /></span>
+        <div>
+          <div class="pplpage-name">Tom Unglaub</div>
+          <div class="pplpage-handle">@tru</div>
+        </div>
+      </div>
+
+      <div class="pplpage-section" data-sect="suggested">
+        <span class="slabel">Suggested</span>
+      </div>
+
+      <div class="pplpage-row" data-name="eric1 hech1">
+        <span class="av muted">EH</span>
+        <div>
+          <div class="pplpage-name">eric1 hech1</div>
+          <div class="pplpage-handle">@eric1</div>
+        </div>
+        <button type="button" class="pplpage-sent"><i class="ph-fill ph-clock"></i>Sent</button>
+      </div>
+
+      <div class="pplpage-row" data-name="test10 test10">
+        <span class="av muted">TT</span>
+        <div>
+          <div class="pplpage-name">test10 test10</div>
+          <div class="pplpage-handle">@test10</div>
+        </div>
+        <button type="button" class="pplpage-add">Add</button>
+      </div>
+
+      <div class="pplpage-row" data-name="test12 test12">
+        <span class="av muted">TT</span>
+        <div>
+          <div class="pplpage-name">test12 test12</div>
+          <div class="pplpage-handle">@test12</div>
+        </div>
+        <button type="button" class="pplpage-add">Add</button>
+      </div>
+
+      <div class="pplpage-row" data-name="test3 test3">
+        <span class="av muted">TT</span>
+        <div>
+          <div class="pplpage-name">test3 test3</div>
+          <div class="pplpage-handle">@test3</div>
+        </div>
+        <button type="button" class="pplpage-add">Add</button>
+      </div>
+
+      <div class="pplpage-hint">
+        <i class="ph ph-magnifying-glass"></i>
+        <span>Not seeing someone? Search by name or username.</span>
+      </div>
+
+      <div class="pplpage-empty">No people match your search.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var scope = document.querySelector('.pplpage-scope');
+    if (!scope) return;
+    var input = scope.querySelector('.pplpage-search input');
+    var rows = scope.querySelectorAll('.pplpage-row');
+    var sections = scope.querySelectorAll('.pplpage-section');
+    var cards = scope.querySelectorAll('.pplpage-invitecard');
+    var empty = scope.querySelector('.pplpage-empty');
+    var hint = scope.querySelector('.pplpage-hint');
+    scope.querySelectorAll('.pplpage-add').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        btn.className = 'pplpage-sent';
+        btn.innerHTML = '<i class="ph-fill ph-clock"></i>Sent';
+        btn.disabled = true;
+      });
+    });
+    input.addEventListener('input', function () {
+      var q = input.value.trim().toLowerCase();
+      var visible = 0;
+      rows.forEach(function (row) {
+        var hit = !q || row.getAttribute('data-name').indexOf(q) !== -1;
+        row.style.display = hit ? '' : 'none';
+        if (hit) visible++;
+      });
+      sections.forEach(function (s) { s.style.display = q ? 'none' : ''; });
+      cards.forEach(function (c) { c.style.display = q ? 'none' : ''; });
+      hint.style.display = q ? 'none' : '';
+      empty.style.display = q && visible === 0 ? 'block' : 'none';
+    });
+  })();
+</script>

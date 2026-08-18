@@ -1,0 +1,461 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .nv-root { background: var(--bg-0); color: var(--text); padding: 32px 24px 80px; }
+  .nv-intro { max-width: 960px; margin: 0 auto 28px; }
+  .nv-intro h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 8px; }
+  .nv-intro p { font-size: 0.92rem; color: rgba(255,255,255,0.68); line-height: 1.45; margin: 0 0 4px; }
+
+  .nv-needs {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 18px;
+    max-width: 960px; margin: 14px auto 28px;
+    padding: 14px 16px; border-radius: 14px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+  }
+  .nv-need { display: flex; gap: 8px; align-items: flex-start; font-size: 0.84rem; color: rgba(255,255,255,0.78); line-height: 1.35; }
+  .nv-need i { color: var(--neon-teal); font-size: 14px; margin-top: 3px; flex-shrink: 0; }
+
+  .nv-camp {
+    max-width: 960px; margin: 0 auto 16px;
+    display: flex; align-items: baseline; gap: 12px;
+    padding: 8px 4px 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nv-camp-pill {
+    font-size: 0.66rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 9px; border-radius: 999px;
+    color: var(--neon-teal); background: rgba(var(--neon-teal-rgb), 0.1);
+    border: 1px solid rgba(var(--neon-teal-rgb), 0.24);
+  }
+  .nv-camp-title { font-size: 1.1rem; font-weight: 800; color: var(--text); letter-spacing: -0.01em; }
+  .nv-camp-desc { font-size: 0.84rem; color: rgba(255,255,255,0.6); }
+
+  .nv-grid {
+    max-width: 960px; margin: 0 auto 36px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
+  }
+
+  .nv-variant {
+    border-radius: 18px; overflow: hidden;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex; flex-direction: column;
+  }
+  .nv-variant-head { padding: 14px 16px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .nv-variant-pill {
+    display: inline-block; font-size: 0.64rem; font-weight: 800;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--neon-teal); margin-bottom: 4px;
+  }
+  .nv-variant-title { font-size: 0.98rem; font-weight: 800; color: var(--text); letter-spacing: -0.01em; }
+  .nv-variant-desc { font-size: 0.8rem; color: rgba(255,255,255,0.62); margin-top: 4px; line-height: 1.4; }
+  .nv-variant-pros { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .nv-tag {
+    font-size: 0.68rem; padding: 3px 8px; border-radius: 999px;
+    background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .nv-tag.is-warn { color: #f5c451; background: rgba(245,196,81,0.08); border-color: rgba(245,196,81,0.18); }
+
+  .nv-stage {
+    position: relative;
+    margin: 16px 16px 18px;
+    height: 200px;
+    background: var(--bg-1);
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+  }
+  .nv-stage-top {
+    height: 48px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 12px;
+    background: rgba(6, 8, 14, 0.98);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .nv-stage-logo { display: flex; align-items: center; gap: 6px; text-decoration: none; color: inherit; }
+  .nv-stage-logo img { height: 22px; width: 22px; display: block; }
+  .nv-stage-logo-text { font-size: 0.78rem; font-weight: 700; letter-spacing: -0.01em; color: rgba(255,255,255,0.96); }
+  .nv-stage-actions { display: flex; align-items: center; gap: 12px; }
+  .nv-stage-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.94); font-size: 16px;
+    background: none; border: none; padding: 0;
+  }
+  .nv-stage-icon.is-avatar {
+    width: 24px; height: 24px; border-radius: 50%;
+    background-image: url(https://i.pravatar.cc/72?img=11);
+    background-size: cover; background-position: center;
+    border: 1px solid rgba(255,255,255,0.22);
+  }
+  .nv-stage-notif {
+    position: relative; display: inline-flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.94); font-size: 16px;
+  }
+  .nv-stage-notif-dot {
+    position: absolute; top: -2px; right: -2px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #e74c3c; border: 1.5px solid rgba(6, 8, 14, 1);
+  }
+
+  .nv-stage-body {
+    height: calc(100% - 44px - 60px);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.18); font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  .nv-stage-tab {
+    position: absolute; left: 8px; right: 8px; bottom: 8px;
+    height: 52px; border-radius: 16px;
+    background: rgba(6,8,14,0.96);
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: space-around;
+    padding: 0 4px;
+  }
+  .nv-tab {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2px; flex: 1; padding: 4px 2px;
+    color: rgba(255,255,255,0.42);
+    background: none; border: none; cursor: pointer; min-width: 0;
+  }
+  .nv-tab i { font-size: 17px; line-height: 1; }
+  .nv-tab .nv-tab-label { font-size: 0.54rem; font-weight: 700; letter-spacing: 0.02em; }
+  .nv-tab.is-active { color: rgba(255,255,255,0.98); }
+  .nv-tab.is-active i { color: var(--neon-teal); }
+
+  .nv-tab-avatar {
+    width: 24px; height: 24px; border-radius: 50%;
+    background-image: url(https://i.pravatar.cc/72?img=11);
+    background-size: cover;
+    border: 1.5px solid rgba(255,255,255,0.2);
+  }
+  .nv-tab.is-active .nv-tab-avatar { border-color: var(--neon-teal); }
+  .nv-tab-badge {
+    position: absolute; top: -1px; right: -1px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #22c55e; border: 1.5px solid rgba(6,8,14,1);
+  }
+  .nv-tab-icon-wrap { position: relative; display: inline-flex; align-items: center; justify-content: center; }
+
+  .nv-tab.is-raised .nv-tab-circle {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, color-mix(in srgb, #5ba5ff 78%, #020b14), color-mix(in srgb, #20e0cf 72%, #020b14));
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 18px;
+    box-shadow: 0 6px 16px rgba(32,224,207,0.32), 0 0 0 4px var(--bg-1);
+    margin-top: -20px;
+  }
+  .nv-tab.is-raised .nv-tab-label { margin-top: 1px; color: rgba(255,255,255,0.7); }
+
+  .nv-fab {
+    position: absolute; right: 12px; bottom: 72px;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: linear-gradient(135deg, color-mix(in srgb, #5ba5ff 78%, #020b14), color-mix(in srgb, #20e0cf 72%, #020b14));
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    box-shadow: 0 6px 16px rgba(32,224,207,0.32);
+  }
+</style>
+
+<div class="mr-scope nv-root">
+  <div class="nv-intro">
+    <h1>Bottom nav exploration</h1>
+    <p>The full set of destinations doesn't fit five tabs. Two camps below: <b>Camp 1</b> uses a "You" tab that absorbs Saved + Friends + Settings. <b>Camp 2</b> gives Saved its own tab and moves the avatar/settings to the top.</p>
+  </div>
+
+  <div class="nv-needs">
+    <div class="nv-need"><i class="ph-fill ph-check-circle"></i><div>Home — feed (default landing)</div></div>
+    <div class="nv-need"><i class="ph-fill ph-check-circle"></i><div>Discover — browse events</div></div>
+    <div class="nv-need"><i class="ph-fill ph-check-circle"></i><div>Plans — upcoming calendar</div></div>
+    <div class="nv-need"><i class="ph-fill ph-check-circle"></i><div>Chat — conversations</div></div>
+    <div class="nv-need"><i class="ph-fill ph-check-circle"></i><div>Saved — events + locations</div></div>
+    <div class="nv-need"><i class="ph-fill ph-check-circle"></i><div>Friends — list, add, share QR</div></div>
+    <div class="nv-need"><i class="ph-fill ph-check-circle"></i><div>Settings — accessible, not prime</div></div>
+    <div class="nv-need"><i class="ph-fill ph-check-circle"></i><div>Create plan — biggest target (FAB)</div></div>
+  </div>
+
+  <!-- CAMP 1 ============================================ -->
+  <div class="nv-camp">
+    <span class="nv-camp-pill">Camp 1</span>
+    <div>
+      <div class="nv-camp-title">"You" tab owns the personal stuff</div>
+      <div class="nv-camp-desc">Saved, Friends, Profile, Settings all live inside You. Bottom bar is mostly discovery + comms.</div>
+    </div>
+  </div>
+
+  <div class="nv-grid">
+
+    <!-- A1 -->
+    <div class="nv-variant">
+      <div class="nv-variant-head">
+        <div class="nv-variant-pill">A1</div>
+        <div class="nv-variant-title">Home · Discover · Plans · Chat · You</div>
+        <div class="nv-variant-desc">Classic 5-tab. You is rightmost. Create as FAB. Settings/profile inside You.</div>
+        <div class="nv-variant-pros">
+          <span class="nv-tag">Discover + Chat both visible</span>
+          <span class="nv-tag is-warn">Saved is 2 taps deep</span>
+        </div>
+      </div>
+      <div class="nv-stage">
+        <div class="nv-stage-top">
+          <a class="nv-stage-logo" href="#"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /><span class="nv-stage-logo-text">MixedRoutes</span></a>
+          <div class="nv-stage-actions">
+            <span class="nv-stage-notif"><i class="ph-fill ph-bell"></i><span class="nv-stage-notif-dot"></span></span>
+          </div>
+        </div>
+        <div class="nv-stage-body">Feed</div>
+        <div class="nv-fab"><i class="ph ph-plus"></i></div>
+        <div class="nv-stage-tab">
+          <button type="button" class="nv-tab is-active"><i class="ph-fill ph-house"></i><span class="nv-tab-label">Home</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-compass"></i><span class="nv-tab-label">Discover</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-calendar-blank"></i><span class="nv-tab-label">Plans</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-chat-teardrop-text"></i><span class="nv-tab-label">Chat</span></button>
+          <button type="button" class="nv-tab">
+            <span class="nv-tab-icon-wrap"><span class="nv-tab-avatar"></span><span class="nv-tab-badge"></span></span>
+            <span class="nv-tab-label">You</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2 -->
+    <div class="nv-variant">
+      <div class="nv-variant-head">
+        <div class="nv-variant-pill">A2</div>
+        <div class="nv-variant-title">Home · Discover · Create · Chat · You</div>
+        <div class="nv-variant-desc">Raised Create in the middle, no FAB. Plans inside You. Chat keeps its own tab.</div>
+        <div class="nv-variant-pros">
+          <span class="nv-tag">Create is the hero</span>
+          <span class="nv-tag is-warn">Plans is 2 taps deep</span>
+        </div>
+      </div>
+      <div class="nv-stage">
+        <div class="nv-stage-top">
+          <a class="nv-stage-logo" href="#"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /><span class="nv-stage-logo-text">MixedRoutes</span></a>
+          <div class="nv-stage-actions">
+            <span class="nv-stage-notif"><i class="ph-fill ph-bell"></i><span class="nv-stage-notif-dot"></span></span>
+          </div>
+        </div>
+        <div class="nv-stage-body">Feed</div>
+        <div class="nv-stage-tab">
+          <button type="button" class="nv-tab is-active"><i class="ph-fill ph-house"></i><span class="nv-tab-label">Home</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-compass"></i><span class="nv-tab-label">Discover</span></button>
+          <button type="button" class="nv-tab is-raised"><span class="nv-tab-circle"><i class="ph ph-plus"></i></span><span class="nv-tab-label">Create</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-chat-teardrop-text"></i><span class="nv-tab-label">Chat</span></button>
+          <button type="button" class="nv-tab">
+            <span class="nv-tab-icon-wrap"><span class="nv-tab-avatar"></span><span class="nv-tab-badge"></span></span>
+            <span class="nv-tab-label">You</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- A3 -->
+    <div class="nv-variant">
+      <div class="nv-variant-head">
+        <div class="nv-variant-pill">A3</div>
+        <div class="nv-variant-title">Home · Plans · You · Discover · Chat</div>
+        <div class="nv-variant-desc">You centered as avatar — your stuff is the home base. Create as FAB.</div>
+        <div class="nv-variant-pros">
+          <span class="nv-tag">You is unmissable</span>
+          <span class="nv-tag is-warn">Center-as-profile is uncommon</span>
+        </div>
+      </div>
+      <div class="nv-stage">
+        <div class="nv-stage-top">
+          <a class="nv-stage-logo" href="#"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /><span class="nv-stage-logo-text">MixedRoutes</span></a>
+          <div class="nv-stage-actions">
+            <span class="nv-stage-notif"><i class="ph-fill ph-bell"></i><span class="nv-stage-notif-dot"></span></span>
+          </div>
+        </div>
+        <div class="nv-stage-body">Feed</div>
+        <div class="nv-fab"><i class="ph ph-plus"></i></div>
+        <div class="nv-stage-tab">
+          <button type="button" class="nv-tab is-active"><i class="ph-fill ph-house"></i><span class="nv-tab-label">Home</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-calendar-blank"></i><span class="nv-tab-label">Plans</span></button>
+          <button type="button" class="nv-tab">
+            <span class="nv-tab-icon-wrap"><span class="nv-tab-avatar"></span><span class="nv-tab-badge"></span></span>
+            <span class="nv-tab-label">You</span>
+          </button>
+          <button type="button" class="nv-tab"><i class="ph ph-compass"></i><span class="nv-tab-label">Discover</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-chat-teardrop-text"></i><span class="nv-tab-label">Chat</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- A4 -->
+    <div class="nv-variant">
+      <div class="nv-variant-head">
+        <div class="nv-variant-pill">A4</div>
+        <div class="nv-variant-title">Home · Discover · Plans · You</div>
+        <div class="nv-variant-desc">4 tabs only. Chat lives behind a chat bubble in top nav (Slack/iMessage style). Create as FAB.</div>
+        <div class="nv-variant-pros">
+          <span class="nv-tag">Roomy, very readable</span>
+          <span class="nv-tag is-warn">Chat is 1 tap from anywhere via top icon</span>
+        </div>
+      </div>
+      <div class="nv-stage">
+        <div class="nv-stage-top">
+          <a class="nv-stage-logo" href="#"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /><span class="nv-stage-logo-text">MixedRoutes</span></a>
+          <div class="nv-stage-actions">
+            <span class="nv-stage-icon"><i class="ph ph-chat-teardrop-text"></i></span>
+            <span class="nv-stage-notif"><i class="ph-fill ph-bell"></i><span class="nv-stage-notif-dot"></span></span>
+          </div>
+        </div>
+        <div class="nv-stage-body">Feed</div>
+        <div class="nv-fab"><i class="ph ph-plus"></i></div>
+        <div class="nv-stage-tab">
+          <button type="button" class="nv-tab is-active"><i class="ph-fill ph-house"></i><span class="nv-tab-label">Home</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-compass"></i><span class="nv-tab-label">Discover</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-calendar-blank"></i><span class="nv-tab-label">Plans</span></button>
+          <button type="button" class="nv-tab">
+            <span class="nv-tab-icon-wrap"><span class="nv-tab-avatar"></span><span class="nv-tab-badge"></span></span>
+            <span class="nv-tab-label">You</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CAMP 2 ============================================ -->
+  <div class="nv-camp">
+    <span class="nv-camp-pill">Camp 2</span>
+    <div>
+      <div class="nv-camp-title">"Saved" gets its own tab — profile moves up top</div>
+      <div class="nv-camp-desc">Avatar in the top-right opens Friends / Settings / Profile. Bottom bar is pure navigation.</div>
+    </div>
+  </div>
+
+  <div class="nv-grid">
+
+    <!-- B1 -->
+    <div class="nv-variant">
+      <div class="nv-variant-head">
+        <div class="nv-variant-pill">B1</div>
+        <div class="nv-variant-title">Home · Discover · Plans · Saved · Chat</div>
+        <div class="nv-variant-desc">All 5 primary destinations are tabs. Avatar top-right → Friends/Settings/Profile. Create as FAB.</div>
+        <div class="nv-variant-pros">
+          <span class="nv-tag">Saved is one tap</span>
+          <span class="nv-tag is-warn">Friends is 2 taps via avatar</span>
+        </div>
+      </div>
+      <div class="nv-stage">
+        <div class="nv-stage-top">
+          <a class="nv-stage-logo" href="#"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /><span class="nv-stage-logo-text">MixedRoutes</span></a>
+          <div class="nv-stage-actions">
+            <span class="nv-stage-notif"><i class="ph-fill ph-bell"></i><span class="nv-stage-notif-dot"></span></span>
+            <span class="nv-stage-icon is-avatar"></span>
+          </div>
+        </div>
+        <div class="nv-stage-body">Feed</div>
+        <div class="nv-fab"><i class="ph ph-plus"></i></div>
+        <div class="nv-stage-tab">
+          <button type="button" class="nv-tab is-active"><i class="ph-fill ph-house"></i><span class="nv-tab-label">Home</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-compass"></i><span class="nv-tab-label">Discover</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-calendar-blank"></i><span class="nv-tab-label">Plans</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-bookmark-simple"></i><span class="nv-tab-label">Saved</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-chat-teardrop-text"></i><span class="nv-tab-label">Chat</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- B2 -->
+    <div class="nv-variant">
+      <div class="nv-variant-head">
+        <div class="nv-variant-pill">B2</div>
+        <div class="nv-variant-title">Home · Discover · Create · Saved · Chat</div>
+        <div class="nv-variant-desc">Raised Create center. Plans moves to top-right next to avatar (calendar icon). Friends/Settings via avatar.</div>
+        <div class="nv-variant-pros">
+          <span class="nv-tag">Create is hero</span>
+          <span class="nv-tag">Top nav holds Plans + Profile</span>
+          <span class="nv-tag is-warn">Top nav getting crowded</span>
+        </div>
+      </div>
+      <div class="nv-stage">
+        <div class="nv-stage-top">
+          <a class="nv-stage-logo" href="#"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /><span class="nv-stage-logo-text">MixedRoutes</span></a>
+          <div class="nv-stage-actions">
+            <span class="nv-stage-icon"><i class="ph ph-calendar-blank"></i></span>
+            <span class="nv-stage-notif"><i class="ph-fill ph-bell"></i><span class="nv-stage-notif-dot"></span></span>
+            <span class="nv-stage-icon is-avatar"></span>
+          </div>
+        </div>
+        <div class="nv-stage-body">Feed</div>
+        <div class="nv-stage-tab">
+          <button type="button" class="nv-tab is-active"><i class="ph-fill ph-house"></i><span class="nv-tab-label">Home</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-compass"></i><span class="nv-tab-label">Discover</span></button>
+          <button type="button" class="nv-tab is-raised"><span class="nv-tab-circle"><i class="ph ph-plus"></i></span><span class="nv-tab-label">Create</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-bookmark-simple"></i><span class="nv-tab-label">Saved</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-chat-teardrop-text"></i><span class="nv-tab-label">Chat</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- B3 -->
+    <div class="nv-variant">
+      <div class="nv-variant-head">
+        <div class="nv-variant-pill">B3</div>
+        <div class="nv-variant-title">Home · Plans · Saved · Friends · Chat</div>
+        <div class="nv-variant-desc">Discover folded into Home (it's the same browsing). Friends is its own tab. Avatar top-right for settings/profile. Create as FAB.</div>
+        <div class="nv-variant-pros">
+          <span class="nv-tag">Friends is one tap</span>
+          <span class="nv-tag is-warn">No dedicated Discover tab</span>
+        </div>
+      </div>
+      <div class="nv-stage">
+        <div class="nv-stage-top">
+          <a class="nv-stage-logo" href="#"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /><span class="nv-stage-logo-text">MixedRoutes</span></a>
+          <div class="nv-stage-actions">
+            <span class="nv-stage-notif"><i class="ph-fill ph-bell"></i><span class="nv-stage-notif-dot"></span></span>
+            <span class="nv-stage-icon is-avatar"></span>
+          </div>
+        </div>
+        <div class="nv-stage-body">Feed</div>
+        <div class="nv-fab"><i class="ph ph-plus"></i></div>
+        <div class="nv-stage-tab">
+          <button type="button" class="nv-tab is-active"><i class="ph-fill ph-house"></i><span class="nv-tab-label">Home</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-calendar-blank"></i><span class="nv-tab-label">Plans</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-bookmark-simple"></i><span class="nv-tab-label">Saved</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-users"></i><span class="nv-tab-label">Friends</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-chat-teardrop-text"></i><span class="nv-tab-label">Chat</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- B4 -->
+    <div class="nv-variant">
+      <div class="nv-variant-head">
+        <div class="nv-variant-pill">B4</div>
+        <div class="nv-variant-title">Home · Discover · Saved · Chat</div>
+        <div class="nv-variant-desc">Tight 4 tabs. Plans behind calendar icon top-right. Friends + Settings behind avatar. Create as FAB.</div>
+        <div class="nv-variant-pros">
+          <span class="nv-tag">Cleanest bar</span>
+          <span class="nv-tag">Plans = quick-access top icon</span>
+          <span class="nv-tag is-warn">Plans + Friends both 1 tap up top</span>
+        </div>
+      </div>
+      <div class="nv-stage">
+        <div class="nv-stage-top">
+          <a class="nv-stage-logo" href="#"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /><span class="nv-stage-logo-text">MixedRoutes</span></a>
+          <div class="nv-stage-actions">
+            <span class="nv-stage-icon"><i class="ph ph-calendar-blank"></i></span>
+            <span class="nv-stage-notif"><i class="ph-fill ph-bell"></i><span class="nv-stage-notif-dot"></span></span>
+            <span class="nv-stage-icon is-avatar"></span>
+          </div>
+        </div>
+        <div class="nv-stage-body">Feed</div>
+        <div class="nv-fab"><i class="ph ph-plus"></i></div>
+        <div class="nv-stage-tab">
+          <button type="button" class="nv-tab is-active"><i class="ph-fill ph-house"></i><span class="nv-tab-label">Home</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-compass"></i><span class="nv-tab-label">Discover</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-bookmark-simple"></i><span class="nv-tab-label">Saved</span></button>
+          <button type="button" class="nv-tab"><i class="ph ph-chat-teardrop-text"></i><span class="nv-tab-label">Chat</span></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

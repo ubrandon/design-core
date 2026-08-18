@@ -1,0 +1,372 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<div style="background: var(--bg-0); overflow-x: clip; min-height: 100vh">
+  <div class="mr-scope" style="padding-bottom: 140px">
+    <header style="display: flex; align-items: center; gap: 12px; padding: 18px 16px 8px">
+      <button type="button" class="mr-nav-icon-btn" aria-label="Back">
+        <i class="ph ph-arrow-left" aria-hidden="true"></i>
+      </button>
+      <span style="font-size: 1.05rem; font-weight: 800; color: var(--text)">Create plan</span>
+    </header>
+
+    <div style="padding: 8px 16px 0">
+      <button
+        type="button"
+        aria-label="Add banner"
+        style="
+          position: relative;
+          width: 100%;
+          height: 132px;
+          border-radius: 22px;
+          border: 0;
+          padding: 0;
+          overflow: hidden;
+          background:
+            radial-gradient(120% 80% at 0% 0%, rgba(125,160,225,0.55), transparent 60%),
+            radial-gradient(120% 80% at 100% 100%, rgba(91,141,239,0.45), transparent 60%),
+            linear-gradient(135deg, #7ea2d6, #5b8def);
+          cursor: pointer;
+        "
+      >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 320 120"
+          style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.32; mix-blend-mode: overlay"
+        >
+          <g fill="none" stroke="#0b1330" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="34" cy="28" r="9" /><circle cx="44" cy="28" r="9" /><line x1="22" y1="22" x2="56" y2="22" />
+            <path d="M70 18 q6 -10 14 0 t14 0" />
+            <path d="M118 36 l8 -16 l8 16 z" /><line x1="126" y1="36" x2="126" y2="48" />
+            <path d="M158 12 l4 12 h12 l-10 8 l4 12 l-10 -8 l-10 8 l4 -12 l-10 -8 h12 z" />
+            <circle cx="206" cy="26" r="10" /><path d="M206 18 v16 M198 26 h16" />
+            <path d="M236 12 q10 6 0 14 q-10 -8 0 -14 z" /><line x1="236" y1="26" x2="236" y2="40" />
+            <path d="M270 14 q14 0 14 14 q-14 0 -14 -14 z" />
+            <circle cx="22" cy="78" r="9" />
+            <path d="M50 92 l10 -22 l10 22 z M58 70 l4 -10 l4 10" />
+            <path d="M92 90 q12 -28 24 0 z" /><line x1="104" y1="62" x2="104" y2="74" />
+            <path d="M138 64 l6 22 l6 -22 z" />
+            <circle cx="184" cy="84" r="11" /><line x1="173" y1="84" x2="195" y2="84" /><line x1="184" y1="73" x2="184" y2="95" />
+            <path d="M222 70 q12 4 12 18 l-24 0 q0 -14 12 -18 z" />
+            <path d="M260 92 q-6 -16 6 -22 q12 6 6 22 z" />
+            <circle cx="296" cy="80" r="10" /><line x1="286" y1="80" x2="306" y2="80" />
+          </g>
+        </svg>
+        <span
+          style="
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(8, 14, 30, 0.55);
+            color: #ffffff;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            backdrop-filter: blur(6px);
+          "
+        >
+          <i class="ph ph-image" style="font-size: 14px" aria-hidden="true"></i>
+          Add banner
+        </span>
+      </button>
+
+      <div
+        style="
+          margin-top: 16px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 14px 16px;
+          border-radius: 999px;
+          background: var(--mr-input-surface);
+        "
+      >
+        <span
+          style="
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.55);
+          "
+        >
+          <i class="ph ph-smiley" style="font-size: 14px" aria-hidden="true"></i>
+        </span>
+        <input
+          type="text"
+          placeholder="Plan name…"
+          autocomplete="off"
+          style="flex: 1; background: transparent; border: 0; color: var(--text); font-size: 1rem; outline: none"
+        />
+      </div>
+    </div>
+
+    <section style="padding: 22px 16px 0">
+      <h2 style="margin: 0 0 12px; font-size: 1.25rem; font-weight: 800; color: var(--text)">What, when &amp; where?</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px">
+        <button
+          type="button"
+          aria-label="Add details"
+          style="
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 12px 14px;
+            min-height: 108px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text);
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+          "
+        >
+          <span
+            aria-hidden="true"
+            style="
+              position: absolute;
+              top: 8px;
+              right: 8px;
+              width: 22px;
+              height: 22px;
+              border-radius: 50%;
+              background: rgba(10, 14, 28, 0.85);
+              border: 1px solid rgba(255, 255, 255, 0.12);
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              color: rgba(255, 255, 255, 0.85);
+            "
+          >
+            <i class="ph ph-plus" style="font-size: 11px"></i>
+          </span>
+          <i class="ph ph-list-checks" style="font-size: 28px; color: rgba(255,255,255,0.7)" aria-hidden="true"></i>
+          <span style="font-size: 0.74rem; font-weight: 800; color: rgba(255,255,255,0.85); letter-spacing: 0.06em; text-transform: uppercase">Details</span>
+        </button>
+
+        <button
+          type="button"
+          aria-label="Add date"
+          style="
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 12px 14px;
+            min-height: 108px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text);
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+          "
+        >
+          <span
+            aria-hidden="true"
+            style="
+              position: absolute;
+              top: 8px;
+              right: 8px;
+              width: 22px;
+              height: 22px;
+              border-radius: 50%;
+              background: rgba(10, 14, 28, 0.85);
+              border: 1px solid rgba(255, 255, 255, 0.12);
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              color: rgba(255, 255, 255, 0.85);
+            "
+          >
+            <i class="ph ph-plus" style="font-size: 11px"></i>
+          </span>
+          <i class="ph ph-calendar-blank" style="font-size: 28px; color: rgba(255,255,255,0.7)" aria-hidden="true"></i>
+          <span style="font-size: 0.74rem; font-weight: 800; color: rgba(255,255,255,0.85); letter-spacing: 0.06em; text-transform: uppercase">Date</span>
+        </button>
+
+        <button
+          type="button"
+          aria-label="Add place"
+          style="
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px 12px 14px;
+            min-height: 108px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text);
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+          "
+        >
+          <span
+            aria-hidden="true"
+            style="
+              position: absolute;
+              top: 8px;
+              right: 8px;
+              width: 22px;
+              height: 22px;
+              border-radius: 50%;
+              background: rgba(10, 14, 28, 0.85);
+              border: 1px solid rgba(255, 255, 255, 0.12);
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              color: rgba(255, 255, 255, 0.85);
+            "
+          >
+            <i class="ph ph-plus" style="font-size: 11px"></i>
+          </span>
+          <i class="ph ph-map-pin" style="font-size: 28px; color: rgba(255,255,255,0.7)" aria-hidden="true"></i>
+          <span style="font-size: 0.74rem; font-weight: 800; color: rgba(255,255,255,0.85); letter-spacing: 0.06em; text-transform: uppercase">Place</span>
+        </button>
+      </div>
+    </section>
+
+    <section style="padding: 22px 16px 0">
+      <h2 style="margin: 0 0 12px; font-size: 1.25rem; font-weight: 800; color: var(--text)">Invite &amp; share</h2>
+
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 14px 16px;
+          border-radius: 18px;
+          background: rgba(91, 109, 248, 0.12);
+          border: 1px solid rgba(91, 109, 248, 0.3);
+          margin-bottom: 10px;
+        "
+      >
+        <img
+          src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&amp;fit=crop&amp;w=120&amp;h=120&amp;q=80"
+          alt=""
+          style="width: 36px; height: 36px; border-radius: 10px; object-fit: cover; flex: 0 0 auto"
+          loading="lazy"
+        />
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 0.7rem; font-weight: 800; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; text-transform: uppercase">Invite others</div>
+          <div style="font-size: 0.95rem; font-weight: 800; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Hiking Crew · 12 members</div>
+        </div>
+        <button
+          type="button"
+          aria-label="Edit invites"
+          style="
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text);
+            cursor: pointer;
+          "
+        >
+          <i class="ph ph-pencil-simple" style="font-size: 14px" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <button
+        type="button"
+        style="
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          width: 100%;
+          padding: 14px 16px;
+          border-radius: 18px;
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(255, 255, 255, 0.06);
+          color: var(--text);
+          text-align: left;
+          cursor: pointer;
+        "
+      >
+        <span
+          style="
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.06);
+            color: var(--text);
+            flex: 0 0 auto;
+          "
+        >
+          <i class="ph-fill ph-lock-simple" style="font-size: 16px" aria-hidden="true"></i>
+        </span>
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 0.7rem; font-weight: 800; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; text-transform: uppercase">Visibility and sharing</div>
+          <div style="font-size: 0.95rem; font-weight: 800; color: var(--text)">Group only</div>
+        </div>
+        <i class="ph ph-caret-right" style="font-size: 14px; color: rgba(255,255,255,0.4)" aria-hidden="true"></i>
+      </button>
+    </section>
+
+    <div
+      style="
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 12px 16px 22px;
+        background: linear-gradient(180deg, transparent, var(--bg-0) 32%);
+      "
+    >
+      <div style="display: flex; align-items: center; justify-content: center; gap: 6px; padding-bottom: 10px; color: rgba(255,255,255,0.55); font-size: 0.78rem; font-weight: 600">
+        <i class="ph-fill ph-info" style="font-size: 14px" aria-hidden="true"></i>
+        Give your plan a name
+      </div>
+      <button
+        type="button"
+        disabled
+        style="
+          width: 100%;
+          padding: 16px;
+          border-radius: 999px;
+          border: 0;
+          background: linear-gradient(135deg,#6dd5ed,#5b8def 60%,#7c6dee);
+          color: #ffffff;
+          font-size: 1rem;
+          font-weight: 800;
+          opacity: 0.55;
+          cursor: not-allowed;
+        "
+      >
+        Create group plan
+      </button>
+    </div>
+  </div>
+</div>

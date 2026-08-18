@@ -1,0 +1,160 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .pi-scope { --pv-bg: #0a0f14; --pv-card: #161d27; --pv-card-2: #1a2230; --pv-green: #34c759; --pv-green-soft: rgba(52,199,89,0.16); --pv-red: #ff5a5f; --pv-line: rgba(255,255,255,0.14); }
+  .pi-scope, .pi-scope * { scrollbar-width: none; -ms-overflow-style: none; box-sizing: border-box; }
+  .pi-scope::-webkit-scrollbar, .pi-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .pi-scope .pv-wrap { background: var(--pv-bg); min-height: 844px; position: relative; }
+
+  .pi-scope .pv-hero { position: relative; height: 380px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 0 24px 34px;
+    background-image: linear-gradient(180deg, rgba(10,15,20,0.3) 0%, rgba(10,15,20,0.05) 28%, rgba(10,15,20,0.55) 78%, var(--pv-bg) 100%), url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=80");
+    background-size: cover; background-position: center; }
+
+  .pi-scope .pv-topbar { position: absolute; top: 18px; left: 16px; right: 16px; z-index: 2; display: flex; align-items: center; justify-content: space-between; }
+  .pi-scope .pv-topbar .right { display: flex; gap: 10px; }
+  .pi-scope .pv-iconbtn { width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(20,28,38,0.55); backdrop-filter: blur(8px); color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+  .pi-scope .pv-iconbtn i { font-size: 20px; }
+
+  .pi-scope .pv-chip { background: rgba(20,28,38,0.7); backdrop-filter: blur(8px); color: #fff; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.05em; padding: 9px 18px; border-radius: 999px; }
+  .pi-scope .pv-event-title { margin-top: 16px; font-size: 2.25rem; font-weight: 800; color: #fff; text-align: center; letter-spacing: -0.02em; line-height: 1.08; text-shadow: 0 2px 16px rgba(0,0,0,0.5); }
+
+  .pi-scope .pv-actions { margin-top: 26px; display: flex; gap: 14px; }
+  .pi-scope .pv-act { display: inline-flex; align-items: center; gap: 9px; padding: 14px 28px; border-radius: 999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; border: 1.5px solid transparent; }
+  .pi-scope .pv-act i { font-size: 19px; }
+  .pi-scope .pv-act.chat { background: rgba(74,86,104,0.85); color: #fff; }
+  .pi-scope .pv-act.going { background: rgba(40,70,48,0.55); color: var(--pv-green); border-color: rgba(52,199,89,0.7); }
+  .pi-scope .pv-act.going i { color: var(--pv-green); }
+
+  .pi-scope .pv-body { padding: 0 20px 32px; }
+
+  .pi-scope .pv-guestbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 22px 2px 26px; }
+  .pi-scope .pv-stack { display: flex; align-items: center; }
+  .pi-scope .pv-avwrap { position: relative; display: inline-flex; margin-left: -14px; }
+  .pi-scope .pv-avwrap:first-child { margin-left: 0; }
+  .pi-scope .pv-stack .gav { width: 50px; height: 50px; border-radius: 50%; border: 3px solid var(--pv-bg); object-fit: cover; display: block; }
+  .pi-scope .pv-stack .gav.initials { background: #5a687c; color: #fff; font-size: 0.92rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .pi-scope .pv-stack .badge { position: absolute; bottom: 1px; right: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--pv-green); border: 2.5px solid var(--pv-bg); display: inline-flex; align-items: center; justify-content: center; z-index: 2; }
+  .pi-scope .pv-stack .badge i { font-size: 10px; color: #fff; line-height: 1; }
+  .pi-scope .pv-guest-meta { display: flex; align-items: center; cursor: pointer; flex-shrink: 0; }
+  .pi-scope .pv-guest-meta .txt { text-align: right; }
+  .pi-scope .pv-guest-meta .n { font-size: 1.15rem; font-weight: 800; color: #fff; }
+  .pi-scope .pv-guest-meta .s { font-size: 0.88rem; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .pi-scope .pv-guest-meta .chev { color: rgba(255,255,255,0.5); font-size: 24px; margin-left: 6px; }
+
+  .pi-scope .pv-desc { font-size: 1.08rem; line-height: 1.55; color: rgba(255,255,255,0.9); padding: 0 2px; margin-bottom: 6px; }
+  .pi-scope .pv-desc p { margin: 0; }
+
+  .pi-scope .pv-section-head { display: flex; align-items: center; justify-content: space-between; margin: 30px 2px 18px; }
+  .pi-scope .pv-section-title { font-size: 1.55rem; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+  .pi-scope .pv-add { display: inline-flex; align-items: center; gap: 6px; border: 0; background: rgba(255,255,255,0.08); color: #fff; font-size: 0.92rem; font-weight: 700; padding: 8px 14px; border-radius: 999px; cursor: pointer; }
+  .pi-scope .pv-add i { font-size: 16px; }
+
+  /* itinerary timeline */
+  .pi-scope .pv-day { position: relative; padding-left: 30px; }
+  .pi-scope .pv-day::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: -8px; width: 2px; background: var(--pv-line); }
+  .pi-scope .pv-day:last-child::before { display: none; }
+  .pi-scope .pv-day .dot { position: absolute; left: 0; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: var(--pv-bg); border: 2px solid rgba(255,255,255,0.4); z-index: 1; }
+  .pi-scope .pv-day.now .dot { background: var(--pv-green); border-color: var(--pv-green); box-shadow: 0 0 0 4px var(--pv-green-soft); }
+  .pi-scope .pv-day .dhead { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+  .pi-scope .pv-day .ddate { font-size: 1.1rem; font-weight: 800; color: #fff; }
+  .pi-scope .pv-day .dsub { font-size: 0.88rem; color: rgba(255,255,255,0.5); }
+  .pi-scope .pv-day.now .dsub { color: var(--pv-green); font-weight: 700; }
+  .pi-scope .pv-evt { display: flex; gap: 12px; background: rgba(26,34,48,0.6); border-radius: 16px; padding: 14px 14px; margin-bottom: 10px; }
+  .pi-scope .pv-evt .eic { width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.07); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .pi-scope .pv-evt .eic i { font-size: 20px; color: rgba(255,255,255,0.85); }
+  .pi-scope .pv-evt .et1 { font-size: 1rem; font-weight: 800; color: #fff; }
+  .pi-scope .pv-evt .et2 { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 3px; }
+  .pi-scope .pv-evt .etime { margin-left: auto; font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.65); flex-shrink: 0; }
+  .pi-scope .pv-day-gap { height: 16px; }
+</style>
+
+<div class="mr-scope pi-scope">
+  <div class="pv-wrap">
+
+    <div class="pv-hero">
+      <div class="pv-topbar">
+        <button type="button" class="pv-iconbtn" aria-label="Back"><i class="ph ph-arrow-left"></i></button>
+        <div class="right">
+          <button type="button" class="pv-iconbtn" aria-label="Share"><i class="ph ph-share-network"></i></button>
+          <button type="button" class="pv-iconbtn" aria-label="Edit"><i class="ph ph-pencil-simple"></i></button>
+          <button type="button" class="pv-iconbtn" aria-label="More"><i class="ph ph-dots-three-vertical"></i></button>
+        </div>
+      </div>
+
+      <div class="pv-chip">JUN 7 - JUN 14</div>
+      <div class="pv-event-title">Friends Trip</div>
+      <div class="pv-actions">
+        <button type="button" class="pv-act chat"><i class="ph-fill ph-chat-circle"></i> Chat</button>
+        <button type="button" class="pv-act going"><i class="ph-fill ph-check-circle"></i> Going</button>
+      </div>
+    </div>
+
+    <div class="pv-body">
+
+      <div class="pv-guestbar">
+        <div class="pv-stack">
+          <span class="pv-avwrap"><img class="gav" src="https://i.pravatar.cc/120?img=12" alt="" /><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+          <span class="pv-avwrap"><span class="gav initials">MG</span><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+          <span class="pv-avwrap"><img class="gav" src="https://i.pravatar.cc/120?img=32" alt="" /><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+          <span class="pv-avwrap"><span class="gav initials">AM</span><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+        </div>
+        <div class="pv-guest-meta">
+          <div class="txt">
+            <div class="n">10 guests</div>
+            <div class="s">View and invite</div>
+          </div>
+          <i class="ph ph-caret-right chev"></i>
+        </div>
+      </div>
+
+      <div class="pv-desc">
+        <p>A whole week away with the crew. Here is the loose plan, jump in and add anything.</p>
+      </div>
+
+      <div class="pv-section-head">
+        <div class="pv-section-title">Itinerary</div>
+        <button type="button" class="pv-add"><i class="ph ph-plus"></i> Add</button>
+      </div>
+
+      <div class="pv-day now">
+        <span class="dot"></span>
+        <div class="dhead"><span class="ddate">Sat, Jun 7</span><span class="dsub">Arrival day</span></div>
+        <div class="pv-evt">
+          <span class="eic"><i class="ph-fill ph-house-line"></i></span>
+          <div><div class="et1">Check in at Casa Palma</div><div class="et2">Grab keys from the lockbox</div></div>
+          <span class="etime">3 PM</span>
+        </div>
+        <div class="pv-evt">
+          <span class="eic"><i class="ph-fill ph-shopping-cart"></i></span>
+          <div><div class="et1">Grocery run</div><div class="et2">Split list in the chat</div></div>
+          <span class="etime">5 PM</span>
+        </div>
+      </div>
+      <div class="pv-day-gap"></div>
+
+      <div class="pv-day">
+        <span class="dot"></span>
+        <div class="dhead"><span class="ddate">Sun, Jun 8</span><span class="dsub">Beach</span></div>
+        <div class="pv-evt">
+          <span class="eic"><i class="ph-fill ph-umbrella"></i></span>
+          <div><div class="et1">Beach + sunset cookout</div><div class="et2">Bring chairs and the cooler</div></div>
+          <span class="etime">All day</span>
+        </div>
+      </div>
+      <div class="pv-day-gap"></div>
+
+      <div class="pv-day">
+        <span class="dot"></span>
+        <div class="dhead"><span class="ddate">Tue, Jun 10</span><span class="dsub">Highlight</span></div>
+        <div class="pv-evt">
+          <span class="eic"><i class="ph-fill ph-sailboat"></i></span>
+          <div><div class="et1">Boat day</div><div class="et2">Marina dock 4 · $60/person</div></div>
+          <span class="etime">10 AM</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

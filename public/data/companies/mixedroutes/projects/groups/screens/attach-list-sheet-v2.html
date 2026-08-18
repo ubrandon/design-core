@@ -1,0 +1,111 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<div style="background: var(--bg-0); overflow-x: clip; min-height: 100vh">
+  <div class="mr-scope" style="padding-bottom: 24px">
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 18px 16px 14px">
+      <button type="button" class="mr-nav-icon-btn" aria-label="Back">
+        <i class="ph ph-arrow-left" aria-hidden="true"></i>
+      </button>
+      <span style="font-size: 1rem; font-weight: 800; color: var(--text)">Attach a place list</span>
+      <span style="width: 32px"></span>
+    </header>
+
+    <div style="padding: 0 16px">
+        <div style="font-size: 0.82rem; color: rgba(255,255,255,0.6); text-align: center; margin: 0 8px 18px; line-height: 1.4">Pick a list of saved places to share with Hiking Crew</div>
+
+        <div class="mr-search-bar" style="margin-bottom: 16px">
+          <i class="ph-fill ph-magnifying-glass" aria-hidden="true"></i>
+          <input type="search" placeholder="Search your place lists" autocomplete="off" />
+        </div>
+
+        <button
+          type="button"
+          style="
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: rgba(91, 109, 248, 0.1);
+            border: 1px dashed rgba(109, 213, 237, 0.4);
+            color: var(--text);
+            text-align: left;
+            margin-bottom: 16px;
+          "
+        >
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg,#6dd5ed,#2193b0); display: flex; align-items: center; justify-content: center">
+            <i class="ph-fill ph-map-pin-plus" style="font-size: 20px; color: #06080e"></i>
+          </div>
+          <div style="flex: 1; min-width: 0">
+            <div style="font-size: 0.95rem; font-weight: 800">New place list</div>
+            <div style="font-size: 0.78rem; color: rgba(255,255,255,0.55)">Start a list of places and share it with Hiking Crew</div>
+          </div>
+          <i class="ph ph-caret-right" style="font-size: 14px; color: rgba(255,255,255,0.4)"></i>
+        </button>
+
+        <div style="font-size: 0.7rem; font-weight: 800; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px">Your shared place lists</div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <button type="button" class="mr-places-list-row mr-places-list-row--selected">
+            <div class="mr-places-list-row-icon">🏔️</div>
+            <div class="mr-places-list-row-body">
+              <div class="mr-places-list-row-title">Trail wishlist</div>
+              <div class="mr-places-list-row-meta">9 places · Shared with 4 friends</div>
+            </div>
+            <span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 6px; background: linear-gradient(135deg,#6dd5ed,#2193b0); display: inline-flex; align-items: center; justify-content: center"><i class="ph-fill ph-check" style="font-size: 12px; color: #06080e" aria-hidden="true"></i></span>
+          </button>
+
+          <button type="button" class="mr-places-list-row">
+            <div class="mr-places-list-row-icon">☕️</div>
+            <div class="mr-places-list-row-body">
+              <div class="mr-places-list-row-title">Trailhead coffee spots</div>
+              <div class="mr-places-list-row-meta">4 places · Shared with 6 friends</div>
+            </div>
+            <span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 6px; border: 1.5px solid rgba(255,255,255,0.25); box-sizing: border-box"></span>
+          </button>
+
+          <button type="button" class="mr-places-list-row">
+            <div class="mr-places-list-row-icon">📍</div>
+            <div class="mr-places-list-row-body">
+              <div class="mr-places-list-row-title">Asheville spots</div>
+              <div class="mr-places-list-row-meta">3 places · Shared with 2 friends</div>
+            </div>
+            <span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 6px; border: 1.5px solid rgba(255,255,255,0.25); box-sizing: border-box"></span>
+          </button>
+        </div>
+
+        <div style="font-size: 0.7rem; font-weight: 800; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; text-transform: uppercase; margin: 22px 0 10px">Private places — share to attach</div>
+
+        <div class="mr-places-list-row">
+          <div class="mr-places-list-row-icon">🌮</div>
+          <div class="mr-places-list-row-body">
+            <div class="mr-places-list-row-title">Taco crawl</div>
+            <div class="mr-places-list-row-meta">7 places · Private</div>
+          </div>
+          <button
+            type="button"
+            style="
+              flex: 0 0 auto;
+              padding: 8px 14px;
+              border-radius: 999px;
+              background: rgba(255,255,255,0.1);
+              border: 1px solid rgba(255,255,255,0.14);
+              color: var(--text);
+              font-size: 0.78rem;
+              font-weight: 800;
+              cursor: pointer;
+            "
+          >
+            Share &amp; attach
+          </button>
+        </div>
+
+        <button type="button" class="btn btn-primary" style="width: 100%; padding: 14px; border-radius: 999px; margin-top: 22px">
+          Attach 1 place list
+        </button>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,364 @@
+{
+  "screens": [
+    {
+      "file": "welcome.html",
+      "x": -32,
+      "y": 4032,
+      "width": 390,
+      "name": "Welcome"
+    },
+    {
+      "file": "sign-up.html",
+      "x": 384,
+      "y": 4032,
+      "width": 390,
+      "name": "Sign up with email"
+    },
+    {
+      "file": "verify-email.html",
+      "x": 832,
+      "y": 4032,
+      "width": 390,
+      "name": "Verify email"
+    },
+    {
+      "file": "create-username.html",
+      "x": 1248,
+      "y": 4032,
+      "width": 390,
+      "name": "Create username"
+    },
+    {
+      "file": "pick-interests.html",
+      "x": 1696,
+      "y": 4032,
+      "width": 390,
+      "name": "Pick interests"
+    },
+    {
+      "file": "log-in.html",
+      "x": 2112,
+      "y": 4032,
+      "width": 390,
+      "name": "Log in"
+    },
+    {
+      "file": "home-feed.html",
+      "x": 3840,
+      "y": 4032,
+      "width": 390,
+      "name": "Home feed"
+    },
+    {
+      "file": "notifications-sheet.html",
+      "x": 2560,
+      "y": 4032,
+      "width": 390,
+      "name": "Notifications sheet"
+    },
+    {
+      "file": "notifications-os-prompt.html",
+      "x": 2976,
+      "y": 4032,
+      "width": 390,
+      "name": "Notifications OS prompt"
+    },
+    {
+      "file": "get-the-app-sheet.html",
+      "x": 3424,
+      "y": 4032,
+      "width": 390,
+      "name": "Get the app sheet (mobile web)"
+    },
+    {
+      "file": "create-profile.html",
+      "x": 2208,
+      "y": 1664,
+      "width": 390,
+      "name": "Create profile (one step)"
+    },
+    {
+      "file": "friend-suggestions.html",
+      "x": 3552,
+      "y": 1664,
+      "width": 390,
+      "name": "Friend suggestions"
+    },
+    {
+      "file": "tour-discover-v3.html",
+      "x": 1568,
+      "y": 5216,
+      "width": 390,
+      "name": "Tour 1 v3: Discover (near you)"
+    },
+    {
+      "file": "tour-plans-v3.html",
+      "x": 1984,
+      "y": 5216,
+      "width": 390,
+      "name": "Tour 2 v3: Plans (no group chat)"
+    },
+    {
+      "file": "tour-groups-v3.html",
+      "x": 2400,
+      "y": 5216,
+      "width": 390,
+      "name": "Tour 3 v3: Groups (one tap)"
+    },
+    {
+      "file": "tour-discover-anim-v2.html",
+      "x": 4608,
+      "y": 1664,
+      "width": 390,
+      "name": "Tour 1 anim v2: Discover (no search)"
+    },
+    {
+      "file": "tour-plans-anim-v2.html",
+      "x": 5024,
+      "y": 1664,
+      "width": 390,
+      "name": "Tour 2 anim v2: Plans (I'm in to Going)"
+    },
+    {
+      "file": "tour-groups-anim-v2.html",
+      "x": 5440,
+      "y": 1664,
+      "width": 390,
+      "name": "Tour 3 anim v2: Group chat + channels"
+    },
+    {
+      "file": "tour-spark-v4-light.html",
+      "x": 0,
+      "y": 8608,
+      "width": 390,
+      "name": "Tour v4 light — 1: Find a spark"
+    },
+    {
+      "file": "tour-plan-v4-light.html",
+      "x": 416,
+      "y": 8608,
+      "width": 390,
+      "name": "Tour v4 light — 2: Make the plan"
+    },
+    {
+      "file": "tour-memory-v4-light.html",
+      "x": 832,
+      "y": 8608,
+      "width": 390,
+      "name": "Tour v4 light — 3: Keep the memories"
+    },
+    {
+      "file": "tour-product-discover-v5.html",
+      "x": 1504,
+      "y": 8576,
+      "width": 390,
+      "name": "Tour v5 light product UI — 1: Discover"
+    },
+    {
+      "file": "tour-product-plan-v5.html",
+      "x": 1920,
+      "y": 8576,
+      "width": 390,
+      "name": "Tour v5 light product UI — 2: Plans and RSVP"
+    },
+    {
+      "file": "tour-product-chat-v5.html",
+      "x": 2336,
+      "y": 8576,
+      "width": 390,
+      "name": "Tour v5 light product UI — 3: Group chat channels"
+    },
+    {
+      "file": "notifications-ask-alt-big-image.html",
+      "x": 4096,
+      "y": 1664,
+      "width": 390,
+      "name": "Notifications ask alt A: Bigger image"
+    },
+    {
+      "file": "home-first-time.html",
+      "x": 5952,
+      "y": 1664,
+      "width": 390,
+      "name": "First home feed"
+    },
+    {
+      "file": "welcome-v2-photo-moving-text.html",
+      "x": 0,
+      "y": 5216,
+      "width": 390,
+      "name": "Welcome alt I: Photo + moving text"
+    },
+    {
+      "file": "welcome-v3-orbit.html",
+      "x": 448,
+      "y": 5216,
+      "width": 390,
+      "name": "Welcome alt N: Friends in orbit"
+    },
+    {
+      "file": "verify-email-v4.html",
+      "x": 1312,
+      "y": 1664,
+      "width": 390,
+      "name": "Verify email (v4)"
+    },
+    {
+      "file": "ob3-enter-email.html",
+      "x": 480,
+      "y": 1664,
+      "width": 390,
+      "name": "Enter your email"
+    },
+    {
+      "file": "ob3-login.html",
+      "x": 1760,
+      "y": 1664,
+      "width": 390,
+      "name": "Log in (existing account)"
+    },
+    {
+      "file": "ob3-sign-up-v2.html",
+      "x": 896,
+      "y": 1664,
+      "width": 390,
+      "name": "Sign up (new account) v2"
+    },
+    {
+      "file": "welcome-v2-emoji-pattern-copy.html",
+      "x": 896,
+      "y": 5216,
+      "width": 390,
+      "name": "Welcome alt M: Emoji pattern + moving text Copy"
+    },
+    {
+      "file": "welcome-copy.html",
+      "x": 0,
+      "y": 1664,
+      "width": 390,
+      "name": "Welcome Copy"
+    },
+    {
+      "file": "find-friends-alt-minimal.html",
+      "x": 2720,
+      "y": 1664,
+      "width": 390,
+      "name": "Find friends alt B: Minimal centered"
+    },
+    {
+      "file": "find-friends-no-matches.html",
+      "x": 3136,
+      "y": 1664,
+      "width": 390,
+      "name": "No matches: Be the first"
+    },
+    {
+      "file": "signup-photo-alt-a-focused.html",
+      "x": 2848,
+      "y": 8576,
+      "width": 390,
+      "name": "Sign up alt A: Focused first step"
+    },
+    {
+      "file": "signup-photo-alt-b-all-in-one.html",
+      "x": 3264,
+      "y": 8576,
+      "width": 390,
+      "name": "Sign up alt B: Compact all-in-one"
+    },
+    {
+      "file": "signup-photo-alt-c-social-proof.html",
+      "x": 3680,
+      "y": 8576,
+      "width": 390,
+      "name": "Sign up alt C: Social proof"
+    },
+    {
+      "file": "signup-photo-alt-d-conversational.html",
+      "x": 4096,
+      "y": 8576,
+      "width": 390,
+      "name": "Sign up alt D: Conversational"
+    }
+  ],
+  "texts": [
+    {
+      "text": "Current designs",
+      "x": -32,
+      "y": 3936,
+      "size": 48
+    },
+    {
+      "text": "New flow",
+      "x": 0,
+      "y": 1568,
+      "size": 48
+    },
+    {
+      "text": "Concepts",
+      "x": 0,
+      "y": 5088,
+      "size": 48
+    },
+    {
+      "text": "Email signup",
+      "x": 480,
+      "y": 1568,
+      "size": 48
+    },
+    {
+      "text": "Email login",
+      "x": 1760,
+      "y": 1568,
+      "size": 48
+    },
+    {
+      "text": "Profile setup",
+      "x": 2208,
+      "y": 1568,
+      "size": 48
+    },
+    {
+      "text": "Invite",
+      "x": 2720,
+      "y": 1568,
+      "size": 48
+    },
+    {
+      "text": "Features",
+      "x": 4608,
+      "y": 1568,
+      "size": 48
+    },
+    {
+      "text": "Tour concept — Light mode",
+      "x": 0,
+      "y": 8512,
+      "size": 48
+    },
+    {
+      "text": "Tour concept — Product UI · Light",
+      "x": 1504,
+      "y": 8480,
+      "size": 48
+    },
+    {
+      "text": "Push",
+      "x": 4096,
+      "y": 1568,
+      "size": 48
+    },
+    {
+      "text": "Home",
+      "x": 5952,
+      "y": 1568,
+      "size": 48
+    },
+    {
+      "text": "Sign up explorations — Photo welcome",
+      "x": 2848,
+      "y": 8480,
+      "size": 48
+    }
+  ]
+}

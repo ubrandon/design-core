@@ -1,171 +1,103 @@
 ---
-description: Core rules for the Design Core tool -- guides AI to help designers create screens and interactive prototypes
+description: Core rules for the Design Core tool -- guides AI to help build screens, prototypes, and design systems across companies
 alwaysApply: true
 ---
 
 # Design Core -- AI Guidelines
 
-## Context Detection -- Core Repo vs Consumer Repo
+## What This Repo Is
 
-Before doing anything, determine which context you are operating in:
+Design Core is a personal, file-based design tool. One repo, one owner (Brandon), many companies. Brandon both maintains the tool and designs in it, so two kinds of work happen here and both are allowed:
 
-### How to detect
+- **Tool changes** -- root HTML pages (`index.html`, `project.html`, `canvas.html`, `prototype.html`, `design-system.html`, `captures.html`), `public/scripts/` (browser JS), `public/styles/` (`shared.css`, `ds.css`, `app.css`), repo-root `scripts/` (Node CLIs and the dev-server API), `vite.config.js`, `.cursor/rules/`, `docs/`.
+- **Design work** -- everything under `public/data/companies/<company-slug>/`: projects, screens, prototypes, design system components, captures.
 
-Check the **repo name** (the workspace folder name or `package.json` `name` field):
+Say which one you are doing when it is not obvious. Speak technically and directly. There is no backend, no database, no framework: the tool is vanilla HTML/CSS/JS served by Vite at http://localhost:3000.
 
-- If the repo is called **`design-core`**, you are in the **core repo**.
-- If the repo is called anything else, you are in a **consumer repo** (a project that uses the tool).
+## Companies
 
-### Core repo mode (developing the tool itself)
+All design data lives at `public/data/companies/<company-slug>/` with these subfolders:
 
-You are working with a **developer** who maintains the design tool. In this mode:
+- `projects/` -- `index.json` plus one folder per project (see "Project Structure")
+- `design-system/` -- `company.css`, `registry.json`, `components/<company-slug>/`, plus any asset folders
+- `captures/` -- `config.json`, `manifest.json`, screenshots
+- `users/` -- per-user preferences (managed by the tool, do not hand-edit)
 
-- The goal is to improve, fix, or extend the tool -- its pages, scripts, styles, Vite config, Cursor rules, etc.
-- You **can and should** edit root-level HTML pages (`index.html`, `project.html`, `canvas.html`, `prototype.html`, `design-system.html`), **`public/scripts/`** (browser tool JS), repo-root **`scripts/`** (Node CLIs only), config files, shared styles, and anything else in the repo.
-- Do NOT create new design projects, screens, or prototypes unless the developer explicitly asks (e.g. for testing). The `public/data/projects/` folder contains sample/test data -- treat it as fixtures, not real design work.
-- Speak technically. The developer understands HTML, CSS, JS, Vite, and the codebase.
-- The "Critical Rules" section below about staying in a project folder and never editing the tool **does not apply** -- those rules protect designers in consumer repos.
+`public/data/companies/index.json` lists the companies: `{ "companies": [{ "slug", "name", "createdAt" }] }`. `public/data/site.json` (optional `publicBaseUrl` for share links) stays at the top level.
 
-### Consumer repo mode (using the tool to design)
+**Active company in the UI:** the home page has a company picker; the left rail has a company switcher at the top (with "add new company"); every tool page accepts `?company=<slug>` and remembers the last choice in the browser. Share links include `&company=`.
 
-You are helping a **designer** create UI screens and interactive prototypes. They may not be technical. Be helpful, visual, and avoid jargon.
+**Choosing the company as the AI:** if the user names a company, use it. Otherwise read `public/data/companies/index.json`; if there is exactly one, use it; if there are several and context does not make it clear, ask. Project ids only need to be unique within a company.
 
-- All the rules below (project boundaries, prototype mode, design system usage, tone) apply fully.
-- **Before every file create or edit**, run the safe-path check described in "Pre-flight safe-path check" below. If the path fails the check, **stop immediately** and warn the user before proceeding.
-- Never modify tool internals on your own initiative. Your job is to help them build screens and prototypes inside their project folder.
+**Dev server API** (all company-scoped via `?company=<slug>`): `/api/project-admin`, `/api/projects-summary`, `/api/user-prefs`, `/api/duplicate-screen`, `/api/capture/launch`. Plus `/api/companies` (GET) and `/api/company-admin` (POST `create-company`).
 
-### NEVER make tool-level changes in a company repo
+**npm scripts:** `dev`, `build`, `preview`, `capture` (`npm run capture -- --company <slug>`, auto-picks when there is one company), `sync-public-url`, `doctor` (checks Node, deps, and every company's JSON, canvas entries, and CSS link depth), `import-company` (`npm run import-company -- <path-to-old-repo> <slug> "<Name>"` copies an old single-company repo's `public/data` into a company folder and fixes relative links).
 
-**This is critical, and it applies to every AI assistant working in this repo** -- Cursor, Claude Code (VSCode extension, desktop app, or CLI), Copilot, or anything else. Company repos receive tool updates by pulling from the upstream core repo (`ubrandon/design-core`). If you make tool-level changes directly in a company repo, those changes will conflict with or be overwritten by future upstream merges, and can break the tool for the whole team. `npm run doctor` compares this repo's tool files against the official tool and flags any drift, so unauthorized tool edits WILL surface.
-
-**Tool-level files** are anything that is NOT project data or designer identity. This includes:
-
-- `.cursor/rules/` -- all Cursor rule files (`design-tool.mdc`, `setup.mdc`, etc.)
-- `CLAUDE.md`, `AGENTS.md` -- the AI instruction shims at the repo root
-- `GETTING_STARTED.md`, `README.md`
-- Root HTML pages (`index.html`, `project.html`, `canvas.html`, `prototype.html`, `design-system.html`)
-- `public/scripts/` -- JavaScript that powers the tool in the browser (must live here so `vite build` deploys it to GitHub Pages)
-- `scripts/` (repo root) -- Node-only CLIs (`capture-screens.js`, `sync-public-site-url.js`, `doctor.js`, `finish-setup.js`, `update-tool.js`, `start-company-setup.js`), not loaded by HTML
-- `public/styles/shared.css`, `public/styles/ds.css` -- shared design system styles
-- `vite.config.js`, `package.json`, `package-lock.json`
-- `.github/` -- GitHub Actions workflows
-- `docs/` -- documentation files
-
-**What to do instead:**
-
-- If a tool-level fix or improvement is needed, tell the user: "This change belongs in the core Design Core tool, not your company repo. Reach out to **Brandon Unglaub** if you need a change to the tool."
-- The ONLY tool-level files a company repo should modify during setup are `GETTING_STARTED.md` and `.designer.example`, and `npm run finish-setup` writes both automatically -- never edit them by hand. After that initial setup commit, they should only change via `npm run update-tool`.
-
-**What you CAN create and edit in a company repo (user content):**
-
-All user-created content lives under `public/data/`. This is the boundary between the tool and the team's work.
-
-- `public/data/projects/` -- all project folders, screens, prototypes, and project JSON files
-- `public/data/design-system/components/<company-slug>/` -- company-specific design system component previews. **Always use a company subfolder** (e.g. `components/acme/`), never put files directly in `components/`. See "User content separation" below.
-- `public/data/design-system/registry.json` -- registry for your design system components (ships empty, you fill it)
-- `public/data/design-system/company.css` -- company brand overrides (colors, fonts, radii). Loaded automatically after `shared.css` and `ds.css`. Use this instead of editing `shared.css` or `ds.css`.
-- `.designer` -- the local identity file (gitignored, never committed)
-
-### Pre-flight safe-path check
-
-**In consumer repo mode, you MUST run this check before every file create, edit, or delete.** This is the single most important guardrail in the tool. Skipping it risks breaking the tool for the entire team.
-
-**Step 1 -- Check the file path against the SAFE list.** The file is safe to edit if its path matches ANY of these patterns:
-
-| Safe pattern                                             | What it covers                                |
-| -------------------------------------------------------- | --------------------------------------------- |
-| `public/data/projects/**`                                | All project screens, prototypes, and metadata |
-| `public/data/design-system/components/<company-slug>/**` | Company-specific component previews           |
-| `public/data/design-system/registry.json`                | Design system registry                        |
-| `public/data/design-system/company.css`                  | Company brand overrides                       |
-| `public/data/captures/config.json`                       | Screen capture settings                       |
-| `public/data/site.json`                                  | Public URL config                             |
-| `.designer`                                              | Local identity file                           |
-| `.app-screens.json`                                      | Local capture credentials                     |
-
-If the path matches a safe pattern, proceed normally.
-
-**Step 2 -- If the path does NOT match any safe pattern, it is a CORE TOOL FILE.** Stop and show the user a clear warning:
-
-> "That file (`<path>`) is part of the Design Core tool itself, not your project data. I can't edit core tool files in your company repo -- those changes will conflict with future tool updates.
->
-> If you need a change to the tool itself, reach out to **Brandon Unglaub** -- he maintains the core Design Core repo and can make the update so it flows down to all teams."
-
-**Do NOT proceed with the edit.** The only exception is if the user explicitly confirms they understand the risks and insists. If they do, remind them that the change will likely be overwritten or cause merge conflicts on the next upstream pull.
-
-**Step 3 -- Common traps to watch for.** Even well-intentioned requests can lead to core file edits. Watch for these:
-
-- "Fix the nav bar" -- if they mean the tool's navigation (in `index.html`, `project.html`, etc.), that's a core file. If they mean a nav bar inside their prototype, that's safe.
-- "Change the font" / "Update the colors" -- if they want to change `shared.css` or `ds.css`, redirect them to `company.css`. If they want to change fonts inside a prototype, that's safe.
-- "The page isn't loading right" -- if the fix requires editing `public/scripts/`, `vite.config.js`, or a root HTML page, that's a core file. Tell them to reach out to **Brandon Unglaub** to report the bug.
-- "Add a new page to the tool" -- adding a new root HTML page is a core change. If they want a new screen or prototype, that goes in their project folder.
-- "Update the build" / "Fix deployment" -- `vite.config.js`, `.github/`, `package.json` are all core files. Direct them to **Brandon Unglaub** for tool changes.
+`.designer` (gitignored) may exist with `name` and `team`; it only feeds the "created by" attribution picker. Do not build any flow around it.
 
 ### Git rules
 
-- **NEVER commit or push without the user explicitly asking.** Do not auto-commit, do not commit as part of a multi-step task, do not commit "to save progress." The user controls when commits happen.
-- **NEVER run `git fetch`, `git pull`, `git merge`, or any command that syncs with a remote** without the user explicitly asking. These can introduce unexpected changes.
-- If the user asks to pull updates from the core repo, run `npm run update-tool` (use `--dry-run` first to show what's incoming). It fetches, shows the changes, merges, keeps the company's own files when they conflict, and reinstalls dependencies. Do NOT hand-run `git merge upstream/main`.
-- The maintenance scripts are the sanctioned exception to the no-sync rule, when the user asks for what they do: `npm run doctor` may fetch (read-only) to compare tool files, and `npm run update-tool` fetches, merges, and commits as its explicit job.
+- **NEVER commit or push without the user explicitly asking.** Do not auto-commit, do not commit as part of a multi-step task, do not commit "to save progress."
+- **NEVER run `git fetch`, `git pull`, `git merge`, or any command that syncs with a remote** without the user explicitly asking.
 
----
+### Copy rules
 
-## First-Time Setup
+- No em-dashes in copy or UI text. Use commas, periods, or colons instead.
+- Code comments are single-line.
 
-When a user opens the repo for the first time, they may not have a `.designer` file yet. See `setup.mdc` for the full onboarding flow -- it walks them through identity, team info, and getting started. If `.designer` is missing and the user asks to create a project or screen, prompt them to complete setup first.
-
-## What This Project Is
-
-This is a design prototyping tool. Designers create:
+## What Designers Build Here
 
 - **Canvas screens** -- Static HTML/CSS files for UI ideation. No JavaScript.
 - **Prototypes** -- Interactive HTML/CSS/JS mini apps that feel like real features. JavaScript is expected.
-
-There is no backend, no database, no framework. The tool itself is vanilla HTML served by Vite.
 
 ## How paths work
 
 Vite serves the `public/` folder as the web root. All data files live under `public/` on disk, but are accessed without the `public/` prefix in the browser and in fetch URLs.
 
-- **Disk path**: `public/data/projects/my-app/project.json`
-- **Browser/fetch path**: `data/projects/my-app/project.json`
+- **Disk path**: `public/data/companies/acme/projects/my-app/project.json`
+- **Browser/fetch path**: `data/companies/acme/projects/my-app/project.json`
 
 When creating or editing files, always use the **full disk path** (with `public/`). When referencing URLs in HTML `src`, `href`, or `fetch()` calls, omit `public/`.
 
+### Stylesheet link depth (get this right)
+
+Relative CSS links must climb back to the site root. The depth depends on where the file lives:
+
+| File | Tool CSS (`shared.css`, `ds.css`) | Company CSS |
+| --- | --- | --- |
+| Canvas screen `.../projects/<p>/screens/x.html` | six `../` (`../../../../../../styles/shared.css`) | `../../../design-system/company.css` |
+| Prototype `.../projects/<p>/prototypes/<x>/index.html` | seven `../` (`../../../../../../../styles/shared.css`) | `../../../../design-system/company.css` |
+| Design system component fragment | none (loaded into `design-system.html` at the site root) | none; reference assets page-relative, e.g. `data/companies/<slug>/design-system/...` |
+
+`npm run doctor` flags wrong depths.
+
 ## Project Structure
 
-All paths below are **disk paths** (relative to repo root):
+All paths below are **disk paths** (relative to repo root). `<c>` is the company slug.
 
-- `public/data/projects/<project>/` -- One folder per project. The **project id** is the folder name (e.g. `my-app`).
-- `public/data/projects/<project>/project.json` -- **Project name and metadata.** Contains `name`, `description`, and optionally `createdBy`, `createdAt`, `updatedAt` (shown on the project hub with relative dates when present). Set `updatedAt` when the project meaningfully changes — the **home** page uses it for "Recently updated" sorting.
-- `public/data/projects/index.json` -- List of all projects (`id`, `name`, `description`, `createdBy`, `createdAt`). The home page also loads each project's `project.json`, `canvas.json`, and `prototypes/index.json` for search, sort, and screen/prototype counts on cards.
-- `public/data/site.json` -- Optional tool config: `{ "publicBaseUrl": "https://org.github.io/repo/" }` so **Copy link** for prototypes uses the GitHub Pages URL while developing on localhost (people you share with open that link in a browser, not Cursor). Run **`npm run sync-public-url`** to fill it from `git remote get-url origin`. On `*.github.io`, the base is inferred from the current URL if this is omitted.
-- `public/data/projects/<project>/canvas.json` -- **Canvas screen layout.** Lists which screens appear on the canvas and their positions/sizes. Contains `{ "screens": [{ "file": "home.html", "x": 0, "y": 0, "width": 390 }, ...] }`. When adding a new screen, you MUST also add an entry here or it won't show on the canvas. Standard widths: **390** for mobile, **1024** for tablet, **1280** for desktop. Use whatever fits the screen being designed.
-- `public/data/projects/<project>/screens/` -- Static screen HTML files for the ideation canvas
-- `public/data/projects/<project>/prototypes/<prototype>/index.html` -- Interactive prototype
-- `public/data/projects/<project>/prototypes/<prototype>/meta.json` -- Prototype name and description; optional `thumbnail` (filename or path under the prototype folder, e.g. `preview.png`) for the project page card image. Optional `externalTestUrl` (string): full **http://** or **https://** URL to Maze, UserTesting, etc. The tool shows **Tested** only when this parses as a plausible web URL (hostname with a dot, or `localhost`).
-- `public/data/projects/<project>/prototypes/index.json` -- Prototype list (`id`, `name`, `description`, optional `device`). Device can be `"mobile"` (phone frame, 390x844), `"online"` (small desktop frame, 1280x800), `"desktop"` (1024x768), or `"responsive"` (fluid).
-- `public/data/design-system/components/` -- Design system component HTML previews. In company repos, use `components/<company-slug>/` subfolder.
-- `public/data/design-system/registry.json` -- Category list + groups (order controls layout). Ships empty; company fills it.
-- `public/data/design-system/company.css` -- (Company repos only) Brand overrides for colors, fonts, radii. Auto-loaded after `shared.css` and `ds.css`.
-- `public/styles/shared.css` -- Design tokens (colors, fonts, spacing, radii). **Tool file -- do not edit in company repos.**
-- `public/styles/ds.css` -- Reusable component styles. **Tool file -- do not edit in company repos.**
-- **Designer identity (`.designer` file)** -- In the repo root (gitignored). Created during first-time setup (see `setup.mdc`). Contains `name`, `company`, and `team` array:
-  ```json
-  {
-    "name": "Ben",
-    "company": "Acme Inc",
-    "team": [{ "name": "Ben" }, { "name": "Sara" }]
-  }
-  ```
-  Use the `name` field for `createdBy` when creating projects. If `.designer` is missing, prompt the user to run the setup flow.
+- `public/data/companies/<c>/projects/<project>/` -- One folder per project. The **project id** is the folder name (e.g. `my-app`).
+- `public/data/companies/<c>/projects/<project>/project.json` -- **Project name and metadata.** Contains `name`, `description`, and optionally `createdBy`, `createdAt`, `updatedAt` (shown on the project hub with relative dates when present). Set `updatedAt` when the project meaningfully changes: the **home** page uses it for "Recently updated" sorting.
+- `public/data/companies/<c>/projects/index.json` -- List of all projects in the company (`id`, `name`, `description`, `createdBy`, `createdAt`). The home page also loads each project's `project.json`, `canvas.json`, and `prototypes/index.json` for search, sort, and screen/prototype counts on cards.
+- `public/data/site.json` -- Optional tool config: `{ "publicBaseUrl": "https://org.github.io/repo/" }` so **Copy link** for prototypes uses the GitHub Pages URL while developing on localhost. Run **`npm run sync-public-url`** to fill it from `git remote get-url origin`. On `*.github.io`, the base is inferred from the current URL if this is omitted.
+- `public/data/companies/<c>/projects/<project>/canvas.json` -- **Canvas screen layout.** Lists which screens appear on the canvas and their positions/sizes. Contains `{ "screens": [{ "file": "home.html", "x": 0, "y": 0, "width": 390 }, ...] }`. When adding a new screen, you MUST also add an entry here or it won't show on the canvas. Standard widths: **390** for mobile, **1024** for tablet, **1280** for desktop. Use whatever fits the screen being designed.
+- `public/data/companies/<c>/projects/<project>/screens/` -- Static screen HTML files for the ideation canvas
+- `public/data/companies/<c>/projects/<project>/prototypes/<prototype>/index.html` -- Interactive prototype
+- `public/data/companies/<c>/projects/<project>/prototypes/<prototype>/meta.json` -- Prototype name and description; optional `thumbnail` (filename or path under the prototype folder, e.g. `preview.png`) for the project page card image. Optional `externalTestUrl` (string): full **http://** or **https://** URL to Maze, UserTesting, etc. The tool shows **Tested** only when this parses as a plausible web URL (hostname with a dot, or `localhost`).
+- `public/data/companies/<c>/projects/<project>/prototypes/index.json` -- Prototype list (`id`, `name`, `description`, optional `device`). Device can be `"mobile"` (phone frame, 390x844), `"online"` (small desktop frame, 1280x800), `"desktop"` (1024x768), or `"responsive"` (fluid).
+- `public/data/companies/<c>/design-system/components/<c>/` -- Design system component HTML previews for the company. Always use the company subfolder.
+- `public/data/companies/<c>/design-system/registry.json` -- Category list + groups (order controls layout).
+- `public/data/companies/<c>/design-system/company.css` -- Brand overrides for colors, fonts, radii, plus company component classes. Auto-loaded after `shared.css` and `ds.css`.
+- `public/styles/shared.css` -- Design tokens (colors, fonts, spacing, radii). Tool file, shared by every company.
+- `public/styles/ds.css` -- Reusable component styles. Tool file, shared by every company.
+
+Put brand-specific styling in `company.css`, not in `shared.css` or `ds.css`, so one company's brand does not leak into another. Editing the tool CSS is fine when the change is meant for every company.
 
 ### Design System Page Layout
 
 The design system page (`design-system.html`) uses an **infinite canvas** with a registry-driven masonry layout. Categories pack into balanced vertical columns so short sections do not inherit empty space from taller neighbors.
 
 - **`groups`** -- top-level libraries or themes. Groups normally stack vertically; groups with the same `pair` render side by side.
-- **Light/dark themes** -- set `theme` to `"dark"` or `"light"` and give both groups the same `pair`. Each group becomes one continuous flat themed surface; categories use internal headings rather than card shells. IDs/names containing “dark” and “light” are inferred for backward compatibility.
+- **Light/dark themes** -- set `theme` to `"dark"` or `"light"` and give both groups the same `pair`. Each group becomes one continuous flat themed surface; categories use internal headings rather than card shells. IDs/names containing "dark" and "light" are inferred for backward compatibility.
 - **Group layout** -- masonry is the default. Configure top-level `layout` defaults or a group's `layout` with `columns`, `columnWidth`, `maxColumnWidth`, and `gap`.
 - **Categories** -- each has `group`, `name`, and `components`. Add `section` to the first category of a major chapter to create a full-width divider; use `span: "all"` for a wide visual anchor and optional `column` hints to keep related categories together.
 - **Component layout** -- `"layout": "row"` still means the components inside one category sit side by side. A multi-component row automatically becomes full width unless explicitly constrained.
@@ -173,56 +105,49 @@ The design system page (`design-system.html`) uses an **infinite canvas** with a
 
 ## Critical Rules
 
-> These rules apply in **consumer repo mode**. In **core repo mode**, you are a developer working on the tool itself -- these boundaries do not apply (see "Context Detection" above).
-
-1. **Run the pre-flight safe-path check on every file operation.** Before creating, editing, or deleting any file, check it against the safe-path list in "Pre-flight safe-path check" above. If the path is not on the safe list, **stop and warn the user** before proceeding. This is non-negotiable.
-2. **Stay in your project.** Only create or edit files inside the designer's current project folder (`public/data/projects/<project>/`). NEVER modify files in other project folders.
-3. **Stay in your prototype.** If the designer is working on a prototype (`public/data/projects/<project>/prototypes/<prototype>/`), all work happens inside that prototype's folder. Never touch other prototypes or project-level screens.
-4. **Never edit the tool itself.** Do not touch root-level HTML pages (`index.html`, `project.html`, `canvas.html`, `prototype.html`, `design-system.html`), `public/scripts/`, repo-root `scripts/` CLIs, or config files. The pre-flight check enforces this, but if you're ever unsure, **ask first**.
-5. **Never edit the design system** without being explicitly asked. The files in `public/data/design-system/` and `public/styles/` are shared across all projects. `company.css` and `registry.json` under `public/data/design-system/` are safe; `shared.css` and `ds.css` under `public/styles/` are NOT.
-6. **Use the design system.** Always use existing CSS classes from `public/styles/ds.css` and design tokens from `public/styles/shared.css`. Read both files before creating anything.
-7. **Only the Phosphor `regular` and `fill` icon weights are loaded** (`company.css` imports just those two from `@phosphor-icons/web`). Any other weight renders as a blank box, NOT an error. A plain checkmark must be `ph ph-check` (regular) — `ph-bold ph-check` and `ph-fill ph-check` both render empty; use `ph-fill ph-check-square` only when you want the boxed check. Icon weight comes from the class (`ph` / `ph-fill`), never from CSS `font-weight`.
-8. **Mount canvas screens before building them.** When creating a new canvas screen, you MUST do these two things FIRST, before writing any real screen content, and in this order: (a) create the HTML file containing only an empty wrapper `<div style="background: var(--bg-0);"></div>`, then (b) add the entry to `canvas.json`. ONLY after both of those exist do you write the real screen content by editing the same file. This is non-negotiable -- it makes the card appear on the designer's canvas immediately so they watch it fill in live. If you write the finished HTML first and then add it to `canvas.json` at the end, you have violated this rule. When creating multiple screens, mount ALL of their empty placeholders + `canvas.json` entries first, then fill them in one at a time. See "Creating a new canvas screen" below for the full procedure.
+1. **Work in the right company.** Confirm the company slug before creating anything (see "Companies"). Never write one company's design work into another company's folder.
+2. **Use the design system.** Always use existing CSS classes from `public/styles/ds.css`, design tokens from `public/styles/shared.css`, and the company's `company.css` and components. Read them before creating anything.
+3. **Only the Phosphor `regular` and `fill` icon weights are loaded** (`company.css` imports just those two from `@phosphor-icons/web`). Any other weight renders as a blank box, NOT an error. A plain checkmark must be `ph ph-check` (regular): `ph-bold ph-check` and `ph-fill ph-check` both render empty; use `ph-fill ph-check-square` only when you want the boxed check. Icon weight comes from the class (`ph` / `ph-fill`), never from CSS `font-weight`.
+4. **Mount canvas screens before building them.** When creating a new canvas screen, you MUST do these two things FIRST, before writing any real screen content, and in this order: (a) create the HTML file containing only an empty wrapper `<div style="background: var(--bg-0);"></div>`, then (b) add the entry to `canvas.json`. ONLY after both of those exist do you write the real screen content by editing the same file. This is non-negotiable: it makes the card appear on the canvas immediately so the screen fills in live. If you write the finished HTML first and then add it to `canvas.json` at the end, you have violated this rule. When creating multiple screens, mount ALL of their empty placeholders + `canvas.json` entries first, then fill them in one at a time. See "Creating a new canvas screen" below for the full procedure.
+5. **Prototypes with multiple views use hash routing.** See "Prototype Mode".
 
 ## Before Creating Anything
 
-When a designer asks you to create screens, prototypes, or any design work, **always check existing projects first** before creating anything new.
+When asked to create screens, prototypes, or any design work, **check what exists first**.
 
-1. **Read `public/data/projects/index.json`** to see what projects already exist.
+1. **Pick the company** (see "Companies"), then read `public/data/companies/<c>/projects/index.json` to see what projects already exist.
 2. **If the user explicitly says "create a new project"**, proceed with the project creation flow below.
-3. **If the user does NOT mention creating a new project** (e.g. they say "make me a home screen" or "design a login flow"), list the existing projects and ask where they want the work to go:
-   - "You have these projects: **Project A**, **Project B**. Which one should I add this to, or would you like to create a new project?"
-4. **If there are no projects yet**, tell the user you'll create one and ask for a name:
-   - "There aren't any projects yet. What would you like to call this project?"
-5. **Never auto-generate a project name** like "New Project" or "Untitled". Always ask the user.
+3. **If the user does NOT mention creating a new project** (e.g. "make me a home screen" or "design a login flow"), list the existing projects and ask where the work should go, unless it is obvious from context.
+4. **If there are no projects yet**, say so and ask for a name.
+5. **Never auto-generate a project name** like "New Project" or "Untitled". Always ask.
 
 ## How to Create Things
 
 ### Creating a new project
 
-1. Choose a project id (lowercase, hyphenated, e.g. `mobile-redesign`)
-2. Create the folder: `public/data/projects/<id>/`
-3. Create `public/data/projects/<id>/project.json`:
+1. Choose a project id (lowercase, hyphenated, e.g. `mobile-redesign`), unique within the company
+2. Create the folder: `public/data/companies/<c>/projects/<id>/`
+3. Create `public/data/companies/<c>/projects/<id>/project.json`:
    ```json
    {
      "name": "Mobile Redesign",
      "description": "...",
-     "createdBy": "Ben",
+     "createdBy": "Brandon Unglaub",
      "createdAt": "2026-03-15T00:00:00Z",
      "updatedAt": "2026-03-15T00:00:00Z"
    }
    ```
    (`updatedAt` optional; omit on first creation or mirror `createdAt`. Refresh it when the project changes so the home page sort stays accurate.)
-4. Add an entry to `public/data/projects/index.json` with matching `id`, `name`, `description`, `createdBy`, `createdAt`
-5. Create `public/data/projects/<id>/canvas.json`: `{ "screens": [] }`
-6. Create `public/data/projects/<id>/screens/` directory
-7. Create `public/data/projects/<id>/prototypes/index.json`: `{ "prototypes": [] }`
+4. Add an entry to `public/data/companies/<c>/projects/index.json` with matching `id`, `name`, `description`, `createdBy`, `createdAt`
+5. Create `public/data/companies/<c>/projects/<id>/canvas.json`: `{ "screens": [] }`
+6. Create `public/data/companies/<c>/projects/<id>/screens/` directory
+7. Create `public/data/companies/<c>/projects/<id>/prototypes/index.json`: `{ "prototypes": [] }`
 
 ### Creating a new canvas screen
 
-**Mount the screen on the canvas first, then build it in place.** The designer should see an empty card appear immediately and watch the screen fill in as you work — not wait for the whole file to be written before anything shows up. Edits to a file that already exists stream into the canvas live; new screens need the same feel, which means the file and the `canvas.json` entry must exist before you write the real content.
+**Mount the screen on the canvas first, then build it in place.** An empty card should appear immediately and the screen should fill in as you work, not wait for the whole file to be written before anything shows up. Edits to a file that already exists stream into the canvas live; new screens need the same feel, which means the file and the `canvas.json` entry must exist before you write the real content.
 
-1. **Create a minimal placeholder HTML file** at `public/data/projects/<project>/screens/<name>.html`. Just the wrapper, empty inside:
+1. **Create a minimal placeholder HTML file** at `public/data/companies/<c>/projects/<project>/screens/<name>.html`. Just the wrapper, empty inside:
    ```html
    <div style="background: var(--bg-0);"></div>
    ```
@@ -231,17 +156,19 @@ When a designer asks you to create screens, prototypes, or any design work, **al
    ```json
    { "file": "<name>.html", "x": 0, "y": 0, "width": 390 }
    ```
-   Space screens apart by adjusting `x` (add the width + 40px gap for each new screen). Standard widths: **390** for mobile, **1024** for tablet, **1280** for desktop. Match the width to what the screen is designed for -- a desktop dashboard should be 1280, a mobile screen should be 390.
-3. **Now build the screen by editing that same file.** Replace the empty wrapper with the real content. Each edit streams live into the card on the canvas, so prefer one larger write of the finished screen over many tiny edits (each edit causes the card to refresh). Use the standard screen wrapper:
+   Space screens apart by adjusting `x` (add the width + 40px gap for each new screen). Standard widths: **390** for mobile, **1024** for tablet, **1280** for desktop. Match the width to what the screen is designed for: a desktop dashboard should be 1280, a mobile screen should be 390.
+3. **Now build the screen by editing that same file.** Replace the empty wrapper with the real content. Each edit streams live into the card on the canvas, so prefer one larger write of the finished screen over many tiny edits (each edit causes the card to refresh). Link the stylesheets, then use the standard screen wrapper:
    ```html
+   <link rel="stylesheet" href="../../../../../../styles/shared.css" />
+   <link rel="stylesheet" href="../../../../../../styles/ds.css" />
+   <link rel="stylesheet" href="../../../design-system/company.css" />
    <div style="background: var(--bg-0);">
      <!-- Screen content -->
    </div>
    ```
-   The wrapper is just a background container. Do NOT add `padding`, `max-width`, or `margin: 0 auto` to it -- those prevent full-width elements (nav bars, hero backgrounds, footers) from reaching the edges. Individual content sections inside the wrapper handle their own padding (e.g. `padding: 16px`).
+   **Path depth:** exactly **six** `../` for tool CSS and **three** for `company.css`. The wrapper is just a background container. Do NOT add `padding`, `max-width`, or `margin: 0 auto` to it: those prevent full-width elements (nav bars, hero backgrounds, footers) from reaching the edges. Individual content sections inside the wrapper handle their own padding (e.g. `padding: 16px`).
 4. **When creating multiple new screens at once**, mount all of them as empty placeholders + `canvas.json` entries first (so every card shows up on the canvas right away), then fill them in one at a time. Don't build screen 1 to completion before screen 2's card even exists.
 5. **HTML + CSS only.** No JavaScript. No interactivity.
-
 #### Canvas screen content rules
 
 Screens render inside an iframe at exactly the width set in `canvas.json`. Content that overflows will be clipped by the device frame. Follow these rules to avoid layout breakage:
@@ -260,19 +187,19 @@ Screens render inside an iframe at exactly the width set in `canvas.json`. Conte
 - **Use design system classes** over inline styles whenever a matching class exists (e.g. use `jh-row`, `jh-card`, `jh-label` if the company has defined them, or `ds-list-item` from the base system). Only use inline styles for layout composition or one-off spacing.
 - **Do NOT hardcode `max-width` on value text** (e.g. `max-width: 55%`). Let the flex layout handle wrapping. If a value is long, the right-aligned text will wrap naturally within the available space.
 - **When creating multiple screen variants** for ideation, vary the composition and visual hierarchy (card grouping, section structure, emphasis on different elements) -- do NOT reinvent the underlying row/label mechanics each time. Reuse the same label/value pattern across variants.
-- **Do not show horizontal scrollbars** on canvas screens (or prototypes). Horizontal strips (chips, carousels, story rails) should still scroll sideways via touch/trackpad/shift+wheel, but the scrollbar gutter should be hidden. Add the utility class **`ds-scroll-x`** from `shared.css` to those scroll containers (it sets `overflow-x: auto` and hides scrollbars in Firefox, WebKit, and IE). Prefer **`overflow-x: clip`** (or `hidden`) on the screen root if needed so the document itself never gains a horizontal scrollbar. **Vertical** page scrolling is normal on desktop — do not hide the main vertical scrollbar unless the design is an intentional full-screen app shell with its own scroller.
+- **Do not show horizontal scrollbars** on canvas screens (or prototypes). Horizontal strips (chips, carousels, story rails) should still scroll sideways via touch/trackpad/shift+wheel, but the scrollbar gutter should be hidden. Add the utility class **`ds-scroll-x`** from `shared.css` to those scroll containers (it sets `overflow-x: auto` and hides scrollbars in Firefox, WebKit, and IE). Prefer **`overflow-x: clip`** (or `hidden`) on the screen root if needed so the document itself never gains a horizontal scrollbar. **Vertical** page scrolling is normal on desktop -- do not hide the main vertical scrollbar unless the design is an intentional full-screen app shell with its own scroller.
 
 ### Creating a new prototype
 
-1. Ask the designer: "Should this be mobile or online (desktop)?" Only ask if they haven't already specified. If they say "online" or "desktop" or "web", use `"device": "online"`. If they say "mobile" or "phone" or "app", use `"device": "mobile"`. The `responsive` option also exists but rarely needed.
+1. Ask: "Should this be mobile or online (desktop)?" Only ask if not already specified. "online", "desktop", or "web" means `"device": "online"`. "mobile", "phone", or "app" means `"device": "mobile"`. The `responsive` option also exists but is rarely needed.
 2. Choose a prototype id (lowercase, hyphenated, e.g. `signup-flow`)
-3. Create the folder: `public/data/projects/<project>/prototypes/<id>/`
+3. Create the folder: `public/data/companies/<c>/projects/<project>/prototypes/<id>/`
 4. Create `meta.json`:
  ```json
  { "name": "Signup Flow", "description": "...", "thumbnail": "preview.png", "externalTestUrl": "https://t.maze.co/…" }
  ```
- (`thumbnail` is optional — image file in the prototype folder, used on the project hub. `externalTestUrl` is optional — must be a valid **http(s)** URL for the **Tested** badge and project counts.)
-5. Add an entry to `public/data/projects/<project>/prototypes/index.json`:
+ (`thumbnail` is optional: image file in the prototype folder, used on the project hub. `externalTestUrl` is optional: must be a valid **http(s)** URL for the **Tested** badge and project counts.)
+5. Add an entry to `public/data/companies/<c>/projects/<project>/prototypes/index.json`:
    ```json
    {
      "id": "<id>",
@@ -283,14 +210,15 @@ Screens render inside an iframe at exactly the width set in `canvas.json`. Conte
    ```
 6. Create `index.html` with design system imports:
    ```html
-   <link rel="stylesheet" href="../../../../../styles/shared.css" />
-   <link rel="stylesheet" href="../../../../../styles/ds.css" />
+   <link rel="stylesheet" href="../../../../../../../styles/shared.css" />
+   <link rel="stylesheet" href="../../../../../../../styles/ds.css" />
+   <link rel="stylesheet" href="../../../../design-system/company.css" />
    ```
-   **Path depth:** use exactly **five** `../` segments (`../../../../../`), not six. The prototype file lives at `data/projects/<project>/prototypes/<id>/index.html` under the site root; six levels escapes past the repo base on **GitHub project Pages** and breaks CSS (browser requests `/styles/...` on the `github.io` host instead of `/repo-name/styles/...`). Company CSS, if any: `../../../../../data/design-system/company.css`.
+   **Path depth:** use exactly **seven** `../` segments for the tool CSS and **four** for `company.css`. The prototype file lives at `data/companies/<c>/projects/<project>/prototypes/<id>/index.html` under the site root; one level off and the styles silently fail (sometimes only on GitHub project Pages, where an extra level escapes the repo base).
 
 ## Prototype Mode -- Interactive Features
 
-Files in `public/data/projects/<project>/prototypes/<prototype>/` are interactive prototypes.
+Files in `public/data/companies/<c>/projects/<project>/prototypes/<prototype>/` are interactive prototypes.
 
 ### How to detect prototype mode
 
@@ -311,11 +239,11 @@ A prototype is a **self-contained interactive mini web app**. It lives in a sing
 1. **Read context first.** Read `meta.json` in the prototype folder to understand the prototype's name and purpose.
 2. **JavaScript is expected.** Prototypes are interactive -- write real JS for state, transitions, validation, etc.
 3. **Use hash routing for navigation.** Every prototype with multiple views/steps **must** use `location.hash` so each view gets a unique URL. This is required for usability testing tools (e.g. Maze) that track which screen a tester is on. See "Hash routing pattern" below.
-4. **Use the design system.** Import styles using relative paths (5 levels up from the prototype folder). Use tokens and component classes as the foundation.
+4. **Use the design system.** Import styles using relative paths (seven `../` for tool CSS, four for `company.css`; see "Stylesheet link depth"). Use tokens and component classes as the foundation.
 5. **Add new styles inline.** If the designer asks for something not in the design system, use `<style>` blocks inside the prototype. Keep the shared design system files untouched.
-6. **Hide horizontal scrollbars** on carousels, chip rows, and other horizontal scrollers — use **`ds-scroll-x`** from `shared.css` (see canvas screen rules). Prefer **`overflow-x: clip`** on the root if the document gets a horizontal scrollbar.
+6. **Hide horizontal scrollbars** on carousels, chip rows, and other horizontal scrollers -- use **`ds-scroll-x`** from `shared.css` (see canvas screen rules). Prefer **`overflow-x: clip`** on the root if the document gets a horizontal scrollbar.
 7. **Self-contained.** Everything the prototype needs goes in its folder. No external npm packages or CDN scripts unless the designer explicitly asks.
-8. **Look at the design system.** Read existing component HTML files in `public/data/design-system/components/` for visual patterns.
+8. **Look at the design system.** Read the company's existing component HTML files in `public/data/companies/<c>/design-system/components/<c>/` for visual patterns.
 9. **One file preferred.** Keep the prototype in a single `index.html` unless it grows large enough to justify splitting.
 
 ### Hash routing pattern
@@ -408,12 +336,12 @@ The `applyRoute()` function can be extended to handle hierarchical state (showin
 
 When the designer specifies a target platform (iOS, Android, or desktop), adapt the UI accordingly:
 
-1. **Check the design system first.** Look at `public/data/design-system/components/` and `company.css` for existing components that match the platform. If the team has built components, always prefer those.
-2. **If no matching component exists**, build native-looking UI for the specified platform using the team's brand colors and tokens from `company.css` (or `shared.css` if no company overrides exist):
-   - **iOS** -- SF-style navigation bars, large titles, rounded grouped list rows, iOS-style toggles, tab bars with icons, subtle separators, system-like blur effects. Use the team's accent color for tint/interactive elements.
-   - **Android / Material** -- Top app bars, FABs, bottom navigation with labels, outlined/filled text fields, Material-style cards with subtle elevation, ripple-like interaction areas. Use the team's primary color for Material theming.
+1. **Check the design system first.** Look at `public/data/companies/<c>/design-system/components/<c>/` and `company.css` for existing components that match the platform. If the company has components, always prefer those.
+2. **If no matching component exists**, build native-looking UI for the specified platform using the company's brand colors and tokens from `company.css` (or `shared.css` if no company overrides exist):
+   - **iOS** -- SF-style navigation bars, large titles, rounded grouped list rows, iOS-style toggles, tab bars with icons, subtle separators, system-like blur effects. Use the company's accent color for tint/interactive elements.
+   - **Android / Material** -- Top app bars, FABs, bottom navigation with labels, outlined/filled text fields, Material-style cards with subtle elevation, ripple-like interaction areas. Use the company's primary color for Material theming.
    - **Desktop** -- Sidebar navigation, multi-column layouts, data tables, breadcrumbs, dropdown menus, toolbar actions. Use wider content areas (1024–1280px frames).
-3. **Always use the team's brand colors.** Native-looking doesn't mean default blue iOS or purple Material -- it means the platform's layout patterns and interaction idioms rendered in the team's color palette.
+3. **Always use the company's brand colors.** Native-looking doesn't mean default blue iOS or purple Material -- it means the platform's layout patterns and interaction idioms rendered in the company's color palette.
 4. **If no platform is specified**, default to a generic/neutral style using the design system's existing components.
 
 ## Design Tokens (quick reference)
@@ -427,7 +355,7 @@ When the designer specifies a target platform (iOS, Android, or desktop), adapt 
 
 ## Available Component Classes
 
-The design system ships with generic/foundational components. Teams add their own domain-specific components on top of these.
+The design system ships with generic/foundational components. Each company adds its own domain-specific components on top of these.
 
 ### Buttons
 
@@ -477,25 +405,17 @@ The design system ships with generic/foundational components. Teams add their ow
 
 `.ds-divider`, `.ds-divider-text`
 
-`.ds-scroll-x` — horizontal scrolling container with scrollbars hidden (chip rows, carousels); use on canvas screens and prototypes per canvas rules.
+`.ds-scroll-x` -- horizontal scrolling container with scrollbars hidden (chip rows, carousels); use on canvas screens and prototypes per canvas rules.
 
 ## How to Create Design System Components
 
-The design system starts empty. When a designer asks for components -- either by describing them, sharing screenshots, or asking for specific UI patterns -- follow these steps.
+Each company's design system starts empty. When asked for components (by description, screenshots, or specific UI patterns), follow these steps.
 
 ### Creating a component
 
-**In the core repo** (developing the tool):
-
-1. **Add CSS classes** to `public/styles/ds.css`. Use design tokens from `shared.css` (colors, radii, fonts, spacing). Follow the naming convention: `.ds-<component>` for the main class, `.ds-<component>-<part>` for sub-elements.
-2. **Create a preview HTML file** at `public/data/design-system/components/<name>.html`. This is a pure HTML fragment -- no `<!doctype>`, no `<html>`, no `<head>`, no `<body>`, no style imports. The design system page injects it into a container that already has `shared.css` and `ds.css` loaded.
-3. **Register it** in `public/data/design-system/registry.json` -- add it to an existing group/category or create new ones.
-
-**In a company repo** (using the tool):
-
-1. **Create a preview HTML file** at `public/data/design-system/components/<company-slug>/<name>.html`. Same format -- pure HTML fragment. Use inline styles or classes from `company.css` for company-specific styling.
-2. **Register it** in `public/data/design-system/registry.json` with `"file": "<company-slug>/<name>.html"`.
-3. **If you need new CSS classes**, add them to `public/data/design-system/company.css` (not `ds.css`). Prefix with the company slug (e.g. `.jh-card`). Or use inline styles in the preview HTML -- that's fine for simple components.
+1. **Create a preview HTML file** at `public/data/companies/<c>/design-system/components/<c>/<name>.html`. This is a pure HTML fragment: no `<!doctype>`, no `<html>`, no `<head>`, no `<body>`, no style imports. The design system page injects it into a container that already has `shared.css`, `ds.css`, and the company's `company.css` loaded. Reference any images or assets page-relative from the site root, e.g. `data/companies/<c>/design-system/<c>-assets/logo.svg`.
+2. **Register it** in `public/data/companies/<c>/design-system/registry.json` with `"file": "<c>/<name>.html"`, in an existing group/category or a new one.
+3. **If you need new CSS classes**, add them to `public/data/companies/<c>/design-system/company.css`. Prefix with the company slug (e.g. `.jh-card`). Inline styles in the preview HTML are fine for simple components. Only add classes to `public/styles/ds.css` when they are generic and meant for every company (that is a tool change).
 
 ### Preview HTML file format
 
@@ -553,31 +473,20 @@ The `registry.json` file controls the design system page layout:
 - Group IDs should be lowercase, hyphenated (e.g. `cards-content`, `inputs-controls`).
 - Read `docs/design-system.md` for the full schema, automatic behavior, and light/dark guidance.
 
-### User content separation
+### Company components live in a company subfolder
 
-All user-created content in a company repo must stay cleanly separated from tool files. The rule is simple: **everything the team creates goes under `public/data/`**. Never edit tool-level files (`shared.css`, `ds.css`, `public/scripts/`, root HTML pages, etc.).
+Put components in `public/data/companies/<c>/design-system/components/<c>/`, never directly in `components/`. Set the registry `file` to include the subfolder: `"file": "acme/card-payment.html"`.
 
-#### Design system components: use a company subfolder
+### Brand overrides: use `company.css`
 
-Put components in `public/data/design-system/components/<company-slug>/`, not directly in `components/`. The company slug comes from the repo name (e.g. `design-core-acme` → `acme`).
-
-- **Path**: `public/data/design-system/components/<company-slug>/<component>.html` (e.g. `components/acme/card-payment.html`)
-- **Registry**: Set `file` to include the subfolder: `"file": "acme/card-payment.html"`
-
-This avoids merge conflicts when pulling upstream and makes it obvious which components belong to the team.
-
-#### Brand overrides: use `company.css`
-
-**Never edit `shared.css` or `ds.css` in a company repo.** Those are tool files that update via upstream pulls.
-
-Instead, create `public/data/design-system/company.css` for brand-specific overrides. The design system page (and prototypes) auto-load this file if it exists. It loads after `shared.css` and `ds.css`, so overrides take effect via CSS specificity.
+`public/data/companies/<c>/design-system/company.css` holds everything brand-specific for that company. The design system page, canvas screens, and prototypes load it after `shared.css` and `ds.css`, so overrides win by cascade order.
 
 Use it for:
 
 - **Colors**: Override `--bg-0`, `--bg-1`, `--neon-blue`, `--neon-blue-rgb`, `--neon-teal`, `--neon-teal-rgb`, `--text`, `--muted`, `--muted-2`, or add new brand tokens
 - **Typography**: Override `--font-body`, `--font-display`, add `@import` for Google Fonts
 - **Shape**: Override `--radius-sm`, `--radius-md`, `--radius-lg`, `--radius-xl`, `--shadow`, `--shadow-soft`
-- **New component classes**: Add company-specific CSS classes (prefix with your company slug, e.g. `.jh-card`)
+- **New component classes**: Add company-specific CSS classes (prefix with the company slug, e.g. `.jh-card`)
 
 Example `company.css`:
 
@@ -595,7 +504,7 @@ Example `company.css`:
 
 This is a common flow: the designer shows what their app looks like and wants the design system to match. Follow this process:
 
-1. **Extract colors** from the screenshots or description. Map them to CSS custom properties in `public/data/design-system/company.css` (NOT `shared.css`):
+1. **Extract colors** from the screenshots or description. Map them to CSS custom properties in `public/data/companies/<c>/design-system/company.css` (NOT `shared.css`):
    - Override `--bg-0`, `--bg-1` for backgrounds
    - Override `--neon-blue`, `--neon-blue-rgb` for the primary accent
    - Override `--neon-teal`, `--neon-teal-rgb` for the secondary accent
@@ -604,7 +513,7 @@ This is a common flow: the designer shows what their app looks like and wants th
 2. **Extract typography** -- if they want different fonts, add the `@import` and override `--font-body` and `--font-display` in `company.css`.
 3. **Extract spacing and shape** -- override `--radius-*` tokens if their design uses different corner radii. Override `--shadow` and `--shadow-soft` if they use different elevation styles.
 4. **Build matching components** using the updated tokens. Each component needs:
-   - Preview HTML file in `components/<company-slug>/`
+   - Preview HTML file in `design-system/components/<c>/`
    - Entry in `registry.json`
    - Optionally, CSS classes in `company.css` (prefix with company slug)
 
@@ -612,17 +521,17 @@ This is a common flow: the designer shows what their app looks like and wants th
 
 When creating color palette components for the design system page, render visual swatches so they look good on the design system page.
 
-**Layout — use a grid, not a vertical stack.**
+**Layout -- use a grid, not a vertical stack.**
 
 - **Do not** stack swatches in a single column (e.g. one swatch per row). Use a **grid layout** so multiple swatches sit side-by-side and wrap into rows.
 - **Preferred:** CSS Grid with a fixed or responsive column count so swatches align in a neat grid:
   - Example: `display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;` for a 4-column grid (use 4–6 columns depending on swatch size).
   - Or responsive: `grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 12px;` so columns adapt to container width.
-- **Alternative:** Flexbox with wrap is acceptable: `display: flex; flex-wrap: wrap; gap: 12px;` — but ensure the container is wide enough that multiple swatches fit per row (do not use a narrow column or `flex-direction: column` for the swatch list).
+- **Alternative:** Flexbox with wrap is acceptable: `display: flex; flex-wrap: wrap; gap: 12px;` -- but ensure the container is wide enough that multiple swatches fit per row (do not use a narrow column or `flex-direction: column` for the swatch list).
 
 **Swatch structure (per color):**
 
-- Square (or rounded square) showing the color — e.g. `width` and `height` 48–56px, `border-radius: 10px`, optional thin border for light colors (`border: 1px solid rgba(0,0,0,0.1)`).
+- Square (or rounded square) showing the color -- e.g. `width` and `height` 48–56px, `border-radius: 10px`, optional thin border for light colors (`border: 1px solid rgba(0,0,0,0.1)`).
 - Label below: token name and hex (or value), small font (e.g. `font-size: 0.65rem`), muted color.
 
 **Example (grid of swatches):**
@@ -656,21 +565,21 @@ When building a design system from scratch, use these groups as a starting point
 
 ## Screen Captures
 
-The Captures page lets teams screenshot their live app and view the results on an infinite canvas. Configuration is split into two files:
+The Captures page screenshots a live app and shows the results on an infinite canvas. Each company has its own captures folder. Configuration is split into two files:
 
-### Shared config (committed to git)
+### Company config (committed to git)
 
-**`public/data/captures/config.json`** -- contains `appUrl`, `viewport`, `discover`, `screens`, `dismissSelectors`. Created automatically when a designer captures from the UI, or you can create/edit it directly. This is shared with the whole team.
+**`public/data/companies/<c>/captures/config.json`** -- contains `appUrl`, `viewport`, `discover`, `screens`, `dismissSelectors`. Created automatically when capturing from the UI, or create/edit it directly. Screenshots and `manifest.json` land in the same folder.
 
 ### Local credentials (gitignored)
 
-**`.app-screens.json`** in the repo root -- only needed for apps behind login. Contains the `login` block with steps and credentials. Each designer creates their own. Copy from `.app-screens.example.json`.
+**`.app-screens.json`** in the repo root -- only needed for apps behind login. Contains the `login` block with steps and credentials. Copy from `.app-screens.example.json`. It is one file for the whole repo, so update it when switching to a company whose app needs different credentials.
 
-### How to help designers with captures
+### How to help with captures
 
-1. **First capture (public app)** -- tell them to go to the Captures page and enter their URL. Or create `public/data/captures/config.json` with `appUrl` and `"discover": true`.
+1. **First capture (public app)** -- go to the Captures page (with the right company selected) and enter the URL. Or create `public/data/companies/<c>/captures/config.json` with `appUrl` and `"discover": true`. From the CLI: `npm run capture -- --company <c>`.
 
-2. **App behind login** -- create `.app-screens.json` in the repo root. Ask the designer for their login credentials. The simple format auto-detects login fields:
+2. **App behind login** -- create `.app-screens.json` in the repo root. The simple format auto-detects login fields:
 
    ```json
    { "login": { "username": "their_username", "password": "their_password" } }
@@ -702,31 +611,20 @@ The Captures page lets teams screenshot their live app and view the results on a
    }
    ```
 
-3. **Custom dismiss selectors** -- if the app has popups/modals that aren't auto-dismissed, add CSS selectors to `dismissSelectors` in the shared config.
+3. **Custom dismiss selectors** -- if the app has popups/modals that aren't auto-dismissed, add CSS selectors to `dismissSelectors` in the company config.
 
-4. **Explicit screens** -- if discovery mode misses screens or the designer wants specific ones, set `"discover": false` and list screens in the `screens` array with `name`, `path`, and optional `group`, `waitFor`, `delay`.
+4. **Explicit screens** -- if discovery mode misses screens or specific ones are wanted, set `"discover": false` and list screens in the `screens` array with `name`, `path`, and optional `group`, `waitFor`, `delay`.
 
 5. **Troubleshooting** -- if captures fail:
    - Check that Playwright is installed: `npx playwright install chromium`
    - Check that the URL is correct and accessible
-   - For login issues, the browser window stays open so the designer can complete MFA manually
+   - For login issues, the browser window stays open so login/MFA can be completed manually
    - Check the terminal output for specific errors
 
-### What you can edit (consumer repo)
-
-- `public/data/captures/config.json` -- shared capture settings (this is user content under `public/data/`)
-- `.app-screens.json` -- local credentials (gitignored)
-
-Do NOT edit `scripts/capture-screens.js`, `captures.html`, or the Vite config -- those are tool files.
+Full reference: `docs/captures.md`.
 
 ## Tone
 
-> In **core repo mode**, speak technically -- the user is a developer. Skip the simplifications below.
-
-> In **consumer repo mode**, follow these rules:
-
-- Speak simply. Avoid technical terms like "DOM", "component tree", "state management".
-- Say "screen" not "page" or "route".
-- Say "design system" not "CSS framework".
-- If a designer asks for something that requires tool code changes, tell them to reach out to **Brandon Unglaub** -- he maintains the core tool.
-- Be proactive: suggest design system components that fit what they're building.
+- Technical and direct. Brandon understands HTML, CSS, JS, Vite, and this codebase.
+- Say whether a change is design work (under `public/data/companies/`) or a tool change (everything else) when it is not obvious.
+- Be proactive: suggest existing design system components that fit what is being built.

@@ -1,0 +1,118 @@
+<style>
+  .mr-scope .mr-banner-stack {
+    width: 320px;
+  }
+  .mr-scope .mr-banner-stack-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .mr-scope .mr-banner-stub {
+    height: 14px;
+    border-radius: 0 0 18px 18px;
+    background: linear-gradient(135deg, rgba(var(--neon-teal-rgb), 0.22), rgba(var(--neon-blue-rgb), 0.08));
+    border: 1px solid rgba(var(--neon-teal-rgb), 0.36);
+    border-top: none;
+  }
+  .mr-scope .mr-banner-stub.is-second {
+    width: calc(100% - 16px);
+    margin-top: -8px;
+    order: 2;
+  }
+  .mr-scope .mr-banner-stub.is-third {
+    width: calc(100% - 32px);
+    margin-top: -8px;
+    order: 3;
+  }
+  .mr-scope .mr-banner-card {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    border-radius: 18px;
+    padding: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(var(--neon-teal-rgb), 0.22), rgba(var(--neon-blue-rgb), 0.08));
+    border: 1px solid rgba(var(--neon-teal-rgb), 0.36);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+    order: 1;
+  }
+  .mr-scope .mr-banner-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(var(--neon-teal-rgb), 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: var(--neon-teal);
+    flex-shrink: 0;
+  }
+  .mr-scope .mr-banner-body {
+    flex: 1;
+    min-width: 0;
+  }
+  .mr-scope .mr-banner-title {
+    font-size: 0.96rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .mr-scope .mr-banner-desc {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 2px;
+    line-height: 1.3;
+  }
+  .mr-scope .mr-banner-cta {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--neon-teal);
+    background: none;
+    border: none;
+    padding: 4px 0;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .mr-scope .mr-banner-dismiss {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    color: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+  .mr-scope .mr-banner-dismiss i {
+    font-size: 14px;
+  }
+</style>
+
+<div class="mr-scope">
+  <div class="mr-banner-stack">
+    <div class="mr-banner-stack-inner">
+      <div class="mr-banner-stub is-third" aria-hidden="true"></div>
+      <div class="mr-banner-stub is-second" aria-hidden="true"></div>
+      <div class="mr-banner-card is-top">
+        <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+          <i class="ph ph-x" aria-hidden="true"></i>
+        </button>
+        <div class="mr-banner-icon"><i class="ph-fill ph-hand-waving" aria-hidden="true"></i></div>
+        <div class="mr-banner-body">
+          <div class="mr-banner-title">Welcome to MixedRoutes</div>
+          <div class="mr-banner-desc">Let's get you set up in a few quick steps.</div>
+        </div>
+        <button type="button" class="mr-banner-cta">Start</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<div style="background: var(--bg-0); overflow-x: clip; min-height: 100vh; display: flex; flex-direction: column">
+  <div class="mr-scope" style="display: flex; flex-direction: column; flex: 1">
+    <header style="display: flex; align-items: center; justify-content: flex-start; padding: 18px 16px 8px">
+      <button type="button" class="mr-nav-icon-btn" aria-label="Close">
+        <i class="ph ph-x" aria-hidden="true"></i>
+      </button>
+    </header>
+
+    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 32px; text-align: center">
+      <div
+        style="
+          width: 88px;
+          height: 88px;
+          border-radius: 50%;
+          background: rgba(255, 122, 133, 0.08);
+          border: 1px solid rgba(255, 122, 133, 0.25);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 18px;
+        "
+        aria-hidden="true"
+      >
+        <i class="ph ph-link-break" style="font-size: 38px; color: #ff7a85"></i>
+      </div>
+      <div style="font-size: 1.2rem; font-weight: 800; color: var(--text); margin-bottom: 8px">This invite is no longer valid</div>
+      <div style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.55); line-height: 1.5; max-width: 300px">
+        The link may have been regenerated or disabled by an admin. Ask whoever sent it to share a new one.
+      </div>
+
+      <div style="width: 100%; max-width: 320px; padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); margin-top: 22px; display: flex; align-items: center; gap: 12px; text-align: left">
+        <img src="https://i.pravatar.cc/64?img=11" alt="" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover" loading="lazy" />
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 0.82rem; font-weight: 800; color: var(--text)">Brandon sent this</div>
+          <div style="font-size: 0.74rem; color: rgba(255,255,255,0.5)">Last active 2h ago</div>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm">Message</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px; width: 100%; max-width: 320px">
+        <button type="button" class="btn btn-primary" style="width: 100%; padding: 14px; border-radius: 999px">
+          Request a new invite
+        </button>
+        <button type="button" class="btn btn-secondary" style="width: 100%; padding: 14px; border-radius: 999px">
+          Browse other groups
+        </button>
+        <button type="button" style="width: 100%; padding: 14px; border-radius: 999px; background: transparent; border: 0; color: rgba(255,255,255,0.7); font-weight: 700">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

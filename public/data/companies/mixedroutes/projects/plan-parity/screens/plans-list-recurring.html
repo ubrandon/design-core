@@ -1,0 +1,189 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .pl-scope, .pl-scope * { box-sizing: border-box; scrollbar-width: none; }
+  .pl-scope *::-webkit-scrollbar { display: none; }
+  .pl-scope { font-family: "Geist", sans-serif; color: #101724; }
+  .pl-scope .cal-wrap { min-height: 844px; position: relative; display: flex; flex-direction: column; background: #ffffff; }
+  .pl-scope .cal-top { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; }
+  .pl-scope .cal-title { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
+  .pl-scope .cal-top-actions { display: flex; align-items: center; gap: 18px; }
+  .pl-scope .cal-top-action { position: relative; width: 24px; height: 24px; display: inline-grid; place-items: center; font-size: 24px; line-height: 1; }
+  .pl-scope .cal-top-badge { position: absolute; top: -9px; right: -10px; min-width: 22px; height: 22px; padding: 0 4px; display: grid; place-items: center; border: 2px solid #fff; border-radius: 999px; background: #0ca678; color: #fff; font-size: 12px; font-weight: 700; }
+  .pl-scope .cal-filters { display: flex; gap: 8px; overflow-x: auto; padding: 4px 16px 12px; }
+  .pl-scope .cal-filters .mr-chip { flex: 0 0 auto; white-space: nowrap; }
+  .pl-scope .cal-filters .mr-chip i { font-size: 15px; }
+  .pl-scope .cal-section { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; padding: 12px 16px 12px; }
+  .pl-scope .cal-list { padding: 0 16px; }
+  .pl-scope .cal-rows { display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px; }
+  .pl-scope .plan-row { min-height: 118px; position: relative; overflow: hidden; display: grid; grid-template-columns: 116px 1fr; border-radius: 20px; color: #fff; background: #1e2832; isolation: isolate; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 4px 28px rgba(0,0,0,.32); }
+  .pl-scope .plan-row .ambient { position: absolute; inset: 0; z-index: -2; background: center / cover no-repeat; filter: blur(70px) saturate(4) brightness(1.35); transform: scale(1.35); }
+  .pl-scope .plan-row .shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(8,10,18,0), rgba(8,10,18,.18)); }
+  .pl-scope .plan-row .plan-media { min-height: 118px; position: relative; background: center / cover no-repeat; -webkit-mask-image: linear-gradient(to right,#000 48%,transparent 100%); mask-image: linear-gradient(to right,#000 48%,transparent 100%); }
+  .pl-scope .plan-row-copy { min-width: 0; padding: 15px 14px 14px 0; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+  .pl-scope .plan-row-time { color: rgba(255,255,255,.85); font-size: 12px; font-weight: 700; letter-spacing: 0; text-shadow: 0 0 16px rgba(0,0,0,.32); display: flex; align-items: center; gap: 6px; }
+  .pl-scope .plan-row-time .rep { display: inline-flex; align-items: center; color: rgba(255,255,255,.85); }
+  .pl-scope .plan-row-time .rep i { font-size: 13px; }
+  .pl-scope .plan-row.no-photo .plan-row-time .rep { color: #5c6b7d; }
+  .pl-scope .plan-row-title { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; color: #fff; font-size: 16px; font-weight: 800; line-height: 1.25; text-shadow: 0 0 18px rgba(0,0,0,.38); }
+  .pl-scope .plan-row-meta { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-top: 2px; color: rgba(255,255,255,.9); font-size: 11px; text-shadow: 0 0 16px rgba(0,0,0,.32); }
+  .pl-scope .plan-row-meta .loc { min-width: 0; display: flex; align-items: center; gap: 4px; }
+  .pl-scope .plan-row-meta .loc span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .pl-scope .plan-row-meta .who { display: flex; align-items: center; gap: 6px; }
+  .pl-scope .plan-row.no-photo { --int: #8b5cf6; background: #fff; color: #101724; box-shadow: inset 0 0 0 1px rgba(16,23,36,.1), 0 4px 20px rgba(0,0,0,.08); }
+  .pl-scope .plan-row.no-photo .plan-media { display: grid; place-items: center; background: none; -webkit-mask-image: none; mask-image: none; }
+  .pl-scope .plan-row.no-photo .emoji-tile { width: 76px; height: 76px; display: grid; place-items: center; border-radius: 18px; background: color-mix(in srgb, var(--int) 14%, #fff); font-size: 40px; line-height: 1; }
+  .pl-scope .plan-row.no-photo .plan-row-time { color: #5c6b7d; text-shadow: none; }
+  .pl-scope .plan-row.no-photo .plan-row-title { color: #101724; text-shadow: none; }
+  .pl-scope .plan-row.no-photo .plan-row-meta { color: #3b4551; text-shadow: none; }
+  .pl-scope .plan-row.no-photo .avatars img { border-color: #fff; box-shadow: 0 0 0 1px rgba(16,23,36,.08); }
+  .pl-scope .rsvp { position: absolute; top: 12px; right: 12px; z-index: 2; display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px 0 6px; border-radius: 999px; background: rgba(255,255,255,.22); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #fff; font-size: 11px; font-weight: 700; box-shadow: inset 0 0 0 1px rgba(255,255,255,.28); }
+  .pl-scope .rsvp i { font-size: 14px; }
+  .pl-scope .rsvp.going i { color: #4ade80; }
+  .pl-scope .rsvp.maybe i { color: rgba(255,255,255,.7); }
+  .pl-scope .rsvp.invited i { color: #38bdf8; }
+  .pl-scope .plan-row.no-photo .rsvp { background: #f1f4f7; color: #101724; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .pl-scope .plan-row.no-photo .rsvp.going i { color: #16a34a; }
+  .pl-scope .plan-row.no-photo .rsvp.maybe i { color: #8a97a8; }
+  .pl-scope .plan-row.no-photo .rsvp.invited i { color: #2563eb; }
+  .pl-scope .plan-row-copy { padding-right: 76px; }
+  .pl-scope .avatars { display: flex; align-items: center; }
+  .pl-scope .avatars img { width: 18px; height: 18px; object-fit: cover; border-radius: 50%; border: 1.5px solid #fff; margin-left: -8px; }
+  .pl-scope .avatars img:first-child { margin-left: 0; }
+  .pl-scope .series-note { margin: 4px 16px 14px; display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 14px; background: #f1f4f7; color: #5c6b7d; font-size: 13px; }
+  .pl-scope .series-note i { font-size: 18px; color: #0891b2; }
+  .pl-scope .series-note .lnk { margin-left: auto; color: #0891b2; font-weight: 600; white-space: nowrap; }
+  .pl-scope .cal-page-fill { flex: 1 1 auto; min-height: 28px; }
+  .pl-scope .cal-tabwrap { position: sticky; bottom: 0; z-index: 5; padding-top: 8px; background: linear-gradient(180deg, transparent, #fff 34%); }
+  .pl-scope .app-tab-bar { height: 67px; display: flex; align-items: flex-start; padding-top: 9px; background: #fff; box-shadow: 0 -8px 24px rgba(0,0,0,0.12); }
+  .pl-scope .app-tab { position: relative; flex: 1; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; color: #3b4551; }
+  .pl-scope .app-tab i { font-size: 24px; line-height: 1; }
+  .pl-scope .app-tab--discover i { font-size: 26px; }
+  .pl-scope .app-tab.is-selected { color: #1a2332; }
+  .pl-scope .app-tab-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; display: block; }
+</style>
+
+<div class="pl-scope mr-scope mr-scope--light">
+  <div class="cal-wrap">
+    <div class="cal-top">
+      <div class="cal-title">Plans</div>
+      <div class="cal-top-actions" aria-label="Plans actions">
+        <span class="cal-top-action" aria-label="Find people"><i class="ph ph-user-plus" aria-hidden="true"></i></span>
+        <span class="cal-top-action" aria-label="Notifications, 2 unread"><i class="ph ph-bell" aria-hidden="true"></i><span class="cal-top-badge">2</span></span>
+        <span class="cal-top-action" aria-label="Settings"><i class="ph ph-gear-six" aria-hidden="true"></i></span>
+      </div>
+    </div>
+
+    <div class="cal-filters">
+      <button type="button" class="mr-chip mr-chip-active"><i class="ph-fill ph-calendar-blank"></i> Upcoming</button>
+      <button type="button" class="mr-chip"><i class="ph ph-repeat"></i> Repeating</button>
+      <button type="button" class="mr-chip"><i class="ph ph-bookmark-simple"></i> Ideas</button>
+      <button type="button" class="mr-chip"><i class="ph ph-envelope-simple"></i> Invites (0)</button>
+      <button type="button" class="mr-chip"><i class="ph ph-clock"></i> Past</button>
+    </div>
+
+    <div class="cal-section">This week</div>
+    <div class="cal-list">
+     <div class="cal-rows">
+      <div class="plan-row">
+        <div class="ambient" style="background-image:url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=70');"></div><div class="shade"></div>
+        <div class="plan-media" style="background-image:url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80');"></div>
+        <span class="rsvp going"><i class="ph-fill ph-check-circle"></i>Going</span>
+        <div class="plan-row-copy">
+          <div class="plan-row-time">Tomorrow • 7 PM<span class="rep" aria-label="Repeats weekly"><i class="ph ph-repeat"></i></span></div>
+          <div class="plan-row-title">Tuesday pizza night</div>
+          <div class="plan-row-meta">
+            <span class="loc"><i class="ph-fill ph-map-pin"></i><span>Tony's, Mission</span></span>
+            <span class="who"><span class="avatars"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=70&q=80" alt="" /></span><span>Maya + 2 going</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="plan-row">
+        <div class="ambient" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=70');"></div><div class="shade"></div>
+        <div class="plan-media" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80');"></div>
+        <span class="rsvp going"><i class="ph-fill ph-check-circle"></i>Going</span>
+        <div class="plan-row-copy">
+          <div class="plan-row-time">Saturday</div>
+          <div class="plan-row-title">Sunrise hike at Mt. Tam</div>
+          <div class="plan-row-meta">
+            <span class="loc"><i class="ph-fill ph-map-pin"></i><span>Pantoll Trailhead</span></span>
+            <span class="who"><span class="avatars"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=70&q=80" alt="" /></span><span>Hiking Club · 4 going</span></span>
+          </div>
+        </div>
+      </div>
+     </div>
+    </div>
+
+    <div class="cal-section">Next week</div>
+    <div class="cal-list">
+     <div class="cal-rows">
+      <div class="plan-row">
+        <div class="ambient" style="background-image:url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=70');"></div><div class="shade"></div>
+        <div class="plan-media" style="background-image:url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80');"></div>
+        <span class="rsvp going"><i class="ph-fill ph-check-circle"></i>Going</span>
+        <div class="plan-row-copy">
+          <div class="plan-row-time">Tue, Aug 25<span class="rep" aria-label="Repeats weekly"><i class="ph ph-repeat"></i></span></div>
+          <div class="plan-row-title">Tuesday pizza night</div>
+          <div class="plan-row-meta">
+            <span class="loc"><i class="ph-fill ph-map-pin"></i><span>Tony's, Mission</span></span>
+            <span class="who"><span class="avatars"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=70&q=80" alt="" /></span><span>Maya + 2 going</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="plan-row no-photo" style="--int:#f59e0b;">
+        <div class="plan-media"><span class="emoji-tile">🎶</span></div>
+        <span class="rsvp maybe"><i class="ph-fill ph-question"></i>Maybe</span>
+        <div class="plan-row-copy">
+          <div class="plan-row-time">Thu, Aug 27</div>
+          <div class="plan-row-title">Live music night</div>
+          <div class="plan-row-meta">
+            <span class="who"><span class="avatars"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=70&q=80" alt="" /></span><span>Priya + 1 going</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="plan-row">
+        <div class="ambient" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=70');"></div><div class="shade"></div>
+        <div class="plan-media" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80');"></div>
+        <span class="rsvp invited"><i class="ph-fill ph-paper-plane-tilt"></i>Invited</span>
+        <div class="plan-row-copy">
+          <div class="plan-row-time">Sat, Aug 29</div>
+          <div class="plan-row-title">Sunrise hike at Mt. Tam</div>
+          <div class="plan-row-meta">
+            <span class="who"><span class="avatars"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=70&q=80" alt="" /></span><span>Hiking Club · 4 going</span></span>
+          </div>
+        </div>
+      </div>
+     </div>
+    </div>
+
+    <div class="cal-section">No date yet</div>
+    <div class="cal-list">
+     <div class="cal-rows">
+      <div class="plan-row no-photo" style="--int:#a855f7;">
+        <div class="plan-media"><span class="emoji-tile">🎲</span></div>
+        <span class="rsvp maybe"><i class="ph-fill ph-question"></i>Maybe</span>
+        <div class="plan-row-copy">
+          <div class="plan-row-title">Board game night</div>
+          <div class="plan-row-meta">
+            <span class="who"><span class="avatars"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=70&q=80" alt="" /></span><span>Sam + 3 interested</span></span>
+          </div>
+        </div>
+      </div>
+     </div>
+    </div>
+
+    <div class="cal-page-fill"></div>
+
+    <div class="cal-tabwrap">
+      <nav class="app-tab-bar" aria-label="Primary navigation">
+        <button type="button" class="app-tab" aria-label="Home"><i class="ph ph-house" aria-hidden="true"></i></button>
+        <button type="button" class="app-tab app-tab--discover" aria-label="Discover"><i class="ph ph-compass" aria-hidden="true"></i></button>
+        <button type="button" class="app-tab" aria-label="You"><img class="app-tab-avatar" src="https://i.pravatar.cc/72?img=11" alt="" width="36" height="36" loading="lazy" /></button>
+        <button type="button" class="app-tab is-selected" aria-label="Plans" aria-current="page"><i class="ph-fill ph-calendar-blank" aria-hidden="true"></i></button>
+        <button type="button" class="app-tab" aria-label="Chat"><i class="ph ph-chat-teardrop-text" aria-hidden="true"></i></button>
+      </nav>
+    </div>
+  </div>
+</div>

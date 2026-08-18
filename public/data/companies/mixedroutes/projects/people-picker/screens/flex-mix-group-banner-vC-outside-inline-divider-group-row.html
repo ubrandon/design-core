@@ -1,0 +1,273 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .v5gr-scope { --v5-bg: #06080e; --v5-line: rgba(255,255,255,0.08); }
+  .v5gr-scope, .v5gr-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .v5gr-scope::-webkit-scrollbar, .v5gr-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .v5gr-wrap { background: var(--v5-bg); min-height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .v5gr-body { flex: 1; overflow-y: auto; padding-bottom: 8px; }
+
+  .v5gr-header { display: grid; grid-template-columns: 1fr 28px; align-items: center; padding: 22px 20px 8px; }
+  .v5gr-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .v5gr-close { background: transparent; border: 0; color: rgba(255,255,255,0.85); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .v5gr-close i { font-size: 22px; }
+
+  .v5gr-search { display: grid; grid-template-columns: 20px 1fr; align-items: center; gap: 10px; margin: 8px 20px 14px; padding: 12px 15px; background: rgba(255,255,255,0.07); border-radius: 999px; }
+  .v5gr-search i { color: rgba(255,255,255,0.54); font-size: 17px; }
+  .v5gr-search input { width: 100%; border: 0; outline: 0; padding: 0; background: transparent; color: #fff; font: inherit; font-size: 0.94rem; }
+
+  .v5gr-label { display: flex; align-items: baseline; justify-content: space-between; padding: 8px 20px 10px; color: #fff; font-size: 1.3rem; font-weight: 850; letter-spacing: -0.01em; }
+  .v5gr-label .action { background: transparent; border: 0; color: var(--neon-teal); font-size: 0.82rem; font-weight: 850; padding: 4px 0; cursor: pointer; }
+
+  .v5gr-sublabel { display: flex; align-items: baseline; justify-content: space-between; padding: 14px 20px 6px; color: rgba(255,255,255,0.55); font-size: 0.78rem; font-weight: 850; letter-spacing: 0.07em; text-transform: uppercase; }
+  .v5gr-sublabel .action { background: transparent; border: 0; color: var(--neon-teal); font-size: 0.78rem; font-weight: 850; letter-spacing: 0; text-transform: none; padding: 0; cursor: pointer; }
+
+  .v5gr-groupcard { margin: 0 20px 4px; padding: 12px 14px; border-radius: 16px; background: rgba(32,224,207,0.08); border: 1px solid rgba(32,224,207,0.32); display: grid; grid-template-columns: 60px 1fr auto; align-items: center; gap: 12px; }
+  .v5gr-groupcard.is-off { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.12); }
+  .v5gr-groupcard img { width: 60px; height: 60px; border-radius: 16px; object-fit: cover; }
+  .v5gr-gc-name { color: #fff; font-size: 1.05rem; font-weight: 850; line-height: 1.15; }
+  .v5gr-gc-meta { color: rgba(255,255,255,0.6); font-size: 0.8rem; font-weight: 700; margin-top: 2px; }
+  .v5gr-gc-remove { background: rgba(255,255,255,0.07); border: 0; color: rgba(255,255,255,0.78); border-radius: 999px; padding: 7px 13px; font-size: 0.78rem; font-weight: 850; cursor: pointer; }
+
+  .v5gr-list { padding: 0; display: flex; flex-direction: column; }
+  .v5gr-row { display: grid; grid-template-columns: 44px 1fr 22px; align-items: center; gap: 13px; padding: 11px 20px; border-radius: 0; width: 100%; }
+  .v5gr-row.is-on { background: rgba(32,224,207,0.07); }
+  .v5gr-row .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; background: var(--neon-teal); color: #061016; font-weight: 900; }
+  .v5gr-row .av.muted { background: #4a5462; color: #fff; }
+  .v5gr-name { color: #fff; font-size: 0.98rem; font-weight: 850; line-height: 1.15; }
+  .v5gr-handle { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+  .v5gr-row .host { color: #f5c451; font-weight: 800; font-size: 0.8rem; }
+
+  .v5gr-outside-sub { margin: 0; padding: 2px 20px 0; color: rgba(255,255,255,0.6); font-size: 0.84rem; font-weight: 700; line-height: 1.4; }
+  .v5gr-seclabel { display: flex; align-items: baseline; justify-content: space-between; padding: 18px 20px 6px; color: rgba(255,255,255,0.55); font-size: 0.92rem; font-weight: 800; }
+  .v5gr-seclabel .action { background: transparent; border: 0; color: var(--neon-teal); font-size: 0.78rem; font-weight: 850; padding: 0; cursor: pointer; }
+
+  .v5gr-cta { padding: 14px 20px 22px; display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .v5gr-cta button { min-height: 50px; border: 0; border-radius: 999px; color: #fff; font-size: 0.98rem; font-weight: 850; }
+  .v5gr-cta .primary { background: linear-gradient(135deg, #24b8aa, #4c87cf); }
+
+  .v5gr-chips { display: flex; gap: 8px; padding: 0 20px 14px; overflow-x: auto; flex-wrap: nowrap; }
+  .v5gr-chips .mr-pp-chip { flex: 0 0 auto; }
+  .v5gr-chips:empty { display: none; }
+</style>
+
+<div class="mr-scope v5gr-scope v5gr-scope-group-row">
+  <div class="v5gr-wrap">
+    <div class="v5gr-body">
+      <header class="v5gr-header">
+        <div class="v5gr-title">Who's going?</div>
+        <button type="button" class="v5gr-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      </header>
+
+      <div class="v5gr-search">
+        <i class="ph ph-magnifying-glass"></i>
+        <input type="search" placeholder="Search people" />
+      </div>
+
+      <div class="v5gr-chips">
+        <span class="mr-pp-chip is-group" data-group>
+          <img class="mr-pp-chip-avatar" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" />
+          Lake House (3)
+        </span>
+        <span class="mr-pp-chip" data-row="3">
+          <span class="mr-pp-chip-avatar is-initials">PS</span>
+          Piper
+          <button type="button" class="mr-pp-chip-remove" aria-label="Remove"><i class="ph ph-x"></i></button>
+        </span>
+      </div>
+
+      <div class="v5gr-label"><span>Group plan</span></div>
+      <div class="v5gr-groupcard">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" />
+        <div>
+          <div class="v5gr-gc-name">Lake House</div>
+          <div class="v5gr-gc-meta">3 members</div>
+        </div>
+        <button type="button" class="v5gr-gc-remove">Remove</button>
+      </div>
+
+      <div class="v5gr-sublabel">
+        <span>Group members</span>
+        <button type="button" class="action" data-toggle-all="members">Deselect all (3)</button>
+      </div>
+      <div class="v5gr-list" data-section="members">
+        <div class="v5gr-row is-on">
+          <span class="av">M</span>
+          <div><div class="v5gr-name">Milo Wren</div><div class="v5gr-handle"><span class="host">Host</span></div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v5gr-row is-on">
+          <img class="av" src="https://i.pravatar.cc/96?img=12" alt="" loading="lazy" />
+          <div><div class="v5gr-name">Nova Finch</div><div class="v5gr-handle">@novafinch</div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v5gr-row is-on">
+          <img class="av" src="https://i.pravatar.cc/96?img=49" alt="" loading="lazy" />
+          <div><div class="v5gr-name">Lila Quill</div><div class="v5gr-handle">@lilaquill</div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+      </div>
+
+      <div class="v5gr-label" style="padding-top:28px; padding-bottom:2px;"><span>Outside the group</span></div>
+      <p class="v5gr-outside-sub">Invited to this plan only, not added to the group</p>
+
+      <div class="v5gr-seclabel">
+        <span>Friends</span>
+        <button type="button" class="action" data-toggle-all="friends">Select all (2)</button>
+      </div>
+      <div class="v5gr-list" data-section="friends">
+        <div class="v5gr-row is-on">
+          <span class="av muted">PS</span>
+          <div><div class="v5gr-name">Piper Sol</div><div class="v5gr-handle">@pipersol</div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v5gr-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=23" alt="" loading="lazy" />
+          <div><div class="v5gr-name">Rosa Klein</div><div class="v5gr-handle">@rosaklein</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+      </div>
+
+      <div class="v5gr-seclabel" style="padding-top:14px;"><span>Suggested</span></div>
+      <div class="v5gr-list">
+        <div class="v5gr-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=58" alt="" loading="lazy" />
+          <div><div class="v5gr-name">Eli Park</div><div class="v5gr-handle">@elipark</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+        <div class="v5gr-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=15" alt="" loading="lazy" />
+          <div><div class="v5gr-name">Theo Marsh</div><div class="v5gr-handle">@theomarsh</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+        <div class="v5gr-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=27" alt="" loading="lazy" />
+          <div><div class="v5gr-name">Ada Brook</div><div class="v5gr-handle">@adabrook</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+        <div class="v5gr-row">
+          <span class="av muted">JR</span>
+          <div><div class="v5gr-name">Juno Reyes</div><div class="v5gr-handle">@junoreyes</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="v5gr-cta">
+      <button type="button" class="primary">Invite group + 1 more</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var scope = document.querySelector('.v5gr-scope-group-row');
+    if (!scope) return;
+    var chips = scope.querySelector('.v5gr-chips');
+    var cta = scope.querySelector('.v5gr-cta .primary');
+    var rows = Array.prototype.slice.call(scope.querySelectorAll('.v5gr-row'));
+    var groupCard = scope.querySelector('.v5gr-groupcard');
+    var groupImg = groupCard.querySelector('img').getAttribute('src');
+    var gcBtn = groupCard.querySelector('.v5gr-gc-remove');
+
+    function firstName(full) { return (full || '').trim().split(/\s+/)[0] || full; }
+
+    function avatarHTML(row) {
+      var img = row.querySelector('.av img, img.av');
+      if (img) return '<img class="mr-pp-chip-avatar" src="' + img.getAttribute('src') + '" alt="" loading="lazy" />';
+      var initials = row.querySelector('.av').textContent.trim();
+      return '<span class="mr-pp-chip-avatar is-initials">' + initials + '</span>';
+    }
+
+    var toggleBtns = Array.prototype.slice.call(scope.querySelectorAll('[data-toggle-all]'));
+
+    function sectionRows(key) {
+      var list = scope.querySelector('.v5gr-list[data-section="' + key + '"]');
+      return list ? Array.prototype.slice.call(list.querySelectorAll('.v5gr-row')) : [];
+    }
+
+    function updateToggle(btn) {
+      var secRows = sectionRows(btn.getAttribute('data-toggle-all'));
+      var on = secRows.filter(function (r) { return r.classList.contains('is-on'); }).length;
+      var allOn = on === secRows.length && secRows.length > 0;
+      btn.textContent = (allOn ? 'Deselect all (' : 'Select all (') + (allOn ? on : secRows.length) + ')';
+    }
+
+    function setBox(el, on) {
+      var box = el.querySelector('.mr-checkbox');
+      var icon = box.querySelector('i');
+      box.classList.toggle('is-checked', on);
+      icon.className = on ? 'ph-fill ph-check-square' : 'ph ph-square';
+    }
+
+    function render() {
+      var memberRows = sectionRows('members');
+      var memberOn = memberRows.filter(function (r) { return r.classList.contains('is-on'); }).length;
+      // One group chip stands in for the members; only outside people get their own pill
+      var outside = rows.filter(function (r) {
+        return r.classList.contains('is-on') && memberRows.indexOf(r) === -1;
+      });
+      var removed = memberOn === 0;
+      groupCard.classList.toggle('is-off', removed);
+      gcBtn.textContent = removed ? 'Add' : 'Remove';
+      var html = '';
+      if (memberOn > 0) {
+        html += '<span class="mr-pp-chip is-group" data-group>' +
+          '<img class="mr-pp-chip-avatar" src="' + groupImg + '" alt="" loading="lazy" />' +
+          'Lake House (' + memberOn + ')' +
+          '</span>';
+      }
+      html += outside.map(function (r) {
+        var name = firstName(r.querySelector('.v5gr-name').textContent);
+        return '<span class="mr-pp-chip" data-row="' + rows.indexOf(r) + '">' +
+          avatarHTML(r) + name +
+          '<button type="button" class="mr-pp-chip-remove" aria-label="Remove"><i class="ph ph-x"></i></button>' +
+          '</span>';
+      }).join('');
+      chips.innerHTML = html;
+      if (memberOn === 0) {
+        cta.textContent = outside.length === 0 ? 'Invite' : 'Invite ' + outside.length + (outside.length === 1 ? ' person' : ' people');
+      } else {
+        cta.textContent = outside.length === 0 ? 'Invite group (' + memberOn + ')' : 'Invite group + ' + outside.length + ' more';
+      }
+      toggleBtns.forEach(updateToggle);
+    }
+
+    function setRow(row, on) {
+      row.classList.toggle('is-on', on);
+      setBox(row, on);
+      render();
+    }
+
+    rows.forEach(function (row) {
+      row.addEventListener('click', function () {
+        setRow(row, !row.classList.contains('is-on'));
+      });
+    });
+
+    gcBtn.addEventListener('click', function () {
+      var memberRows = sectionRows('members');
+      var anyOn = memberRows.some(function (r) { return r.classList.contains('is-on'); });
+      memberRows.forEach(function (r) { setRow(r, !anyOn); });
+    });
+
+    toggleBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var secRows = sectionRows(btn.getAttribute('data-toggle-all'));
+        var allOn = secRows.every(function (r) { return r.classList.contains('is-on'); }) && secRows.length > 0;
+        secRows.forEach(function (r) { setRow(r, !allOn); });
+      });
+    });
+
+    chips.addEventListener('click', function (e) {
+      var chip = e.target.closest('.mr-pp-chip');
+      if (!chip || chip.hasAttribute('data-group')) return;
+      var row = rows[+chip.getAttribute('data-row')];
+      if (row) setRow(row, false);
+    });
+
+    render();
+  })();
+</script>

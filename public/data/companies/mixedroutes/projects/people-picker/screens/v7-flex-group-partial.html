@@ -1,0 +1,153 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .v7-scope { --v7-bg: #06080e; --v7-line: rgba(255,255,255,0.08); }
+  .v7-scope, .v7-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .v7-scope::-webkit-scrollbar, .v7-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .v7-wrap { background: var(--v7-bg); height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .v7-body { flex: 1; overflow-y: auto; }
+
+  .v7-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 24px 20px 4px; }
+  .v7-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .v7-close { background: rgba(255,255,255,0.08); border: 0; color: rgba(255,255,255,0.85); width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; padding: 0; margin-top: 4px; }
+  .v7-close i { font-size: 17px; }
+  .v7-sub { padding: 2px 20px 14px; color: rgba(255,255,255,0.55); font-size: 0.9rem; line-height: 1.45; }
+
+  .v7-search { display: grid; grid-template-columns: 20px 1fr; align-items: center; gap: 10px; margin: 0 20px 14px; padding: 12px 15px; background: rgba(255,255,255,0.07); border-radius: 999px; }
+  .v7-search i { color: rgba(255,255,255,0.54); font-size: 17px; }
+  .v7-search input { width: 100%; border: 0; outline: 0; padding: 0; background: transparent; color: #fff; font: inherit; font-size: 0.94rem; }
+
+  .v7-sec { display: flex; align-items: baseline; justify-content: space-between; padding: 16px 20px 8px; color: rgba(255,255,255,0.5); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+  .v7-sec .more { color: rgba(255,255,255,0.42); text-transform: none; letter-spacing: 0; font-weight: 700; font-size: 0.8rem; }
+
+  .v7-grow { display: grid; grid-template-columns: 52px 1fr auto; align-items: center; gap: 13px; padding: 9px 20px; }
+  .v7-gthumb { width: 52px; height: 52px; border-radius: 16px; overflow: hidden; background: rgba(255,255,255,0.08); }
+  .v7-gthumb img { width: 100%; height: 100%; object-fit: cover; }
+  .v7-gname { color: #fff; font-size: 0.98rem; font-weight: 850; line-height: 1.15; }
+  .v7-gmeta { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+  .v7-gmeta.on { color: var(--neon-teal); font-weight: 700; }
+  .v7-pill { display: inline-flex; align-items: center; gap: 6px; padding: 9px 15px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: #fff; font-size: 0.82rem; font-weight: 800; }
+  .v7-pill i { font-size: 13px; }
+  .v7-pill.is-added { border-color: transparent; background: rgba(36,184,170,0.16); color: var(--neon-teal); }
+
+  .v7-gcard { margin: 2px 20px 10px; border: 1px solid rgba(36,184,170,0.35); border-radius: 18px; background: rgba(255,255,255,0.03); overflow: hidden; }
+  .v7-gcard .v7-grow { padding: 13px 16px 9px; }
+  .v7-mrow { display: grid; grid-template-columns: 36px 1fr 22px; align-items: center; gap: 12px; padding: 7px 16px; }
+  .v7-mrow .av { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; background: var(--neon-teal); color: #061016; font-weight: 900; font-size: 0.8rem; }
+  .v7-mrow .av.muted { background: #4a5462; color: #fff; }
+  .v7-mrow.is-off .av, .v7-mrow.is-off .v7-mname { opacity: 0.45; }
+  .v7-mname { color: #fff; font-size: 0.92rem; font-weight: 800; }
+  .v7-gcard-foot { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px 13px; color: rgba(255,255,255,0.5); font-size: 0.8rem; }
+  .v7-gcard-foot .sel { color: var(--neon-teal); font-weight: 800; }
+  .v7-gx { width: 28px; height: 28px; border-radius: 50%; border: 0; background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.7); display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .v7-gx i { font-size: 13px; }
+
+  .v7-prow { display: grid; grid-template-columns: 44px 1fr 22px; align-items: center; gap: 13px; padding: 9px 20px; }
+  .v7-prow .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; background: var(--neon-teal); color: #061016; font-weight: 900; }
+  .v7-pname { color: #fff; font-size: 0.98rem; font-weight: 850; line-height: 1.15; }
+  .v7-phandle { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+
+  .v7-foot { border-top: 1px solid var(--v7-line); padding: 12px 20px 22px; display: flex; flex-direction: column; gap: 10px; }
+  .v7-cta { min-height: 52px; border: 0; border-radius: 999px; color: #fff; font-size: 1rem; font-weight: 850; background: linear-gradient(135deg, #24b8aa, #4c87cf); }
+</style>
+
+<div class="mr-scope v7-scope">
+  <div class="v7-wrap">
+    <div class="v7-body">
+      <header class="v7-header">
+        <div class="v7-title">Add people</div>
+        <button type="button" class="v7-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      </header>
+      <div class="v7-sub">Put this plan in a group, invite friends one by one, or both.</div>
+
+      <div class="v7-search">
+        <i class="ph ph-magnifying-glass"></i>
+        <input type="search" placeholder="Search groups and people" />
+      </div>
+
+      <div class="v7-sec"><span>Plan group</span></div>
+
+      <div class="v7-gcard">
+        <div class="v7-grow">
+          <div class="v7-gthumb"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" /></div>
+          <div><div class="v7-gname">Lake House</div><div class="v7-gmeta on">Choosing who's included</div></div>
+          <button type="button" class="v7-gx" aria-label="Remove group"><i class="ph ph-x"></i></button>
+        </div>
+        <div class="v7-mrow">
+          <img class="av" src="https://i.pravatar.cc/96?img=15" alt="" loading="lazy" />
+          <div class="v7-mname">Jonas Reed</div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v7-mrow">
+          <img class="av" src="https://i.pravatar.cc/96?img=23" alt="" loading="lazy" />
+          <div class="v7-mname">Tessa Brook</div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v7-mrow">
+          <span class="av">CM</span>
+          <div class="v7-mname">Cole Marsh</div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v7-mrow">
+          <img class="av" src="https://i.pravatar.cc/96?img=31" alt="" loading="lazy" />
+          <div class="v7-mname">June Park</div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v7-mrow is-off">
+          <img class="av" src="https://i.pravatar.cc/96?img=53" alt="" loading="lazy" />
+          <div class="v7-mname">Theo Voss</div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+        <div class="v7-mrow">
+          <img class="av" src="https://i.pravatar.cc/96?img=26" alt="" loading="lazy" />
+          <div class="v7-mname">Isla Fern</div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v7-mrow is-off">
+          <span class="av muted">RS</span>
+          <div class="v7-mname">Remy Stone</div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+        <div class="v7-mrow">
+          <img class="av" src="https://i.pravatar.cc/96?img=38" alt="" loading="lazy" />
+          <div class="v7-mname">Mara Dune</div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v7-gcard-foot">
+          <span>Unchecked members won't be invited</span>
+          <span class="sel">Select all</span>
+        </div>
+      </div>
+
+      <div class="v7-sec"><span>Friends</span></div>
+      <div class="v7-prow">
+        <img class="av" src="https://i.pravatar.cc/96?img=12" alt="" loading="lazy" />
+        <div><div class="v7-pname">Nova Finch</div><div class="v7-phandle">@novafinch</div></div>
+        <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+      </div>
+      <div class="v7-prow">
+        <span class="av">M</span>
+        <div><div class="v7-pname">Milo Wren</div><div class="v7-phandle">@milowren</div></div>
+        <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+      </div>
+
+      <div class="v7-sec"><span>From other groups</span></div>
+      <div class="v7-prow">
+        <img class="av" src="https://i.pravatar.cc/96?img=20" alt="" loading="lazy" />
+        <div><div class="v7-pname">Ana Reyes</div><div class="v7-phandle">Family</div></div>
+        <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+      </div>
+      <div class="v7-prow">
+        <img class="av" src="https://i.pravatar.cc/96?img=60" alt="" loading="lazy" />
+        <div><div class="v7-pname">Kit Harlow</div><div class="v7-phandle">Climbing gym</div></div>
+        <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+      </div>
+    </div>
+
+    <div class="v7-foot">
+      <button type="button" class="v7-cta">Invite group (6)</button>
+    </div>
+  </div>
+</div>

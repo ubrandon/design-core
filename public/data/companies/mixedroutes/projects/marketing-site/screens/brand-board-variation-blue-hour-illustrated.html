@@ -1,0 +1,179 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  .bbv3 { --ink:#1a2332; --paper:#f5f2ec; --teal:#14b8a6; --blue:#3b82f6; --ember:#e8880a; --mist:#e4eefe; font-family:"Geist",sans-serif; color:var(--ink); background:var(--paper); padding:36px 32px 42px; overflow:hidden; }
+  .bbv3 * { box-sizing:border-box; }
+  .bbv3-head { position:relative; min-height:270px; background:var(--ink); border-radius:20px; overflow:hidden; }
+  .bbv3-head > img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .bbv3-head:after { content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(15,14,12,.85), rgba(15,14,12,.05) 62%); }
+  .bbv3-head-copy { position:absolute; inset:auto 24px 22px; z-index:1; color:#fff; }
+  .bbv3-kicker { margin:0 0 10px; font-size:10px; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:#ffb45c; }
+  .bbv3-title { max-width:620px; margin:0; font-weight:800; font-size:44px; line-height:1.02; letter-spacing:-.025em; }
+  .bbv3-title i { font-style:normal; background:linear-gradient(145deg, #2dd4bf, #60a5fa); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .bbv3-sub { max-width:600px; margin:12px 0 0; font-size:13px; line-height:1.6; color:rgba(255,255,255,.85); }
+  .bbv3-label { margin:28px 0 11px; font-size:10px; font-weight:700; letter-spacing:.17em; text-transform:uppercase; color:rgba(26,35,50,.5); }
+  .bbv3-swatches { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+  .bbv3-swatch { min-width:0; background:#fff; border-radius:16px; border:1px solid rgba(26,35,50,.1); overflow:hidden; }
+  .bbv3-chip { height:68px; }
+  .bbv3-swatch-copy { padding:9px 11px 11px; }
+  .bbv3-swatch b { display:block; font-size:11px; }
+  .bbv3-swatch span { display:block; margin-top:2px; font-size:9px; line-height:1.4; color:#5c6b7d; }
+  .bbv3-grads { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+  .bbv3-grad-chip { height:92px; }
+  .bbv3-lines { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .bbv3-line { padding:16px 18px; background:#fff; border-radius:16px; border:1px solid rgba(26,35,50,.1); }
+  .bbv3-line-job { display:block; font-size:9px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--ember); }
+  .bbv3-line-text { display:block; margin-top:6px; font-weight:800; font-size:18px; line-height:1.18; letter-spacing:-.015em; }
+  .bbv3-line-note { display:block; margin-top:6px; font-size:11px; line-height:1.5; color:#5c6b7d; }
+  .bbv3-line-wide { grid-column:1 / -1; background:var(--ink); border:0; color:#fff; }
+  .bbv3-line-wide .bbv3-line-text { font-size:24px; }
+  .bbv3-line-wide .bbv3-line-text i { font-style:normal; background:linear-gradient(145deg, #2dd4bf, #60a5fa); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .bbv3-line-wide .bbv3-line-note { color:rgba(255,255,255,.7); }
+  .bbv3-type { display:grid; grid-template-columns:1.15fr .85fr; gap:12px; }
+  .bbv3-type-main { min-height:186px; padding:24px; border-radius:20px; background:var(--ink); color:#fff; }
+  .bbv3-display { margin:0; font-weight:800; font-size:38px; line-height:1.08; letter-spacing:-.025em; }
+  .bbv3-display i { font-style:normal; background:linear-gradient(145deg, #2dd4bf, #60a5fa); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .bbv3-type-meta { margin:16px 0 0; font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.6); }
+  .bbv3-type-side { padding:20px; background:#fff; border-radius:20px; border:1px solid rgba(26,35,50,.1); }
+  .bbv3-wordmark { font-weight:800; font-size:26px; letter-spacing:-.02em; }
+  .bbv3-wordmark i { font-style:normal; background:linear-gradient(145deg, var(--teal), var(--blue)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .bbv3-body { margin:12px 0 0; font-size:12px; line-height:1.65; color:#5c6b7d; }
+  .bbv3-cta { display:inline-block; margin-top:14px; padding:12px 22px; border-radius:999px; background:linear-gradient(145deg, var(--teal), var(--blue)); color:#fff; font-weight:700; font-size:13px; }
+  .bbv3-link { display:inline-block; margin-top:12px; margin-left:14px; color:var(--ember); font-weight:700; font-size:11px; letter-spacing:.05em; text-transform:uppercase; }
+  .bbv3-images { display:grid; grid-template-columns:1.25fr .75fr; gap:12px; }
+  .bbv3-photo { position:relative; min-height:225px; overflow:hidden; border-radius:16px; background:var(--mist); }
+  .bbv3-photo img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .bbv3-caption { position:absolute; left:0; right:0; bottom:0; padding:36px 16px 12px; background:linear-gradient(to top, rgba(10,16,26,.72), rgba(10,16,26,0)); color:#fff; font-size:9px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; }
+  .bbv3-rules { display:grid; gap:12px; }
+  .bbv3-rule { padding:15px 16px; border-radius:16px; background:#fff; border:1px solid rgba(26,35,50,.1); font-size:11px; line-height:1.55; color:#5c6b7d; }
+  .bbv3-rule b { color:var(--ink); }
+  .bbv3-art-card { position:relative; min-height:150px; overflow:hidden; border-radius:16px; background:var(--ink); }
+  .bbv3-art-card svg { position:absolute; inset:0; width:100%; height:100%; }
+  .bbv3-signature { display:grid; grid-template-columns:230px 230px 1fr; gap:16px; align-items:stretch; }
+  .bbv3-plan { position:relative; min-height:300px; overflow:hidden; border-radius:20px; background:var(--ink); }
+  .bbv3-plan svg { position:absolute; left:0; right:0; top:6px; width:100%; height:64%; }
+  .bbv3-plan > img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .bbv3-plan-photo:after { content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(16,23,36,.82), rgba(16,23,36,0) 55%); }
+  .bbv3-plan-copy { position:absolute; inset:auto 14px 14px; z-index:1; color:#fff; }
+  .bbv3-plan-title { display:block; font-weight:800; font-size:19px; line-height:1.08; letter-spacing:-.015em; }
+  .bbv3-plan-meta { display:block; margin-top:6px; font-size:9px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.78); }
+  .bbv3-plan-going { display:inline-block; margin-top:9px; padding:4px 10px; border-radius:999px; background:linear-gradient(145deg, var(--teal), var(--blue)); font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+  .bbv3-manifesto { display:flex; flex-direction:column; justify-content:center; padding:26px; border-radius:20px; background:#fff; border:1px solid rgba(26,35,50,.1); }
+  .bbv3-manifesto q { font-weight:800; font-size:24px; line-height:1.18; letter-spacing:-.02em; quotes:none; }
+  .bbv3-manifesto p { margin:14px 0 0; font-size:11px; line-height:1.6; color:#5c6b7d; }
+  .bbv3-foot { margin:14px 0 0; font-size:10px; line-height:1.55; color:rgba(26,35,50,.5); }
+</style>
+
+<div class="bbv3">
+  <header class="bbv3-head">
+    <img src="https://images.unsplash.com/photo-1521336575822-6da63fb45455?auto=format&fit=crop&w=1200&q=75" alt="Friends around a campfire at night" />
+    <div class="bbv3-head-copy">
+      <p class="bbv3-kicker">Identity E3 · Blue Hour · Voice + line art</p>
+      <h1 class="bbv3-title">Go where <i>life is.</i></h1>
+      <p class="bbv3-sub">The E2 voice pass, now with the illustration language on the board. Photos still carry the warmth; line art with a single clay accent steps in where a photo would be too literal, like empty states, interests, and the plan card.</p>
+    </div>
+  </header>
+
+  <p class="bbv3-label">Palette · unchanged from Blue Hour</p>
+  <div class="bbv3-swatches">
+    <div class="bbv3-swatch"><div class="bbv3-chip" style="background:#1a2332"></div><div class="bbv3-swatch-copy"><b>Ink · #1A2332</b><span>Text and dark bands, from the app</span></div></div>
+    <div class="bbv3-swatch"><div class="bbv3-chip" style="background:#f5f2ec"></div><div class="bbv3-swatch-copy"><b>Warm Paper · #F5F2EC</b><span>Replaces the app's cool gray ground</span></div></div>
+    <div class="bbv3-swatch"><div class="bbv3-chip" style="background:linear-gradient(145deg,#14b8a6,#3b82f6)"></div><div class="bbv3-swatch-copy"><b>Current · Teal to Blue</b><span>CTAs and confirmed counts only</span></div></div>
+    <div class="bbv3-swatch"><div class="bbv3-chip" style="background:#e8880a"></div><div class="bbv3-swatch-copy"><b>Ember · #E8880A</b><span>Links and labels, the warm counterweight</span></div></div>
+    <div class="bbv3-swatch"><div class="bbv3-chip" style="background:#e4eefe"></div><div class="bbv3-swatch-copy"><b>Mist · #E4EEFE</b><span>Chips and quiet fills, from the app</span></div></div>
+  </div>
+
+  <p class="bbv3-label">Pastel gradients · soft grounds for feature visuals</p>
+  <div class="bbv3-grads">
+    <div class="bbv3-swatch"><div class="bbv3-grad-chip" style="background:linear-gradient(160deg,#d7f5f0,#fdeee0)"></div><div class="bbv3-swatch-copy"><b>Fresh Air · Mint to Peach</b><span>The lead. Cool opens, warm lands, both sides of the brand in one wash</span></div></div>
+    <div class="bbv3-swatch"><div class="bbv3-grad-chip" style="background:linear-gradient(160deg,#e4eefe,#d7f5f0)"></div><div class="bbv3-swatch-copy"><b>Clear Sky · Mist to Mint</b><span>The CTA gradient at a whisper, for planning and app-focused features</span></div></div>
+    <div class="bbv3-swatch"><div class="bbv3-grad-chip" style="background:linear-gradient(160deg,#ebe4fa,#fdeee0)"></div><div class="bbv3-swatch-copy"><b>First Light · Lavender to Peach</b><span>Violet against orange, the widest swing on the board, for standout moments</span></div></div>
+    <div class="bbv3-swatch"><div class="bbv3-grad-chip" style="background:linear-gradient(160deg,#fdeee0,#e4eefe)"></div><div class="bbv3-swatch-copy"><b>Dusk · Peach to Mist</b><span>Warm opens, cool lands, the reverse mood for evening plans</span></div></div>
+  </div>
+  <p class="bbv3-foot" style="margin-top:10px">Always 160deg, always two stops, always light enough for ink text and white cards to sit on top. Alternate cool-led and warm-led down a page; never stack two of the same lead.</p>
+
+  <p class="bbv3-label">The lines, by job · every layer has one sentence</p>
+  <div class="bbv3-lines">
+    <div class="bbv3-line bbv3-line-wide"><span class="bbv3-line-job" style="color:#ffb45c">The rallying cry · movement and merch</span><span class="bbv3-line-text">Go where <i>life is.</i></span><span class="bbv3-line-note">The flag people wear. Lead with it when you want people to feel something.</span></div>
+    <div class="bbv3-line"><span class="bbv3-line-job">The signature · product, everywhere</span><span class="bbv3-line-text">From "we should" to "we're here."</span><span class="bbv3-line-note">The most ownable line we have. It says exactly what the app does.</span></div>
+    <div class="bbv3-line"><span class="bbv3-line-job">The attitude · campaigns</span><span class="bbv3-line-text">Soon is not a plan.</span><span class="bbv3-line-note">The cheeky war on flaking. The enemy is "soon," never the person reading.</span></div>
+    <div class="bbv3-line"><span class="bbv3-line-job">The short lockup · logo and app</span><span class="bbv3-line-text">Make it happen.</span><span class="bbv3-line-note">Doubles as the create button. The voice and the UI say the same thing.</span></div>
+    <div class="bbv3-line"><span class="bbv3-line-job">The warm alt · invitations</span><span class="bbv3-line-text">Round up your people.</span><span class="bbv3-line-note">The everyman side of the brand: the friend who handles the details.</span></div>
+  </div>
+
+  <p class="bbv3-label">Type · Geist carries the signature, not a slogan</p>
+  <div class="bbv3-type">
+    <div class="bbv3-type-main"><p class="bbv3-display">From "we should" to <i>"we're here."</i></p><p class="bbv3-type-meta">Geist 800 · tight · the gradient lands on arrival</p></div>
+    <div class="bbv3-type-side"><div class="bbv3-wordmark">Mixed<i>Routes</i></div><p class="bbv3-body">No feed. No followers. No scoreboard. Just plans that happen. Buttons keep the app's full-round gradient shape and speak in the app's real button copy.</p><span class="bbv3-cta">Make it happen</span><span class="bbv3-link">I'm in</span></div>
+  </div>
+
+  <p class="bbv3-label">Imagery · warm photos for life, line art for the app's ideas</p>
+  <div class="bbv3-images">
+    <figure class="bbv3-photo"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1000&q=75" alt="Friends toasting at a warm gathering" /><figcaption class="bbv3-caption">Golden photos · people mid-plan, never posing</figcaption></figure>
+    <div class="bbv3-rules">
+      <figure class="bbv3-art-card" style="min-height:150px">
+        <svg viewBox="0 0 560 420" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#9fc3d8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <g transform="rotate(-22 215 210)">
+            <path d="M215 336 c -50 0 -82 -33 -82 -72 c 0 -30 20 -47 42 -53 c 19 -5 32 -17 36 -35 c 4 18 17 30 36 35 c 22 6 42 23 42 53 c 0 39 -32 72 -74 72 Z" />
+            <circle cx="215" cy="258" r="24" />
+            <path d="M205 176 L201 84 M225 176 L229 84" />
+            <path d="M197 84 L233 84 L238 34 L192 34 Z" />
+            <path d="M192 46 h-10 M194 62 h-10 M238 46 h10 M236 62 h10" />
+            <circle cx="177" cy="46" r="5" /><circle cx="179" cy="62" r="5" /><circle cx="253" cy="46" r="5" /><circle cx="251" cy="62" r="5" />
+            <path d="M209 88 L211 296 M221 88 L219 296" opacity="0.5" />
+            <path d="M195 296 h40" />
+          </g>
+          <g transform="rotate(14 430 90)">
+            <path d="M402 128 V 62 L 462 50 V 116" />
+            <circle cx="390" cy="130" r="14" /><circle cx="450" cy="118" r="14" />
+            <path d="M402 76 L462 64" opacity="0.7" />
+          </g>
+          <g transform="rotate(-16 350 190)" stroke="#e08a5e">
+            <path d="M352 214 V 156 c 12 4 20 12 22 24" />
+            <circle cx="340" cy="216" r="12" />
+          </g>
+          <path d="M330 320 c 16 -12 32 -12 48 0 c 16 12 32 12 48 0" opacity="0.7" />
+          <path d="M350 348 c 16 -12 32 -12 48 0 c 16 12 32 12 48 0" opacity="0.45" />
+          <path d="M80 90 h18 M89 81 v18 M480 200 h16 M488 192 v16" />
+          <circle cx="140" cy="50" r="3" /><circle cx="320" cy="40" r="3" /><circle cx="520" cy="60" r="3" /><circle cx="70" cy="200" r="3" />
+          <path d="M60 140 l50 22" stroke-dasharray="10 12" opacity="0.8" />
+          <line x1="120" y1="356" x2="300" y2="356" />
+        </svg>
+        <figcaption class="bbv3-caption">Line art + one clay accent · interests and empty states</figcaption>
+      </figure>
+      <div class="bbv3-rule"><b>One clay accent per illustration.</b> Everything else stays a single mist-blue line on ink. The accent goes on the living thing in the scene, the flame, the note, the steam. Never on the furniture.</div>
+    </div>
+  </div>
+
+  <p class="bbv3-label">Signature object · the plan card, shot or drawn</p>
+  <div class="bbv3-signature">
+    <figure class="bbv3-plan bbv3-plan-photo">
+      <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=700&q=75" alt="Friends out in the evening" />
+      <figcaption class="bbv3-plan-copy"><span class="bbv3-plan-title">Trivia at the Fox</span><span class="bbv3-plan-meta">It's official · Wednesday · 8 PM</span><span class="bbv3-plan-going">4 going · locked in</span></figcaption>
+    </figure>
+    <figure class="bbv3-plan">
+      <svg viewBox="0 0 560 420" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#9fc3d8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <g transform="rotate(-4 280 260)">
+          <path d="M150 190 h180 v62 a 90 90 0 0 1 -180 0 Z" />
+          <path d="M330 206 h24 a 34 34 0 0 1 0 68 h-28" />
+          <path d="M170 220 h140" opacity="0.5" />
+          <path d="M172 300 L192 272 M194 312 L216 282" opacity="0.5" />
+          <path d="M196 160 c -8 -13 8 -21 0 -36 M240 162 c -8 -13 8 -21 0 -36 M284 160 c -8 -13 8 -21 0 -36" stroke="#e08a5e" />
+          <path d="M140 342 a 100 20 0 0 0 200 0" opacity="0.7" />
+          <circle cx="448" cy="292" r="46" />
+          <circle cx="448" cy="292" r="18" />
+          <path d="M481 285 l 2 14 M469 317 l -11 7 M437 315 l -11 8 M415 285 l -2 14 M426 267 l 11 -7 M459 257 l 11 7" opacity="0.8" />
+          <line x1="60" y1="342" x2="520" y2="342" />
+        </g>
+        <path d="M110 80 h20 M120 70 v20 M470 60 h16 M478 52 v16" />
+        <circle cx="210" cy="60" r="3" /><circle cx="330" cy="96" r="3" /><circle cx="60" cy="150" r="3" /><circle cx="520" cy="150" r="3" />
+        <path d="M360 40 l60 26" stroke-dasharray="10 12" opacity="0.8" />
+      </svg>
+      <figcaption class="bbv3-plan-copy"><span class="bbv3-plan-title">Coffee at Copper Cup</span><span class="bbv3-plan-meta">It's official · Saturday · 10 AM</span><span class="bbv3-plan-going">4 going · locked in</span></figcaption>
+    </figure>
+    <div class="bbv3-manifesto"><q>We do not win when you stay. We win when you go.</q><p>The manifesto's closing beat, pulled onto the board. The plan card works both ways: a warm photo when the place is real, line art with the clay steam when there is no photo yet. Same card, same gradient count, two skins.</p></div>
+  </div>
+  <p class="bbv3-foot">What changed from E2: words untouched, two cards now carry the illustration language. Line art lives on ink, one mist-blue stroke, one clay accent on the living thing in the scene. Photos keep every other slot; illustration is for the app's ideas, never a substitute for real life.</p>
+</div>

@@ -1,0 +1,41 @@
+<div class="mr-scope mr-scope--light">
+  <div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+    <!-- Stylized bottom sheet (brand buttons) -->
+    <div class="mr-modal-backdrop mr-modal-backdrop--sheet">
+      <div class="mr-bottom-sheet mr-bottom-sheet--stylized">
+        <div class="mr-bottom-sheet-glow" aria-hidden="true"></div>
+        <div class="mr-bottom-sheet-handle" aria-hidden="true"></div>
+        <p class="mr-bottom-sheet-title"><span class="mr-text-gradient">Share this plan</span></p>
+        <p class="mr-bottom-sheet-desc">Invite friends to join Pizza Night this Friday at 7 PM.</p>
+        <div class="mr-bottom-sheet-actions">
+          <button type="button" class="btn btn-primary">Copy link</button>
+          <button type="button" class="btn btn-secondary">Send to friends</button>
+          <button type="button" class="btn mr-bottom-sheet-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- iOS-style alert (destructive) -->
+    <div class="mr-dialog mr-dialog--ios">
+      <div class="mr-dialog-title">Delete this plan?</div>
+      <div class="mr-dialog-body">
+        This will remove "Hiking Trip" and notify all 5 attendees. This can't be undone.
+      </div>
+      <div class="mr-ios-alert-footer">
+        <button type="button" class="mr-ios-alert-btn">Cancel</button>
+        <button type="button" class="mr-ios-alert-btn mr-ios-alert-btn--destructive">Delete</button>
+      </div>
+    </div>
+
+    <!-- iOS-style alert (single action) -->
+    <div class="mr-dialog mr-dialog--ios">
+      <div class="mr-dialog-title">You're in!</div>
+      <div class="mr-dialog-body">
+        You've joined Game Night. We'll remind you 30 minutes before it starts.
+      </div>
+      <div class="mr-ios-alert-footer mr-ios-alert-footer--single">
+        <button type="button" class="mr-ios-alert-btn mr-ios-alert-btn--primary">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

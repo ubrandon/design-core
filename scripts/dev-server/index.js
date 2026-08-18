@@ -9,21 +9,63 @@ import { spawn } from "child_process";
 import {
   root,
   sh,
-  classifyRepo,
   normalizePublicBaseUrl,
   githubPagesRootFromRemote,
 } from "../lib/repo-info.js";
 
-// True when this checkout is the public Design Core template (not a company repo).
-// Used to keep a maintainer's personal identity/prefs out of the committed template.
-const IS_CORE_REPO = (() => {
-  const kind = classifyRepo().kind;
-  return kind === "core" || kind === "double-remote";
-})();
-
 const LOCAL_CREDS_PATH = resolve(root, ".app-screens.json");
 const DESIGNER_PATH = resolve(root, ".designer");
 const PUBLIC_DATA_ROOT = resolve(root, "public/data");
+const COMPANIES_ROOT = resolve(PUBLIC_DATA_ROOT, "companies");
+const COMPANIES_INDEX = resolve(COMPANIES_ROOT, "index.json");
+
+/** Absolute data folder for the company named in ?company= (null when missing or invalid). */
+function companyDataRoot(req) {
+  let slug = "";
+  try { slug = (new URL(req.url, "http://localhost").searchParams.get("company") || "").trim(); } catch {}
+  if (!SLUG_RE.test(slug)) return null;
+  const dir = resolve(COMPANIES_ROOT, slug);
+  if (!dir.startsWith(COMPANIES_ROOT + sep)) return null;
+  return dir;
+}
+
+function readCompaniesIndex() {
+  if (!existsSync(COMPANIES_INDEX)) return { companies: [] };
+  try {
+    const parsed = JSON.parse(readFileSync(COMPANIES_INDEX, "utf8"));
+    return parsed && Array.isArray(parsed.companies) ? parsed : { companies: [] };
+  } catch (e) {
+    throw new Error("companies/index.json is not valid JSON: " + e.message);
+  }
+}
+
+function writeCompaniesIndex(data) {
+  mkdirSync(COMPANIES_ROOT, { recursive: true });
+  writeFileSync(COMPANIES_INDEX, JSON.stringify(data, null, 2) + "\n", "utf8");
+}
+
+/** Creates the empty folder skeleton for a new company. */
+function scaffoldCompany(slug) {
+  const base = resolve(COMPANIES_ROOT, slug);
+  mkdirSync(resolve(base, "projects"), { recursive: true });
+  mkdirSync(resolve(base, "design-system/components", slug), { recursive: true });
+  mkdirSync(resolve(base, "captures"), { recursive: true });
+  mkdirSync(resolve(base, "users"), { recursive: true });
+  const w = (rel, obj) => {
+    const fp = resolve(base, rel);
+    if (!existsSync(fp)) writeFileSync(fp, JSON.stringify(obj, null, 2) + "\n", "utf8");
+  };
+  w("projects/index.json", { projects: [] });
+  w("design-system/registry.json", { groups: [], categories: [] });
+  w("captures/config.json", { appUrl: "", viewport: { width: 390, height: 844 }, discover: true, dismissSelectors: [] });
+  w("captures/manifest.json", { captures: [] });
+  w("users/index.json", { users: [] });
+  const css = resolve(base, "design-system/company.css");
+  if (!existsSync(css)) {
+    writeFileSync(css, "/* Brand overrides for this company: colors, fonts, radii. Loaded after shared.css and ds.css. */\n", "utf8");
+  }
+  return base;
+}
 
 /** True if Vite is about to full-reload the browser because a file under public/data changed. */
 function isPublicDataFullReloadPayload(payload) {
@@ -197,8 +239,8 @@ function dataFilesPlugin() {
 }
 
 function localDevDataApiPlugin() {
-  function readProjectsIndex() {
-    const p = resolve(PUBLIC_DATA_ROOT, "projects/index.json");
+  function readProjectsIndex(dataRoot) {
+    const p = resolve(dataRoot, "projects/index.json");
     if (!existsSync(p)) return { projects: [] };
     const raw = readFileSync(p, "utf8");
     try {
@@ -212,8 +254,8 @@ function localDevDataApiPlugin() {
     }
   }
 
-  function writeProjectsIndex(data) {
-    const p = resolve(PUBLIC_DATA_ROOT, "projects/index.json");
+  function writeProjectsIndex(dataRoot, data) {
+    const p = resolve(dataRoot, "projects/index.json");
     mkdirSync(dirname(p), { recursive: true });
     writeFileSync(p, JSON.stringify(data, null, 2) + "\n", "utf8");
   }
@@ -248,8 +290,8 @@ function localDevDataApiPlugin() {
   }
 
   // Computes screen/prototype/tested counts + dates for one project (server-side).
-  function summarizeProject(id) {
-    const dir = resolve(PUBLIC_DATA_ROOT, "projects", String(id || ""));
+  function summarizeProject(dataRoot, id) {
+    const dir = resolve(dataRoot, "projects", String(id || ""));
     const out = { id, createdAt: null, updatedAt: null, screenCount: null, protoCount: null, testedProtoCount: null };
     const proj = readJsonFileSafe(resolve(dir, "project.json"));
     if (proj) {
@@ -279,8 +321,8 @@ function localDevDataApiPlugin() {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prototype</title>
-  <link rel="stylesheet" href="../../../../../styles/shared.css">
-  <link rel="stylesheet" href="../../../../../styles/ds.css">
+  <link rel="stylesheet" href="../../../../../../../styles/shared.css">
+  <link rel="stylesheet" href="../../../../../../../styles/ds.css">
 </head>
 <body style="margin:0;padding:24px;background:var(--bg-1);font-family:var(--font-body);color:var(--text);">
   <p style="color:var(--muted);">New prototype — describe the flow you want and ask the AI to build it out here.</p>
@@ -300,14 +342,75 @@ function localDevDataApiPlugin() {
           return;
         }
 
+        if (pathOnly === "/api/companies" && req.method === "GET") {
+          res.setHeader("Content-Type", "application/json");
+          try {
+            res.writeHead(200);
+            res.end(JSON.stringify(readCompaniesIndex()));
+          } catch (e) {
+            res.writeHead(500);
+            res.end(JSON.stringify({ error: e.message || "Server error" }));
+          }
+          return;
+        }
+
+        if (pathOnly === "/api/company-admin" && req.method === "POST") {
+          res.setHeader("Content-Type", "application/json");
+          try {
+            const body = await readJsonBody(req);
+            if (body.action !== "create-company") {
+              res.writeHead(400);
+              res.end(JSON.stringify({ error: "Unknown action" }));
+              return;
+            }
+            const slug = typeof body.slug === "string" ? body.slug.trim() : "";
+            const name = typeof body.name === "string" ? body.name.trim() : "";
+            if (!SLUG_RE.test(slug)) {
+              res.writeHead(400);
+              res.end(JSON.stringify({ error: "Company id must be lowercase letters, numbers, and hyphens (e.g. acme-design)." }));
+              return;
+            }
+            if (!name) {
+              res.writeHead(400);
+              res.end(JSON.stringify({ error: "Company name is required." }));
+              return;
+            }
+            const idx = readCompaniesIndex();
+            if (idx.companies.some((c) => c && c.slug === slug) || existsSync(resolve(COMPANIES_ROOT, slug))) {
+              res.writeHead(409);
+              res.end(JSON.stringify({ error: "A company with that id already exists." }));
+              return;
+            }
+            scaffoldCompany(slug);
+            idx.companies.push({ slug, name, createdAt: new Date().toISOString() });
+            writeCompaniesIndex(idx);
+            res.writeHead(200);
+            res.end(JSON.stringify({ ok: true, slug, name }));
+          } catch (e) {
+            res.writeHead(500);
+            res.end(JSON.stringify({ error: e.message || "Server error" }));
+          }
+          return;
+        }
+
+        // Everything below works inside one company's data folder.
+        if (!pathOnly.startsWith("/api/")) return next();
+        const COMPANY_APIS = ["/api/projects-summary", "/api/user-prefs", "/api/users", "/api/duplicate-screen", "/api/project-admin"];
+        const DATA_ROOT = COMPANY_APIS.includes(pathOnly) ? companyDataRoot(req) : null;
+        if (COMPANY_APIS.includes(pathOnly) && !DATA_ROOT) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Missing or invalid company." }));
+          return;
+        }
+
         if (pathOnly === "/api/projects-summary" && req.method === "GET") {
           res.setHeader("Content-Type", "application/json");
           try {
-            const idx = readProjectsIndex();
+            const idx = readProjectsIndex(DATA_ROOT);
             const projects = Array.isArray(idx.projects) ? idx.projects : [];
             const summaries = projects
               .filter((p) => p && typeof p.id === "string")
-              .map((p) => summarizeProject(p.id));
+              .map((p) => summarizeProject(DATA_ROOT, p.id));
             res.writeHead(200);
             res.end(JSON.stringify({ projects: summaries }));
           } catch (e) {
@@ -357,7 +460,7 @@ function localDevDataApiPlugin() {
         if (pathOnly === "/api/users" && req.method === "GET") {
           res.setHeader("Content-Type", "application/json");
           try {
-            const p = resolve(PUBLIC_DATA_ROOT, "users/index.json");
+            const p = resolve(DATA_ROOT, "users/index.json");
             res.writeHead(200);
             res.end(existsSync(p) ? readFileSync(p, "utf8") : JSON.stringify({ users: [] }));
           } catch {
@@ -375,7 +478,7 @@ function localDevDataApiPlugin() {
             res.end(JSON.stringify({ error: "Bad user id" }));
             return;
           }
-          const p = resolve(PUBLIC_DATA_ROOT, "users", slug + ".json");
+          const p = resolve(DATA_ROOT, "users", slug + ".json");
           if (!existsSync(p)) {
             res.writeHead(404);
             res.end(JSON.stringify({ error: "Not found" }));
@@ -393,13 +496,6 @@ function localDevDataApiPlugin() {
 
         if (pathOnly === "/api/user-prefs" && req.method === "POST") {
           res.setHeader("Content-Type", "application/json");
-          // Never write a person's name/favorites into the public template repo.
-          // The browser keeps its own mirror, so prefs still work locally.
-          if (IS_CORE_REPO) {
-            res.writeHead(200);
-            res.end('{"ok":true}');
-            return;
-          }
           try {
             const data = await readJsonBody(req);
             const slug = typeof data.user === "string" ? data.user.trim() : "";
@@ -425,7 +521,7 @@ function localDevDataApiPlugin() {
               navCollapsed: typeof inPrefs.navCollapsed === "boolean" ? inPrefs.navCollapsed : null,
               updatedAt: typeof inPrefs.updatedAt === "number" ? inPrefs.updatedAt : 0,
             };
-            const dir = resolve(PUBLIC_DATA_ROOT, "users");
+            const dir = resolve(DATA_ROOT, "users");
             mkdirSync(dir, { recursive: true });
             writeFileSync(resolve(dir, slug + ".json"), JSON.stringify(out, null, 2) + "\n", "utf8");
 
@@ -467,8 +563,8 @@ function localDevDataApiPlugin() {
               return;
             }
 
-            const screensDir = resolve(PUBLIC_DATA_ROOT, "projects", projectId, "screens");
-            if (!screensDir.startsWith(resolve(PUBLIC_DATA_ROOT, "projects") + sep)) {
+            const screensDir = resolve(DATA_ROOT, "projects", projectId, "screens");
+            if (!screensDir.startsWith(resolve(DATA_ROOT, "projects") + sep)) {
               res.writeHead(403);
               res.end(JSON.stringify({ error: "Forbidden" }));
               return;
@@ -518,7 +614,7 @@ function localDevDataApiPlugin() {
                 res.end(JSON.stringify({ error: "Project name is required." }));
                 return;
               }
-              const base = resolve(PUBLIC_DATA_ROOT, "projects", id);
+              const base = resolve(DATA_ROOT, "projects", id);
               if (existsSync(base)) {
                 res.writeHead(409);
                 res.end(JSON.stringify({ error: "A project with that id already exists." }));
@@ -535,7 +631,7 @@ function localDevDataApiPlugin() {
               const createdAt = new Date().toISOString();
               // Read the current index before any disk writes so a parse failure
               // surfaces as a clean error instead of leaving an orphan folder.
-              const idx = readProjectsIndex();
+              const idx = readProjectsIndex(DATA_ROOT);
               try {
                 mkdirSync(resolve(base, "screens"), { recursive: true });
                 mkdirSync(resolve(base, "prototypes"), { recursive: true });
@@ -565,7 +661,7 @@ function localDevDataApiPlugin() {
                   ...(tags.length ? { tags } : {}),
                   createdAt,
                 });
-                writeProjectsIndex({ projects });
+                writeProjectsIndex(DATA_ROOT, { projects });
               } catch (writeErr) {
                 // Roll back the folder so the id isn't stuck behind a 409 on retry.
                 try { rmSync(base, { recursive: true, force: true }); } catch {}
@@ -583,18 +679,18 @@ function localDevDataApiPlugin() {
                 res.end(JSON.stringify({ error: "Invalid project id." }));
                 return;
               }
-              const base = resolve(PUBLIC_DATA_ROOT, "projects", id);
-              if (!base.startsWith(resolve(PUBLIC_DATA_ROOT, "projects") + sep)) {
+              const base = resolve(DATA_ROOT, "projects", id);
+              if (!base.startsWith(resolve(DATA_ROOT, "projects") + sep)) {
                 res.writeHead(403);
                 res.end(JSON.stringify({ error: "Forbidden" }));
                 return;
               }
               // Read and compute the new index BEFORE removing the folder so a
               // corrupt-index throw doesn't leave the project half-deleted.
-              const idx = readProjectsIndex();
+              const idx = readProjectsIndex(DATA_ROOT);
               const projects = (Array.isArray(idx.projects) ? idx.projects : []).filter((p) => p.id !== id);
               if (existsSync(base)) rmSync(base, { recursive: true, force: true });
-              writeProjectsIndex({ projects });
+              writeProjectsIndex(DATA_ROOT, { projects });
               res.writeHead(200);
               res.end('{"ok":true}');
               return;
@@ -614,8 +710,8 @@ function localDevDataApiPlugin() {
                 res.end(JSON.stringify({ error: "Prototype name is required." }));
                 return;
               }
-              const protoRoot = resolve(PUBLIC_DATA_ROOT, "projects", projectId, "prototypes", id);
-              if (!protoRoot.startsWith(resolve(PUBLIC_DATA_ROOT, "projects") + sep)) {
+              const protoRoot = resolve(DATA_ROOT, "projects", projectId, "prototypes", id);
+              if (!protoRoot.startsWith(resolve(DATA_ROOT, "projects") + sep)) {
                 res.writeHead(403);
                 res.end(JSON.stringify({ error: "Forbidden" }));
                 return;
@@ -625,7 +721,7 @@ function localDevDataApiPlugin() {
                 res.end(JSON.stringify({ error: "A prototype with that id already exists in this project." }));
                 return;
               }
-              const projectDir = resolve(PUBLIC_DATA_ROOT, "projects", projectId);
+              const projectDir = resolve(DATA_ROOT, "projects", projectId);
               if (!existsSync(projectDir)) {
                 res.writeHead(404);
                 res.end(JSON.stringify({ error: "Project not found." }));
@@ -677,15 +773,15 @@ function localDevDataApiPlugin() {
                 res.end(JSON.stringify({ error: "Invalid ids." }));
                 return;
               }
-              const protoRoot = resolve(PUBLIC_DATA_ROOT, "projects", projectId, "prototypes", id);
-              if (!protoRoot.startsWith(resolve(PUBLIC_DATA_ROOT, "projects") + sep)) {
+              const protoRoot = resolve(DATA_ROOT, "projects", projectId, "prototypes", id);
+              if (!protoRoot.startsWith(resolve(DATA_ROOT, "projects") + sep)) {
                 res.writeHead(403);
                 res.end(JSON.stringify({ error: "Forbidden" }));
                 return;
               }
               // Read and filter the index BEFORE deleting. If the file is corrupt
               // we want a clear error, not a silent wipe of the other prototypes.
-              const indexPath = resolve(PUBLIC_DATA_ROOT, "projects", projectId, "prototypes/index.json");
+              const indexPath = resolve(DATA_ROOT, "projects", projectId, "prototypes/index.json");
               let nextProtos = null;
               if (existsSync(indexPath)) {
                 const rawList = readFileSync(indexPath, "utf8");
@@ -904,8 +1000,8 @@ function imageProxyPlugin() {
 function captureApiPlugin() {
   let activeCapture = null;
 
-  function ensureConfig(appUrl) {
-    const capturesDir = resolve(root, "public", "data", "captures");
+  function ensureConfig(companyRoot, appUrl) {
+    const capturesDir = resolve(companyRoot, "captures");
     mkdirSync(capturesDir, { recursive: true });
     const configPath = resolve(capturesDir, "config.json");
     const defaults = {
@@ -1040,12 +1136,14 @@ function captureApiPlugin() {
     name: "capture-api",
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
-        if (req.url === "/api/capture/launch" && req.method === "POST") {
+        if (req.url.split("?")[0] === "/api/capture/launch" && req.method === "POST") {
           try {
             const params = await readJsonBody(req);
             if (!params.url) { res.writeHead(400); res.end('{"error":"url required"}'); return; }
-            ensureConfig(params.url);
-            streamCapture(req, res, [], {});
+            const companyRoot = companyDataRoot(req);
+            if (!companyRoot) { res.writeHead(400); res.end('{"error":"Missing or invalid company"}'); return; }
+            ensureConfig(companyRoot, params.url);
+            streamCapture(req, res, [], { DESIGN_CORE_COMPANY: relative(COMPANIES_ROOT, companyRoot) });
           } catch (e) {
             res.writeHead(400); res.end(`{"error":"${e.message}"}`);
           }

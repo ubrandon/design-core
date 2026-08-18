@@ -1,0 +1,148 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&display=swap");
+
+  .statnav3, .statnav3 * { box-sizing: border-box; font-family: "Geist", sans-serif; margin: 0; }
+  .statnav3 { background: #ffffff; color: #1a2332; position: relative; padding-bottom: 28px; }
+
+  .statnav3 .toolbar { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: #ffffff; }
+  .statnav3 .brand { display: flex; align-items: center; gap: 7px; }
+  .statnav3 .brand img { width: 34px; height: 34px; object-fit: contain; display: block; }
+  .statnav3 .brand span { font-size: 24px; font-weight: 700; color: #1a2332; }
+  .statnav3 .actions { display: flex; align-items: center; gap: 18px; }
+  .statnav3 .actions .tbtn { position: relative; color: #1a2332; font-size: 24px; line-height: 1; }
+  .statnav3 .badge-dot { position: absolute; top: -8px; right: -8px; min-width: 22px; height: 22px; border-radius: 999px; background: #0ca678; color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center; border: 2px solid #ffffff; padding: 0 4px; }
+
+  .statnav3 .content { padding: 0 16px; display: flex; flex-direction: column; gap: 16px; }
+  .statnav3 .greet { display: flex; flex-direction: column; gap: 9px; padding-top: 8px; }
+  .statnav3 .greet h1 { font-size: 36px; font-weight: 800; line-height: 1.15; color: #1a2332; }
+  .statnav3 .now { font-size: 16px; font-weight: 600; color: #5c6b7d; line-height: 1.4; }
+  .statnav3 .now a { color: #2563eb; font-weight: 700; text-decoration: none; }
+
+  /* Inline status, part of the welcome, not a card: avatar + two-line text */
+  .statnav3 .stat-line { display: flex; align-items: center; gap: 10px; border: 0; background: none; padding: 0; text-align: left; }
+  .statnav3 .stat-line .avw { position: relative; width: 40px; height: 40px; flex-shrink: 0; }
+  .statnav3 .stat-line .avw img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; display: block; }
+  .statnav3 .stat-line .dot { position: absolute; right: -1px; bottom: -1px; width: 13px; height: 13px; border-radius: 50%; background: #22c55e; border: 2px solid #ffffff; transition: background 0.2s ease; }
+  .statnav3 .stat-line .m-txt { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .statnav3 .stat-line .m-txt strong { font-size: 15px; font-weight: 700; color: #101724; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .statnav3 .stat-line .m-txt span { font-size: 12px; color: #5c6b7d; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .statnav3 .stat-line .caret { color: #5c6b7d; font-size: 14px; flex-shrink: 0; transition: transform 0.25s ease; }
+  .statnav3.is-open .stat-line .caret { transform: rotate(180deg); }
+
+  /* Inline editor: chips flow in the page, no card wrapper */
+  .statnav3 .editor { display: none; flex-direction: column; gap: 11px; padding: 2px 0 4px; }
+  .statnav3.is-open .editor { display: flex; }
+  .statnav3 .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .statnav3 .chip { height: 34px; padding: 0 13px; border-radius: 999px; border: 1.5px solid rgba(32, 36, 42, 0.16); background: #ffffff; color: #1a2332; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+  .statnav3 .chip .c-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--c, #22c55e); flex-shrink: 0; }
+  .statnav3 .chip.selected { background: #101724; border-color: #101724; color: #ffffff; }
+  .statnav3 .chip.stop { color: #b42318; border-color: rgba(180, 35, 24, 0.3); }
+</style>
+
+<div class="statnav3">
+  <div class="toolbar">
+    <div class="brand">
+      <img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" />
+      <span>MixedRoutes</span>
+    </div>
+    <div class="actions">
+      <span class="tbtn"><i class="ph ph-user-plus"></i></span>
+      <span class="tbtn"><i class="ph ph-bell"></i><span class="badge-dot">2</span></span>
+      <span class="tbtn"><i class="ph ph-gear-six"></i></span>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="greet">
+      <h1>Evening, Brandon</h1>
+      <button class="stat-line" aria-expanded="false">
+        <span class="avw">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+          <span class="dot"></span>
+        </span>
+        <span class="m-txt">
+          <strong class="line-title">At Ultra Coffeebar ☕</strong>
+          <span class="line-sub">Online · 2 friends nearby</span>
+        </span>
+        <i class="ph ph-caret-down caret"></i>
+      </button>
+
+      <div class="editor">
+        <div class="chips" data-role="status">
+          <button class="chip selected" data-label="Online" style="--c: #22c55e;"><span class="c-dot"></span>Online</button>
+          <button class="chip" data-label="Down to hang" style="--c: #14b8a6;"><span class="c-dot"></span>Down to hang</button>
+          <button class="chip" data-label="Heads down" style="--c: #f59e0b;"><span class="c-dot"></span>Heads down</button>
+          <button class="chip" data-label="Invisible" style="--c: #9aa3ad;"><span class="c-dot"></span>Invisible</button>
+        </div>
+        <div class="chips" data-role="activity">
+          <button class="chip selected" data-emoji="☕" data-label="Coffee">☕ Coffee</button>
+          <button class="chip" data-emoji="🥾" data-label="On a walk">🥾 On a walk</button>
+          <button class="chip" data-emoji="🍻" data-label="Drinks">🍻 Drinks</button>
+          <button class="chip" data-emoji="🎯" data-label="Trivia">🎯 Trivia</button>
+          <button class="chip stop" data-role="checkout"><i class="ph ph-map-pin-line"></i>Check out</button>
+        </div>
+      </div>
+
+      <div class="now">Happening now: <a href="#">Trivia at The Well</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector('.statnav3');
+  if (!root) return;
+  var line = root.querySelector('.stat-line');
+  var title = root.querySelector('.line-title');
+  var sub = root.querySelector('.line-sub');
+  var dot = root.querySelector('.stat-line .dot');
+  var outChip = root.querySelector('.chip.stop');
+  var state = { status: 'Online', color: '#22c55e', activity: 'Coffee', emoji: '☕', checkedIn: true };
+
+  function render() {
+    dot.style.background = state.color;
+    if (state.checkedIn) title.textContent = 'At Ultra Coffeebar' + (state.emoji ? ' ' + state.emoji : '');
+    else if (state.activity) title.textContent = state.emoji + ' ' + state.activity;
+    else title.textContent = 'Set your status';
+    var parts = [state.status];
+    if (state.status === 'Invisible') parts.push('hidden from friends');
+    else if (state.checkedIn) parts.push('2 friends nearby');
+    sub.textContent = parts.join(' · ');
+    outChip.innerHTML = state.checkedIn ? '<i class="ph ph-map-pin-line"></i>Check out' : '<i class="ph ph-map-pin"></i>Check in';
+  }
+
+  line.addEventListener('click', function () {
+    var open = root.classList.toggle('is-open');
+    line.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  root.querySelectorAll('.chips[data-role="status"] .chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      root.querySelectorAll('.chips[data-role="status"] .chip').forEach(function (c) { c.classList.remove('selected'); });
+      chip.classList.add('selected');
+      state.status = chip.getAttribute('data-label');
+      state.color = chip.style.getPropertyValue('--c').trim();
+      render();
+    });
+  });
+
+  root.querySelectorAll('.chips[data-role="activity"] .chip:not(.stop)').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var was = chip.classList.contains('selected');
+      root.querySelectorAll('.chips[data-role="activity"] .chip').forEach(function (c) { c.classList.remove('selected'); });
+      if (was) { state.activity = ''; state.emoji = ''; }
+      else { chip.classList.add('selected'); state.activity = chip.getAttribute('data-label'); state.emoji = chip.getAttribute('data-emoji'); }
+      render();
+    });
+  });
+
+  outChip.addEventListener('click', function () {
+    state.checkedIn = !state.checkedIn;
+    render();
+  });
+})();
+</script>

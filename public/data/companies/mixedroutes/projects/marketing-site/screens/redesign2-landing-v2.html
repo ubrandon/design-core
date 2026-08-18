@@ -1,0 +1,657 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  .rl3 {
+    --rl-paper: #f6f3ed;
+    --rl-ink: #21261f;
+    --rl-ink-soft: rgba(33, 38, 31, 0.7);
+    --rl-accent: #bc4b26;
+    --rl-accent-deep: #29201a;
+    --rl-sand: #e8e1d3;
+    --rl-line: rgba(33, 38, 31, 0.16);
+    --rl-pad-y: 104px;
+    font-family: "DM Sans", -apple-system, sans-serif;
+    color: var(--rl-ink);
+    background: var(--rl-paper);
+    overflow-x: clip;
+  }
+  .rl3 * { box-sizing: border-box; }
+  .rl3 a { text-decoration: none; color: inherit; }
+  .rl3-wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+  .rl3-h1, .rl3-h2 {
+    font-family: "Inter", "DM Sans", sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--rl-ink);
+    margin: 0;
+  }
+  .rl3-h1 { font-size: 76px; color: #fff; }
+  .rl3-h2 { font-size: 40px; }
+  .rl3-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: "Inter", sans-serif; font-weight: 700; font-size: 16px;
+    border-radius: 8px; padding: 15px 30px;
+  }
+  .rl3 .rl3-btn-solid { background: #fff; color: var(--rl-ink); }
+  .rl3 .rl3-btn-outline { border: 1.5px solid rgba(255, 255, 255, 0.65); color: #fff; }
+  .rl3 .rl3-btn-nav { padding: 10px 20px; font-size: 14px; background: #fff; color: var(--rl-ink); }
+  .rl3-btn-big { padding: 17px 36px; font-size: 17px; }
+
+  .rl3-hero { position: relative; height: 780px; display: flex; flex-direction: column; }
+  .rl3-hero-img, .rl3-final-img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .rl3-hero-img { object-position: center 55%; }
+  .rl3-final-img { object-position: center 45%; }
+  .rl3-hero-shade {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(20, 24, 18, 0.72) 0%, rgba(20, 24, 18, 0) 38%),
+      linear-gradient(180deg, rgba(20, 24, 18, 0) 35%, rgba(20, 24, 18, 0.72) 100%);
+  }
+  .rl3-nav {
+    position: relative; z-index: 2; display: flex; align-items: center;
+    justify-content: space-between; width: 100%; max-width: 1160px;
+    margin: 0 auto; padding: 24px 28px;
+  }
+  .rl3 .rl3-nav-logo {
+    font-family: "Inter", sans-serif; font-weight: 800; font-size: 19px;
+    letter-spacing: -0.02em; color: #fff;
+  }
+  .rl3-nav-links {
+    display: flex; align-items: center; gap: 28px;
+    font-weight: 600; font-size: 15px; color: rgba(255, 255, 255, 0.92);
+  }
+  .rl3-hero-content {
+    position: relative; z-index: 2; width: 100%; max-width: 1160px;
+    margin: auto auto 0; padding: 0 28px 88px;
+  }
+  .rl3-hero-content .rl3-h1 { max-width: 720px; }
+  .rl3-hero-sub {
+    margin: 20px 0 0; max-width: 540px; font-size: 21px; line-height: 1.5;
+    color: rgba(255, 255, 255, 0.94);
+  }
+  .rl3-hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
+  .rl3-hero-trust { margin: 18px 0 0; font-size: 15px; color: rgba(255, 255, 255, 0.75); }
+
+  .rl3-manifesto { padding: var(--rl-pad-y) 0; text-align: center; }
+  .rl3-manifesto-big {
+    font-family: "Inter", sans-serif; font-weight: 800; letter-spacing: -0.025em;
+    line-height: 1.15; font-size: 46px; color: var(--rl-ink);
+    max-width: 860px; margin: 0 auto;
+  }
+  .rl3-manifesto-small {
+    max-width: 640px; margin: 26px auto 0; font-size: 18px; line-height: 1.7;
+    color: var(--rl-ink-soft);
+  }
+
+  .rl3-plans { padding: 0 0 var(--rl-pad-y); }
+  .rl3-section-head { margin-bottom: 56px; }
+  .rl3-section-sub { margin: 12px 0 0; font-size: 18px; color: var(--rl-ink-soft); }
+  .rl3-plan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .rl3-plan {
+    position: relative; margin: 0; border-radius: 12px; overflow: hidden;
+    aspect-ratio: 3 / 4; background: var(--rl-sand);
+  }
+  .rl3-plan img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .rl3-plan-caption {
+    position: absolute; inset: auto 0 0 0; z-index: 1; display: flex;
+    flex-direction: column; gap: 3px; padding: 56px 18px 16px; color: #fff;
+    background: linear-gradient(180deg, rgba(15, 18, 14, 0) 0%, rgba(15, 18, 14, 0.78) 60%);
+  }
+  .rl3-plan-title { font-family: "Inter", sans-serif; font-weight: 800; font-size: 17px; letter-spacing: -0.01em; }
+  .rl3-plan-meta { font-size: 14px; color: rgba(255, 255, 255, 0.85); }
+  .rl3-plan-going {
+    margin-top: 8px; align-self: flex-start; font-size: 12px; font-weight: 700;
+    padding: 4px 10px; border-radius: 999px; background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.35); backdrop-filter: blur(4px);
+  }
+
+  .rl3-features { background: #fff; padding: var(--rl-pad-y) 0; }
+  .rl3-feature { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .rl3-feature + .rl3-feature { margin-top: 110px; }
+  .rl3-feature.rl3-flip .rl3-feature-visual { order: -1; }
+  .rl3-feature-copy { max-width: 440px; }
+  .rl3-feature-eyebrow {
+    margin: 0 0 14px; font-family: "Inter", sans-serif; font-weight: 700;
+    font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--rl-accent);
+  }
+  .rl3-feature-title {
+    font-family: "Inter", sans-serif; font-weight: 800; font-size: 31px;
+    letter-spacing: -0.02em; line-height: 1.15; color: var(--rl-ink); margin: 0 0 16px;
+  }
+  .rl3-feature-desc { margin: 0; font-size: 18px; line-height: 1.7; color: var(--rl-ink-soft); }
+  .rl3-feature-visual {
+    display: flex; justify-content: center; background: var(--rl-sand);
+    border-radius: 20px; padding: 48px 32px 0; overflow: hidden;
+  }
+  .rl3-feature.rl3-flip .rl3-feature-visual { background: #f2e0d0; }
+
+  /* ---------- animated phone mockups (light-mode app) ---------- */
+
+  .rl3-phone {
+    width: 300px; margin-bottom: -60px; background: #101724;
+    border-radius: 42px 42px 0 0; padding: 10px 10px 0;
+    box-shadow: 0 30px 60px rgba(30, 24, 12, 0.22);
+  }
+  .rl3-screen {
+    background: #f2f2f7; border-radius: 34px 34px 0 0; height: 560px;
+    overflow: hidden; font-family: "Geist", sans-serif; color: #1a2332;
+    padding: 14px 16px 0; display: flex; flex-direction: column; gap: 12px;
+  }
+  .rl3-status {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; font-weight: 600; color: #1a2332; padding: 2px 6px 0;
+  }
+  .rl3-status i { font-size: 13px; }
+  .rl3-app-title { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; margin: 2px 0 0; }
+  .rl3-search {
+    display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px;
+    border-radius: 28px; border: 1.5px solid rgba(16, 23, 36, 0.16);
+    background: #fff; color: #5c6b7d; font-size: 14px;
+  }
+  .rl3-chips { display: flex; gap: 8px; }
+  .rl3-chip {
+    height: 34px; display: inline-flex; align-items: center; padding: 0 14px;
+    border-radius: 50px; background: #e4eefe; border: 1.5px solid rgba(16, 23, 36, 0.16);
+    font-size: 13px; font-weight: 600; color: #1a2332; white-space: nowrap;
+  }
+  .rl3-chip-dark { background: #101724; border-color: #101724; color: #e8edf5; font-weight: 700; }
+  .rl3-chip-anim { animation: rl3-chip-toggle 6s ease-in-out infinite; }
+  @keyframes rl3-chip-toggle {
+    0%, 38% { background: #e4eefe; border-color: rgba(16, 23, 36, 0.16); color: #1a2332; }
+    46%, 88% { background: #101724; border-color: #101724; color: #e8edf5; }
+    96%, 100% { background: #e4eefe; border-color: rgba(16, 23, 36, 0.16); color: #1a2332; }
+  }
+  .rl3-card {
+    display: flex; align-items: center; gap: 12px; background: #fff;
+    border-radius: 16px; padding: 12px; box-shadow: 0 1px 3px rgba(16, 23, 36, 0.06);
+  }
+  .rl3-card-icon {
+    width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; color: #fff;
+  }
+  .rl3-card-icon i { font-size: 22px; }
+  .rl3-card-title { font-size: 14px; font-weight: 700; }
+  .rl3-card-meta { font-size: 12px; color: #5c6b7d; margin-top: 2px; }
+  .rl3-going-pill {
+    margin-left: auto; flex-shrink: 0; font-size: 11px; font-weight: 700;
+    padding: 4px 9px; border-radius: 999px; background: #e4eefe; color: #1a6fb5;
+  }
+  .rl3-rise { opacity: 0; animation: rl3-rise 7s ease-in-out infinite; }
+  @keyframes rl3-rise {
+    0% { opacity: 0; transform: translateY(16px); }
+    8%, 86% { opacity: 1; transform: translateY(0); }
+    95%, 100% { opacity: 0; transform: translateY(16px); }
+  }
+  .rl3-d1 { animation-delay: 0.15s; }
+  .rl3-d2 { animation-delay: 0.45s; }
+  .rl3-d3 { animation-delay: 0.75s; }
+  .rl3-d4 { animation-delay: 1.05s; }
+
+  .rl3-back-row { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; }
+  .rl3-back-row i { font-size: 20px; }
+  .rl3-field {
+    position: relative; border: 1.5px solid rgba(16, 23, 36, 0.16); border-radius: 28px;
+    background: #fff; height: 52px; padding: 8px 18px 0;
+    display: flex; flex-direction: column; justify-content: center; gap: 1px;
+  }
+  .rl3-field-label { font-size: 10px; font-weight: 600; color: #5c6b7d; letter-spacing: 0.02em; }
+  .rl3-field-value { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 7px; }
+  .rl3-field-value i { color: #5c6b7d; font-size: 15px; }
+  .rl3-caret { display: inline-block; width: 2px; height: 15px; background: #3b82f6; animation: rl3-blink 1.1s step-end infinite; }
+  @keyframes rl3-blink { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0; } }
+  .rl3-avatars { display: flex; align-items: center; }
+  .rl3-avatar {
+    width: 34px; height: 34px; border-radius: 50%; border: 2px solid #f2f2f7;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #fff; margin-left: -8px;
+  }
+  .rl3-avatar:first-child { margin-left: 0; }
+  .rl3-pop { transform: scale(0); animation: rl3-pop 7s cubic-bezier(0.34, 1.56, 0.64, 1) infinite; }
+  @keyframes rl3-pop {
+    0%, 6% { transform: scale(0); }
+    12%, 88% { transform: scale(1); }
+    94%, 100% { transform: scale(0); }
+  }
+  .rl3-p1 { animation-delay: 0.5s; }
+  .rl3-p2 { animation-delay: 0.8s; }
+  .rl3-p3 { animation-delay: 1.1s; }
+  .rl3-p4 { animation-delay: 1.4s; }
+  .rl3-cta {
+    position: relative; overflow: hidden; height: 48px; border-radius: 999px;
+    background: linear-gradient(145deg, #14b8a6, #3b82f6);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 16px; font-weight: 700;
+  }
+  .rl3-cta::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 56px;
+    background: linear-gradient(105deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.38) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-18deg); left: -80px; animation: rl3-shine 3.4s ease-in-out infinite;
+  }
+  @keyframes rl3-shine { 0%, 55% { left: -80px; } 85%, 100% { left: 330px; } }
+  .rl3-seg {
+    display: flex; background: #e2e4ea; border-radius: 999px; padding: 3px;
+    font-size: 13px; font-weight: 700;
+  }
+  .rl3-seg span { flex: 1; text-align: center; padding: 7px 0; border-radius: 999px; color: #5c6b7d; }
+  .rl3-seg .rl3-seg-on { background: #101724; color: #e8edf5; }
+  .rl3-date-block {
+    width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0; background: #e4eefe;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: #1a6fb5; line-height: 1;
+  }
+  .rl3-date-block b { font-size: 17px; font-weight: 800; }
+  .rl3-date-block span { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; margin-top: 2px; }
+  .rl3-toast {
+    display: flex; align-items: center; gap: 8px; background: #101724; color: #e8edf5;
+    border-radius: 999px; padding: 9px 14px; font-size: 12px; font-weight: 600;
+    align-self: center; margin-top: 2px;
+    opacity: 0; animation: rl3-toast 7s ease-in-out infinite; animation-delay: 1.6s;
+  }
+  .rl3-toast i { color: #14b8a6; font-size: 15px; }
+  @keyframes rl3-toast {
+    0%, 8% { opacity: 0; transform: translateY(10px); }
+    16%, 78% { opacity: 1; transform: translateY(0); }
+    86%, 100% { opacity: 0; transform: translateY(10px); }
+  }
+  .rl3-app-link {
+    font-size: 12px; font-weight: 700; color: #e8880a; text-transform: uppercase;
+    letter-spacing: 0.05rem;
+  }
+
+  .rl3-how { background: var(--rl-paper); padding: var(--rl-pad-y) 0; }
+  .rl3-how-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 72px; align-items: center; }
+  .rl3-how-photo img {
+    width: 100%; height: 100%; min-height: 520px; object-fit: cover;
+    border-radius: 12px; display: block;
+  }
+  .rl3-how-h2 { margin-bottom: 40px; }
+  .rl3-step { display: flex; gap: 22px; padding: 22px 0; border-top: 1px solid var(--rl-line); }
+  .rl3-step:last-child { border-bottom: 1px solid var(--rl-line); }
+  .rl3-step-num {
+    font-family: "Inter", sans-serif; font-weight: 700; font-size: 14px;
+    color: var(--rl-accent); padding-top: 4px; min-width: 30px;
+  }
+  .rl3-step-title {
+    font-family: "Inter", sans-serif; font-weight: 800; font-size: 18px;
+    letter-spacing: -0.01em; margin: 0 0 6px; color: var(--rl-ink);
+  }
+  .rl3-step-desc { margin: 0; font-size: 16px; line-height: 1.6; color: var(--rl-ink-soft); }
+
+  .rl3-creed { background: var(--rl-accent); padding: var(--rl-pad-y) 0; text-align: center; }
+  .rl3-creed-h2 { color: #fff; font-size: 52px; }
+  .rl3-creed-sub {
+    max-width: 520px; margin: 20px auto 0; font-size: 18px; line-height: 1.65;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .rl3-share { padding: var(--rl-pad-y) 0; text-align: center; }
+  .rl3-share-sub {
+    max-width: 560px; margin: 18px auto 0; font-size: 18px; line-height: 1.65;
+    color: var(--rl-ink-soft);
+  }
+  .rl3-share-link {
+    display: inline-block; margin-top: 28px; font-family: ui-monospace, monospace;
+    font-size: 15px; font-weight: 600; color: var(--rl-accent);
+    padding: 13px 26px; border: 1.5px solid var(--rl-accent);
+    border-radius: 999px; background: #fff;
+  }
+
+  .rl3-reviews { background: #fff; padding: var(--rl-pad-y) 0; }
+  .rl3-review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 48px; }
+  .rl3-review { margin: 0; padding-top: 26px; border-top: 2px solid var(--rl-ink); }
+  .rl3-review blockquote { margin: 0; font-size: 18px; line-height: 1.55; font-weight: 500; color: var(--rl-ink); }
+  .rl3-review figcaption { margin-top: 16px; font-size: 14px; font-weight: 600; color: var(--rl-ink-soft); }
+
+  .rl3-final {
+    position: relative; height: 620px; display: flex; align-items: center;
+    justify-content: center; text-align: center;
+  }
+  .rl3-final-shade { position: absolute; inset: 0; background: rgba(24, 20, 12, 0.38); }
+  .rl3-final-content { position: relative; z-index: 1; padding: 100px 28px; }
+  .rl3-final-h2 { color: #fff; font-size: 60px; }
+  .rl3-final .rl3-btn { margin-top: 34px; }
+  .rl3-final-trust { margin: 18px 0 0; font-size: 15px; color: rgba(255, 255, 255, 0.85); }
+
+  .rl3-footer { background: var(--rl-accent-deep); padding: 36px 0; }
+  .rl3-footer-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 18px; flex-wrap: wrap;
+  }
+  .rl3-footer-brand { font-family: "Inter", sans-serif; font-weight: 800; color: #fff; }
+  .rl3-footer-links { display: flex; gap: 24px; font-size: 14px; font-weight: 600; color: rgba(255, 255, 255, 0.72); }
+</style>
+
+<div class="rl3" style="background: #f6f3ed;">
+
+  <section class="rl3-hero">
+    <img class="rl3-hero-img" src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=2200&q=80" alt="A backyard party under string lights at dusk" />
+    <div class="rl3-hero-shade"></div>
+
+    <header class="rl3-nav">
+      <a href="#" class="rl3-nav-logo">MixedRoutes</a>
+      <nav class="rl3-nav-links">
+        <a href="#">How it works</a>
+        <a href="#">Reviews</a>
+        <a href="#" class="rl3-btn rl3-btn-nav">Get the app</a>
+      </nav>
+    </header>
+
+    <div class="rl3-hero-content">
+      <h1 class="rl3-h1">Go where life&nbsp;is.</h1>
+      <p class="rl3-hero-sub">MixedRoutes turns &ldquo;we should hang out&rdquo; into a time, a place, and people who show up.</p>
+      <div class="rl3-hero-ctas">
+        <a href="#" class="rl3-btn rl3-btn-solid">Get the app</a>
+        <a href="#" class="rl3-btn rl3-btn-outline">See how it works</a>
+      </div>
+      <p class="rl3-hero-trust">Free · No ads · 5.0 on the Play Store</p>
+    </div>
+  </section>
+
+  <section class="rl3-manifesto">
+    <div class="rl3-wrap">
+      <p class="rl3-manifesto-big">The best nights of your life won&apos;t happen on your phone.</p>
+      <p class="rl3-manifesto-small">They happen on trails, in backyards, at bar tables and back rows. MixedRoutes exists to get you there: one place to find something worth doing, get your people to a yes, and lock in the details.</p>
+    </div>
+  </section>
+
+  <section class="rl3-plans">
+    <div class="rl3-wrap">
+      <div class="rl3-section-head">
+        <h2 class="rl3-h2">This week, somewhere near you.</h2>
+        <p class="rl3-section-sub">Real plans look like this. A time, a place, and who&apos;s in.</p>
+      </div>
+      <div class="rl3-plan-grid">
+        <figure class="rl3-plan">
+          <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1200&q=75" alt="Two friends hiking a mountain trail" />
+          <figcaption class="rl3-plan-caption">
+            <span class="rl3-plan-title">Saturday sunrise hike</span>
+            <span class="rl3-plan-meta">Sat · 6:00 AM · Craggy Gardens</span>
+            <span class="rl3-plan-going">4 going</span>
+          </figcaption>
+        </figure>
+        <figure class="rl3-plan">
+          <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1200&q=75" alt="A warmly lit neighborhood bar" />
+          <figcaption class="rl3-plan-caption">
+            <span class="rl3-plan-title">Trivia night</span>
+            <span class="rl3-plan-meta">Thu · 7:00 PM · The Copper Fox</span>
+            <span class="rl3-plan-going">5 going</span>
+          </figcaption>
+        </figure>
+        <figure class="rl3-plan">
+          <img src="https://images.unsplash.com/photo-1475483768296-6163e08872a1?auto=format&fit=crop&w=1200&q=75" alt="Friends around a campfire at dusk" />
+          <figcaption class="rl3-plan-caption">
+            <span class="rl3-plan-title">Backyard fire</span>
+            <span class="rl3-plan-meta">Tonight · 8:30 PM · Sam's place</span>
+            <span class="rl3-plan-going">6 going</span>
+          </figcaption>
+        </figure>
+        <figure class="rl3-plan">
+          <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=75" alt="A crowd at a live show" />
+          <figcaption class="rl3-plan-caption">
+            <span class="rl3-plan-title">Live show downtown</span>
+            <span class="rl3-plan-meta">Fri · 9:00 PM · The Orange Peel</span>
+            <span class="rl3-plan-going">3 going</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="rl3-features">
+    <div class="rl3-wrap">
+      <div class="rl3-section-head">
+        <h2 class="rl3-h2">Everything a plan needs.</h2>
+        <p class="rl3-section-sub">Find it, plan it, get everyone there. One app.</p>
+      </div>
+
+      <article class="rl3-feature rl3-flip">
+        <div class="rl3-feature-copy">
+          <p class="rl3-feature-eyebrow">Discover</p>
+          <h3 class="rl3-feature-title">What's actually happening near you.</h3>
+          <p class="rl3-feature-desc">Open mics, block parties, the trivia night two blocks over. The local stuff that never makes it to the big event sites.</p>
+        </div>
+        <div class="rl3-feature-visual">
+          <div class="rl3-phone">
+            <div class="rl3-screen">
+              <div class="rl3-status">
+                <span>9:41</span>
+                <span style="display:flex; gap:5px;"><i class="ph ph-cell-signal-full"></i><i class="ph ph-wifi-high"></i><i class="ph ph-battery-full"></i></span>
+              </div>
+              <div class="rl3-app-title">Discover</div>
+              <div class="rl3-search"><i class="ph ph-magnifying-glass"></i> Search events near you</div>
+              <div class="rl3-chips">
+                <span class="rl3-chip rl3-chip-dark">All</span>
+                <span class="rl3-chip rl3-chip-anim">Outdoors</span>
+                <span class="rl3-chip">Music</span>
+                <span class="rl3-chip">Food</span>
+              </div>
+              <div class="rl3-card rl3-rise rl3-d1">
+                <div class="rl3-card-icon" style="background:#e07020;"><i class="ph ph-mountains"></i></div>
+                <div>
+                  <div class="rl3-card-title">Sunrise hike, Craggy Gardens</div>
+                  <div class="rl3-card-meta">Sat · 6:00 AM · 3.2 mi away</div>
+                </div>
+                <span class="rl3-going-pill">4 going</span>
+              </div>
+              <div class="rl3-card rl3-rise rl3-d2">
+                <div class="rl3-card-icon" style="background:#7c3aed;"><i class="ph ph-music-notes"></i></div>
+                <div>
+                  <div class="rl3-card-title">Open mic night</div>
+                  <div class="rl3-card-meta">Thu · 8:00 PM · The Grey Eagle</div>
+                </div>
+                <span class="rl3-going-pill">12 going</span>
+              </div>
+              <div class="rl3-card rl3-rise rl3-d3">
+                <div class="rl3-card-icon" style="background:#0d9a8a;"><i class="ph ph-fork-knife"></i></div>
+                <div>
+                  <div class="rl3-card-title">Food truck rally</div>
+                  <div class="rl3-card-meta">Fri · 5:30 PM · River Arts District</div>
+                </div>
+                <span class="rl3-going-pill">8 going</span>
+              </div>
+              <div class="rl3-card rl3-rise rl3-d4">
+                <div class="rl3-card-icon" style="background:#c0204a;"><i class="ph ph-ticket"></i></div>
+                <div>
+                  <div class="rl3-card-title">Trivia at The Copper Fox</div>
+                  <div class="rl3-card-meta">Thu · 7:00 PM · Downtown</div>
+                </div>
+                <span class="rl3-going-pill">5 going</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="rl3-feature">
+        <div class="rl3-feature-copy">
+          <p class="rl3-feature-eyebrow">Plan</p>
+          <h3 class="rl3-feature-title">Every detail in one place.</h3>
+          <p class="rl3-feature-desc">Time, place, who's in, what to bring. The plan is the source of truth, not 12 scattered messages.</p>
+        </div>
+        <div class="rl3-feature-visual">
+          <div class="rl3-phone">
+            <div class="rl3-screen">
+              <div class="rl3-status">
+                <span>9:41</span>
+                <span style="display:flex; gap:5px;"><i class="ph ph-cell-signal-full"></i><i class="ph ph-wifi-high"></i><i class="ph ph-battery-full"></i></span>
+              </div>
+              <div class="rl3-back-row"><i class="ph ph-arrow-left"></i> New plan</div>
+              <div class="rl3-field">
+                <span class="rl3-field-label">Plan name</span>
+                <span class="rl3-field-value">Sunrise hike<span class="rl3-caret"></span></span>
+              </div>
+              <div class="rl3-field">
+                <span class="rl3-field-label">When</span>
+                <span class="rl3-field-value"><i class="ph ph-calendar-blank"></i> Sat, Jul 18 · 6:00 AM</span>
+              </div>
+              <div class="rl3-field">
+                <span class="rl3-field-label">Where</span>
+                <span class="rl3-field-value"><i class="ph ph-map-pin"></i> Craggy Gardens Trailhead</span>
+              </div>
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:4px 4px 0;">
+                <div class="rl3-avatars">
+                  <span class="rl3-avatar rl3-pop rl3-p1" style="background:#e07020;">B</span>
+                  <span class="rl3-avatar rl3-pop rl3-p2" style="background:#0d9a8a;">S</span>
+                  <span class="rl3-avatar rl3-pop rl3-p3" style="background:#7c3aed;">C</span>
+                  <span class="rl3-avatar rl3-pop rl3-p4" style="background:#1a6fb5;">+3</span>
+                </div>
+                <span class="rl3-app-link">Invite</span>
+              </div>
+              <div class="rl3-cta">Create plan</div>
+              <div style="text-align:center; font-size:12px; color:#5c6b7d;">Friends can RSVP from a link, no app needed.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="rl3-feature rl3-flip">
+        <div class="rl3-feature-copy">
+          <p class="rl3-feature-eyebrow">Go</p>
+          <h3 class="rl3-feature-title">Your week at a glance.</h3>
+          <p class="rl3-feature-desc">Everything you're in and everything you're invited to, with reminders that keep the plan alive until you're out the door.</p>
+        </div>
+        <div class="rl3-feature-visual">
+          <div class="rl3-phone">
+            <div class="rl3-screen">
+              <div class="rl3-status">
+                <span>9:41</span>
+                <span style="display:flex; gap:5px;"><i class="ph ph-cell-signal-full"></i><i class="ph ph-wifi-high"></i><i class="ph ph-battery-full"></i></span>
+              </div>
+              <div class="rl3-app-title">Plans</div>
+              <div class="rl3-seg"><span class="rl3-seg-on">Upcoming</span><span>Invited</span></div>
+              <div class="rl3-card rl3-rise rl3-d1">
+                <div class="rl3-date-block"><b>18</b><span>SAT</span></div>
+                <div>
+                  <div class="rl3-card-title">Sunrise hike</div>
+                  <div class="rl3-card-meta">6:00 AM · Craggy Gardens</div>
+                </div>
+                <span class="rl3-going-pill">4 going</span>
+              </div>
+              <div class="rl3-card rl3-rise rl3-d2">
+                <div class="rl3-date-block"><b>16</b><span>THU</span></div>
+                <div>
+                  <div class="rl3-card-title">Trivia night</div>
+                  <div class="rl3-card-meta">7:00 PM · The Copper Fox</div>
+                </div>
+                <span class="rl3-going-pill">5 going</span>
+              </div>
+              <div class="rl3-card rl3-rise rl3-d3">
+                <div class="rl3-date-block"><b>21</b><span>TUE</span></div>
+                <div>
+                  <div class="rl3-card-title">Backyard fire</div>
+                  <div class="rl3-card-meta">8:30 PM · Sam's place</div>
+                </div>
+                <span class="rl3-going-pill">6 going</span>
+              </div>
+              <div class="rl3-toast"><i class="ph-fill ph-check-circle"></i> Sam is going to Sunrise hike</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="rl3-how">
+    <div class="rl3-wrap rl3-how-grid">
+      <div class="rl3-how-photo">
+        <img src="https://images.unsplash.com/photo-1533240332313-0db49b459ad6?auto=format&fit=crop&w=1000&q=75" alt="A hiker walking a ridgeline trail above a lake" />
+      </div>
+      <div class="rl3-how-steps">
+        <h2 class="rl3-h2 rl3-how-h2">From idea to out the door.</h2>
+        <div class="rl3-step">
+          <span class="rl3-step-num">01</span>
+          <div>
+            <h3 class="rl3-step-title">Propose</h3>
+            <p class="rl3-step-desc">Drop the idea with a time and place. Or two options if the group needs a say.</p>
+          </div>
+        </div>
+        <div class="rl3-step">
+          <span class="rl3-step-num">02</span>
+          <div>
+            <h3 class="rl3-step-title">Vote</h3>
+            <p class="rl3-step-desc">Everyone answers once. No polls, no fifty unread messages.</p>
+          </div>
+        </div>
+        <div class="rl3-step">
+          <span class="rl3-step-num">03</span>
+          <div>
+            <h3 class="rl3-step-title">Lock it in</h3>
+            <p class="rl3-step-desc">The plan gets a real time, a real place, and a real guest list. Reminders included.</p>
+          </div>
+        </div>
+        <div class="rl3-step">
+          <span class="rl3-step-num">04</span>
+          <div>
+            <h3 class="rl3-step-title">Show up</h3>
+            <p class="rl3-step-desc">That's the whole point.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rl3-creed">
+    <div class="rl3-wrap">
+      <h2 class="rl3-h2 rl3-creed-h2">No feed. No followers. No algorithm.</h2>
+      <p class="rl3-creed-sub">We are not trying to keep you here. The app did its job when you put your phone away.</p>
+    </div>
+  </section>
+
+  <section class="rl3-share">
+    <div class="rl3-wrap">
+      <h2 class="rl3-h2">Your friends don&apos;t need the app.</h2>
+      <p class="rl3-share-sub">Send a link. They see the plan and RSVP right in the browser. When they&apos;re ready, they&apos;ll get the app on their own.</p>
+      <div class="rl3-share-link">mixedroutes.com/p/sunrise-hike</div>
+    </div>
+  </section>
+
+  <section class="rl3-reviews">
+    <div class="rl3-wrap">
+      <h2 class="rl3-h2">From people who got out more.</h2>
+      <div class="rl3-review-grid">
+        <figure class="rl3-review">
+          <blockquote>&ldquo;It has made planning, conversation, game night and fight night a breeze.&rdquo;</blockquote>
+          <figcaption>Sean · ★★★★★ · Google Play</figcaption>
+        </figure>
+        <figure class="rl3-review">
+          <blockquote>&ldquo;I have been looking for something like this for so long and it is so user friendly.&rdquo;</blockquote>
+          <figcaption>Carol · ★★★★★ · Google Play</figcaption>
+        </figure>
+        <figure class="rl3-review">
+          <blockquote>&ldquo;Makes organizing events super easy. I use it with my friends and for my business.&rdquo;</blockquote>
+          <figcaption>Daniel · ★★★★★ · Google Play</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="rl3-final">
+    <img class="rl3-final-img" src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=2200&q=80" alt="Friends sharing dinner at a long table on a patio" />
+    <div class="rl3-final-shade"></div>
+    <div class="rl3-final-content">
+      <h2 class="rl3-h2 rl3-final-h2">Less planning, more living.</h2>
+      <a href="#" class="rl3-btn rl3-btn-solid rl3-btn-big">Get the app</a>
+      <p class="rl3-final-trust">Free on iOS, Android, and web · No ads · No data selling</p>
+    </div>
+  </section>
+
+  <footer class="rl3-footer">
+    <div class="rl3-wrap rl3-footer-inner">
+      <span class="rl3-footer-brand">MixedRoutes</span>
+      <nav class="rl3-footer-links">
+        <a href="#">About</a>
+        <a href="#">FAQ</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+</div>

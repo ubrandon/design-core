@@ -1,0 +1,427 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&display=swap");
+
+  .mrv2-disc5, .mrv2-disc5 * { box-sizing: border-box; font-family: "Geist", sans-serif; margin: 0; }
+  .mrv2-disc5 { background: #ffffff; color: #101724; position: relative; overflow-x: clip; }
+  .mrv2-disc5 .page-content { padding: 4px 16px 82px; display: flex; flex-direction: column; gap: 16px; }
+
+  /* Toolbar */
+  .mrv2-disc5 .toolbar { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: #ffffff; }
+  .mrv2-disc5 .toolbar .page-title { font-size: 24px; font-weight: 700; color: #1a2332; }
+  .mrv2-disc5 .toolbar .actions { display: flex; align-items: center; gap: 18px; }
+  .mrv2-disc5 .toolbar .actions .tbtn { position: relative; color: #1a2332; font-size: 24px; line-height: 1; }
+  .mrv2-disc5 .toolbar .badge-dot { position: absolute; top: -8px; right: -8px; min-width: 22px; height: 22px; border-radius: 999px; background: #0ca678; color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center; border: 2px solid #ffffff; padding: 0 4px; }
+
+  /* AI ask bar, compact */
+  .mrv2-disc5 .ask-bar { display: flex; align-items: center; gap: 10px; height: 52px; padding: 0 6px 0 16px; border-radius: 999px; border: 1px solid transparent; background: linear-gradient(#ffffff, #ffffff) padding-box, linear-gradient(135deg, rgba(20, 184, 166, 0.4), rgba(59, 130, 246, 0.4)) border-box; box-shadow: 0 1px 4px rgba(16, 23, 36, 0.05); }
+  .mrv2-disc5 .ask-bar > i { font-size: 18px; flex-shrink: 0; background-image: linear-gradient(135deg, #14b8a6, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .mrv2-disc5 .ask-bar .placeholder { flex: 1; font-size: 16px; font-weight: 500; color: #8b98a8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-disc5 .ask-bar .send { width: 40px; height: 40px; flex-shrink: 0; border: 0; border-radius: 50%; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #fff; font-size: 17px; display: grid; place-items: center; }
+  .mrv2-disc5 .try-row { display: flex; gap: 8px; overflow-x: auto; margin: -6px -16px 0; padding: 0 16px 2px; scrollbar-width: none; -ms-overflow-style: none; }
+  .mrv2-disc5 .try-row::-webkit-scrollbar { display: none; }
+  .mrv2-disc5 .try-chip { height: 36px; padding: 0 14px; border-radius: 999px; background: #f1f4f7; color: #3b4551; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; flex-shrink: 0; }
+  .mrv2-disc5 .try-chip i { font-size: 14px; color: #3b82f6; }
+  .mrv2-disc5 .try-chip.selected { background: #1a2332; color: #ffffff; font-weight: 700; }
+  .mrv2-disc5 .try-chip.plain i { color: #5c6b7d; }
+
+  /* Section header */
+  .mrv2-disc5 section { display: flex; flex-direction: column; gap: 11px; }
+  .mrv2-disc5 section + section { margin-top: -12px; }
+  .mrv2-disc5 .sec-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .mrv2-disc5 .sec-head .h-wrap { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .mrv2-disc5 .sec-head h2 { font-size: 22px; font-weight: 700; line-height: 1.2; color: #1a2332; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-disc5 .sec-head .ai-mark { flex-shrink: 0; font-size: 18px; line-height: 1; display: inline-flex; align-items: center; }
+  .mrv2-disc5 .sec-head .ai-mark i { background: linear-gradient(145deg, #14b8a6, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .mrv2-disc5 .sec-head .action { display: inline-flex; align-items: center; gap: 3px; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #5c6b7d; white-space: nowrap; }
+  .mrv2-disc5 .sec-head .action i { font-size: 16px; }
+
+  /* Rails */
+  .mrv2-disc5 .rail { display: flex; align-items: stretch; overflow-x: auto; margin: -19px -16px -36px; padding: 24px 16px 56px; gap: 16px; scrollbar-width: none; -ms-overflow-style: none; }
+  .mrv2-disc5 .rail::-webkit-scrollbar { display: none; }
+
+  /* Flat tiles: rounded image, text below, no card chrome */
+  .mrv2-disc5 .serp-card { width: 192px; flex-shrink: 0; background: transparent; color: #101724; display: flex; flex-direction: column; }
+  .mrv2-disc5 .serp-card .img { position: relative; width: 100%; aspect-ratio: 1.85 / 1; border-radius: 20px; overflow: hidden; background-size: cover; background-position: center; }
+  .mrv2-disc5 .serp-card .save { position: absolute; top: 11px; right: 11px; width: 36px; height: 36px; border-radius: 50%; background: rgba(0, 0, 0, 0.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: grid; place-items: center; color: #fff; font-size: 20px; }
+  .mrv2-disc5 .serp-card .save.saved { color: #06b6d4; }
+  .mrv2-disc5 .serp-card .tickets { position: absolute; left: 11px; bottom: 11px; height: 28px; padding: 0 11px; border-radius: 999px; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: #fff; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; }
+  .mrv2-disc5 .serp-card .tickets i { font-size: 14px; }
+  .mrv2-disc5 .serp-card .body { padding: 10px 4px 0; display: flex; flex-direction: column; gap: 3px; flex: 1; }
+  .mrv2-disc5 .serp-card .date { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; color: #5c6b7d; line-height: 1; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-disc5 .serp-card .title { font-size: 16px; font-weight: 700; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .mrv2-disc5 .serp-card .subtitle { font-size: 15px; color: #5c6b7d; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .mrv2-disc5 .serp-card .meta { padding-top: 2px; display: flex; align-items: center; gap: 5px; font-size: 14px; font-weight: 600; color: #5c6b7d; }
+  .mrv2-disc5 .serp-card .meta i { font-size: 14px; flex-shrink: 0; }
+  .mrv2-disc5 .serp-card .meta .loc-txt { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-disc5 .serp-card .meta .dot { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: 0.5; flex-shrink: 0; }
+  .mrv2-disc5 .serp-card.wide { width: 260px; }
+  .mrv2-disc5 .stack { display: flex; align-items: center; flex-shrink: 0; }
+  .mrv2-disc5 .stack img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; margin-left: -6px; border: 1.5px solid #ffffff; }
+  .mrv2-disc5 .stack img:first-child { margin-left: 0; }
+
+  /* Icon art header: pastel gradient stand-in for AI suggestions without photos */
+  .mrv2-disc5 .serp-card .art { position: relative; width: 100%; aspect-ratio: 1.85 / 1; border-radius: 20px; overflow: hidden; background: linear-gradient(135deg, var(--a1, #ccfbf1), var(--a2, #dbeafe)); display: grid; place-items: center; }
+  .mrv2-disc5 .serp-card .art::before { content: ""; position: absolute; width: 92px; height: 92px; border-radius: 50%; background: rgba(255, 255, 255, 0.35); top: -34px; left: -26px; }
+  .mrv2-disc5 .serp-card .art::after { content: ""; position: absolute; width: 72px; height: 72px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, 0.6); bottom: -26px; right: -18px; }
+  .mrv2-disc5 .serp-card .art .disc { position: relative; z-index: 1; width: 54px; height: 54px; border-radius: 50%; background: rgba(255, 255, 255, 0.6); display: grid; place-items: center; font-size: 27px; line-height: 1; color: var(--ac, #0f766e); box-shadow: 0 2px 8px rgba(16, 24, 40, 0.08); }
+  .mrv2-disc5 .serp-card .art .spark { position: absolute; z-index: 1; top: 9px; right: 9px; height: 24px; padding: 0 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: inline-flex; align-items: center; font-size: 13px; }
+  .mrv2-disc5 .serp-card .art .spark i { background: linear-gradient(145deg, #14b8a6, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* Public plan cards: design-system photo color, original flat-card layout */
+  .mrv2-disc5 .plan-card { width: 260px; flex-shrink: 0; position: relative; border-radius: 32px; overflow: hidden; background: #1d232b; color: #ffffff; display: flex; flex-direction: column; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.09), 0 16px 40px rgba(0, 0, 0, 0.14); isolation: isolate; transform: translateZ(0); }
+  .mrv2-disc5 .plan-card .ambient { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; filter: blur(40px) saturate(2.25); opacity: 0.84; transform: scale(1.55); }
+  .mrv2-disc5 .plan-card .hairline { position: absolute; inset: 0; z-index: 3; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 32px; pointer-events: none; }
+  .mrv2-disc5 .plan-card .photo { position: relative; z-index: 1; width: 100%; aspect-ratio: 3 / 2; background-size: cover; background-position: center; -webkit-mask-image: linear-gradient(to bottom, #000 52%, transparent 98%); mask-image: linear-gradient(to bottom, #000 52%, transparent 98%); }
+  .mrv2-disc5 .plan-card .facepile { position: relative; z-index: 2; display: flex; margin: -52px 0 0 16px; }
+  .mrv2-disc5 .plan-card .facepile img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 2px solid #ffffff; margin-left: -8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); }
+  .mrv2-disc5 .plan-card .facepile img:first-child { margin-left: 0; }
+  .mrv2-disc5 .plan-card .details { position: relative; z-index: 1; padding: 12px 16px 14px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .mrv2-disc5 .plan-card .date { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; color: rgba(255, 255, 255, 0.76); line-height: 1; }
+  .mrv2-disc5 .plan-card .title { font-size: 20px; font-weight: 700; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .mrv2-disc5 .plan-card .meta { margin-top: auto; padding-top: 4px; min-height: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .mrv2-disc5 .plan-card .going { display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; min-width: 0; }
+  .mrv2-disc5 .plan-card .going span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-disc5 .join-pill { height: 32px; padding: 0 16px; border: 0; border-radius: 999px; background: #ffffff; color: #101724; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+  /* Tail affordance */
+  .mrv2-disc5 .tail { width: 96px; margin: 0 24px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; }
+  .mrv2-disc5 .tail .circ { width: 72px; height: 72px; border-radius: 50%; background: #f1f4f7; display: grid; place-items: center; font-size: 28px; color: #1a2332; }
+  .mrv2-disc5 .tail span { font-size: 14px; color: #5c6b7d; }
+
+  /* Tab bar */
+  .mrv2-disc5 .tab-bar { position: relative; z-index: 5; height: 67px; background: #ffffff; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12); display: flex; align-items: flex-start; padding-top: 9px; }
+  .mrv2-disc5 .tab { flex: 1; display: flex; align-items: center; justify-content: center; color: #3b4551; }
+  .mrv2-disc5 .tab i { font-size: 24px; }
+  .mrv2-disc5 .tab.discover i { font-size: 26px; }
+  .mrv2-disc5 .tab.selected { color: #1a2332; }
+  .mrv2-disc5 .you { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+  .mrv2-disc5 .chat-wrap { position: relative; display: inline-flex; }
+  .mrv2-disc5 .unread { position: absolute; top: -8px; right: -14px; min-width: 22px; height: 22px; display: grid; place-items: center; padding: 0 4px; border: 2px solid #ffffff; border-radius: 999px; background: #0ca678; color: #ffffff; font-size: 12px; font-weight: 700; }
+</style>
+
+<div class="mrv2-disc5 ds-no-scrollbar" style="background: #ffffff;">
+  <div class="toolbar">
+    <span class="page-title">Discover</span>
+    <div class="actions">
+      <span class="tbtn"><i class="ph-fill ph-user-plus"></i></span>
+      <span class="tbtn"><i class="ph-fill ph-bell"></i><span class="badge-dot">2</span></span>
+      <span class="tbtn"><i class="ph-fill ph-gear-six"></i></span>
+    </div>
+  </div>
+  <main class="page-content">
+    <div class="ask-bar">
+      <i class="ph-fill ph-sparkle"></i>
+      <span class="placeholder">What do you feel like doing?</span>
+      <button class="send"><i class="ph-fill ph-paper-plane-tilt"></i></button>
+    </div>
+
+    <div class="try-row">
+      <span class="try-chip selected">For you</span>
+      <span class="try-chip plain"><i class="ph-fill ph-ticket"></i>Events</span>
+      <span class="try-chip plain"><i class="ph-fill ph-map-pin"></i>Places</span>
+      <span class="try-chip plain"><i class="ph-fill ph-calendar-blank"></i>Plans</span>
+    </div>
+
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>Plans near you</h2></div>
+        <span class="action">More <i class="ph-fill ph-caret-right"></i></span>
+      </div>
+      <div class="rail">
+        <div class="plan-card">
+          <div class="ambient" style="background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=400&h=300&q=60');"></div>
+          <div class="hairline"></div>
+          <div class="photo" style="background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=560&h=420&q=80');"></div>
+          <div class="facepile">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+          </div>
+          <div class="details">
+            <div class="date">Sun · 4pm · 2 mi away</div>
+            <div class="title">Pickup soccer at the park</div>
+            <div class="meta">
+              <div class="going"><span>Jordan + 4 going</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="plan-card">
+          <div class="ambient" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=400&h=300&q=60');"></div>
+          <div class="hairline"></div>
+          <div class="photo" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=560&h=420&q=80');"></div>
+          <div class="facepile">
+            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+            <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+          </div>
+          <div class="details">
+            <div class="date">Sat · 10am · 1 mi away</div>
+            <div class="title">Coffee walk downtown</div>
+            <div class="meta">
+              <div class="going"><span>Priya + 2 going</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph-fill ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>Near you this weekend</h2><span class="ai-mark"><i class="ph-fill ph-sparkle"></i></span></div>
+      </div>
+      <div class="rail">
+        <div class="serp-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1527224857830-43a7acc85260?auto=format&fit=crop&w=420&h=196&q=80');"></div>
+          <div class="body">
+            <div class="date">Fri, Aug 7 · 8:00 PM</div>
+            <div class="title">Asheville Comedy Festival</div>
+            <div class="meta"><i class="ph-fill ph-map-pin"></i><span class="loc-txt">Diana Wortham Theatre</span></div>
+          </div>
+        </div>
+        <div class="serp-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=420&h=196&q=80');"></div>
+          <div class="body">
+            <div class="date">Sat, Aug 8 · 11:00 AM</div>
+            <div class="title">Drag brunch downtown</div>
+            <div class="meta"><i class="ph-fill ph-map-pin"></i><span class="loc-txt">Banks Ave</span></div>
+          </div>
+        </div>
+        <div class="serp-card">
+          <div class="art" style="--a1: #ccfbf1; --a2: #dbeafe; --ac: #0f766e;">
+            <span class="disc"><i class="ph-fill ph-music-notes"></i></span>
+            <span class="spark"><i class="ph-fill ph-sparkle"></i></span>
+          </div>
+          <div class="body">
+            <div class="date">Sat, Aug 8 · 5:00 PM</div>
+            <div class="title">Shindig on the Green</div>
+            <div class="meta"><i class="ph-fill ph-map-pin"></i><span class="loc-txt">Pack Square Park</span></div>
+          </div>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph-fill ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>Because you like live music</h2><span class="ai-mark"><i class="ph-fill ph-sparkle"></i></span></div>
+      </div>
+      <div class="rail">
+        <div class="serp-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=420&h=196&q=80');"></div>
+          <div class="body">
+            <div class="date">Fri, Aug 7 · 9:00 PM</div>
+            <div class="title">The Wood Brothers</div>
+            <div class="meta"><i class="ph-fill ph-map-pin"></i><span class="loc-txt">The Orange Peel</span></div>
+          </div>
+        </div>
+        <div class="serp-card">
+          <div class="art" style="--a1: #ede9fe; --a2: #fce7f3; --ac: #7c3aed;">
+            <span class="disc"><i class="ph-fill ph-piano-keys"></i></span>
+            <span class="spark"><i class="ph-fill ph-sparkle"></i></span>
+          </div>
+          <div class="body">
+            <div class="date">Sat, Aug 15 · 8:30 PM</div>
+            <div class="title">Jazz night at Little Jumbo</div>
+            <div class="meta"><i class="ph-fill ph-map-pin"></i><span class="loc-txt">Lexington Ave</span></div>
+          </div>
+        </div>
+        <div class="serp-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=420&h=196&q=80');"></div>
+          <div class="body">
+            <div class="date">Thu, Aug 13 · 6:00 PM</div>
+            <div class="title">Pickin' in the Park</div>
+            <div class="meta"><i class="ph-fill ph-map-pin"></i><span class="loc-txt">Pritchard Park</span></div>
+          </div>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph-fill ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>Big events</h2></div>
+        <span class="action">All events <i class="ph-fill ph-caret-right"></i></span>
+      </div>
+      <div class="rail">
+        <div class="serp-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=560&h=260&q=80');">
+            <span class="save"><i class="ph ph-bookmark-simple"></i></span>
+            <span class="tickets"><i class="ph-fill ph-ticket"></i>Tickets</span>
+          </div>
+          <div class="body">
+            <div class="date">Wed, Oct 28 · 8:00 PM</div>
+            <div class="title">Beck</div>
+            <div class="meta"><i class="ph-fill ph-map-pin"></i><span class="loc-txt">Thomas Wolfe Auditorium</span></div>
+          </div>
+        </div>
+        <div class="serp-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=560&h=260&q=80');">
+            <span class="save"><i class="ph ph-bookmark-simple"></i></span>
+            <span class="tickets"><i class="ph-fill ph-ticket"></i>Tickets</span>
+          </div>
+          <div class="body">
+            <div class="date">Fri, Sep 18 · 7:00 PM</div>
+            <div class="title">Symphony under the stars</div>
+            <div class="meta"><i class="ph-fill ph-map-pin"></i><span class="loc-txt">Harrah's Cherokee Center</span></div>
+          </div>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph-fill ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>Places to try</h2></div>
+        <span class="action">All places <i class="ph-fill ph-caret-right"></i></span>
+      </div>
+      <div class="rail">
+        <div class="serp-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=420&h=196&q=80');">
+            <span class="save"><i class="ph ph-bookmark-simple"></i></span>
+          </div>
+          <div class="body">
+            <div class="title">Well Played Board Game Café</div>
+            <div class="subtitle">Great for groups</div>
+            <div class="meta">
+              <i class="ph-fill ph-star"></i><span>4.7</span>
+              <span class="dot"></span>
+              <i class="ph-fill ph-map-pin"></i><span class="loc-txt">Wall St</span>
+            </div>
+          </div>
+        </div>
+        <div class="serp-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=420&h=196&q=80');">
+            <span class="save saved"><i class="ph-fill ph-bookmark-simple"></i></span>
+          </div>
+          <div class="body">
+            <div class="title">Ultra Coffeebar</div>
+            <div class="subtitle">Cozy coffee shop</div>
+            <div class="meta">
+              <i class="ph-fill ph-star"></i><span>4.8</span>
+              <span class="dot"></span>
+              <i class="ph-fill ph-map-pin"></i><span class="loc-txt">River Arts District</span>
+            </div>
+          </div>
+        </div>
+        <div class="serp-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=420&h=196&q=80');">
+            <span class="save"><i class="ph ph-bookmark-simple"></i></span>
+          </div>
+          <div class="body">
+            <div class="title">Little Jumbo</div>
+            <div class="subtitle">Cocktail bar</div>
+            <div class="meta">
+              <i class="ph-fill ph-star"></i><span>4.6</span>
+              <span class="dot"></span>
+              <i class="ph-fill ph-map-pin"></i><span class="loc-txt">Lexington Ave</span>
+            </div>
+          </div>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph-fill ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>Loved by your friends</h2></div>
+      </div>
+      <div class="rail">
+        <div class="serp-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1544413660-299165566b1d?auto=format&fit=crop&w=420&h=196&q=80');">
+            <span class="save"><i class="ph ph-bookmark-simple"></i></span>
+          </div>
+          <div class="body">
+            <div class="title">Cindy's Rooftop</div>
+            <div class="subtitle">Rooftop bar</div>
+            <div class="meta">
+              <span class="stack">
+                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+                <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+              </span>
+              <span>4 friends rated 5★</span>
+            </div>
+          </div>
+        </div>
+        <div class="serp-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=420&h=196&q=80');">
+            <span class="save"><i class="ph ph-bookmark-simple"></i></span>
+          </div>
+          <div class="body">
+            <div class="title">Salt &amp; Straw</div>
+            <div class="subtitle">Ice cream</div>
+            <div class="meta">
+              <span class="stack">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+              </span>
+              <span>Devon + 2 saved it</span>
+            </div>
+          </div>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph-fill ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>For Weekend Crew</h2><span class="ai-mark"><i class="ph-fill ph-sparkle"></i></span></div>
+      </div>
+      <div class="rail">
+        <div class="serp-card">
+          <div class="art" style="--a1: #fef3c7; --a2: #ffedd5; --ac: #d97706;">
+            <span class="disc"><i class="ph-fill ph-lightbulb"></i></span>
+            <span class="spark"><i class="ph-fill ph-sparkle"></i></span>
+          </div>
+          <div class="body">
+            <div class="date">Any evening</div>
+            <div class="title">Trivia at The Well</div>
+            <div class="meta"><i class="ph-fill ph-map-pin"></i><span class="loc-txt">South Slope</span></div>
+          </div>
+        </div>
+        <div class="serp-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=420&h=196&q=80');"></div>
+          <div class="body">
+            <div class="date">Sat, Aug 8 · 8:30 PM</div>
+            <div class="title">Outdoor movie night</div>
+            <div class="meta"><i class="ph-fill ph-map-pin"></i><span class="loc-txt">Highland Brewing</span></div>
+          </div>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph-fill ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tab-bar">
+    <span class="tab"><i class="ph-fill ph-house"></i></span>
+    <span class="tab discover selected"><i class="ph-fill ph-compass"></i></span>
+    <span class="tab"><img class="you" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /></span>
+    <span class="tab"><i class="ph-fill ph-calendar-blank"></i></span>
+    <span class="tab"><span class="chat-wrap"><i class="ph-fill ph-chat"></i><span class="unread">4</span></span></span>
+  </nav>
+</div>

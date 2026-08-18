@@ -1,0 +1,148 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<div style="background: var(--bg-0); overflow-x: clip; min-height: 100vh">
+  <div class="mr-scope">
+    <div style="display: flex; padding: 14px 16px 0">
+      <button type="button" style="flex: 1; padding: 10px 0; background: transparent; border: 0; color: rgba(255,255,255,0.5); font-weight: 700; font-size: 0.82rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px">
+        <i class="ph ph-ticket" style="font-size: 20px"></i>
+        <span style="letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.72rem">Events</span>
+      </button>
+      <button type="button" style="flex: 1; padding: 10px 0; background: transparent; border: 0; color: var(--text); font-weight: 800; font-size: 0.82rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; border-bottom: 2px solid var(--text); margin-bottom: -1px">
+        <i class="ph-fill ph-map-pin" style="font-size: 20px"></i>
+        <span style="letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.72rem">Places</span>
+      </button>
+      <button type="button" style="flex: 1; padding: 10px 0; background: transparent; border: 0; color: rgba(255,255,255,0.5); font-weight: 700; font-size: 0.82rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px">
+        <i class="ph ph-calendar-blank" style="font-size: 20px"></i>
+        <span style="letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.72rem">Plans</span>
+      </button>
+    </div>
+
+    <div style="height: 1px; background: rgba(255,255,255,0.06)"></div>
+
+    <div style="padding: 14px 16px 12px">
+      <div class="mr-search-bar">
+        <i class="ph-fill ph-magnifying-glass" aria-hidden="true"></i>
+        <input type="search" placeholder="Search places" autocomplete="off" />
+      </div>
+    </div>
+
+    <div style="padding: 0 16px 14px; display: flex; gap: 8px">
+      <button type="button" style="flex: 0 0 auto; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.85); font-weight: 700; font-size: 0.78rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px">
+        <i class="ph ph-map-pin" style="font-size: 12px"></i> Hendersonville
+      </button>
+      <button type="button" style="flex: 0 0 auto; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.85); font-weight: 700; font-size: 0.78rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px">
+        <i class="ph ph-storefront" style="font-size: 12px"></i> Category
+      </button>
+    </div>
+
+    <div style="padding: 4px 16px 8px; display: flex; align-items: center; justify-content: space-between">
+      <div style="display: inline-flex; align-items: center; gap: 6px">
+        <i class="ph-fill ph-heart" style="color: #ff6b8b; font-size: 16px"></i>
+        <span style="font-size: 0.95rem; font-weight: 800; color: var(--text)">Your saved places</span>
+      </div>
+      <button type="button" style="font-size: 0.78rem; color: #f5c451; background: transparent; border: 0; font-weight: 800; cursor: pointer; letter-spacing: 0.04em; text-transform: uppercase">See all</button>
+    </div>
+
+    <div style="padding: 0 16px 16px; display: flex; gap: 10px; overflow-x: auto" class="ds-scroll-x">
+      <button type="button" style="flex: 0 0 auto; width: 156px; padding: 14px; border-radius: 18px; background: linear-gradient(180deg, rgba(255,107,139,0.16), rgba(255,107,139,0.04)); border: 1px solid rgba(255,107,139,0.25); cursor: pointer; text-align: left; display: flex; flex-direction: column; gap: 8px">
+        <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(255,107,139,0.22); display: flex; align-items: center; justify-content: center">
+          <i class="ph-fill ph-heart" style="color: #ff6b8b; font-size: 22px"></i>
+        </div>
+        <div>
+          <div style="font-size: 0.95rem; font-weight: 800; color: var(--text); margin-bottom: 2px">Favorites</div>
+          <div style="font-size: 0.74rem; color: rgba(255,255,255,0.6)">7 places · Private</div>
+        </div>
+      </button>
+
+      <button type="button" style="flex: 0 0 auto; width: 156px; padding: 14px; border-radius: 18px; background: linear-gradient(180deg, rgba(91,165,255,0.16), rgba(91,165,255,0.04)); border: 1px solid rgba(91,165,255,0.25); cursor: pointer; text-align: left; display: flex; flex-direction: column; gap: 8px">
+        <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(91,165,255,0.22); display: flex; align-items: center; justify-content: center">
+          <i class="ph-fill ph-clipboard-text" style="color: #5ba5ff; font-size: 22px"></i>
+        </div>
+        <div>
+          <div style="font-size: 0.95rem; font-weight: 800; color: var(--text); margin-bottom: 2px">Asheville</div>
+          <div style="display: flex; align-items: center; gap: 5px; font-size: 0.74rem; color: rgba(255,255,255,0.6)">
+            <span>3 places</span>
+            <span style="color: rgba(255,255,255,0.3)">·</span>
+            <div style="display: flex">
+              <img src="https://i.pravatar.cc/20?img=14" alt="" style="width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #0a1f30" />
+              <img src="https://i.pravatar.cc/20?img=32" alt="" style="width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #0a1f30; margin-left: -4px" />
+            </div>
+          </div>
+        </div>
+      </button>
+
+      <button type="button" style="flex: 0 0 auto; width: 132px; padding: 14px; border-radius: 18px; background: rgba(255,255,255,0.04); border: 1px dashed rgba(255,255,255,0.15); cursor: pointer; display: flex; flex-direction: column; gap: 8px; justify-content: center; align-items: center; min-height: 132px">
+        <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.04); display: flex; align-items: center; justify-content: center">
+          <i class="ph ph-plus" style="color: rgba(255,255,255,0.5); font-size: 20px"></i>
+        </div>
+        <div style="font-size: 0.82rem; color: rgba(255,255,255,0.6); font-weight: 700">New list</div>
+      </button>
+    </div>
+
+    <div style="height: 1px; background: rgba(255,255,255,0.06); margin: 0 16px 14px"></div>
+
+    <div style="padding: 0 16px 12px">
+      <div style="font-size: 0.78rem; font-weight: 800; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase">Discover nearby</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 16px">
+        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=200&q=70" alt="" style="width: 64px; height: 64px; border-radius: 14px; object-fit: cover" />
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 0.95rem; font-weight: 800; color: var(--text); margin-bottom: 2px">Henderson County Heritage Museum</div>
+          <div style="font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-bottom: 2px">Museum · Hendersonville, NC</div>
+          <div style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.78rem; font-weight: 700; color: var(--text)">
+            <i class="ph-fill ph-star" style="color: #f5c451; font-size: 11px"></i> 4.6 <span style="color: rgba(255,255,255,0.5); font-weight: 500">(182)</span>
+          </div>
+        </div>
+        <button type="button" class="mr-nav-icon-btn" aria-label="Save place" style="color: #ff6b8b">
+          <i class="ph-fill ph-heart" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 16px">
+        <img src="https://images.unsplash.com/photo-1599582909646-2ee87b3ee2dc?w=200&q=70" alt="" style="width: 64px; height: 64px; border-radius: 14px; object-fit: cover" />
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 0.95rem; font-weight: 800; color: var(--text); margin-bottom: 2px">Mineral & Lapidary Museum</div>
+          <div style="font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-bottom: 2px">Museum · Hendersonville, NC</div>
+          <div style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.78rem; font-weight: 700; color: var(--text)">
+            <i class="ph-fill ph-star" style="color: #f5c451; font-size: 11px"></i> 4.7 <span style="color: rgba(255,255,255,0.5); font-weight: 500">(418)</span>
+          </div>
+        </div>
+        <button type="button" class="mr-nav-icon-btn" aria-label="Save place" style="color: #ff6b8b">
+          <i class="ph-fill ph-heart" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 16px">
+        <img src="https://images.unsplash.com/photo-1614624532983-4ce03382d63d?w=200&q=70" alt="" style="width: 64px; height: 64px; border-radius: 14px; object-fit: cover" />
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 0.95rem; font-weight: 800; color: var(--text); margin-bottom: 2px">Appalachian Pinball Museum</div>
+          <div style="font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-bottom: 2px">Arcade · Hendersonville, NC</div>
+          <div style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.78rem; font-weight: 700; color: var(--text)">
+            <i class="ph-fill ph-star" style="color: #f5c451; font-size: 11px"></i> 4.9 <span style="color: rgba(255,255,255,0.5); font-weight: 500">(720)</span>
+          </div>
+        </div>
+        <button type="button" class="mr-nav-icon-btn" aria-label="Save place" style="color: rgba(255,255,255,0.5)">
+          <i class="ph ph-heart" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px; padding: 10px 16px">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=200&q=70" alt="" style="width: 64px; height: 64px; border-radius: 14px; object-fit: cover" />
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 0.95rem; font-weight: 800; color: var(--text); margin-bottom: 2px">Hands On! Children's Museum</div>
+          <div style="font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-bottom: 2px">Tourist Attraction · Hendersonville, NC</div>
+          <div style="display: inline-flex; align-items: center; gap: 4px; font-size: 0.78rem; font-weight: 700; color: var(--text)">
+            <i class="ph-fill ph-star" style="color: #f5c451; font-size: 11px"></i> 4.6 <span style="color: rgba(255,255,255,0.5); font-weight: 500">(566)</span>
+          </div>
+        </div>
+        <button type="button" class="mr-nav-icon-btn" aria-label="Save place" style="color: rgba(255,255,255,0.5)">
+          <i class="ph ph-heart" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

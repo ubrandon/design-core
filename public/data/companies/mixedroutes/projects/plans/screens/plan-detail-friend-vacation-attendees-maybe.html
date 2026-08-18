@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .mb-scope { --pv-bg: #0a0f14; --pv-green: #34c759; --pv-green-soft: rgba(52,199,89,0.16); --pv-amber: #f5b400; --pv-red: #ff5a5f; }
+  .mb-scope, .mb-scope * { scrollbar-width: none; -ms-overflow-style: none; box-sizing: border-box; }
+  .mb-scope::-webkit-scrollbar, .mb-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .mb-scope .mb-wrap { background: var(--pv-bg); padding: 24px 20px; }
+
+  .mb-scope .pv-card { background: linear-gradient(165deg, #1c2533 0%, #141b26 100%); border-radius: 22px; padding: 22px 20px; width: 100%; box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+
+  .mb-scope .mb-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  .mb-scope .mb-head .ht { flex: 1; min-width: 0; }
+  .mb-scope .mb-head .ht .t1 { font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+  .mb-scope .mb-head .ht .t2 { font-size: 0.86rem; font-weight: 700; color: #8ab4ff; margin-top: 6px; display: inline-flex; align-items: center; gap: 7px; }
+  .mb-scope .mb-head .ht .t2 i { font-size: 15px; }
+  .mb-scope .mb-head .sh { width: 40px; height: 40px; border-radius: 12px; border: 0; background: rgba(255,255,255,0.08); color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
+  .mb-scope .mb-head .sh i { font-size: 19px; }
+
+  .mb-scope .mb-summary { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.04); border-radius: 14px; padding: 12px 14px; margin-bottom: 14px; cursor: pointer; }
+  .mb-scope .mb-summary .sum-chev { margin-left: auto; color: rgba(255,255,255,0.4); font-size: 20px; flex-shrink: 0; }
+  .mb-scope .mb-summary .seg { display: inline-flex; align-items: center; gap: 7px; font-size: 0.92rem; font-weight: 700; color: rgba(255,255,255,0.85); }
+  .mb-scope .mb-summary .seg .d { width: 8px; height: 8px; border-radius: 50%; }
+  .mb-scope .mb-summary .seg .d.go { background: var(--pv-green); }
+  .mb-scope .mb-summary .seg .d.mb { background: #8a97ab; }
+  .mb-scope .mb-summary .seg b { color: #fff; }
+
+  .mb-scope .mb-rsvp { display: flex; align-items: center; gap: 13px; border-radius: 16px; padding: 13px 14px; background: rgba(138,151,171,0.1); border: 1px solid rgba(138,151,171,0.28); }
+  .mb-scope .mb-rsvp .dot { width: 38px; height: 38px; border-radius: 11px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; background: rgba(138,151,171,0.18); color: #b6c0cf; }
+  .mb-scope .mb-rsvp .dot i { font-size: 20px; }
+  .mb-scope .mb-rsvp .rt { flex: 1; min-width: 0; }
+  .mb-scope .mb-rsvp .rt .lb { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+  .mb-scope .mb-rsvp .rt .vl { font-size: 1.02rem; font-weight: 800; color: #fff; margin-top: 2px; }
+  .mb-scope .mb-rsvp .chg { border: 0; background: rgba(255,255,255,0.1); color: #fff; font-size: 0.86rem; font-weight: 800; padding: 9px 14px; border-radius: 11px; cursor: pointer; flex-shrink: 0; }
+</style>
+
+<div class="mr-scope mb-scope">
+  <div class="mb-wrap">
+
+    <div class="pv-card">
+
+      <div class="mb-head">
+        <div class="ht">
+          <div class="t1">10 guests</div>
+          <div class="t2"><i class="ph-fill ph-lock-simple"></i> Private &middot; hosted by Brandon</div>
+        </div>
+        <button type="button" class="sh" aria-label="Share"><i class="ph ph-share-network"></i></button>
+      </div>
+
+      <div class="mb-summary">
+        <span class="seg"><span class="d go"></span><b>4</b> going</span>
+        <span class="seg"><span class="d mb"></span><b>6</b> maybe</span>
+        <i class="ph ph-caret-right sum-chev"></i>
+      </div>
+
+      <div class="mb-rsvp">
+        <span class="dot"><i class="ph-fill ph-question"></i></span>
+        <div class="rt">
+          <div class="lb">Your RSVP</div>
+          <div class="vl">Maybe</div>
+        </div>
+        <button type="button" class="chg">Change</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

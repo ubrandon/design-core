@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7fb8d8"/>
+      <stop offset="0.5" stop-color="#a8cfd9"/>
+      <stop offset="1" stop-color="#e8d9b8"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a7a5c"/>
+      <stop offset="1" stop-color="#1f3a2c"/>
+    </linearGradient>
+  </defs>
+  <rect width="390" height="560" fill="url(#sky)"/>
+  <circle cx="300" cy="150" r="52" fill="#f6e7c1" opacity="0.9"/>
+  <path d="M0 380 L90 220 L160 340 L230 200 L320 360 L390 260 L390 560 L0 560 Z" fill="#5b7d92" opacity="0.85"/>
+  <path d="M0 440 L70 330 L150 430 L240 320 L330 440 L390 370 L390 560 L0 560 Z" fill="#3d5a6b"/>
+  <rect y="520" width="390" height="324" fill="url(#ground)"/>
+  <path d="M150 844 C170 700 150 640 195 560 C240 640 220 700 240 844 Z" fill="#d8c9a3" opacity="0.7"/>
+  <g transform="translate(178, 470)">
+    <circle cx="17" cy="6" r="9" fill="#2b2b33"/>
+    <path d="M17 15 L10 44 L17 70 M17 15 L26 40 L20 70 M17 15 L4 34 M17 15 L32 26" stroke="#2b2b33" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <path d="M34 20 L38 64" stroke="#2b2b33" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>

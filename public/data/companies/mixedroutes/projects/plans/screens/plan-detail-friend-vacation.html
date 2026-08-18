@@ -1,0 +1,239 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .pv-scope { --pv-bg: #0a0f14; --pv-card: #161d27; --pv-card-2: #1a2230; --pv-green: #34c759; --pv-green-soft: rgba(52,199,89,0.16); --pv-red: #ff5a5f; }
+  .pv-scope, .pv-scope * { scrollbar-width: none; -ms-overflow-style: none; box-sizing: border-box; }
+  .pv-scope::-webkit-scrollbar, .pv-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .pv-scope .pv-wrap { background: var(--pv-bg); min-height: 844px; position: relative; }
+
+  .pv-scope .pv-hero { position: relative; height: 380px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 0 24px 34px;
+    background-image: linear-gradient(180deg, rgba(10,15,20,0.3) 0%, rgba(10,15,20,0.05) 28%, rgba(10,15,20,0.55) 78%, var(--pv-bg) 100%), url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=80");
+    background-size: cover; background-position: center; }
+
+  .pv-scope .pv-topbar { position: absolute; top: 18px; left: 16px; right: 16px; z-index: 2; display: flex; align-items: center; justify-content: space-between; }
+  .pv-scope .pv-topbar .right { display: flex; gap: 10px; }
+  .pv-scope .pv-iconbtn { width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(20,28,38,0.55); backdrop-filter: blur(8px); color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+  .pv-scope .pv-iconbtn i { font-size: 20px; }
+
+  .pv-scope .pv-chip { background: rgba(20,28,38,0.7); backdrop-filter: blur(8px); color: #fff; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.05em; padding: 9px 18px; border-radius: 999px; }
+  .pv-scope .pv-event-title { margin-top: 16px; font-size: 2.25rem; font-weight: 800; color: #fff; text-align: center; letter-spacing: -0.02em; line-height: 1.08; text-shadow: 0 2px 16px rgba(0,0,0,0.5); }
+
+  .pv-scope .pv-actions { margin-top: 26px; display: flex; gap: 14px; }
+  .pv-scope .pv-act { display: inline-flex; align-items: center; gap: 9px; padding: 14px 28px; border-radius: 999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; border: 1.5px solid transparent; }
+  .pv-scope .pv-act i { font-size: 19px; }
+  .pv-scope .pv-act.chat { background: rgba(74,86,104,0.85); color: #fff; }
+  .pv-scope .pv-act.going { background: rgba(40,70,48,0.55); color: var(--pv-green); border-color: rgba(52,199,89,0.7); }
+  .pv-scope .pv-act.going i { color: var(--pv-green); }
+
+  .pv-scope .pv-body { padding: 0 20px 32px; }
+
+  .pv-scope .pv-guestbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 22px 2px 26px; }
+  .pv-scope .pv-stack { display: flex; align-items: center; }
+  .pv-scope .pv-avwrap { position: relative; display: inline-flex; margin-left: -14px; }
+  .pv-scope .pv-avwrap:first-child { margin-left: 0; }
+  .pv-scope .pv-stack .gav { width: 50px; height: 50px; border-radius: 50%; border: 3px solid var(--pv-bg); object-fit: cover; display: block; }
+  .pv-scope .pv-stack .gav.initials { background: #5a687c; color: #fff; font-size: 0.92rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .pv-scope .pv-stack .gav.q { background: #2a3340; color: rgba(255,255,255,0.7); font-size: 1.2rem; display: inline-flex; align-items: center; justify-content: center; }
+  .pv-scope .pv-stack .badge { position: absolute; bottom: 1px; right: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--pv-green); border: 2.5px solid var(--pv-bg); display: inline-flex; align-items: center; justify-content: center; z-index: 2; }
+  .pv-scope .pv-stack .badge i { font-size: 10px; color: #fff; line-height: 1; }
+  .pv-scope .pv-guest-meta { display: flex; align-items: center; cursor: pointer; flex-shrink: 0; }
+  .pv-scope .pv-guest-meta .txt { text-align: right; }
+  .pv-scope .pv-guest-meta .n { font-size: 1.15rem; font-weight: 800; color: #fff; }
+  .pv-scope .pv-guest-meta .s { font-size: 0.88rem; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .pv-scope .pv-guest-meta .chev { color: rgba(255,255,255,0.5); font-size: 24px; margin-left: 6px; }
+
+  .pv-scope .pv-desc { font-size: 1.08rem; line-height: 1.55; color: rgba(255,255,255,0.9); padding: 0 2px; }
+  .pv-scope .pv-desc p { margin: 0 0 16px; }
+  .pv-scope .pv-desc p:last-child { margin-bottom: 0; }
+
+  .pv-scope .pv-section-title { font-size: 1.55rem; font-weight: 800; color: #fff; margin: 30px 2px 18px; letter-spacing: -0.01em; }
+
+  .pv-scope .pv-card { background: rgba(26,34,48,0.6); border-radius: 20px; padding: 20px 18px; margin-bottom: 16px; }
+  .pv-scope .pv-row { display: flex; align-items: center; gap: 14px; }
+  .pv-scope .pv-row .ic { width: 48px; height: 48px; border-radius: 14px; background: rgba(255,255,255,0.07); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .pv-scope .pv-row .ic i { font-size: 24px; color: rgba(255,255,255,0.85); }
+  .pv-scope .pv-row .t1 { font-size: 1.1rem; font-weight: 800; color: #fff; }
+  .pv-scope .pv-row .t2 { font-size: 0.92rem; color: rgba(255,255,255,0.55); margin-top: 3px; }
+
+  .pv-scope .pv-guest-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .pv-scope .pv-guest-head .ic { width: 48px; height: 48px; border-radius: 14px; background: rgba(255,255,255,0.07); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .pv-scope .pv-guest-head .ic i { font-size: 24px; color: rgba(255,255,255,0.85); }
+  .pv-scope .pv-guest-head .t1 { font-size: 1.1rem; font-weight: 800; color: #fff; }
+  .pv-scope .pv-guest-head .t2 { font-size: 0.92rem; color: rgba(255,255,255,0.55); margin-top: 3px; }
+
+  .pv-scope .pv-rsvp { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .pv-scope .pv-rsvp .tile { background: rgba(255,255,255,0.04); border-radius: 14px; padding: 16px 8px 14px; text-align: center; border: 1.5px solid transparent; cursor: pointer; }
+  .pv-scope .pv-rsvp .tile.active-going { border-color: var(--pv-green); background: var(--pv-green-soft); }
+  .pv-scope .pv-rsvp .tile.no { background: rgba(255,90,95,0.08); }
+  .pv-scope .pv-rsvp .tile .num { font-size: 1.6rem; font-weight: 800; line-height: 1; }
+  .pv-scope .pv-rsvp .tile.going .num { color: var(--pv-green); }
+  .pv-scope .pv-rsvp .tile.maybe .num { color: #fff; }
+  .pv-scope .pv-rsvp .tile.no .num { color: var(--pv-red); }
+  .pv-scope .pv-rsvp .tile .lbl { font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 5px; }
+  .pv-scope .pv-mini { display: flex; align-items: center; justify-content: center; margin-top: 10px; min-height: 26px; }
+  .pv-scope .pv-mini .m { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--pv-card-2); margin-left: -8px; object-fit: cover; display: block; }
+  .pv-scope .pv-mini .m:first-child { margin-left: 0; }
+  .pv-scope .pv-mini .m.initials { background: #5a687c; color: #fff; font-size: 0.6rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .pv-scope .pv-rsvp .tile.going .pv-mini .m { border-color: #16271b; }
+
+  .pv-scope .pv-place .pv-row { align-items: flex-start; }
+  .pv-scope .pv-place .ic { background: rgba(255,255,255,0.07); }
+  .pv-scope .pv-place .t1 { line-height: 1.2; }
+  .pv-scope .pv-place .addr { font-size: 0.92rem; color: rgba(255,255,255,0.55); margin-top: 5px; line-height: 1.4; }
+  .pv-scope .pv-place .pv-rating { display: flex; align-items: center; gap: 7px; margin-top: 9px; }
+  .pv-scope .pv-place .pv-rating .score { font-size: 0.98rem; font-weight: 800; color: #fff; }
+  .pv-scope .pv-place .pv-rating .stars { display: inline-flex; gap: 1px; color: #f5b400; font-size: 16px; line-height: 1; }
+  .pv-scope .pv-place .pv-map { margin-top: 16px; height: 150px; border-radius: 14px; overflow: hidden; position: relative; background:
+    radial-gradient(circle at 30% 40%, #2f3a30 0%, transparent 45%),
+    radial-gradient(circle at 70% 70%, #2c3640 0%, transparent 50%),
+    linear-gradient(135deg, #283442 0%, #1d2733 100%); }
+  .pv-scope .pv-place .pv-map .road { position: absolute; background: rgba(255,255,255,0.12); }
+  .pv-scope .pv-place .pv-map .r1 { top: 56%; left: -5%; right: -5%; height: 6px; transform: rotate(-6deg); }
+  .pv-scope .pv-place .pv-map .r2 { top: -10%; bottom: -10%; left: 44%; width: 5px; transform: rotate(9deg); }
+  .pv-scope .pv-place .pv-map .r3 { top: 20%; left: -10%; width: 70%; height: 4px; transform: rotate(22deg); }
+  .pv-scope .pv-place .pv-map .pin { position: absolute; top: 48%; left: 47%; transform: translate(-50%, -100%); color: var(--pv-red); font-size: 32px; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5)); }
+  .pv-scope .pv-place .pv-map .locate { position: absolute; right: 12px; bottom: 12px; width: 40px; height: 40px; border-radius: 50%; background: rgba(20,28,38,0.85); display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 18px; }
+
+  .pv-scope .pv-link { display: flex; gap: 14px; align-items: center; background: rgba(26,34,48,0.6); border-radius: 20px; padding: 18px; text-decoration: none; margin-top: 8px; margin-bottom: 16px; }
+  .pv-scope .pv-link .pv-link-ic { width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #f5a623, #f76b1c); display: inline-flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
+  .pv-scope .pv-link .pv-link-body { min-width: 0; flex: 1; }
+  .pv-scope .pv-link .pv-link-title { font-size: 1.1rem; font-weight: 800; color: #fff; }
+  .pv-scope .pv-link .pv-link-url { font-size: 0.92rem; color: #4a9fff; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pv-scope .pv-link .pv-link-ext { color: rgba(255,255,255,0.4); font-size: 24px; flex-shrink: 0; align-self: center; }
+</style>
+
+<div class="mr-scope pv-scope">
+  <div class="pv-wrap">
+
+    <div class="pv-hero">
+      <div class="pv-topbar">
+        <button type="button" class="pv-iconbtn" aria-label="Back"><i class="ph ph-arrow-left"></i></button>
+        <div class="right">
+          <button type="button" class="pv-iconbtn" aria-label="Share"><i class="ph ph-share-network"></i></button>
+          <button type="button" class="pv-iconbtn" aria-label="Edit"><i class="ph ph-pencil-simple"></i></button>
+          <button type="button" class="pv-iconbtn" aria-label="More"><i class="ph ph-dots-three-vertical"></i></button>
+        </div>
+      </div>
+
+      <div class="pv-chip">JUN 7 - JUN 14</div>
+      <div class="pv-event-title">Friends Trip</div>
+      <div class="pv-actions">
+        <button type="button" class="pv-act chat"><i class="ph-fill ph-chat-circle"></i> Chat</button>
+        <button type="button" class="pv-act going"><i class="ph-fill ph-check-circle"></i> Going</button>
+      </div>
+    </div>
+
+    <div class="pv-body">
+
+      <div class="pv-guestbar">
+        <div class="pv-stack">
+          <span class="pv-avwrap"><img class="gav" src="https://i.pravatar.cc/120?img=12" alt="" /><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+          <span class="pv-avwrap"><span class="gav initials">MG</span><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+          <span class="pv-avwrap"><img class="gav" src="https://i.pravatar.cc/120?img=32" alt="" /><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+          <span class="pv-avwrap"><span class="gav initials">AM</span><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+        </div>
+        <div class="pv-guest-meta">
+          <div class="txt">
+            <div class="n">10 guests</div>
+            <div class="s">View and invite</div>
+          </div>
+          <i class="ph ph-caret-right chev"></i>
+        </div>
+      </div>
+
+      <div class="pv-desc">
+        <p>A whole week away with the crew. The beach house is booked, so let me know if these dates work and we can still shift a day or two.</p>
+      </div>
+
+      <a class="pv-link" href="https://communitynewspapers.com/events/friends-beach-week" target="_blank" rel="noopener">
+        <span class="pv-link-ic">🎭</span>
+        <div class="pv-link-body">
+          <div class="pv-link-title">Event Page</div>
+          <div class="pv-link-url">https://communitynewspapers.com/events/friends-beach-week</div>
+        </div>
+        <i class="ph ph-arrow-square-out pv-link-ext"></i>
+      </a>
+
+      <div class="pv-section-title">Plan details</div>
+
+      <div class="pv-card">
+        <div class="pv-row">
+          <span class="ic"><i class="ph-fill ph-calendar-blank"></i></span>
+          <div>
+            <div class="t1">Sat, Jun 7 - Sat, Jun 14</div>
+            <div class="t2">3 - 6 PM</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pv-card pv-place">
+        <div class="pv-row">
+          <span class="ic"><i class="ph-fill ph-map-pin"></i></span>
+          <div>
+            <div class="t1">Casa Palma beach house</div>
+            <div class="addr">Casa Palma beach house, 24 Shoreline Dr, Seaside</div>
+            <div class="pv-rating">
+              <span class="score">4.6</span>
+              <span class="stars">
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star"></i>
+                <i class="ph-fill ph-star-half"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="pv-map">
+          <span class="road r1"></span>
+          <span class="road r2"></span>
+          <span class="road r3"></span>
+          <i class="ph-fill ph-map-pin pin"></i>
+          <span class="locate"><i class="ph-fill ph-navigation-arrow"></i></span>
+          <span style="position:absolute; top:46%; left:53%; font-size:0.78rem; font-weight:700; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.7);">Casa Palma</span>
+        </div>
+      </div>
+
+      <div class="pv-card">
+        <div class="pv-guest-head">
+          <span class="ic"><i class="ph-fill ph-users-three"></i></span>
+          <div>
+            <div class="t1">10 guests</div>
+            <div class="t2">Hosted by Brandon Unglaub</div>
+          </div>
+        </div>
+
+        <div class="pv-rsvp">
+          <div class="tile going active-going">
+            <div class="num">4</div>
+            <div class="lbl">Going</div>
+            <div class="pv-mini">
+              <img class="m" src="https://i.pravatar.cc/120?img=12" alt="" />
+              <img class="m" src="https://i.pravatar.cc/120?img=32" alt="" />
+              <span class="m initials">MG</span>
+              <span class="m initials">AM</span>
+            </div>
+          </div>
+          <div class="tile maybe">
+            <div class="num">6</div>
+            <div class="lbl">Maybe</div>
+            <div class="pv-mini">
+              <img class="m" src="https://i.pravatar.cc/120?img=45" alt="" />
+              <span class="m initials">S</span>
+              <span class="m initials">CS</span>
+              <span class="m initials">+3</span>
+            </div>
+          </div>
+          <div class="tile no">
+            <div class="num">0</div>
+            <div class="lbl">Not going</div>
+            <div class="pv-mini"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&display=swap");
+
+  .statnav4, .statnav4 * { box-sizing: border-box; font-family: "Geist", sans-serif; margin: 0; }
+  .statnav4 { background: #ffffff; color: #1a2332; position: relative; padding-bottom: 28px; }
+
+  .statnav4 .toolbar { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: #ffffff; }
+  .statnav4 .brand { display: flex; align-items: center; gap: 7px; }
+  .statnav4 .brand img { width: 34px; height: 34px; object-fit: contain; display: block; }
+  .statnav4 .brand span { font-size: 24px; font-weight: 700; color: #1a2332; }
+  .statnav4 .actions { display: flex; align-items: center; gap: 18px; }
+  .statnav4 .actions .tbtn { position: relative; color: #1a2332; font-size: 24px; line-height: 1; }
+  .statnav4 .badge-dot { position: absolute; top: -8px; right: -8px; min-width: 22px; height: 22px; border-radius: 999px; background: #0ca678; color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center; border: 2px solid #ffffff; padding: 0 4px; }
+
+  .statnav4 .content { padding: 0 16px; display: flex; flex-direction: column; gap: 16px; }
+  .statnav4 .greet { display: flex; flex-direction: column; gap: 10px; padding-top: 8px; }
+  .statnav4 .greet h1 { font-size: 36px; font-weight: 800; line-height: 1.15; color: #1a2332; }
+  .statnav4 .now { font-size: 16px; font-weight: 600; color: #5c6b7d; line-height: 1.4; }
+  .statnav4 .now a { color: #2563eb; font-weight: 700; text-decoration: none; }
+
+  /* Tap-to-cycle status chips inside the welcome block */
+  .statnav4 .stat-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .statnav4 .schip { height: 36px; padding: 0 13px; border-radius: 999px; border: 1.5px solid rgba(32, 36, 42, 0.16); background: #ffffff; color: #101724; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 7px; }
+  .statnav4 .schip .c-dot { width: 10px; height: 10px; border-radius: 50%; background: #22c55e; flex-shrink: 0; transition: background 0.2s ease; }
+  .statnav4 .schip i { font-size: 16px; color: #2563eb; }
+  .statnav4 .schip.is-off { color: #5c6b7d; border-style: dashed; }
+  .statnav4 .schip.is-off i { color: #9aa3ad; }
+  .statnav4 .hint { font-size: 12px; color: #9aa3ad; }
+</style>
+
+<div class="statnav4">
+  <div class="toolbar">
+    <div class="brand">
+      <img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" />
+      <span>MixedRoutes</span>
+    </div>
+    <div class="actions">
+      <span class="tbtn"><i class="ph ph-user-plus"></i></span>
+      <span class="tbtn"><i class="ph ph-bell"></i><span class="badge-dot">2</span></span>
+      <span class="tbtn"><i class="ph ph-gear-six"></i></span>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="greet">
+      <h1>Evening, Brandon</h1>
+      <div class="stat-chips">
+        <button class="schip" data-role="status"><span class="c-dot"></span><span class="s-txt">Online</span></button>
+        <button class="schip" data-role="place"><i class="ph-fill ph-map-pin"></i><span class="p-txt">Ultra Coffeebar</span></button>
+        <button class="schip" data-role="activity"><span class="a-txt">☕ Coffee</span></button>
+      </div>
+      <div class="hint">Tap a chip to change it</div>
+      <div class="now">Happening now: <a href="#">Trivia at The Well</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector('.statnav4');
+  if (!root) return;
+
+  var statuses = [
+    { label: 'Online', c: '#22c55e' },
+    { label: 'Down to hang', c: '#14b8a6' },
+    { label: 'Heads down', c: '#f59e0b' },
+    { label: 'Invisible', c: '#9aa3ad' }
+  ];
+  var activities = ['☕ Coffee', '🥾 On a walk', '🍻 Drinks', '🎯 Trivia', ''];
+  var si = 0, ai = 0, sharing = true;
+
+  var sChip = root.querySelector('.schip[data-role="status"]');
+  var pChip = root.querySelector('.schip[data-role="place"]');
+  var aChip = root.querySelector('.schip[data-role="activity"]');
+
+  sChip.addEventListener('click', function () {
+    si = (si + 1) % statuses.length;
+    sChip.querySelector('.s-txt').textContent = statuses[si].label;
+    sChip.querySelector('.c-dot').style.background = statuses[si].c;
+  });
+
+  pChip.addEventListener('click', function () {
+    sharing = !sharing;
+    pChip.classList.toggle('is-off', !sharing);
+    pChip.querySelector('.p-txt').textContent = sharing ? 'Ultra Coffeebar' : 'Share location';
+    pChip.querySelector('i').className = sharing ? 'ph-fill ph-map-pin' : 'ph ph-map-pin';
+  });
+
+  aChip.addEventListener('click', function () {
+    ai = (ai + 1) % activities.length;
+    var v = activities[ai];
+    aChip.classList.toggle('is-off', !v);
+    aChip.querySelector('.a-txt').textContent = v || '+ Activity';
+  });
+})();
+</script>

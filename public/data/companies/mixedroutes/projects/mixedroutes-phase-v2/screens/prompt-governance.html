@@ -1,0 +1,136 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&display=swap");
+
+  .mrv2-pgov, .mrv2-pgov * { box-sizing: border-box; font-family: "Geist", sans-serif; margin: 0; }
+  .mrv2-pgov { background: #f6f8fa; color: #101724; padding: 28px 28px 36px; }
+  .mrv2-pgov .intro { max-width: 640px; display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; }
+  .mrv2-pgov .intro h1 { font-size: 26px; font-weight: 800; }
+  .mrv2-pgov .intro p { font-size: 15px; color: #5c6b7d; line-height: 1.5; }
+  .mrv2-pgov .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+
+  .mrv2-pgov .col-head { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+  .mrv2-pgov .col-head .pill { height: 26px; padding: 0 11px; border-radius: 999px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; display: inline-flex; align-items: center; }
+  .mrv2-pgov .col-head .pill.bad { background: rgba(180, 35, 24, 0.1); color: #b42318; }
+  .mrv2-pgov .col-head .pill.good { background: rgba(12, 166, 120, 0.12); color: #0a7d5c; }
+  .mrv2-pgov .col-head strong { font-size: 17px; font-weight: 700; }
+  .mrv2-pgov .col-sub { font-size: 13px; color: #8b98a8; line-height: 1.45; margin: -6px 0 12px; }
+
+  .mrv2-pgov .phone { border-radius: 26px; background: #ffffff; border: 1px solid rgba(16, 23, 36, 0.08); box-shadow: 0 2px 6px rgba(16, 24, 40, 0.05), 0 14px 32px rgba(16, 24, 40, 0.1); padding: 18px 16px 20px; display: flex; flex-direction: column; gap: 12px; }
+  .mrv2-pgov .phone .greet { font-size: 26px; font-weight: 800; line-height: 1.15; color: #1a2332; }
+
+  .mrv2-pgov .pcard { border-radius: 16px; background: #ffffff; border: 1px solid rgba(16, 23, 36, 0.1); box-shadow: 0 2px 6px rgba(16, 24, 40, 0.06); padding: 12px 13px; display: flex; align-items: center; gap: 11px; }
+  .mrv2-pgov .pcard .ic { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; font-size: 19px; flex-shrink: 0; background: color-mix(in srgb, var(--accent, #14b8a6) 14%, #ffffff); color: color-mix(in srgb, var(--accent, #14b8a6) 72%, #101724); }
+  .mrv2-pgov .pcard .t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .mrv2-pgov .pcard strong { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-pgov .pcard span { font-size: 12px; color: #5c6b7d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-pgov .pcard .cta { font-size: 13px; font-weight: 700; color: #2563eb; flex-shrink: 0; }
+  .mrv2-pgov .pcard.teaser { border: 1.5px solid transparent; background: linear-gradient(#ffffff, #ffffff) padding-box, linear-gradient(135deg, #14b8a6, #3b82f6) border-box; }
+
+  .mrv2-pgov .tag { align-self: flex-start; height: 22px; padding: 0 9px; border-radius: 999px; background: rgba(180, 35, 24, 0.08); color: #b42318; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; display: inline-flex; align-items: center; margin: -4px 0; }
+
+  .mrv2-pgov .ghost-section { border-radius: 16px; border: 1.5px dashed rgba(32, 36, 42, 0.16); padding: 12px 13px; display: flex; align-items: center; gap: 10px; color: #8b98a8; font-size: 13px; font-weight: 600; }
+  .mrv2-pgov .ghost-section i { font-size: 17px; }
+
+  .mrv2-pgov .queue { display: flex; align-items: center; gap: 8px; padding: 2px 4px; font-size: 13px; color: #5c6b7d; font-weight: 600; }
+  .mrv2-pgov .queue .q-dots { display: flex; }
+  .mrv2-pgov .queue .q-dots span { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; background: #eef1f4; border: 2px solid #ffffff; margin-left: -6px; }
+  .mrv2-pgov .queue .q-dots span:first-child { margin-left: 0; }
+
+  .mrv2-pgov .content-hint { display: flex; flex-direction: column; gap: 8px; }
+  .mrv2-pgov .content-hint .h2 { font-size: 17px; font-weight: 700; color: #1a2332; }
+  .mrv2-pgov .content-hint .strip { height: 68px; border-radius: 14px; background: linear-gradient(135deg, #e8edf2, #f1f4f7); }
+
+  .mrv2-pgov .rules { grid-column: 1 / -1; margin-top: 4px; border-radius: 20px; background: #ffffff; border: 1px solid rgba(16, 23, 36, 0.08); padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
+  .mrv2-pgov .rules strong { font-size: 15px; font-weight: 700; }
+  .mrv2-pgov .rules ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 5px; }
+  .mrv2-pgov .rules li { font-size: 14px; color: #5c6b7d; line-height: 1.5; }
+</style>
+
+<div class="mrv2-pgov" style="background: #f6f8fa;">
+  <div class="intro">
+    <h1>Prompt governance</h1>
+    <p>Five systems want the top of Home: the updates stack, the invite banner, the group nudge, the shared-interest prompt, and the weekend teaser. One shared budget decides who gets to show up each visit.</p>
+  </div>
+
+  <div class="cols">
+    <div>
+      <div class="col-head"><span class="pill bad">Without a rule</span><strong>Everything fires at once</strong></div>
+      <p class="col-sub">Worst case with all five systems live: the fold is nothing but asks, and plans are pushed off screen.</p>
+      <div class="phone">
+        <span class="greet">Evening, Brandon</span>
+        <div class="pcard" style="--accent: #14b8a6;">
+          <span class="ic"><i class="ph-fill ph-bell-ringing"></i></span>
+          <div class="t"><strong>Notifications are off</strong><span>Turn them on so you never miss a plan.</span></div>
+          <span class="cta">Turn on</span>
+        </div>
+        <div class="pcard" style="--accent: #3b82f6;">
+          <span class="ic"><i class="ph-fill ph-users"></i></span>
+          <div class="t"><strong>Invite your friends</strong><span>Planning is better together.</span></div>
+          <span class="cta">Share</span>
+        </div>
+        <div class="pcard" style="--accent: #0ca678;">
+          <span class="ic"><i class="ph-fill ph-envelope-open"></i></span>
+          <div class="t"><strong>2 invites waiting on you</strong><span>Hike at Craggy Gardens · Pizza night</span></div>
+          <span class="cta">Reply</span>
+        </div>
+        <div class="pcard" style="--accent: #f59e0b;">
+          <span class="ic"><i class="ph-fill ph-chats-circle"></i></span>
+          <div class="t"><strong>Weekend Crew is quiet</strong><span>Nothing planned this month.</span></div>
+          <span class="cta">Get ideas</span>
+        </div>
+        <div class="pcard" style="--accent: #7c3aed;">
+          <span class="ic"><i class="ph-fill ph-heart"></i></span>
+          <div class="t"><strong>Sam wants to do more hiking</strong><span>You might too. Add it to your interests?</span></div>
+          <span class="cta">Me too</span>
+        </div>
+        <div class="pcard teaser">
+          <span class="ic" style="--accent: #3b82f6;"><i class="ph-fill ph-sparkle"></i></span>
+          <div class="t"><strong>This weekend near Asheville</strong><span>Comedy festival, drag brunch, and more.</span></div>
+          <span class="cta">Open</span>
+        </div>
+        <div class="ghost-section"><i class="ph ph-arrow-down"></i>Your plans start 6 cards down</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="col-head"><span class="pill good">Proposed</span><strong>At most 2 prompts per visit</strong></div>
+      <p class="col-sub">One shared priority queue, extending the banner stack resolver. Everything else waits for the next visit.</p>
+      <div class="phone">
+        <span class="greet">Evening, Brandon</span>
+        <div class="pcard" style="--accent: #0ca678;">
+          <span class="ic"><i class="ph-fill ph-envelope-open"></i></span>
+          <div class="t"><strong>2 invites waiting on you</strong><span>Hike at Craggy Gardens · Pizza night</span></div>
+          <span class="cta">Reply</span>
+        </div>
+        <div class="content-hint">
+          <span class="h2">Your plans</span>
+          <div class="strip"></div>
+          <span class="h2">Friend activity</span>
+          <div class="strip"></div>
+        </div>
+        <div class="pcard teaser">
+          <span class="ic" style="--accent: #3b82f6;"><i class="ph-fill ph-sparkle"></i></span>
+          <div class="t"><strong>This weekend near Asheville</strong><span>Comedy festival, drag brunch, and more.</span></div>
+          <span class="cta">Open</span>
+        </div>
+        <div class="queue">
+          <span class="q-dots"><span>🔔</span><span>💬</span><span>💜</span></span>
+          <span>3 prompts held for later visits</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rules">
+      <strong>Draft priority order</strong>
+      <ol>
+        <li>Invites waiting on you always win a slot. They are time sensitive and about real plans.</li>
+        <li>One more slot goes to the highest-priority remaining prompt: setup fixes first (notifications), then social nudges, then discovery teasers.</li>
+        <li>A dismissed prompt stays away for at least a week. Nothing dismissed twice comes back on its own.</li>
+      </ol>
+    </div>
+  </div>
+</div>

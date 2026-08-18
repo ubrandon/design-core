@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .pplempty-scope { --vb-bg: #0c121b; }
+  .pplempty-scope, .pplempty-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .pplempty-scope::-webkit-scrollbar, .pplempty-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .pplempty-wrap { background: var(--vb-bg); min-height: 844px; position: relative; display: flex; flex-direction: column; font-family: var(--font-body); }
+
+  .pplempty-header { display: grid; grid-template-columns: 28px 1fr; align-items: center; gap: 16px; padding: 22px 20px 10px; }
+  .pplempty-header button { background: transparent; border: 0; color: #fff; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .pplempty-header button i { font-size: 23px; }
+  .pplempty-title { color: #fff; font-size: 1.55rem; font-weight: 850; letter-spacing: -0.01em; padding-left: 4px; }
+
+  .pplempty-state { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 28px 72px; text-align: center; }
+  .pplempty-state .icon { font-size: 72px; line-height: 1; background: linear-gradient(135deg, #45d6a0 8%, #4f7df9 88%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .pplempty-state .headline { margin-top: 22px; color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .pplempty-state .sub { margin-top: 10px; color: rgba(255,255,255,0.55); font-size: 1rem; font-weight: 650; line-height: 1.45; max-width: 300px; }
+
+  .pplempty-actions { margin-top: 30px; display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 300px; }
+  .pplempty-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; width: 100%; border: 0; border-radius: 999px; padding: 15px 18px; font-size: 1rem; font-weight: 850; font-family: inherit; }
+  .pplempty-btn i { font-size: 19px; }
+  .pplempty-btn.primary { background: #fff; color: #0c121b; }
+  .pplempty-btn.secondary { background: rgba(255,255,255,0.09); color: #fff; }
+</style>
+
+<div class="mr-scope pplempty-scope">
+  <div class="pplempty-wrap">
+    <header class="pplempty-header">
+      <button type="button" aria-label="Back"><i class="ph ph-arrow-left"></i></button>
+      <div class="pplempty-title">Friends</div>
+    </header>
+
+    <div class="pplempty-state">
+      <i class="ph ph-users-three icon"></i>
+      <div class="headline">No friends yet.</div>
+      <div class="sub">Invite your friends or import your contacts to start planning together.</div>
+      <div class="pplempty-actions">
+        <button type="button" class="pplempty-btn primary"><i class="ph ph-paper-plane-tilt"></i>Invite friends</button>
+        <button type="button" class="pplempty-btn secondary"><i class="ph ph-address-book"></i>Import contacts</button>
+      </div>
+    </div>
+  </div>
+</div>

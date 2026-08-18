@@ -1,0 +1,156 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .v5grs-scope { --v5-bg: #06080e; --v5-line: rgba(255,255,255,0.08); }
+  .v5grs-scope, .v5grs-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .v5grs-scope::-webkit-scrollbar, .v5grs-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .v5grs-wrap { background: var(--v5-bg); min-height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .v5grs-body { flex: 1; overflow-y: auto; padding-bottom: 8px; }
+
+  .v5grs-header { display: grid; grid-template-columns: 1fr 28px; align-items: center; padding: 22px 20px 8px; }
+  .v5grs-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .v5grs-close { background: transparent; border: 0; color: rgba(255,255,255,0.85); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .v5grs-close i { font-size: 22px; }
+
+  .v5grs-search { display: grid; grid-template-columns: 20px 1fr; align-items: center; gap: 10px; margin: 8px 20px 14px; padding: 12px 15px; background: rgba(255,255,255,0.07); border-radius: 999px; }
+  .v5grs-search i { color: rgba(255,255,255,0.54); font-size: 17px; }
+  .v5grs-search input { width: 100%; border: 0; outline: 0; padding: 0; background: transparent; color: #fff; font: inherit; font-size: 0.94rem; }
+
+  .v5grs-label { display: flex; align-items: baseline; justify-content: space-between; padding: 8px 20px 10px; color: #fff; font-size: 1.3rem; font-weight: 850; letter-spacing: -0.01em; }
+  .v5grs-label .action { background: transparent; border: 0; color: var(--neon-teal); font-size: 0.82rem; font-weight: 850; padding: 4px 0; cursor: pointer; }
+  .v5grs-label-sub { margin: 0; padding: 0 20px 10px; color: rgba(255,255,255,0.55); font-size: 0.82rem; font-weight: 700; line-height: 1.4; }
+
+  .v5grs-list { padding: 0; display: flex; flex-direction: column; }
+  .v5grs-row { display: grid; grid-template-columns: 44px 1fr 22px; align-items: center; gap: 13px; padding: 11px 20px; border-radius: 0; width: 100%; }
+  .v5grs-row.is-on { background: rgba(32,224,207,0.07); }
+  .v5grs-row .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; background: var(--neon-teal); color: #061016; font-weight: 900; }
+  .v5grs-row .av.muted { background: #4a5462; color: #fff; }
+  .v5grs-name { color: #fff; font-size: 0.98rem; font-weight: 850; line-height: 1.15; }
+  .v5grs-handle { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+  .v5grs-row .host { color: #f5c451; font-weight: 800; font-size: 0.8rem; }
+
+  .v5grs-cta { padding: 14px 20px 22px; display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .v5grs-cta button { min-height: 50px; border: 0; border-radius: 999px; color: #fff; font-size: 0.98rem; font-weight: 850; }
+  .v5grs-cta .primary { background: linear-gradient(135deg, #24b8aa, #4c87cf); }
+
+  /* Hide-invited variant: scoped so it never leaks into sibling screens */
+  .v5grs-scope-grs-hideinv .v5grs-row { cursor: pointer; }
+  .v5grs-scope-grs-hideinv .v5grs-empty { display: flex; align-items: center; gap: 10px; margin: 0 20px 6px; padding: 14px 16px; border-radius: 14px; background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.55); font-size: 0.85rem; font-weight: 700; line-height: 1.4; }
+  .v5grs-scope-grs-hideinv .v5grs-empty i { font-size: 18px; color: var(--neon-teal); flex: 0 0 auto; }
+  .v5grs-scope-grs-hideinv .v5grs-cta .primary:disabled { opacity: 0.45; }
+</style>
+
+<div class="mr-scope v5grs-scope v5grs-scope-grs-hideinv">
+  <div class="v5grs-wrap">
+    <div class="v5grs-body">
+      <header class="v5grs-header">
+        <div class="v5grs-title">Who's going?</div>
+        <button type="button" class="v5grs-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      </header>
+
+      <div class="v5grs-search">
+        <i class="ph ph-magnifying-glass"></i>
+        <input type="search" placeholder="Search people" />
+      </div>
+
+      <div class="v5grs-label" style="padding-top:18px;">
+        <span>Group members</span>
+      </div>
+      <div class="v5grs-empty">
+        <i class="ph-fill ph-check-circle"></i>
+        All 3 Lake House members are already invited
+      </div>
+
+      <div class="v5grs-label" style="padding-top:24px; padding-bottom:0;">
+        <span>Friends</span>
+        <button type="button" class="action" data-toggle-all="friends">Select all (1)</button>
+      </div>
+      <p class="v5grs-label-sub">1 already invited</p>
+      <div class="v5grs-list" data-section="friends">
+        <div class="v5grs-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=23" alt="" loading="lazy" />
+          <div><div class="v5grs-name">Rosa Klein</div><div class="v5grs-handle">@rosaklein</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+      </div>
+
+      <div class="v5grs-label" style="padding-top:24px;"><span>Suggested</span></div>
+      <div class="v5grs-list">
+        <div class="v5grs-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=58" alt="" loading="lazy" />
+          <div><div class="v5grs-name">Eli Park</div><div class="v5grs-handle">@elipark</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+        <div class="v5grs-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=15" alt="" loading="lazy" />
+          <div><div class="v5grs-name">Theo Marsh</div><div class="v5grs-handle">@theomarsh</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="v5grs-cta">
+      <button type="button" class="primary" disabled>Invite</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var scope = document.querySelector('.v5grs-scope-grs-hideinv');
+    if (!scope) return;
+    var cta = scope.querySelector('.v5grs-cta .primary');
+    var rows = Array.prototype.slice.call(scope.querySelectorAll('.v5grs-row'));
+    var toggleBtns = Array.prototype.slice.call(scope.querySelectorAll('[data-toggle-all]'));
+
+    function sectionRows(key) {
+      var list = scope.querySelector('.v5grs-list[data-section="' + key + '"]');
+      return list ? Array.prototype.slice.call(list.querySelectorAll('.v5grs-row')) : [];
+    }
+
+    function updateToggle(btn) {
+      var secRows = sectionRows(btn.getAttribute('data-toggle-all'));
+      var on = secRows.filter(function (r) { return r.classList.contains('is-on'); }).length;
+      var allOn = on === secRows.length && secRows.length > 0;
+      btn.textContent = (allOn ? 'Deselect all (' : 'Select all (') + (allOn ? on : secRows.length) + ')';
+    }
+
+    function setBox(row, on) {
+      var box = row.querySelector('.mr-checkbox');
+      var icon = box.querySelector('i');
+      box.classList.toggle('is-checked', on);
+      icon.className = on ? 'ph-fill ph-check-square' : 'ph ph-square';
+    }
+
+    function render() {
+      var on = rows.filter(function (r) { return r.classList.contains('is-on'); }).length;
+      cta.disabled = on === 0;
+      cta.textContent = on === 0 ? 'Invite' : 'Invite ' + on + (on === 1 ? ' person' : ' people');
+      toggleBtns.forEach(updateToggle);
+    }
+
+    function setRow(row, on) {
+      row.classList.toggle('is-on', on);
+      setBox(row, on);
+      render();
+    }
+
+    rows.forEach(function (row) {
+      row.addEventListener('click', function () {
+        setRow(row, !row.classList.contains('is-on'));
+      });
+    });
+
+    toggleBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var secRows = sectionRows(btn.getAttribute('data-toggle-all'));
+        var allOn = secRows.every(function (r) { return r.classList.contains('is-on'); }) && secRows.length > 0;
+        secRows.forEach(function (r) { setRow(r, !allOn); });
+      });
+    });
+
+    render();
+  })();
+</script>

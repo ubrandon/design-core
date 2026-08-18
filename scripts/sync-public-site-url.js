@@ -4,7 +4,7 @@
  *   https://<owner>.github.io/<repo>/
  *
  * Uses `git remote get-url origin`, or DESIGN_CORE_PUBLIC_URL / GITHUB_PAGES_ROOT env.
- * Run from repo root after you have an `origin` remote (your company repo on GitHub).
+ * Run from repo root after you have an `origin` remote on GitHub.
  */
 
 import { execSync } from "node:child_process";

@@ -1,0 +1,122 @@
+<div class="mr-scope">
+  <p class="mr-subsection-title">Top nav — home (logo + people, notifications, settings)</p>
+  <div style="display:flex;flex-direction:column;gap:14px;max-width:390px;">
+    <header class="mr-top-nav-home">
+      <a class="mr-top-nav-home-logo" href="#" aria-label="MixedRoutes home">
+        <img src="data/companies/mixedroutes/design-system/mixedroutes-assets/icon-foreground.svg" width="36" height="36" alt="" loading="lazy" />
+        <span class="mr-top-nav-home-wordmark">MixedRoutes</span>
+      </a>
+      <div class="mr-top-nav-home-actions">
+        <button type="button" class="mr-nav-icon-btn" aria-label="Find people">
+          <i class="ph ph-user-plus" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="mr-nav-icon-btn" aria-label="Notifications">
+          <i class="ph ph-bell" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="mr-nav-icon-btn" aria-label="Settings">
+          <i class="ph ph-gear-six" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+  </div>
+
+  <p class="mr-subsection-title">Top nav — inner (Material / Android top app bar, Phosphor)</p>
+  <div style="display:flex;flex-direction:column;gap:14px;max-width:390px;">
+    <div class="mr-nav-bar mr-nav-bar--inner">
+      <button type="button" class="mr-nav-bar-back" aria-label="Back">
+        <i class="ph ph-arrow-left" aria-hidden="true"></i>
+      </button>
+      <span class="mr-nav-bar-title">Your Plans</span>
+      <button type="button" class="mr-nav-bar-action" aria-label="Search">
+        <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="mr-nav-bar mr-nav-bar--inner">
+      <span class="mr-nav-bar-title" style="flex: 1; min-width: 0">Explore</span>
+      <div class="mr-nav-bar-tools">
+        <button type="button" class="mr-nav-icon-btn" aria-label="Notifications">
+          <i class="ph ph-bell" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="mr-nav-bar-avatar-btn" aria-label="Account">
+          <img
+            class="mr-top-nav-avatar"
+            src="https://i.pravatar.cc/72?img=11"
+            alt=""
+            width="40"
+            height="40"
+            loading="lazy"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <p class="mr-subsection-title">Bottom tab bar (order: Home, Discover, You, Plans, Chat)</p>
+  <div style="max-width:390px;">
+    <div class="mr-tab-bar">
+      <button type="button" class="mr-tab-item mr-tab-active" aria-label="Home">
+        <i class="ph-fill ph-house" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="mr-tab-item" aria-label="Discover">
+        <i class="ph ph-compass" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="mr-tab-item mr-tab-item--avatar" aria-label="You">
+        <img class="mr-tab-avatar" src="https://i.pravatar.cc/72?img=11" alt="" width="36" height="36" loading="lazy" />
+      </button>
+      <button type="button" class="mr-tab-item" aria-label="Plans">
+        <i class="ph ph-calendar-blank" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="mr-tab-item" aria-label="Chat">
+        <i class="ph ph-chat" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <p class="mr-subsection-title">Bottom tab bar — light variant (for light-mode screens, e.g. onboarding)</p>
+  <div style="max-width:390px;">
+    <div class="mr-tab-bar mr-tab-bar--light">
+      <button type="button" class="mr-tab-item mr-tab-active" aria-label="Home">
+        <i class="ph-fill ph-house" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="mr-tab-item" aria-label="Discover">
+        <i class="ph ph-compass" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="mr-tab-item mr-tab-item--avatar" aria-label="You">
+        <img class="mr-tab-avatar" src="https://i.pravatar.cc/72?img=11" alt="" width="36" height="36" loading="lazy" />
+      </button>
+      <button type="button" class="mr-tab-item" aria-label="Plans">
+        <i class="ph ph-calendar-blank" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="mr-tab-item" aria-label="Chat">
+        <i class="ph ph-chat" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <p class="mr-subsection-title">Desktop side nav + open account menu</p>
+  <div class="mr-desktop-nav-demo">
+    <nav class="mr-desktop-sidebar" aria-label="Desktop navigation">
+      <button type="button" class="mr-desktop-nav-item is-selected"><i class="ph-fill ph-house" aria-hidden="true"></i>Home</button>
+      <button type="button" class="mr-desktop-nav-item"><i class="ph ph-compass" aria-hidden="true"></i>Discover</button>
+      <button type="button" class="mr-desktop-nav-item"><i class="ph ph-calendar-blank" aria-hidden="true"></i>Plans</button>
+      <button type="button" class="mr-desktop-nav-item"><i class="ph ph-user" aria-hidden="true"></i>You</button>
+      <button type="button" class="mr-desktop-nav-item"><i class="ph ph-chat" aria-hidden="true"></i>Chat</button>
+      <div class="mr-desktop-nav-spacer"></div>
+      <button type="button" class="mr-desktop-nav-item"><i class="ph ph-bell" aria-hidden="true"></i>Notifications</button>
+      <button type="button" class="mr-desktop-nav-item is-open" aria-expanded="true">
+        <img class="mr-desktop-nav-avatar" src="https://i.pravatar.cc/72?img=11" alt="" loading="lazy" />
+        Brandon
+      </button>
+    </nav>
+    <div class="mr-desktop-canvas-demo">
+      <h4>Home</h4>
+      <p>The desktop shell keeps primary navigation on the left and moves account actions into the profile menu.</p>
+    </div>
+    <div class="mr-account-popover" role="menu" aria-label="Account menu">
+      <button type="button" class="mr-account-menu-item"><i class="ph ph-user" aria-hidden="true"></i>Profile</button>
+      <button type="button" class="mr-account-menu-item"><i class="ph ph-gear-six" aria-hidden="true"></i>Settings</button>
+      <div class="mr-account-menu-divider" role="separator"></div>
+      <button type="button" class="mr-account-menu-item is-destructive"><i class="ph ph-sign-out" aria-hidden="true"></i>Log out</button>
+    </div>
+  </div>
+</div>

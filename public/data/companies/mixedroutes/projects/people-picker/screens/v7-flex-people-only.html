@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .v7-scope { --v7-bg: #06080e; --v7-line: rgba(255,255,255,0.08); }
+  .v7-scope, .v7-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .v7-scope::-webkit-scrollbar, .v7-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .v7-wrap { background: var(--v7-bg); height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .v7-body { flex: 1; overflow-y: auto; }
+
+  .v7-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 24px 20px 4px; }
+  .v7-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .v7-close { background: rgba(255,255,255,0.08); border: 0; color: rgba(255,255,255,0.85); width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; padding: 0; margin-top: 4px; }
+  .v7-close i { font-size: 17px; }
+  .v7-sub { padding: 2px 20px 14px; color: rgba(255,255,255,0.55); font-size: 0.9rem; line-height: 1.45; }
+
+  .v7-search { display: grid; grid-template-columns: 20px 1fr; align-items: center; gap: 10px; margin: 0 20px 14px; padding: 12px 15px; background: rgba(255,255,255,0.07); border-radius: 999px; }
+  .v7-search i { color: rgba(255,255,255,0.54); font-size: 17px; }
+  .v7-search input { width: 100%; border: 0; outline: 0; padding: 0; background: transparent; color: #fff; font: inherit; font-size: 0.94rem; }
+
+  .v7-sec { display: flex; align-items: baseline; justify-content: space-between; padding: 16px 20px 8px; color: rgba(255,255,255,0.5); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+  .v7-sec .more { color: rgba(255,255,255,0.42); text-transform: none; letter-spacing: 0; font-weight: 700; font-size: 0.8rem; }
+
+  .v7-grow { display: grid; grid-template-columns: 52px 1fr auto; align-items: center; gap: 13px; padding: 9px 20px; }
+  .v7-gthumb { width: 52px; height: 52px; border-radius: 16px; overflow: hidden; background: rgba(255,255,255,0.08); }
+  .v7-gthumb img { width: 100%; height: 100%; object-fit: cover; }
+  .v7-gname { color: #fff; font-size: 0.98rem; font-weight: 850; line-height: 1.15; }
+  .v7-gmeta { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+  .v7-pill { display: inline-flex; align-items: center; gap: 6px; padding: 9px 15px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2); background: transparent; color: #fff; font-size: 0.82rem; font-weight: 800; }
+  .v7-pill i { font-size: 13px; }
+
+  .v7-prow { display: grid; grid-template-columns: 44px 1fr 22px; align-items: center; gap: 13px; padding: 9px 20px; }
+  .v7-prow .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; background: var(--neon-teal); color: #061016; font-weight: 900; }
+  .v7-prow .av.muted { background: #4a5462; color: #fff; }
+  .v7-pname { color: #fff; font-size: 0.98rem; font-weight: 850; line-height: 1.15; }
+  .v7-phandle { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+
+  .v7-foot { border-top: 1px solid var(--v7-line); padding: 12px 20px 22px; display: flex; flex-direction: column; gap: 10px; }
+  .v7-cta { min-height: 52px; border: 0; border-radius: 999px; color: #fff; font-size: 1rem; font-weight: 850; background: linear-gradient(135deg, #24b8aa, #4c87cf); }
+</style>
+
+<div class="mr-scope v7-scope">
+  <div class="v7-wrap">
+    <div class="v7-body">
+      <header class="v7-header">
+        <div class="v7-title">Add people</div>
+        <button type="button" class="v7-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      </header>
+      <div class="v7-sub">Put this plan in a group, invite friends one by one, or both.</div>
+
+      <div class="v7-search">
+        <i class="ph ph-magnifying-glass"></i>
+        <input type="search" placeholder="Search groups and people" />
+      </div>
+
+      <div class="v7-sec"><span>Your groups</span><span class="more">Pick one</span></div>
+      <div class="v7-grow">
+        <div class="v7-gthumb"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" /></div>
+        <div><div class="v7-gname">Lake House</div><div class="v7-gmeta">8 members</div></div>
+        <button type="button" class="v7-pill"><i class="ph ph-plus"></i>Add</button>
+      </div>
+      <div class="v7-grow">
+        <div class="v7-gthumb"><img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" /></div>
+        <div><div class="v7-gname">Family</div><div class="v7-gmeta">6 members</div></div>
+        <button type="button" class="v7-pill"><i class="ph ph-plus"></i>Add</button>
+      </div>
+
+      <div class="v7-sec"><span>Friends</span></div>
+      <div class="v7-prow">
+        <img class="av" src="https://i.pravatar.cc/96?img=12" alt="" loading="lazy" />
+        <div><div class="v7-pname">Nova Finch</div><div class="v7-phandle">@novafinch</div></div>
+        <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+      </div>
+      <div class="v7-prow">
+        <span class="av">M</span>
+        <div><div class="v7-pname">Milo Wren</div><div class="v7-phandle">@milowren</div></div>
+        <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+      </div>
+      <div class="v7-prow">
+        <img class="av" src="https://i.pravatar.cc/96?img=49" alt="" loading="lazy" />
+        <div><div class="v7-pname">Lila Quill</div><div class="v7-phandle">@lilaquill</div></div>
+        <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+      </div>
+
+      <div class="v7-sec"><span>Suggested</span></div>
+      <div class="v7-prow">
+        <img class="av" src="https://i.pravatar.cc/96?img=33" alt="" loading="lazy" />
+        <div><div class="v7-pname">Soren Vale</div><div class="v7-phandle">@sorenvale</div></div>
+        <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+      </div>
+      <div class="v7-prow">
+        <span class="av muted">PS</span>
+        <div><div class="v7-pname">Piper Sol</div><div class="v7-phandle">@pipersol</div></div>
+        <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+      </div>
+    </div>
+
+    <div class="v7-foot">
+      <button type="button" class="v7-cta">Invite 3 people</button>
+    </div>
+  </div>
+</div>

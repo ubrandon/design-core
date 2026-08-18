@@ -1,0 +1,221 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<div style="background: var(--bg-0); overflow-x: clip; min-height: 100vh">
+  <div class="mr-scope" style="padding-bottom: 24px">
+    <header
+      style="display: flex; align-items: center; justify-content: space-between; padding: 18px 16px 16px"
+    >
+      <button type="button" class="mr-nav-icon-btn" aria-label="Close">
+        <i class="ph ph-x" aria-hidden="true"></i>
+      </button>
+      <span style="font-size: 0.95rem; font-weight: 800; color: var(--text)">New group</span>
+      <span style="width: 36px"></span>
+    </header>
+
+    <div style="padding: 6px 16px 0">
+      <div style="display: flex; flex-direction: column; align-items: center; padding: 4px 0 14px">
+        <div
+          style="
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #5b6df8, #9c4dff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+          "
+          aria-hidden="true"
+        >
+          <i class="ph-fill ph-users-three" style="font-size: 60px; color: rgba(255,255,255,0.9)"></i>
+          <button
+            type="button"
+            style="
+              position: absolute;
+              right: 0;
+              bottom: 0;
+              width: 36px;
+              height: 36px;
+              border-radius: 50%;
+              border: 2px solid var(--bg-0);
+              background: rgba(255, 255, 255, 0.95);
+              color: #111;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+            aria-label="Choose photo"
+          >
+            <i class="ph-fill ph-camera" style="font-size: 14px"></i>
+          </button>
+        </div>
+        <div style="font-size: 0.78rem; color: rgba(255, 255, 255, 0.55); margin-top: 10px">Tap to add a photo · optional</div>
+      </div>
+
+      <label style="display: block; font-size: 0.78rem; font-weight: 800; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px">Group name</label>
+      <div
+        style="
+          padding: 14px 16px;
+          border-radius: var(--mr-input-radius);
+          background: var(--mr-input-surface);
+          margin-bottom: 4px;
+        "
+      >
+        <input
+          type="text"
+          placeholder="e.g. Hiking Crew"
+          maxlength="40"
+          style="width: 100%; background: transparent; border: 0; color: var(--text); font-size: 1rem; outline: none"
+        />
+      </div>
+      <div style="display: flex; justify-content: flex-end; font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-bottom: 4px">0 / 40</div>
+
+      <label style="display: block; font-size: 0.78rem; font-weight: 800; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px">Description · optional</label>
+      <div
+        style="
+          padding: 14px 16px;
+          border-radius: var(--mr-input-radius);
+          background: var(--mr-input-surface);
+          margin-bottom: 18px;
+        "
+      >
+        <input
+          type="text"
+          placeholder="One line about the group"
+          style="width: 100%; background: transparent; border: 0; color: var(--text); font-size: 1rem; outline: none"
+        />
+      </div>
+
+      <label style="display: block; font-size: 0.78rem; font-weight: 800; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px">Category</label>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px">
+        <button type="button" style="padding: 8px 14px; border-radius: 999px; background: rgba(91, 109, 248, 0.18); border: 1px solid rgba(91, 109, 248, 0.45); color: #c0c8ff; font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; cursor: pointer">
+          <i class="ph-fill ph-mountains" style="font-size: 14px"></i>
+          Outdoors
+        </button>
+        <button type="button" style="padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.75); font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; cursor: pointer">
+          <i class="ph ph-book-open" style="font-size: 14px"></i>
+          Book club
+        </button>
+        <button type="button" style="padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.75); font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; cursor: pointer">
+          <i class="ph ph-hamburger" style="font-size: 14px"></i>
+          Food
+        </button>
+        <button type="button" style="padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.75); font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; cursor: pointer">
+          <i class="ph ph-house" style="font-size: 14px"></i>
+          Family
+        </button>
+        <button type="button" style="padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.75); font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; cursor: pointer">
+          <i class="ph ph-briefcase" style="font-size: 14px"></i>
+          Work
+        </button>
+        <button type="button" style="padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); color: rgba(255,255,255,0.75); font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; cursor: pointer">
+          <i class="ph ph-dots-three" style="font-size: 14px"></i>
+          More
+        </button>
+      </div>
+
+      <label style="display: block; font-size: 0.78rem; font-weight: 800; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px">Accent color</label>
+      <div style="display: flex; gap: 12px; margin-bottom: 20px">
+        <button type="button" aria-label="Purple" style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #5b6df8, #9c4dff); border: 2px solid #fff; cursor: pointer; padding: 0"></button>
+        <button type="button" aria-label="Teal" style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #2dd4bf, #0ea5e9); border: 2px solid transparent; cursor: pointer; padding: 0"></button>
+        <button type="button" aria-label="Pink" style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #f472b6, #f97316); border: 2px solid transparent; cursor: pointer; padding: 0"></button>
+        <button type="button" aria-label="Lime" style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #84cc16, #059669); border: 2px solid transparent; cursor: pointer; padding: 0"></button>
+        <button type="button" aria-label="Amber" style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #ef4444); border: 2px solid transparent; cursor: pointer; padding: 0"></button>
+        <button type="button" aria-label="Slate" style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #64748b, #1e293b); border: 2px solid transparent; cursor: pointer; padding: 0"></button>
+      </div>
+
+      <label style="display: block; font-size: 0.78rem; font-weight: 800; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px">Privacy</label>
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px">
+        <button type="button" style="width: 100%; padding: 14px 16px; border-radius: 18px; background: rgba(91, 109, 248, 0.10); border: 1px solid rgba(91, 109, 248, 0.45); display: flex; align-items: center; gap: 14px; cursor: pointer; text-align: left">
+          <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(91, 109, 248, 0.28); display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+            <i class="ph-fill ph-lock-key" style="font-size: 18px; color: #c0c8ff"></i>
+          </div>
+          <div style="flex: 1; min-width: 0">
+            <div style="font-size: 0.95rem; font-weight: 800; color: var(--text); margin-bottom: 2px">Private</div>
+            <div style="font-size: 0.78rem; color: rgba(255,255,255,0.55)">Invite only · members can see content</div>
+          </div>
+          <i class="ph-fill ph-check-circle" style="font-size: 20px; color: #9c4dff; flex-shrink: 0"></i>
+        </button>
+        <button type="button" style="width: 100%; padding: 14px 16px; border-radius: 18px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; gap: 14px; cursor: pointer; text-align: left">
+          <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+            <i class="ph ph-globe" style="font-size: 18px; color: rgba(255,255,255,0.75)"></i>
+          </div>
+          <div style="flex: 1; min-width: 0">
+            <div style="font-size: 0.95rem; font-weight: 800; color: var(--text); margin-bottom: 2px">Public</div>
+            <div style="font-size: 0.78rem; color: rgba(255,255,255,0.55)">Anyone can find and join</div>
+          </div>
+          <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); flex-shrink: 0"></div>
+        </button>
+      </div>
+
+      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; padding: 4px 16px; margin-bottom: 20px">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06)">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <i class="ph ph-link-simple" style="font-size: 18px; color: rgba(255,255,255,0.7)"></i>
+            <div>
+              <div style="font-size: 0.92rem; font-weight: 700; color: var(--text)">Allow invite link</div>
+              <div style="font-size: 0.74rem; color: rgba(255,255,255,0.5)">Members can share a link to invite others</div>
+            </div>
+          </div>
+          <div style="width: 40px; height: 24px; border-radius: 999px; background: #5b6df8; position: relative; flex-shrink: 0">
+            <div style="position: absolute; top: 2px; right: 2px; width: 20px; height: 20px; border-radius: 50%; background: #fff"></div>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 0">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <i class="ph ph-shield-check" style="font-size: 18px; color: rgba(255,255,255,0.7)"></i>
+            <div>
+              <div style="font-size: 0.92rem; font-weight: 700; color: var(--text)">Approve new members</div>
+              <div style="font-size: 0.74rem; color: rgba(255,255,255,0.5)">Admin reviews each join request</div>
+            </div>
+          </div>
+          <div style="width: 40px; height: 24px; border-radius: 999px; background: rgba(255,255,255,0.12); position: relative; flex-shrink: 0">
+            <div style="position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: 50%; background: #fff"></div>
+          </div>
+        </div>
+      </div>
+
+      <label style="display: block; font-size: 0.78rem; font-weight: 800; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px">Members</label>
+
+      <button
+        type="button"
+        style="
+          width: 100%;
+          padding: 14px 16px;
+          border-radius: 22px;
+          background: rgba(91, 109, 248, 0.10);
+          border: 1px solid rgba(91, 109, 248, 0.28);
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          cursor: pointer;
+          margin-bottom: 20px;
+        "
+      >
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(91, 109, 248, 0.28); display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+          <i class="ph-fill ph-users-three" style="font-size: 22px; color: #c0c8ff"></i>
+        </div>
+        <div style="flex: 1; min-width: 0; text-align: left">
+          <div style="font-size: 1rem; font-weight: 800; color: var(--text); margin-bottom: 4px">5 members</div>
+          <div style="font-size: 0.82rem; color: rgba(255,255,255,0.6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Riley, Jordan, Sam, Alex, Morgan</div>
+          <div style="display: flex; align-items: center; margin-top: 8px">
+            <img src="https://i.pravatar.cc/48?img=12" alt="" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover; border: 2px solid var(--bg-0)" loading="lazy" />
+            <img src="https://i.pravatar.cc/48?img=20" alt="" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover; border: 2px solid var(--bg-0); margin-left: -6px" loading="lazy" />
+            <img src="https://i.pravatar.cc/48?img=47" alt="" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover; border: 2px solid var(--bg-0); margin-left: -6px" loading="lazy" />
+            <img src="https://i.pravatar.cc/48?img=33" alt="" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover; border: 2px solid var(--bg-0); margin-left: -6px" loading="lazy" />
+            <img src="https://i.pravatar.cc/48?img=53" alt="" style="width: 22px; height: 22px; border-radius: 50%; object-fit: cover; border: 2px solid var(--bg-0); margin-left: -6px" loading="lazy" />
+          </div>
+        </div>
+        <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+          <i class="ph ph-pencil-simple" style="font-size: 14px; color: rgba(255,255,255,0.7)"></i>
+        </div>
+      </button>
+
+      <button type="button" class="btn btn-primary" style="width: 100%; padding: 16px; border-radius: 999px">
+        Create group
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,700 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .mr-anat-page {
+    padding: 16px 16px 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .mr-anat-intro {
+    padding: 4px 0 2px;
+  }
+  .mr-anat-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .mr-anat-sub {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+  .mr-anat-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 32px 0 0;
+    margin-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .mr-anat-intro + .mr-anat-section {
+    margin-top: 24px;
+    padding-top: 0;
+    border-top: none;
+  }
+  .mr-anat-label {
+    display: none;
+  }
+  .mr-anat-name {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .mr-anat-desc {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.62);
+    line-height: 1.4;
+  }
+  .mr-anat-variants {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.4;
+    margin-top: 2px;
+  }
+  .mr-anat-variants strong {
+    color: rgba(255, 255, 255, 0.72);
+    font-weight: 700;
+  }
+  .mr-anat-frame {
+    margin-top: 8px;
+  }
+
+  /* Local copies of bits used inside example previews */
+  .mr-greeting-ex { padding: 6px 4px 0; }
+  .mr-greeting-ex .mr-greeting-headline {
+    font-size: 1.7rem; font-weight: 800; letter-spacing: -0.025em;
+    line-height: 1.12; color: var(--text);
+  }
+  .mr-greeting-ex .mr-greeting-tail {
+    display: block; font-size: 0.92rem; font-weight: 600;
+    color: rgba(255, 255, 255, 0.62); margin-top: 6px;
+  }
+  .mr-greeting-ex .mr-greeting-weather {
+    display: flex; align-items: center; gap: 7px; margin-top: 12px;
+    font-size: 0.78rem; font-weight: 600; color: rgba(255, 255, 255, 0.62);
+  }
+  .mr-greeting-ex .mr-greeting-weather i { font-size: 15px; color: var(--neon-teal); }
+  .mr-greeting-ex .mr-greeting-sep { color: rgba(255, 255, 255, 0.22); }
+  .mr-greeting-ex .mr-greeting-loc { color: rgba(255, 255, 255, 0.42); font-weight: 500; }
+
+  .mr-header-ex {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 6px 4px;
+  }
+  .mr-header-ex .mr-logo {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .mr-header-ex .mr-logo img { width: 32px; height: 32px; }
+  .mr-header-ex .mr-logo span { font-size: 1rem; font-weight: 800; color: var(--text); letter-spacing: -0.01em; }
+  .mr-header-ex .mr-actions { display: flex; align-items: center; gap: 10px; position: relative; }
+  .mr-header-ex .mr-bell {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.85); position: relative;
+  }
+  .mr-header-ex .mr-bell i { font-size: 18px; }
+  .mr-header-ex .mr-bell .mr-notif-dot {
+    position: absolute; top: 4px; right: 4px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #e74c3c; border: 2px solid var(--bg-0);
+  }
+  .mr-header-ex .mr-avatar {
+    width: 32px; height: 32px; border-radius: 50%; object-fit: cover;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .mr-banner-ex {
+    position: relative; width: 100%; border-radius: 18px;
+    padding: 14px; display: flex; gap: 12px; align-items: center;
+    background: linear-gradient(135deg, rgba(var(--neon-teal-rgb), 0.22), rgba(var(--neon-blue-rgb), 0.08));
+    border: 1px solid rgba(var(--neon-teal-rgb), 0.36);
+  }
+  .mr-banner-ex .mr-banner-icon-ex {
+    width: 42px; height: 42px; border-radius: 12px;
+    background: rgba(var(--neon-teal-rgb), 0.18);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .mr-banner-ex .mr-banner-body-ex { flex: 1; min-width: 0; }
+  .mr-banner-ex .mr-banner-title-ex {
+    font-size: 0.96rem; font-weight: 800; color: var(--text); line-height: 1.2;
+  }
+  .mr-banner-ex .mr-banner-desc-ex {
+    font-size: 0.8rem; color: rgba(255, 255, 255, 0.72); margin-top: 2px; line-height: 1.3;
+  }
+  .mr-banner-ex .mr-banner-cta-ex {
+    font-size: 0.78rem; font-weight: 800; color: var(--neon-teal);
+    background: none; border: none; padding: 4px 0; flex-shrink: 0;
+  }
+  .mr-banner-stub-ex {
+    height: 10px; border-radius: 0 0 16px 16px;
+    background: linear-gradient(135deg, rgba(var(--neon-teal-rgb), 0.22), rgba(var(--neon-blue-rgb), 0.08));
+    border: 1px solid rgba(var(--neon-teal-rgb), 0.32);
+    border-top: none;
+    margin: 0 auto;
+  }
+  .mr-banner-stub-ex.is-second { width: calc(100% - 16px); margin-top: -4px; }
+  .mr-banner-stub-ex.is-third  { width: calc(100% - 32px); margin-top: -4px; opacity: 0.7; }
+
+  .mr-inbox-ex {
+    display: flex; border-radius: 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.08); overflow: hidden;
+  }
+  .mr-inbox-ex .half {
+    flex: 1; display: flex; align-items: center; gap: 10px; padding: 12px;
+  }
+  .mr-inbox-ex .half + .half { border-left: 1px solid rgba(255,255,255,0.08); }
+  .mr-inbox-ex .icon {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .mr-inbox-ex .icon.is-mail { background: rgba(var(--neon-teal-rgb), 0.18); color: var(--neon-teal); }
+  .mr-inbox-ex .icon.is-people { background: rgba(var(--neon-blue-rgb), 0.2); color: rgb(var(--neon-blue-rgb)); }
+  .mr-inbox-ex .icon i { font-size: 16px; }
+  .mr-inbox-ex .body { min-width: 0; }
+  .mr-inbox-ex .lbl {
+    font-size: 0.72rem; color: rgba(255,255,255,0.6); letter-spacing: -0.005em;
+  }
+  .mr-inbox-ex .val {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 1rem; font-weight: 800; color: var(--text); letter-spacing: -0.02em;
+  }
+  .mr-inbox-ex .dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; }
+
+  .mr-row-head-ex {
+    display: flex; align-items: center; justify-content: space-between; padding: 0 0 10px;
+  }
+  .mr-row-head-ex .ttl { font-size: 1.05rem; font-weight: 800; color: var(--text); }
+  .mr-row-head-ex .lnk {
+    font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em;
+    color: var(--mr-section-action); text-transform: uppercase;
+  }
+
+  .mr-chat-row-ex { display: flex; gap: 12px; overflow: hidden; }
+  .mr-chat-card-ex { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 84px; flex: 0 0 auto; }
+  .mr-chat-card-ex .wrap { position: relative; }
+  .mr-chat-card-ex .av {
+    width: 56px; height: 56px; border-radius: 50%; object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.06); display: block;
+  }
+  .mr-chat-card-ex .av.is-group {
+    background: linear-gradient(135deg, rgba(var(--neon-teal-rgb), 0.32), rgba(var(--neon-blue-rgb), 0.18));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; color: var(--text);
+  }
+  .mr-chat-card-ex .badge {
+    position: absolute; bottom: 0; right: 0;
+    min-width: 18px; height: 18px; padding: 0 5px;
+    border-radius: 999px; background: #22c55e; color: #04140a;
+    font-size: 0.66rem; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--bg-0);
+  }
+  .mr-chat-card-ex .nm {
+    font-size: 0.78rem; font-weight: 700; color: var(--text);
+    max-width: 84px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .mr-chat-card-ex .pv {
+    font-size: 0.66rem; line-height: 1.3; color: rgba(255, 255, 255, 0.55);
+    max-width: 84px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .mr-plan-row-ex { display: flex; gap: 12px; overflow: hidden; }
+  .mr-plan-card-ex {
+    flex: 0 0 auto; width: 210px; height: 220px;
+    border-radius: 18px; position: relative; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+    background-size: cover; background-position: center;
+  }
+  .mr-plan-card-ex::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,0.75) 100%);
+  }
+  .mr-plan-card-ex .body {
+    position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 1;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .mr-plan-card-ex .when {
+    font-size: 0.68rem; font-weight: 700; color: rgba(255,255,255,0.78);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .mr-plan-card-ex .ttl {
+    font-size: 1.05rem; font-weight: 800; color: #fff; line-height: 1.15;
+  }
+  .mr-plan-card-ex .loc {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 0.72rem; color: rgba(255,255,255,0.8);
+  }
+  .mr-plan-card-ex .loc i { font-size: 12px; }
+  .mr-plan-card-ex .avs {
+    display: flex; align-items: center; margin-top: 6px;
+  }
+  .mr-plan-card-ex .avs img {
+    width: 22px; height: 22px; border-radius: 50%; object-fit: cover;
+    border: 2px solid rgba(0,0,0,0.45);
+    margin-left: -6px;
+  }
+  .mr-plan-card-ex .avs img:first-child { margin-left: 0; }
+  .mr-plan-card-ex .avs .more {
+    font-size: 0.62rem; font-weight: 800; color: #fff;
+    background: rgba(0,0,0,0.5); border-radius: 999px;
+    padding: 2px 6px; margin-left: 4px;
+  }
+
+  .mr-event-row-ex { display: flex; gap: 12px; overflow: hidden; }
+  .mr-event-carousel {
+    display: flex; gap: 12px; overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+  .mr-event-carousel::-webkit-scrollbar { display: none; }
+  .mr-event-carousel .event-card.event-card--mini {
+    flex: 0 0 auto; width: 180px; scroll-snap-align: start;
+  }
+  .mr-event-card-ex {
+    flex: 0 0 auto; width: 180px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+  }
+  .mr-event-card-ex .media {
+    height: 96px; background-size: cover; background-position: center;
+  }
+  .mr-event-card-ex .body { padding: 10px; display: flex; flex-direction: column; gap: 4px; }
+  .mr-event-card-ex .pills { display: flex; gap: 6px; }
+  .mr-event-card-ex .pill {
+    font-size: 0.62rem; font-weight: 700; padding: 3px 7px;
+    border-radius: 999px; background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.82);
+  }
+  .mr-event-card-ex .ttl {
+    font-size: 0.88rem; font-weight: 800; color: var(--text); line-height: 1.2;
+  }
+  .mr-event-card-ex .desc {
+    font-size: 0.72rem; color: rgba(255,255,255,0.6); line-height: 1.3;
+  }
+  .mr-event-card-ex .loc {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 0.7rem; color: rgba(255,255,255,0.55);
+  }
+  .mr-event-card-ex .loc i { font-size: 11px; }
+
+  .mr-people-card-ex {
+    position: relative; flex: 0 0 auto; width: 200px;
+    border-radius: 18px; background: var(--bg-1);
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+    padding: 18px 12px 14px;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    text-align: center;
+  }
+  .mr-people-card-ex .add {
+    position: absolute; top: 10px; right: 10px;
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.92);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mr-people-card-ex .add i { font-size: 16px; }
+  .mr-people-card-ex .av {
+    width: 76px; height: 76px; border-radius: 50%; object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.06);
+  }
+  .mr-people-card-ex .nm {
+    font-size: 0.95rem; font-weight: 800; color: var(--text); line-height: 1.2; margin-top: 2px;
+  }
+  .mr-people-card-ex .sub {
+    font-size: 0.72rem; color: rgba(255,255,255,0.55); line-height: 1.25;
+  }
+  .mr-people-card-ex .mut {
+    display: flex; align-items: center; gap: 6px; margin-top: 2px;
+    font-size: 0.7rem; color: rgba(255,255,255,0.7);
+  }
+  .mr-people-card-ex .mut .avs { display: inline-flex; }
+  .mr-people-card-ex .mut .avs img {
+    width: 16px; height: 16px; border-radius: 50%; object-fit: cover;
+    border: 1.5px solid var(--bg-1); margin-left: -5px;
+  }
+  .mr-people-card-ex .mut .avs img:first-child { margin-left: 0; }
+  .mr-people-card-ex .tags {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-top: 2px;
+  }
+  .mr-people-card-ex .tag {
+    display: inline-flex; align-items: center; gap: 3px;
+    padding: 3px 7px; border-radius: 999px;
+    font-size: 0.64rem; font-weight: 700;
+    color: var(--neon-teal);
+    background: rgba(var(--neon-teal-rgb), 0.12);
+    border: 1px solid rgba(var(--neon-teal-rgb), 0.22);
+    line-height: 1;
+  }
+
+  .mr-tabbar-ex {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 20px; border-radius: 22px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .mr-tabbar-ex .tab { color: rgba(255,255,255,0.5); }
+  .mr-tabbar-ex .tab.is-active { color: var(--neon-teal); }
+  .mr-tabbar-ex .tab i { font-size: 22px; }
+
+  .mr-fab-ex-wrap { display: flex; justify-content: flex-end; padding: 6px 4px 0; }
+  .mr-fab-ex {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: linear-gradient(135deg,
+      color-mix(in srgb, rgb(var(--neon-blue-rgb)) 78%, #020b14),
+      color-mix(in srgb, rgb(var(--neon-teal-rgb)) 72%, #020b14));
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    border: none;
+    box-shadow: 0 10px 24px rgba(var(--neon-teal-rgb), 0.32), 0 0 0 1px rgba(255,255,255,0.14) inset;
+  }
+  .mr-fab-ex i { font-size: 24px; }
+</style>
+
+<div style="background: var(--bg-0); overflow-x: clip; position: relative; min-height: 100%">
+  <div class="mr-scope">
+
+    <div class="mr-anat-page">
+
+      <div class="mr-anat-intro">
+        <div class="mr-anat-title">Home feed — anatomy</div>
+        <div class="mr-anat-sub">Every block that can appear on the home feed, in order. Each block shows one real example and a short note on purpose and main variations.</div>
+      </div>
+
+      <!-- 01 Greeting -->
+      <div class="mr-anat-section">
+        <div class="mr-anat-label">01 — Greeting</div>
+        <div class="mr-anat-name">Top banner text message</div>
+        <div class="mr-anat-desc">Time-aware headline that frames what's happening right now.</div>
+        <div class="mr-anat-frame">
+          <div class="mr-greeting-ex">
+            <div class="mr-greeting-headline">
+              <span class="gradient-text">Plans tonight,</span> Brandon
+              <span class="mr-greeting-tail">Wine bar at 8 — 2 friends still to reply 🍷</span>
+            </div>
+            <div class="mr-greeting-weather">
+              <i class="ph-fill ph-moon-stars" aria-hidden="true"></i>
+              <span>62° · Clear skies</span>
+              <span class="mr-greeting-sep">·</span>
+              <span class="mr-greeting-loc">Asheville</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 Banner stack -->
+      <div class="mr-anat-section">
+        <div class="mr-anat-label">02 — Banner stack</div>
+        <div class="mr-anat-name">Swipe banners</div>
+        <div class="mr-anat-desc">Swipeable pile of prompts; stubs hint there's more to swipe.</div>
+        <div class="mr-anat-frame">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <div class="mr-banner-ex">
+              <div class="mr-banner-icon-ex"><span aria-hidden="true">👋</span></div>
+              <div class="mr-banner-body-ex">
+                <div class="mr-banner-title-ex">Welcome to MixedRoutes</div>
+                <div class="mr-banner-desc-ex">Let's get you set up in a few quick steps.</div>
+              </div>
+              <button type="button" class="mr-banner-cta-ex">Start</button>
+            </div>
+            <div class="mr-banner-stub-ex is-second"></div>
+            <div class="mr-banner-stub-ex is-third"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 Recent chats -->
+      <div class="mr-anat-section">
+        <div class="mr-anat-label">03 — Recent chats</div>
+        <div class="mr-anat-name">Chat avatars row</div>
+        <div class="mr-anat-desc">Horizontal scroll of recent conversations with unread badges.</div>
+        <div class="mr-anat-frame">
+          <div class="mr-row-head-ex">
+            <span class="ttl">Recent chats</span>
+            <span class="lnk">All chats</span>
+          </div>
+          <div class="mr-chat-row-ex">
+            <div class="mr-chat-card-ex">
+              <div class="wrap">
+                <img class="av" src="https://i.pravatar.cc/96?img=5" alt="" loading="lazy" />
+                <span class="badge">3</span>
+              </div>
+              <div class="nm">Sara</div>
+              <div class="pv">8pm works — see you at the wine bar</div>
+            </div>
+            <div class="mr-chat-card-ex">
+              <div class="wrap">
+                <div class="av is-group" aria-hidden="true">🥾</div>
+                <span class="badge">2</span>
+              </div>
+              <div class="nm">Trail crew</div>
+              <div class="pv">Lin: 7am sharp at Craggy</div>
+            </div>
+            <div class="mr-chat-card-ex">
+              <div class="wrap">
+                <img class="av" src="https://i.pravatar.cc/96?img=33" alt="" loading="lazy" />
+              </div>
+              <div class="nm">Marcus</div>
+              <div class="pv">just sent the pin for Saturday</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 Upcoming plans -->
+      <div class="mr-anat-section">
+        <div class="mr-anat-label">04 — Upcoming plans</div>
+        <div class="mr-anat-name">Plans carousel</div>
+        <div class="mr-anat-desc">Confirmed plans, ordered by time.</div>
+        <div class="mr-anat-frame">
+          <div class="mr-row-head-ex">
+            <span class="ttl">Upcoming plans</span>
+            <span class="lnk">All plans</span>
+          </div>
+          <div class="mr-plan-carousel ds-scroll-x">
+            <div class="plan-card plan-card-mini plan-card-cafe plan-card-mini--photo-blur"
+              style="--mr-plan-card-bg: url(https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&h=400&q=80)">
+              <div class="plan-card-mini-media" aria-hidden="true"></div>
+              <div class="plan-card-mini-body">
+                <div class="plan-card-mini-time">Tomorrow, 7 PM</div>
+                <div class="plan-card-mini-title">Cafe meetup</div>
+                <div class="plan-card-mini-location">
+                  <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+                  <span>Asheville NC</span>
+                </div>
+                <div class="plan-card-mini-social plan-card-mini-social--avatars">
+                  <div class="plan-card-mini-avatar-stack" aria-hidden="true">
+                    <img class="plan-card-mini-avatar" src="https://i.pravatar.cc/48?img=5" alt="" loading="lazy" />
+                    <img class="plan-card-mini-avatar" src="https://i.pravatar.cc/48?img=11" alt="" loading="lazy" />
+                    <span class="plan-card-mini-avatar-more">+3</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="plan-card plan-card-mini plan-card-mini--photo-blur"
+              style="--mr-plan-card-bg: url(https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&h=400&q=80)">
+              <div class="plan-card-mini-media" aria-hidden="true"
+                style="background-image: url(https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=400&h=320&q=80)"></div>
+              <div class="plan-card-mini-body">
+                <div class="plan-card-mini-time">Tonight, 8 PM</div>
+                <div class="plan-card-mini-title">Friday wine bar</div>
+                <div class="plan-card-mini-location">
+                  <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+                  <span>The Pour House</span>
+                </div>
+                <div class="plan-card-mini-social plan-card-mini-social--avatars">
+                  <div class="plan-card-mini-avatar-stack" aria-hidden="true">
+                    <img class="plan-card-mini-avatar" src="https://i.pravatar.cc/48?img=47" alt="" loading="lazy" />
+                    <img class="plan-card-mini-avatar" src="https://i.pravatar.cc/48?img=32" alt="" loading="lazy" />
+                    <span class="plan-card-mini-avatar-more">+2</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="plan-card plan-card-mini plan-card-hiking plan-card-mini--photo-blur"
+              style="--mr-plan-card-bg: url(https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&h=400&q=80)">
+              <div class="plan-card-mini-media" aria-hidden="true"
+                style="background-image: url(https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&h=320&q=80)"></div>
+              <div class="plan-card-mini-body">
+                <div class="plan-card-mini-time">Sat, 7 AM</div>
+                <div class="plan-card-mini-title">Sunrise hike</div>
+                <div class="plan-card-mini-location">
+                  <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+                  <span>Craggy Pinnacle</span>
+                </div>
+                <div class="plan-card-mini-social plan-card-mini-social--avatars">
+                  <div class="plan-card-mini-avatar-stack" aria-hidden="true">
+                    <img class="plan-card-mini-avatar" src="https://i.pravatar.cc/48?img=12" alt="" loading="lazy" />
+                    <img class="plan-card-mini-avatar" src="https://i.pravatar.cc/48?img=23" alt="" loading="lazy" />
+                    <span class="plan-card-mini-avatar-more">+4</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 Category row -->
+      <div class="mr-anat-section">
+        <div class="mr-anat-label">05 — Category row</div>
+        <div class="mr-anat-name">Event suggestions</div>
+        <div class="mr-anat-desc">One row per category, each a carousel of event cards.</div>
+        <div class="mr-anat-frame">
+          <div class="mr-row-head-ex">
+            <span class="ttl">🥾 Hiking</span>
+            <span class="lnk">More hikes</span>
+          </div>
+          <div class="mr-event-carousel">
+            <div class="event-card event-card--mini">
+              <div class="event-card-media" aria-hidden="true">
+                <img class="event-card-img" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&h=300&q=80" alt="" loading="lazy" />
+              </div>
+              <div class="event-card-content">
+                <div class="event-card-pills">
+                  <div class="event-card-pill">Sun, 7 AM</div>
+                  <div class="event-card-pill">🥾 Trail</div>
+                </div>
+                <div class="event-card-title">Sunrise group hike</div>
+                <div class="event-card-description">Moderate 4-mile loop with a ridge view.</div>
+                <div class="event-card-location">
+                  <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+                  <span>Craggy Pinnacle</span>
+                </div>
+              </div>
+            </div>
+            <div class="event-card event-card--mini">
+              <div class="event-card-media" aria-hidden="true">
+                <img class="event-card-img" src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=400&h=300&q=80" alt="" loading="lazy" />
+              </div>
+              <div class="event-card-content">
+                <div class="event-card-pills">
+                  <div class="event-card-pill">Sat, 9 AM</div>
+                  <div class="event-card-pill">💧 Falls</div>
+                </div>
+                <div class="event-card-title">Waterfall loop</div>
+                <div class="event-card-description">Easy 2-mile out and back, kid friendly.</div>
+                <div class="event-card-location">
+                  <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+                  <span>Dupont Forest</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 Suggested people -->
+      <div class="mr-anat-section">
+        <div class="mr-anat-label">06 — Suggested people</div>
+        <div class="mr-anat-name">Suggested people</div>
+        <div class="mr-anat-desc">Carousel of people to add, from contacts, mutuals, or shared interests.</div>
+        <div class="mr-anat-frame">
+          <div class="mr-row-head-ex">
+            <span class="ttl">Suggested people</span>
+            <span class="lnk">See all</span>
+          </div>
+          <div class="mr-event-carousel">
+            <div class="mr-people-card-ex">
+              <button type="button" class="add" aria-label="Add Sara">
+                <i class="ph ph-plus" aria-hidden="true"></i>
+              </button>
+              <img class="av" src="https://i.pravatar.cc/144?img=5" alt="" loading="lazy" />
+              <div class="nm">Sara</div>
+              <div class="sub">From your contacts</div>
+              <div class="mut">
+                <span class="avs" aria-hidden="true">
+                  <img src="https://i.pravatar.cc/40?img=11" alt="" loading="lazy" />
+                  <img src="https://i.pravatar.cc/40?img=33" alt="" loading="lazy" />
+                  <img src="https://i.pravatar.cc/40?img=47" alt="" loading="lazy" />
+                </span>
+                <span>3 mutuals</span>
+              </div>
+              <div class="tags">
+                <span class="tag">🍷 Wine</span>
+                <span class="tag">🎵 Music</span>
+              </div>
+            </div>
+            <div class="mr-people-card-ex">
+              <button type="button" class="add" aria-label="Add Marcus">
+                <i class="ph ph-plus" aria-hidden="true"></i>
+              </button>
+              <img class="av" src="https://i.pravatar.cc/144?img=12" alt="" loading="lazy" />
+              <div class="nm">Marcus</div>
+              <div class="sub">Mutual friend of Jess</div>
+              <div class="mut">
+                <span class="avs" aria-hidden="true">
+                  <img src="https://i.pravatar.cc/40?img=21" alt="" loading="lazy" />
+                  <img src="https://i.pravatar.cc/40?img=14" alt="" loading="lazy" />
+                </span>
+                <span>2 mutuals</span>
+              </div>
+              <div class="tags">
+                <span class="tag">🥾 Hiking</span>
+                <span class="tag">📸 Photo</span>
+              </div>
+            </div>
+            <div class="mr-people-card-ex">
+              <button type="button" class="add" aria-label="Add Priya">
+                <i class="ph ph-plus" aria-hidden="true"></i>
+              </button>
+              <img class="av" src="https://i.pravatar.cc/144?img=44" alt="" loading="lazy" />
+              <div class="nm">Priya</div>
+              <div class="sub">Shares your interest in art</div>
+              <div class="tags">
+                <span class="tag">🎨 Art</span>
+                <span class="tag">☕ Coffee</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 07 Places row -->
+      <div class="mr-anat-section">
+        <div class="mr-anat-label">07 — Places row</div>
+        <div class="mr-anat-name">Place suggestions</div>
+        <div class="mr-anat-desc">One row per place category, each a carousel of place cards.</div>
+        <div class="mr-anat-frame">
+          <div class="mr-row-head-ex">
+            <span class="ttl">📍 Nearby popular</span>
+            <span class="lnk">More places</span>
+          </div>
+          <div class="mr-event-carousel">
+            <div class="event-card event-card--mini">
+              <div class="event-card-media" aria-hidden="true">
+                <img class="event-card-img" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=400&h=300&q=80" alt="" loading="lazy" />
+              </div>
+              <div class="event-card-content">
+                <div class="event-card-pills">
+                  <div class="event-card-pill">0.4 mi</div>
+                  <div class="event-card-pill">☕ Cafe</div>
+                </div>
+                <div class="event-card-title">High Five Coffee</div>
+                <div class="event-card-description">Local roaster with a sunny patio.</div>
+                <div class="event-card-location">
+                  <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+                  <span>Downtown Asheville</span>
+                </div>
+              </div>
+            </div>
+            <div class="event-card event-card--mini">
+              <div class="event-card-media" aria-hidden="true">
+                <img class="event-card-img" src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=400&h=300&q=80" alt="" loading="lazy" />
+              </div>
+              <div class="event-card-content">
+                <div class="event-card-pills">
+                  <div class="event-card-pill">0.8 mi</div>
+                  <div class="event-card-pill">🍷 Wine bar</div>
+                </div>
+                <div class="event-card-title">The Pour House</div>
+                <div class="event-card-description">Natural wines and small plates.</div>
+                <div class="event-card-location">
+                  <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+                  <span>South Slope</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

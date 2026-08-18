@@ -1,0 +1,159 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .cal-scope, .cal-scope * { scrollbar-width: none; -ms-overflow-style: none; box-sizing: border-box; }
+  .cal-scope::-webkit-scrollbar, .cal-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .cal-scope { font-family: "Geist", sans-serif; }
+
+  .cal-scope .cal-wrap { min-height: 844px; position: relative; display: flex; flex-direction: column; background: #ffffff; }
+
+  .cal-scope .cal-top { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: #ffffff; }
+  .cal-scope .cal-title { color: #1a2332; font-size: 24px; font-weight: 700; letter-spacing: -0.02em; white-space: nowrap; }
+  .cal-scope .cal-top-actions { display: flex; align-items: center; gap: 18px; }
+  .cal-scope .cal-top-action { position: relative; width: 24px; height: 24px; display: inline-grid; place-items: center; color: #1a2332; font-size: 24px; line-height: 1; }
+  .cal-scope .cal-top-badge { position: absolute; top: -9px; right: -10px; min-width: 22px; height: 22px; padding: 0 4px; display: grid; place-items: center; border: 2px solid #ffffff; border-radius: 999px; background: #0ca678; color: #ffffff; font-size: 12px; font-weight: 700; }
+
+  .cal-scope .cal-filters { display: flex; gap: 8px; overflow-x: auto; flex-wrap: nowrap; padding: 4px 16px 16px; }
+  .cal-scope .cal-filters .mr-chip { flex: 0 0 auto; white-space: nowrap; cursor: pointer; }
+  .cal-scope .cal-filters .mr-chip i { font-size: 15px; }
+
+  .cal-scope .cal-section { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.01em; color: #1a2332; padding: 16px 16px 12px; }
+
+  .cal-scope .cal-list { padding: 0 16px; }
+  .cal-scope .cal-rows { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+
+  .cal-scope .plan-row { min-height: 122px; position: relative; overflow: hidden; display: grid; grid-template-columns: 128px 1fr; border-radius: 20px; color: #fff; background: #1d232b; isolation: isolate; box-shadow: 0 5px 16px rgba(16, 23, 36, 0.12); }
+  .cal-scope .plan-row .ambient { position: absolute; inset: 0; z-index: 0; background: center / cover no-repeat; filter: blur(70px) saturate(4) brightness(1.35); transform: scale(1.35); opacity: 1; }
+  .cal-scope .plan-row .shade { position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, rgba(8, 10, 18, 0), rgba(8, 10, 18, 0.18)); }
+  .cal-scope .plan-row .plan-media { min-height: 122px; position: relative; z-index: 1; background: center / cover no-repeat; -webkit-mask-image: linear-gradient(to right, #000 48%, transparent 100%); mask-image: linear-gradient(to right, #000 48%, transparent 100%); }
+  .cal-scope .plan-row .emoji-badge { position: absolute; top: 9px; left: 9px; width: 31px; height: 31px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, 0.68); box-shadow: 0 1px 5px rgba(0, 0, 0, 0.18); font-size: 16px; }
+  .cal-scope .plan-row .plan-copy { min-width: 0; position: relative; z-index: 1; padding: 16px 15px 15px 0; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+  .cal-scope .plan-row .plan-time { color: rgba(255, 255, 255, 0.8); font-size: 11px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+  .cal-scope .plan-row .plan-title { overflow: hidden; color: #fff; font-size: 17px; font-weight: 800; line-height: 1.25; white-space: nowrap; text-overflow: ellipsis; }
+  .cal-scope .plan-row .plan-meta { min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 7px; color: rgba(255, 255, 255, 0.9); font-size: 12px; }
+  .cal-scope .plan-row .loc { min-width: 0; display: flex; align-items: center; gap: 4px; }
+  .cal-scope .plan-row .loc i { font-size: 14px; flex-shrink: 0; }
+  .cal-scope .plan-row .loc span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .cal-scope .plan-row .plan-avatars { display: flex; align-items: center; flex-shrink: 0; }
+  .cal-scope .plan-row .plan-avatars img { width: 25px; height: 25px; object-fit: cover; border-radius: 50%; border: 2px solid #fff; margin-left: -8px; }
+  .cal-scope .plan-row .plan-avatars img:first-child { margin-left: 0; }
+
+  .cal-scope .cal-page-fill { flex: 1 1 auto; min-height: 28px; }
+  .cal-scope .cal-tabwrap { position: sticky; bottom: 0; z-index: 5; flex: 0 0 auto; padding-top: 8px; background: linear-gradient(180deg, transparent, #ffffff 34%); }
+  .cal-scope .app-tab-bar { height: 67px; display: flex; align-items: flex-start; padding-top: 9px; background: #ffffff; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12); }
+  .cal-scope .app-tab { position: relative; flex: 1; min-width: 0; display: flex; align-items: center; justify-content: center; padding: 0; border: 0; background: transparent; color: #3b4551; }
+  .cal-scope .app-tab i { font-size: 24px; line-height: 1; }
+  .cal-scope .app-tab--discover i { font-size: 26px; }
+  .cal-scope .app-tab.is-selected { color: #1a2332; }
+  .cal-scope .app-tab-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; display: block; }
+</style>
+
+<div class="cal-scope mr-scope mr-scope--light">
+  <div class="cal-wrap">
+    <div class="cal-top">
+      <div class="cal-title">Plans</div>
+      <div class="cal-top-actions" aria-label="Plans actions">
+        <span class="cal-top-action" aria-label="Find people"><i class="ph ph-user-plus" aria-hidden="true"></i></span>
+        <span class="cal-top-action" aria-label="Notifications, 2 unread"><i class="ph ph-bell" aria-hidden="true"></i><span class="cal-top-badge">2</span></span>
+        <span class="cal-top-action" aria-label="Settings"><i class="ph ph-gear-six" aria-hidden="true"></i></span>
+      </div>
+    </div>
+
+    <div class="cal-filters">
+      <button type="button" class="mr-chip mr-chip-active"><i class="ph-fill ph-calendar-blank"></i> Upcoming</button>
+      <button type="button" class="mr-chip"><i class="ph ph-bookmark-simple"></i> Ideas</button>
+      <button type="button" class="mr-chip"><i class="ph ph-envelope-simple"></i> Invites (0)</button>
+      <button type="button" class="mr-chip"><i class="ph ph-clock"></i> Past</button>
+      <button type="button" class="mr-chip"><i class="ph ph-thumbs-down"></i> Declined</button>
+    </div>
+
+    <div class="cal-section">Today</div>
+    <div class="cal-list">
+     <div class="cal-rows">
+      <div class="plan-row">
+        <div class="ambient" style="background-image: url(https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=320&h=320&q=80);"></div>
+        <div class="shade"></div>
+        <div class="plan-media" style="background-image: url(https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=280&h=280&q=80);" aria-hidden="true"><span class="emoji-badge">🥾</span></div>
+        <div class="plan-copy">
+          <div class="plan-time">Today &bull; 2 PM</div>
+          <div class="plan-title">Sunset Trail Hike</div>
+          <div class="plan-meta">
+            <span class="loc"><i class="ph-fill ph-map-pin" aria-hidden="true"></i><span>Red Rock Canyon</span></span>
+            <span class="plan-avatars" aria-hidden="true"><img src="https://i.pravatar.cc/48?img=12" alt="" loading="lazy" /></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="plan-row">
+        <div class="ambient" style="background-image: url(https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?auto=format&fit=crop&w=320&h=320&q=80);"></div>
+        <div class="shade"></div>
+        <div class="plan-media" style="background-image: url(https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?auto=format&fit=crop&w=280&h=280&q=80);" aria-hidden="true"><span class="emoji-badge">🏡</span></div>
+        <div class="plan-copy">
+          <div class="plan-time">Fri, May 29th to Today</div>
+          <div class="plan-title">Family Weekend Away</div>
+          <div class="plan-meta">
+            <span class="loc"><i class="ph-fill ph-map-pin" aria-hidden="true"></i><span>Lakeside Retreat</span></span>
+            <span class="plan-avatars" aria-hidden="true"><img src="https://i.pravatar.cc/48?img=33" alt="" loading="lazy" /></span>
+          </div>
+        </div>
+      </div>
+     </div>
+    </div>
+
+    <div class="cal-section">Next Week</div>
+    <div class="cal-list">
+     <div class="cal-rows">
+      <div class="plan-row">
+        <div class="ambient" style="background-image: url(https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=320&h=320&q=80);"></div>
+        <div class="shade"></div>
+        <div class="plan-media" style="background-image: url(https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=280&h=280&q=80);" aria-hidden="true"><span class="emoji-badge">🎶</span></div>
+        <div class="plan-copy">
+          <div class="plan-time">Thu, Jun 4th &bull; 7 PM</div>
+          <div class="plan-title">Live Music Night</div>
+          <div class="plan-meta">
+            <span class="loc"><i class="ph-fill ph-map-pin" aria-hidden="true"></i><span>Savannah Theatre</span></span>
+            <span class="plan-avatars" aria-hidden="true"><img src="https://i.pravatar.cc/48?img=15" alt="" loading="lazy" /></span>
+          </div>
+        </div>
+      </div>
+     </div>
+    </div>
+
+    <div class="cal-page-fill"></div>
+
+    <div class="cal-tabwrap">
+      <nav class="app-tab-bar" aria-label="Primary navigation">
+        <button type="button" class="app-tab" aria-label="Home">
+          <i class="ph ph-house" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="app-tab app-tab--discover" aria-label="Discover">
+          <i class="ph ph-compass" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="app-tab" aria-label="You">
+          <img class="app-tab-avatar" src="https://i.pravatar.cc/72?img=11" alt="" width="36" height="36" loading="lazy" />
+        </button>
+        <button type="button" class="app-tab is-selected" aria-label="Plans" aria-current="page">
+          <i class="ph-fill ph-calendar-blank" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="app-tab" aria-label="Chat">
+          <i class="ph ph-chat-teardrop-text" aria-hidden="true"></i>
+        </button>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const scope = document.querySelector('.cal-scope');
+    if (!scope) return;
+    scope.querySelectorAll('.cal-filters .mr-chip').forEach(function (pill) {
+      pill.addEventListener('click', function () {
+        scope.querySelectorAll('.cal-filters .mr-chip').forEach(function (p) { p.classList.remove('mr-chip-active'); });
+        pill.classList.add('mr-chip-active');
+      });
+    });
+  })();
+</script>

@@ -1,0 +1,40 @@
+{
+  "prototypes": [
+    {
+      "id": "picker-flow",
+      "name": "Picker Flow V1",
+      "description": "Who's going? — default, friends, and group flows.",
+      "device": "mobile"
+    },
+    {
+      "id": "picker-flow-v2",
+      "name": "Picker Flow V2",
+      "description": "Inline V2 — chips, group swap, mixed warning sheet.",
+      "device": "mobile"
+    },
+    {
+      "id": "picker-flow-v3",
+      "name": "Picker Flow V3",
+      "description": "Toggle V3 — switch between Invite friends and Add to group.",
+      "device": "mobile"
+    },
+    {
+      "id": "picker-flow-v4",
+      "name": "Picker Flow V4",
+      "description": "Recents up top, groups inline with people, drill in to pick group members.",
+      "device": "mobile"
+    },
+    {
+      "id": "manage-guests",
+      "name": "Manage guests",
+      "description": "Plan detail for a friend vacation, entry point for managing guests.",
+      "device": "mobile"
+    },
+    {
+      "id": "flex-selection",
+      "name": "Flex selection",
+      "description": "Pick a group, pick people, or both. Selecting a group swaps in a banner and an Outside the group list.",
+      "device": "mobile"
+    }
+  ]
+}

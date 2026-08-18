@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .v3-scope { --v3-bg: #06080e; --v3-line: rgba(255,255,255,0.08); }
+  .v3-scope, .v3-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .v3-scope::-webkit-scrollbar, .v3-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .v3-wrap { background: var(--v3-bg); height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .v3-body { flex: 1; overflow-y: auto; padding-bottom: 8px; filter: blur(2px); opacity: 0.5; }
+
+  .v3-header { display: grid; grid-template-columns: 1fr 28px; align-items: center; padding: 22px 20px 8px; }
+  .v3-title { color: #fff; font-size: 1.7rem; font-weight: 850; }
+  .v3-close { background: transparent; border: 0; color: rgba(255,255,255,0.85); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .v3-close i { font-size: 22px; }
+  .v3-stub { margin: 8px 20px 14px; height: 46px; border-radius: 999px; background: rgba(255,255,255,0.07); }
+  .v3-stub.list { height: 280px; border-radius: 18px; background: rgba(255,255,255,0.03); }
+
+  .v3-scrim { position: absolute; inset: 0; background: rgba(2,4,8,0.72); display: flex; align-items: flex-end; padding: 0 14px 18px; backdrop-filter: blur(6px); }
+  .v3-sheet { width: 100%; border-radius: 28px; background: #0f1622; border: 1px solid rgba(255,255,255,0.12); padding: 22px 20px 20px; box-shadow: 0 32px 90px rgba(0,0,0,0.6); }
+  .v3-sheet-icon { width: 56px; height: 56px; border-radius: 18px; background: rgba(32,224,207,0.14); color: var(--neon-teal); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; overflow: hidden; }
+  .v3-sheet-icon img { width: 100%; height: 100%; object-fit: cover; }
+  .v3-sheet h2 { margin: 0 0 8px; color: #fff; font-size: 1.38rem; line-height: 1.18; font-weight: 850; }
+  .v3-sheet p { margin: 0 0 16px; color: rgba(255,255,255,0.66); font-size: 0.94rem; line-height: 1.45; }
+
+  .v3-impact { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; padding: 14px; border-radius: 14px; background: rgba(255,255,255,0.04); }
+  .v3-impact-row { display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: flex-start; color: rgba(255,255,255,0.78); font-size: 0.9rem; line-height: 1.35; }
+  .v3-impact-row i { font-size: 18px; margin-top: 1px; }
+  .v3-impact-row i.good { color: #2bd474; }
+  .v3-impact-row i.warn { color: #f5c451; }
+
+  .v3-sheet-actions { display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; }
+  .v3-sheet-actions button { min-height: 50px; border-radius: 999px; border: 0; color: #fff; font-size: 0.96rem; font-weight: 850; }
+  .v3-sheet-actions .ghost { background: rgba(255,255,255,0.08); }
+  .v3-sheet-actions .primary { background: linear-gradient(135deg, #24b8aa, #4c87cf); }
+
+
+</style>
+
+<div class="mr-scope v3-scope">
+  <div class="v3-wrap">
+    <div class="v3-body">
+      <header class="v3-header">
+        <div class="v3-title">Who's going?</div>
+        <button type="button" class="v3-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      </header>
+      <div class="v3-stub"></div>
+      <div class="v3-stub list"></div>
+    </div>
+
+    <div class="v3-scrim">
+      <div class="v3-sheet">
+        <div class="v3-sheet-icon"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" /></div>
+        <h2>Invite the whole Lake House group?</h2>
+        <p>Everyone in Lake House will be invited — and future members too.</p>
+
+        <div class="v3-impact">
+          <div class="v3-impact-row"><i class="ph-fill ph-check-circle good"></i><span>Milo stays — already in Lake House.</span></div>
+          <div class="v3-impact-row"><i class="ph-fill ph-minus-circle warn"></i><span>Nova will be removed — not in Lake House.</span></div>
+        </div>
+
+        <div class="v3-sheet-actions">
+          <button type="button" class="ghost">Cancel</button>
+          <button type="button" class="primary">Invite group</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

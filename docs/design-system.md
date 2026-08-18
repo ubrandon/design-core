@@ -1,6 +1,6 @@
 # Design system canvas
 
-The Design System page turns `public/data/design-system/registry.json` into an infinite canvas of component previews. Each group renders as one continuous flat reference surface: categories are organized by headings and whitespace instead of card shells. Categories pack into balanced vertical columns, wide categories become full-width anchors, and paired light/dark surfaces sit beside each other.
+The Design System page turns each company's `public/data/companies/<company-slug>/design-system/registry.json` into an infinite canvas of component previews. Each group renders as one continuous flat reference surface: categories are organized by headings and whitespace instead of card shells. Categories pack into balanced vertical columns, wide categories become full-width anchors, and paired light/dark surfaces sit beside each other.
 
 ## Recommended registry
 
@@ -118,7 +118,7 @@ Groups with the same `pair` value render side by side. When group IDs or names c
 
 Prefer token-driven preview fragments that can be reused in both theme groups. Create separate dark/light fragments only when the structure, imagery, or behavior genuinely differs. Avoid hard-coded page backgrounds or text colors inside preview fragments; those prevent the group theme from doing its job.
 
-Company CSS still loads after the core styles. To customize the canvas chrome, scope overrides to the theme group so broad legacy dark rules cannot leak into the light column:
+The company's `company.css` (in the same `design-system/` folder) still loads after the core styles. To customize the canvas chrome, scope overrides to the theme group so broad legacy dark rules cannot leak into the light column:
 
 ```css
 .ds-canvas-stage .ds-group[data-ds-theme="light"] {

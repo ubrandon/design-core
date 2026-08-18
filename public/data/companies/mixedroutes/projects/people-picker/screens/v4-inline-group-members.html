@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .v4i-scope { --v4i-bg: #06080e; --v4i-line: rgba(255,255,255,0.08); --v4i-warn: #f5c451; }
+  .v4i-scope, .v4i-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .v4i-scope::-webkit-scrollbar, .v4i-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .v4i-wrap { background: var(--v4i-bg); height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .v4i-body { flex: 1; overflow-y: auto; padding-bottom: 8px; }
+
+  .v4i-header { display: grid; grid-template-columns: 28px 1fr 28px; align-items: center; gap: 10px; padding: 22px 20px 12px; }
+  .v4i-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .v4i-back, .v4i-close { background: transparent; border: 0; color: rgba(255,255,255,0.85); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .v4i-back i, .v4i-close i { font-size: 22px; }
+
+  .v4i-banner { margin: 0 20px 14px; padding: 12px 14px; border-radius: 18px; background: rgba(32,224,207,0.08); border: 1px solid rgba(32,224,207,0.32); display: grid; grid-template-columns: 44px 1fr; align-items: center; gap: 12px; }
+  .v4i-banner .bthumb { width: 44px; height: 44px; border-radius: 14px; overflow: hidden; background: rgba(255,255,255,0.08); display: inline-flex; align-items: center; justify-content: center; }
+  .v4i-banner .bthumb img { width: 100%; height: 100%; object-fit: cover; }
+  .v4i-banner-label { color: var(--neon-teal); font-size: 0.7rem; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
+  .v4i-banner-name { color: #fff; font-size: 1rem; font-weight: 850; margin-top: 2px; line-height: 1.15; }
+
+  .v4i-label { display: flex; align-items: center; justify-content: space-between; padding: 6px 20px 10px; color: rgba(255,255,255,0.72); font-size: 0.74rem; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
+  .v4i-label .action { background: transparent; border: 0; color: var(--neon-teal); font-size: 0.78rem; font-weight: 850; padding: 4px 0; letter-spacing: 0.04em; text-transform: none; }
+
+  .v4i-list { padding: 0 20px; display: flex; flex-direction: column; }
+  .v4i-row { display: grid; grid-template-columns: 44px 1fr 22px; align-items: center; gap: 13px; padding: 11px 8px; margin: 0 -4px; border-radius: 14px; }
+  .v4i-row.is-on { background: rgba(32,224,207,0.09); }
+  .v4i-row .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; background: var(--neon-teal); color: #061016; font-weight: 900; }
+  .v4i-row .av.muted { background: #4a5462; color: #fff; }
+  .v4i-name { color: #fff; font-size: 0.98rem; font-weight: 850; line-height: 1.15; }
+  .v4i-meta { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+  .v4i-meta .host { color: var(--v4i-warn); font-weight: 800; }
+
+  .v4i-cta { padding: 14px 20px 22px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 12px; }
+  .v4i-cta button { min-height: 50px; border: 0; border-radius: 999px; color: #fff; font-size: 0.98rem; font-weight: 850; }
+  .v4i-cta .ghost { background: rgba(255,255,255,0.08); }
+  .v4i-cta .primary { background: linear-gradient(135deg, #24b8aa, #4c87cf); }
+
+
+</style>
+
+<div class="mr-scope v4i-scope">
+  <div class="v4i-wrap">
+    <div class="v4i-body">
+      <header class="v4i-header">
+        <button type="button" class="v4i-back" aria-label="Back"><i class="ph ph-arrow-left"></i></button>
+        <div class="v4i-title">Lake House</div>
+        <button type="button" class="v4i-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      </header>
+
+      <div class="v4i-banner">
+        <div class="bthumb"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" /></div>
+        <div>
+          <div class="v4i-banner-label">Inviting from</div>
+          <div class="v4i-banner-name">Lake House</div>
+        </div>
+      </div>
+
+      <div class="v4i-label"><span>Lake House members</span>
+        <button type="button" class="action">Clear all</button>
+      </div>
+      <div class="v4i-list">
+        <div class="v4i-row is-on">
+          <span class="av">M</span>
+          <div><div class="v4i-name">Milo Wren</div><div class="v4i-meta"><span class="host">Host</span></div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v4i-row is-on">
+          <img class="av" src="https://i.pravatar.cc/96?img=12" alt="" loading="lazy" />
+          <div><div class="v4i-name">Nova Finch</div><div class="v4i-meta">@novafinch</div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v4i-row is-on">
+          <img class="av" src="https://i.pravatar.cc/96?img=49" alt="" loading="lazy" />
+          <div><div class="v4i-name">Lila Quill</div><div class="v4i-meta">@lilaquill</div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v4i-row is-on">
+          <img class="av" src="https://i.pravatar.cc/96?img=33" alt="" loading="lazy" />
+          <div><div class="v4i-name">Soren Vale</div><div class="v4i-meta">@sorenvale</div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v4i-row is-on">
+          <img class="av" src="https://i.pravatar.cc/96?img=44" alt="" loading="lazy" />
+          <div><div class="v4i-name">Wren Holt</div><div class="v4i-meta">@wrenholt</div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v4i-row is-on">
+          <img class="av" src="https://i.pravatar.cc/96?img=22" alt="" loading="lazy" />
+          <div><div class="v4i-name">Iris Mae</div><div class="v4i-meta">@irismae</div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v4i-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=15" alt="" loading="lazy" />
+          <div><div class="v4i-name">Theo Mar</div><div class="v4i-meta">@theomar</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+        <div class="v4i-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=18" alt="" loading="lazy" />
+          <div><div class="v4i-name">Juno Pax</div><div class="v4i-meta">@junopax</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="v4i-cta">
+      <button type="button" class="ghost">Cancel</button>
+      <button type="button" class="primary">Done · 6 selected</button>
+    </div>
+  </div>
+</div>

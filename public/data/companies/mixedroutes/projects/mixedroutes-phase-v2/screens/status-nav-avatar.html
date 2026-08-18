@@ -1,0 +1,209 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&display=swap");
+
+  .statnav5, .statnav5 * { box-sizing: border-box; font-family: "Geist", sans-serif; margin: 0; }
+  .statnav5 { background: #ffffff; color: #1a2332; position: relative; }
+
+  .statnav5 .toolbar { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: #ffffff; }
+  .statnav5 .brand { display: flex; align-items: center; gap: 7px; min-width: 0; }
+  .statnav5 .brand img { width: 34px; height: 34px; object-fit: contain; display: block; }
+  .statnav5 .brand span { font-size: 24px; font-weight: 700; color: #1a2332; }
+  .statnav5 .page-title { font-size: 24px; font-weight: 700; color: #1a2332; }
+  .statnav5 .actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+  .statnav5 .actions .tbtn { position: relative; color: #1a2332; font-size: 24px; line-height: 1; }
+  .statnav5 .badge-dot { position: absolute; top: -8px; right: -8px; min-width: 22px; height: 22px; border-radius: 999px; background: #0ca678; color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center; border: 2px solid #ffffff; padding: 0 4px; }
+
+  /* Avatar-as-status replaces the gear on every nav */
+  .statnav5 .stat-av { position: relative; width: 36px; height: 36px; border: 0; background: none; padding: 0; flex-shrink: 0; }
+  .statnav5 .stat-av img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; display: block; box-shadow: 0 0 0 2.5px #ffffff, 0 0 0 5px var(--ring, #22c55e); }
+  .statnav5 .stat-av .mini { position: absolute; right: -6px; bottom: -6px; width: 21px; height: 21px; border-radius: 50%; background: #ffffff; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18); display: grid; place-items: center; font-size: 11px; line-height: 1; }
+
+  /* Dropdown panel */
+  .statnav5 .drop { display: none; position: absolute; top: 54px; right: 12px; z-index: 30; width: 320px; border-radius: 18px; background: #ffffff; border: 1px solid rgba(16, 23, 36, 0.08); box-shadow: 0 6px 16px rgba(16, 24, 40, 0.1), 0 20px 48px rgba(16, 24, 40, 0.18); padding: 14px; flex-direction: column; gap: 12px; }
+  .statnav5.is-open .drop { display: flex; }
+  .statnav5 .group { display: flex; flex-direction: column; gap: 7px; }
+  .statnav5 .lbl { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #5c6b7d; }
+  .statnav5 .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .statnav5 .chip { height: 32px; padding: 0 12px; border-radius: 999px; border: 1.5px solid rgba(32, 36, 42, 0.16); background: #ffffff; color: #1a2332; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+  .statnav5 .chip .c-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--c, #22c55e); flex-shrink: 0; }
+  .statnav5 .chip.selected { background: #101724; border-color: #101724; color: #ffffff; }
+  .statnav5 .place { display: flex; align-items: center; gap: 10px; padding: 10px 11px; border-radius: 13px; background: #f7f8fa; }
+  .statnav5 .place .pin { width: 34px; height: 34px; border-radius: 11px; background: rgba(59, 130, 246, 0.12); color: #2563eb; display: grid; place-items: center; font-size: 17px; flex-shrink: 0; }
+  .statnav5 .place .p-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .statnav5 .place .p-txt strong { font-size: 13px; font-weight: 700; color: #101724; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .statnav5 .place .p-txt span { font-size: 12px; color: #5c6b7d; }
+  .statnav5 .place .out { height: 30px; padding: 0 12px; border: 1.5px solid rgba(32, 36, 42, 0.16); border-radius: 999px; background: #ffffff; color: #1a2332; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+  .statnav5 .drop-row { display: flex; align-items: center; gap: 10px; padding: 10px 2px 2px; border-top: 1px solid #f1f4f7; color: #1a2332; font-size: 14px; font-weight: 600; border-left: 0; border-right: 0; border-bottom: 0; background: none; width: 100%; text-align: left; }
+  .statnav5 .drop-row i { font-size: 19px; color: #5c6b7d; }
+
+  .statnav5 .content { padding: 0 16px; display: flex; flex-direction: column; gap: 16px; }
+  .statnav5 .greet { display: flex; flex-direction: column; gap: 7px; padding-top: 8px; }
+  .statnav5 .greet h1 { font-size: 36px; font-weight: 800; line-height: 1.15; color: #1a2332; }
+  .statnav5 .now { font-size: 16px; font-weight: 600; color: #5c6b7d; line-height: 1.4; }
+  .statnav5 .now a { color: #2563eb; font-weight: 700; text-decoration: none; }
+
+  /* Other-tab nav examples */
+  .statnav5 .others { display: flex; flex-direction: column; gap: 8px; padding-top: 10px; }
+  .statnav5 .others .cap { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #9aa3ad; padding: 0 16px; }
+  .statnav5 .others .toolbar { border-top: 1px solid #f1f4f7; }
+
+  /* Bottom nav, same ringed avatar in the center slot */
+  .statnav5 .tab-bar { position: relative; z-index: 5; margin-top: 14px; height: 67px; background: #ffffff; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12); display: flex; align-items: flex-start; padding-top: 9px; }
+  .statnav5 .tab-bar .tab { flex: 1; display: flex; align-items: center; justify-content: center; color: #3b4551; border: 0; background: none; padding: 0; }
+  .statnav5 .tab-bar .tab i { font-size: 24px; }
+  .statnav5 .tab-bar .tab.discover i { font-size: 26px; }
+  .statnav5 .tab-bar .tab.selected { color: #1a2332; }
+  .statnav5 .tab-bar .tab .icon-wrap { position: relative; display: inline-flex; }
+  .statnav5 .tab-bar .tab .icon-wrap .badge-dot { top: -8px; right: -14px; }
+</style>
+
+<div class="statnav5">
+  <div class="toolbar">
+    <div class="brand">
+      <img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" />
+      <span>MixedRoutes</span>
+    </div>
+    <div class="actions">
+      <span class="tbtn"><i class="ph ph-user-plus"></i></span>
+      <span class="tbtn"><i class="ph ph-bell"></i><span class="badge-dot">2</span></span>
+      <button class="stat-av" style="--ring: #22c55e;" aria-expanded="false">
+        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+        <span class="mini">☕</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="drop">
+    <div class="group">
+      <div class="lbl">Your status</div>
+      <div class="chips" data-role="status">
+        <button class="chip selected" data-label="Online" style="--c: #22c55e;"><span class="c-dot"></span>Online</button>
+        <button class="chip" data-label="Down to hang" style="--c: #14b8a6;"><span class="c-dot"></span>Down to hang</button>
+        <button class="chip" data-label="Heads down" style="--c: #f59e0b;"><span class="c-dot"></span>Heads down</button>
+        <button class="chip" data-label="Invisible" style="--c: #9aa3ad;"><span class="c-dot"></span>Invisible</button>
+      </div>
+    </div>
+    <div class="group">
+      <div class="lbl">Quick activity</div>
+      <div class="chips" data-role="activity">
+        <button class="chip selected" data-emoji="☕" data-label="Coffee">☕ Coffee</button>
+        <button class="chip" data-emoji="🥾" data-label="On a walk">🥾 On a walk</button>
+        <button class="chip" data-emoji="🍻" data-label="Drinks">🍻 Drinks</button>
+        <button class="chip" data-emoji="🎯" data-label="Trivia">🎯 Trivia</button>
+      </div>
+    </div>
+    <div class="place">
+      <span class="pin"><i class="ph-fill ph-map-pin"></i></span>
+      <span class="p-txt">
+        <strong class="place-name">Ultra Coffeebar</strong>
+        <span class="place-sub">Downtown · since 4:15 PM</span>
+      </span>
+      <button class="out">Check out</button>
+    </div>
+    <button class="drop-row"><i class="ph ph-gear-six"></i>Settings</button>
+  </div>
+
+  <div class="content">
+    <div class="greet">
+      <h1>Evening, Brandon</h1>
+      <div class="now">Happening now: <a href="#">Trivia at The Well</a></div>
+    </div>
+  </div>
+
+  <div class="others">
+    <div class="cap">Same spot on every tab</div>
+    <div class="toolbar">
+      <span class="page-title">Discover</span>
+      <div class="actions">
+        <span class="tbtn"><i class="ph ph-magnifying-glass"></i></span>
+        <span class="stat-av" style="--ring: #22c55e;">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+        <span class="mini">☕</span>
+        </span>
+      </div>
+    </div>
+    <div class="toolbar">
+      <span class="page-title">Chats</span>
+      <div class="actions">
+        <span class="tbtn"><i class="ph ph-plus-circle"></i></span>
+        <span class="stat-av" style="--ring: #22c55e;">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+        <span class="mini">☕</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab selected"><i class="ph-fill ph-house"></i></button>
+    <button class="tab discover"><i class="ph ph-compass"></i></button>
+    <button class="tab">
+      <span class="stat-av" style="--ring: #22c55e;">
+        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+        <span class="mini">☕</span>
+      </span>
+    </button>
+    <button class="tab"><i class="ph ph-calendar-blank"></i></button>
+    <button class="tab">
+      <span class="icon-wrap"><i class="ph ph-chat"></i><span class="badge-dot">4</span></span>
+    </button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector('.statnav5');
+  if (!root) return;
+  var avBtn = root.querySelector('.actions .stat-av');
+  var placeName = root.querySelector('.place-name');
+  var placeSub = root.querySelector('.place-sub');
+  var outBtn = root.querySelector('.place .out');
+  var state = { status: 'Online', color: '#22c55e', activity: 'Coffee', emoji: '☕', checkedIn: true };
+
+  function render() {
+    root.querySelectorAll('.stat-av').forEach(function (av) {
+      av.style.setProperty('--ring', state.color);
+      var mini = av.querySelector('.mini');
+      if (state.emoji) { mini.style.display = 'grid'; mini.textContent = state.emoji; }
+      else mini.style.display = 'none';
+    });
+    placeName.textContent = state.checkedIn ? 'Ultra Coffeebar' : 'Location sharing is off';
+    placeSub.textContent = state.checkedIn ? 'Downtown · since 4:15 PM' : "Friends can't see where you are";
+    outBtn.textContent = state.checkedIn ? 'Check out' : 'Check in';
+  }
+
+  avBtn.addEventListener('click', function () {
+    var open = root.classList.toggle('is-open');
+    avBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  root.querySelectorAll('.chips[data-role="status"] .chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      root.querySelectorAll('.chips[data-role="status"] .chip').forEach(function (c) { c.classList.remove('selected'); });
+      chip.classList.add('selected');
+      state.status = chip.getAttribute('data-label');
+      state.color = chip.style.getPropertyValue('--c').trim();
+      render();
+    });
+  });
+
+  root.querySelectorAll('.chips[data-role="activity"] .chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var was = chip.classList.contains('selected');
+      root.querySelectorAll('.chips[data-role="activity"] .chip').forEach(function (c) { c.classList.remove('selected'); });
+      if (was) { state.activity = ''; state.emoji = ''; }
+      else { chip.classList.add('selected'); state.activity = chip.getAttribute('data-label'); state.emoji = chip.getAttribute('data-emoji'); }
+      render();
+    });
+  });
+
+  outBtn.addEventListener('click', function () {
+    state.checkedIn = !state.checkedIn;
+    render();
+  });
+})();
+</script>

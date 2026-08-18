@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .av-scope { --pv-bg: #0a0f14; --pv-card: #161d27; --pv-card-2: #1a2230; --pv-green: #34c759; --pv-green-soft: rgba(52,199,89,0.16); --pv-amber: #f5b400; --pv-red: #ff5a5f; }
+  .av-scope, .av-scope * { scrollbar-width: none; -ms-overflow-style: none; box-sizing: border-box; }
+  .av-scope::-webkit-scrollbar, .av-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .av-scope .av-wrap { background: var(--pv-bg); padding: 24px 20px; }
+
+  /* Same card frame as the original */
+  .av-scope .pv-card { background: rgba(26,34,48,0.6); border-radius: 20px; padding: 20px 18px; width: 100%; }
+
+  /* Header: title + privacy + share, no leading avatar (matches C) */
+  .av-scope .av-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  .av-scope .av-head .ht { flex: 1; min-width: 0; }
+  .av-scope .av-head .ht .t1 { font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+  .av-scope .av-head .ht .t2 { font-size: 0.86rem; font-weight: 700; color: #8ab4ff; margin-top: 6px; display: inline-flex; align-items: center; gap: 7px; }
+  .av-scope .av-head .ht .t2 i { font-size: 15px; }
+  .av-scope .av-head .sh { width: 40px; height: 40px; border-radius: 12px; border: 0; background: rgba(255,255,255,0.08); color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
+  .av-scope .av-head .sh i { font-size: 19px; }
+
+  /* Reworked RSVP: single summary bar instead of three loud tiles */
+  .av-scope .av-summary { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.04); border-radius: 14px; padding: 12px 14px; margin-bottom: 16px; }
+  .av-scope .av-summary .seg { display: inline-flex; align-items: center; gap: 7px; font-size: 0.92rem; font-weight: 700; color: rgba(255,255,255,0.85); }
+  .av-scope .av-summary .seg .d { width: 8px; height: 8px; border-radius: 50%; }
+  .av-scope .av-summary .seg .d.go { background: var(--pv-green); }
+  .av-scope .av-summary .seg .d.mb { background: #8a97ab; }
+  .av-scope .av-summary .seg .d.no { background: var(--pv-red); }
+  .av-scope .av-summary .seg b { color: #fff; }
+  .av-scope .av-summary .sp { flex: 1; }
+
+  /* Tappable member rows, within the same card */
+  .av-scope .av-mlist { display: flex; flex-direction: column; }
+  .av-scope .av-m { display: flex; align-items: center; gap: 12px; padding: 9px 6px; border-radius: 12px; cursor: pointer; }
+  .av-scope .av-m:active { background: rgba(255,255,255,0.05); }
+  .av-scope .av-m .ma { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .av-scope .av-m .ma.initials { background: #5a687c; color: #fff; font-size: 0.86rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .av-scope .av-m .mt { flex: 1; min-width: 0; }
+  .av-scope .av-m .mt .nm { font-size: 0.98rem; font-weight: 700; color: #fff; }
+  .av-scope .av-m .mt .st { font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-top: 1px; }
+  .av-scope .av-m .htag { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.04em; color: var(--pv-amber); background: rgba(245,180,0,0.14); padding: 2px 7px; border-radius: 6px; }
+  .av-scope .av-m .chev { color: rgba(255,255,255,0.3); font-size: 18px; flex-shrink: 0; }
+
+  .av-scope .av-all { text-align: center; font-size: 0.9rem; font-weight: 700; color: rgba(255,255,255,0.55); padding: 12px; margin-top: 4px; cursor: pointer; }
+</style>
+
+<div class="mr-scope av-scope">
+  <div class="av-wrap">
+
+    <div class="pv-card">
+
+      <div class="av-head">
+        <div class="ht">
+          <div class="t1">10 guests</div>
+          <div class="t2"><i class="ph-fill ph-lock-simple"></i> Private &middot; hosted by Brandon</div>
+        </div>
+        <button type="button" class="sh" aria-label="Share"><i class="ph ph-share-network"></i></button>
+      </div>
+
+      <div class="av-summary">
+        <span class="seg"><span class="d go"></span><b>4</b> going</span>
+        <span class="seg"><span class="d mb"></span><b>6</b> maybe</span>
+        <span class="seg"><span class="d no"></span><b>0</b> out</span>
+      </div>
+
+      <div class="av-mlist">
+        <div class="av-m">
+          <img class="ma" src="https://i.pravatar.cc/120?img=12" alt="" />
+          <div class="mt"><div class="nm">Brandon Unglaub</div><div class="st">You &middot; Going</div></div>
+          <span class="htag">HOST</span>
+        </div>
+        <div class="av-m">
+          <span class="ma initials">MG</span>
+          <div class="mt"><div class="nm">Maya Greene</div><div class="st">Going</div></div>
+          <i class="ph ph-caret-right chev"></i>
+        </div>
+        <div class="av-m">
+          <img class="ma" src="https://i.pravatar.cc/120?img=32" alt="" />
+          <div class="mt"><div class="nm">Diego Ruiz</div><div class="st">Going</div></div>
+          <i class="ph ph-caret-right chev"></i>
+        </div>
+        <div class="av-m">
+          <img class="ma" src="https://i.pravatar.cc/120?img=45" alt="" />
+          <div class="mt"><div class="nm">Sofia Park</div><div class="st">Maybe</div></div>
+          <i class="ph ph-caret-right chev"></i>
+        </div>
+      </div>
+
+      <div class="av-all">View all 10 guests</div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,162 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  .stt1-output { position: relative; width: 2752px; height: 2064px; overflow: hidden; background: #f5f2ec; }
+  .stt1 { position: absolute; top: 0; left: 196.571px; width: 1600px; height: 1400px; overflow: hidden; background: #f5f2ec; font-family: "Geist", -apple-system, sans-serif; box-sizing: border-box; transform: scale(1.4742857143); transform-origin: top left; }
+  .stt1 * { box-sizing: border-box; }
+  .stt1-texture { position: absolute; inset: 0; pointer-events: none; }
+  .stt1-texture svg { display: block; width: 100%; height: 100%; }
+  .stt1-headline { position: absolute; top: 116px; left: 0; right: 0; z-index: 2; margin: 0; text-align: center; font-size: 112px; font-weight: 800; line-height: 1.02; letter-spacing: -0.035em; color: #1a2332; }
+  .stt1-headline i { font-style: normal; background: linear-gradient(145deg, #14b8a6, #3b82f6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .stt1-sub { position: absolute; top: 258px; left: 0; right: 0; z-index: 2; margin: 0; text-align: center; font-size: 43px; font-weight: 400; color: #5c6b7d; }
+
+  .stt1-tablet { position: absolute; left: 160px; top: 382px; z-index: 3; width: 1280px; height: 916px; padding: 22px; border-radius: 82px; background: linear-gradient(145deg, #44464b, #151619 38%, #050506 72%, #36383d); border: 4px solid #686b72; box-shadow: 0 62px 110px rgba(26, 35, 50, 0.28), 0 18px 36px rgba(26, 35, 50, 0.2); }
+  .stt1-tablet::before { content: ""; position: absolute; top: 50%; right: 6px; width: 7px; height: 82px; border-radius: 5px; background: #777a82; transform: translateY(-50%); opacity: 0.65; }
+  .stt1-camera { position: absolute; top: 50%; left: 8px; z-index: 5; width: 13px; height: 13px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #264f7a 0 18%, #101724 28% 58%, #000 70%); transform: translateY(-50%); box-shadow: 0 0 0 2px rgba(255,255,255,0.08); }
+  .stt1-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 60px; background: #e5e8ec; color: #1a2332; }
+
+  /* Mirrors the production large-screen shell: fixed 200px tab rail + centered 820px page. */
+  .stt1-rail { position: absolute; inset: 0 auto 0 0; width: 200px; padding: 34px 14px 28px; background: #ffffff; border-right: 1px solid #e1e3e6; }
+  .stt1-nav { display: flex; flex-direction: column; gap: 8px; }
+  .stt1-nav-item, .stt1-util { display: flex; align-items: center; gap: 14px; width: 100%; height: 52px; padding: 0 16px; border-radius: 999px; color: #1a2332; font-size: 16px; font-weight: 700; }
+  .stt1-nav-item i, .stt1-util i { width: 25px; flex: none; font-size: 24px; text-align: center; }
+  .stt1-nav-item.is-on { background: #f3f4f5; }
+  .stt1-notification-icon { position: relative; display: grid; place-items: center; width: 25px; height: 25px; flex: none; }
+  .stt1-notification-dot { position: absolute; top: -6px; right: -8px; display: grid; place-items: center; min-width: 19px; height: 19px; padding: 0 5px; border: 2px solid #ffffff; border-radius: 999px; background: #0ca678; color: #ffffff; font-size: 9px; font-weight: 800; }
+  .stt1-rail-bottom { position: absolute; left: 14px; right: 14px; bottom: 28px; display: flex; flex-direction: column; gap: 8px; }
+  .stt1-profile { display: flex; align-items: center; gap: 14px; width: 100%; height: 56px; padding: 0 14px; border-radius: 999px; color: #1a2332; font-size: 16px; font-weight: 700; }
+  .stt1-profile img { width: 34px; height: 34px; flex: none; border-radius: 50%; object-fit: cover; }
+
+  .stt1-page { position: absolute; top: 0; bottom: 0; left: 306px; width: 820px; overflow: hidden; background: #ffffff; }
+  .stt1-app-header { display: flex; align-items: center; height: 64px; padding: 0 24px; background: #ffffff; }
+  .stt1-wordmark { display: flex; align-items: center; gap: 12px; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
+  .stt1-wordmark img { width: 34px; height: 34px; }
+  .stt1-content { position: relative; display: flex; flex-direction: column; gap: 14px; height: calc(100% - 64px); padding: 6px 24px 24px; overflow: hidden; }
+  .stt1-greeting { margin: 0; font-size: 34px; font-weight: 800; line-height: 1.15; letter-spacing: 0; }
+  .stt1-greeting .stt1-gradient { background: linear-gradient(90deg, #14b8a6, #3b82f6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .stt1-greeting .stt1-name { color: #5c6b7d; }
+  .stt1-greeting-sub { margin: 6px 0 0; color: #5c6b7d; font-size: 15px; font-weight: 700; }
+  .stt1-row { display: flex; flex-direction: column; gap: 12px; }
+  .stt1-row-head { display: flex; align-items: center; justify-content: space-between; }
+  .stt1-row-head h3 { margin: 0; color: #1a2332; font-size: 20px; font-weight: 800; letter-spacing: 0; text-transform: none; }
+  .stt1-row-head span { display: inline-flex; align-items: center; gap: 3px; color: #5c6b7d; font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .stt1-chats { display: flex; gap: 18px; padding-top: 2px; }
+  .stt1-chat { width: 98px; flex: none; text-align: center; }
+  .stt1-chat-av { position: relative; width: 66px; height: 66px; margin: 0 auto 8px; }
+  .stt1-chat-av img { display: block; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+  .stt1-chat.is-group .stt1-chat-av img { border-radius: 15px; }
+  .stt1 .stt1-unread { position: absolute; right: -4px; bottom: -4px; display: grid; place-items: center; min-width: 20px; height: 20px; padding: 0 5px; border: 2px solid #ffffff; border-radius: 999px; background: #0ca678; color: #ffffff !important; font-size: 9px; font-weight: 800; line-height: 1; }
+  .stt1-chat b, .stt1-chat span { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .stt1-chat b { color: #1a2332; font-size: 13px; }
+  .stt1-chat span { margin-top: 2px; color: #5c6b7d; font-size: 11px; }
+
+  .stt1-plans { display: flex; gap: 16px; }
+  .stt1-plan { position: relative; isolation: isolate; width: 252px; flex: none; overflow: hidden; padding: 8px; border-radius: 24px; background: #1d232b; color: #ffffff; box-shadow: 0 8px 20px rgba(0,0,0,.12), 0 18px 34px rgba(0,0,0,.13); }
+  .stt1-plan::after { content: ""; position: absolute; inset: 0; z-index: 2; border: 1px solid rgba(255,255,255,.2); border-radius: inherit; pointer-events: none; }
+  .stt1-plan-glow { position: absolute; inset: 0; z-index: -1; background: var(--image) center/cover; filter: blur(28px) saturate(3.2); opacity: .82; transform: scale(1.55); }
+  .stt1-plan-photo { position: relative; z-index: 1; width: 100%; aspect-ratio: 16/9; border-radius: 18px; background: var(--image) center/cover; }
+  .stt1-plan-body { position: relative; z-index: 1; padding: 12px 10px 11px; }
+  .stt1-plan-date { margin: 0; color: rgba(255,255,255,.7); font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+  .stt1-plan h4 { overflow: hidden; margin: 6px 0 9px; font-size: 18px; font-weight: 800; line-height: 1.15; white-space: nowrap; text-overflow: ellipsis; }
+  .stt1-plan-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .stt1-plan-loc { display: flex; align-items: center; gap: 5px; min-width: 0; color: rgba(255,255,255,.92); font-size: 11px; font-weight: 600; }
+  .stt1-plan-loc span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .stt1-plan-people { display: flex; flex: none; }
+  .stt1-plan-people img, .stt1-plan-people span { display: grid; place-items: center; width: 25px; height: 25px; margin-left: -8px; border: 2px solid #ffffff; border-radius: 50%; object-fit: cover; }
+  .stt1-plan-people img:first-child { margin-left: 0; }
+  .stt1-plan-people span { background: #dfe4ea; color: #515a65; font-size: 8px; font-weight: 800; }
+
+  .stt1-events { display: flex; align-items: stretch; gap: 16px; padding: 2px 0 10px; }
+  .stt1-event { display: flex; width: 196px; min-height: 176px; flex: none; flex-direction: column; overflow: hidden; border-radius: 22px; background: #ffffff; color: #1a2332; box-shadow: 0 2px 6px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.1); }
+  .stt1-event img { display: block; width: 100%; aspect-ratio: 2.15/1; flex: none; object-fit: cover; }
+  .stt1-event-body { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 4px; padding: 12px 14px 13px; }
+  .stt1-event-date { overflow: hidden; margin-bottom: 2px; color: #1a2332; font-size: 10px; font-weight: 800; letter-spacing: .05em; line-height: 1; opacity: .7; text-transform: uppercase; white-space: nowrap; text-overflow: ellipsis; }
+  .stt1-event h4 { display: -webkit-box; min-height: 2.4em; overflow: hidden; margin: 0; color: #1a2332; font-size: 14px; font-weight: 800; line-height: 1.2; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; text-overflow: ellipsis; }
+  .stt1-event-loc { display: flex; align-items: center; gap: 4px; min-width: 0; overflow: hidden; margin-top: auto; padding-top: 3px; color: #5c6b7d; font-size: 10px; font-weight: 700; line-height: 1.25; white-space: nowrap; text-overflow: ellipsis; }
+  .stt1-event-loc i { flex: none; }
+  .stt1-new-plan { position: absolute; right: 24px; bottom: 22px; display: inline-flex; align-items: center; gap: 9px; height: 52px; padding: 0 20px; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; font-size: 15px; font-weight: 800; box-shadow: 0 8px 20px rgba(0,0,0,.16), 0 16px 34px rgba(0,0,0,.16); }
+  .stt1-new-plan i { font-size: 22px; }
+</style>
+
+<div class="stt1-output">
+<div class="stt1">
+  <div class="stt1-texture" aria-hidden="true">
+    <svg viewBox="0 0 1600 1400" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g stroke="#1a2332" stroke-width="4" opacity="0.055">
+        <g transform="translate(56 58) scale(.58) rotate(-8)"><path d="M55 340 140 190l85 150Z"/><path d="m114 340 26-78 26 78M140 190v-32m0 0 30 9-30 9M232 340l88-140 88 140M40 340h400"/></g>
+        <g transform="translate(1300 12) scale(.5) rotate(10)"><path d="M140 160h190v66a95 95 0 0 1-190 0Z"/><path d="M330 176h26a36 36 0 0 1 0 72h-30M130 342a105 22 0 0 0 210 0"/></g>
+        <g transform="translate(1300 1110) scale(.58) rotate(-8)"><circle cx="160" cy="286" r="66"/><circle cx="412" cy="286" r="66"/><path d="m160 286 86-114 132-4 34 118M160 286h126l-40-114m40 114 92-118M246 172l-10-26m-22-4h44M378 168l12-30q20-12 34 2"/></g>
+        <g transform="translate(-45 1110) scale(.65) rotate(5)"><path d="M262 312q-70-36-166-12V158q96-24 166 12Zm0 0q70-36 166-12V158q-96-24-166 12Zm0-142v142"/></g>
+        <path d="M780 458v28m-14-14h28M1420 430v24m-12-12h24"/><circle cx="90" cy="430" r="4"/><circle cx="1535" cy="860" r="4"/>
+      </g>
+      <g stroke="#f2945c" stroke-width="4" opacity="0.13"><g transform="translate(56 58) scale(.58) rotate(-8)"><path d="M242 332q-12-30 16-54 30 42 14 52-16 16-30 2Z"/></g><path d="M122 385v26m-13-13h26M1480 1080v28m-14-14h28"/></g>
+    </svg>
+  </div>
+
+  <h1 class="stt1-headline">Go where <i>life is.</i></h1>
+  <p class="stt1-sub">The only app built to get you off it.</p>
+
+  <div class="stt1-tablet">
+    <span class="stt1-camera"></span>
+    <div class="stt1-screen">
+      <aside class="stt1-rail">
+        <nav class="stt1-nav">
+          <span class="stt1-nav-item is-on"><i class="ph-fill ph-house"></i>Home</span>
+          <span class="stt1-nav-item"><i class="ph ph-compass"></i>Discover</span>
+          <span class="stt1-nav-item"><i class="ph ph-calendar-blank"></i>Plans</span>
+          <span class="stt1-nav-item"><i class="ph ph-user"></i>You</span>
+          <span class="stt1-nav-item"><i class="ph ph-chat"></i>Chat</span>
+        </nav>
+        <div class="stt1-rail-bottom">
+          <span class="stt1-util"><span class="stt1-notification-icon"><i class="ph ph-bell"></i><span class="stt1-notification-dot">2</span></span>Notifications</span>
+          <span class="stt1-profile"><img src="../img/stock-av-6.jpg" alt="" />Alex</span>
+        </div>
+      </aside>
+
+      <main class="stt1-page">
+        <header class="stt1-app-header"><div class="stt1-wordmark"><img src="../img/gradient-icon.svg" alt="" />MixedRoutes</div></header>
+        <div class="stt1-content">
+          <div>
+            <h2 class="stt1-greeting"><span class="stt1-gradient">Plans tonight</span><span class="stt1-name">, Alex</span></h2>
+            <p class="stt1-greeting-sub">Music Festival &middot; 7:00 PM</p>
+          </div>
+
+          <section class="stt1-row">
+            <div class="stt1-row-head"><h3>Recent chats</h3><span>All chats <i class="ph ph-caret-right"></i></span></div>
+            <div class="stt1-chats">
+              <article class="stt1-chat is-group"><div class="stt1-chat-av"><img src="../img/live-music.jpg" alt="" /><span class="stt1-unread">3</span></div><b>Festival Crew</b><span>Meet at the gate</span></article>
+              <article class="stt1-chat"><div class="stt1-chat-av"><img src="../img/stock-av-2.jpg" alt="" /></div><b>Maya</b><span>See you there!</span></article>
+              <article class="stt1-chat is-group"><div class="stt1-chat-av"><img src="../img/sunrise-hike.jpg" alt="" /></div><b>Hiking Crew</b><span>Trail is open</span></article>
+              <article class="stt1-chat"><div class="stt1-chat-av"><img src="../img/stock-av-3.jpg" alt="" /><span class="stt1-unread">1</span></div><b>Leo</b><span>Sent a photo</span></article>
+              <article class="stt1-chat is-group"><div class="stt1-chat-av"><img src="../img/trivia-night.jpg" alt="" /></div><b>Trivia Team</b><span>Sunday at six</span></article>
+            </div>
+          </section>
+
+          <section class="stt1-row">
+            <div class="stt1-row-head"><h3>Your plans</h3><span>All plans <i class="ph ph-caret-right"></i></span></div>
+            <div class="stt1-plans">
+              <article class="stt1-plan" style="--image:url('https://images.unsplash.com/photo-1584521942371-f42b968e98a0?auto=format&amp;fit=crop&amp;w=900&amp;q=85');"><div class="stt1-plan-glow"></div><div class="stt1-plan-photo"></div><div class="stt1-plan-body"><p class="stt1-plan-date">Today &middot; 7 PM</p><h4>Music Festival &#127928;</h4><div class="stt1-plan-foot"><span class="stt1-plan-loc"><i class="ph-fill ph-map-pin"></i><span>Frost Amphitheater</span></span><span class="stt1-plan-people"><img src="../img/stock-av-1.jpg" alt="" /><img src="../img/stock-av-2.jpg" alt="" /><span>+4</span></span></div></div></article>
+              <article class="stt1-plan" style="--image:url('https://images.unsplash.com/photo-1635343604769-7baef7c803a8?auto=format&amp;fit=crop&amp;w=900&amp;q=85');"><div class="stt1-plan-glow"></div><div class="stt1-plan-photo"></div><div class="stt1-plan-body"><p class="stt1-plan-date">Saturday &middot; 9 AM</p><h4>Sunrise Hike &#129406;</h4><div class="stt1-plan-foot"><span class="stt1-plan-loc"><i class="ph-fill ph-map-pin"></i><span>Mountain Trail</span></span><span class="stt1-plan-people"><img src="../img/stock-av-4.jpg" alt="" /><span>+3</span></span></div></div></article>
+              <article class="stt1-plan" style="--image:url('../img/trivia-night.jpg');"><div class="stt1-plan-glow"></div><div class="stt1-plan-photo"></div><div class="stt1-plan-body"><p class="stt1-plan-date">Sunday &middot; 6 PM</p><h4>Trivia Night &#129504;</h4><div class="stt1-plan-foot"><span class="stt1-plan-loc"><i class="ph-fill ph-map-pin"></i><span>The Lantern</span></span><span class="stt1-plan-people"><img src="../img/stock-av-5.jpg" alt="" /><span>+2</span></span></div></div></article>
+            </div>
+          </section>
+
+          <section class="stt1-row">
+            <div class="stt1-row-head"><h3>Events near you</h3><span>Discover <i class="ph ph-caret-right"></i></span></div>
+            <div class="stt1-events">
+              <article class="stt1-event"><img src="../img/live-music.jpg" alt="" /><div class="stt1-event-body"><span class="stt1-event-date">Friday &middot; 8 PM</span><h4>Concert in the Park</h4><span class="stt1-event-loc"><i class="ph-fill ph-map-pin"></i>Golden Gate Park</span></div></article>
+              <article class="stt1-event"><img src="../img/trivia-night.jpg" alt="" /><div class="stt1-event-body"><span class="stt1-event-date">Saturday &middot; 7 PM</span><h4>Food &amp; Wine Night</h4><span class="stt1-event-loc"><i class="ph-fill ph-map-pin"></i>Mission District</span></div></article>
+              <article class="stt1-event"><img src="../img/sunrise-hike.jpg" alt="" /><div class="stt1-event-body"><span class="stt1-event-date">Sunday &middot; 10 AM</span><h4>Outdoor Adventure</h4><span class="stt1-event-loc"><i class="ph-fill ph-map-pin"></i>Presidio</span></div></article>
+            </div>
+          </section>
+
+          <span class="stt1-new-plan"><i class="ph-fill ph-calendar-blank"></i>New plan</span>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+</div>

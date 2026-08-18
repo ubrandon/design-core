@@ -1,0 +1,264 @@
+{
+  "screens": [
+    {
+      "file": "home.html",
+      "x": -16,
+      "y": 3683,
+      "width": 390
+    },
+    {
+      "file": "discover.html",
+      "x": 414,
+      "y": 3683,
+      "width": 390
+    },
+    {
+      "file": "home-v2.html",
+      "x": 1865,
+      "y": 3665,
+      "width": 390
+    },
+    {
+      "file": "discover-v2-clean.html",
+      "x": 2304,
+      "y": 3665,
+      "width": 390
+    },
+    {
+      "file": "discover-v2-flat.html",
+      "x": 2723,
+      "y": 3680,
+      "width": 390
+    },
+    {
+      "file": "discover-v2-real-cards.html",
+      "x": -16,
+      "y": -1297,
+      "width": 390
+    },
+    {
+      "file": "home-v2-copy.html",
+      "x": 1020,
+      "y": 3665,
+      "width": 390
+    },
+    {
+      "file": "home-v2-list.html",
+      "x": 1450,
+      "y": 3665,
+      "width": 390
+    },
+    {
+      "file": "home-v2-friend-cards.html",
+      "x": 475,
+      "y": -1297,
+      "width": 390
+    },
+    {
+      "file": "status-nav-identity.html",
+      "x": 970,
+      "y": -1297,
+      "width": 390
+    },
+    {
+      "file": "status-under-greeting.html",
+      "x": 970,
+      "y": -1086,
+      "width": 390
+    },
+    {
+      "file": "status-greeting-chips.html",
+      "x": 970,
+      "y": -834,
+      "width": 390
+    },
+    {
+      "file": "status-nav-avatar.html",
+      "x": 970,
+      "y": -556,
+      "width": 390
+    },
+    {
+      "file": "nav-current-major-pages.html",
+      "x": 3392,
+      "y": 3683,
+      "width": 500
+    },
+    {
+      "file": "card-variations-audit.html",
+      "x": 1591,
+      "y": -1297,
+      "width": 1440
+    },
+    {
+      "file": "nav-updated-contextual-actions.html",
+      "x": 3938,
+      "y": 3683,
+      "width": 500
+    },
+    {
+      "file": "nav-option-plus-left.html",
+      "x": 4494,
+      "y": 3683,
+      "width": 500
+    },
+    {
+      "file": "home-v2-empty.html",
+      "x": 3283,
+      "y": -1297,
+      "width": 390
+    },
+    {
+      "file": "guidance-intro-modal.html",
+      "x": 3713,
+      "y": -1297,
+      "width": 390
+    },
+    {
+      "file": "guidance-coach-marks.html",
+      "x": 4143,
+      "y": -1297,
+      "width": 390
+    },
+    {
+      "file": "discover-for-you.html",
+      "x": 4898,
+      "y": -1297,
+      "width": 390
+    },
+    {
+      "file": "discover-events.html",
+      "x": 5328,
+      "y": -1297,
+      "width": 390
+    },
+    {
+      "file": "discover-places.html",
+      "x": 5758,
+      "y": -1297,
+      "width": 390
+    },
+    {
+      "file": "write-review.html",
+      "x": 1591,
+      "y": 694,
+      "width": 390
+    },
+    {
+      "file": "check-in-flow.html",
+      "x": 2021,
+      "y": 694,
+      "width": 390
+    },
+    {
+      "file": "prompt-governance.html",
+      "x": 2451,
+      "y": 694,
+      "width": 880
+    },
+    {
+      "file": "discover-events-filters.html",
+      "x": 6203,
+      "y": -1297,
+      "width": 390
+    }
+  ],
+  "texts": [
+    {
+      "text": "Current designs",
+      "x": -16,
+      "y": 3484,
+      "size": 72
+    },
+    {
+      "text": "Home",
+      "x": -16,
+      "y": 3598,
+      "size": 48
+    },
+    {
+      "text": "Discover",
+      "x": 414,
+      "y": 3598,
+      "size": 48
+    },
+    {
+      "text": "MixedRoutes 2.0",
+      "x": -16,
+      "y": -1496,
+      "size": 72
+    },
+    {
+      "text": "Home",
+      "x": 475,
+      "y": -1382,
+      "size": 48
+    },
+    {
+      "text": "Status ideas",
+      "x": 970,
+      "y": -1382,
+      "size": 48
+    },
+    {
+      "text": "Discover",
+      "x": -16,
+      "y": -1382,
+      "size": 48
+    },
+    {
+      "text": "Archive",
+      "x": 1020,
+      "y": 3484,
+      "size": 72
+    },
+    {
+      "text": "Current nav",
+      "x": 3392,
+      "y": 3598,
+      "size": 48
+    },
+    {
+      "text": "Card variations",
+      "x": 1591,
+      "y": -1382,
+      "size": 48
+    },
+    {
+      "text": "Updated nav",
+      "x": 3938,
+      "y": 3598,
+      "size": 48
+    },
+    {
+      "text": "Plus on left, centered title",
+      "x": 4494,
+      "y": 3598,
+      "size": 48
+    },
+    {
+      "text": "Cold start + first visit",
+      "x": 3283,
+      "y": -1382,
+      "size": 48
+    },
+    {
+      "text": "AI layer",
+      "x": 4263,
+      "y": -1382,
+      "size": 48
+    },
+    {
+      "text": "Later phases",
+      "x": 1591,
+      "y": 609,
+      "size": 48
+    },
+    {
+      "text": "Prompt governance",
+      "x": 2451,
+      "y": 609,
+      "size": 48
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&display=swap");
+
+  .mrv2-gmodal, .mrv2-gmodal * { box-sizing: border-box; font-family: "Geist", sans-serif; margin: 0; }
+  .mrv2-gmodal { background: #ffffff; color: #1a2332; position: relative; overflow: clip; min-height: 844px; }
+
+  /* Simplified Home behind the modal */
+  .mrv2-gmodal .bg { display: flex; flex-direction: column; gap: 18px; padding: 0 16px 40px; filter: blur(2px); }
+  .mrv2-gmodal .bg-toolbar { height: 56px; display: flex; align-items: center; justify-content: space-between; margin: 0 -16px; padding: 0 16px; }
+  .mrv2-gmodal .bg-toolbar .brand { display: flex; align-items: center; gap: 7px; }
+  .mrv2-gmodal .bg-toolbar .brand img { width: 34px; height: 34px; object-fit: contain; display: block; }
+  .mrv2-gmodal .bg-toolbar .brand span { font-size: 24px; font-weight: 700; }
+  .mrv2-gmodal .bg-toolbar .actions { display: flex; gap: 18px; font-size: 24px; color: #1a2332; }
+  .mrv2-gmodal .bg h1 { font-size: 36px; font-weight: 800; line-height: 1.15; padding-top: 8px; }
+  .mrv2-gmodal .bg .bcard { border-radius: 20px; background: #ffffff; border: 1px solid rgba(16, 23, 36, 0.08); box-shadow: 0 2px 6px rgba(16, 24, 40, 0.05), 0 14px 32px rgba(16, 24, 40, 0.1); padding: 16px; display: flex; align-items: center; gap: 14px; }
+  .mrv2-gmodal .bg .bcard .bicon { width: 44px; height: 44px; border-radius: 12px; background: rgba(20, 184, 166, 0.16); display: grid; place-items: center; font-size: 22px; color: #0f766e; flex-shrink: 0; }
+  .mrv2-gmodal .bg .bcard .btxt { display: flex; flex-direction: column; gap: 5px; flex: 1; }
+  .mrv2-gmodal .bg .bcard strong { font-size: 16px; font-weight: 700; }
+  .mrv2-gmodal .bg .bcard span { font-size: 14px; color: #5c6b7d; }
+  .mrv2-gmodal .bg h2 { font-size: 22px; font-weight: 700; }
+  .mrv2-gmodal .bg .row-people { display: flex; gap: 12px; }
+  .mrv2-gmodal .bg .row-people .pp { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 84px; }
+  .mrv2-gmodal .bg .row-people img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
+  .mrv2-gmodal .bg .row-people .sq { border-radius: 16px; }
+  .mrv2-gmodal .bg .row-people strong { font-size: 14px; font-weight: 700; }
+  .mrv2-gmodal .bg .plan { border-radius: 20px; overflow: hidden; position: relative; height: 112px; background-size: cover; background-position: center; }
+  .mrv2-gmodal .bg .plan .shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(16, 23, 36, 0.72), rgba(16, 23, 36, 0.08)); }
+  .mrv2-gmodal .bg .plan .ptxt { position: absolute; left: 14px; bottom: 12px; color: #ffffff; }
+  .mrv2-gmodal .bg .plan .ptxt small { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; opacity: 0.85; }
+  .mrv2-gmodal .bg .plan .ptxt strong { font-size: 18px; font-weight: 700; }
+
+  /* Scrim + modal */
+  .mrv2-gmodal .scrim { position: absolute; inset: 0; background: rgba(16, 23, 36, 0.52); z-index: 5; }
+  .mrv2-gmodal .modal { position: absolute; left: 20px; right: 20px; top: 128px; z-index: 6; border-radius: 28px; background: #ffffff; box-shadow: 0 24px 64px rgba(16, 23, 36, 0.35); padding: 0 22px 22px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; overflow: hidden; }
+  .mrv2-gmodal .modal .m-shot { position: relative; width: calc(100% + 44px); margin: 0 -22px 6px; height: 218px; background: linear-gradient(135deg, rgba(20, 184, 166, 0.14), rgba(59, 130, 246, 0.14)); overflow: hidden; display: flex; justify-content: center; }
+  .mrv2-gmodal .modal .m-shot .frame { position: absolute; top: 26px; width: 236px; height: 260px; border-radius: 26px 26px 0 0; background: #ffffff; box-shadow: 0 -2px 0 rgba(255, 255, 255, 0.7), 0 14px 36px rgba(16, 23, 36, 0.22); border: 5px solid #101724; border-bottom: 0; overflow: hidden; }
+  .mrv2-gmodal .modal .m-shot .frame img { width: 100%; display: block; }
+  .mrv2-gmodal .modal .m-shot::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 64px; background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff); }
+  .mrv2-gmodal .modal .m-shot .m-icon { position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); z-index: 1; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; display: grid; place-items: center; font-size: 22px; border: 3px solid #ffffff; box-shadow: 0 6px 16px rgba(16, 23, 36, 0.18); }
+  .mrv2-gmodal .modal .kicker { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #5c6b7d; }
+  .mrv2-gmodal .modal h3 { font-size: 26px; font-weight: 800; color: #101724; line-height: 1.2; }
+  .mrv2-gmodal .modal p { font-size: 16px; color: #5c6b7d; line-height: 1.5; max-width: 290px; }
+  .mrv2-gmodal .modal .dots { display: flex; gap: 7px; margin-top: 8px; }
+  .mrv2-gmodal .modal .dots span { width: 8px; height: 8px; border-radius: 50%; background: #d6dce3; }
+  .mrv2-gmodal .modal .dots span.on { width: 22px; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); }
+  .mrv2-gmodal .modal .btn-grad { margin-top: 12px; width: 100%; height: 50px; border: 0; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #fff; font-size: 16px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
+  .mrv2-gmodal .modal .quiet { border: 0; background: none; color: #5c6b7d; font-size: 15px; font-weight: 600; padding: 6px; }
+
+  .mrv2-gmodal .note { position: absolute; left: 20px; right: 20px; bottom: 18px; z-index: 6; text-align: center; font-size: 13px; color: rgba(255, 255, 255, 0.85); line-height: 1.5; }
+</style>
+
+<div class="mrv2-gmodal" style="background: #ffffff;">
+  <div class="bg" aria-hidden="true">
+    <div class="bg-toolbar">
+      <div class="brand">
+        <img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" />
+        <span>MixedRoutes</span>
+      </div>
+      <div class="actions"><i class="ph ph-user-plus"></i><i class="ph ph-bell"></i><i class="ph ph-gear-six"></i></div>
+    </div>
+    <h1>Evening, Brandon</h1>
+    <div class="bcard">
+      <span class="bicon"><i class="ph-fill ph-bell-ringing"></i></span>
+      <div class="btxt"><strong>Notifications are off</strong><span>Turn them on so you never miss a plan.</span></div>
+    </div>
+    <h2>Recent chats</h2>
+    <div class="row-people">
+      <div class="pp"><img class="sq" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=144&h=144&q=80" alt="" /><strong>Weekend Crew</strong></div>
+      <div class="pp"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=144&h=144&q=80" alt="" /><strong>Sara</strong></div>
+      <div class="pp"><img class="sq" src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=144&h=144&q=80" alt="" /><strong>Hiking Club</strong></div>
+      <div class="pp"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=144&h=144&q=80" alt="" /><strong>Sam</strong></div>
+    </div>
+    <h2>Your plans</h2>
+    <div class="plan" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=760&h=280&q=80');">
+      <span class="shade"></span>
+      <span class="ptxt"><small>FRI · 7:00 PM</small><strong>Dinner at Bavette's</strong></span>
+    </div>
+    <div class="plan" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=760&h=280&q=80');">
+      <span class="shade"></span>
+      <span class="ptxt"><small>SAT · 8:00 AM</small><strong>Sunrise trail hike</strong></span>
+    </div>
+  </div>
+
+  <div class="scrim"></div>
+
+  <div class="modal" role="dialog" aria-label="Welcome to Home">
+    <div class="m-shot">
+      <div class="frame"><img src="home-v2-preview.png" alt="Home screen preview" /></div>
+      <span class="m-icon"><i class="ph-fill ph-house"></i></span>
+    </div>
+    <span class="kicker">1 of 5 · Home</span>
+    <h3>Home is your people</h3>
+    <p>Your plans, invites waiting on you, and what friends are up to, all in one place. Finding things to do lives on Discover.</p>
+    <div class="dots"><span class="on"></span><span></span><span></span><span></span><span></span></div>
+    <button class="btn-grad">Next: Discover <i class="ph ph-arrow-right"></i></button>
+    <button class="quiet">Skip the tour</button>
+  </div>
+
+  <div class="note">Option A: one-time intro, one card per tab. Shows once, tracked like the welcome banner.</div>
+</div>

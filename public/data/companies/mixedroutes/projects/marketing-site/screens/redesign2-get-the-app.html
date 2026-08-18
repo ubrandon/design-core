@@ -1,0 +1,150 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  .rlga {
+    --bh-paper: #f5f2ec;
+    --bh-ink: #1a2332;
+    --bh-ink-soft: rgba(26, 35, 50, 0.68);
+    --bh-ember: #e8880a;
+    --bh-line: rgba(26, 35, 50, 0.14);
+    --bh-grad: linear-gradient(145deg, #14b8a6, #3b82f6);
+    --bh-grad-text: linear-gradient(145deg, #2dd4bf, #60a5fa);
+    --bh-pad-y: 104px;
+    font-family: "Geist", -apple-system, sans-serif;
+    color: var(--bh-ink);
+    background: var(--bh-paper);
+    overflow-x: clip;
+  }
+  .rlga * { box-sizing: border-box; }
+  .rlga a { text-decoration: none; color: inherit; }
+  .rlga-wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+  .rlga-h1, .rlga-h2 { font-weight: 800; letter-spacing: -0.025em; line-height: 1.05; margin: 0; }
+  .rlga-h1 { font-size: 68px; color: #fff; }
+  .rlga-h2 { font-size: 40px; color: var(--bh-ink); }
+  .rlga-grad-word { font-style: normal; background: var(--bh-grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .rlga-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 16px; border-radius: 999px; padding: 15px 32px;
+  }
+  .rlga .rlga-btn-nav { padding: 10px 22px; font-size: 14px; background: #fff; color: var(--bh-ink); }
+
+  .rlga-head { position: relative; background: var(--bh-ink); overflow: hidden; }
+  .rlga-head-art { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.85; }
+  .rlga-nav {
+    position: relative; z-index: 2; display: flex; align-items: center;
+    justify-content: space-between; width: 100%; max-width: 1160px;
+    margin: 0 auto; padding: 24px 28px;
+  }
+  .rlga .rlga-nav-logo { font-weight: 800; font-size: 20px; letter-spacing: -0.02em; color: #fff; }
+  .rlga-nav-links { display: flex; align-items: center; gap: 28px; font-weight: 600; font-size: 15px; color: rgba(255, 255, 255, 0.92); }
+  .rlga-head-content { position: relative; z-index: 1; padding: 88px 28px 110px; max-width: 1160px; margin: 0 auto; text-align: center; }
+  .rlga-eyebrow { margin: 0 0 16px; font-weight: 700; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bh-ember); }
+  .rlga-head-sub { margin: 20px auto 0; max-width: 540px; font-size: 20px; line-height: 1.55; color: rgba(255, 255, 255, 0.78); }
+  .rlga-badges { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+  .rlga-badge {
+    display: flex; align-items: center; gap: 12px; background: #fff; color: var(--bh-ink);
+    border-radius: 14px; padding: 12px 22px; text-align: left;
+  }
+  .rlga-badge i { font-size: 32px; }
+  .rlga-badge-small { display: block; font-size: 11px; font-weight: 600; color: var(--bh-ink-soft); }
+  .rlga-badge-big { display: block; font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
+  .rlga-head-trust { margin: 26px 0 0; font-size: 15px; color: rgba(255, 255, 255, 0.75); }
+
+  .rlga-web { padding: var(--bh-pad-y) 0; text-align: center; }
+  .rlga-web-art { width: 250px; max-width: 60vw; margin: 0 auto 26px; }
+  .rlga-web-art svg { display: block; width: 100%; height: auto; }
+  .rlga-web-sub { max-width: 560px; margin: 18px auto 0; font-size: 18px; line-height: 1.65; color: var(--bh-ink-soft); }
+  .rlga .rlga-btn-grad { margin-top: 32px; gap: 10px; background: var(--bh-grad); color: #fff; }
+  .rlga-web-link {
+    display: block; margin-top: 18px; font-family: ui-monospace, monospace;
+    font-size: 14px; font-weight: 600; color: var(--bh-ink-soft);
+  }
+
+  .rlga-footer { background: var(--bh-ink); padding: 36px 0; }
+  .rlga-footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .rlga-footer-brand { font-weight: 800; font-size: 16px; color: #fff; }
+  .rlga-footer-links { display: flex; gap: 24px; font-size: 14px; font-weight: 600; color: rgba(255, 255, 255, 0.72); }
+</style>
+
+<div class="rlga">
+
+  <section class="rlga-head">
+    <svg class="rlga-head-art" viewBox="0 0 1440 520" preserveAspectRatio="none" fill="none" stroke="#9fc3d8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M60 90 h18 M69 81 v18" opacity="0.6" />
+      <path d="M1360 380 h16 M1368 372 v16" opacity="0.6" />
+      <circle cx="180" cy="420" r="4" opacity="0.75" /><circle cx="260" cy="60" r="4" opacity="0.75" />
+      <circle cx="1180" cy="80" r="4" opacity="0.75" /><circle cx="1290" cy="440" r="4" opacity="0.75" />
+      <path d="M90 260 l50 22" stroke-dasharray="10 12" opacity="0.5" />
+      <path d="M1300 210 l54 -18" stroke-dasharray="10 12" opacity="0.5" />
+      <path d="M120 470 c 16 -12 32 -12 48 0 c 16 12 32 12 48 0" opacity="0.4" />
+      <path d="M1220 280 c 16 -12 32 -12 48 0 c 16 12 32 12 48 0" opacity="0.4" />
+    </svg>
+
+    <header class="rlga-nav">
+      <a href="redesign2-landing-v2-blue-hour-illustrated.html" class="rlga-nav-logo">Mixed<i class="rlga-grad-word">Routes</i></a>
+      <nav class="rlga-nav-links">
+        <a href="redesign2-landing-v2-blue-hour-illustrated.html#rlbhi-how">How it works</a>
+        <a href="redesign2-about.html">About</a>
+        <a href="redesign2-faq.html">FAQ</a>
+        <a href="redesign2-get-the-app.html" class="rlga-btn rlga-btn-nav">Get the app</a>
+      </nav>
+    </header>
+
+    <div class="rlga-head-content">
+      <p class="rlga-eyebrow">Get the app</p>
+      <h1 class="rlga-h1">Get Mixed<i class="rlga-grad-word">Routes.</i></h1>
+      <p class="rlga-head-sub">Free on iOS and Android. Your next plan is two taps away.</p>
+      <div class="rlga-badges">
+        <a href="#" class="rlga-badge">
+          <i class="ph ph-apple-logo"></i>
+          <span><span class="rlga-badge-small">Download on the</span><span class="rlga-badge-big">App Store</span></span>
+        </a>
+        <a href="#" class="rlga-badge">
+          <i class="ph ph-google-play-logo"></i>
+          <span><span class="rlga-badge-small">Get it on</span><span class="rlga-badge-big">Google Play</span></span>
+        </a>
+      </div>
+      <p class="rlga-head-trust">Free · No ads · 5.0 on the Play Store</p>
+    </div>
+  </section>
+
+  <section class="rlga-web">
+    <div class="rlga-wrap">
+      <div class="rlga-web-art" aria-hidden="true">
+        <svg viewBox="0 0 560 330" fill="none" stroke="#4a7fa3" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="152" y="52" width="256" height="172" rx="16" />
+          <path d="M148 224 L102 264 H458 L412 224 Z" />
+          <path d="M250 232 c 5 12 55 12 60 0" opacity="0.6" />
+          <circle cx="204" cy="184" r="8" />
+          <path d="M204 184 C 246 136 288 196 324 122" stroke-dasharray="14 16" opacity="0.65" />
+          <path d="M332 78 c -16 0 -27 11 -27 25 c 0 18 27 39 27 39 c 0 0 27 -21 27 -39 c 0 -14 -11 -25 -27 -25 Z" stroke="#e8880a" />
+          <circle cx="332" cy="104" r="7" stroke="#e8880a" />
+          <path d="M62 80 h22 M73 69 v22" opacity="0.8" stroke="#e8880a" />
+          <circle cx="492" cy="68" r="5" opacity="0.75" />
+          <circle cx="56" cy="200" r="5" opacity="0.75" />
+          <path d="M446 162 c 18 -13 36 -13 54 0 c 18 13 36 13 54 0" opacity="0.45" />
+        </svg>
+      </div>
+      <h2 class="rlga-h2">Prefer a browser? Same app, full size.</h2>
+      <p class="rlga-web-sub">Everything from the app runs on the web too, and friends you invite can see the plan and RSVP from a link without installing anything.</p>
+      <a href="#" class="rlga-btn rlga-btn-grad"><i class="ph ph-sign-in"></i>Log in on the web</a>
+      <div class="rlga-web-link">app.mixedroutes.com</div>
+    </div>
+  </section>
+
+  <footer class="rlga-footer">
+    <div class="rlga-wrap rlga-footer-inner">
+      <span class="rlga-footer-brand">Mixed<i class="rlga-grad-word">Routes</i></span>
+      <nav class="rlga-footer-links">
+        <a href="redesign2-about.html">About</a>
+        <a href="redesign2-faq.html">FAQ</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+</div>

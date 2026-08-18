@@ -1,0 +1,126 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .vbc-scope { --vb-bg: #06080e; --vb-line: rgba(255,255,255,0.08); }
+  .vbc-scope, .vbc-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .vbc-scope::-webkit-scrollbar, .vbc-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .vbc-wrap { background: var(--vb-bg); height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .vbc-body { flex: 1; overflow-y: auto; padding-bottom: 100px; }
+
+  .vbc-header { display: grid; grid-template-columns: 1fr 28px; align-items: center; padding: 22px 20px 6px; }
+  .vbc-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .vbc-sub { color: rgba(255,255,255,0.5); font-size: 0.88rem; font-weight: 700; padding: 0 20px 14px; }
+  .vbc-close { background: transparent; border: 0; color: rgba(255,255,255,0.85); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .vbc-close i { font-size: 22px; }
+
+  .vbc-share { margin: 4px 20px 8px; padding: 11px 12px 11px 14px; border-radius: 16px; background: rgba(32,224,207,0.08); border: 1px solid rgba(32,224,207,0.22); display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 12px; }
+  .vbc-share .sicon { width: 34px; height: 34px; border-radius: 50%; background: rgba(32,224,207,0.16); display: inline-flex; align-items: center; justify-content: center; color: var(--neon-teal); }
+  .vbc-share .sicon i { font-size: 17px; }
+  .vbc-share .stitle { color: #fff; font-size: 0.95rem; font-weight: 850; line-height: 1.1; }
+  .vbc-share .stxt { color: rgba(255,255,255,0.55); font-size: 0.8rem; font-weight: 700; margin-top: 2px; }
+  .vbc-share .scopy { background: rgba(255,255,255,0.1); color: #fff; border: 0; border-radius: 999px; padding: 9px 16px; font-size: 0.85rem; font-weight: 850; display: inline-flex; align-items: center; gap: 6px; }
+
+  .vbc-section { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px 8px; }
+  .vbc-section .slabel { color: rgba(255,255,255,0.62); font-size: 0.72rem; font-weight: 850; letter-spacing: 0.1em; text-transform: uppercase; }
+  .vbc-section .scount { color: rgba(255,255,255,0.4); font-size: 0.72rem; font-weight: 850; }
+
+  .vbc-row { display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 13px; padding: 9px 20px; }
+  .vbc-row .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; background: var(--neon-teal); color: #061016; font-weight: 900; position: relative; }
+  .vbc-row .av.muted { background: #4a5462; color: #fff; }
+  .vbc-row .av img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+  .vbc-row .av .dot { position: absolute; bottom: -2px; right: -2px; width: 18px; height: 18px; border-radius: 50%; background: #2dd073; border: 2px solid var(--vb-bg); display: inline-flex; align-items: center; justify-content: center; }
+  .vbc-row .av .dot i { color: #061016; font-size: 11px; }
+  .vbc-name { color: #fff; font-size: 1.02rem; font-weight: 850; line-height: 1.15; }
+  .vbc-status { color: rgba(255,255,255,0.55); font-size: 0.86rem; font-weight: 700; margin-top: 2px; }
+  .vbc-status .host { color: var(--neon-amber, #ffd25a); font-weight: 850; }
+  .vbc-status .going { color: rgba(255,255,255,0.55); font-weight: 700; }
+  .vbc-remind { background: rgba(255,255,255,0.07); border: 0; color: rgba(255,255,255,0.78); border-radius: 999px; padding: 7px 13px; font-size: 0.78rem; font-weight: 850; }
+  .vbc-edit { background: transparent; border: 0; color: rgba(255,255,255,0.55); padding: 0; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; }
+  .vbc-edit i { font-size: 18px; }
+
+  .vbc-bar { position: absolute; left: 0; right: 0; bottom: 0; padding: 24px 20px 22px; background: linear-gradient(180deg, rgba(6,8,14,0), #06080e 42%); }
+  .vbc-bar .primary { width: 100%; min-height: 50px; border: 0; border-radius: 999px; color: #fff; font-size: 0.98rem; font-weight: 850; background: linear-gradient(135deg, #24b8aa, #4c87cf); display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .vbc-bar .primary i { font-size: 18px; }
+</style>
+
+<div class="mr-scope vbc-scope">
+  <div class="vbc-wrap">
+    <div class="vbc-body">
+      <header class="vbc-header">
+        <div class="vbc-title">Guests</div>
+        <button type="button" class="vbc-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      </header>
+      <div class="vbc-sub">3 going · 2 invited</div>
+
+      <div class="vbc-share">
+        <span class="sicon"><i class="ph ph-link-simple"></i></span>
+        <div>
+          <div class="stitle">Share link</div>
+          <div class="stxt">Anyone with the link can join</div>
+        </div>
+        <button type="button" class="scopy">Share</button>
+      </div>
+
+      <div class="vbc-section">
+        <span class="slabel">Going</span>
+        <span class="scount">3</span>
+      </div>
+
+      <div class="vbc-row">
+        <span class="av"><span>B</span><span class="dot"><i class="ph ph-check"></i></span></span>
+        <div>
+          <div class="vbc-name">Brandon Unglaub</div>
+          <div class="vbc-status"><span class="going">Going</span> · <span class="host">Host</span></div>
+        </div>
+        <button type="button" class="vbc-edit"><i class="ph ph-pencil-simple"></i></button>
+      </div>
+
+      <div class="vbc-row">
+        <span class="av"><img src="https://i.pravatar.cc/96?img=12" alt="" loading="lazy" /><span class="dot"><i class="ph ph-check"></i></span></span>
+        <div>
+          <div class="vbc-name">Nova Finch</div>
+          <div class="vbc-status"><span class="going">Going</span></div>
+        </div>
+        <button type="button" class="vbc-edit"><i class="ph ph-pencil-simple"></i></button>
+      </div>
+
+      <div class="vbc-row">
+        <span class="av"><img src="https://i.pravatar.cc/96?img=49" alt="" loading="lazy" /><span class="dot"><i class="ph ph-check"></i></span></span>
+        <div>
+          <div class="vbc-name">Lila Quill</div>
+          <div class="vbc-status"><span class="going">Going</span></div>
+        </div>
+        <button type="button" class="vbc-edit"><i class="ph ph-pencil-simple"></i></button>
+      </div>
+
+      <div class="vbc-section">
+        <span class="slabel">Invited</span>
+        <span class="scount">2</span>
+      </div>
+
+      <div class="vbc-row">
+        <img class="av" src="https://i.pravatar.cc/96?img=33" alt="" loading="lazy" />
+        <div>
+          <div class="vbc-name">Soren Vale</div>
+          <div class="vbc-status">Hasn't replied yet</div>
+        </div>
+        <button type="button" class="vbc-remind">Remind</button>
+      </div>
+
+      <div class="vbc-row">
+        <span class="av muted">PS</span>
+        <div>
+          <div class="vbc-name">Piper Sol</div>
+          <div class="vbc-status">Hasn't replied yet</div>
+        </div>
+        <button type="button" class="vbc-remind">Remind</button>
+      </div>
+    </div>
+
+    <div class="vbc-bar">
+      <button type="button" class="primary"><i class="ph-fill ph-user-plus"></i>Invite guests</button>
+    </div>
+  </div>
+</div>

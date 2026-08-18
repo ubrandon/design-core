@@ -1,0 +1,295 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+  .gta-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px 6px;
+  }
+  .gta-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .gta-wordmark {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #1a2332;
+  }
+  .gta-header-actions {
+    display: flex;
+    gap: 6px;
+  }
+  .gta-icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(118, 118, 128, 0.12);
+    color: #1a2332;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gta-icon-btn i {
+    font-size: 20px;
+  }
+  .gta-greeting {
+    padding: 18px 16px 10px;
+    font-size: 2.35rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    color: #1a2332;
+  }
+  .gta-greeting-tail {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #5c6b7d;
+    margin-top: 10px;
+  }
+  .gta-gradient-text {
+    background: linear-gradient(145deg, #14b8a6, #3b82f6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .gta-banner {
+    margin: 14px 16px 20px;
+    border-radius: 20px;
+    padding: 20px 18px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.12), rgba(59, 130, 246, 0.06)), #ffffff;
+    border: 1px solid rgba(20, 184, 166, 0.35);
+    box-shadow: 0 8px 24px rgba(26, 35, 50, 0.08);
+  }
+  .gta-banner-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(20, 184, 166, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    flex-shrink: 0;
+  }
+  .gta-banner-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #1a2332;
+    line-height: 1.2;
+  }
+  .gta-banner-desc {
+    font-size: 0.95rem;
+    color: #5c6b7d;
+    margin-top: 5px;
+    line-height: 1.35;
+  }
+  .gta-banner-cta {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #0d9a8a;
+  }
+  .gta-row-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #1a2332;
+    padding: 0 16px 14px;
+  }
+  .gta-carousel {
+    display: flex;
+    gap: 16px;
+    padding: 0 16px;
+    overflow: hidden;
+  }
+  .gta-card {
+    flex: 0 0 auto;
+    width: 195px;
+    border-radius: 22px;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(26, 35, 50, 0.06);
+  }
+  .gta-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+  }
+  .gta-card-body {
+    padding: 14px 16px 18px;
+  }
+  .gta-card-date {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #848994;
+    margin-bottom: 8px;
+  }
+  .gta-card-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1.25;
+    color: #1a2332;
+  }
+  .gta-scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 35, 50, 0.45);
+    z-index: 10;
+  }
+  .gta-sheet {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 11;
+    background: #ffffff;
+    border-radius: 28px 28px 0 0;
+    padding: 10px 20px 24px;
+    box-shadow: 0 -12px 40px rgba(26, 35, 50, 0.25);
+  }
+  .gta-grabber {
+    width: 40px;
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(118, 118, 128, 0.3);
+    margin: 0 auto 14px;
+  }
+  .gta-sheet-icon {
+    display: flex;
+    justify-content: center;
+    padding: 14px 0 6px;
+  }
+  .gta-sheet-icon i {
+    font-size: 110px;
+    background: linear-gradient(145deg, #14b8a6, #3b82f6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .gta-sheet-title {
+    margin: 10px 0 0;
+    font-size: 1.6rem;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.2;
+    color: #1a2332;
+  }
+  .gta-sheet-body {
+    margin: 10px 0 0;
+    font-size: 1rem;
+    color: #5c6b7d;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .gta-sheet-footer {
+    display: flex;
+    gap: 12px;
+    margin-top: 22px;
+  }
+  .gta-btn-notnow {
+    flex: 1;
+    height: 52px;
+    border-radius: 999px;
+    background: rgba(118, 118, 128, 0.12);
+    color: #1a2332;
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gta-btn-download {
+    flex: 2;
+    height: 52px;
+    border-radius: 999px;
+    background: linear-gradient(145deg, #14b8a6, #3b82f6);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 10px;
+  }
+</style>
+
+<div style="height: 844px; overflow: hidden; position: relative; background: #f2f2f7; font-family: 'Geist', sans-serif; color: #1a2332;">
+
+  <header class="gta-header">
+    <a class="gta-logo" href="#" aria-label="MixedRoutes home">
+      <img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" width="36" height="36" alt="" loading="lazy" />
+      <span class="gta-wordmark">MixedRoutes</span>
+    </a>
+    <div class="gta-header-actions">
+      <button type="button" class="gta-icon-btn" aria-label="Find people">
+        <i class="ph ph-user-plus" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="gta-icon-btn" aria-label="Notifications">
+        <i class="ph ph-bell" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="gta-icon-btn" aria-label="Settings">
+        <i class="ph ph-gear-six" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="gta-greeting">
+    <span class="gta-gradient-text">Evening</span>, Brandon
+    <span class="gta-greeting-tail">Find something to do tonight &#127769;</span>
+  </div>
+
+  <div class="gta-banner">
+    <div class="gta-banner-icon"><span aria-hidden="true">&#128075;</span></div>
+    <div>
+      <div class="gta-banner-title">Welcome to MixedRoutes</div>
+      <div class="gta-banner-desc">Let's get you set up in a few quick steps.</div>
+      <span class="gta-banner-cta">Get started</span>
+    </div>
+  </div>
+
+  <div class="gta-row-title">&#127881; Events nearby</div>
+  <div class="gta-carousel">
+    <div class="gta-card">
+      <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&h=400&q=80" alt="" loading="lazy" />
+      <div class="gta-card-body">
+        <div class="gta-card-date">Tomorrow &bull; 5:30 PM</div>
+        <div class="gta-card-title">Seth and Sara</div>
+      </div>
+    </div>
+    <div class="gta-card">
+      <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&h=400&q=80" alt="" loading="lazy" />
+      <div class="gta-card-body">
+        <div class="gta-card-date">Sat, Jul 4th &bull; 12 PM</div>
+        <div class="gta-card-title">Independence Day at The Funkatorium</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gta-scrim"></div>
+
+  <div class="gta-sheet">
+    <div class="gta-grabber"></div>
+    <div class="gta-sheet-icon"><i class="ph-fill ph-apple-logo" aria-hidden="true"></i></div>
+    <h2 class="gta-sheet-title">Get the official app.</h2>
+    <p class="gta-sheet-body">Our app keeps you notified so you don&rsquo;t miss any updates.</p>
+    <div class="gta-sheet-footer">
+      <div class="gta-btn-notnow">Not now</div>
+      <div class="gta-btn-download">Download from App Store</div>
+    </div>
+  </div>
+</div>

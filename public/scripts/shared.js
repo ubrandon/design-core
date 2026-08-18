@@ -2,6 +2,113 @@ function getParam(name) {
   return new URLSearchParams(window.location.search).get(name);
 }
 
+/* ── Companies ──
+   One repo holds every company. Each company's projects, design system,
+   captures, and users live under public/data/companies/<slug>/. The active
+   company comes from ?company= in the URL (share links) or the browser's
+   remembered choice, and every data path is built through dataPath(). */
+const COMPANY_KEY = "design-core:company";
+const COMPANY_SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+function readStoredCompany() {
+  try { return (localStorage.getItem(COMPANY_KEY) || "").trim(); } catch { return ""; }
+}
+
+function rememberCompany(slug) {
+  try {
+    if (slug) localStorage.setItem(COMPANY_KEY, slug);
+    else localStorage.removeItem(COMPANY_KEY);
+  } catch {}
+}
+
+/** Slug of the company this page is working in ("" when none is chosen yet). */
+function activeCompany() {
+  let fromUrl = "";
+  try { fromUrl = (new URLSearchParams(window.location.search).get("company") || "").trim(); } catch {}
+  if (fromUrl && COMPANY_SLUG_RE.test(fromUrl)) {
+    if (fromUrl !== readStoredCompany()) rememberCompany(fromUrl);
+    return fromUrl;
+  }
+  const stored = readStoredCompany();
+  return COMPANY_SLUG_RE.test(stored) ? stored : "";
+}
+
+/** Browser path prefix for the active company's data folder, e.g. "data/companies/acme/". */
+function dataRoot(company) {
+  const slug = company || activeCompany();
+  return "data/companies/" + encodeURIComponent(slug) + "/";
+}
+
+/** Browser path to a file inside the active company's data folder. */
+function dataPath(rel, company) {
+  return dataRoot(company) + String(rel || "").replace(/^\/+/, "");
+}
+
+/** Adds the active company to a same-tool URL (index.html, project.html?id=x, /api/...). */
+function withCompany(url, company) {
+  const slug = company || activeCompany();
+  if (!slug) return url;
+  const str = String(url || "");
+  if (/[?&]company=/.test(str)) return str;
+  const hashAt = str.indexOf("#");
+  const base = hashAt >= 0 ? str.slice(0, hashAt) : str;
+  const hash = hashAt >= 0 ? str.slice(hashAt) : "";
+  return base + (base.includes("?") ? "&" : "?") + "company=" + encodeURIComponent(slug) + hash;
+}
+
+/** Local dev API URL for the active company. */
+function apiUrl(path) {
+  return withCompany(path);
+}
+
+let _companiesCache = null;
+/** Committed list of companies: [{ slug, name }]. */
+function fetchCompanies() {
+  if (_companiesCache) return Promise.resolve(_companiesCache);
+  return fetchJSON("data/companies/index.json")
+    .then((d) => {
+      const list = (Array.isArray(d.companies) ? d.companies : [])
+        .filter((c) => c && typeof c.slug === "string" && COMPANY_SLUG_RE.test(c.slug))
+        .map((c) => ({ slug: c.slug, name: String(c.name || c.slug) }));
+      _companiesCache = list;
+      return list;
+    })
+    .catch(() => []);
+}
+
+/** Creates a new company folder via the local dev server, then resolves { slug, name }. */
+function createCompany(name, slugOverride) {
+  const n = String(name || "").trim();
+  const slug = String(slugOverride || slugifyDataId(n, "")).trim();
+  if (!n) return Promise.reject(new Error("Company name is required."));
+  if (!COMPANY_SLUG_RE.test(slug)) return Promise.reject(new Error("Could not make an id from that name. Use letters and numbers."));
+  return fetch("/api/company-admin", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "create-company", slug, name: n }),
+  })
+    .then((r) => r.json().then((j) => (r.ok ? j : Promise.reject(new Error(j.error || "Could not create company")))))
+    .then((j) => { _companiesCache = null; return j; });
+}
+
+/** Switches the active company and reloads at the projects page. */
+function switchCompany(slug) {
+  if (!COMPANY_SLUG_RE.test(String(slug || ""))) return;
+  rememberCompany(slug);
+  window.location.href = "index.html?company=" + encodeURIComponent(slug);
+}
+
+/** Makes sure a valid company is active. Resolves to the slug, or "" when the user still has to pick one. */
+function ensureCompany() {
+  return fetchCompanies().then((list) => {
+    const current = activeCompany();
+    if (current && (!list.length || list.some((c) => c.slug === current))) return current;
+    if (list.length === 1) { rememberCompany(list[0].slug); return list[0].slug; }
+    if (current) rememberCompany("");
+    return "";
+  });
+}
+
 function showToast(message) {
   let toast = document.getElementById("toast");
   if (!toast) {
@@ -138,9 +245,9 @@ function projectHubUrl(projectId) {
   try {
     const u = new URL("project.html", base);
     u.searchParams.set("id", projectId);
-    return u.href;
+    return withCompany(u.href);
   } catch {
-    return `${base.replace(/\/?$/, "/")}project.html?id=${encodeURIComponent(projectId)}`;
+    return withCompany(`${base.replace(/\/?$/, "/")}project.html?id=${encodeURIComponent(projectId)}`);
   }
 }
 
@@ -195,7 +302,7 @@ function prototypeExternalTestUrl(meta) {
 
 /** For home list cards: screen/proto counts and dates from project files. Counts are null if the file failed to load. */
 function fetchProjectListDetails(projectId) {
-  const b = "data/projects/" + encodeURIComponent(projectId) + "/";
+  const b = dataPath("projects/" + encodeURIComponent(projectId) + "/");
   return Promise.all([
     fetchJSON(b + "project.json").catch(() => ({})),
     fetchJSON(b + "canvas.json")
@@ -250,7 +357,7 @@ function parseDateMs(iso) {
  */
 function prototypeUrl(projectId, protoId, hashFragment) {
   const base = shareBaseUrl();
-  const q = `prototype.html?project=${encodeURIComponent(projectId)}&proto=${encodeURIComponent(protoId)}&view=embed`;
+  const q = withCompany(`prototype.html?project=${encodeURIComponent(projectId)}&proto=${encodeURIComponent(protoId)}&view=embed`);
   let fragment = "";
   if (hashFragment != null && hashFragment !== "") {
     const raw = String(hashFragment).trim();
@@ -301,7 +408,7 @@ function putDataJson(relPath, obj) {
 }
 
 function postProjectAdmin(payload) {
-  return fetch("/api/project-admin", {
+  return fetch(apiUrl("/api/project-admin"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -506,7 +613,7 @@ function setupAttributionPicker(opts) {
 }
 
 function syncProjectIndexEntry(projectId, patch) {
-  return fetchJSON("data/projects/index.json").then((idx) => {
+  return fetchJSON(dataPath("projects/index.json")).then((idx) => {
     const projects = Array.isArray(idx.projects) ? idx.projects.slice() : [];
     const i = projects.findIndex((p) => p.id === projectId);
     if (i < 0) return Promise.resolve();
@@ -515,7 +622,7 @@ function syncProjectIndexEntry(projectId, patch) {
       if (patch[k] === null) delete next[k];
     });
     projects[i] = next;
-    return putDataJson("data/projects/index.json", { projects });
+    return putDataJson(dataPath("projects/index.json"), { projects });
   });
 }
 
@@ -564,7 +671,7 @@ function projectHue(id) {
 /* ── Current user & per-user prefs ──
    Favorites, recents, theme, and filters are saved per user. Which user you are
    is remembered per browser (localStorage); their prefs live in a committed
-   file (public/data/users/<slug>.json) when the dev server is running, with a
+   file (public/data/companies/<company>/users/<slug>.json) when the dev server is running, with a
    localStorage mirror for instant, offline reads. */
 const CURRENT_USER_KEY = "design-core:current-user";
 const PREFS_MIRROR_PREFIX = "design-core:prefs:v2:";
@@ -641,13 +748,8 @@ function normalizePrefs(p) {
 }
 
 function prefsMirrorKey(slug) {
-  // Browser storage is shared by every app served from the same origin. Local
-  // Design Core repos normally all run at localhost:3000, so user name alone
-  // is not enough to isolate favorites and recents. site.json supplies the
-  // deployed repo URL, which gives every company checkout a stable scope.
-  const base = _publicSiteBaseFromConfig || shareBaseUrl();
-  const scope = encodeURIComponent(String(base || "").replace(/\/+$/, "").toLowerCase());
-  return PREFS_MIRROR_PREFIX + scope + ":" + (slug || GUEST_SLUG);
+  // Favorites and recents are per company, so the mirror is scoped by company slug.
+  return PREFS_MIRROR_PREFIX + activeCompany() + ":" + (slug || GUEST_SLUG);
 }
 
 function readPrefsMirror(slug) {
@@ -732,14 +834,14 @@ function flushPendingPrefsSave() {
 
 function fetchUserPrefs(slug) {
   if (!slug) return Promise.resolve(null);
-  return fetch("/api/user-prefs?user=" + encodeURIComponent(slug))
+  return fetch(apiUrl("/api/user-prefs?user=" + encodeURIComponent(slug)))
     .then((r) => { if (!r.ok) throw new Error("unavailable"); return r.json(); })
     .catch(() => null);
 }
 
 function saveUserPrefsToServer(slug, prefs) {
   if (!slug) return Promise.resolve(false);
-  return fetch("/api/user-prefs", {
+  return fetch(apiUrl("/api/user-prefs"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ user: slug, prefs }),
@@ -897,7 +999,7 @@ function setUserTheme(theme) {
 
 /** Committed list of users for the picker; works on the static site too. */
 function fetchUsersIndex() {
-  return fetchJSON("data/users/index.json")
+  return fetchJSON(dataPath("users/index.json"))
     .then((d) => (Array.isArray(d.users) ? d.users : []))
     .catch(() => []);
 }
@@ -959,7 +1061,7 @@ try {
 
 /** One request that returns counts/dates for every project (local dev server only). */
 function fetchProjectsSummary() {
-  return fetch("/api/projects-summary").then((r) => {
+  return fetch(apiUrl("/api/projects-summary")).then((r) => {
     if (!r.ok) throw new Error("unavailable");
     return r.json();
   });

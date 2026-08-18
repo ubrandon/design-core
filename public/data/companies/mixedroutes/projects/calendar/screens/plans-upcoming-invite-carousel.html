@@ -1,0 +1,152 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .calcr-scope, .calcr-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .calcr-scope::-webkit-scrollbar, .calcr-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .calcr-scope { min-height: 844px; background: #ffffff; color: #101724; font-family: "Geist", sans-serif; }
+  .calcr-scope button { font-family: inherit; }
+  .calcr-scope .screen { min-height: 844px; display: flex; flex-direction: column; background: #ffffff; }
+
+  .calcr-scope .top { height: 56px; flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; }
+  .calcr-scope .title { color: #1a2332; font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
+  .calcr-scope .top-actions { display: flex; align-items: center; gap: 18px; }
+  .calcr-scope .top-action { position: relative; width: 24px; height: 24px; display: grid; place-items: center; color: #1a2332; font-size: 24px; line-height: 1; }
+  .calcr-scope .top-badge { position: absolute; top: -9px; right: -10px; min-width: 22px; height: 22px; padding: 0 4px; display: grid; place-items: center; border: 2px solid #ffffff; border-radius: 999px; background: #0ca678; color: #ffffff; font-size: 12px; font-weight: 700; }
+
+  .calcr-scope .filters { display: flex; flex: 0 0 auto; gap: 8px; overflow-x: auto; padding: 4px 16px 13px; }
+  .calcr-scope .filters .mr-chip { flex: 0 0 auto; white-space: nowrap; }
+  .calcr-scope .filters .mr-chip i { font-size: 15px; }
+
+  .calcr-scope .invite-section { flex: 0 0 auto; }
+  .calcr-scope .invite-head { padding: 2px 16px 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .calcr-scope .invite-head h2 { margin: 0; color: #1a2332; font-size: 19px; font-weight: 800; letter-spacing: -0.01em; }
+  .calcr-scope .invite-head span { display: inline-flex; align-items: center; gap: 3px; color: #5c6b7d; font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; cursor: pointer; }
+  .calcr-scope .invite-head span i { font-size: 13px; }
+  .calcr-scope .invite-rail { display: flex; align-items: stretch; gap: 12px; overflow-x: auto; padding: 2px 16px 18px; scroll-padding-inline: 16px; scroll-snap-type: x proximity; }
+  .calcr-scope .invite-card { width: 298px; flex: 0 0 auto; padding: 14px; display: flex; flex-direction: column; gap: 12px; border: 1px solid rgba(16, 23, 36, 0.08); border-radius: 20px; background: #ffffff; box-shadow: 0 2px 6px rgba(16, 24, 40, 0.05), 0 10px 24px rgba(16, 24, 40, 0.08); scroll-snap-align: start; }
+  .calcr-scope .invite-from { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .calcr-scope .invite-from img { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 50%; object-fit: cover; }
+  .calcr-scope .invite-copy { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .calcr-scope .invite-copy strong, .calcr-scope .invite-copy span { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .calcr-scope .invite-copy span { color: #5c6b7d; font-size: 12px; }
+  .calcr-scope .invite-copy strong { color: #101724; font-size: 15px; font-weight: 800; line-height: 1.25; }
+  .calcr-scope .invite-when { display: flex; align-items: center; gap: 12px; color: #5c6b7d; font-size: 12.5px; font-weight: 600; }
+  .calcr-scope .invite-when > span { min-width: 0; display: inline-flex; align-items: center; gap: 5px; }
+  .calcr-scope .invite-when > span span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .calcr-scope .invite-when i { flex: 0 0 auto; font-size: 14px; }
+  .calcr-scope .invite-actions { display: grid; grid-template-columns: 1fr 1.4fr; gap: 8px; }
+  .calcr-scope .invite-yes, .calcr-scope .invite-no { height: 36px; padding: 0 12px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; border-radius: 999px; font-size: 13px; font-weight: 800; cursor: pointer; }
+  .calcr-scope .invite-yes { border: 0; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; }
+  .calcr-scope .invite-no { border: 1.5px solid rgba(32, 36, 42, 0.16); background: #ffffff; color: #3c4858; }
+
+  .calcr-scope .section-title { flex: 0 0 auto; padding: 8px 16px 10px; color: #1a2332; font-size: 19px; font-weight: 800; letter-spacing: -0.01em; }
+  .calcr-scope .plan-list { flex: 0 0 auto; padding: 0 16px; }
+  .calcr-scope .plan-rows { display: flex; flex-direction: column; gap: 10px; }
+  .calcr-scope .plan-row { min-height: 112px; position: relative; overflow: hidden; display: grid; grid-template-columns: 124px 1fr; border-radius: 20px; color: #ffffff; background: #1d232b; isolation: isolate; box-shadow: 0 5px 16px rgba(16, 23, 36, 0.12); }
+  .calcr-scope .plan-row .ambient { position: absolute; inset: 0; z-index: 0; background: center / cover no-repeat; filter: blur(70px) saturate(4) brightness(1.35); transform: scale(1.35); opacity: 1; }
+  .calcr-scope .plan-row .shade { position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, rgba(8, 10, 18, 0), rgba(8, 10, 18, 0.18)); }
+  .calcr-scope .plan-media { min-height: 112px; position: relative; z-index: 1; background: center / cover no-repeat; -webkit-mask-image: linear-gradient(to right, #000 45%, transparent 100%); mask-image: linear-gradient(to right, #000 45%, transparent 100%); }
+  .calcr-scope .emoji-badge { position: absolute; top: 9px; left: 9px; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: rgba(255, 255, 255, 0.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 1px 5px rgba(0, 0, 0, 0.22); font-size: 16px; }
+  .calcr-scope .plan-copy { min-width: 0; position: relative; z-index: 1; padding: 15px 15px 14px 0; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+  .calcr-scope .plan-time { color: #ffffff; font-size: 11px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+  .calcr-scope .plan-title { overflow: hidden; color: #ffffff; font-size: 17px; font-weight: 800; line-height: 1.25; white-space: nowrap; text-overflow: ellipsis; }
+  .calcr-scope .plan-meta { min-width: 0; margin-top: 6px; display: flex; align-items: center; justify-content: space-between; gap: 8px; color: #ffffff; font-size: 12px; }
+  .calcr-scope .loc { min-width: 0; display: flex; align-items: center; gap: 4px; }
+  .calcr-scope .loc i { flex: 0 0 auto; font-size: 14px; }
+  .calcr-scope .loc span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .calcr-scope .avatar { width: 25px; height: 25px; flex: 0 0 auto; border: 2px solid rgba(255, 255, 255, 0.72); border-radius: 50%; object-fit: cover; }
+  .calcr-scope .declined { width: 100%; margin: 10px 0 2px; padding: 9px 12px; display: flex; align-items: center; gap: 8px; border: 1px dashed rgba(16, 23, 36, 0.18); border-radius: 12px; background: transparent; color: #7a8594; font-size: 12px; font-weight: 700; text-align: left; }
+  .calcr-scope .declined span { flex: 1; }
+
+  .calcr-scope .page-fill { flex: 1 1 auto; min-height: 28px; }
+  .calcr-scope .tab-bar { height: 67px; flex: 0 0 auto; display: flex; align-items: flex-start; padding-top: 9px; background: #ffffff; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12); }
+  .calcr-scope .tab { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; color: #3b4551; }
+  .calcr-scope .tab i { font-size: 24px; line-height: 1; }
+  .calcr-scope .tab.discover i { font-size: 26px; }
+  .calcr-scope .tab.selected { color: #1a2332; }
+  .calcr-scope .tab img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+</style>
+
+<div class="calcr-scope mr-scope mr-scope--light ds-no-scrollbar">
+  <div class="screen">
+    <header class="top">
+      <div class="title">Plans</div>
+      <div class="top-actions" aria-label="Plans actions">
+        <span class="top-action" aria-label="Find people"><i class="ph ph-user-plus" aria-hidden="true"></i></span>
+        <span class="top-action" aria-label="Notifications, 2 unread"><i class="ph ph-bell" aria-hidden="true"></i><span class="top-badge">2</span></span>
+        <span class="top-action" aria-label="Settings"><i class="ph ph-gear-six" aria-hidden="true"></i></span>
+      </div>
+    </header>
+
+    <div class="filters ds-scroll-x">
+      <button type="button" class="mr-chip mr-chip-active"><i class="ph-fill ph-calendar-blank"></i> Upcoming</button>
+      <button type="button" class="mr-chip"><i class="ph ph-bookmark-simple"></i> Ideas</button>
+      <button type="button" class="mr-chip"><i class="ph ph-clock"></i> Past</button>
+    </div>
+
+    <section class="invite-section">
+      <div class="invite-head"><h2>2 invites waiting</h2><span>View all <i class="ph ph-caret-right" aria-hidden="true"></i></span></div>
+      <div class="invite-rail ds-scroll-x">
+        <article class="invite-card">
+          <div class="invite-from">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+            <div class="invite-copy"><span>Sam invited you · 2h ago</span><strong>Hike at Craggy Gardens 🥾</strong></div>
+          </div>
+          <div class="invite-when">
+            <span><i class="ph ph-calendar-blank" aria-hidden="true"></i><span>Sat · 9:00 AM</span></span>
+            <span><i class="ph ph-map-pin" aria-hidden="true"></i><span>Blue Ridge Pkwy</span></span>
+          </div>
+          <div class="invite-actions"><button class="invite-no">Can't</button><button class="invite-yes"><i class="ph ph-check"></i> Going</button></div>
+        </article>
+        <article class="invite-card">
+          <div class="invite-from">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+            <div class="invite-copy"><span>Maya invited you · Yesterday</span><strong>Pizza night 🍕</strong></div>
+          </div>
+          <div class="invite-when">
+            <span><i class="ph ph-calendar-blank" aria-hidden="true"></i><span>Fri · 6:30 PM</span></span>
+            <span><i class="ph ph-map-pin" aria-hidden="true"></i><span>West Asheville</span></span>
+          </div>
+          <div class="invite-actions"><button class="invite-no">Can't</button><button class="invite-yes"><i class="ph ph-check"></i> Going</button></div>
+        </article>
+      </div>
+    </section>
+
+    <div class="section-title">Today</div>
+    <div class="plan-list">
+      <div class="plan-rows">
+        <article class="plan-row">
+          <div class="ambient" style="background-image:url('https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=320&h=320&q=80');"></div><div class="shade"></div>
+          <div class="plan-media" style="background-image:url('https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=280&h=280&q=80');"><span class="emoji-badge">🥾</span></div>
+          <div class="plan-copy"><div class="plan-time">Today · 2 PM</div><div class="plan-title">Sunset Trail Hike</div><div class="plan-meta"><span class="loc"><i class="ph-fill ph-map-pin"></i><span>Red Rock Canyon</span></span><img class="avatar" src="https://i.pravatar.cc/48?img=12" alt="" /></div></div>
+        </article>
+        <article class="plan-row">
+          <div class="ambient" style="background-image:url('https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?auto=format&fit=crop&w=320&h=320&q=80');"></div><div class="shade"></div>
+          <div class="plan-media" style="background-image:url('https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?auto=format&fit=crop&w=280&h=280&q=80');"><span class="emoji-badge">🏡</span></div>
+          <div class="plan-copy"><div class="plan-time">Fri, May 29th to Today</div><div class="plan-title">Family Weekend Away</div><div class="plan-meta"><span class="loc"><i class="ph-fill ph-map-pin"></i><span>Lakeside Retreat</span></span><img class="avatar" src="https://i.pravatar.cc/48?img=33" alt="" /></div></div>
+        </article>
+      </div>
+      <button type="button" class="declined"><i class="ph ph-eye-slash"></i><span>1 declined</span><i class="ph ph-caret-down"></i></button>
+    </div>
+
+    <div class="section-title">Next Week</div>
+    <div class="plan-list">
+      <article class="plan-row">
+        <div class="ambient" style="background-image:url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=320&h=320&q=80');"></div><div class="shade"></div>
+        <div class="plan-media" style="background-image:url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=280&h=280&q=80');"><span class="emoji-badge">🎶</span></div>
+        <div class="plan-copy"><div class="plan-time">Thu, Jun 4th · 7 PM</div><div class="plan-title">Live Music Night</div><div class="plan-meta"><span class="loc"><i class="ph-fill ph-map-pin"></i><span>Savannah Theatre</span></span><img class="avatar" src="https://i.pravatar.cc/48?img=15" alt="" /></div></div>
+      </article>
+    </div>
+
+    <div class="page-fill"></div>
+    <nav class="tab-bar" aria-label="Primary navigation">
+      <button class="tab" aria-label="Home"><i class="ph ph-house"></i></button>
+      <button class="tab discover" aria-label="Discover"><i class="ph ph-compass"></i></button>
+      <button class="tab" aria-label="You"><img src="https://i.pravatar.cc/72?img=11" alt="" /></button>
+      <button class="tab selected" aria-label="Plans" aria-current="page"><i class="ph-fill ph-calendar-blank"></i></button>
+      <button class="tab" aria-label="Chat"><i class="ph ph-chat-teardrop-text"></i></button>
+    </nav>
+  </div>
+</div>

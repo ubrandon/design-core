@@ -1,0 +1,182 @@
+{
+  "screens": [
+    {
+      "file": "plan-detail-friend-vacation.html",
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "name": "plan-detail-friends"
+    },
+    {
+      "file": "plan-detail-friend-vacation-group.html",
+      "x": 416,
+      "y": 0,
+      "width": 390,
+      "name": "plan-detail-group"
+    },
+    {
+      "file": "plan-detail-friend-vacation-attendees-a.html",
+      "x": 928,
+      "y": 1952,
+      "width": 390
+    },
+    {
+      "file": "plan-detail-friend-vacation-attendees-b.html",
+      "x": 928,
+      "y": 2528,
+      "width": 390
+    },
+    {
+      "file": "plan-detail-friend-vacation-attendees-d.html",
+      "x": 1344,
+      "y": 1952,
+      "width": 390,
+      "name": "plan-detail-attendees-final"
+    },
+    {
+      "file": "plan-detail-friend-vacation-attendees-h.html",
+      "x": 1344,
+      "y": 2368,
+      "width": 390,
+      "name": "plan-detail-attendees-rsvp-states"
+    },
+    {
+      "file": "plan-detail-friend-vacation-attendees-c.html",
+      "x": 512,
+      "y": 1952,
+      "width": 390
+    },
+    {
+      "file": "plan-detail-friend-vacation-cards-restyle.html",
+      "x": 0,
+      "y": 1952,
+      "width": 390
+    },
+    {
+      "file": "plan-detail-friend-vacation-cost.html",
+      "x": 0,
+      "y": 3712,
+      "width": 390
+    },
+    {
+      "file": "plan-detail-friend-vacation-itinerary.html",
+      "x": 448,
+      "y": 3712,
+      "width": 390
+    },
+    {
+      "file": "plan-detail-friend-vacation-checklist.html",
+      "x": 896,
+      "y": 3712,
+      "width": 390
+    },
+    {
+      "file": "plan-detail-friend-vacation-attendees-d-copy.html",
+      "x": 1888,
+      "y": 1952,
+      "width": 390,
+      "name": "plan-detail-attendees-final-going"
+    },
+    {
+      "file": "plan-detail-friend-vacation-attendees-noreply.html",
+      "x": 1888,
+      "y": 2656,
+      "width": 390,
+      "name": "plan-detail-attendees-final-noreply"
+    },
+    {
+      "file": "plan-detail-friend-vacation-attendees-notgoing.html",
+      "x": 1888,
+      "y": 2304,
+      "width": 390,
+      "name": "plan-detail-attendees-final-notgoing"
+    },
+    {
+      "file": "plan-detail-friend-vacation-attendees-friends2.html",
+      "x": 2336,
+      "y": 1952,
+      "width": 390,
+      "name": "plan-detail-attendees-final-friends"
+    },
+    {
+      "file": "plan-detail-friend-vacation-attendees-public2.html",
+      "x": 2336,
+      "y": 2304,
+      "width": 390,
+      "name": "plan-detail-attendees-final-public"
+    },
+    {
+      "file": "plan-detail-friend-vacation-attendees-maybe.html",
+      "x": 2336,
+      "y": 2656,
+      "width": 390,
+      "name": "plan-detail-attendees-final-maybe"
+    },
+    {
+      "file": "plan-detail-friend-vacation-attendees-empty.html",
+      "x": 2784,
+      "y": 1952,
+      "width": 390,
+      "name": "plan-detail-attendees-final-empty"
+    },
+    {
+      "file": "plan-detail-friend-vacation-copy2.html",
+      "x": 1792,
+      "y": 3712,
+      "width": 390,
+      "name": "plan-detail-friends-final"
+    },
+    {
+      "file": "plan-detail-friend-vacation-copy3-edit.html",
+      "x": 1344,
+      "y": 3712,
+      "width": 390,
+      "name": "plan-detail-friends Copy 3 Edit"
+    },
+    {
+      "file": "plan-detail-friend-vacation-final-restyle.html",
+      "x": 928,
+      "y": 0,
+      "width": 390,
+      "name": "plan-detail-friends-final-restyle"
+    }
+  ],
+  "texts": [
+    {
+      "text": "Current designs",
+      "x": 0,
+      "y": -96,
+      "size": 48
+    },
+    {
+      "text": "Card styles",
+      "x": 0,
+      "y": 1856,
+      "size": 48
+    },
+    {
+      "text": "Attendee explorations",
+      "x": 512,
+      "y": 1856,
+      "size": 48
+    },
+    {
+      "text": "Plan Ideas",
+      "x": 0,
+      "y": 3616,
+      "size": 48
+    },
+    {
+      "text": "New design",
+      "x": 928,
+      "y": -96,
+      "size": 48
+    },
+    {
+      "text": "Explorations",
+      "x": 0,
+      "y": 1760,
+      "size": 48
+    }
+  ]
+}

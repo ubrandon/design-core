@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<div style="background: var(--bg-0); overflow-x: clip; min-height: 100vh">
+  <div class="mr-scope" style="padding-bottom: 24px">
+    <header style="display: grid; grid-template-columns: 40px 1fr 40px; align-items: center; padding: 14px 14px 8px">
+      <button type="button" class="mr-nav-icon-btn" aria-label="Back"><i class="ph ph-x" aria-hidden="true"></i></button>
+      <span style="font-size: 1rem; font-weight: 800; color: var(--text); text-align: center">Edit profile</span>
+      <span aria-hidden="true"></span>
+    </header>
+
+    <div style="padding: 8px 16px 14px; display: flex; flex-direction: column; align-items: center">
+      <div style="position: relative">
+        <img src="https://i.pravatar.cc/200?img=11" alt="" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.1)" />
+        <button type="button" style="position: absolute; bottom: 0; right: 0; width: 34px; height: 34px; border-radius: 50%; background: rgba(20,24,32,0.85); border: 1px solid rgba(255,255,255,0.14); display: inline-flex; align-items: center; justify-content: center; cursor: pointer">
+          <i class="ph-fill ph-camera" style="color: rgba(255,255,255,0.85); font-size: 14px"></i>
+        </button>
+      </div>
+      <button type="button" style="margin-top: 10px; padding: 6px 12px; border-radius: 999px; background: transparent; border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.75); font-weight: 700; font-size: 0.74rem; cursor: pointer">Change photo</button>
+    </div>
+
+    <div style="padding: 0 16px 14px; font-size: 0.7rem; color: rgba(255,255,255,0.45); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase">Public</div>
+
+    <div style="padding: 0 16px 14px; display: flex; flex-direction: column; gap: 12px">
+      <div>
+        <label style="font-size: 0.74rem; color: rgba(255,255,255,0.55); font-weight: 700; display: block; margin-bottom: 6px">Name</label>
+        <div style="padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: var(--text); font-size: 0.92rem; font-weight: 700">Brandon Unglaub</div>
+      </div>
+      <div>
+        <label style="font-size: 0.74rem; color: rgba(255,255,255,0.55); font-weight: 700; display: block; margin-bottom: 6px">Username</label>
+        <div style="padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: var(--text); font-size: 0.92rem; font-weight: 700">@brandon</div>
+      </div>
+      <div>
+        <label style="font-size: 0.74rem; color: rgba(255,255,255,0.55); font-weight: 700; display: block; margin-bottom: 6px">Bio <span style="color: rgba(255,255,255,0.35); font-weight: 600">· optional</span></label>
+        <div style="padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.55); font-size: 0.88rem; min-height: 56px">Add a short bio anyone can see…</div>
+      </div>
+    </div>
+
+    <div style="padding: 0 16px 10px; display: flex; align-items: center; justify-content: space-between">
+      <div style="font-size: 0.95rem; font-weight: 800; color: var(--text)">Interests</div>
+      <span style="font-size: 0.74rem; color: rgba(255,255,255,0.5)">3 selected</span>
+    </div>
+    <div style="padding: 0 16px 14px; display: flex; gap: 8px; flex-wrap: wrap">
+      <span style="display: inline-flex; align-items: center; gap: 5px; padding: 7px 12px; border-radius: 999px; background: rgba(91,165,255,0.18); border: 1px solid rgba(91,165,255,0.3); color: var(--text); font-weight: 700; font-size: 0.82rem">
+        <i class="ph-fill ph-barbell" style="color: #5ba5ff; font-size: 12px"></i> Weightlifting <i class="ph ph-x" style="font-size: 10px; opacity: 0.7; margin-left: 2px"></i>
+      </span>
+      <span style="display: inline-flex; align-items: center; gap: 5px; padding: 7px 12px; border-radius: 999px; background: rgba(91,165,255,0.18); border: 1px solid rgba(91,165,255,0.3); color: var(--text); font-weight: 700; font-size: 0.82rem">
+        <i class="ph-fill ph-storefront" style="color: #5ba5ff; font-size: 12px"></i> Flea Markets <i class="ph ph-x" style="font-size: 10px; opacity: 0.7; margin-left: 2px"></i>
+      </span>
+      <span style="display: inline-flex; align-items: center; gap: 5px; padding: 7px 12px; border-radius: 999px; background: rgba(91,165,255,0.18); border: 1px solid rgba(91,165,255,0.3); color: var(--text); font-weight: 700; font-size: 0.82rem">
+        <i class="ph-fill ph-cake" style="color: #5ba5ff; font-size: 12px"></i> Baking <i class="ph ph-x" style="font-size: 10px; opacity: 0.7; margin-left: 2px"></i>
+      </span>
+      <button type="button" style="display: inline-flex; align-items: center; gap: 5px; padding: 7px 12px; border-radius: 999px; background: transparent; border: 1px dashed rgba(255,255,255,0.2); color: rgba(255,255,255,0.65); font-weight: 700; font-size: 0.82rem; cursor: pointer">
+        <i class="ph ph-plus" style="font-size: 11px"></i> Add
+      </button>
+    </div>
+
+    <div style="padding: 14px 16px 14px">
+      <button type="button" style="width: 100%; display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: var(--text); text-align: left; cursor: pointer; font: inherit">
+        <i class="ph ph-lock-key" style="font-size: 18px; color: rgba(255,255,255,0.85)"></i>
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 0.92rem; font-weight: 800; color: var(--text)">Profile privacy</div>
+          <div style="font-size: 0.74rem; color: rgba(255,255,255,0.5); margin-top: 2px">Manage who sees your interests, groups, and plans</div>
+        </div>
+        <i class="ph ph-caret-right" style="font-size: 16px; color: rgba(255,255,255,0.55)"></i>
+      </button>
+    </div>
+
+    <div style="padding: 8px 16px 14px">
+      <button type="button" class="btn btn-primary" style="width: 100%">Save</button>
+    </div>
+  </div>
+</div>

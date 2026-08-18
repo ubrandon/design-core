@@ -1,0 +1,185 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .set-section-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0 20px 8px;
+  }
+  .set-card {
+    margin: 0 16px 18px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+  }
+  .set-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 18px;
+    color: var(--text);
+    background: transparent;
+    border: 0;
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+    font: inherit;
+  }
+  .set-row + .set-row {
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .set-row-icon {
+    flex: 0 0 auto;
+    width: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.9);
+    font-size: 22px;
+  }
+  .set-row-body { flex: 1; min-width: 0 }
+  .set-row-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .set-row-desc {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    margin-top: 3px;
+  }
+  .set-row-caret {
+    color: rgba(255,255,255,0.5);
+    font-size: 18px;
+  }
+  .set-row--muted .set-row-icon,
+  .set-row--muted .set-row-title,
+  .set-row--muted .set-row-desc {
+    color: rgba(255,255,255,0.4);
+  }
+  .set-row--danger .set-row-icon,
+  .set-row--danger .set-row-title {
+    color: #f47174;
+  }
+</style>
+
+<div style="background: var(--bg-0); overflow-x: clip; min-height: 100vh">
+  <div class="mr-scope" style="padding-bottom: 32px">
+
+    <header style="display: flex; align-items: center; gap: 14px; padding: 18px 18px 22px">
+      <button type="button" aria-label="Back" style="background: transparent; border: 0; color: var(--text); cursor: pointer; padding: 0; display: inline-flex; align-items: center; justify-content: center">
+        <i class="ph ph-arrow-left" style="font-size: 22px"></i>
+      </button>
+      <span style="font-size: 1.45rem; font-weight: 800; color: var(--text); letter-spacing: -0.01em">Settings</span>
+    </header>
+
+    <div class="set-section-label">Admin</div>
+    <div class="set-card">
+      <button type="button" class="set-row">
+        <span class="set-row-icon"><i class="ph ph-shield-check"></i></span>
+        <span class="set-row-body">
+          <span class="set-row-title">Admin Dashboard</span>
+        </span>
+      </button>
+    </div>
+
+    <div class="set-section-label">Supporter</div>
+    <div class="set-card">
+      <button type="button" class="set-row">
+        <span class="set-row-icon"><i class="ph ph-heart"></i></span>
+        <span class="set-row-body">
+          <span class="set-row-title">Become a supporter</span>
+        </span>
+        <i class="ph ph-caret-right set-row-caret"></i>
+      </button>
+    </div>
+
+    <div class="set-section-label">Preferences</div>
+    <div class="set-card">
+      <div class="set-row set-row--muted">
+        <span class="set-row-icon"><i class="ph ph-bell"></i></span>
+        <span class="set-row-body">
+          <span class="set-row-title">Notifications</span>
+          <span class="set-row-desc">Off, tap to enable</span>
+        </span>
+        <button type="button" class="mr-toggle" aria-label="Notifications off"></button>
+      </div>
+      <div class="set-row">
+        <span class="set-row-icon"><i class="ph ph-chart-bar"></i></span>
+        <span class="set-row-body">
+          <span class="set-row-title">Analytics</span>
+          <span class="set-row-desc">Help improve MixedRoutes with usage data</span>
+        </span>
+        <button type="button" class="mr-toggle mr-toggle-on" aria-label="Analytics on"></button>
+      </div>
+    </div>
+
+    <div class="set-section-label">Help &amp; Support</div>
+    <div class="set-card">
+      <button type="button" class="set-row">
+        <span class="set-row-icon"><i class="ph ph-chat-circle"></i></span>
+        <span class="set-row-body">
+          <span class="set-row-title">Chat with us</span>
+        </span>
+        <i class="ph ph-caret-right set-row-caret"></i>
+      </button>
+      <button type="button" class="set-row">
+        <span class="set-row-icon"><i class="ph ph-bug"></i></span>
+        <span class="set-row-body">
+          <span class="set-row-title">Report a bug</span>
+        </span>
+        <i class="ph ph-caret-right set-row-caret"></i>
+      </button>
+      <button type="button" class="set-row">
+        <span class="set-row-icon"><i class="ph ph-lightbulb"></i></span>
+        <span class="set-row-body">
+          <span class="set-row-title">Request a feature</span>
+        </span>
+        <i class="ph ph-caret-right set-row-caret"></i>
+      </button>
+    </div>
+
+    <div class="set-section-label">Privacy</div>
+    <div class="set-card">
+      <button type="button" class="set-row">
+        <span class="set-row-icon"><i class="ph ph-lock-key"></i></span>
+        <span class="set-row-body">
+          <span class="set-row-title">Profile privacy</span>
+          <span class="set-row-desc">Who can see your interests, groups, and plans</span>
+        </span>
+        <i class="ph ph-caret-right set-row-caret"></i>
+      </button>
+      <button type="button" class="set-row">
+        <span class="set-row-icon"><i class="ph ph-prohibit"></i></span>
+        <span class="set-row-body">
+          <span class="set-row-title">Blocked accounts</span>
+        </span>
+        <i class="ph ph-caret-right set-row-caret"></i>
+      </button>
+    </div>
+
+    <div class="set-section-label">Account</div>
+    <div class="set-card">
+      <button type="button" class="set-row">
+        <span class="set-row-icon"><i class="ph ph-sign-out"></i></span>
+        <span class="set-row-body">
+          <span class="set-row-title">Log out</span>
+        </span>
+      </button>
+      <button type="button" class="set-row set-row--danger">
+        <span class="set-row-icon"><i class="ph ph-trash"></i></span>
+        <span class="set-row-body">
+          <span class="set-row-title">Delete account</span>
+        </span>
+      </button>
+    </div>
+
+  </div>
+</div>

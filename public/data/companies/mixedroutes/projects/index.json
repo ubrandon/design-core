@@ -1,0 +1,80 @@
+{
+  "projects": [
+    {
+      "id": "home-page",
+      "name": "Home Page V1",
+      "description": "",
+      "createdAt": "2026-04-03T21:48:42.021Z",
+      "createdBy": "Brandon"
+    },
+    {
+      "id": "groups",
+      "name": "Groups",
+      "description": "",
+      "createdAt": "2026-04-26T02:41:40.523Z"
+    },
+    {
+      "id": "saved-places",
+      "name": "Saved Places",
+      "description": "",
+      "createdAt": "2026-04-28T05:20:36.766Z"
+    },
+    {
+      "id": "you-page",
+      "name": "Profile & Settings",
+      "description": "",
+      "createdAt": "2026-04-28T12:00:00.000Z"
+    },
+    {
+      "id": "marketing-site",
+      "name": "Marketing Site",
+      "description": "",
+      "createdAt": "2026-05-04T01:38:04.548Z"
+    },
+    {
+      "id": "chat",
+      "name": "Chat",
+      "description": "",
+      "createdAt": "2026-05-26T03:20:31.154Z"
+    },
+    {
+      "id": "people-picker",
+      "name": "People Picker",
+      "description": "",
+      "createdAt": "2026-05-27T01:22:21.619Z"
+    },
+    {
+      "id": "plans",
+      "name": "Plans",
+      "description": "",
+      "createdAt": "2026-05-31T06:29:00.000Z"
+    },
+    {
+      "id": "calendar",
+      "name": "Plan list",
+      "description": "",
+      "createdAt": "2026-05-31T18:00:00.000Z"
+    },
+    {
+      "id": "onboarding",
+      "name": "Onboarding",
+      "description": "",
+      "createdBy": "Brandon Unglaub",
+      "createdAt": "2026-07-01T22:08:41.216Z"
+    },
+    {
+      "id": "mixedroutes-phase-v2",
+      "name": "MixedRoutes V2",
+      "description": "Light mode screens matching the app design refresh",
+      "createdBy": "Brandon Unglaub",
+      "createdAt": "2026-08-03T00:00:00Z"
+    },
+    {
+      "id": "plan-parity",
+      "name": "Plan Parity",
+      "description": "Current app screens (create plan, plan view) as a base for the planning-app parity features",
+      "createdBy": "Brandon Unglaub",
+      "createdAt": "2026-08-17T00:00:00.000Z"
+    }
+  ]
+}

@@ -11,9 +11,7 @@
     "capture": "node scripts/capture-screens.js",
     "sync-public-url": "node scripts/sync-public-site-url.js",
     "doctor": "node scripts/doctor.js",
-    "start-company-setup": "node scripts/start-company-setup.js",
-    "finish-setup": "node scripts/finish-setup.js",
-    "update-tool": "node scripts/update-tool.js"
+    "import-company": "node scripts/import-company.js"
   },
   "engines": {
     "node": ">=18"

@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .v3-scope { --v3-bg: #06080e; --v3-line: rgba(255,255,255,0.08); --v3-warn: #f5c451; }
+  .v3-scope, .v3-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .v3-scope::-webkit-scrollbar, .v3-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .v3-wrap { background: var(--v3-bg); height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .v3-body { flex: 1; overflow-y: auto; padding-bottom: 8px; }
+
+  .v3-header { display: grid; grid-template-columns: 1fr 28px; align-items: center; padding: 22px 20px 8px; }
+  .v3-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .v3-close { background: transparent; border: 0; color: rgba(255,255,255,0.85); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .v3-close i { font-size: 22px; }
+
+  .v3-group-banner { margin: 8px 20px 14px; padding: 12px 14px; border-radius: 18px; background: rgba(32,224,207,0.08); border: 1px solid rgba(32,224,207,0.32); display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 12px; }
+  .v3-group-banner img { width: 44px; height: 44px; border-radius: 14px; object-fit: cover; }
+  .v3-banner-label { color: var(--neon-teal); font-size: 0.7rem; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
+  .v3-banner-name { color: #fff; font-size: 1rem; font-weight: 850; margin-top: 2px; line-height: 1.15; }
+  .v3-banner-remove { background: rgba(255,255,255,0.1); border: 0; color: #fff; padding: 7px 12px; border-radius: 999px; font-size: 0.82rem; font-weight: 850; }
+
+  .v3-search { display: grid; grid-template-columns: 20px 1fr; align-items: center; gap: 10px; margin: 0 20px 14px; padding: 12px 15px; background: rgba(255,255,255,0.07); border-radius: 999px; }
+  .v3-search i { color: rgba(255,255,255,0.54); font-size: 17px; }
+  .v3-search input { width: 100%; border: 0; outline: 0; padding: 0; background: transparent; color: #fff; font: inherit; font-size: 0.94rem; }
+
+  .v3-scope-tabs { margin: 0 20px 16px; padding: 4px; border-radius: 14px; background: rgba(255,255,255,0.06); display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .v3-scope-tab { min-height: 52px; border-radius: 11px; border: 0; background: transparent; color: rgba(255,255,255,0.62); padding: 8px 10px; text-align: center; }
+  .v3-scope-tab .ttl { display: block; font-size: 0.92rem; font-weight: 850; }
+  .v3-scope-tab .sub { display: block; font-size: 0.74rem; font-weight: 700; margin-top: 2px; opacity: 0.82; }
+  .v3-scope-tab.is-active { background: #fff; color: #061016; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+  .v3-scope-tab.is-active .sub { color: rgba(6,16,22,0.66); }
+
+  .v3-label { display: flex; align-items: baseline; justify-content: space-between; padding: 6px 20px 8px; color: rgba(255,255,255,0.72); font-size: 0.74rem; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
+  .v3-label .count { color: rgba(255,255,255,0.46); }
+
+  .v3-list { padding: 0 20px; display: flex; flex-direction: column; }
+  .v3-row { display: grid; grid-template-columns: 44px 1fr 22px; align-items: center; gap: 13px; padding: 11px 8px; margin: 0 -4px; border-radius: 14px; }
+  .v3-row.is-all { background: rgba(32,224,207,0.06); }
+  .v3-row .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; background: var(--neon-teal); color: #061016; font-weight: 900; }
+  .v3-name { color: #fff; font-size: 0.98rem; font-weight: 850; line-height: 1.15; }
+  .v3-meta { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+  .v3-meta .host { color: var(--v3-warn); font-weight: 800; }
+
+  .v3-cta { padding: 14px 20px 22px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 12px; }
+  .v3-cta button { min-height: 50px; border: 0; border-radius: 999px; color: #fff; font-size: 0.98rem; font-weight: 850; }
+  .v3-cta .ghost { background: rgba(255,255,255,0.08); }
+  .v3-cta .primary { background: linear-gradient(135deg, #24b8aa, #4c87cf); }
+
+
+</style>
+
+<div class="mr-scope v3-scope">
+  <div class="v3-wrap">
+    <div class="v3-body">
+      <header class="v3-header">
+        <div class="v3-title">Who's going?</div>
+        <button type="button" class="v3-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      </header>
+
+      <div class="v3-group-banner">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" />
+        <div>
+          <div class="v3-banner-label">Inviting group</div>
+          <div class="v3-banner-name">Lake House</div>
+        </div>
+        <button type="button" class="v3-banner-remove">Remove</button>
+      </div>
+
+      <div class="v3-search">
+        <i class="ph ph-magnifying-glass"></i>
+        <input type="search" placeholder="Search Lake House members" />
+      </div>
+
+      <div class="v3-scope-tabs">
+        <button type="button" class="v3-scope-tab is-active">
+          <span class="ttl">Everyone</span>
+          <span class="sub">Current and future</span>
+        </button>
+        <button type="button" class="v3-scope-tab">
+          <span class="ttl">Choose members</span>
+          <span class="sub">Pick specific people</span>
+        </button>
+      </div>
+
+      <div class="v3-label"><span>Members</span><span class="count">All 8 invited</span></div>
+      <div class="v3-list">
+        <div class="v3-row is-all">
+          <span class="av">M</span>
+          <div><div class="v3-name">Milo Wren</div><div class="v3-meta"><span class="host">Host</span></div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v3-row is-all">
+          <img class="av" src="https://i.pravatar.cc/96?img=12" alt="" loading="lazy" />
+          <div><div class="v3-name">Nova Finch</div><div class="v3-meta">@novafinch</div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v3-row is-all">
+          <img class="av" src="https://i.pravatar.cc/96?img=49" alt="" loading="lazy" />
+          <div><div class="v3-name">Lila Quill</div><div class="v3-meta">@lilaquill</div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v3-row is-all">
+          <img class="av" src="https://i.pravatar.cc/96?img=33" alt="" loading="lazy" />
+          <div><div class="v3-name">Soren Vale</div><div class="v3-meta">@sorenvale</div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+        <div class="v3-row is-all">
+          <img class="av" src="https://i.pravatar.cc/96?img=44" alt="" loading="lazy" />
+          <div><div class="v3-name">Wren Holt</div><div class="v3-meta">@wrenholt</div></div>
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="v3-cta">
+      <button type="button" class="ghost">Cancel</button>
+      <button type="button" class="primary">Invite group</button>
+    </div>
+  </div>
+</div>

@@ -52,9 +52,13 @@
     };
   }
 
+  function link(href) {
+    return typeof withCompany === "function" ? withCompany(href) : href;
+  }
+
   function railLink(href, label, icon, active) {
     return (
-      '<a class="dc-rail__link' + (active ? " is-active" : "") + '" href="' + href + '" title="' + esc(label) + '">' +
+      '<a class="dc-rail__link' + (active ? " is-active" : "") + '" href="' + link(href) + '" title="' + esc(label) + '">' +
       '<span class="dc-rail__link-icon">' + icon + "</span>" +
       '<span class="dc-rail__link-label">' + esc(label) + "</span>" +
       "</a>"
@@ -66,7 +70,7 @@
     return (
       '<li class="dc-rail__fav" draggable="true" data-id="' + esc(id) + '" title="' + esc(name) + '">' +
       '<span class="dc-rail__grip" aria-hidden="true">' + RAIL_ICONS.grip + "</span>" +
-      '<a class="dc-rail__fav-link" href="project.html?id=' + encodeURIComponent(id) + '">' +
+      '<a class="dc-rail__fav-link" href="' + link("project.html?id=" + encodeURIComponent(id)) + '">' +
       '<span class="dc-rail__fav-name">' + esc(name) + "</span>" +
       "</a></li>"
     );
@@ -247,6 +251,113 @@
     };
   }
 
+  /* ── Company switcher (top of the rail) ── */
+  let companyBtnEl = null;
+  let companyMenuEl = null;
+
+  function paintCompany(list) {
+    if (!companyBtnEl) return;
+    const slug = typeof activeCompany === "function" ? activeCompany() : "";
+    const match = (list || []).find((c) => c.slug === slug);
+    const nameEl = companyBtnEl.querySelector(".dc-rail__company-name");
+    nameEl.textContent = match ? match.name : slug || "Pick a company";
+    companyBtnEl.title = "Switch company";
+  }
+
+  function closeCompanyMenu() {
+    if (companyMenuEl) companyMenuEl.hidden = true;
+    if (companyBtnEl) companyBtnEl.setAttribute("aria-expanded", "false");
+  }
+
+  function renderCompanyMenu(list) {
+    const current = typeof activeCompany === "function" ? activeCompany() : "";
+    const rows = (list || [])
+      .map((c) => {
+        const active = c.slug === current;
+        return (
+          '<button type="button" class="user-menu__item' + (active ? " is-active" : "") +
+          '" data-company-slug="' + esc(c.slug) + '">' +
+          '<span class="user-menu__avatar">' + esc(initialsOf(c.name)) + "</span>" +
+          '<span class="user-menu__label">' + esc(c.name) + "</span>" +
+          (active ? '<span class="user-menu__check">&#10003;</span>' : "") +
+          "</button>"
+        );
+      })
+      .join("");
+    companyMenuEl.innerHTML =
+      '<div class="user-menu__title">Switch company</div>' +
+      '<div class="user-menu__list">' + (rows || '<p class="user-menu__empty">No companies yet. Add one below.</p>') + "</div>" +
+      '<div class="user-menu__add">' +
+      '<input type="text" class="user-menu__input" placeholder="New company name…" aria-label="New company name">' +
+      '<button type="button" class="user-menu__add-btn">Add</button>' +
+      "</div>";
+    companyMenuEl.querySelectorAll("[data-company-slug]").forEach((b) => {
+      b.addEventListener("click", () => {
+        closeCompanyMenu();
+        if (typeof switchCompany === "function") switchCompany(b.getAttribute("data-company-slug"));
+      });
+    });
+    const input = companyMenuEl.querySelector(".user-menu__input");
+    const addBtn = companyMenuEl.querySelector(".user-menu__add-btn");
+    function commitAdd() {
+      const v = (input.value || "").trim();
+      if (!v) { input.focus(); return; }
+      if (typeof createCompany !== "function") return;
+      addBtn.disabled = true;
+      createCompany(v)
+        .then((c) => { if (typeof switchCompany === "function") switchCompany(c.slug); })
+        .catch((e) => {
+          addBtn.disabled = false;
+          if (typeof showToast === "function") showToast(e && e.message ? e.message : "Could not create company");
+        });
+    }
+    addBtn.addEventListener("click", commitAdd);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") { e.preventDefault(); commitAdd(); }
+    });
+  }
+
+  function openCompanyMenu() {
+    if (!companyMenuEl) return;
+    companyMenuEl.hidden = false;
+    companyBtnEl.setAttribute("aria-expanded", "true");
+    companyMenuEl.innerHTML = '<div class="user-menu__title">Loading…</div>';
+    const load = typeof fetchCompanies === "function" ? fetchCompanies() : Promise.resolve([]);
+    load.then((l) => renderCompanyMenu(l || [])).catch(() => renderCompanyMenu([]));
+  }
+
+  function setupCompanySection() {
+    companyBtnEl = railEl.querySelector(".dc-rail__company");
+    companyMenuEl = railEl.querySelector(".dc-rail__company-menu");
+    if (!companyBtnEl) return;
+    paintCompany([]);
+    if (typeof fetchCompanies === "function") fetchCompanies().then(paintCompany).catch(() => {});
+    companyBtnEl.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (!companyMenuEl.hidden) { closeCompanyMenu(); return; }
+      if (railEl.getAttribute("data-collapsed") === "true") {
+        applyCollapsed(false);
+        if (typeof setNavCollapsed === "function") setNavCollapsed(false);
+      }
+      closeUserMenu();
+      openCompanyMenu();
+    });
+    document.addEventListener("click", (e) => {
+      const wrap = railEl.querySelector(".dc-rail__company-wrap");
+      if (companyMenuEl && !companyMenuEl.hidden && wrap && !wrap.contains(e.target)) closeCompanyMenu();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && companyMenuEl && !companyMenuEl.hidden) closeCompanyMenu();
+    });
+    window.__openCompanyMenu = function () {
+      if (railEl.getAttribute("data-collapsed") === "true") {
+        applyCollapsed(false);
+        if (typeof setNavCollapsed === "function") setNavCollapsed(false);
+      }
+      openCompanyMenu();
+    };
+  }
+
   function build(flags) {
     const collapsedDefault = flags.isCanvas || flags.isPrototype;
     const collapsed = typeof getNavCollapsed === "function" ? getNavCollapsed(collapsedDefault) : collapsedDefault;
@@ -259,7 +370,13 @@
     rail.id = "dc-rail";
     rail.innerHTML =
       '<div class="dc-rail__head">' +
-      '<a class="dc-rail__brand" href="index.html">Design Core</a>' +
+      '<div class="dc-rail__company-wrap">' +
+      '<button type="button" class="dc-rail__brand dc-rail__company" aria-haspopup="true" aria-expanded="false" title="Switch company">' +
+      '<span class="dc-rail__company-name">Design Core</span>' +
+      '<span class="dc-rail__user-caret">' + RAIL_ICONS.caret + "</span>" +
+      "</button>" +
+      '<div class="user-menu dc-rail__company-menu" hidden></div>' +
+      "</div>" +
       '<button type="button" class="dc-rail__toggle" aria-controls="dc-rail" title="Collapse sidebar">' + RAIL_ICONS.chevron + "</button>" +
       "</div>" +
       '<nav class="dc-rail__links">' +
@@ -298,6 +415,7 @@
     wireDrag();
     renderFavorites();
     setupUserSection();
+    setupCompanySection();
 
     window.addEventListener("dc:user-prefs-changed", renderFavorites);
     window.addEventListener("dc:user-changed", () => {
@@ -312,7 +430,7 @@
       projectNamesLoaded = true;
       return Promise.resolve();
     }
-    return fetchJSON("data/projects/index.json")
+    return fetchJSON(dataPath("projects/index.json"))
       .then((d) => {
         (d.projects || []).forEach((p) => { if (p && p.id) projectNames[p.id] = p.name || p.id; });
       })
@@ -325,7 +443,8 @@
     const flags = pageFlags();
     if (flags.isEmbed) return;
     build(flags);
-    loadProjectNames().then(renderFavorites);
+    const ready = typeof ensureCompany === "function" ? ensureCompany().catch(() => "") : Promise.resolve("");
+    ready.then(() => { if (typeof activeCompany !== "function" || activeCompany()) return loadProjectNames(); projectNamesLoaded = true; }).then(renderFavorites);
   }
 
   if (document.readyState === "loading") {

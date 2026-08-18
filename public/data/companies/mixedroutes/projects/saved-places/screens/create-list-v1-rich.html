@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<div style="background: var(--bg-0); overflow-x: clip; min-height: 100vh; padding-bottom: 100px">
+  <div class="mr-scope">
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 18px 16px 10px">
+      <button type="button" class="mr-nav-icon-btn" aria-label="Cancel">
+        <i class="ph ph-x" aria-hidden="true"></i>
+      </button>
+      <span style="font-size: 1.05rem; font-weight: 800; color: var(--text)">New saved places list</span>
+      <div style="width: 36px"></div>
+    </header>
+
+    <div style="padding: 8px 16px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px">
+      <button type="button" style="width: 96px; height: 96px; border-radius: 24px; background: linear-gradient(135deg, rgba(91,165,255,0.25), rgba(32,224,207,0.18)); border: 1px solid rgba(91,165,255,0.35); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--text); cursor: pointer; position: relative; overflow: hidden">
+        <i class="ph-fill ph-image" style="font-size: 28px; color: #5ba5ff"></i>
+        <span style="font-size: 0.7rem; font-weight: 700; color: rgba(255,255,255,0.75)">Cover photo</span>
+      </button>
+      <button type="button" style="background: transparent; border: 0; color: #20e0cf; font-weight: 700; font-size: 0.8rem; cursor: pointer">Auto-pick from places</button>
+    </div>
+
+    <div style="padding: 0 16px 14px">
+      <div style="font-size: 0.7rem; font-weight: 800; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px">Start with a template</div>
+      <div style="display: flex; gap: 8px; overflow-x: auto" class="ds-scroll-x">
+        <button type="button" style="flex: 0 0 auto; padding: 10px 14px; border-radius: 14px; background: rgba(91,165,255,0.12); border: 1px solid rgba(91,165,255,0.3); color: var(--text); cursor: pointer; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 112px">
+          <i class="ph-fill ph-airplane-tilt" style="font-size: 18px; color: #5ba5ff"></i>
+          <span style="font-size: 0.82rem; font-weight: 800">Trip</span>
+          <span style="font-size: 0.7rem; color: rgba(255,255,255,0.55)">Multi-stop</span>
+        </button>
+        <button type="button" style="flex: 0 0 auto; padding: 10px 14px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: var(--text); cursor: pointer; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 112px">
+          <i class="ph-fill ph-heart" style="font-size: 18px; color: #ff6b8b"></i>
+          <span style="font-size: 0.82rem; font-weight: 800">Date night</span>
+          <span style="font-size: 0.7rem; color: rgba(255,255,255,0.55)">Just two</span>
+        </button>
+        <button type="button" style="flex: 0 0 auto; padding: 10px 14px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: var(--text); cursor: pointer; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 112px">
+          <i class="ph-fill ph-fork-knife" style="font-size: 18px; color: #f5933b"></i>
+          <span style="font-size: 0.82rem; font-weight: 800">Food crawl</span>
+          <span style="font-size: 0.7rem; color: rgba(255,255,255,0.55)">Bites & drinks</span>
+        </button>
+        <button type="button" style="flex: 0 0 auto; padding: 10px 14px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: var(--text); cursor: pointer; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 112px">
+          <i class="ph-fill ph-list-checks" style="font-size: 18px; color: #20e0cf"></i>
+          <span style="font-size: 0.82rem; font-weight: 800">Bucket</span>
+          <span style="font-size: 0.7rem; color: rgba(255,255,255,0.55)">Want to go</span>
+        </button>
+      </div>
+    </div>
+
+    <div style="padding: 0 16px 14px">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px">
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(91,165,255,0.18); display: flex; align-items: center; justify-content: center">
+          <i class="ph-fill ph-clipboard-text" style="font-size: 22px; color: #5ba5ff"></i>
+        </div>
+        <input type="text" placeholder="Asheville weekend" style="flex: 1; background: transparent; border: 0; font-size: 1rem; font-weight: 800; color: var(--text); outline: none; font-family: inherit" />
+      </div>
+    </div>
+
+    <div style="padding: 0 16px 14px">
+      <div style="padding: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px">
+        <textarea placeholder="What's this list for?" rows="3" style="width: 100%; background: transparent; border: 0; font-size: 0.92rem; color: var(--text); outline: none; resize: none; font-family: inherit; line-height: 1.4"></textarea>
+      </div>
+    </div>
+
+    <div style="padding: 0 16px 14px">
+      <div style="font-size: 0.7rem; font-weight: 800; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px">Privacy</div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <button type="button" style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; cursor: pointer; text-align: left">
+          <i class="ph-fill ph-lock" style="font-size: 18px; color: rgba(255,255,255,0.6)"></i>
+          <div style="flex: 1">
+            <div style="font-size: 0.9rem; font-weight: 800; color: var(--text)">Private</div>
+            <div style="font-size: 0.74rem; color: rgba(255,255,255,0.5)">Only you</div>
+          </div>
+          <div style="width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.25)"></div>
+        </button>
+        <button type="button" style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: rgba(91,165,255,0.1); border: 1px solid rgba(91,165,255,0.35); border-radius: 12px; cursor: pointer; text-align: left">
+          <i class="ph-fill ph-users-three" style="font-size: 18px; color: #5ba5ff"></i>
+          <div style="flex: 1">
+            <div style="font-size: 0.9rem; font-weight: 800; color: var(--text)">Shared</div>
+            <div style="font-size: 0.74rem; color: rgba(255,255,255,0.6)">You and people you invite</div>
+          </div>
+          <div style="width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, #5ba5ff, #20e0cf); display: flex; align-items: center; justify-content: center">
+            <i class="ph-bold ph-check" style="font-size: 11px; color: #06080e"></i>
+          </div>
+        </button>
+        <button type="button" style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; cursor: pointer; text-align: left">
+          <i class="ph-fill ph-globe" style="font-size: 18px; color: rgba(255,255,255,0.6)"></i>
+          <div style="flex: 1">
+            <div style="font-size: 0.9rem; font-weight: 800; color: var(--text)">Public link</div>
+            <div style="font-size: 0.74rem; color: rgba(255,255,255,0.5)">Anyone with the link can view</div>
+          </div>
+          <div style="width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.25)"></div>
+        </button>
+      </div>
+    </div>
+
+    <div style="padding: 0 16px 14px">
+      <div style="font-size: 0.7rem; font-weight: 800; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px">Invite collaborators</div>
+      <button type="button" style="display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.04); border: 1px dashed rgba(255,255,255,0.15); border-radius: 12px; cursor: pointer; text-align: left">
+        <div style="width: 32px; height: 32px; border-radius: 50%; background: rgba(91,165,255,0.18); display: flex; align-items: center; justify-content: center; color: #5ba5ff">
+          <i class="ph-fill ph-user-plus" style="font-size: 16px"></i>
+        </div>
+        <span style="font-size: 0.88rem; color: rgba(255,255,255,0.7); font-weight: 700">Add people by name or @handle</span>
+      </button>
+    </div>
+
+    <div style="padding: 8px 16px 24px">
+      <button type="button" style="width: 100%; height: 52px; border-radius: 16px; background: linear-gradient(135deg, #5ba5ff, #20e0cf); border: 0; color: #06080e; font-weight: 800; font-size: 0.95rem; cursor: pointer">Create</button>
+    </div>
+  </div>
+</div>

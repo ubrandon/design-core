@@ -1,0 +1,100 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .chat-scope { --chat-bg: #0b0f14; --chat-surface: #1b2027; }
+  .chat-scope .chat-wrap { background: var(--chat-bg); height: 844px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .chat-scope .chat-pattern { position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/telegramdesktop/tdesktop/dev/Telegram/Resources/art/bg/pattern.png'); background-size: 420px; opacity: 0.04; pointer-events: none; mix-blend-mode: screen; }
+
+  .chat-scope .chat-header { position: relative; z-index: 3; display: grid; grid-template-columns: 28px 1fr auto auto; align-items: center; gap: 14px; padding: 14px 16px 8px; flex-shrink: 0; }
+  .chat-scope .chat-header .back { background: transparent; border: 0; color: rgba(255,255,255,0.95); display: inline-flex; align-items: center; padding: 0; cursor: pointer; }
+  .chat-scope .chat-header .back i { font-size: 24px; }
+  .chat-scope .chat-header .title { font-size: 1.25rem; font-weight: 800; color: #fff; }
+  .chat-scope .chat-header .icon-btn { background: transparent; border: 0; color: rgba(255,255,255,0.95); padding: 0; cursor: pointer; display: inline-flex; align-items: center; }
+  .chat-scope .chat-header .icon-btn i { font-size: 22px; }
+
+  .chat-scope .filter-row { display: flex; gap: 8px; padding: 4px 16px 10px; overflow-x: auto; position: relative; z-index: 2; flex-shrink: 0; }
+  .chat-scope .chip { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 999px; font-size: 0.88rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.18); background: transparent; color: #fff; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
+  .chat-scope .chip.active { background: #fff; color: #0b0f14; border-color: #fff; }
+  .chat-scope .chip .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .chat-scope .chip .ct { color: rgba(255,255,255,0.5); font-weight: 700; font-size: 0.78rem; }
+  .chat-scope .chip.active .ct { color: rgba(11,15,20,0.55); }
+
+  .chat-scope .body { position: relative; z-index: 1; padding: 4px 0 16px; }
+
+  .chat-scope .tag-section { padding: 10px 16px 2px; }
+  .chat-scope .tag-section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .chat-scope .tag-section-head .left { display: inline-flex; align-items: center; gap: 8px; }
+  .chat-scope .tag-section-head .swatch { width: 10px; height: 10px; border-radius: 50%; }
+  .chat-scope .tag-section-head .name { font-size: 1rem; font-weight: 800; color: #fff; }
+  .chat-scope .tag-section-head .count { color: rgba(255,255,255,0.5); font-size: 0.82rem; font-weight: 700; }
+  .chat-scope .tag-section-head .see { color: #5eb3ff; font-size: 0.82rem; font-weight: 700; background: transparent; border: 0; cursor: pointer; }
+
+  .chat-scope .card { background: var(--chat-surface); border-radius: 12px; padding: 10px 12px; margin-bottom: 6px; display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; align-items: center; }
+  .chat-scope .card .av { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
+  .chat-scope .card .av.initials { background: #4b5563; color: #fff; font-size: 0.65rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .chat-scope .card .who { color: #fff; font-weight: 700; font-size: 0.88rem; }
+  .chat-scope .card .preview { color: rgba(255,255,255,0.65); font-size: 0.82rem; margin-top: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 220px; }
+  .chat-scope .card .time { color: rgba(255,255,255,0.45); font-size: 0.72rem; }
+
+  .chat-scope .link-card { background: var(--chat-surface); border-radius: 12px; padding: 10px 12px; margin-bottom: 6px; display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; align-items: center; }
+  .chat-scope .link-card.from-you { background: linear-gradient(135deg, #3a6a66, #2f7a72); }
+  .chat-scope .link-card img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
+  .chat-scope .link-card .who { color: #fff; font-weight: 700; font-size: 0.88rem; }
+  .chat-scope .link-card .url { color: #5eb3ff; font-size: 0.82rem; margin-top: 1px; }
+  .chat-scope .link-card.from-you .url { color: #cfe9ff; }
+  .chat-scope .link-card .time { color: rgba(255,255,255,0.45); font-size: 0.72rem; }
+  .chat-scope .link-card.from-you .time { color: rgba(255,255,255,0.8); }
+</style>
+
+<div class="mr-scope chat-scope">
+  <div class="chat-wrap">
+    <div class="chat-pattern" aria-hidden="true"></div>
+    <header class="chat-header">
+      <button type="button" class="back" aria-label="Back"><i class="ph ph-arrow-left"></i></button>
+      <div class="title">Tags</div>
+      <button type="button" class="icon-btn" aria-label="New tag"><i class="ph ph-plus"></i></button>
+      <button type="button" class="icon-btn" aria-label="Edit"><i class="ph ph-pencil-simple"></i></button>
+    </header>
+
+    <div class="filter-row">
+      <button type="button" class="chip active">All <span class="ct">38</span></button>
+      <button type="button" class="chip"><span class="dot" style="background:#5eb3ff"></span>Links <span class="ct">12</span></button>
+      <button type="button" class="chip"><span class="dot" style="background:#a78bfa"></span>Ideas <span class="ct">14</span></button>
+      <button type="button" class="chip"><span class="dot" style="background:#f87171"></span>Important <span class="ct">9</span></button>
+      <button type="button" class="chip"><span class="dot" style="background:#f5a524"></span>Test <span class="ct">3</span></button>
+    </div>
+
+    <div class="body">
+      <div class="tag-section">
+        <div class="tag-section-head">
+          <div class="left"><span class="swatch" style="background:#5eb3ff"></span><span class="name">Links</span><span class="count">12</span></div>
+          <button type="button" class="see">See all →</button>
+        </div>
+        <div class="link-card from-you"><img src="https://i.pravatar.cc/40?img=12" alt="" /><div><div class="who">You</div><div class="url">google.com</div></div><div class="time">4:30 PM</div></div>
+        <div class="link-card"><img src="https://i.pravatar.cc/40?img=15" alt="" /><div><div class="who">Eric</div><div class="url">figma.com/file/abc</div></div><div class="time">Tue</div></div>
+        <div class="link-card"><img src="https://i.pravatar.cc/40?img=22" alt="" /><div><div class="who">Daniel</div><div class="url">espn.com/ufc</div></div><div class="time">Mon</div></div>
+      </div>
+
+      <div class="tag-section">
+        <div class="tag-section-head">
+          <div class="left"><span class="swatch" style="background:#a78bfa"></span><span class="name">Ideas</span><span class="count">14</span></div>
+          <button type="button" class="see">See all →</button>
+        </div>
+        <div class="card"><div class="av initials">DM</div><div><div class="who">Daniel Murphy</div><div class="preview">betting pool just for friends, no real money</div></div><div class="time">Wed</div></div>
+        <div class="card"><img class="av" src="https://i.pravatar.cc/40?img=15" alt="" /><div><div class="who">Eric Hechavarria</div><div class="preview">Could rent out the bar for the watch party</div></div><div class="time">Tue</div></div>
+        <div class="card"><img class="av" src="https://i.pravatar.cc/40?img=33" alt="" /><div><div class="who">Heather</div><div class="preview">Fantasy bracket for the season</div></div><div class="time">Mon</div></div>
+      </div>
+
+      <div class="tag-section">
+        <div class="tag-section-head">
+          <div class="left"><span class="swatch" style="background:#f87171"></span><span class="name">Important</span><span class="count">9</span></div>
+          <button type="button" class="see">See all →</button>
+        </div>
+        <div class="card"><img class="av" src="https://i.pravatar.cc/40?img=33" alt="" /><div><div class="who">Heather</div><div class="preview">My birthday on the 14th — save the date!</div></div><div class="time">Today</div></div>
+        <div class="card"><div class="av initials">DM</div><div><div class="who">Daniel Murphy</div><div class="preview">Venmo me the deposit by Friday</div></div><div class="time">Wed</div></div>
+      </div>
+    </div>
+  </div>
+</div>

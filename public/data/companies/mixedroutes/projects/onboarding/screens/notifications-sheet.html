@@ -1,0 +1,287 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+  .ntf-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px 6px;
+  }
+  .ntf-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ntf-wordmark {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #1a2332;
+  }
+  .ntf-header-actions {
+    display: flex;
+    gap: 6px;
+  }
+  .ntf-icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(118, 118, 128, 0.12);
+    color: #1a2332;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ntf-icon-btn i {
+    font-size: 20px;
+  }
+  .ntf-greeting {
+    padding: 18px 16px 10px;
+    font-size: 2.35rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    color: #1a2332;
+  }
+  .ntf-greeting-tail {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #5c6b7d;
+    margin-top: 10px;
+  }
+  .ntf-gradient-text {
+    background: linear-gradient(145deg, #14b8a6, #3b82f6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .ntf-banner {
+    margin: 14px 16px 20px;
+    border-radius: 20px;
+    padding: 20px 18px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.12), rgba(59, 130, 246, 0.06)), #ffffff;
+    border: 1px solid rgba(20, 184, 166, 0.35);
+    box-shadow: 0 8px 24px rgba(26, 35, 50, 0.08);
+  }
+  .ntf-banner-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(20, 184, 166, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    flex-shrink: 0;
+  }
+  .ntf-banner-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #1a2332;
+    line-height: 1.2;
+  }
+  .ntf-banner-desc {
+    font-size: 0.95rem;
+    color: #5c6b7d;
+    margin-top: 5px;
+    line-height: 1.35;
+  }
+  .ntf-banner-cta {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #0d9a8a;
+  }
+  .ntf-row-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #1a2332;
+    padding: 0 16px 14px;
+  }
+  .ntf-carousel {
+    display: flex;
+    gap: 16px;
+    padding: 0 16px;
+    overflow: hidden;
+  }
+  .ntf-card {
+    flex: 0 0 auto;
+    width: 195px;
+    border-radius: 22px;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(26, 35, 50, 0.06);
+  }
+  .ntf-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+  }
+  .ntf-card-body {
+    padding: 14px 16px 18px;
+  }
+  .ntf-card-date {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #848994;
+    margin-bottom: 8px;
+  }
+  .ntf-card-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1.25;
+    color: #1a2332;
+  }
+  .ntf-scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 35, 50, 0.45);
+    z-index: 10;
+  }
+  .ntf-sheet {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 11;
+    background: #ffffff;
+    border-radius: 28px 28px 0 0;
+    padding: 10px 20px 24px;
+    box-shadow: 0 -12px 40px rgba(26, 35, 50, 0.25);
+  }
+  .ntf-grabber {
+    width: 40px;
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(118, 118, 128, 0.3);
+    margin: 0 auto 14px;
+  }
+  .ntf-sheet-img {
+    width: 100%;
+    max-width: 320px;
+    display: block;
+    margin: 0 auto;
+  }
+  .ntf-sheet-title {
+    margin: 14px 0 0;
+    font-size: 1.6rem;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.2;
+    color: #1a2332;
+  }
+  .ntf-sheet-body {
+    margin: 10px 0 0;
+    font-size: 1rem;
+    color: #5c6b7d;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .ntf-sheet-footer {
+    display: flex;
+    gap: 12px;
+    margin-top: 22px;
+  }
+  .ntf-btn-skip {
+    flex: 1;
+    height: 52px;
+    border-radius: 999px;
+    background: rgba(118, 118, 128, 0.12);
+    color: #1a2332;
+    font-size: 1.05rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ntf-btn-enable {
+    flex: 2;
+    height: 52px;
+    border-radius: 999px;
+    background: linear-gradient(145deg, #14b8a6, #3b82f6);
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
+<div style="height: 844px; overflow: hidden; position: relative; background: #f2f2f7; font-family: 'Geist', sans-serif; color: #1a2332;">
+
+  <header class="ntf-header">
+    <a class="ntf-logo" href="#" aria-label="MixedRoutes home">
+      <img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" width="36" height="36" alt="" loading="lazy" />
+      <span class="ntf-wordmark">MixedRoutes</span>
+    </a>
+    <div class="ntf-header-actions">
+      <button type="button" class="ntf-icon-btn" aria-label="Find people">
+        <i class="ph ph-user-plus" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="ntf-icon-btn" aria-label="Notifications">
+        <i class="ph ph-bell" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="ntf-icon-btn" aria-label="Settings">
+        <i class="ph ph-gear-six" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="ntf-greeting">
+    <span class="ntf-gradient-text">Evening</span>, Brandon
+    <span class="ntf-greeting-tail">Find something to do tonight &#127769;</span>
+  </div>
+
+  <div class="ntf-banner">
+    <div class="ntf-banner-icon"><span aria-hidden="true">&#128075;</span></div>
+    <div>
+      <div class="ntf-banner-title">Welcome to MixedRoutes</div>
+      <div class="ntf-banner-desc">Let's get you set up in a few quick steps.</div>
+      <span class="ntf-banner-cta">Get started</span>
+    </div>
+  </div>
+
+  <div class="ntf-row-title">&#127881; Events nearby</div>
+  <div class="ntf-carousel">
+    <div class="ntf-card">
+      <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&h=400&q=80" alt="" loading="lazy" />
+      <div class="ntf-card-body">
+        <div class="ntf-card-date">Tomorrow &bull; 5:30 PM</div>
+        <div class="ntf-card-title">Seth and Sara</div>
+      </div>
+    </div>
+    <div class="ntf-card">
+      <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&h=400&q=80" alt="" loading="lazy" />
+      <div class="ntf-card-body">
+        <div class="ntf-card-date">Sat, Jul 4th &bull; 12 PM</div>
+        <div class="ntf-card-title">Independence Day at The Funkatorium</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ntf-scrim"></div>
+
+  <div class="ntf-sheet">
+    <div class="ntf-grabber"></div>
+    <img class="ntf-sheet-img" src="../img/push-notification.png" alt="" loading="lazy" />
+    <h2 class="ntf-sheet-title">Don&rsquo;t miss your next plan! &#128276;</h2>
+    <p class="ntf-sheet-body">Turn on notifications to get updates on new plans, invites, and activity changes, right when they happen.</p>
+    <div class="ntf-sheet-footer">
+      <div class="ntf-btn-skip">Skip</div>
+      <div class="ntf-btn-enable">Turn on</div>
+    </div>
+  </div>
+</div>

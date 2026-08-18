@@ -1,0 +1,196 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  .rlab {
+    --bh-paper: #f5f2ec;
+    --bh-ink: #1a2332;
+    --bh-ink-soft: rgba(26, 35, 50, 0.68);
+    --bh-ember: #e8880a;
+    --bh-line: rgba(26, 35, 50, 0.14);
+    --bh-grad: linear-gradient(145deg, #14b8a6, #3b82f6);
+    --bh-grad-text: linear-gradient(145deg, #2dd4bf, #60a5fa);
+    --bh-pad-y: 104px;
+    font-family: "Geist", -apple-system, sans-serif;
+    color: var(--bh-ink);
+    background: var(--bh-paper);
+    overflow-x: clip;
+  }
+  .rlab * { box-sizing: border-box; }
+  .rlab a { text-decoration: none; color: inherit; }
+  .rlab-wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+  .rlab-h1, .rlab-h2 { font-weight: 800; letter-spacing: -0.025em; line-height: 1.05; margin: 0; }
+  .rlab-h1 { font-size: 62px; color: #fff; }
+  .rlab-h2 { font-size: 40px; color: var(--bh-ink); }
+  .rlab-grad-word { font-style: normal; background: var(--bh-grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .rlab-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 16px; border-radius: 999px; padding: 15px 32px;
+  }
+  .rlab .rlab-btn-grad { background: var(--bh-grad); color: #fff; }
+  .rlab .rlab-btn-nav { padding: 10px 22px; font-size: 14px; background: #fff; color: var(--bh-ink); }
+  .rlab-btn-big { padding: 17px 38px; font-size: 17px; }
+
+  .rlab-head { position: relative; background: var(--bh-ink); overflow: hidden; }
+  .rlab-head-art { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.85; }
+  .rlab-nav {
+    position: relative; z-index: 2; display: flex; align-items: center;
+    justify-content: space-between; width: 100%; max-width: 1160px;
+    margin: 0 auto; padding: 24px 28px;
+  }
+  .rlab .rlab-nav-logo { font-weight: 800; font-size: 20px; letter-spacing: -0.02em; color: #fff; }
+  .rlab-nav-links { display: flex; align-items: center; gap: 28px; font-weight: 600; font-size: 15px; color: rgba(255, 255, 255, 0.92); }
+  .rlab-nav-links a.rlab-nav-on { color: #fff; text-decoration: underline; text-decoration-color: var(--bh-ember); text-decoration-thickness: 2px; text-underline-offset: 7px; }
+  .rlab-head-content { position: relative; z-index: 1; padding: 72px 28px 96px; max-width: 1160px; margin: 0 auto; text-align: center; }
+  .rlab-eyebrow { margin: 0 0 16px; font-weight: 700; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bh-ember); }
+  .rlab-head-sub { margin: 20px auto 0; max-width: 560px; font-size: 20px; line-height: 1.55; color: rgba(255, 255, 255, 0.78); }
+
+  .rlab-story { padding: var(--bh-pad-y) 0; text-align: center; }
+  .rlab-team { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 44px; }
+  .rlab-team-chip {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: #fff; border: 1px solid var(--bh-line); border-radius: 999px;
+    padding: 8px 22px 8px 8px;
+  }
+  .rlab-team-avatar { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; display: block; }
+  .rlab-team-name { display: block; font-weight: 700; font-size: 15px; line-height: 1.25; }
+  .rlab-team-role { display: block; font-size: 13px; color: var(--bh-ink-soft); }
+  .rlab-story-big {
+    font-weight: 800; letter-spacing: -0.025em; line-height: 1.2;
+    font-size: 38px; color: var(--bh-ink); max-width: 820px; margin: 0 auto;
+  }
+  .rlab-story-body { max-width: 640px; margin: 30px auto 0; font-size: 18px; line-height: 1.75; color: var(--bh-ink-soft); }
+
+  .rlab-values { padding: 0 0 var(--bh-pad-y); text-align: center; }
+  .rlab-values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 56px; }
+  .rlab-value-illo { display: block; width: 148px; height: 148px; padding: 30px; border-radius: 50%; background: var(--bh-ink); margin: 0 auto; }
+  .rlab-value-title { font-weight: 800; font-size: 20px; letter-spacing: -0.01em; margin: 22px 0 8px; color: var(--bh-ink); }
+  .rlab-value-desc { margin: 0; font-size: 16px; line-height: 1.65; color: var(--bh-ink-soft); }
+
+  .rlab-cta-band { position: relative; background: var(--bh-ink); padding: var(--bh-pad-y) 0; text-align: center; overflow: hidden; }
+  .rlab-cta-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+  .rlab-cta-shade { position: absolute; inset: 0; background: rgba(16, 23, 36, 0.62); }
+  .rlab-cta-band .rlab-wrap { position: relative; z-index: 1; }
+  .rlab-cta-band .rlab-h2 { color: #fff; font-size: 52px; }
+  .rlab-cta-band .rlab-btn { margin-top: 34px; }
+  .rlab-cta-trust { margin: 18px 0 0; font-size: 15px; color: rgba(255, 255, 255, 0.75); }
+
+  .rlab-footer { background: var(--bh-ink); border-top: 1px solid rgba(255, 255, 255, 0.12); padding: 36px 0; }
+  .rlab-footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .rlab-footer-brand { font-weight: 800; font-size: 16px; color: #fff; }
+  .rlab-footer-links { display: flex; gap: 24px; font-size: 14px; font-weight: 600; color: rgba(255, 255, 255, 0.72); }
+</style>
+
+<div class="rlab">
+
+  <section class="rlab-head">
+    <svg class="rlab-head-art" viewBox="0 0 1440 360" preserveAspectRatio="none" fill="none" stroke="#9fc3d8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M60 90 h18 M69 81 v18" opacity="0.6" />
+      <path d="M1360 250 h16 M1368 242 v16" opacity="0.6" />
+      <circle cx="180" cy="290" r="4" opacity="0.75" /><circle cx="260" cy="60" r="4" opacity="0.75" />
+      <circle cx="1180" cy="80" r="4" opacity="0.75" /><circle cx="1290" cy="300" r="4" opacity="0.75" />
+      <path d="M90 190 l50 22" stroke-dasharray="10 12" opacity="0.5" />
+      <path d="M1300 150 l54 -18" stroke-dasharray="10 12" opacity="0.5" />
+      <path d="M1220 190 c 16 -12 32 -12 48 0 c 16 12 32 12 48 0" opacity="0.4" />
+    </svg>
+
+    <header class="rlab-nav">
+      <a href="redesign2-landing-v2-blue-hour-illustrated.html" class="rlab-nav-logo">Mixed<i class="rlab-grad-word">Routes</i></a>
+      <nav class="rlab-nav-links">
+        <a href="redesign2-landing-v2-blue-hour-illustrated.html#rlbhi-how">How it works</a>
+        <a href="redesign2-about.html" class="rlab-nav-on">About</a>
+        <a href="redesign2-faq.html">FAQ</a>
+        <a href="redesign2-get-the-app.html" class="rlab-btn rlab-btn-nav">Get the app</a>
+      </nav>
+    </header>
+
+    <div class="rlab-head-content">
+      <p class="rlab-eyebrow">About</p>
+      <h1 class="rlab-h1">We win when <i class="rlab-grad-word">you go.</i></h1>
+      <p class="rlab-head-sub">MixedRoutes is a small team building the opposite of a social network.</p>
+    </div>
+  </section>
+
+  <section class="rlab-story">
+    <div class="rlab-wrap">
+      <p class="rlab-story-big">The best nights of your life won&apos;t happen on your phone. So we built an app that gets you off it.</p>
+      <p class="rlab-story-body">Every app you open is designed to keep you there. Feeds, followers, streaks, and an algorithm that always has one more thing for you. Meanwhile, &ldquo;we should hang out&rdquo; dies in a group chat for the fourth week in a row.</p>
+      <p class="rlab-story-body">MixedRoutes exists for exactly one thing: turning a vague idea into a time, a place, and people who show up. Find something worth doing, get your people to a yes, lock in the details, and put your phone away. That&apos;s the whole product. The app did its job when you stop looking at it.</p>
+      <div class="rlab-team">
+        <div class="rlab-team-chip">
+          <img class="rlab-team-avatar" src="../img/brandon.jpg" alt="Brandon" />
+          <span><span class="rlab-team-name">Brandon</span><span class="rlab-team-role">Founder, product</span></span>
+        </div>
+        <div class="rlab-team-chip">
+          <img class="rlab-team-avatar" src="../img/eric.jpg" alt="Eric" />
+          <span><span class="rlab-team-name">Eric</span><span class="rlab-team-role">Founder, engineer</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rlab-values">
+    <div class="rlab-wrap">
+      <h2 class="rlab-h2">What we stand on.</h2>
+      <div class="rlab-values-grid">
+        <div class="rlab-value">
+          <svg class="rlab-value-illo" viewBox="0 0 96 96" fill="none" stroke="#9fc3d8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="28" y="10" width="40" height="76" rx="9" />
+            <path d="M38 26 h20 M38 38 h14 M38 50 h20 M38 62 h11" opacity="0.7" />
+            <path d="M18 84 L78 12" stroke="#e8880a" stroke-width="4" />
+            <path d="M12 30 h10 M17 25 v10" opacity="0.6" />
+            <circle cx="84" cy="66" r="2.5" opacity="0.6" />
+          </svg>
+          <h3 class="rlab-value-title">No feed, no followers</h3>
+          <p class="rlab-value-desc">There is nothing to scroll and nobody to perform for. Plans, people, and places. That&apos;s it.</p>
+        </div>
+        <div class="rlab-value">
+          <svg class="rlab-value-illo" viewBox="0 0 96 96" fill="none" stroke="#9fc3d8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M48 80 C31 65 19 53 19 39 c0-10 8-18 18-18 c4.5 0 8.5 2 11 6 c2.5-4 6.5-6 11-6 c10 0 18 8 18 18 c0 14-12 26-29 41 z" />
+            <path d="M40 42 l6 6 l11 -12" stroke="#e8880a" stroke-width="4" />
+            <path d="M78 18 h10 M83 13 v10" opacity="0.6" />
+            <circle cx="12" cy="70" r="2.5" opacity="0.6" />
+          </svg>
+          <h3 class="rlab-value-title">Free, with no catch</h3>
+          <p class="rlab-value-desc">No ads and no data selling. We don&apos;t make money from your attention, so we don&apos;t need to trap it.</p>
+        </div>
+        <div class="rlab-value">
+          <svg class="rlab-value-illo" viewBox="0 0 96 96" fill="none" stroke="#9fc3d8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M48 14 c-11 14-18 23-18 34 a18 18 0 0 0 36 0 c0-11-7-20-18-34 z" />
+            <path d="M48 40 c-5 6.5-8 11-8 16 a8 8 0 0 0 16 0 c0-5-3-9.5-8-16 z" stroke="#e8880a" />
+            <path d="M26 78 l44 10 M70 78 l-44 10" />
+            <path d="M80 30 h10 M85 25 v10" opacity="0.6" />
+            <circle cx="14" cy="42" r="2.5" opacity="0.6" />
+          </svg>
+          <h3 class="rlab-value-title">Made for real life</h3>
+          <p class="rlab-value-desc">Trails, backyards, bar tables, and back rows. Success is measured in plans that actually happened.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rlab-cta-band">
+    <img class="rlab-cta-img" src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=2200&q=75" alt="Friends sharing dinner at a long patio table" />
+    <div class="rlab-cta-shade"></div>
+    <div class="rlab-wrap">
+      <h2 class="rlab-h2">Go where <i class="rlab-grad-word">life is.</i></h2>
+      <a href="redesign2-get-the-app.html" class="rlab-btn rlab-btn-grad rlab-btn-big">Get the app</a>
+      <p class="rlab-cta-trust">Free on iOS, Android, and web · No ads · No data selling</p>
+    </div>
+  </section>
+
+  <footer class="rlab-footer">
+    <div class="rlab-wrap rlab-footer-inner">
+      <span class="rlab-footer-brand">Mixed<i class="rlab-grad-word">Routes</i></span>
+      <nav class="rlab-footer-links">
+        <a href="redesign2-about.html">About</a>
+        <a href="redesign2-faq.html">FAQ</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+</div>

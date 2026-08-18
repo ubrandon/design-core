@@ -3,9 +3,33 @@ import { readFileSync, mkdirSync, existsSync, writeFileSync, readdirSync, unlink
 import { resolve, join } from 'path';
 
 const ROOT = resolve(import.meta.dirname, '..');
-const SHARED_CONFIG_PATH = join(ROOT, 'public', 'data', 'captures', 'config.json');
+const COMPANIES_DIR = join(ROOT, 'public', 'data', 'companies');
+
+// Which company to capture for: --company <slug>, DESIGN_CORE_COMPANY, or the only company in the repo.
+function resolveCompanySlug() {
+  const argIdx = process.argv.indexOf('--company');
+  const fromArg = argIdx >= 0 ? process.argv[argIdx + 1] : '';
+  const slug = (fromArg || process.env.DESIGN_CORE_COMPANY || '').trim();
+  if (slug) return slug;
+  try {
+    const idx = JSON.parse(readFileSync(join(COMPANIES_DIR, 'index.json'), 'utf-8'));
+    const list = Array.isArray(idx.companies) ? idx.companies : [];
+    if (list.length === 1 && list[0].slug) return list[0].slug;
+    console.error(`\n  Which company? Run with --company <slug>. Companies: ${list.map((c) => c.slug).join(', ') || '(none)'}\n`);
+  } catch {
+    console.error('\n  No companies found. Create one on the home page first.\n');
+  }
+  process.exit(1);
+}
+
+const COMPANY_SLUG = resolveCompanySlug();
+if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(COMPANY_SLUG)) {
+  console.error(`\n  Invalid company id: ${COMPANY_SLUG}\n`);
+  process.exit(1);
+}
+const SHARED_CONFIG_PATH = join(COMPANIES_DIR, COMPANY_SLUG, 'captures', 'config.json');
 const LOCAL_CONFIG_PATH = join(ROOT, '.app-screens.json');
-const OUTPUT_DIR = join(ROOT, 'public', 'data', 'captures');
+const OUTPUT_DIR = join(COMPANIES_DIR, COMPANY_SLUG, 'captures');
 const BROWSER_DATA_DIR = join(ROOT, '.capture-browser-data');
 
 // Read a JSON config file, or exit with a readable message instead of a raw stack trace.
@@ -2007,7 +2031,7 @@ async function main() {
 
   writeManifest(screens);
   try { await context.close(); } catch {}
-  console.log(`\n  ✓ Finished. ${screens.length} screenshots saved to public/data/captures/`);
+  console.log(`\n  ✓ Finished. ${screens.length} screenshots saved to public/data/companies/${COMPANY_SLUG}/captures/`);
   process.exit(0);
 }
 

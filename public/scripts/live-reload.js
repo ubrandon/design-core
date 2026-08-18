@@ -9,8 +9,8 @@
  *   window.__onDataChanged = function(paths) { ... };
  *
  * `paths` is an array of relative data paths, e.g.
- *   ["data/projects/my-app/screens/home.html",
- *    "data/projects/my-app/canvas.json"]
+ *   ["data/companies/acme/projects/my-app/screens/home.html",
+ *    "data/companies/acme/projects/my-app/canvas.json"]
  *
  * On deployed (non-Vite) sites this script is a no-op — the token global
  * won't exist, so the WebSocket connection is never attempted.

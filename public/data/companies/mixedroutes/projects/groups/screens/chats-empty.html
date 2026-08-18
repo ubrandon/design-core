@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<div style="background: var(--bg-0); overflow-x: clip; min-height: 100vh; display: flex; flex-direction: column">
+  <div class="mr-scope" style="display: flex; flex-direction: column; flex: 1">
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 18px 16px 10px">
+      <span style="font-size: 1.6rem; font-weight: 800; color: var(--text)">Chats</span>
+      <div style="display: flex; align-items: center; gap: 12px">
+        <button type="button" class="mr-nav-icon-btn" aria-label="Notifications">
+          <i class="ph ph-bell" aria-hidden="true"></i>
+        </button>
+        <img class="mr-top-nav-avatar" src="https://i.pravatar.cc/72?img=11" alt="" width="36" height="36" loading="lazy" />
+      </div>
+    </header>
+
+    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 32px; text-align: center">
+      <div
+        style="
+          width: 88px;
+          height: 88px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.04);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 18px;
+        "
+        aria-hidden="true"
+      >
+        <i class="ph ph-chat-teardrop-text" style="font-size: 38px; color: rgba(255,255,255,0.55)"></i>
+      </div>
+      <div style="font-size: 1.15rem; font-weight: 800; color: var(--text); margin-bottom: 8px">No chats yet</div>
+      <div style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.55); line-height: 1.5; max-width: 280px">
+        Start a conversation with a friend, message a plan, or create a group to chat with your crew.
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 22px; width: 100%; max-width: 320px">
+        <button type="button" class="btn btn-primary" style="width: 100%; padding: 14px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 8px">
+          <i class="ph-fill ph-chat-circle-text" style="font-size: 18px"></i>
+          New chat
+        </button>
+        <button type="button" class="btn btn-secondary" style="width: 100%; padding: 14px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 8px">
+          <i class="ph-fill ph-users-three" style="font-size: 18px"></i>
+          Create a group
+        </button>
+      </div>
+    </div>
+
+    <div
+      style="
+        position: sticky;
+        bottom: 0;
+        z-index: 5;
+        padding-top: 8px;
+        background: linear-gradient(180deg, transparent, var(--bg-0) 28%);
+      "
+    >
+      <div class="mr-tab-bar" style="margin: 0 8px 0">
+        <button type="button" class="mr-tab-item" aria-label="Plans">
+          <i class="ph ph-calendar-blank" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="mr-tab-item" aria-label="Discover">
+          <i class="ph ph-compass" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="mr-tab-item mr-tab-create" aria-label="Create">
+          <i class="ph ph-plus-circle" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="mr-tab-item" aria-label="Friends">
+          <i class="ph ph-user" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="mr-tab-item mr-tab-active" aria-label="Chats">
+          <i class="ph-fill ph-chat-teardrop-text" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

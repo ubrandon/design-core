@@ -1,0 +1,54 @@
+{
+  "screens": [
+    {
+      "file": "plans-upcoming.html",
+      "x": 0,
+      "y": 0,
+      "width": 390
+    },
+    {
+      "file": "plans-upcoming-suggested.html",
+      "x": 512,
+      "y": 0,
+      "width": 390
+    },
+    {
+      "file": "plans-invites-page.html",
+      "x": -25,
+      "y": 1524,
+      "width": 390
+    },
+    {
+      "file": "plans-upcoming-invite-carousel.html",
+      "x": 419,
+      "y": 1524,
+      "width": 390
+    }
+  ],
+  "texts": [
+    {
+      "text": "Current design",
+      "x": 0,
+      "y": -96,
+      "size": 48
+    },
+    {
+      "text": "Updated",
+      "x": 512,
+      "y": -96,
+      "size": 48
+    },
+    {
+      "text": "Invites page",
+      "x": -25,
+      "y": 1428,
+      "size": 48
+    },
+    {
+      "text": "Invite carousel",
+      "x": 419,
+      "y": 1428,
+      "size": 48
+    }
+  ]
+}

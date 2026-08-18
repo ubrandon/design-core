@@ -1,0 +1,207 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .pc-scope { --pv-bg: #0a0f14; --pv-card: #161d27; --pv-card-2: #1a2230; --pv-green: #34c759; --pv-green-soft: rgba(52,199,89,0.16); --pv-red: #ff5a5f; --pv-amber: #f5b400; }
+  .pc-scope, .pc-scope * { scrollbar-width: none; -ms-overflow-style: none; box-sizing: border-box; }
+  .pc-scope::-webkit-scrollbar, .pc-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .pc-scope .pv-wrap { background: var(--pv-bg); min-height: 844px; position: relative; }
+
+  .pc-scope .pv-hero { position: relative; height: 380px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 0 24px 34px;
+    background-image: linear-gradient(180deg, rgba(10,15,20,0.3) 0%, rgba(10,15,20,0.05) 28%, rgba(10,15,20,0.55) 78%, var(--pv-bg) 100%), url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=80");
+    background-size: cover; background-position: center; }
+
+  .pc-scope .pv-topbar { position: absolute; top: 18px; left: 16px; right: 16px; z-index: 2; display: flex; align-items: center; justify-content: space-between; }
+  .pc-scope .pv-topbar .right { display: flex; gap: 10px; }
+  .pc-scope .pv-iconbtn { width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(20,28,38,0.55); backdrop-filter: blur(8px); color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+  .pc-scope .pv-iconbtn i { font-size: 20px; }
+
+  .pc-scope .pv-chip { background: rgba(20,28,38,0.7); backdrop-filter: blur(8px); color: #fff; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.05em; padding: 9px 18px; border-radius: 999px; }
+  .pc-scope .pv-event-title { margin-top: 16px; font-size: 2.25rem; font-weight: 800; color: #fff; text-align: center; letter-spacing: -0.02em; line-height: 1.08; text-shadow: 0 2px 16px rgba(0,0,0,0.5); }
+
+  .pc-scope .pv-actions { margin-top: 26px; display: flex; gap: 14px; }
+  .pc-scope .pv-act { display: inline-flex; align-items: center; gap: 9px; padding: 14px 28px; border-radius: 999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; border: 1.5px solid transparent; }
+  .pc-scope .pv-act i { font-size: 19px; }
+  .pc-scope .pv-act.chat { background: rgba(74,86,104,0.85); color: #fff; }
+  .pc-scope .pv-act.going { background: rgba(40,70,48,0.55); color: var(--pv-green); border-color: rgba(52,199,89,0.7); }
+  .pc-scope .pv-act.going i { color: var(--pv-green); }
+
+  .pc-scope .pv-body { padding: 0 20px 32px; }
+
+  .pc-scope .pv-guestbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 22px 2px 24px; }
+  .pc-scope .pv-stack { display: flex; align-items: center; }
+  .pc-scope .pv-avwrap { position: relative; display: inline-flex; margin-left: -14px; }
+  .pc-scope .pv-avwrap:first-child { margin-left: 0; }
+  .pc-scope .pv-stack .gav { width: 50px; height: 50px; border-radius: 50%; border: 3px solid var(--pv-bg); object-fit: cover; display: block; }
+  .pc-scope .pv-stack .gav.initials { background: #5a687c; color: #fff; font-size: 0.92rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .pc-scope .pv-stack .badge { position: absolute; bottom: 1px; right: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--pv-green); border: 2.5px solid var(--pv-bg); display: inline-flex; align-items: center; justify-content: center; z-index: 2; }
+  .pc-scope .pv-stack .badge i { font-size: 10px; color: #fff; line-height: 1; }
+  .pc-scope .pv-guest-meta { display: flex; align-items: center; cursor: pointer; flex-shrink: 0; }
+  .pc-scope .pv-guest-meta .txt { text-align: right; }
+  .pc-scope .pv-guest-meta .n { font-size: 1.15rem; font-weight: 800; color: #fff; }
+  .pc-scope .pv-guest-meta .s { font-size: 0.88rem; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .pc-scope .pv-guest-meta .chev { color: rgba(255,255,255,0.5); font-size: 24px; margin-left: 6px; }
+
+  /* weather strip */
+  .pc-scope .pv-weather { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 4px; margin-bottom: 18px; }
+  .pc-scope .pv-weather .wd { flex: 0 0 auto; min-width: 58px; background: rgba(26,34,48,0.6); border-radius: 14px; padding: 10px 6px 12px; text-align: center; }
+  .pc-scope .pv-weather .wd .d { font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; }
+  .pc-scope .pv-weather .wd i { font-size: 22px; margin: 6px 0 4px; display: block; }
+  .pc-scope .pv-weather .wd .sun { color: var(--pv-amber); }
+  .pc-scope .pv-weather .wd .cloud { color: rgba(255,255,255,0.7); }
+  .pc-scope .pv-weather .wd .rain { color: #4a9fff; }
+  .pc-scope .pv-weather .wd .t { font-size: 0.92rem; font-weight: 800; color: #fff; }
+
+  .pc-scope .pv-desc { font-size: 1.08rem; line-height: 1.55; color: rgba(255,255,255,0.9); padding: 0 2px; margin-bottom: 6px; }
+  .pc-scope .pv-desc p { margin: 0; }
+
+  .pc-scope .pv-section-title { font-size: 1.55rem; font-weight: 800; color: #fff; margin: 30px 2px 18px; letter-spacing: -0.01em; }
+
+  .pc-scope .pv-card { background: rgba(26,34,48,0.6); border-radius: 20px; padding: 20px 18px; margin-bottom: 16px; }
+  .pc-scope .pv-row { display: flex; align-items: center; gap: 14px; }
+  .pc-scope .pv-row .ic { width: 48px; height: 48px; border-radius: 14px; background: rgba(255,255,255,0.07); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .pc-scope .pv-row .ic i { font-size: 24px; color: rgba(255,255,255,0.85); }
+  .pc-scope .pv-row .t1 { font-size: 1.1rem; font-weight: 800; color: #fff; }
+  .pc-scope .pv-row .t2 { font-size: 0.92rem; color: rgba(255,255,255,0.55); margin-top: 3px; }
+
+  /* cost card */
+  .pc-scope .pv-cost-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 18px; }
+  .pc-scope .pv-cost-head .lbl { font-size: 0.92rem; color: rgba(255,255,255,0.55); }
+  .pc-scope .pv-cost-head .total { font-size: 2rem; font-weight: 800; color: #fff; line-height: 1; margin-top: 6px; }
+  .pc-scope .pv-cost-head .per { text-align: right; }
+  .pc-scope .pv-cost-head .per .pn { font-size: 1.35rem; font-weight: 800; color: var(--pv-green); line-height: 1; }
+  .pc-scope .pv-cost-head .per .ps { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
+  .pc-scope .pv-costbar { display: flex; height: 10px; border-radius: 6px; overflow: hidden; margin-bottom: 16px; }
+  .pc-scope .pv-costbar span { height: 100%; }
+  .pc-scope .pv-costbar .s1 { background: #4a9fff; flex: 5; }
+  .pc-scope .pv-costbar .s2 { background: var(--pv-green); flex: 2.5; }
+  .pc-scope .pv-costbar .s3 { background: var(--pv-amber); flex: 2.5; }
+  .pc-scope .pv-costlist .cl { display: flex; align-items: center; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .pc-scope .pv-costlist .cl:last-child { border-bottom: 0; padding-bottom: 0; }
+  .pc-scope .pv-costlist .cl .left { display: flex; align-items: center; gap: 11px; }
+  .pc-scope .pv-costlist .cl .dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+  .pc-scope .pv-costlist .cl .nm { font-size: 1rem; color: rgba(255,255,255,0.9); }
+  .pc-scope .pv-costlist .cl .amt { font-size: 1rem; font-weight: 800; color: #fff; }
+  .pc-scope .pv-settle { display: flex; align-items: center; justify-content: center; gap: 9px; width: 100%; margin-top: 18px; padding: 15px; border-radius: 14px; border: 0; background: var(--pv-green-soft); color: var(--pv-green); font-size: 1.05rem; font-weight: 800; cursor: pointer; }
+  .pc-scope .pv-settle i { font-size: 19px; }
+
+  .pc-scope .pv-link { display: flex; gap: 14px; align-items: center; background: rgba(26,34,48,0.6); border-radius: 20px; padding: 18px; text-decoration: none; margin-top: 8px; margin-bottom: 16px; }
+  .pc-scope .pv-link .pv-link-ic { width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, #f5a623, #f76b1c); display: inline-flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
+  .pc-scope .pv-link .pv-link-body { min-width: 0; flex: 1; }
+  .pc-scope .pv-link .pv-link-title { font-size: 1.1rem; font-weight: 800; color: #fff; }
+  .pc-scope .pv-link .pv-link-url { font-size: 0.92rem; color: #4a9fff; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pc-scope .pv-link .pv-link-ext { color: rgba(255,255,255,0.4); font-size: 18px; flex-shrink: 0; align-self: flex-start; }
+</style>
+
+<div class="mr-scope pc-scope">
+  <div class="pv-wrap">
+
+    <div class="pv-hero">
+      <div class="pv-topbar">
+        <button type="button" class="pv-iconbtn" aria-label="Back"><i class="ph ph-arrow-left"></i></button>
+        <div class="right">
+          <button type="button" class="pv-iconbtn" aria-label="Share"><i class="ph ph-share-network"></i></button>
+          <button type="button" class="pv-iconbtn" aria-label="Edit"><i class="ph ph-pencil-simple"></i></button>
+          <button type="button" class="pv-iconbtn" aria-label="More"><i class="ph ph-dots-three-vertical"></i></button>
+        </div>
+      </div>
+
+      <div class="pv-chip">JUN 7 - JUN 14</div>
+      <div class="pv-event-title">Friends Trip</div>
+      <div class="pv-actions">
+        <button type="button" class="pv-act chat"><i class="ph-fill ph-chat-circle"></i> Chat</button>
+        <button type="button" class="pv-act going"><i class="ph-fill ph-check-circle"></i> Going</button>
+      </div>
+    </div>
+
+    <div class="pv-body">
+
+      <div class="pv-guestbar">
+        <div class="pv-stack">
+          <span class="pv-avwrap"><img class="gav" src="https://i.pravatar.cc/120?img=12" alt="" /><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+          <span class="pv-avwrap"><span class="gav initials">MG</span><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+          <span class="pv-avwrap"><img class="gav" src="https://i.pravatar.cc/120?img=32" alt="" /><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+          <span class="pv-avwrap"><span class="gav initials">AM</span><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+        </div>
+        <div class="pv-guest-meta">
+          <div class="txt">
+            <div class="n">10 guests</div>
+            <div class="s">View and invite</div>
+          </div>
+          <i class="ph ph-caret-right chev"></i>
+        </div>
+      </div>
+
+      <div class="pv-weather">
+        <div class="wd"><div class="d">SAT</div><i class="ph-fill ph-sun sun"></i><div class="t">79°</div></div>
+        <div class="wd"><div class="d">SUN</div><i class="ph-fill ph-sun sun"></i><div class="t">81°</div></div>
+        <div class="wd"><div class="d">MON</div><i class="ph-fill ph-cloud-sun cloud"></i><div class="t">77°</div></div>
+        <div class="wd"><div class="d">TUE</div><i class="ph-fill ph-cloud-rain rain"></i><div class="t">72°</div></div>
+        <div class="wd"><div class="d">WED</div><i class="ph-fill ph-sun sun"></i><div class="t">80°</div></div>
+        <div class="wd"><div class="d">THU</div><i class="ph-fill ph-sun sun"></i><div class="t">83°</div></div>
+      </div>
+
+      <div class="pv-desc">
+        <p>A whole week away with the crew. Costs are split below, just settle up before we leave.</p>
+      </div>
+
+      <a class="pv-link" href="https://communitynewspapers.com/events/friends-beach-week" target="_blank" rel="noopener">
+        <span class="pv-link-ic">🎭</span>
+        <div class="pv-link-body">
+          <div class="pv-link-title">Event Page</div>
+          <div class="pv-link-url">https://communitynewspapers.com/events/friends-beach-week</div>
+        </div>
+        <i class="ph ph-arrow-square-out pv-link-ext"></i>
+      </a>
+
+      <div class="pv-section-title">Trip cost</div>
+
+      <div class="pv-card">
+        <div class="pv-cost-head">
+          <div>
+            <div class="lbl">Total so far</div>
+            <div class="total">$2,400</div>
+          </div>
+          <div class="per">
+            <div class="pn">$240</div>
+            <div class="ps">per person · 10</div>
+          </div>
+        </div>
+        <div class="pv-costbar">
+          <span class="s1"></span>
+          <span class="s2"></span>
+          <span class="s3"></span>
+        </div>
+        <div class="pv-costlist">
+          <div class="cl">
+            <div class="left"><span class="dot" style="background:#4a9fff;"></span><span class="nm">Beach house · 7 nights</span></div>
+            <span class="amt">$1,200</span>
+          </div>
+          <div class="cl">
+            <div class="left"><span class="dot" style="background:var(--pv-green);"></span><span class="nm">Groceries &amp; food</span></div>
+            <span class="amt">$600</span>
+          </div>
+          <div class="cl">
+            <div class="left"><span class="dot" style="background:var(--pv-amber);"></span><span class="nm">Boat day + gas</span></div>
+            <span class="amt">$600</span>
+          </div>
+        </div>
+        <button type="button" class="pv-settle"><i class="ph-fill ph-hand-coins"></i> Settle up $240</button>
+      </div>
+
+      <div class="pv-section-title">Plan details</div>
+
+      <div class="pv-card">
+        <div class="pv-row">
+          <span class="ic"><i class="ph-fill ph-calendar-blank"></i></span>
+          <div>
+            <div class="t1">Sat, Jun 7 - Sat, Jun 14</div>
+            <div class="t2">Check-in 3 PM</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

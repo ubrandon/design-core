@@ -1,0 +1,73 @@
+{
+  "screens": [
+    {
+      "file": "home-feed-welcome-card-variants.html",
+      "x": -1024,
+      "y": 5472,
+      "width": 390
+    },
+    {
+      "file": "home-feed-invites.html",
+      "x": -288,
+      "y": 5472,
+      "width": 390,
+      "name": "home-feed"
+    },
+    {
+      "file": "nav-variations.html",
+      "x": -1920,
+      "y": 864,
+      "width": 1000
+    },
+    {
+      "file": "nav-final.html",
+      "x": -896,
+      "y": 864,
+      "width": 1160
+    },
+    {
+      "file": "home-feed-anatomy.html",
+      "x": -1920,
+      "y": 5472,
+      "width": 390
+    },
+    {
+      "file": "home-feed-header-variations.html",
+      "x": -1440,
+      "y": 5472,
+      "width": 390
+    },
+    {
+      "file": "home-feed-empty-skeleton.html",
+      "x": 128,
+      "y": 5472,
+      "width": 390
+    },
+    {
+      "file": "home-feed-empty-discover.html",
+      "x": -1920,
+      "y": 3264,
+      "width": 390
+    },
+    {
+      "file": "home-feed-filter-hiking.html",
+      "x": -1472,
+      "y": 3264,
+      "width": 390
+    },
+    {
+      "file": "home-feed-filter-hiking-slim.html",
+      "x": -1024,
+      "y": 3264,
+      "width": 390
+    }
+  ],
+  "texts": [
+    {
+      "text": "Current designs",
+      "x": -1920,
+      "y": 5376,
+      "size": 48
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .v4-scope { --v4-bg: #06080e; --v4-line: rgba(255,255,255,0.08); --v4-warn: #f5c451; }
+  .v4-scope, .v4-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .v4-scope::-webkit-scrollbar, .v4-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .v4-wrap { background: var(--v4-bg); height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .v4-body { flex: 1; overflow-y: auto; padding-bottom: 8px; }
+
+  .v4-header { display: grid; grid-template-columns: 1fr 28px; align-items: center; padding: 22px 20px 12px; }
+  .v4-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .v4-close { background: transparent; border: 0; color: rgba(255,255,255,0.85); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .v4-close i { font-size: 22px; }
+
+  .v4-toggle { margin: 4px 20px 16px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,0.06); display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .v4-toggle button { min-height: 40px; border: 0; border-radius: 999px; background: transparent; color: rgba(255,255,255,0.6); font-size: 0.92rem; font-weight: 850; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .v4-toggle button i { font-size: 17px; }
+  .v4-toggle button.is-active { background: #fff; color: #061016; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+
+  .v4-search { display: grid; grid-template-columns: 20px 1fr; align-items: center; gap: 10px; margin: 0 20px 16px; padding: 12px 15px; background: rgba(255,255,255,0.07); border-radius: 999px; }
+  .v4-search i { color: rgba(255,255,255,0.54); font-size: 17px; }
+  .v4-search input { width: 100%; border: 0; outline: 0; padding: 0; background: transparent; color: #fff; font: inherit; font-size: 0.94rem; }
+
+  .v4-label { display: flex; align-items: baseline; justify-content: space-between; padding: 10px 20px 12px; color: #fff; font-size: 1.25rem; font-weight: 850; letter-spacing: -0.005em; }
+  .v4-label .count { color: rgba(255,255,255,0.5); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  .v4-grouplist { padding: 0 20px; display: flex; flex-direction: column; }
+  .v4-grouprow { display: grid; grid-template-columns: 48px 1fr 22px; align-items: center; gap: 13px; padding: 11px 8px; margin: 0 -4px; border-radius: 14px; }
+  .v4-grouprow .gthumb { width: 48px; height: 48px; border-radius: 14px; overflow: hidden; background: rgba(255,255,255,0.08); display: inline-flex; align-items: center; justify-content: center; }
+  .v4-grouprow .gthumb img { width: 100%; height: 100%; object-fit: cover; }
+  .v4-grouprow .gthumb i { color: #fff; font-size: 22px; }
+  .v4-grouprow .gname { color: #fff; font-size: 0.98rem; font-weight: 850; line-height: 1.15; }
+  .v4-grouprow .gmeta { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+  .v4-grouprow .chev { color: rgba(255,255,255,0.4); font-size: 18px; display: inline-flex; align-items: center; justify-content: center; }
+
+  .v4-cta { padding: 14px 20px 22px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 12px; }
+  .v4-cta button { min-height: 50px; border: 0; border-radius: 999px; color: #fff; font-size: 0.98rem; font-weight: 850; }
+  .v4-cta .ghost { background: rgba(255,255,255,0.08); }
+  .v4-cta .primary { background: linear-gradient(135deg, #24b8aa, #4c87cf); }
+  .v4-cta .primary[disabled] { opacity: 0.5; }
+
+
+</style>
+
+<div class="mr-scope v4-scope">
+  <div class="v4-wrap">
+    <div class="v4-body">
+      <header class="v4-header">
+        <div class="v4-title">Who's going?</div>
+        <button type="button" class="v4-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      </header>
+
+      <div class="v4-toggle">
+        <button type="button"><i class="ph ph-user"></i>Invite friends</button>
+        <button type="button" class="is-active"><i class="ph ph-users-three"></i>Add to group</button>
+      </div>
+
+      <div class="v4-label"><span>Add to group</span></div>
+      <div class="v4-grouplist">
+        <div class="v4-grouprow">
+          <div class="gthumb"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" /></div>
+          <div><div class="gname">Lake House</div><div class="gmeta">8 members</div></div>
+          <span class="chev"><i class="ph ph-caret-right"></i></span>
+        </div>
+        <div class="v4-grouprow">
+          <div class="gthumb"><img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" /></div>
+          <div><div class="gname">Family</div><div class="gmeta">4 members</div></div>
+          <span class="chev"><i class="ph ph-caret-right"></i></span>
+        </div>
+        <div class="v4-grouprow">
+          <div class="gthumb"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" /></div>
+          <div><div class="gname">Climbing gym</div><div class="gmeta">3 members</div></div>
+          <span class="chev"><i class="ph ph-caret-right"></i></span>
+        </div>
+        <div class="v4-grouprow">
+          <div class="gthumb"><img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" /></div>
+          <div><div class="gname">Work friends</div><div class="gmeta">6 members</div></div>
+          <span class="chev"><i class="ph ph-caret-right"></i></span>
+        </div>
+        <div class="v4-grouprow">
+          <div class="gthumb"><i class="ph ph-pizza"></i></div>
+          <div><div class="gname">College friends</div><div class="gmeta">5 members</div></div>
+          <span class="chev"><i class="ph ph-caret-right"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="v4-cta">
+      <button type="button" class="ghost">Cancel</button>
+      <button type="button" class="primary" disabled>Pick a group</button>
+    </div>
+  </div>
+</div>

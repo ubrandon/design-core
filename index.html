@@ -281,7 +281,7 @@
 
       return `
         <div class="project-card-wrap" style="--card-hue:${hue}">
-          <a href="project.html?id=${id}" class="project-card" aria-label="Open ${name}">
+          <a href="${withCompany("project.html?id=" + id)}" class="project-card" aria-label="Open ${name}">
             <div class="project-card__head">
               <div class="project-card__name">${name}</div>
               ${statusHtml}
@@ -456,7 +456,7 @@
       grid.innerHTML = `
         <div class="empty-state empty-state--in-grid empty-state--error">
           <p class="empty-state__title">Could not load projects</p>
-          <p class="empty-state__hint">Check that <code>data/projects/index.json</code> exists and is valid JSON.</p>
+          <p class="empty-state__hint">Check that <code>${dataPath("projects/index.json")}</code> exists and is valid JSON.</p>
           <p style="margin-top:16px;"><button type="button" class="btn-tool btn-tool--primary" id="projects-retry">Retry</button></p>
         </div>`;
       grid.setAttribute("aria-busy", "false");
@@ -488,7 +488,7 @@
     }
 
     function loadRows() {
-      return fetchJSON("data/projects/index.json").then((data) => {
+      return fetchJSON(dataPath("projects/index.json")).then((data) => {
         const projects = data.projects || [];
         if (!projects.length) return [];
         return enrichRows(projects);
@@ -620,7 +620,7 @@
             .then((r) => {
               closeNewProjectModal();
               showToast("Project created");
-              window.location.href = "project.html?id=" + encodeURIComponent(r.id);
+              window.location.href = withCompany("project.html?id=" + encodeURIComponent(r.id));
             })
             .catch((err) => showToast(err.message || "Could not create"));
         })
@@ -654,7 +654,34 @@
       if (allRows.length) render();
     });
 
-    loadProjects();
+    function renderCompanyPicker(list) {
+      toolbar.hidden = true;
+      countHint.hidden = true;
+      const items = list
+        .map((c) => `<button type="button" class="btn-tool company-pick" data-slug="${escapeHtml(c.slug)}">${escapeHtml(c.name)}</button>`)
+        .join("");
+      grid.innerHTML = `
+        <div class="empty-state empty-state--in-grid">
+          <p class="empty-state__title">${list.length ? "Pick a company" : "No companies yet"}</p>
+          <p class="empty-state__hint">${list.length ? "Each company holds its own projects, prototypes, and design system." : "Create your first company to start adding projects."}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px;">${items}</div>
+          <p style="margin-top:16px;"><button type="button" class="btn-tool btn-tool--primary" id="company-new">New company</button></p>
+        </div>`;
+      grid.setAttribute("aria-busy", "false");
+      grid.querySelectorAll(".company-pick").forEach((b) => {
+        b.addEventListener("click", () => switchCompany(b.getAttribute("data-slug")));
+      });
+      const newBtn = document.getElementById("company-new");
+      newBtn.hidden = !homeLocalEdit;
+      newBtn.addEventListener("click", () => {
+        if (typeof window.__openCompanyMenu === "function") window.__openCompanyMenu();
+      });
+    }
+
+    ensureCompany().then((slug) => {
+      if (slug) { loadProjects(); return; }
+      fetchCompanies().then(renderCompanyPicker);
+    });
 
     try {
       const hint = sessionStorage.getItem("design-core-redirect-hint");
@@ -668,8 +695,10 @@
     function changedProjectIds(paths) {
       const ids = new Set();
       for (const p of paths) {
-        const m = /^data\/projects\/([^/]+)\//.exec(p);
-        if (m) ids.add(decodeURIComponent(m[1]));
+        const prefix = dataPath("projects/");
+        if (!p.startsWith(prefix)) continue;
+        const id = p.slice(prefix.length).split("/")[0];
+        if (id && id !== "index.json") ids.add(decodeURIComponent(id));
       }
       return [...ids];
     }
@@ -677,7 +706,7 @@
     window.__onDataChanged = function (paths) {
       if (!paths || !paths.length) { softReloadProjects(); return; }
       // Adds/removes/renames touch the index itself — reload the whole list.
-      if (paths.some((p) => p === "data/projects/index.json")) { softReloadProjects(); return; }
+      if (paths.some((p) => p === dataPath("projects/index.json"))) { softReloadProjects(); return; }
       const ids = changedProjectIds(paths).filter((id) => allRows.some((r) => r.id === id));
       if (!ids.length) return;
       Promise.all(

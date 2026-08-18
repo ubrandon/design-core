@@ -281,7 +281,7 @@
       }
 
       function dsDataPath(p) {
-        return typeof p === "string" && p.replace(/\\/g, "/").startsWith("data/design-system/");
+        return typeof p === "string" && p.replace(/\\/g, "/").startsWith(dataPath("design-system/"));
       }
 
       /* ── Live reload (register before first load so WS events never miss the handler) ── */
@@ -302,8 +302,8 @@
       }
       window.addEventListener("pagehide", savePanZoom);
 
-      // Auto-load company.css if it exists (brand overrides for company repos)
-      fetch("data/design-system/company.css?t=" + Date.now(), { method: "HEAD" })
+      // Auto-load the company's company.css if it exists (brand overrides)
+      fetch(dataPath("design-system/company.css") + "?t=" + Date.now(), { method: "HEAD" })
         .then(r => {
           if (r.ok) {
             let link = document.getElementById("design-core-company-css");
@@ -315,7 +315,7 @@
               const refreshStyles = document.getElementById("tool-refresh-styles");
               document.head.insertBefore(link, refreshStyles || null);
             }
-            link.href = "data/design-system/company.css?t=" + Date.now();
+            link.href = dataPath("design-system/company.css") + "?t=" + Date.now();
           }
         })
         .catch(() => {});
@@ -543,7 +543,7 @@
         const bust = "?t=" + Date.now();
         let registry;
         try {
-          const res = await fetch("data/design-system/registry.json" + bust);
+          const res = await fetch(dataPath("design-system/registry.json") + bust);
           if (!res.ok) throw new Error(res.status);
           registry = await res.json();
         } catch {
@@ -594,7 +594,7 @@
         for (const cat of categories) {
           for (const comp of cat.components) {
             componentFetches.push(
-              fetch("data/design-system/components/" + comp.file + bust)
+              fetch(dataPath("design-system/components/" + comp.file) + bust)
                 .then(r => r.ok ? r.text() : Promise.reject())
                 .then(content => ({ id: comp.id, content }))
                 .catch(() => ({ id: comp.id, content: '<div class="empty-state">Could not load ' + comp.file + '</div>' }))
@@ -682,7 +682,7 @@
 
         const companyLink = document.getElementById("design-core-company-css");
         if (companyLink) {
-          companyLink.href = "data/design-system/company.css?t=" + Date.now();
+          companyLink.href = dataPath("design-system/company.css") + "?t=" + Date.now();
         }
       }
 

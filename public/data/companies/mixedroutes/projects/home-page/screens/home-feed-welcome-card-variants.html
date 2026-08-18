@@ -1,0 +1,380 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .mr-variants-page {
+    padding: 16px 16px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .mr-variants-intro {
+    padding: 4px 0 4px;
+  }
+  .mr-variants-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .mr-variants-sub {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 4px;
+    line-height: 1.35;
+  }
+  .mr-variants-category {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text);
+    padding: 32px 0 0;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 14px;
+  }
+  .mr-variants-category:first-of-type {
+    border-top: none;
+    margin-top: 4px;
+    padding-top: 8px;
+  }
+  .mr-variants-category + .mr-variants-category-sub {
+    margin-top: 0;
+  }
+  .mr-variants-category-sub {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.55);
+    padding: 6px 0 10px;
+    line-height: 1.4;
+  }
+  .mr-variants-section-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    padding-bottom: 6px;
+  }
+  .mr-banner-card {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    border-radius: 18px;
+    padding: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(var(--neon-teal-rgb), 0.22), rgba(var(--neon-blue-rgb), 0.08));
+    border: 1px solid rgba(var(--neon-teal-rgb), 0.36);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+  }
+  .mr-banner-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(var(--neon-teal-rgb), 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: var(--neon-teal);
+    flex-shrink: 0;
+  }
+  .mr-banner-body {
+    flex: 1;
+    min-width: 0;
+  }
+  .mr-banner-title {
+    font-size: 0.96rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .mr-banner-desc {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 2px;
+    line-height: 1.3;
+  }
+  .mr-banner-cta {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--neon-teal);
+    background: none;
+    border: none;
+    padding: 4px 0;
+    flex-shrink: 0;
+  }
+  .mr-banner-dismiss {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    color: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+  }
+  .mr-banner-dismiss i {
+    font-size: 14px;
+  }
+</style>
+
+<div style="background: var(--bg-0); overflow-x: clip; position: relative; min-height: 100%">
+  <div class="mr-scope">
+
+    <header class="mr-top-nav-home">
+      <a class="mr-top-nav-home-logo" href="#" aria-label="MixedRoutes home">
+        <img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" width="36" height="36" alt="" loading="lazy" />
+        <span class="mr-top-nav-home-wordmark">MixedRoutes</span>
+      </a>
+      <div class="mr-top-nav-home-actions">
+        <button type="button" class="mr-nav-icon-btn" aria-label="Notifications">
+          <i class="ph ph-bell" aria-hidden="true"></i>
+        </button>
+        <img class="mr-top-nav-avatar" src="https://i.pravatar.cc/72?img=11" alt="" width="36" height="36" loading="lazy" />
+      </div>
+    </header>
+
+    <div class="mr-variants-page">
+
+      <div class="mr-variants-intro">
+        <div class="mr-variants-title">Home feed banner — copy explorations</div>
+        <div class="mr-variants-sub">Swipeable banners grouped by what they ask the user to do. Different angles for voice, urgency, what to highlight.</div>
+      </div>
+
+      <div class="mr-variants-category">Setup / first-time</div>
+      <div class="mr-variants-category-sub">The first thing a new user sees. Get them oriented and moving.</div>
+
+      <div>
+        <div class="mr-banner-card">
+          <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="mr-banner-icon"><span aria-hidden="true">👋</span></div>
+          <div class="mr-banner-body">
+            <div class="mr-banner-title">Welcome to MixedRoutes</div>
+            <div class="mr-banner-desc">Let's get you set up in a few quick steps.</div>
+          </div>
+          <button type="button" class="mr-banner-cta">Start</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="mr-banner-card">
+          <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="mr-banner-icon"><span aria-hidden="true">🏁</span></div>
+          <div class="mr-banner-body">
+            <div class="mr-banner-title">1 of 3 done — keep going</div>
+            <div class="mr-banner-desc">Find a couple friends next and you're nearly there.</div>
+          </div>
+          <button type="button" class="mr-banner-cta">Next</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="mr-banner-card">
+          <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="mr-banner-icon"><span aria-hidden="true">⏳</span></div>
+          <div class="mr-banner-body">
+            <div class="mr-banner-title">Finish setting up</div>
+            <div class="mr-banner-desc">A few steps left.</div>
+          </div>
+          <button type="button" class="mr-banner-cta">Resume</button>
+        </div>
+      </div>
+
+      <div class="mr-variants-category">Social — add your friends</div>
+      <div class="mr-variants-category-sub">Plans get better with people you know. Surface who's here and how to reach them.</div>
+
+      <div>
+        <div class="mr-banner-card">
+          <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="mr-banner-icon"><span aria-hidden="true">👥</span></div>
+          <div class="mr-banner-body">
+            <div class="mr-banner-title">12 friends already here</div>
+            <div class="mr-banner-desc">Connect with them so plans don't fly under the radar.</div>
+          </div>
+          <button type="button" class="mr-banner-cta">See</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="mr-banner-card">
+          <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="mr-banner-icon"><span aria-hidden="true">📇</span></div>
+          <div class="mr-banner-body">
+            <div class="mr-banner-title">Find friends from contacts</div>
+            <div class="mr-banner-desc">We'll match the people you already know — no spam.</div>
+          </div>
+          <button type="button" class="mr-banner-cta">Find</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="mr-banner-card">
+          <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="mr-banner-icon"><span aria-hidden="true">💌</span></div>
+          <div class="mr-banner-body">
+            <div class="mr-banner-title">Bring a friend along</div>
+            <div class="mr-banner-desc">It's way better with at least one person you know.</div>
+          </div>
+          <button type="button" class="mr-banner-cta">Invite</button>
+        </div>
+      </div>
+
+      <div class="mr-variants-category">Permissions</div>
+      <div class="mr-variants-category-sub">One-time asks for system access. Each one unlocks a feature, so lead with the payoff.</div>
+
+      <div>
+        <div class="mr-banner-card">
+          <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="mr-banner-icon"><span aria-hidden="true">🔔</span></div>
+          <div class="mr-banner-body">
+            <div class="mr-banner-title">Don't miss the plan</div>
+            <div class="mr-banner-desc">Turn on notifications so you hear when friends are in.</div>
+          </div>
+          <button type="button" class="mr-banner-cta">Turn on</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="mr-banner-card">
+          <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="mr-banner-icon"><span aria-hidden="true">📍</span></div>
+          <div class="mr-banner-body">
+            <div class="mr-banner-title">Show stuff near you</div>
+            <div class="mr-banner-desc">Share your location so plans aren't 40 minutes away.</div>
+          </div>
+          <button type="button" class="mr-banner-cta">Allow</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="mr-banner-card">
+          <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="mr-banner-icon"><span aria-hidden="true">📅</span></div>
+          <div class="mr-banner-body">
+            <div class="mr-banner-title">Skip the back-and-forth</div>
+            <div class="mr-banner-desc">Connect your calendar so we only suggest times you're free.</div>
+          </div>
+          <button type="button" class="mr-banner-cta">Connect</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="mr-banner-card">
+          <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="mr-banner-icon"><span aria-hidden="true">👤</span></div>
+          <div class="mr-banner-body">
+            <div class="mr-banner-title">Match people you know</div>
+            <div class="mr-banner-desc">We use contacts to find friends, then stop.</div>
+          </div>
+          <button type="button" class="mr-banner-cta">Allow</button>
+        </div>
+      </div>
+
+      <div class="mr-variants-category">Personalize your feed</div>
+      <div class="mr-variants-category-sub">Tune the suggestions. The more we know, the less noise you see.</div>
+
+      <div>
+        <div class="mr-banner-card">
+          <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="mr-banner-icon"><span aria-hidden="true">✨</span></div>
+          <div class="mr-banner-body">
+            <div class="mr-banner-title">Better suggestions, faster</div>
+            <div class="mr-banner-desc">Tell us what you like — we'll quiet the noise.</div>
+          </div>
+          <button type="button" class="mr-banner-cta">Tune it</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="mr-banner-card">
+          <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="mr-banner-icon"><span aria-hidden="true">🏔️</span></div>
+          <div class="mr-banner-body">
+            <div class="mr-banner-title">Asheville's calling</div>
+            <div class="mr-banner-desc">Trails, shows, dinners — set up your Home in a minute.</div>
+          </div>
+          <button type="button" class="mr-banner-cta">Explore</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="mr-banner-card">
+          <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="mr-banner-icon"><span aria-hidden="true">🎯</span></div>
+          <div class="mr-banner-body">
+            <div class="mr-banner-title">Pick a few things you're into</div>
+            <div class="mr-banner-desc">Trails, food, music, sports — we'll learn fast.</div>
+          </div>
+          <button type="button" class="mr-banner-cta">Pick</button>
+        </div>
+      </div>
+
+      <div class="mr-variants-category">Make your first plan</div>
+      <div class="mr-variants-category-sub">Activation. Push toward the first real plan once setup is mostly done.</div>
+
+      <div>
+        <div class="mr-banner-card">
+          <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="mr-banner-icon"><span aria-hidden="true">🗓️</span></div>
+          <div class="mr-banner-body">
+            <div class="mr-banner-title">Make your first plan</div>
+            <div class="mr-banner-desc">Coffee, a hike, a show. Invite a friend — done.</div>
+          </div>
+          <button type="button" class="mr-banner-cta">Plan</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="mr-banner-card">
+          <button type="button" class="mr-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="mr-banner-icon"><span aria-hidden="true">☕</span></div>
+          <div class="mr-banner-body">
+            <div class="mr-banner-title">Coffee this week?</div>
+            <div class="mr-banner-desc">Pick someone, pick a time — we'll handle the rest.</div>
+          </div>
+          <button type="button" class="mr-banner-cta">Start</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

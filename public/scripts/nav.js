@@ -62,7 +62,7 @@ function makeThemeToggle() {
 
 function navItem(href, label, icon, isActive) {
   const a = document.createElement("a");
-  a.href = href;
+  a.href = typeof withCompany === "function" ? withCompany(href) : href;
   a.className = "site-nav__item" + (isActive ? " site-nav__item--active" : "");
   a.innerHTML = icon + '<span class="site-nav__item-label">' + label + "</span>";
   return a;
@@ -90,7 +90,7 @@ function renderNav(opts = {}) {
   left.className = "site-nav__left";
 
   const brand = document.createElement("a");
-  brand.href = "index.html";
+  brand.href = typeof withCompany === "function" ? withCompany("index.html") : "index.html";
   brand.className = "site-nav__brand";
   brand.textContent = "Design Core";
   left.appendChild(brand);

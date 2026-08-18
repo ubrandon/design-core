@@ -1,0 +1,88 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .vB-scope { --vB-bg: #06080e; --vB-line: rgba(255,255,255,0.08); --vB-warn: #f5c451; }
+  .vB-scope, .vB-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .vB-scope::-webkit-scrollbar, .vB-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .vB-wrap { background: var(--vB-bg); height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .vB-body { flex: 1; overflow-y: auto; filter: blur(2px); opacity: 0.5; }
+  .vB-header { display: grid; grid-template-columns: 1fr 28px; align-items: center; padding: 22px 20px 4px; }
+  .vB-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .vB-stub { margin: 0 20px 14px; border-radius: 18px; background: rgba(255,255,255,0.045); border: 1px solid var(--vB-line); }
+  .vB-stub.s1 { height: 46px; border-radius: 999px; margin-top: 14px; }
+  .vB-stub.s2 { height: 220px; }
+
+  .vB-scrim { position: absolute; inset: 0; background: rgba(2,4,8,0.72); display: flex; align-items: flex-end; padding: 0 14px 18px; backdrop-filter: blur(6px); }
+  .vB-sheet { width: 100%; border-radius: 28px; background: #0f1622; border: 1px solid rgba(255,255,255,0.12); padding: 24px 20px 20px; box-shadow: 0 32px 90px rgba(0,0,0,0.6); }
+
+  .vB-top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .vB-thumb { width: 52px; height: 52px; border-radius: 15px; overflow: hidden; flex: none; background: rgba(32,224,207,0.18); display: inline-flex; align-items: center; justify-content: center; }
+  .vB-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .vB-top h2 { margin: 0; color: #fff; font-size: 1.34rem; line-height: 1.15; font-weight: 850; letter-spacing: -0.005em; }
+  .vB-top .eyebrow { color: var(--vB-warn); font-size: 0.74rem; font-weight: 850; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+  .vB-top .eyebrow i { font-size: 14px; }
+
+  .vB-sheet p { margin: 0 0 10px; color: rgba(255,255,255,0.66); font-size: 0.94rem; line-height: 1.45; }
+  .vB-hint { display: grid; grid-template-columns: 17px 1fr; gap: 9px; align-items: flex-start; color: rgba(255,255,255,0.5); font-size: 0.84rem; line-height: 1.4; margin-bottom: 18px; }
+  .vB-hint i { color: rgba(255,255,255,0.45); font-size: 16px; margin-top: 1px; }
+
+  .vB-section { margin-bottom: 14px; }
+  .vB-sec-label { color: rgba(255,255,255,0.5); font-size: 0.74rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .vB-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .vB-chip { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px 6px 6px; border-radius: 999px; font-size: 0.86rem; font-weight: 800; }
+  .vB-chip img, .vB-chip .av { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; font-size: 0.66rem; font-weight: 900; }
+  .vB-chip.stay { background: rgba(43,212,116,0.13); color: #7ee2a8; }
+  .vB-chip.stay .av { background: var(--neon-teal); color: #061016; }
+  .vB-chip.drop { background: rgba(245,196,81,0.12); color: #e7c474; text-decoration: line-through; text-decoration-color: rgba(245,196,81,0.5); }
+  .vB-chip.drop .av { background: #4a5462; color: #fff; }
+
+  .vB-actions { display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; }
+  .vB-actions button { min-height: 50px; border-radius: 999px; border: 0; color: #fff; font-size: 0.96rem; font-weight: 850; }
+  .vB-actions .ghost { background: rgba(255,255,255,0.08); }
+  .vB-actions .primary { background: linear-gradient(135deg, #24b8aa, #4c87cf); }
+</style>
+
+<div class="mr-scope vB-scope">
+  <div class="vB-wrap">
+    <div class="vB-body">
+      <header class="vB-header"><div class="vB-title">Invite guests</div></header>
+      <div class="vB-stub s1"></div>
+      <div class="vB-stub s2"></div>
+    </div>
+
+    <div class="vB-scrim">
+      <div class="vB-sheet">
+        <div class="vB-top">
+          <div class="vB-thumb"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" /></div>
+          <div>
+            <div class="eyebrow"><i class="ph-fill ph-arrows-clockwise"></i> Switch plan</div>
+            <h2>Make this a Lake House plan?</h2>
+          </div>
+        </div>
+        <p>This plan gets added to the group and can only be shared with members.</p>
+        <div class="vB-hint"><i class="ph-fill ph-info"></i><span>You'll need to invite them to the group first.</span></div>
+
+        <div class="vB-section">
+          <div class="vB-sec-label">Stays</div>
+          <div class="vB-chips">
+            <span class="vB-chip stay"><img src="https://i.pravatar.cc/64?img=47" alt="" />Nova</span>
+          </div>
+        </div>
+        <div class="vB-section">
+          <div class="vB-sec-label">Will be uninvited</div>
+          <div class="vB-chips">
+            <span class="vB-chip drop"><span class="av">LM</span>Lila</span>
+            <span class="vB-chip drop"><img src="https://i.pravatar.cc/64?img=33" alt="" />Soren</span>
+          </div>
+        </div>
+
+        <div class="vB-actions">
+          <button type="button" class="ghost">Cancel</button>
+          <button type="button" class="primary">Switch anyway</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

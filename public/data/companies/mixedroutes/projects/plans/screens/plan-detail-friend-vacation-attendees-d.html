@@ -1,0 +1,150 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .dv-scope { --pv-bg: #0a0f14; --pv-card: #161d27; --pv-card-2: #1a2230; --pv-green: #34c759; --pv-green-soft: rgba(52,199,89,0.16); --pv-amber: #f5b400; --pv-red: #ff5a5f; }
+  .dv-scope, .dv-scope * { scrollbar-width: none; -ms-overflow-style: none; box-sizing: border-box; }
+  .dv-scope::-webkit-scrollbar, .dv-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .dv-scope .dv-wrap { background: var(--pv-bg); padding: 24px 20px; }
+
+  .dv-scope .pv-card { background: linear-gradient(165deg, #1c2533 0%, #141b26 100%); border-radius: 22px; padding: 22px 20px; width: 100%; box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+
+  /* Header: title + privacy + share, no leading avatar */
+  .dv-scope .dv-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  .dv-scope .dv-head .ht { flex: 1; min-width: 0; }
+  .dv-scope .dv-head .ht .t1 { font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+  .dv-scope .dv-head .ht .t2 { font-size: 0.86rem; font-weight: 700; color: #8ab4ff; margin-top: 6px; display: inline-flex; align-items: center; gap: 7px; }
+  .dv-scope .dv-head .ht .t2 i { font-size: 15px; }
+  .dv-scope .dv-head .sh { width: 40px; height: 40px; border-radius: 12px; border: 0; background: rgba(255,255,255,0.08); color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
+  .dv-scope .dv-head .sh i { font-size: 19px; }
+
+  /* Going / maybe / out summary, no progress bar */
+  .dv-scope .dv-summary { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.04); border-radius: 14px; padding: 12px 14px; margin-bottom: 14px; }
+  .dv-scope .dv-summary .seg { display: inline-flex; align-items: center; gap: 7px; font-size: 0.92rem; font-weight: 700; color: rgba(255,255,255,0.85); }
+  .dv-scope .dv-summary .seg .d { width: 8px; height: 8px; border-radius: 50%; }
+  .dv-scope .dv-summary .seg .d.go { background: var(--pv-green); }
+  .dv-scope .dv-summary .seg .d.mb { background: #8a97ab; }
+  .dv-scope .dv-summary .seg .d.no { background: var(--pv-red); }
+  .dv-scope .dv-summary .seg b { color: #fff; }
+
+  /* Your RSVP sub-card */
+  .dv-scope .dv-rsvp { display: flex; align-items: center; gap: 13px; background: rgba(52,199,89,0.08); border: 1px solid rgba(52,199,89,0.22); border-radius: 16px; padding: 13px 14px; margin-bottom: 18px; }
+  .dv-scope .dv-rsvp .dot { width: 38px; height: 38px; border-radius: 11px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .dv-scope .dv-rsvp .dot i { font-size: 20px; }
+  .dv-scope .dv-rsvp .rt { flex: 1; min-width: 0; }
+  .dv-scope .dv-rsvp .rt .lb { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+  .dv-scope .dv-rsvp .rt .vl { font-size: 1.02rem; font-weight: 800; color: #fff; margin-top: 2px; }
+  .dv-scope .dv-rsvp .chg { border: 0; background: rgba(255,255,255,0.1); color: #fff; font-size: 0.86rem; font-weight: 800; padding: 9px 14px; border-radius: 11px; cursor: pointer; flex-shrink: 0; }
+
+  /* state colors driven by data-state on the sub-card */
+  .dv-scope .dv-rsvp[data-state="going"] { background: rgba(52,199,89,0.08); border-color: rgba(52,199,89,0.22); }
+  .dv-scope .dv-rsvp[data-state="going"] .dot { background: var(--pv-green-soft); color: var(--pv-green); }
+  .dv-scope .dv-rsvp[data-state="maybe"] { background: rgba(138,151,171,0.1); border-color: rgba(138,151,171,0.28); }
+  .dv-scope .dv-rsvp[data-state="maybe"] .dot { background: rgba(138,151,171,0.18); color: #b6c0cf; }
+  .dv-scope .dv-rsvp[data-state="out"] { background: rgba(255,90,95,0.08); border-color: rgba(255,90,95,0.24); }
+  .dv-scope .dv-rsvp[data-state="out"] .dot { background: rgba(255,90,95,0.16); color: var(--pv-red); }
+
+  /* Overlapping avatar row, like the main plan page */
+  .dv-scope .dv-guestbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; cursor: pointer; margin-bottom: 18px; }
+  .dv-scope .dv-stack { display: flex; align-items: center; min-width: 0; }
+  .dv-scope .dv-avwrap { position: relative; display: inline-flex; margin-left: -16px; }
+  .dv-scope .dv-avwrap:first-child { margin-left: 0; }
+  /* leftmost avatar paints on top */
+  .dv-scope .dv-avwrap:nth-child(1) { z-index: 5; }
+  .dv-scope .dv-avwrap:nth-child(2) { z-index: 4; }
+  .dv-scope .dv-avwrap:nth-child(3) { z-index: 3; }
+  .dv-scope .dv-avwrap:nth-child(4) { z-index: 2; }
+  .dv-scope .dv-avwrap:nth-child(5) { z-index: 1; }
+  .dv-scope .dv-stack .gav { width: 48px; height: 48px; border-radius: 50%; border: 3px solid #1c2533; object-fit: cover; display: block; }
+  .dv-scope .dv-stack .gav.initials { background: #5a687c; color: #fff; font-size: 0.92rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .dv-scope .dv-stack .gav.more { background: #2a3340; color: rgba(255,255,255,0.85); font-size: 0.88rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .dv-scope .dv-stack .badge { position: absolute; bottom: 1px; right: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--pv-green); border: 2.5px solid #1c2533; display: inline-flex; align-items: center; justify-content: center; z-index: 2; }
+  .dv-scope .dv-stack .badge i { font-size: 10px; color: #fff; line-height: 1; }
+  .dv-scope .dv-guest-meta { display: inline-flex; align-items: center; flex-shrink: 0; }
+  .dv-scope .dv-guest-meta .txt { text-align: right; }
+  .dv-scope .dv-guest-meta .n { font-size: 1.15rem; font-weight: 800; color: #fff; }
+  .dv-scope .dv-guest-meta .s { font-size: 0.88rem; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .dv-scope .dv-guest-meta .chev { color: rgba(255,255,255,0.5); font-size: 24px; margin-left: 6px; }
+</style>
+
+<div class="mr-scope dv-scope">
+  <div class="dv-wrap">
+
+    <div class="pv-card">
+
+      <div class="dv-head">
+        <div class="ht">
+          <div class="t1">10 guests</div>
+          <div class="t2"><i class="ph-fill ph-lock-simple"></i> Private &middot; hosted by Brandon</div>
+        </div>
+        <button type="button" class="sh" aria-label="Share"><i class="ph ph-share-network"></i></button>
+      </div>
+
+      <div class="dv-guestbar">
+        <div class="dv-stack">
+          <span class="dv-avwrap"><img class="gav" src="https://i.pravatar.cc/120?img=12" alt="" /><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+          <span class="dv-avwrap"><span class="gav initials">MG</span><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+          <span class="dv-avwrap"><img class="gav" src="https://i.pravatar.cc/120?img=32" alt="" /><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+          <span class="dv-avwrap"><img class="gav" src="https://i.pravatar.cc/120?img=45" alt="" /></span>
+        </div>
+        <div class="dv-guest-meta">
+          <div class="txt">
+            <div class="n">10 guests</div>
+            <div class="s">View and invite</div>
+          </div>
+          <i class="ph ph-caret-right chev"></i>
+        </div>
+      </div>
+
+      <div class="dv-summary">
+        <span class="seg"><span class="d go"></span><b data-count="going">4</b> going</span>
+        <span class="seg"><span class="d mb"></span><b data-count="maybe">6</b> maybe</span>
+        <span class="seg"><span class="d no"></span><b data-count="out">0</b> out</span>
+      </div>
+
+      <div class="dv-rsvp" data-state="going">
+        <span class="dot"><i class="ph-fill ph-check-circle"></i></span>
+        <div class="rt">
+          <div class="lb">Your RSVP</div>
+          <div class="vl">Going</div>
+        </div>
+        <button type="button" class="chg">Change</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function () {
+    var scope = document.querySelector('.dv-scope');
+    if (!scope) return;
+    var states = [
+      { key: 'going', label: 'Going', icon: 'ph-check-circle' },
+      { key: 'maybe', label: 'Maybe', icon: 'ph-question' },
+      { key: 'out', label: "Can't go", icon: 'ph-x-circle' }
+    ];
+    var card = scope.querySelector('.dv-rsvp');
+    var icon = card.querySelector('.dot i');
+    var value = card.querySelector('.vl');
+    var counts = { going: 4, maybe: 6, out: 0 };
+    var idx = 0;
+    function render() {
+      var s = states[idx];
+      card.setAttribute('data-state', s.key);
+      icon.className = 'ph-fill ' + s.icon;
+      value.textContent = s.label;
+      scope.querySelector('[data-count="going"]').textContent = counts.going;
+      scope.querySelector('[data-count="maybe"]').textContent = counts.maybe;
+      scope.querySelector('[data-count="out"]').textContent = counts.out;
+    }
+    card.querySelector('.chg').addEventListener('click', function () {
+      counts[states[idx].key]--;
+      idx = (idx + 1) % states.length;
+      counts[states[idx].key]++;
+      render();
+    });
+  })();
+</script>

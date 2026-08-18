@@ -1,0 +1,204 @@
+{
+  "screens": [
+    {
+      "file": "group-thread.html",
+      "x": 0,
+      "y": 0,
+      "width": 390
+    },
+    {
+      "file": "group-thread-attach-sheet.html",
+      "x": 960,
+      "y": 0,
+      "width": 390
+    },
+    {
+      "file": "group-thread-attach-sheet-list.html",
+      "x": 544,
+      "y": 0,
+      "width": 390
+    },
+    {
+      "file": "group-thread-new-channel-modal.html",
+      "x": 1312,
+      "y": 1152,
+      "width": 390
+    },
+    {
+      "file": "group-thread-new-channel-sheet-v1.html",
+      "x": 1728,
+      "y": 1152,
+      "width": 390
+    },
+    {
+      "file": "group-thread-new-channel-emoji-picker.html",
+      "x": 2144,
+      "y": 1152,
+      "width": 390
+    },
+    {
+      "file": "group-thread-new-channel-inline-v3.html",
+      "x": 832,
+      "y": 1152,
+      "width": 390
+    },
+    {
+      "file": "group-thread-admin.html",
+      "x": 0,
+      "y": 1152,
+      "width": 390
+    },
+    {
+      "file": "group-thread-manage-channels-sheet.html",
+      "x": 416,
+      "y": 1152,
+      "width": 390
+    },
+    {
+      "file": "group-thread-with-channels.html",
+      "x": 2656,
+      "y": 1152,
+      "width": 390
+    },
+    {
+      "file": "group-thread-manage-tags-sheet.html",
+      "x": 1312,
+      "y": 2432,
+      "width": 390
+    },
+    {
+      "file": "group-thread-new-tag-modal.html",
+      "x": 1728,
+      "y": 2432,
+      "width": 390
+    },
+    {
+      "file": "group-thread-manage-tags-list.html",
+      "x": 896,
+      "y": 2432,
+      "width": 390
+    },
+    {
+      "file": "group-thread-tags-filter.html",
+      "x": 0,
+      "y": 2432,
+      "width": 390
+    },
+    {
+      "file": "group-thread-tags-filter-v5-all-recent.html",
+      "x": 416,
+      "y": 2432,
+      "width": 390
+    },
+    {
+      "file": "group-thread-with-channels-v5-stack-reactions-dropdown.html",
+      "x": 2528,
+      "y": 2432,
+      "width": 390
+    },
+    {
+      "file": "group-thread-with-channels-v5-stack-reactions-sheet.html",
+      "x": 2944,
+      "y": 2432,
+      "width": 390
+    },
+    {
+      "file": "group-thread-with-channels-v2-bubble-cap5-teal.html",
+      "x": 0,
+      "y": 4928,
+      "width": 390
+    },
+    {
+      "file": "group-thread-with-channels-v3-bubble-widget-card.html",
+      "x": 416,
+      "y": 4928,
+      "width": 390
+    },
+    {
+      "file": "group-thread-with-channels-v3-bubble-widget-card-actions.html",
+      "x": 832,
+      "y": 4928,
+      "width": 390
+    },
+    {
+      "file": "group-thread-with-channels-v3-bubble-widget-card-icons.html",
+      "x": 3104,
+      "y": 1152,
+      "width": 390
+    },
+    {
+      "file": "group-thread-with-channels-v3-bubble-widget-card-more.html",
+      "x": 3520,
+      "y": 1152,
+      "width": 390
+    }
+  ],
+  "texts": [
+    {
+      "text": "Add to chat",
+      "x": 544,
+      "y": -96,
+      "size": 48
+    },
+    {
+      "text": "Chat screen",
+      "x": 0,
+      "y": -96,
+      "size": 48
+    },
+    {
+      "text": "Channels",
+      "x": 0,
+      "y": 1056,
+      "size": 48
+    },
+    {
+      "text": "New channel",
+      "x": 1312,
+      "y": 1056,
+      "size": 48
+    },
+    {
+      "text": "Widget",
+      "x": 2656,
+      "y": 1056,
+      "size": 48
+    },
+    {
+      "text": "Tags",
+      "x": 0,
+      "y": 2336,
+      "size": 48
+    },
+    {
+      "text": "Manage tags",
+      "x": 896,
+      "y": 2336,
+      "size": 48
+    },
+    {
+      "text": "New design",
+      "x": 3104,
+      "y": 1056,
+      "size": 48
+    },
+    {
+      "text": "Reactions",
+      "x": 2528,
+      "y": 2336,
+      "size": 48
+    },
+    {
+      "text": "Exploration",
+      "x": 0,
+      "y": 4672,
+      "size": 48
+    },
+    {
+      "text": "Channel widget",
+      "x": 0,
+      "y": 4832,
+      "size": 48
+    }
+  ]
+}

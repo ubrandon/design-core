@@ -1,0 +1,193 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .pk-scope { --pv-bg: #0a0f14; --pv-card: #161d27; --pv-card-2: #1a2230; --pv-green: #34c759; --pv-green-soft: rgba(52,199,89,0.16); --pv-red: #ff5a5f; }
+  .pk-scope, .pk-scope * { scrollbar-width: none; -ms-overflow-style: none; box-sizing: border-box; }
+  .pk-scope::-webkit-scrollbar, .pk-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .pk-scope .pv-wrap { background: var(--pv-bg); min-height: 844px; position: relative; }
+
+  .pk-scope .pv-hero { position: relative; height: 380px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 0 24px 34px;
+    background-image: linear-gradient(180deg, rgba(10,15,20,0.3) 0%, rgba(10,15,20,0.05) 28%, rgba(10,15,20,0.55) 78%, var(--pv-bg) 100%), url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=80");
+    background-size: cover; background-position: center; }
+
+  .pk-scope .pv-topbar { position: absolute; top: 18px; left: 16px; right: 16px; z-index: 2; display: flex; align-items: center; justify-content: space-between; }
+  .pk-scope .pv-topbar .right { display: flex; gap: 10px; }
+  .pk-scope .pv-iconbtn { width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(20,28,38,0.55); backdrop-filter: blur(8px); color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+  .pk-scope .pv-iconbtn i { font-size: 20px; }
+
+  .pk-scope .pv-chip { background: rgba(20,28,38,0.7); backdrop-filter: blur(8px); color: #fff; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.05em; padding: 9px 18px; border-radius: 999px; }
+  .pk-scope .pv-event-title { margin-top: 16px; font-size: 2.25rem; font-weight: 800; color: #fff; text-align: center; letter-spacing: -0.02em; line-height: 1.08; text-shadow: 0 2px 16px rgba(0,0,0,0.5); }
+
+  .pk-scope .pv-actions { margin-top: 26px; display: flex; gap: 14px; }
+  .pk-scope .pv-act { display: inline-flex; align-items: center; gap: 9px; padding: 14px 28px; border-radius: 999px; font-size: 1.05rem; font-weight: 700; cursor: pointer; border: 1.5px solid transparent; }
+  .pk-scope .pv-act i { font-size: 19px; }
+  .pk-scope .pv-act.chat { background: rgba(74,86,104,0.85); color: #fff; }
+  .pk-scope .pv-act.going { background: rgba(40,70,48,0.55); color: var(--pv-green); border-color: rgba(52,199,89,0.7); }
+  .pk-scope .pv-act.going i { color: var(--pv-green); }
+
+  .pk-scope .pv-body { padding: 0 20px 32px; }
+
+  .pk-scope .pv-guestbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 22px 2px 26px; }
+  .pk-scope .pv-stack { display: flex; align-items: center; }
+  .pk-scope .pv-avwrap { position: relative; display: inline-flex; margin-left: -14px; }
+  .pk-scope .pv-avwrap:first-child { margin-left: 0; }
+  .pk-scope .pv-stack .gav { width: 50px; height: 50px; border-radius: 50%; border: 3px solid var(--pv-bg); object-fit: cover; display: block; }
+  .pk-scope .pv-stack .gav.initials { background: #5a687c; color: #fff; font-size: 0.92rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .pk-scope .pv-stack .badge { position: absolute; bottom: 1px; right: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--pv-green); border: 2.5px solid var(--pv-bg); display: inline-flex; align-items: center; justify-content: center; z-index: 2; }
+  .pk-scope .pv-stack .badge i { font-size: 10px; color: #fff; line-height: 1; }
+  .pk-scope .pv-guest-meta { display: flex; align-items: center; cursor: pointer; flex-shrink: 0; }
+  .pk-scope .pv-guest-meta .txt { text-align: right; }
+  .pk-scope .pv-guest-meta .n { font-size: 1.15rem; font-weight: 800; color: #fff; }
+  .pk-scope .pv-guest-meta .s { font-size: 0.88rem; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .pk-scope .pv-guest-meta .chev { color: rgba(255,255,255,0.5); font-size: 24px; margin-left: 6px; }
+
+  .pk-scope .pv-desc { font-size: 1.08rem; line-height: 1.55; color: rgba(255,255,255,0.9); padding: 0 2px; margin-bottom: 6px; }
+  .pk-scope .pv-desc p { margin: 0; }
+
+  .pk-scope .pv-section-head { display: flex; align-items: center; justify-content: space-between; margin: 30px 2px 16px; }
+  .pk-scope .pv-section-title { font-size: 1.55rem; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+  .pk-scope .pv-count { font-size: 0.95rem; font-weight: 700; color: var(--pv-green); }
+
+  /* progress */
+  .pk-scope .pv-prog { height: 8px; border-radius: 6px; background: rgba(255,255,255,0.08); overflow: hidden; margin: 0 2px 16px; }
+  .pk-scope .pv-prog .fill { height: 100%; background: var(--pv-green); border-radius: 6px; transition: width 0.25s ease; }
+
+  /* checklist card */
+  .pk-scope .pv-card { background: rgba(26,34,48,0.6); border-radius: 20px; padding: 8px 18px; margin-bottom: 16px; }
+  .pk-scope .pv-check { display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px 0; border: 0; background: transparent; text-align: left; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .pk-scope .pv-check:last-child { border-bottom: 0; }
+  .pk-scope .pv-check .lbl { flex: 1; font-size: 1.05rem; color: #fff; }
+  .pk-scope .pv-check .who { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .pk-scope .pv-check .who.initials { background: #5a687c; color: #fff; font-size: 0.65rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .pk-scope .pv-check.is-done .lbl { color: rgba(255,255,255,0.4); text-decoration: line-through; }
+  .pk-scope .pv-additem { display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px 0; border: 0; background: transparent; text-align: left; cursor: pointer; color: rgba(255,255,255,0.5); font-size: 1.05rem; }
+  .pk-scope .pv-additem i { font-size: 22px; }
+
+  .pk-scope .pv-cat { font-size: 0.82rem; font-weight: 800; letter-spacing: 0.06em; color: rgba(255,255,255,0.4); margin: 22px 4px 8px; text-transform: uppercase; }
+</style>
+
+<div class="mr-scope pk-scope">
+  <div class="pv-wrap">
+
+    <div class="pv-hero">
+      <div class="pv-topbar">
+        <button type="button" class="pv-iconbtn" aria-label="Back"><i class="ph ph-arrow-left"></i></button>
+        <div class="right">
+          <button type="button" class="pv-iconbtn" aria-label="Share"><i class="ph ph-share-network"></i></button>
+          <button type="button" class="pv-iconbtn" aria-label="Edit"><i class="ph ph-pencil-simple"></i></button>
+          <button type="button" class="pv-iconbtn" aria-label="More"><i class="ph ph-dots-three-vertical"></i></button>
+        </div>
+      </div>
+
+      <div class="pv-chip">JUN 7 - JUN 14</div>
+      <div class="pv-event-title">Friends Trip</div>
+      <div class="pv-actions">
+        <button type="button" class="pv-act chat"><i class="ph-fill ph-chat-circle"></i> Chat</button>
+        <button type="button" class="pv-act going"><i class="ph-fill ph-check-circle"></i> Going</button>
+      </div>
+    </div>
+
+    <div class="pv-body">
+
+      <div class="pv-guestbar">
+        <div class="pv-stack">
+          <span class="pv-avwrap"><img class="gav" src="https://i.pravatar.cc/120?img=12" alt="" /><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+          <span class="pv-avwrap"><span class="gav initials">MG</span><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+          <span class="pv-avwrap"><img class="gav" src="https://i.pravatar.cc/120?img=32" alt="" /><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+          <span class="pv-avwrap"><span class="gav initials">AM</span><span class="badge"><i class="ph-fill ph-check"></i></span></span>
+        </div>
+        <div class="pv-guest-meta">
+          <div class="txt">
+            <div class="n">10 guests</div>
+            <div class="s">View and invite</div>
+          </div>
+          <i class="ph ph-caret-right chev"></i>
+        </div>
+      </div>
+
+      <div class="pv-desc">
+        <p>A whole week away with the crew. Claim a thing to bring so we don't double up.</p>
+      </div>
+
+      <div class="pv-section-head">
+        <div class="pv-section-title">What to bring</div>
+        <div class="pv-count" data-count>3 of 7</div>
+      </div>
+      <div class="pv-prog"><span class="fill" data-fill style="width:43%"></span></div>
+
+      <div class="pv-cat">Shared</div>
+      <div class="pv-card">
+        <button type="button" class="pv-check is-done">
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+          <span class="lbl">Big cooler</span>
+          <img class="who" src="https://i.pravatar.cc/120?img=12" alt="" />
+        </button>
+        <button type="button" class="pv-check is-done">
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+          <span class="lbl">Bluetooth speaker</span>
+          <span class="who initials">MG</span>
+        </button>
+        <button type="button" class="pv-check">
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+          <span class="lbl">Beach umbrella + chairs</span>
+          <img class="who" src="https://i.pravatar.cc/120?img=32" alt="" />
+        </button>
+        <button type="button" class="pv-check">
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+          <span class="lbl">Board games</span>
+          <span class="who initials">?</span>
+        </button>
+        <button type="button" class="pv-additem"><i class="ph ph-plus-circle"></i> Add item</button>
+      </div>
+
+      <div class="pv-cat">Everyone brings</div>
+      <div class="pv-card">
+        <button type="button" class="pv-check is-done">
+          <span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>
+          <span class="lbl">Sunscreen</span>
+        </button>
+        <button type="button" class="pv-check">
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+          <span class="lbl">Swimsuit + towel</span>
+        </button>
+        <button type="button" class="pv-check">
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+          <span class="lbl">Phone charger</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var scope = document.querySelector('.pk-scope');
+    if (!scope) return;
+    var checks = scope.querySelectorAll('.pv-check');
+    var countEl = scope.querySelector('[data-count]');
+    var fillEl = scope.querySelector('[data-fill]');
+
+    function refresh() {
+      var done = scope.querySelectorAll('.pv-check.is-done').length;
+      var total = checks.length;
+      if (countEl) countEl.textContent = done + ' of ' + total;
+      if (fillEl) fillEl.style.width = Math.round((done / total) * 100) + '%';
+    }
+
+    checks.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var on = btn.classList.toggle('is-done');
+        var box = btn.querySelector('.mr-checkbox');
+        var icon = box.querySelector('i');
+        box.classList.toggle('is-checked', on);
+        icon.className = on ? 'ph-fill ph-check-square' : 'ph ph-square';
+        refresh();
+      });
+    });
+
+    refresh();
+  })();
+</script>

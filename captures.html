@@ -782,7 +782,7 @@
       saveManifest();
       var deleteFailures = 0;
       Promise.all(filesToDelete.map(function(f) {
-        return fetch("data/captures/" + encodeURI(f), { method: "DELETE" })
+        return fetch(dataPath("captures/" + encodeURI(f)), { method: "DELETE" })
           .then(function(r) { if (!r.ok) deleteFailures++; })
           .catch(function() { deleteFailures++; });
       })).then(function() {
@@ -805,7 +805,7 @@
           return entry;
         })
       };
-      fetch("data/captures/manifest.json", {
+      fetch(dataPath("captures/manifest.json"), {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload, null, 2),
@@ -1168,7 +1168,7 @@
     /* ── Load & render ── */
     function loadCaptures() {
       var bust = "?t=" + Date.now();
-      return fetch("data/captures/manifest.json" + bust)
+      return fetch(dataPath("captures/manifest.json") + bust)
         .then(function(r) {
           if (!r.ok) throw new Error(r.status);
           return r.json();
@@ -1251,7 +1251,7 @@
               '<div class="cap-card-path">' + pathEsc + '</div>' +
             '</div>' +
             '<div class="cap-card-image-wrap is-collapsed" data-cap-height="' + collapseH + '" style="max-height:' + collapseH + 'px;">' +
-              '<img src="data/captures/' + fileUrl + bust + '" alt="' + displayNameEsc + '" loading="lazy">' +
+              '<img src="' + dataPath("captures/" + fileUrl) + bust + '" alt="' + displayNameEsc + '" loading="lazy">' +
             '</div>' +
             '<button class="cap-card-expand" onclick="toggleExpand(this)"><span>Expand</span></button>' +
           '</div>';
@@ -1381,7 +1381,7 @@
       var urlInput = document.getElementById("modal-cap-url");
 
       if (!urlInput.value) {
-        fetch("data/captures/config.json?t=" + Date.now())
+        fetch(dataPath("captures/config.json") + "?t=" + Date.now())
           .then(function(r) { return r.ok ? r.json() : null; })
           .then(function(cfg) { if (cfg && cfg.appUrl) urlInput.value = cfg.appUrl; })
           .catch(function() {});
@@ -1474,7 +1474,7 @@
       status.style.color = "";
       log.innerHTML = "";
 
-      streamSSE("/api/capture/launch", { url: appUrl }, {
+      streamSSE(apiUrl("/api/capture/launch"), { url: appUrl }, {
         log: function(d) {
           var div = document.createElement("div");
           div.textContent = d.text;
@@ -1549,7 +1549,7 @@
     /* ── Live reload ── */
     window.__onDataChanged = function(paths) {
       var relevant = paths.length === 0 || paths.some(function(p) {
-        return p.startsWith("data/captures/");
+        return p.startsWith(dataPath("captures/"));
       });
       if (relevant) {
         captures = [];

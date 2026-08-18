@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .chat-scope { --chat-bg: #0b0f14; --chat-surface: #1b2027; }
+  .chat-scope .chat-wrap { background: var(--chat-bg); height: 844px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .chat-scope .chat-pattern { position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/telegramdesktop/tdesktop/dev/Telegram/Resources/art/bg/pattern.png'); background-size: 420px; opacity: 0.06; pointer-events: none; mix-blend-mode: screen; }
+
+  .chat-scope .chat-header { position: relative; z-index: 3; display: grid; grid-template-columns: 28px 1fr 28px; align-items: center; gap: 12px; padding: 14px 16px 10px; background: transparent; }
+  .chat-scope .chat-header .back { background: transparent; border: 0; color: rgba(255,255,255,0.95); display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
+  .chat-scope .chat-header .back i { font-size: 24px; }
+  .chat-scope .chat-header .title { font-size: 1.25rem; font-weight: 800; color: #fff; }
+  .chat-scope .chat-header .edit-btn { background: transparent; border: 0; color: rgba(255,255,255,0.95); padding: 0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; justify-self: end; }
+  .chat-scope .chat-header .edit-btn i { font-size: 22px; }
+
+  .chat-scope .filter-row { display: flex; gap: 8px; padding: 4px 16px 8px; flex-wrap: wrap; position: relative; z-index: 2; }
+  .chat-scope .chip { padding: 8px 18px; border-radius: 999px; font-size: 0.95rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.18); background: transparent; color: #fff; cursor: pointer; }
+  .chat-scope .chip.active { background: #fff; color: #0b0f14; border-color: #fff; }
+
+  .chat-scope .chat-body { position: relative; z-index: 1; flex: 1; padding: 12px 12px 16px; display: flex; flex-direction: column; gap: 10px; justify-content: flex-end; }
+
+  .chat-scope .link-bubble { background: linear-gradient(135deg, #3a6a66, #2f7a72); border-radius: 16px; padding: 12px 14px 10px; color: #fff; }
+  .chat-scope .link-bubble .sender { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 0.95rem; margin-bottom: 4px; }
+  .chat-scope .link-bubble .sender .av { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; }
+  .chat-scope .link-bubble .url { color: #cfe9ff; text-decoration: underline; font-size: 1rem; display: block; margin-bottom: 10px; }
+  .chat-scope .link-bubble .preview { border-left: 3px solid rgba(255,255,255,0.55); padding: 8px 12px; background: rgba(255,255,255,0.06); border-radius: 6px; }
+  .chat-scope .link-bubble .preview .domain { color: rgba(255,255,255,0.75); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+  .chat-scope .link-bubble .preview .title { color: #fff; font-weight: 800; font-size: 1rem; }
+  .chat-scope .link-bubble .meta { display: flex; justify-content: flex-end; color: rgba(255,255,255,0.8); font-size: 0.78rem; margin-top: 8px; }
+</style>
+
+<div class="mr-scope chat-scope">
+  <div class="chat-wrap">
+    <div class="chat-pattern" aria-hidden="true"></div>
+    <header class="chat-header">
+      <button type="button" class="back" aria-label="Back"><i class="ph ph-arrow-left"></i></button>
+      <div class="title">Tags</div>
+      <button type="button" class="edit-btn" aria-label="Edit"><i class="ph ph-pencil-simple"></i></button>
+    </header>
+
+    <div class="filter-row">
+      <button type="button" class="chip active">Links</button>
+      <button type="button" class="chip">Test</button>
+    </div>
+
+    <div class="chat-body">
+      <div class="link-bubble">
+        <div class="sender"><img class="av" src="https://i.pravatar.cc/40?img=12" alt="" />You</div>
+        <a class="url" href="#">google.com</a>
+        <div class="preview">
+          <div class="domain">Google.com</div>
+          <div class="title">Google</div>
+        </div>
+        <div class="meta">4:30 PM</div>
+      </div>
+    </div>
+  </div>
+</div>

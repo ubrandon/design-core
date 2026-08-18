@@ -1,0 +1,164 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&display=swap");
+
+  .statnav2, .statnav2 * { box-sizing: border-box; font-family: "Geist", sans-serif; margin: 0; }
+  .statnav2 { background: #ffffff; color: #1a2332; position: relative; padding-bottom: 28px; }
+
+  .statnav2 .toolbar { height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 16px; background: #ffffff; }
+  .statnav2 .actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+  .statnav2 .actions .tbtn { position: relative; color: #1a2332; font-size: 24px; line-height: 1; }
+  .statnav2 .badge-dot { position: absolute; top: -8px; right: -8px; min-width: 22px; height: 22px; border-radius: 999px; background: #0ca678; color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center; border: 2px solid #ffffff; padding: 0 4px; }
+
+  /* You + status replaces the wordmark */
+  .statnav2 .me { display: flex; align-items: center; gap: 10px; min-width: 0; border: 0; background: none; padding: 0; text-align: left; }
+  .statnav2 .me .avw { position: relative; width: 40px; height: 40px; flex-shrink: 0; }
+  .statnav2 .me .avw img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; display: block; }
+  .statnav2 .me .dot { position: absolute; right: -1px; bottom: -1px; width: 13px; height: 13px; border-radius: 50%; background: #22c55e; border: 2px solid #ffffff; transition: background 0.2s ease; }
+  .statnav2 .me .m-txt { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .statnav2 .me .m-txt strong { font-size: 15px; font-weight: 700; color: #101724; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .statnav2 .me .m-txt span { font-size: 12px; color: #5c6b7d; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .statnav2 .me .caret { color: #5c6b7d; font-size: 14px; flex-shrink: 0; transition: transform 0.25s ease; }
+  .statnav2.is-open .me .caret { transform: rotate(180deg); }
+
+  /* Dropdown panel */
+  .statnav2 .drop { display: none; position: absolute; top: 58px; left: 12px; z-index: 30; width: 320px; border-radius: 18px; background: #ffffff; border: 1px solid rgba(16, 23, 36, 0.08); box-shadow: 0 6px 16px rgba(16, 24, 40, 0.1), 0 20px 48px rgba(16, 24, 40, 0.18); padding: 14px; flex-direction: column; gap: 12px; }
+  .statnav2.is-open .drop { display: flex; }
+  .statnav2 .group { display: flex; flex-direction: column; gap: 7px; }
+  .statnav2 .lbl { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #5c6b7d; }
+  .statnav2 .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .statnav2 .chip { height: 32px; padding: 0 12px; border-radius: 999px; border: 1.5px solid rgba(32, 36, 42, 0.16); background: #ffffff; color: #1a2332; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+  .statnav2 .chip .c-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--c, #22c55e); flex-shrink: 0; }
+  .statnav2 .chip.selected { background: #101724; border-color: #101724; color: #ffffff; }
+  .statnav2 .place { display: flex; align-items: center; gap: 10px; padding: 10px 11px; border-radius: 13px; background: #f7f8fa; }
+  .statnav2 .place .pin { width: 34px; height: 34px; border-radius: 11px; background: rgba(59, 130, 246, 0.12); color: #2563eb; display: grid; place-items: center; font-size: 17px; flex-shrink: 0; }
+  .statnav2 .place .p-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .statnav2 .place .p-txt strong { font-size: 13px; font-weight: 700; color: #101724; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .statnav2 .place .p-txt span { font-size: 12px; color: #5c6b7d; }
+  .statnav2 .place .out { height: 30px; padding: 0 12px; border: 1.5px solid rgba(32, 36, 42, 0.16); border-radius: 999px; background: #ffffff; color: #1a2332; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+
+  .statnav2 .content { padding: 0 16px; display: flex; flex-direction: column; gap: 16px; }
+  .statnav2 .greet { display: flex; flex-direction: column; gap: 7px; padding-top: 8px; }
+  .statnav2 .greet h1 { font-size: 36px; font-weight: 800; line-height: 1.15; color: #1a2332; }
+  .statnav2 .now { font-size: 16px; font-weight: 600; color: #5c6b7d; line-height: 1.4; }
+  .statnav2 .now a { color: #2563eb; font-weight: 700; text-decoration: none; }
+</style>
+
+<div class="statnav2">
+  <div class="toolbar">
+    <button class="me" aria-expanded="false">
+      <span class="avw">
+        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+        <span class="dot"></span>
+      </span>
+      <span class="m-txt">
+        <strong class="me-title">At Ultra Coffeebar ☕</strong>
+        <span class="me-sub">Online · 2 friends nearby</span>
+      </span>
+      <i class="ph ph-caret-down caret"></i>
+    </button>
+    <div class="actions">
+      <span class="tbtn"><i class="ph ph-user-plus"></i></span>
+      <span class="tbtn"><i class="ph ph-bell"></i><span class="badge-dot">2</span></span>
+      <span class="tbtn"><i class="ph ph-gear-six"></i></span>
+    </div>
+  </div>
+
+  <div class="drop">
+    <div class="group">
+      <div class="lbl">Your status</div>
+      <div class="chips" data-role="status">
+        <button class="chip selected" data-label="Online" style="--c: #22c55e;"><span class="c-dot"></span>Online</button>
+        <button class="chip" data-label="Down to hang" style="--c: #14b8a6;"><span class="c-dot"></span>Down to hang</button>
+        <button class="chip" data-label="Heads down" style="--c: #f59e0b;"><span class="c-dot"></span>Heads down</button>
+        <button class="chip" data-label="Invisible" style="--c: #9aa3ad;"><span class="c-dot"></span>Invisible</button>
+      </div>
+    </div>
+    <div class="group">
+      <div class="lbl">Quick activity</div>
+      <div class="chips" data-role="activity">
+        <button class="chip selected" data-emoji="☕" data-label="Coffee">☕ Coffee</button>
+        <button class="chip" data-emoji="🥾" data-label="On a walk">🥾 On a walk</button>
+        <button class="chip" data-emoji="🍻" data-label="Drinks">🍻 Drinks</button>
+        <button class="chip" data-emoji="🎯" data-label="Trivia">🎯 Trivia</button>
+      </div>
+    </div>
+    <div class="place">
+      <span class="pin"><i class="ph-fill ph-map-pin"></i></span>
+      <span class="p-txt">
+        <strong class="place-name">Ultra Coffeebar</strong>
+        <span class="place-sub">Downtown · since 4:15 PM</span>
+      </span>
+      <button class="out">Check out</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="greet">
+      <h1>Evening, Brandon</h1>
+      <div class="now">Happening now: <a href="#">Trivia at The Well</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector('.statnav2');
+  if (!root) return;
+  var me = root.querySelector('.me');
+  var title = root.querySelector('.me-title');
+  var sub = root.querySelector('.me-sub');
+  var dot = root.querySelector('.me .dot');
+  var placeName = root.querySelector('.place-name');
+  var placeSub = root.querySelector('.place-sub');
+  var outBtn = root.querySelector('.place .out');
+  var state = { status: 'Online', color: '#22c55e', activity: 'Coffee', emoji: '☕', checkedIn: true };
+
+  function render() {
+    dot.style.background = state.color;
+    if (state.checkedIn) title.textContent = 'At Ultra Coffeebar' + (state.emoji ? ' ' + state.emoji : '');
+    else if (state.activity) title.textContent = state.emoji + ' ' + state.activity;
+    else title.textContent = 'Set your status';
+    var parts = [state.status];
+    if (state.status === 'Invisible') parts.push('hidden from friends');
+    else if (state.checkedIn) parts.push('2 friends nearby');
+    sub.textContent = parts.join(' · ');
+    placeName.textContent = state.checkedIn ? 'Ultra Coffeebar' : 'Location sharing is off';
+    placeSub.textContent = state.checkedIn ? 'Downtown · since 4:15 PM' : "Friends can't see where you are";
+    outBtn.textContent = state.checkedIn ? 'Check out' : 'Check in';
+  }
+
+  me.addEventListener('click', function () {
+    var open = root.classList.toggle('is-open');
+    me.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  root.querySelectorAll('.chips[data-role="status"] .chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      root.querySelectorAll('.chips[data-role="status"] .chip').forEach(function (c) { c.classList.remove('selected'); });
+      chip.classList.add('selected');
+      state.status = chip.getAttribute('data-label');
+      state.color = chip.style.getPropertyValue('--c').trim();
+      render();
+    });
+  });
+
+  root.querySelectorAll('.chips[data-role="activity"] .chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var was = chip.classList.contains('selected');
+      root.querySelectorAll('.chips[data-role="activity"] .chip').forEach(function (c) { c.classList.remove('selected'); });
+      if (was) { state.activity = ''; state.emoji = ''; }
+      else { chip.classList.add('selected'); state.activity = chip.getAttribute('data-label'); state.emoji = chip.getAttribute('data-emoji'); }
+      render();
+    });
+  });
+
+  outBtn.addEventListener('click', function () {
+    state.checkedIn = !state.checkedIn;
+    render();
+  });
+})();
+</script>

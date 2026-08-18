@@ -1,0 +1,233 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .nf-root { background: var(--bg-0); color: var(--text); padding: 32px 28px 60px; }
+  .nf-intro { max-width: 1100px; margin: 0 auto 24px; }
+  .nf-intro h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 8px; }
+  .nf-intro p { font-size: 0.92rem; color: rgba(255,255,255,0.68); line-height: 1.45; margin: 0; }
+
+  .nf-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    align-items: start;
+  }
+
+  /* ---- Phone preview (left) ---- */
+  .nf-stage {
+    position: relative;
+    height: 460px;
+    background: var(--bg-1);
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+  }
+  .nf-stage-top {
+    height: 56px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 16px;
+    background: rgba(6, 8, 14, 0.98);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .nf-stage-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit; }
+  .nf-stage-logo img { height: 28px; width: 28px; display: block; }
+  .nf-stage-logo-text { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; color: rgba(255,255,255,0.96); }
+  .nf-stage-actions { display: flex; align-items: center; gap: 18px; }
+  .nf-stage-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.94); font-size: 22px;
+    background: none; border: none; padding: 0; cursor: pointer;
+  }
+  .nf-stage-notif {
+    position: relative; display: inline-flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.94); font-size: 22px;
+  }
+  .nf-stage-notif-dot {
+    position: absolute; top: -1px; right: -1px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #e74c3c; border: 2px solid rgba(6, 8, 14, 1);
+  }
+  .nf-stage-body {
+    height: calc(100% - 56px - 92px);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.18); font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+
+  .nf-stage-tab {
+    position: absolute; left: 12px; right: 12px; bottom: 12px;
+    height: 72px; border-radius: 22px;
+    background: rgba(6,8,14,0.96);
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: space-around;
+    padding: 0 8px;
+  }
+  .nf-tab {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    flex: 1; padding: 0 4px;
+    color: rgba(255,255,255,0.62);
+    background: none; border: none; cursor: pointer; min-width: 0;
+  }
+  .nf-tab i { font-size: 26px; line-height: 1; }
+  .nf-tab.is-active { color: #ffffff; }
+  .nf-tab.is-active i { color: #ffffff; }
+  .nf-tab-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background-image: url(https://i.pravatar.cc/72?img=11);
+    background-size: cover; background-position: center;
+    border: 1.5px solid rgba(255,255,255,0.22);
+  }
+  .nf-fab {
+    position: absolute; right: 20px; bottom: 100px;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: linear-gradient(135deg, color-mix(in srgb, #5ba5ff 78%, #020b14), color-mix(in srgb, #20e0cf 72%, #020b14));
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 10px 24px rgba(32,224,207,0.32), 0 0 0 1px rgba(255,255,255,0.12) inset;
+  }
+
+  /* ---- Annotated list (right) ---- */
+  .nf-section-label {
+    font-size: 0.72rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.5);
+    padding: 0 4px 10px;
+  }
+  .nf-section + .nf-section { margin-top: 22px; }
+  .nf-note-list { display: flex; flex-direction: column; gap: 8px; }
+  .nf-note-row {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: rgba(10, 14, 22, 0.6);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .nf-note-icon {
+    flex: 0 0 36px; width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.96);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .nf-note-icon i { font-size: 18px; }
+  .nf-note-icon img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
+  .nf-note-text { flex: 1; min-width: 0; }
+  .nf-note-title { font-size: 0.92rem; font-weight: 700; color: rgba(255,255,255,0.98); letter-spacing: -0.005em; }
+  .nf-note-desc { font-size: 0.8rem; line-height: 1.4; color: rgba(255,255,255,0.7); margin-top: 3px; }
+</style>
+
+<div class="mr-scope nf-root">
+  <div class="nf-intro">
+    <h1>Final nav direction</h1>
+    <p>Bottom: Home · Plans · <b>You</b> · Discover · Chat. Icon-only, solid white when active. Top right: notifications, people (Friends + invite), settings.</p>
+  </div>
+
+  <div class="nf-grid">
+    <!-- LEFT: phone mockup -->
+    <div class="nf-stage">
+      <div class="nf-stage-top">
+        <a class="nf-stage-logo" href="#">
+          <img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" />
+          <span class="nf-stage-logo-text">MixedRoutes</span>
+        </a>
+        <div class="nf-stage-actions">
+          <span class="nf-stage-notif"><i class="ph ph-bell"></i><span class="nf-stage-notif-dot"></span></span>
+          <span class="nf-stage-icon"><i class="ph ph-users"></i></span>
+          <span class="nf-stage-icon"><i class="ph ph-gear-six"></i></span>
+        </div>
+      </div>
+
+      <div class="nf-stage-body">Feed</div>
+
+      <div class="nf-fab"><i class="ph ph-plus"></i></div>
+
+      <div class="nf-stage-tab">
+        <button type="button" class="nf-tab is-active" aria-label="Home"><i class="ph-fill ph-house"></i></button>
+        <button type="button" class="nf-tab" aria-label="Plans"><i class="ph ph-calendar-blank"></i></button>
+        <button type="button" class="nf-tab" aria-label="You">
+          <span class="nf-tab-avatar"></span>
+        </button>
+        <button type="button" class="nf-tab" aria-label="Discover"><i class="ph ph-compass"></i></button>
+        <button type="button" class="nf-tab" aria-label="Chat"><i class="ph ph-chat-teardrop-text"></i></button>
+      </div>
+    </div>
+
+    <!-- RIGHT: annotations -->
+    <div>
+      <div class="nf-section">
+        <div class="nf-section-label">Top nav</div>
+        <div class="nf-note-list">
+          <div class="nf-note-row">
+            <div class="nf-note-icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" loading="lazy" /></div>
+            <div class="nf-note-text">
+              <div class="nf-note-title">MixedRoutes</div>
+              <div class="nf-note-desc">Logo + wordmark — taps to home</div>
+            </div>
+          </div>
+          <div class="nf-note-row">
+            <div class="nf-note-icon"><i class="ph ph-bell" aria-hidden="true"></i></div>
+            <div class="nf-note-text">
+              <div class="nf-note-title">Notifications</div>
+              <div class="nf-note-desc">Invites, reminders, friend activity</div>
+            </div>
+          </div>
+          <div class="nf-note-row">
+            <div class="nf-note-icon"><i class="ph ph-users" aria-hidden="true"></i></div>
+            <div class="nf-note-text">
+              <div class="nf-note-title">People</div>
+              <div class="nf-note-desc">Friends list, add friend, share QR — quick shortcut so you don't have to dig into You when you're out with someone</div>
+            </div>
+          </div>
+          <div class="nf-note-row">
+            <div class="nf-note-icon"><i class="ph ph-gear-six" aria-hidden="true"></i></div>
+            <div class="nf-note-text">
+              <div class="nf-note-title">Settings</div>
+              <div class="nf-note-desc">Decoupled from profile — app preferences, account</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nf-section">
+        <div class="nf-section-label">Bottom nav</div>
+        <div class="nf-note-list">
+          <div class="nf-note-row">
+            <div class="nf-note-icon"><i class="ph-fill ph-house" aria-hidden="true"></i></div>
+            <div class="nf-note-text">
+              <div class="nf-note-title">Home</div>
+              <div class="nf-note-desc">Updates, suggestions, anything useful to the user right now</div>
+            </div>
+          </div>
+          <div class="nf-note-row">
+            <div class="nf-note-icon"><i class="ph ph-calendar-blank" aria-hidden="true"></i></div>
+            <div class="nf-note-text">
+              <div class="nf-note-title">Plans</div>
+              <div class="nf-note-desc">List of your plans — calendar view one day</div>
+            </div>
+          </div>
+          <div class="nf-note-row">
+            <div class="nf-note-icon"><img src="https://i.pravatar.cc/72?img=11" alt="" loading="lazy" /></div>
+            <div class="nf-note-text">
+              <div class="nf-note-title">You</div>
+              <div class="nf-note-desc">Profile + your stuff — saved events &amp; places, lists, friends. Replaces avatar in top nav</div>
+            </div>
+          </div>
+          <div class="nf-note-row">
+            <div class="nf-note-icon"><i class="ph ph-compass" aria-hidden="true"></i></div>
+            <div class="nf-note-text">
+              <div class="nf-note-title">Discover</div>
+              <div class="nf-note-desc">Public events, places, and public plans</div>
+            </div>
+          </div>
+          <div class="nf-note-row">
+            <div class="nf-note-icon"><i class="ph ph-chat-teardrop-text" aria-hidden="true"></i></div>
+            <div class="nf-note-text">
+              <div class="nf-note-title">Chat</div>
+              <div class="nf-note-desc">All your conversations</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

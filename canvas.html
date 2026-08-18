@@ -129,27 +129,27 @@
     const projectId = getParam("project");
     if (!projectId) {
       try { sessionStorage.setItem("design-core-redirect-hint", "Canvas link was missing a project id."); } catch (_) {}
-      window.location.href = "index.html";
+      window.location.href = withCompany("index.html");
     }
 
     // Paths reported by the live-reload watcher are raw (not URL-encoded), so
     // compare against those with raw strings. Only URL-build sites use this.
     const encProjectId = encodeURIComponent(projectId);
     function screenUrl(file, suffix) {
-      return "data/projects/" + encProjectId + "/screens/" + encodeURIComponent(file) + (suffix || "");
+      return dataPath("projects/" + encProjectId + "/screens/" + encodeURIComponent(file)) + (suffix || "");
     }
 
     renderNav({
       breadcrumbs: [
-        { label: "Projects", href: "index.html" },
-        { label: projectId, href: "project.html?id=" + encProjectId, id: "project-link" },
+        { label: "Projects", href: withCompany("index.html") },
+        { label: projectId, href: withCompany("project.html?id=" + encProjectId), id: "project-link" },
         { label: "Canvas" },
       ],
       hint: "Drag to select · Space+drag to pan",
       fixed: true,
     });
 
-    fetchJSON("data/projects/" + encProjectId + "/project.json")
+    fetchJSON(dataPath("projects/" + encProjectId + "/project.json"))
       .then(data => {
         var link = document.getElementById("project-link");
         if (link) link.textContent = data.name;
@@ -325,7 +325,7 @@
         const payload = pendingSavePayload;
         pendingSavePayload = null;
         try {
-          const response = await fetch("data/projects/" + encProjectId + "/canvas.json", {
+          const response = await fetch(dataPath("projects/" + encProjectId + "/canvas.json"), {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload, null, 2),
@@ -357,7 +357,7 @@
     }
 
     async function duplicateScreenFile(file) {
-      const resp = await fetch("/api/duplicate-screen", {
+      const resp = await fetch(apiUrl("/api/duplicate-screen"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ projectId, file }),
@@ -655,7 +655,7 @@
     async function renderScreenToPng(idx, scale) {
       const screen = screens[idx];
       if (!screen) return null;
-      const file = "data/projects/" + encProjectId + "/screens/" + screen.file;
+      const file = dataPath("projects/" + encProjectId + "/screens/" + screen.file);
       const width = screen.width || 390;
       const exportScale = scale === 2 ? 2 : 1;
       const url = "/api/render-png?file=" + encodeURIComponent(file) + "&width=" + width + "&scale=" + exportScale;
@@ -1315,7 +1315,7 @@
     }
 
     function loadCanvas(changedFiles, reloadAllScreens) {
-      return fetch("data/projects/" + encProjectId + "/canvas.json?t=" + Date.now())
+      return fetch(dataPath("projects/" + encProjectId + "/canvas.json") + "?t=" + Date.now())
         .then(r => {
           if (!r.ok) throw new Error(r.status);
           return r.json();
@@ -1388,7 +1388,7 @@
 
     function reloadChangedIframes(changedFiles, reloadAll) {
       // Watcher paths are raw (unencoded) — compare raw, then build encoded URL.
-      const rawPrefix = "data/projects/" + projectId + "/screens/";
+      const rawPrefix = dataPath("projects/" + projectId + "/screens/");
       const bust = "?t=" + Date.now();
       screens.forEach((s, i) => {
         const fullPath = rawPrefix + s.file;
@@ -1452,7 +1452,7 @@
 
     /* ── Live reload ── */
     window.__onDataChanged = function(paths) {
-      const prefix = "data/projects/" + projectId + "/";
+      const prefix = dataPath("projects/" + projectId + "/");
       const relevant = paths.filter(p => p.startsWith(prefix));
       if (!relevant.length && paths.length > 0) return;
 

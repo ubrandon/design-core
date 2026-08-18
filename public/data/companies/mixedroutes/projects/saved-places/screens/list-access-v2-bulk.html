@@ -1,0 +1,92 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<div style="background: var(--bg-0); overflow-x: clip; min-height: 100vh">
+  <div class="mr-scope">
+    <header style="display: flex; align-items: center; gap: 8px; padding: 18px 16px 8px">
+      <button type="button" class="mr-nav-icon-btn" aria-label="Cancel">
+        <i class="ph ph-x" aria-hidden="true"></i>
+      </button>
+      <span style="font-size: 1.05rem; font-weight: 800; color: var(--text); flex: 1">2 selected</span>
+      <button type="button" style="padding: 7px 14px; border-radius: 999px; background: rgba(91,165,255,0.14); border: 1px solid rgba(91,165,255,0.3); color: #5ba5ff; font-weight: 800; font-size: 0.78rem; cursor: pointer">Select all</button>
+    </header>
+
+    <div style="padding: 6px 16px 12px">
+      <div class="mr-search-bar">
+        <i class="ph-fill ph-magnifying-glass" aria-hidden="true"></i>
+        <input type="search" placeholder="Search members" autocomplete="off" />
+      </div>
+    </div>
+
+    <div style="padding: 4px 16px 14px; display: flex; gap: 8px; overflow-x: auto" class="ds-scroll-x">
+      <button type="button" style="flex: 0 0 auto; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18); color: var(--text); font-weight: 800; font-size: 0.78rem; cursor: pointer">All · 4</button>
+      <button type="button" style="flex: 0 0 auto; padding: 7px 14px; border-radius: 999px; background: transparent; border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.65); font-weight: 700; font-size: 0.78rem; cursor: pointer">Editors · 1</button>
+      <button type="button" style="flex: 0 0 auto; padding: 7px 14px; border-radius: 999px; background: transparent; border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.65); font-weight: 700; font-size: 0.78rem; cursor: pointer">Viewers · 2</button>
+      <button type="button" style="flex: 0 0 auto; padding: 7px 14px; border-radius: 999px; background: transparent; border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.65); font-weight: 700; font-size: 0.78rem; cursor: pointer; display: inline-flex; align-items: center; gap: 4px">
+        <i class="ph-fill ph-clock-countdown" style="font-size: 12px"></i> Pending · 1
+      </button>
+    </div>
+
+    <div style="display: flex; flex-direction: column">
+      <button type="button" style="display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: rgba(91,165,255,0.06); border: 0; cursor: pointer; text-align: left; width: 100%">
+        <div style="width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, #5ba5ff, #20e0cf); display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+          <i class="ph-bold ph-check" style="font-size: 12px; color: #06080e"></i>
+        </div>
+        <img src="https://i.pravatar.cc/72?img=14" alt="" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover" />
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 0.92rem; font-weight: 800; color: var(--text)">Eric Hechavarria</div>
+          <div style="font-size: 0.74rem; color: rgba(255,255,255,0.5)">@erichech · Editor</div>
+        </div>
+      </button>
+
+      <button type="button" style="display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: transparent; border: 0; cursor: pointer; text-align: left; width: 100%">
+        <div style="width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.25); flex-shrink: 0"></div>
+        <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(32,224,207,0.18); display: flex; align-items: center; justify-content: center; color: #20e0cf; font-weight: 800; font-size: 0.85rem">B</div>
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 0.92rem; font-weight: 800; color: var(--text)">Brandon Unglaub</div>
+          <div style="font-size: 0.74rem; color: rgba(255,255,255,0.5)">@mixyboi · Viewer</div>
+        </div>
+      </button>
+
+      <button type="button" style="display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: rgba(91,165,255,0.06); border: 0; cursor: pointer; text-align: left; width: 100%">
+        <div style="width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, #5ba5ff, #20e0cf); display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+          <i class="ph-bold ph-check" style="font-size: 12px; color: #06080e"></i>
+        </div>
+        <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.7); font-weight: 800; font-size: 0.78rem">BU</div>
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 0.92rem; font-weight: 800; color: var(--text)">Brandon Unglaub</div>
+          <div style="font-size: 0.74rem; color: rgba(255,255,255,0.5)">@test18 · Viewer</div>
+        </div>
+      </button>
+
+      <button type="button" style="display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: transparent; border: 0; cursor: pointer; text-align: left; width: 100%">
+        <div style="width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.25); flex-shrink: 0"></div>
+        <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.7); font-weight: 800; font-size: 0.78rem">TT</div>
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 0.92rem; font-weight: 800; color: var(--text)">Test Test</div>
+          <div style="font-size: 0.74rem; color: rgba(255,255,255,0.5)">@test · Viewer</div>
+        </div>
+      </button>
+    </div>
+
+    <div style="position: fixed; bottom: 0; left: 0; right: 0; padding: 14px 16px 22px; background: linear-gradient(180deg, rgba(1,11,20,0) 0%, rgba(1,11,20,0.95) 30%, rgba(1,11,20,1) 100%)">
+      <div style="display: flex; flex-direction: column; gap: 8px; padding: 12px; background: rgba(15,30,50,0.85); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px">
+        <div style="font-size: 0.7rem; font-weight: 800; color: rgba(255,255,255,0.5); letter-spacing: 0.06em; text-transform: uppercase; padding: 0 4px">Apply to 2 members</div>
+        <div style="display: flex; gap: 8px">
+          <button type="button" style="flex: 1; padding: 11px 8px; border-radius: 12px; background: rgba(91,165,255,0.14); border: 1px solid rgba(91,165,255,0.3); color: #5ba5ff; font-weight: 800; font-size: 0.82rem; display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer">
+            <i class="ph-fill ph-pencil-simple" style="font-size: 14px"></i> Make editor
+          </button>
+          <button type="button" style="flex: 1; padding: 11px 8px; border-radius: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); font-weight: 800; font-size: 0.82rem; display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer">
+            <i class="ph-fill ph-eye" style="font-size: 14px"></i> Make viewer
+          </button>
+          <button type="button" style="flex: 0 0 auto; width: 44px; padding: 11px 8px; border-radius: 12px; background: rgba(255,107,139,0.12); border: 1px solid rgba(255,107,139,0.3); color: #ff6b8b; display: inline-flex; align-items: center; justify-content: center; cursor: pointer">
+            <i class="ph-fill ph-trash" style="font-size: 16px"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div style="height: 140px"></div>
+  </div>
+</div>

@@ -1,0 +1,724 @@
+{
+  "layout": {
+    "mode": "masonry",
+    "columns": 3,
+    "columnWidth": 520,
+    "maxColumnWidth": 680,
+    "gap": 40,
+    "pairGap": 96
+  },
+  "groups": [
+    {
+      "id": "dark-mode",
+      "name": "Dark mode",
+      "theme": "dark",
+      "pair": "color-modes"
+    },
+    {
+      "id": "light-mode",
+      "name": "Light mode",
+      "theme": "light",
+      "pair": "color-modes"
+    }
+  ],
+  "categories": [
+    {
+      "group": "dark-mode",
+      "name": "Palette",
+      "section": "Foundations",
+      "layout": "row",
+      "span": "all",
+      "components": [
+        {
+          "id": "mr-colors-dark",
+          "file": "mixedroutes/colors-dark-theme.html",
+          "label": "Dark theme"
+        },
+        {
+          "id": "mr-colors-brand",
+          "file": "mixedroutes/colors-brand-feedback.html",
+          "label": "Brand & feedback"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Shape",
+      "components": [
+        {
+          "id": "mr-shape",
+          "file": "mixedroutes/shape.html",
+          "label": "Radius & shadows"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Typography",
+      "components": [
+        {
+          "id": "mr-type",
+          "file": "mixedroutes/typography.html",
+          "label": "Geist & styles"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Buttons",
+      "section": "Actions & controls",
+      "components": [
+        {
+          "id": "mr-buttons",
+          "file": "mixedroutes/buttons.html",
+          "label": "Styles, sizes & stores"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "App navigation",
+      "components": [
+        {
+          "id": "mr-navigation",
+          "file": "mixedroutes/navigation.html",
+          "label": "Mobile nav, desktop side nav & account menu"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Search",
+      "components": [
+        {
+          "id": "mr-search",
+          "file": "mixedroutes/search-bar.html",
+          "label": "Search bars"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Toggles",
+      "components": [
+        {
+          "id": "mr-toggles",
+          "file": "mixedroutes/toggles.html",
+          "label": "Switches & settings rows"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Forms",
+      "components": [
+        {
+          "id": "mr-forms",
+          "file": "mixedroutes/forms.html",
+          "label": "Form fields"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Stepper",
+      "components": [
+        {
+          "id": "mr-stepper",
+          "file": "mixedroutes/stepper.html",
+          "label": "Multi-step flows"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Plan cards",
+      "section": "Content & cards",
+      "components": [
+        {
+          "id": "mr-plan-hero",
+          "file": "mixedroutes/plan-hero-cards.html",
+          "label": "Long rows, mini carousel & variants"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Content types",
+      "layout": "row",
+      "components": [
+        {
+          "id": "mr-tags-content-types",
+          "file": "mixedroutes/tags-content-types.html",
+          "label": "Plan, activity, event, place"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Event cards",
+      "layout": "row",
+      "components": [
+        {
+          "id": "mr-event-cards",
+          "file": "mixedroutes/event-cards.html",
+          "label": "Stacked cards"
+        },
+        {
+          "id": "mr-event-mini",
+          "file": "mixedroutes/event-mini-cards.html",
+          "label": "Mini cards"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Feeds",
+      "components": [
+        {
+          "id": "mr-activity-rows",
+          "file": "mixedroutes/activity-rows.html",
+          "label": "Activity feed"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Location",
+      "components": [
+        {
+          "id": "mr-location",
+          "file": "mixedroutes/location-cards.html",
+          "label": "Map & location cards"
+        },
+        {
+          "id": "mr-places-list",
+          "file": "mixedroutes/places-list-cards.html",
+          "label": "Saved place lists"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "People lists",
+      "section": "People & social",
+      "components": [
+        {
+          "id": "mr-people-rows",
+          "file": "mixedroutes/people-rows.html",
+          "label": "Person list rows"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Recent activity",
+      "components": [
+        {
+          "id": "mr-recent",
+          "file": "mixedroutes/recent-activity.html",
+          "label": "Recent activity"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Interests & groups",
+      "components": [
+        {
+          "id": "mr-social",
+          "file": "mixedroutes/social-cards.html",
+          "label": "Interests, groups & friends"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Profiles",
+      "components": [
+        {
+          "id": "mr-profile",
+          "file": "mixedroutes/profile-cards.html",
+          "label": "Profile summaries"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Avatars",
+      "components": [
+        {
+          "id": "mr-avatar-stack",
+          "file": "mixedroutes/avatar-stack.html",
+          "label": "Avatar stacks"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Filter chips",
+      "section": "Tags & status",
+      "layout": "row",
+      "components": [
+        {
+          "id": "mr-tags-filters",
+          "file": "mixedroutes/tags-filters-chips.html",
+          "label": "Topics & time"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Status tags",
+      "layout": "row",
+      "components": [
+        {
+          "id": "mr-tags-status",
+          "file": "mixedroutes/tags-status.html",
+          "label": "Counts & states"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "On cards & heroes",
+      "layout": "row",
+      "components": [
+        {
+          "id": "mr-tags-on-cards",
+          "file": "mixedroutes/tags-on-cards.html",
+          "label": "Row badges, event pills, hero tags"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Toasts",
+      "section": "Feedback & states",
+      "components": [
+        {
+          "id": "mr-toasts",
+          "file": "mixedroutes/toasts.html",
+          "label": "Success, error & info"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Banners",
+      "components": [
+        {
+          "id": "mr-welcome-banner",
+          "file": "mixedroutes/welcome-banner.html",
+          "label": "Welcome banner"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Modals & sheets",
+      "layout": "row",
+      "components": [
+        {
+          "id": "mr-modals",
+          "file": "mixedroutes/modals.html",
+          "label": "Bottom sheet & dialogs"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Empty states",
+      "components": [
+        {
+          "id": "mr-empty",
+          "file": "mixedroutes/empty-states.html",
+          "label": "No content placeholders"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Skeletons",
+      "components": [
+        {
+          "id": "mr-skeletons",
+          "file": "mixedroutes/skeletons.html",
+          "label": "Loading placeholders"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Illustrations",
+      "section": "Assets",
+      "components": [
+        {
+          "id": "mr-illustrations",
+          "file": "mixedroutes/illustrations.html",
+          "label": "Line-art scenes & usage"
+        }
+      ]
+    },
+    {
+      "group": "dark-mode",
+      "name": "Icons",
+      "components": [
+        {
+          "id": "mr-icons",
+          "file": "mixedroutes/icons.html",
+          "label": "Marketing icons"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Palette",
+      "section": "Foundations",
+      "layout": "row",
+      "span": "all",
+      "components": [
+        {
+          "id": "mr-colors-light",
+          "file": "mixedroutes/colors-light-theme.html",
+          "label": "Light theme"
+        },
+        {
+          "id": "mr-colors-brand-light",
+          "file": "mixedroutes/colors-brand-feedback-light.html",
+          "label": "Brand & feedback"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Shape",
+      "components": [
+        {
+          "id": "mr-shape-light",
+          "file": "mixedroutes/shape-light.html",
+          "label": "Radius & shadows"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Typography",
+      "components": [
+        {
+          "id": "mr-type-light",
+          "file": "mixedroutes/typography-light.html",
+          "label": "Geist & styles"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Buttons",
+      "section": "Actions & controls",
+      "components": [
+        {
+          "id": "mr-buttons-light",
+          "file": "mixedroutes/buttons-light.html",
+          "label": "Styles, sizes & stores"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "App navigation",
+      "components": [
+        {
+          "id": "mr-navigation-light",
+          "file": "mixedroutes/navigation-light.html",
+          "label": "Mobile nav, desktop side nav & account menu"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Search",
+      "components": [
+        {
+          "id": "mr-search-light",
+          "file": "mixedroutes/search-bar-light.html",
+          "label": "Search bars"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Toggles",
+      "components": [
+        {
+          "id": "mr-toggles-light",
+          "file": "mixedroutes/toggles-light.html",
+          "label": "Switches & settings rows"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Forms",
+      "components": [
+        {
+          "id": "mr-forms-light",
+          "file": "mixedroutes/forms-light.html",
+          "label": "Form fields"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Stepper",
+      "components": [
+        {
+          "id": "mr-stepper-light",
+          "file": "mixedroutes/stepper-light.html",
+          "label": "Multi-step flows"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Plan cards",
+      "section": "Content & cards",
+      "components": [
+        {
+          "id": "mr-plan-hero-light",
+          "file": "mixedroutes/plan-hero-cards-light.html",
+          "label": "Long rows, mini carousel & variants"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Content types",
+      "layout": "row",
+      "components": [
+        {
+          "id": "mr-tags-content-types-light",
+          "file": "mixedroutes/tags-content-types-light.html",
+          "label": "Plan, activity, event, place"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Event cards",
+      "layout": "row",
+      "components": [
+        {
+          "id": "mr-event-cards-light",
+          "file": "mixedroutes/event-cards-light.html",
+          "label": "Stacked cards"
+        },
+        {
+          "id": "mr-event-mini-light",
+          "file": "mixedroutes/event-mini-cards-light.html",
+          "label": "Mini cards"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Feeds",
+      "components": [
+        {
+          "id": "mr-activity-rows-light",
+          "file": "mixedroutes/activity-rows-light.html",
+          "label": "Activity feed"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Location",
+      "components": [
+        {
+          "id": "mr-location-light",
+          "file": "mixedroutes/location-cards-light.html",
+          "label": "Map & location cards"
+        },
+        {
+          "id": "mr-places-list-light",
+          "file": "mixedroutes/places-list-cards-light.html",
+          "label": "Saved place lists"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "People lists",
+      "section": "People & social",
+      "components": [
+        {
+          "id": "mr-people-rows-light",
+          "file": "mixedroutes/people-rows-light.html",
+          "label": "Person list rows"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Recent activity",
+      "components": [
+        {
+          "id": "mr-recent-light",
+          "file": "mixedroutes/recent-activity-light.html",
+          "label": "Recent activity"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Interests & groups",
+      "components": [
+        {
+          "id": "mr-social-light",
+          "file": "mixedroutes/social-cards-light.html",
+          "label": "Interests, groups & friends"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Profiles",
+      "components": [
+        {
+          "id": "mr-profile-light",
+          "file": "mixedroutes/profile-cards-light.html",
+          "label": "Profile summaries"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Avatars",
+      "components": [
+        {
+          "id": "mr-avatar-stack-light",
+          "file": "mixedroutes/avatar-stack-light.html",
+          "label": "Avatar stacks"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Filter chips",
+      "section": "Tags & status",
+      "layout": "row",
+      "components": [
+        {
+          "id": "mr-tags-filters-light",
+          "file": "mixedroutes/tags-filters-chips-light.html",
+          "label": "Topics & time"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Status tags",
+      "layout": "row",
+      "components": [
+        {
+          "id": "mr-tags-status-light",
+          "file": "mixedroutes/tags-status-light.html",
+          "label": "Counts & states"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "On cards & heroes",
+      "layout": "row",
+      "components": [
+        {
+          "id": "mr-tags-on-cards-light",
+          "file": "mixedroutes/tags-on-cards-light.html",
+          "label": "Row badges, event pills, hero tags"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Toasts",
+      "section": "Feedback & states",
+      "components": [
+        {
+          "id": "mr-toasts-light",
+          "file": "mixedroutes/toasts-light.html",
+          "label": "Success, error & info"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Banners",
+      "components": [
+        {
+          "id": "mr-welcome-banner-light",
+          "file": "mixedroutes/welcome-banner-light.html",
+          "label": "Welcome banner"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Modals & sheets",
+      "layout": "row",
+      "components": [
+        {
+          "id": "mr-modals-light",
+          "file": "mixedroutes/modals-light.html",
+          "label": "Bottom sheet & dialogs"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Empty states",
+      "components": [
+        {
+          "id": "mr-empty-light",
+          "file": "mixedroutes/empty-states-light.html",
+          "label": "No content placeholders"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Skeletons",
+      "components": [
+        {
+          "id": "mr-skeletons-light",
+          "file": "mixedroutes/skeletons-light.html",
+          "label": "Loading placeholders"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Illustrations",
+      "section": "Assets",
+      "components": [
+        {
+          "id": "mr-illustrations-light",
+          "file": "mixedroutes/illustrations.html",
+          "label": "Line-art scenes & usage"
+        }
+      ]
+    },
+    {
+      "group": "light-mode",
+      "name": "Icons",
+      "components": [
+        {
+          "id": "mr-icons-light",
+          "file": "mixedroutes/icons-light.html",
+          "label": "Marketing icons"
+        }
+      ]
+    }
+  ]
+}

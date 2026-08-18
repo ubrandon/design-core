@@ -1,0 +1,113 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .vbd-scope { --vb-bg: #06080e; --vb-line: rgba(255,255,255,0.08); }
+  .vbd-scope, .vbd-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .vbd-scope::-webkit-scrollbar, .vbd-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .vbd-wrap { background: var(--vb-bg); height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .vbd-body { flex: 1; overflow-y: auto; padding-bottom: 100px; }
+
+  .vbd-header { display: grid; grid-template-columns: 1fr 28px; align-items: center; padding: 22px 20px 6px; }
+  .vbd-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .vbd-sub { color: rgba(255,255,255,0.5); font-size: 0.88rem; font-weight: 700; padding: 0 20px 6px; }
+  .vbd-close { background: transparent; border: 0; color: rgba(255,255,255,0.85); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .vbd-close i { font-size: 22px; }
+
+  .vbd-section { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px 8px; }
+  .vbd-section .slabel { color: rgba(255,255,255,0.62); font-size: 0.72rem; font-weight: 850; letter-spacing: 0.1em; text-transform: uppercase; }
+  .vbd-section .scount { color: rgba(255,255,255,0.4); font-size: 0.72rem; font-weight: 850; }
+
+  .vbd-row { display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 13px; padding: 9px 20px; }
+  .vbd-row .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; background: var(--neon-teal); color: #061016; font-weight: 900; position: relative; }
+  .vbd-row .av.muted { background: #4a5462; color: #fff; }
+  .vbd-row .av img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+  .vbd-row .av .dot { position: absolute; bottom: -2px; right: -2px; width: 18px; height: 18px; border-radius: 50%; background: #2dd073; border: 2px solid var(--vb-bg); display: inline-flex; align-items: center; justify-content: center; }
+  .vbd-row .av .dot i { color: #061016; font-size: 11px; }
+  .vbd-name { color: #fff; font-size: 1.02rem; font-weight: 850; line-height: 1.15; }
+  .vbd-status { color: rgba(255,255,255,0.55); font-size: 0.86rem; font-weight: 700; margin-top: 2px; }
+  .vbd-status .host { color: var(--neon-amber, #ffd25a); font-weight: 850; }
+  .vbd-status .going { color: rgba(255,255,255,0.55); font-weight: 700; }
+  .vbd-remind { background: rgba(255,255,255,0.07); border: 0; color: rgba(255,255,255,0.78); border-radius: 999px; padding: 7px 13px; font-size: 0.78rem; font-weight: 850; }
+  .vbd-edit { background: transparent; border: 0; color: rgba(255,255,255,0.55); padding: 0; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; }
+  .vbd-edit i { font-size: 18px; }
+
+  .vbd-bar { position: absolute; left: 0; right: 0; bottom: 0; padding: 24px 20px 22px; background: linear-gradient(180deg, rgba(6,8,14,0), #06080e 42%); display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
+  .vbd-bar .primary { min-height: 50px; border: 0; border-radius: 999px; color: #fff; font-size: 0.98rem; font-weight: 850; background: linear-gradient(135deg, #24b8aa, #4c87cf); display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .vbd-bar .primary i { font-size: 18px; }
+  .vbd-bar .share { min-height: 50px; padding: 0 20px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.08); color: #fff; font-size: 0.98rem; font-weight: 850; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .vbd-bar .share i { font-size: 18px; }
+</style>
+
+<div class="mr-scope vbd-scope">
+  <div class="vbd-wrap">
+    <div class="vbd-body">
+      <header class="vbd-header">
+        <div class="vbd-title">Guests</div>
+        <button type="button" class="vbd-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      </header>
+      <div class="vbd-sub">3 going · 2 invited</div>
+
+      <div class="vbd-section">
+        <span class="slabel">Going</span>
+        <span class="scount">3</span>
+      </div>
+
+      <div class="vbd-row">
+        <span class="av"><span>B</span><span class="dot"><i class="ph ph-check"></i></span></span>
+        <div>
+          <div class="vbd-name">Brandon Unglaub</div>
+          <div class="vbd-status"><span class="going">Going</span> · <span class="host">Host</span></div>
+        </div>
+        <button type="button" class="vbd-edit"><i class="ph ph-pencil-simple"></i></button>
+      </div>
+
+      <div class="vbd-row">
+        <span class="av"><img src="https://i.pravatar.cc/96?img=12" alt="" loading="lazy" /><span class="dot"><i class="ph ph-check"></i></span></span>
+        <div>
+          <div class="vbd-name">Nova Finch</div>
+          <div class="vbd-status"><span class="going">Going</span></div>
+        </div>
+        <button type="button" class="vbd-edit"><i class="ph ph-pencil-simple"></i></button>
+      </div>
+
+      <div class="vbd-row">
+        <span class="av"><img src="https://i.pravatar.cc/96?img=49" alt="" loading="lazy" /><span class="dot"><i class="ph ph-check"></i></span></span>
+        <div>
+          <div class="vbd-name">Lila Quill</div>
+          <div class="vbd-status"><span class="going">Going</span></div>
+        </div>
+        <button type="button" class="vbd-edit"><i class="ph ph-pencil-simple"></i></button>
+      </div>
+
+      <div class="vbd-section">
+        <span class="slabel">Invited</span>
+        <span class="scount">2</span>
+      </div>
+
+      <div class="vbd-row">
+        <img class="av" src="https://i.pravatar.cc/96?img=33" alt="" loading="lazy" />
+        <div>
+          <div class="vbd-name">Soren Vale</div>
+          <div class="vbd-status">Hasn't replied yet</div>
+        </div>
+        <button type="button" class="vbd-remind">Remind</button>
+      </div>
+
+      <div class="vbd-row">
+        <span class="av muted">PS</span>
+        <div>
+          <div class="vbd-name">Piper Sol</div>
+          <div class="vbd-status">Hasn't replied yet</div>
+        </div>
+        <button type="button" class="vbd-remind">Remind</button>
+      </div>
+    </div>
+
+    <div class="vbd-bar">
+      <button type="button" class="primary"><i class="ph-fill ph-user-plus"></i>Invite guests</button>
+      <button type="button" class="share"><i class="ph ph-link-simple"></i>Share</button>
+    </div>
+  </div>
+</div>

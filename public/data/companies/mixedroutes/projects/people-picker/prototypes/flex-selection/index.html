@@ -1,0 +1,328 @@
+<link rel="stylesheet" href="../../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../../design-system/company.css" />
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #06080e; overflow-x: clip; }
+  body { font-family: var(--font-body); }
+
+  .fx-scope { --v5-bg: #06080e; --v5-line: rgba(255,255,255,0.08); }
+  .fx-scope, .fx-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .fx-scope::-webkit-scrollbar, .fx-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .fx-wrap { background: var(--v5-bg); height: 100vh; height: 100dvh; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .fx-body { flex: 1; overflow-y: auto; padding-bottom: 8px; }
+
+  .fx-header { display: grid; grid-template-columns: 1fr 28px; align-items: center; padding: 22px 20px 8px; }
+  .fx-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .fx-close { background: transparent; border: 0; color: rgba(255,255,255,0.85); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
+  .fx-close i { font-size: 22px; }
+
+  .fx-search { display: grid; grid-template-columns: 20px 1fr; align-items: center; gap: 10px; margin: 8px 20px 14px; padding: 12px 15px; background: rgba(255,255,255,0.07); border-radius: 999px; }
+  .fx-search i { color: rgba(255,255,255,0.54); font-size: 17px; }
+  .fx-search input { width: 100%; border: 0; outline: 0; padding: 0; background: transparent; color: #fff; font: inherit; font-size: 0.94rem; }
+
+  .fx-chips { display: flex; gap: 8px; padding: 0 20px 14px; overflow-x: auto; flex-wrap: nowrap; }
+  .fx-chips .mr-pp-chip { flex: 0 0 auto; }
+  .fx-chips:empty { display: none; }
+
+  .fx-label { display: flex; align-items: baseline; justify-content: space-between; padding: 8px 20px 12px; color: #fff; font-size: 1.25rem; font-weight: 850; letter-spacing: -0.005em; }
+  .fx-label .action { background: transparent; border: 0; color: var(--neon-teal); font-size: 0.82rem; font-weight: 850; padding: 4px 0; cursor: pointer; }
+
+  .fx-groups { display: flex; gap: 8px; padding: 0 20px 6px; overflow-x: auto; }
+  .fx-group { flex: 0 0 96px; padding: 4px 0; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; background: transparent; border: 0; cursor: pointer; }
+  .fx-thumb { width: 64px; height: 64px; border-radius: 18px; overflow: hidden; background: rgba(255,255,255,0.08); display: inline-flex; align-items: center; justify-content: center; position: relative; border: 2px solid transparent; }
+  .fx-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .fx-group.is-on .fx-thumb { border-color: var(--neon-teal); }
+  .fx-group.is-on .fx-thumb::after { content: ''; position: absolute; inset: 0; background: rgba(32,224,207,0.18); }
+  .fx-group.is-on .fx-check { position: absolute; right: -3px; bottom: -3px; width: 22px; height: 22px; border-radius: 50%; background: var(--neon-teal); color: #061016; display: inline-flex; align-items: center; justify-content: center; z-index: 1; }
+  .fx-group.is-on .fx-check i { font-size: 14px; font-weight: 900; }
+  .fx-gname { color: #fff; font-size: 0.92rem; line-height: 1.15; font-weight: 850; }
+  .fx-gmeta { color: rgba(255,255,255,0.54); font-size: 0.76rem; font-weight: 700; margin-top: -2px; }
+
+  .fx-group-banner { margin: 0 20px 16px; padding: 14px 16px; border-radius: 20px; background: rgba(32,224,207,0.08); border: 1px solid rgba(32,224,207,0.32); display: grid; grid-template-columns: 56px 1fr 30px; align-items: center; gap: 14px; }
+  .fx-group-banner img { width: 56px; height: 56px; border-radius: 16px; object-fit: cover; }
+  .fx-banner-label { color: var(--neon-teal); font-size: 0.7rem; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
+  .fx-banner-name { color: #fff; font-size: 1.18rem; font-weight: 850; margin-top: 3px; line-height: 1.15; }
+  .fx-banner-meta { color: rgba(255,255,255,0.6); font-size: 0.84rem; font-weight: 700; margin-top: 3px; }
+  .fx-banner-clear { background: rgba(255,255,255,0.08); border: 0; color: rgba(255,255,255,0.85); width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
+  .fx-banner-clear i { font-size: 16px; }
+
+  .fx-subtext { margin: 0; padding: 0 20px 4px; color: rgba(255,255,255,0.72); font-size: 0.82rem; font-weight: 700; line-height: 1.4; }
+
+  .fx-sublabel { padding: 4px 20px 6px; color: rgba(255,255,255,0.62); font-size: 0.95rem; font-weight: 700; letter-spacing: 0; text-transform: none; }
+  .fx-sublabel-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-right: 20px; }
+  .fx-sublabel-row .fx-sublabel { padding-right: 0; }
+  .fx-sublabel-row .action { background: transparent; border: 0; color: var(--neon-teal); font-size: 0.82rem; font-weight: 850; padding: 4px 0; cursor: pointer; }
+
+  .fx-list { padding: 0; display: flex; flex-direction: column; }
+  .fx-row { display: grid; grid-template-columns: 44px 1fr 22px; align-items: center; gap: 13px; padding: 11px 20px; border-radius: 0; width: 100%; cursor: pointer; }
+  .fx-row.is-on { background: rgba(32,224,207,0.07); }
+  .fx-row .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; background: var(--neon-teal); color: #061016; font-weight: 900; }
+  .fx-row .av.muted { background: #4a5462; color: #fff; }
+  .fx-name { color: #fff; font-size: 0.98rem; font-weight: 850; line-height: 1.15; }
+  .fx-handle { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+  .fx-row .host { color: #f5c451; font-weight: 800; font-size: 0.8rem; }
+
+  .fx-cta { padding: 14px 20px 22px; display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .fx-cta button { min-height: 50px; border: 0; border-radius: 999px; color: #fff; font-size: 0.98rem; font-weight: 850; cursor: pointer; }
+  .fx-cta .primary { background: linear-gradient(135deg, #24b8aa, #4c87cf); }
+  .fx-cta .primary[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+  .fx-toast { position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%) translateY(20px); background: rgba(255,255,255,0.96); color: #061016; font-weight: 850; font-size: 0.9rem; padding: 12px 18px; border-radius: 999px; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 100; }
+  .fx-toast.is-on { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+
+<div class="mr-scope fx-scope">
+  <div class="fx-wrap" id="fx-screen"></div>
+  <div class="fx-toast" id="fx-toast"></div>
+</div>
+
+<script>
+(function () {
+  var scope = document.querySelectorAll('.fx-scope');
+  scope = scope[scope.length - 1];
+  if (!scope) return;
+  var screen = scope.querySelector('#fx-screen');
+  var toastEl = scope.querySelector('#fx-toast');
+
+  var GROUPS = [
+    { id: 'lakehouse', name: 'Lake House', members: 8, img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&h=200&q=80' },
+    { id: 'family',    name: 'Family',     members: 6, img: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=200&h=200&q=80' },
+    { id: 'climbing',  name: 'Climbing',   members: 12, img: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=200&h=200&q=80' }
+  ];
+
+  var FRIENDS = [
+    { id: 'nova',  name: 'Nova Finch', handle: '@novafinch', avatar: 'https://i.pravatar.cc/96?img=12' },
+    { id: 'milo',  name: 'Milo Wren',  handle: '@milowren',  initials: 'M' },
+    { id: 'lila',  name: 'Lila Quill', handle: '@lilaquill', avatar: 'https://i.pravatar.cc/96?img=49' }
+  ];
+
+  var SUGGESTED = [
+    { id: 'soren', name: 'Soren Vale', handle: '@sorenvale', avatar: 'https://i.pravatar.cc/96?img=33' },
+    { id: 'piper', name: 'Piper Sol',  handle: '@pipersol',  initials: 'PS', muted: true },
+    { id: 'wren',  name: 'Wren Holt',  handle: '@wrenholt',  avatar: 'https://i.pravatar.cc/96?img=44' }
+  ];
+
+  var GROUP_MEMBERS = [
+    { id: 'milo',  name: 'Milo Wren',  host: true, initials: 'M' },
+    { id: 'nova',  name: 'Nova Finch', handle: '@novafinch', avatar: 'https://i.pravatar.cc/96?img=12' },
+    { id: 'lila',  name: 'Lila Quill', handle: '@lilaquill', avatar: 'https://i.pravatar.cc/96?img=49' }
+  ];
+
+  var state = {
+    group: null,
+    people: {},
+    members: {}
+  };
+
+  function avatarHTML(p, cls) {
+    cls = cls || 'av';
+    if (p.avatar) return '<img class="' + cls + '" src="' + p.avatar + '" alt="" loading="lazy" />';
+    return '<span class="' + cls + (p.muted ? ' muted' : '') + '">' + (p.initials || '') + '</span>';
+  }
+
+  function chipAvatarHTML(p) {
+    if (p.avatar) return '<img class="mr-pp-chip-avatar" src="' + p.avatar + '" alt="" loading="lazy" />';
+    return '<span class="mr-pp-chip-avatar is-initials">' + (p.initials || '') + '</span>';
+  }
+
+  function firstName(full) { return (full || '').trim().split(/\s+/)[0] || full; }
+
+  function personRow(p, on) {
+    var sub = p.host ? '<span class="host">Host</span>' : (p.handle || '');
+    return '<div class="fx-row' + (on ? ' is-on' : '') + '" data-person="' + p.id + '">' +
+      avatarHTML(p) +
+      '<div><div class="fx-name">' + p.name + '</div><div class="fx-handle">' + sub + '</div></div>' +
+      '<span class="mr-checkbox' + (on ? ' is-checked' : '') + '"><i class="' + (on ? 'ph-fill ph-check-square' : 'ph ph-square') + '"></i></span>' +
+      '</div>';
+  }
+
+  function memberRow(p, on) {
+    var sub = p.host ? '<span class="host">Host</span>' : (p.handle || '');
+    return '<div class="fx-row' + (on ? ' is-on' : '') + '" data-member="' + p.id + '">' +
+      avatarHTML(p) +
+      '<div><div class="fx-name">' + p.name + '</div><div class="fx-handle">' + sub + '</div></div>' +
+      '<span class="mr-checkbox' + (on ? ' is-checked' : '') + '"><i class="' + (on ? 'ph-fill ph-check-square' : 'ph ph-square') + '"></i></span>' +
+      '</div>';
+  }
+
+  function selectedPeople() {
+    return FRIENDS.concat(SUGGESTED).filter(function (p) { return state.people[p.id]; });
+  }
+  function selectedMembers() {
+    return GROUP_MEMBERS.filter(function (p) { return state.members[p.id]; });
+  }
+
+  function chipsHTML() {
+    var items = [];
+    selectedMembers().forEach(function (p) {
+      items.push('<span class="mr-pp-chip" data-chip-member="' + p.id + '">' + chipAvatarHTML(p) + firstName(p.name) +
+        '<button type="button" class="mr-pp-chip-remove" aria-label="Remove"><i class="ph ph-x"></i></button></span>');
+    });
+    selectedPeople().forEach(function (p) {
+      items.push('<span class="mr-pp-chip" data-chip-person="' + p.id + '">' + chipAvatarHTML(p) + firstName(p.name) +
+        '<button type="button" class="mr-pp-chip-remove" aria-label="Remove"><i class="ph ph-x"></i></button></span>');
+    });
+    return items.join('');
+  }
+
+  function groupsCarouselHTML() {
+    return GROUPS.map(function (g) {
+      var on = state.group && state.group.id === g.id;
+      return '<button type="button" class="fx-group' + (on ? ' is-on' : '') + '" data-group="' + g.id + '">' +
+        '<span class="fx-thumb"><img src="' + g.img + '" alt="" loading="lazy" />' +
+        (on ? '<span class="fx-check"><i class="ph-fill ph-check"></i></span>' : '') + '</span>' +
+        '<span class="fx-gname">' + g.name + '</span>' +
+        '<span class="fx-gmeta">' + g.members + ' members</span>' +
+        '</button>';
+    }).join('');
+  }
+
+  function friendsToggleLabel() {
+    var allOn = FRIENDS.every(function (p) { return state.people[p.id]; }) && FRIENDS.length > 0;
+    return allOn ? 'Deselect all' : 'Select all';
+  }
+  function membersToggleLabel() {
+    var allOn = GROUP_MEMBERS.every(function (p) { return state.members[p.id]; }) && GROUP_MEMBERS.length > 0;
+    return allOn ? 'Deselect all' : 'Select all';
+  }
+
+  function ctaLabel() {
+    var people = selectedPeople().length;
+    var members = state.group ? selectedMembers().length : 0;
+    var total = people + members;
+    if (state.group) {
+      if (people > 0) return 'Invite group + ' + people + ' (' + total + ')';
+      return 'Invite group (' + members + ')';
+    }
+    return total ? 'Add to plan (' + total + ')' : 'Add to plan';
+  }
+
+  function render() {
+    var html = '';
+    html += '<div class="fx-body">';
+    html += '<header class="fx-header"><div class="fx-title">Who\'s going?</div>' +
+      '<button type="button" class="fx-close" aria-label="Close"><i class="ph ph-x"></i></button></header>';
+    html += '<div class="fx-search"><i class="ph ph-magnifying-glass"></i>' +
+      '<input type="search" placeholder="Search people" /></div>';
+    html += '<div class="fx-chips">' + chipsHTML() + '</div>';
+
+    if (state.group) {
+      html += '<div class="fx-group-banner">' +
+        '<img src="' + state.group.img + '" alt="" loading="lazy" />' +
+        '<div><div class="fx-banner-label">Group plan</div>' +
+        '<div class="fx-banner-name">' + state.group.name + '</div>' +
+        '<div class="fx-banner-meta">' + GROUP_MEMBERS.length + ' members</div></div>' +
+        '<button type="button" class="fx-banner-clear" aria-label="Clear group"><i class="ph ph-x"></i></button>' +
+        '</div>';
+
+      html += '<div class="fx-label"><span>Group Members</span>' +
+        '<button type="button" class="action" data-toggle="members">' + membersToggleLabel() + '</button></div>';
+      html += '<div class="fx-list">' + GROUP_MEMBERS.map(function (p) { return memberRow(p, !!state.members[p.id]); }).join('') + '</div>';
+
+      html += '<div class="fx-label" style="padding-top:28px;padding-bottom:4px;"><span>Outside the group</span></div>';
+      html += '<p class="fx-subtext">Invited to this plan only, not added to ' + state.group.name + '.</p>';
+      html += '<div class="fx-sublabel-row"><span class="fx-sublabel">Friends</span>' +
+        '<button type="button" class="action" data-toggle="friends">' + friendsToggleLabel() + '</button></div>';
+      html += '<div class="fx-list">' + FRIENDS.map(function (p) { return personRow(p, !!state.people[p.id]); }).join('') + '</div>';
+    } else {
+      html += '<div class="fx-label"><span>Add to a group</span></div>';
+      html += '<div class="fx-groups">' + groupsCarouselHTML() + '</div>';
+      html += '<div class="fx-label" style="padding-bottom:2px;"><span>Or invite people</span></div>';
+      html += '<div class="fx-sublabel-row"><span class="fx-sublabel">Friends</span>' +
+        '<button type="button" class="action" data-toggle="friends">' + friendsToggleLabel() + '</button></div>';
+      html += '<div class="fx-list">' + FRIENDS.map(function (p) { return personRow(p, !!state.people[p.id]); }).join('') + '</div>';
+    }
+
+    html += '<div class="fx-sublabel" style="padding-top:20px;">Suggested</div>';
+    html += '<div class="fx-list">' + SUGGESTED.map(function (p) { return personRow(p, !!state.people[p.id]); }).join('') + '</div>';
+
+    html += '</div>';
+    html += '<div class="fx-cta"><button type="button" class="primary"' +
+      ((selectedPeople().length + (state.group ? selectedMembers().length : 0)) === 0 ? ' disabled' : '') +
+      '>' + ctaLabel() + '</button></div>';
+
+    var prevBody = screen.querySelector('.fx-body');
+    var scrollTop = prevBody ? prevBody.scrollTop : 0;
+    screen.innerHTML = html;
+    var newBody = screen.querySelector('.fx-body');
+    if (newBody) newBody.scrollTop = scrollTop;
+  }
+
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('is-on');
+    setTimeout(function () { toastEl.classList.remove('is-on'); }, 1600);
+  }
+
+  function selectGroup(g) {
+    state.group = g;
+    state.members = {};
+    GROUP_MEMBERS.forEach(function (p) { state.members[p.id] = true; });
+    render();
+  }
+
+  screen.addEventListener('click', function (e) {
+    var groupBtn = e.target.closest('[data-group]');
+    if (groupBtn) {
+      var g = GROUPS.filter(function (x) { return x.id === groupBtn.getAttribute('data-group'); })[0];
+      selectGroup(g);
+      return;
+    }
+
+    if (e.target.closest('.fx-banner-clear')) {
+      state.group = null;
+      state.members = {};
+      render();
+      return;
+    }
+
+    var toggle = e.target.closest('[data-toggle]');
+    if (toggle) {
+      var kind = toggle.getAttribute('data-toggle');
+      if (kind === 'friends') {
+        var allFriends = FRIENDS.every(function (p) { return state.people[p.id]; });
+        FRIENDS.forEach(function (p) { state.people[p.id] = !allFriends; });
+      } else if (kind === 'members') {
+        var allMembers = GROUP_MEMBERS.every(function (p) { return state.members[p.id]; });
+        GROUP_MEMBERS.forEach(function (p) { state.members[p.id] = !allMembers; });
+      }
+      render();
+      return;
+    }
+
+    var chipMember = e.target.closest('[data-chip-member]');
+    if (chipMember) { state.members[chipMember.getAttribute('data-chip-member')] = false; render(); return; }
+    var chipPerson = e.target.closest('[data-chip-person]');
+    if (chipPerson) { state.people[chipPerson.getAttribute('data-chip-person')] = false; render(); return; }
+
+    var memberRowEl = e.target.closest('[data-member]');
+    if (memberRowEl) {
+      var mid = memberRowEl.getAttribute('data-member');
+      state.members[mid] = !state.members[mid];
+      render();
+      return;
+    }
+
+    var personRowEl = e.target.closest('[data-person]');
+    if (personRowEl) {
+      var pid = personRowEl.getAttribute('data-person');
+      state.people[pid] = !state.people[pid];
+      render();
+      return;
+    }
+
+    if (e.target.closest('.fx-cta .primary')) {
+      var people = selectedPeople().length;
+      var members = state.group ? selectedMembers().length : 0;
+      if (people + members === 0) return;
+      if (state.group && people > 0) toast('Group invited, ' + people + ' added to the plan');
+      else if (state.group) toast(state.group.name + ' invited');
+      else toast(people + ' added to the plan');
+    }
+  });
+
+  render();
+})();
+</script>

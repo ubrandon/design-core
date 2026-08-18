@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  .wmx-stage { position: relative; height: 40px; width: 100%; }
+  .wmx-line { position: absolute; inset: 0; text-align: center; line-height: 40px; white-space: nowrap; opacity: 0; animation: wmx-word 10s ease-in-out infinite; }
+  .wmx-line b { font-weight: 700; color: #ffe8a3; }
+  .wmx-line:nth-child(2) { animation-delay: 2.5s; }
+  .wmx-line:nth-child(3) { animation-delay: 5s; }
+  .wmx-line:nth-child(4) { animation-delay: 7.5s; }
+  @keyframes wmx-word {
+    0% { opacity: 0; transform: translateY(10px); }
+    5%, 21% { opacity: 1; transform: translateY(0); }
+    26%, 100% { opacity: 0; transform: translateY(-10px); }
+  }
+</style>
+<div style="background: #0f1318; height: 844px; position: relative; overflow: hidden; font-family: 'Geist', sans-serif;">
+  <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&amp;w=780&amp;h=1688&amp;fit=crop&amp;auto=format" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" />
+  <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(7,10,13,0.45) 30%, rgba(8,10,14,0.92) 100%);"></div>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 0 16px 56px; display: flex; flex-direction: column; align-items: center;">
+    <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 88px; text-align: center;">
+      <img src="../img/white-logo.svg" alt="MixedRoutes" style="height: 88px; width: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.55)); margin-bottom: 8px;" />
+      <h1 style="margin: 0 0 6px; font-size: 32px; font-weight: 700; letter-spacing: 0.02em; line-height: 1.25; color: #ffffff; width: 100%;">
+        Less &ldquo;someday.&rdquo;
+        <span class="wmx-stage" style="display: block; font-size: 32px; font-weight: 700;">
+          <span class="wmx-line">More <b>taco nights.</b></span>
+          <span class="wmx-line">More <b>trail runs.</b></span>
+          <span class="wmx-line">More <b>road trips.</b></span>
+          <span class="wmx-line">More <b>game nights.</b></span>
+        </span>
+      </h1>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 11px; width: 100%; max-width: 300px;">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 11px; height: 52px; background: #ffffff; border-radius: 999px; color: #1a2332; font-size: 17px; font-weight: 700;">
+        <img src="../img/apple-logo.png" alt="" style="width: 22px; height: 22px;" />
+        Continue with Apple
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 11px; height: 52px; background: #ffffff; border-radius: 999px; color: #1a2332; font-size: 17px; font-weight: 700;">
+        <img src="../img/google-logo.png" alt="" style="width: 22px; height: 22px;" />
+        Continue with Google
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 11px; height: 52px; background: #ffffff; border-radius: 999px; color: #1a2332; font-size: 17px; font-weight: 700;">
+        <i class="ph-fill ph-envelope-simple" style="font-size: 22px; color: #1a2332;"></i>
+        Continue with email
+      </div>
+    </div>
+
+    <div style="margin-top: 28px; text-align: center; font-size: 12px; line-height: 1.5; color: rgba(255,255,255,0.65); max-width: 300px;">
+      By continuing, you agree to our <span style="color: rgba(255,255,255,0.9); font-weight: 600; text-decoration: underline;">Terms of Service</span> and <span style="color: rgba(255,255,255,0.9); font-weight: 600; text-decoration: underline;">Privacy Policy</span>.
+    </div>
+  </div>
+</div>

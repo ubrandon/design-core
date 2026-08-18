@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .v5-scope { --v5-bg: #06080e; --v5-line: rgba(255,255,255,0.08); }
+  .v5-scope, .v5-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .v5-scope::-webkit-scrollbar, .v5-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .v5-wrap { background: var(--v5-bg); height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .v5-body { flex: 1; overflow-y: auto; padding-bottom: 8px; }
+
+  .v5-header { display: grid; grid-template-columns: 28px 1fr; align-items: center; gap: 10px; padding: 22px 20px 6px; }
+  .v5-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .v5-back { background: transparent; border: 0; color: rgba(255,255,255,0.85); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
+  .v5-back i { font-size: 22px; }
+  .v5-intro { color: rgba(255,255,255,0.5); font-size: 0.88rem; font-weight: 600; line-height: 1.35; padding: 0 20px 14px; }
+
+  .v5-search { display: grid; grid-template-columns: 20px 1fr; align-items: center; gap: 10px; margin: 0 20px 16px; padding: 12px 15px; background: rgba(255,255,255,0.07); border-radius: 999px; }
+  .v5-search i { color: rgba(255,255,255,0.54); font-size: 17px; }
+  .v5-search input { width: 100%; border: 0; outline: 0; padding: 0; background: transparent; color: #fff; font: inherit; font-size: 0.94rem; }
+
+  .v5-sublabel { padding: 4px 20px 8px; color: rgba(255,255,255,0.5); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  .v5-glist { padding: 0 20px; display: flex; flex-direction: column; gap: 8px; }
+  .v5-grow { display: grid; grid-template-columns: 52px 1fr 20px; align-items: center; gap: 14px; padding: 12px; border-radius: 16px; background: rgba(255,255,255,0.05); border: 1px solid var(--v5-line); cursor: pointer; }
+  .v5-grow .gthumb { width: 52px; height: 52px; border-radius: 15px; object-fit: cover; background: rgba(255,255,255,0.1); }
+  .v5-gname { color: #fff; font-size: 1.02rem; font-weight: 850; line-height: 1.15; }
+  .v5-gmeta { color: rgba(255,255,255,0.5); font-size: 0.84rem; font-weight: 600; margin-top: 3px; }
+  .v5-gmeta b { color: rgba(255,255,255,0.72); font-weight: 800; }
+  .v5-gwarn { display: inline-flex; align-items: center; gap: 5px; color: #f5c451; font-size: 0.82rem; font-weight: 800; margin-top: 5px; }
+  .v5-gwarn i { font-size: 14px; }
+  .v5-chev { color: rgba(255,255,255,0.4); font-size: 20px; justify-self: center; }
+</style>
+
+<div class="mr-scope v5-scope">
+  <div class="v5-wrap">
+    <div class="v5-body">
+      <header class="v5-header">
+        <button type="button" class="v5-back" aria-label="Back"><i class="ph ph-arrow-left"></i></button>
+        <div class="v5-title">Add to a group</div>
+      </header>
+      <div class="v5-intro">Pick which group this plan belongs to. Guests who aren't members will be removed.</div>
+
+      <div class="v5-search">
+        <i class="ph ph-magnifying-glass"></i>
+        <input type="search" placeholder="Search groups" />
+      </div>
+
+      <div class="v5-sublabel">Your groups</div>
+      <div class="v5-glist">
+        <div class="v5-grow">
+          <img class="gthumb" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" />
+          <div>
+            <div class="v5-gname">Lake House</div>
+            <div class="v5-gmeta"><b>8 members</b></div>
+            <div class="v5-gwarn"><i class="ph-fill ph-minus-circle"></i>2 guests not members</div>
+          </div>
+          <i class="ph ph-caret-right v5-chev"></i>
+        </div>
+        <div class="v5-grow">
+          <img class="gthumb" src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" />
+          <div>
+            <div class="v5-gname">Family</div>
+            <div class="v5-gmeta"><b>4 members</b> · all guests are members</div>
+          </div>
+          <i class="ph ph-caret-right v5-chev"></i>
+        </div>
+        <div class="v5-grow">
+          <img class="gthumb" src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" />
+          <div>
+            <div class="v5-gname">Climbing</div>
+            <div class="v5-gmeta"><b>3 members</b> · all guests are members</div>
+          </div>
+          <i class="ph ph-caret-right v5-chev"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

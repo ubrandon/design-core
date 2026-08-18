@@ -1,0 +1,226 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .rs-scope { --pv-bg: #0a0f14; --pv-card: #161d27; --pv-card-2: #1a2230; --pv-green: #34c759; --pv-green-soft: rgba(52,199,89,0.16); --pv-amber: #f5b400; --pv-red: #ff5a5f; }
+  .rs-scope, .rs-scope * { scrollbar-width: none; -ms-overflow-style: none; box-sizing: border-box; }
+  .rs-scope::-webkit-scrollbar, .rs-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .rs-scope .rs-wrap { background: var(--pv-bg); padding: 24px 20px 28px; }
+
+  /* Shared card frame, C style */
+  .rs-scope .rs-card { background: linear-gradient(165deg, #1c2533 0%, #141b26 100%); border-radius: 26px; padding: 22px 20px; box-shadow: 0 12px 40px rgba(0,0,0,0.35); margin-bottom: 16px; }
+
+  /* Card head: bold title + colored status sub-line, optional action button. No left icon. */
+  .rs-scope .rs-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .rs-scope .rs-head .ht1 { font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.01em; line-height: 1.1; }
+  .rs-scope .rs-head .ht2 { display: inline-flex; align-items: center; gap: 7px; font-size: 0.86rem; font-weight: 700; margin-top: 6px; }
+  .rs-scope .rs-head .ht2 i { font-size: 15px; }
+  .rs-scope .rs-head .ht2.blue { color: #8ab4ff; }
+  .rs-scope .rs-head .ht2.green { color: var(--pv-green); }
+  .rs-scope .rs-head .ht2.muted { color: rgba(255,255,255,0.5); }
+  .rs-scope .rs-act { width: 44px; height: 44px; border-radius: 13px; border: 0; background: rgba(255,255,255,0.1); color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
+  .rs-scope .rs-act i { font-size: 21px; }
+
+  /* Date card: optional time poll, set off as its own block inside the card */
+  .rs-scope .rs-poll { margin-top: 18px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 15px 14px; }
+  .rs-scope .rs-poll .phd { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .rs-scope .rs-poll .phd i { font-size: 16px; color: var(--pv-amber); }
+  .rs-scope .rs-poll .phd .pt { font-size: 0.9rem; font-weight: 800; color: #fff; }
+  .rs-scope .rs-poll .phd .pc { font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.4); margin-left: auto; }
+  .rs-scope .rs-opt { display: flex; align-items: center; gap: 12px; position: relative; background: rgba(255,255,255,0.04); border-radius: 14px; padding: 13px 14px; margin-bottom: 9px; cursor: pointer; overflow: hidden; }
+  .rs-scope .rs-opt .fill { position: absolute; inset: 0 auto 0 0; background: rgba(52,199,89,0.14); border-radius: 14px; }
+  .rs-scope .rs-opt.lead .fill { background: rgba(52,199,89,0.2); }
+  .rs-scope .rs-opt .ic { position: relative; width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; }
+  .rs-scope .rs-opt.lead .ic { border-color: var(--pv-green); background: var(--pv-green); }
+  .rs-scope .rs-opt.lead .ic i { font-size: 12px; color: #06210f; line-height: 1; }
+  .rs-scope .rs-opt .ol { position: relative; flex: 1; font-size: 0.98rem; font-weight: 700; color: #fff; }
+  .rs-scope .rs-opt .ov { position: relative; font-size: 0.86rem; font-weight: 800; color: rgba(255,255,255,0.7); flex-shrink: 0; }
+  .rs-scope .rs-opt.lead .ov { color: var(--pv-green); }
+  .rs-scope .rs-pollfoot { font-size: 0.84rem; font-weight: 700; color: rgba(255,255,255,0.45); text-align: center; padding-top: 6px; }
+
+  /* Location card extras */
+  .rs-scope .rs-rating { display: flex; align-items: center; gap: 7px; margin-top: 9px; }
+  .rs-scope .rs-rating .score { font-size: 0.98rem; font-weight: 800; color: #fff; }
+  .rs-scope .rs-rating .stars { display: inline-flex; gap: 1px; color: #f5b400; font-size: 16px; line-height: 1; }
+  .rs-scope .rs-rating .count { font-size: 0.86rem; color: rgba(255,255,255,0.45); }
+  .rs-scope .rs-map { margin-top: 13px; height: 150px; border-radius: 16px; overflow: hidden; position: relative; background:
+    radial-gradient(circle at 30% 40%, #2f3a30 0%, transparent 45%),
+    radial-gradient(circle at 70% 70%, #2c3640 0%, transparent 50%),
+    linear-gradient(135deg, #283442 0%, #1d2733 100%); }
+  .rs-scope .rs-map .road { position: absolute; background: rgba(255,255,255,0.12); }
+  .rs-scope .rs-map .r1 { top: 56%; left: -5%; right: -5%; height: 6px; transform: rotate(-6deg); }
+  .rs-scope .rs-map .r2 { top: -10%; bottom: -10%; left: 44%; width: 5px; transform: rotate(9deg); }
+  .rs-scope .rs-map .r3 { top: 20%; left: -10%; width: 70%; height: 4px; transform: rotate(22deg); }
+  .rs-scope .rs-map .pin { position: absolute; top: 48%; left: 47%; transform: translate(-50%, -100%); color: var(--pv-red); font-size: 32px; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5)); }
+  .rs-scope .rs-map .label { position: absolute; top: 46%; left: 53%; font-size: 0.78rem; font-weight: 700; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.7); }
+  .rs-scope .rs-map .locate { position: absolute; right: 12px; bottom: 12px; width: 40px; height: 40px; border-radius: 50%; background: rgba(20,28,38,0.85); display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 18px; }
+
+  /* Attendees card extras (lifted from C) */
+  .rs-scope .rs-bar { display: flex; height: 12px; border-radius: 999px; overflow: hidden; margin: 18px 0 10px; background: rgba(255,255,255,0.06); }
+  .rs-scope .rs-bar .seg-go { width: 40%; background: var(--pv-green); }
+  .rs-scope .rs-bar .seg-mb { width: 60%; background: #5a687c; }
+  .rs-scope .rs-barkey { display: flex; gap: 18px; margin-bottom: 18px; }
+  .rs-scope .rs-barkey .k { display: inline-flex; align-items: center; gap: 7px; font-size: 0.86rem; color: rgba(255,255,255,0.7); font-weight: 700; }
+  .rs-scope .rs-barkey .k .d { width: 9px; height: 9px; border-radius: 50%; }
+  .rs-scope .rs-barkey .k .d.go { background: var(--pv-green); }
+  .rs-scope .rs-barkey .k .d.mb { background: #8a97ab; }
+  .rs-scope .rs-barkey .k .d.no { background: var(--pv-red); }
+  .rs-scope .rs-barkey .k b { color: #fff; }
+
+  .rs-scope .rs-host { display: flex; align-items: center; gap: 13px; padding: 13px; border-radius: 16px; background: rgba(245,180,0,0.08); border: 1px solid rgba(245,180,0,0.22); margin-bottom: 8px; cursor: pointer; }
+  .rs-scope .rs-host img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .rs-scope .rs-host .hb { flex: 1; min-width: 0; }
+  .rs-scope .rs-host .hb .nm { font-size: 1.04rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px; }
+  .rs-scope .rs-host .hb .nm i { color: var(--pv-amber); font-size: 16px; }
+  .rs-scope .rs-host .hb .sub { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+  .rs-scope .rs-host .msg { width: 38px; height: 38px; border-radius: 11px; background: rgba(255,255,255,0.1); color: #fff; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .rs-scope .rs-host .msg i { font-size: 18px; }
+
+  .rs-scope .rs-row { display: flex; align-items: center; gap: 13px; padding: 11px 13px; border-radius: 16px; cursor: pointer; }
+  .rs-scope .rs-row:active { background: rgba(255,255,255,0.05); }
+  .rs-scope .rs-avwrap { position: relative; flex-shrink: 0; }
+  .rs-scope .rs-avwrap .ra { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; display: block; }
+  .rs-scope .rs-avwrap .ra.initials { background: #5a687c; color: #fff; font-size: 0.92rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .rs-scope .rs-avwrap .st { position: absolute; bottom: -1px; right: -2px; width: 17px; height: 17px; border-radius: 50%; border: 2.5px solid #161d27; display: inline-flex; align-items: center; justify-content: center; }
+  .rs-scope .rs-avwrap .st.go { background: var(--pv-green); }
+  .rs-scope .rs-avwrap .st.mb { background: #8a97ab; }
+  .rs-scope .rs-avwrap .st i { font-size: 8px; color: #06210f; line-height: 1; }
+  .rs-scope .rs-row .rn { flex: 1; min-width: 0; }
+  .rs-scope .rs-row .rn .nm { font-size: 1rem; font-weight: 700; color: #fff; }
+  .rs-scope .rs-row .rn .sub { font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-top: 1px; }
+  .rs-scope .rs-row .chev { color: rgba(255,255,255,0.3); font-size: 19px; flex-shrink: 0; }
+
+  .rs-scope .rs-more { text-align: center; font-size: 0.92rem; font-weight: 700; color: rgba(255,255,255,0.55); padding: 14px; cursor: pointer; }
+
+  .rs-scope .rs-foot { display: flex; gap: 12px; margin-top: 14px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.07); }
+  .rs-scope .rs-foot button { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; border-radius: 15px; font-size: 0.98rem; font-weight: 800; cursor: pointer; border: 0; }
+  .rs-scope .rs-foot .inv { background: var(--pv-green); color: #06210f; }
+  .rs-scope .rs-foot .shr { background: rgba(255,255,255,0.08); color: #fff; }
+  .rs-scope .rs-foot button i { font-size: 18px; }
+</style>
+
+<div class="mr-scope rs-scope">
+  <div class="rs-wrap">
+
+    <!-- DATE -->
+    <div class="rs-card">
+      <div class="rs-head">
+        <div>
+          <div class="ht1">Sat, Jun 7</div>
+          <div class="ht2 muted"><i class="ph-fill ph-clock"></i> 4:00 PM &middot; 7 nights</div>
+        </div>
+        <button type="button" class="rs-act" aria-label="Add to calendar"><i class="ph ph-calendar-plus"></i></button>
+      </div>
+      <div class="rs-poll">
+        <div class="phd">
+          <i class="ph-fill ph-chart-bar"></i>
+          <span class="pt">Still deciding the week</span>
+          <span class="pc">7 voted</span>
+        </div>
+        <div class="rs-opt lead">
+          <span class="fill" style="width:71%"></span>
+          <span class="ic"><i class="ph-fill ph-check"></i></span>
+          <span class="ol">Jun 7 - Jun 14</span>
+          <span class="ov">5</span>
+        </div>
+        <div class="rs-opt">
+          <span class="fill" style="width:43%"></span>
+          <span class="ic"></span>
+          <span class="ol">Jun 14 - Jun 21</span>
+          <span class="ov">3</span>
+        </div>
+        <div class="rs-opt">
+          <span class="fill" style="width:29%"></span>
+          <span class="ic"></span>
+          <span class="ol">Jun 21 - Jun 28</span>
+          <span class="ov">2</span>
+        </div>
+        <div class="rs-pollfoot">Closes in 3 days</div>
+      </div>
+    </div>
+
+    <!-- LOCATION -->
+    <div class="rs-card">
+      <div class="rs-head">
+        <div>
+          <div class="ht1">Casa Palma</div>
+          <div class="ht2 muted"><i class="ph-fill ph-map-pin"></i> 24 Shoreline Dr, Seaside</div>
+        </div>
+        <button type="button" class="rs-act" aria-label="Directions"><i class="ph ph-navigation-arrow"></i></button>
+      </div>
+      <div class="rs-rating">
+        <span class="score">4.6</span>
+        <span class="stars">
+          <i class="ph-fill ph-star"></i>
+          <i class="ph-fill ph-star"></i>
+          <i class="ph-fill ph-star"></i>
+          <i class="ph-fill ph-star"></i>
+          <i class="ph-fill ph-star-half"></i>
+        </span>
+      </div>
+      <div class="rs-map">
+        <span class="road r1"></span>
+        <span class="road r2"></span>
+        <span class="road r3"></span>
+        <i class="ph-fill ph-map-pin pin"></i>
+        <span class="label">Casa Palma</span>
+        <span class="locate"><i class="ph-fill ph-map-pin"></i></span>
+      </div>
+    </div>
+
+    <!-- ATTENDEES (C style) -->
+    <div class="rs-card">
+      <div class="rs-head">
+        <div>
+          <div class="ht1">10 guests</div>
+          <div class="ht2 blue"><i class="ph-fill ph-lock-simple"></i> Private &middot; invite only</div>
+        </div>
+        <button type="button" class="rs-act" aria-label="Share"><i class="ph ph-share-network"></i></button>
+      </div>
+
+      <div class="rs-bar">
+        <span class="seg-go"></span>
+        <span class="seg-mb"></span>
+      </div>
+      <div class="rs-barkey">
+        <span class="k"><span class="d go"></span><b>4</b> going</span>
+        <span class="k"><span class="d mb"></span><b>6</b> maybe</span>
+        <span class="k"><span class="d no"></span><b>0</b> out</span>
+      </div>
+
+      <div class="rs-host">
+        <img src="https://i.pravatar.cc/120?img=12" alt="" />
+        <div class="hb">
+          <div class="nm">Brandon Unglaub <i class="ph-fill ph-crown-simple"></i></div>
+          <div class="sub">Host &middot; You're going</div>
+        </div>
+        <span class="msg"><i class="ph-fill ph-chat-circle"></i></span>
+      </div>
+
+      <div class="rs-row">
+        <span class="rs-avwrap"><span class="ra initials">MG</span><span class="st go"><i class="ph-fill ph-check"></i></span></span>
+        <div class="rn"><div class="nm">Maya Greene</div><div class="sub">Going</div></div>
+        <i class="ph ph-caret-right chev"></i>
+      </div>
+      <div class="rs-row">
+        <span class="rs-avwrap"><img class="ra" src="https://i.pravatar.cc/120?img=32" alt="" /><span class="st go"><i class="ph-fill ph-check"></i></span></span>
+        <div class="rn"><div class="nm">Diego Ruiz</div><div class="sub">Going</div></div>
+        <i class="ph ph-caret-right chev"></i>
+      </div>
+      <div class="rs-row">
+        <span class="rs-avwrap"><img class="ra" src="https://i.pravatar.cc/120?img=45" alt="" /><span class="st mb"><i class="ph-fill ph-question"></i></span></span>
+        <div class="rn"><div class="nm">Sofia Park</div><div class="sub">Maybe</div></div>
+        <i class="ph ph-caret-right chev"></i>
+      </div>
+
+      <div class="rs-more">Show all 10 guests</div>
+
+      <div class="rs-foot">
+        <button type="button" class="shr"><i class="ph ph-share-network"></i> Share</button>
+        <button type="button" class="inv"><i class="ph ph-user-plus"></i> Invite</button>
+      </div>
+    </div>
+
+  </div>
+</div>

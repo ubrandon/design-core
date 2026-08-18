@@ -1,0 +1,330 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .nav-current-board,
+  .nav-current-board * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  .nav-current-board {
+    padding: 16px;
+    background: #e8edf2;
+    color: #101724;
+    font-family: "DM Sans", sans-serif;
+  }
+
+  .nav-current-board .sample + .sample {
+    margin-top: 14px;
+  }
+
+  .nav-current-board .sample-label {
+    margin: 0 0 6px 2px;
+    color: #667487;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .nav-current-board .nav-shell {
+    overflow: hidden;
+    border: 1px solid rgba(16, 23, 36, 0.08);
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(16, 23, 36, 0.08);
+  }
+
+  .nav-current-board .light-nav {
+    background: #ffffff;
+    color: #1a2332;
+    font-family: "Geist", "DM Sans", sans-serif;
+  }
+
+  .nav-current-board .dark-nav {
+    background: #010b14;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .nav-current-board .icon-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .nav-current-board .icon {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    color: inherit;
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .nav-current-board .badge {
+    position: absolute;
+    top: -9px;
+    right: -10px;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 4px;
+    display: grid;
+    place-items: center;
+    border: 2px solid #ffffff;
+    border-radius: 999px;
+    background: #0ca678;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .nav-current-board .home-nav {
+    height: 64px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-current-board .brand {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .nav-current-board .brand img {
+    width: 34px;
+    height: 34px;
+    display: block;
+    object-fit: contain;
+  }
+
+  .nav-current-board .brand span {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .nav-current-board .page-nav {
+    min-height: 66px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-current-board .page-title {
+    font-size: 25.6px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-current-board .dark-nav .icon-row {
+    gap: 12px;
+  }
+
+  .nav-current-board .dark-nav .icon {
+    color: rgba(255, 255, 255, 0.94);
+  }
+
+  .nav-current-board .avatar {
+    width: 36px;
+    height: 36px;
+    display: block;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .nav-current-board .discover-nav {
+    padding: 12px 16px 14px;
+  }
+
+  .nav-current-board .segment {
+    height: 38px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 3px;
+    border-radius: 999px;
+    background: #f1f4f7;
+  }
+
+  .nav-current-board .segment-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 999px;
+    color: #5c6b7d;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .nav-current-board .segment-tab.selected {
+    background: #ffffff;
+    color: #1a2332;
+    box-shadow: 0 1px 4px rgba(16, 23, 36, 0.12);
+    font-weight: 700;
+  }
+
+  .nav-current-board .search-row {
+    height: 42px;
+    margin-top: 10px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    border-radius: 999px;
+    background: #f1f4f7;
+    color: #7d8998;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .nav-current-board .filters {
+    margin-top: 9px;
+    display: flex;
+    gap: 7px;
+  }
+
+  .nav-current-board .filter {
+    height: 30px;
+    padding: 0 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 999px;
+    background: #f1f4f7;
+    color: #5c6b7d;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .nav-current-board .you-nav {
+    min-height: 66px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background:
+      radial-gradient(ellipse at top left, rgba(91, 165, 255, 0.18), transparent 60%),
+      radial-gradient(ellipse at top right, rgba(245, 196, 81, 0.14), transparent 60%),
+      #010b14;
+  }
+
+  .nav-current-board .eyebrow {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .nav-current-board .start-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .nav-current-board .back-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    color: #1a2332;
+    font-size: 22px;
+  }
+
+  .nav-current-board .profile-toolbar {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 1px 0 rgba(16, 23, 36, 0.08);
+  }
+</style>
+
+<div class="nav-current-board ds-no-scrollbar">
+  <section class="sample">
+    <div class="sample-label">Home</div>
+    <div class="nav-shell light-nav home-nav">
+      <div class="brand">
+        <img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" />
+        <span>MixedRoutes</span>
+      </div>
+      <div class="icon-row" aria-label="Home actions">
+        <span class="icon"><i class="ph ph-user-plus" aria-hidden="true"></i></span>
+        <span class="icon"><i class="ph ph-bell" aria-hidden="true"></i><span class="badge">2</span></span>
+        <span class="icon"><i class="ph ph-gear-six" aria-hidden="true"></i></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sample">
+    <div class="sample-label">Discover</div>
+    <div class="nav-shell light-nav discover-nav">
+      <div class="segment">
+        <span class="segment-tab selected"><i class="ph-fill ph-ticket" aria-hidden="true"></i>Events</span>
+        <span class="segment-tab"><i class="ph ph-map-pin" aria-hidden="true"></i>Places</span>
+        <span class="segment-tab"><i class="ph ph-calendar-blank" aria-hidden="true"></i>Plans</span>
+      </div>
+      <div class="search-row"><i class="ph ph-magnifying-glass" aria-hidden="true"></i>Search events...</div>
+      <div class="filters">
+        <span class="filter"><i class="ph ph-map-pin" aria-hidden="true"></i>Asheville</span>
+        <span class="filter"><i class="ph ph-sparkle" aria-hidden="true"></i>Interest</span>
+        <span class="filter"><i class="ph ph-calendar-blank" aria-hidden="true"></i>Anytime</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sample">
+    <div class="sample-label">Profile</div>
+    <div class="nav-shell light-nav page-nav profile-toolbar">
+      <div class="start-group">
+        <span class="back-icon"><i class="ph ph-caret-left" aria-hidden="true"></i></span>
+        <span class="page-title">Brandon Unglaub</span>
+      </div>
+      <div class="icon-row" aria-label="Profile actions">
+        <span class="icon"><i class="ph ph-pencil-simple" aria-hidden="true"></i></span>
+        <span class="icon"><i class="ph ph-gear-six" aria-hidden="true"></i></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sample">
+    <div class="sample-label">Plans</div>
+    <div class="nav-shell light-nav page-nav">
+      <span class="page-title">Plans</span>
+      <div class="icon-row" aria-label="Plans actions">
+        <span class="icon"><i class="ph ph-user-plus" aria-hidden="true"></i></span>
+        <span class="icon"><i class="ph ph-bell" aria-hidden="true"></i><span class="badge">2</span></span>
+        <span class="icon"><i class="ph ph-gear-six" aria-hidden="true"></i></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sample">
+    <div class="sample-label">Chat</div>
+    <div class="nav-shell light-nav page-nav">
+      <span class="page-title">Chats</span>
+      <div class="icon-row" aria-label="Chats actions">
+        <span class="icon"><i class="ph ph-user-plus" aria-hidden="true"></i></span>
+        <span class="icon"><i class="ph ph-bell" aria-hidden="true"></i><span class="badge">2</span></span>
+        <span class="icon"><i class="ph ph-gear-six" aria-hidden="true"></i></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sample">
+    <div class="sample-label">People</div>
+    <div class="nav-shell light-nav page-nav">
+      <div class="start-group">
+        <span class="back-icon"><i class="ph ph-caret-left" aria-hidden="true"></i></span>
+        <span class="page-title">People</span>
+      </div>
+      <span class="icon" aria-label="Find friends from contacts"><i class="ph ph-address-book" aria-hidden="true"></i></span>
+    </div>
+  </section>
+</div>

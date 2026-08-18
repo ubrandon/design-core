@@ -1,0 +1,379 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&display=swap");
+
+  .mrv2-discover,
+  .mrv2-discover * {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "Geist", sans-serif;
+  }
+
+  .mrv2-discover {
+    position: relative;
+    overflow-x: clip;
+    background: #ffffff;
+    color: #101724;
+  }
+
+  .mrv2-discover .page-content {
+    padding: 0 16px 82px;
+  }
+
+  /* Staging Discover sticky header */
+  .mrv2-discover .sticky-header {
+    position: relative;
+    z-index: 2;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    background: #ffffff;
+  }
+
+  .mrv2-discover .segment {
+    position: relative;
+    display: flex;
+    width: calc(100% + 32px);
+    height: 64px;
+    margin: 0 -16px;
+  }
+
+  .mrv2-discover .segment-tab {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: #5c6b7d;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .mrv2-discover .segment-tab i {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    font-size: 26px;
+    line-height: 1;
+  }
+
+  .mrv2-discover .segment-tab.selected {
+    color: #1a2332;
+    font-weight: 700;
+  }
+
+  .mrv2-discover .segment-tab.selected::after {
+    content: "";
+    position: absolute;
+    right: 13px;
+    bottom: 0;
+    left: 13px;
+    height: 2px;
+    border-radius: 999px;
+    background: #1a2332;
+  }
+
+  .mrv2-discover .search-bar {
+    height: 48px;
+    margin: 11px 0 7px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 0 16px;
+    border-radius: 24px;
+    background: rgba(118, 118, 128, 0.12);
+    color: #5c6b7d;
+  }
+
+  .mrv2-discover .search-bar i {
+    flex-shrink: 0;
+    color: #68707a;
+    font-size: 22px;
+  }
+
+  .mrv2-discover .search-bar span {
+    font-size: 16px;
+  }
+
+  .mrv2-discover .filters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 7px;
+    overflow-x: auto;
+  }
+
+  .mrv2-discover .filter-chip {
+    height: 36px;
+    min-width: max-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 14px;
+    border: 1.5px solid rgba(0, 0, 0, 0.16);
+    border-radius: 999px;
+    background: #ffffff;
+    color: #1a2332;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .mrv2-discover .filter-chip i {
+    font-size: 16px;
+  }
+
+  /* Staging EventsTab list */
+  .mrv2-discover .event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 11px;
+  }
+
+  .mrv2-discover .event-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    width: 100%;
+    color: #101724;
+  }
+
+  .mrv2-discover .event-image {
+    width: 96px;
+    height: 96px;
+    flex-shrink: 0;
+    border-radius: 24px;
+    background-color: #f1f4f7;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .mrv2-discover .event-details {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+  }
+
+  .mrv2-discover .event-date {
+    margin-bottom: 7px;
+    color: #101724;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.35px;
+    opacity: 0.7;
+  }
+
+  .mrv2-discover .event-title {
+    overflow: hidden;
+    color: #101724;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .mrv2-discover .event-description {
+    margin-top: 5px;
+    overflow: hidden;
+    color: #5c6b7d;
+    font-size: 14px;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .mrv2-discover .event-location {
+    margin-top: 7px;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #3b4551;
+    font-size: 14px;
+    line-height: 1.3;
+    opacity: 0.8;
+  }
+
+  .mrv2-discover .event-location i {
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+
+  .mrv2-discover .event-location span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Mobile Ionic tab bar: labels are hidden on staging below 902px */
+  .mrv2-discover .tab-bar {
+    position: relative;
+    z-index: 5;
+    height: 67px;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 9px;
+    background: #ffffff;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .mrv2-discover .tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3b4551;
+  }
+
+  .mrv2-discover .tab i {
+    font-size: 24px;
+  }
+
+  .mrv2-discover .tab.discover i {
+    font-size: 26px;
+  }
+
+  .mrv2-discover .tab.selected {
+    color: #1a2332;
+  }
+
+  .mrv2-discover .you {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .mrv2-discover .chat-wrap {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .mrv2-discover .unread {
+    position: absolute;
+    top: -8px;
+    right: -14px;
+    min-width: 22px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+    padding: 0 4px;
+    border: 2px solid #ffffff;
+    border-radius: 999px;
+    background: #0ca678;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+</style>
+
+<div class="mrv2-discover ds-no-scrollbar" style="background: #ffffff;">
+  <main class="page-content">
+    <header class="sticky-header">
+      <div class="segment">
+        <span class="segment-tab selected"><i class="ph-fill ph-ticket"></i><span>Events</span></span>
+        <span class="segment-tab"><i class="ph ph-map-pin"></i><span>Places</span></span>
+        <span class="segment-tab"><i class="ph ph-calendar-blank"></i><span>Plans</span></span>
+      </div>
+
+      <div class="search-bar"><i class="ph ph-magnifying-glass"></i><span>Search events...</span></div>
+
+      <div class="filters ds-scroll-x">
+        <span class="filter-chip"><i class="ph ph-map-pin"></i>Asheville</span>
+        <span class="filter-chip"><i class="ph ph-sparkle"></i>Interest</span>
+        <span class="filter-chip"><i class="ph ph-calendar-blank"></i>Anytime</span>
+      </div>
+    </header>
+
+    <section class="event-list">
+      <article class="event-row">
+        <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=192&h=192&q=80');"></div>
+        <div class="event-details">
+          <div class="event-date">Wed, Aug 5 · 5:30 PM</div>
+          <div class="event-title">Pickin' in the Park</div>
+          <div class="event-description">Live music in the heart of downtown.</div>
+          <div class="event-location"><i class="ph ph-map-pin"></i><span>Pritchard Park, Asheville</span></div>
+        </div>
+      </article>
+
+      <article class="event-row">
+        <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=192&h=192&q=80');"></div>
+        <div class="event-details">
+          <div class="event-date">Fri, Aug 7 · 5:00 PM</div>
+          <div class="event-title">Downtown Art District First Friday</div>
+          <div class="event-description">Galleries, local artists, and an evening downtown.</div>
+          <div class="event-location"><i class="ph ph-map-pin"></i><span>Downtown Asheville</span></div>
+        </div>
+      </article>
+
+      <article class="event-row">
+        <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=192&h=192&q=80');"></div>
+        <div class="event-details">
+          <div class="event-date">Sat, Aug 8 · 8:00 AM</div>
+          <div class="event-title">Hendersonville Farmers Market</div>
+          <div class="event-description">Local produce, makers, food, and live music.</div>
+          <div class="event-location"><i class="ph ph-map-pin"></i><span>Historic Train Depot Plaza</span></div>
+        </div>
+      </article>
+
+      <article class="event-row">
+        <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=192&h=192&q=80');"></div>
+        <div class="event-details">
+          <div class="event-date">Sat, Aug 8 · 12:00 PM</div>
+          <div class="event-title">Asheville Food & Beverage Festival</div>
+          <div class="event-description">A full afternoon of local bites and drinks.</div>
+          <div class="event-location"><i class="ph ph-map-pin"></i><span>Pack Square Park</span></div>
+        </div>
+      </article>
+
+      <article class="event-row">
+        <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=192&h=192&q=80');"></div>
+        <div class="event-details">
+          <div class="event-date">Sat, Aug 8 · 7:30 PM</div>
+          <div class="event-title">Summer Concert on the Lawn</div>
+          <div class="event-description">Bring a blanket for an outdoor evening set.</div>
+          <div class="event-location"><i class="ph ph-map-pin"></i><span>Biltmore Park Town Square</span></div>
+        </div>
+      </article>
+
+      <article class="event-row">
+        <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=192&h=192&q=80');"></div>
+        <div class="event-details">
+          <div class="event-date">Sun, Aug 9 · 2:00 PM</div>
+          <div class="event-title">Flat Rock Playhouse: Sunday Matinee</div>
+          <div class="event-description">A polished local-theater afternoon.</div>
+          <div class="event-location"><i class="ph ph-map-pin"></i><span>Flat Rock Playhouse</span></div>
+        </div>
+      </article>
+
+      <article class="event-row">
+        <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=192&h=192&q=80');"></div>
+        <div class="event-details">
+          <div class="event-date">Thu, Aug 13 · 6:00 PM</div>
+          <div class="event-title">River Arts District Studio Stroll</div>
+          <div class="event-description">Open studios, demonstrations, and neighborhood food.</div>
+          <div class="event-location"><i class="ph ph-map-pin"></i><span>River Arts District</span></div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <nav class="tab-bar">
+    <span class="tab"><i class="ph ph-house"></i></span>
+    <span class="tab discover selected"><i class="ph-fill ph-compass"></i></span>
+    <span class="tab"><img class="you" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /></span>
+    <span class="tab"><i class="ph ph-calendar-blank"></i></span>
+    <span class="tab"><span class="chat-wrap"><i class="ph ph-chat"></i><span class="unread">4</span></span></span>
+  </nav>
+</div>

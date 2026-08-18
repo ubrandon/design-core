@@ -1294,3 +1294,51 @@ a.tile-card:hover {
     transition: none;
   }
 }
+
+/* Company switcher at the top of the rail */
+.dc-rail__company-wrap {
+  position: relative;
+  min-width: 0;
+  flex: 1;
+}
+
+.dc-rail__company {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: -0.018em;
+  color: var(--tool-text);
+}
+
+.dc-rail__company:hover {
+  color: var(--tool-text);
+  background: var(--tool-surface);
+  border-color: var(--tool-border);
+}
+
+.dc-rail__company-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dc-rail__company-menu {
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  min-width: 220px;
+}
+
+.dc-rail[data-collapsed="true"] .dc-rail__company-wrap {
+  display: none;
+}

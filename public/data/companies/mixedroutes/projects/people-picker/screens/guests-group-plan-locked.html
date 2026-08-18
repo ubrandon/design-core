@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .gp-scope { --gp-bg: #0d141f; --gp-card: #1a2331; --gp-accent: #5eb3ff; --gp-accent-2: #20e0cf; --gp-host: #f5c542; --gp-going: #2bd474; }
+  .gp-scope, .gp-scope * { scrollbar-width: none; -ms-overflow-style: none; }
+  .gp-scope::-webkit-scrollbar, .gp-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .gp-scope .gp-wrap { background: var(--gp-bg); height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .gp-scope .gp-body { flex: 1; overflow-y: auto; padding: 22px 20px 0; }
+
+  .gp-scope .gp-header { display: grid; grid-template-columns: 1fr 24px; align-items: center; padding: 0 0 18px; }
+  .gp-scope .gp-title { font-size: 1.6rem; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+  .gp-scope .gp-close { background: transparent; border: 0; color: rgba(255,255,255,0.85); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
+  .gp-scope .gp-close i { font-size: 22px; }
+
+  .gp-scope .gp-group-card { display: grid; grid-template-columns: 48px 1fr 22px; align-items: center; gap: 14px; padding: 12px 16px; background: var(--gp-card); border-radius: 14px; margin-bottom: 18px; }
+  .gp-scope .gp-group-card .thumb { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+  .gp-scope .gp-group-card .gname { font-size: 1rem; font-weight: 800; color: #fff; }
+  .gp-scope .gp-group-card .gmeta { font-size: 0.84rem; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .gp-scope .gp-group-card .chev { color: rgba(255,255,255,0.45); }
+  .gp-scope .gp-group-card .chev i { font-size: 20px; }
+
+  .gp-scope .gp-host-row { display: grid; grid-template-columns: 48px 1fr 22px; align-items: center; gap: 14px; padding: 8px 4px 14px; }
+  .gp-scope .gp-host-row .ava { position: relative; width: 48px; height: 48px; }
+  .gp-scope .gp-host-row .ava img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+  .gp-scope .gp-host-row .ava .badge { position: absolute; right: -2px; bottom: -2px; color: var(--gp-going); background: var(--gp-bg); border-radius: 50%; display: inline-flex; line-height: 0; }
+  .gp-scope .gp-host-row .ava .badge i { font-size: 20px; }
+  .gp-scope .gp-host-row .name { font-size: 1rem; font-weight: 800; color: #fff; }
+  .gp-scope .gp-host-row .meta { font-size: 0.84rem; color: rgba(255,255,255,0.6); margin-top: 2px; }
+  .gp-scope .gp-host-row .meta .host-tag { color: var(--gp-host); font-weight: 700; }
+  .gp-scope .gp-host-row .edit { color: rgba(255,255,255,0.6); background: transparent; border: 0; padding: 0; cursor: pointer; }
+  .gp-scope .gp-host-row .edit i { font-size: 18px; }
+
+  .gp-scope .gp-label { padding: 2px 4px 8px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+
+  .gp-scope .gp-pending { display: flex; flex-direction: column; }
+  .gp-scope .gp-pending-row { display: grid; grid-template-columns: 48px 1fr 22px; align-items: center; gap: 14px; padding: 10px 4px; }
+  .gp-scope .gp-pending-row .av { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+  .gp-scope .gp-pending-row .av.initials { background: var(--gp-accent-2); color: #06080e; font-size: 1rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .gp-scope .gp-pending-row .name { font-size: 1rem; font-weight: 800; color: #fff; }
+  .gp-scope .gp-pending-row .meta { font-size: 0.84rem; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .gp-scope .gp-pending-row .edit { color: rgba(255,255,255,0.6); background: transparent; border: 0; padding: 0; cursor: pointer; }
+  .gp-scope .gp-pending-row .edit i { font-size: 18px; }
+
+  .gp-scope .gp-cta { padding: 12px 20px 20px; }
+  .gp-scope .gp-cta .done { width: 100%; border: 0; border-radius: 999px; padding: 16px; font-weight: 800; font-size: 1rem; color: #fff; background: rgba(255,255,255,0.08); cursor: pointer; }
+</style>
+
+<div class="mr-scope gp-scope">
+  <div class="gp-wrap">
+    <div class="gp-body">
+      <header class="gp-header">
+        <div class="gp-title">Guests</div>
+        <button type="button" class="gp-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      </header>
+
+      <div class="gp-group-card">
+        <img class="thumb" src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=200" alt="" loading="lazy" />
+        <div>
+          <div class="gname">Everyone in Otters</div>
+          <div class="gmeta">3 members invited</div>
+        </div>
+        <span class="chev"><i class="ph ph-caret-right"></i></span>
+      </div>
+
+      <div class="gp-host-row">
+        <div class="ava">
+          <img src="https://i.pravatar.cc/120?img=68" alt="" loading="lazy" />
+          <span class="badge"><i class="ph-fill ph-check-circle"></i></span>
+        </div>
+        <div>
+          <div class="name">Milo Wren</div>
+          <div class="meta">Going - <span class="host-tag">Host</span></div>
+        </div>
+        <button type="button" class="edit" aria-label="Edit"><i class="ph ph-pencil-simple"></i></button>
+      </div>
+
+      <div class="gp-label">Invites Pending</div>
+
+      <div class="gp-pending">
+        <div class="gp-pending-row">
+          <img class="av" src="https://i.pravatar.cc/120?img=12" alt="" loading="lazy" />
+          <div>
+            <div class="name">Nova Finch</div>
+            <div class="meta">Pending</div>
+          </div>
+          <button type="button" class="edit" aria-label="Edit"><i class="ph ph-pencil-simple"></i></button>
+        </div>
+
+        <div class="gp-pending-row">
+          <span class="av initials">S</span>
+          <div>
+            <div class="name">Soren Vale</div>
+            <div class="meta">Pending</div>
+          </div>
+          <button type="button" class="edit" aria-label="Edit"><i class="ph ph-pencil-simple"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="gp-cta">
+      <button type="button" class="done">Done</button>
+    </div>
+  </div>
+</div>

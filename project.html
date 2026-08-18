@@ -413,14 +413,14 @@
       const projectId = getParam("id");
       if (!projectId) {
         try { sessionStorage.setItem("design-core-redirect-hint", "Project link was missing an id."); } catch (_) {}
-        window.location.href = "index.html";
+        window.location.href = withCompany("index.html");
       }
 
       const MAX_CANVAS_PREVIEWS = 8;
 
       renderNav({
         breadcrumbs: [
-          { label: "Projects", href: "index.html" },
+          { label: "Projects", href: withCompany("index.html") },
           { label: "Loading…", id: "nav-title" },
         ],
       });
@@ -441,7 +441,7 @@
       };
 
       el.canvasLink.href =
-        "canvas.html?project=" + encodeURIComponent(projectId);
+        withCompany("canvas.html?project=" + encodeURIComponent(projectId));
 
       let localEdit = false;
       let projectPayload = {};
@@ -575,7 +575,7 @@
       }
 
       function loadKnownTags() {
-        return fetchJSON("data/projects/index.json")
+        return fetchJSON(dataPath("projects/index.json"))
           .then((idx) => {
             const set = new Set();
             (idx.projects || []).forEach((p) =>
@@ -768,7 +768,7 @@
         const bust = "?t=" + Date.now();
         const cards = shown
           .map((s) => {
-            const src = `data/projects/${encodeURIComponent(projectId)}/screens/${encodeURIComponent(s.file)}${bust}`;
+            const src = dataPath(`projects/${encodeURIComponent(projectId)}/screens/${encodeURIComponent(s.file)}`) + bust;
             const label = escapeHtml(screenLabel(s.file));
             const cardHref = canvasHref + (canvasHref.includes("?") ? "&" : "?") + "screen=" + encodeURIComponent(s.file);
             return `<a class="canvas-preview-card" href="${escapeHtml(cardHref)}" title="Open canvas — ${label}">
@@ -791,11 +791,13 @@
 
       function fetchProtoMeta(protoId) {
         return fetchJSON(
-          "data/projects/" +
-            projectId +
-            "/prototypes/" +
-            encodeURIComponent(protoId) +
-            "/meta.json",
+          dataPath(
+            "projects/" +
+              projectId +
+              "/prototypes/" +
+              encodeURIComponent(protoId) +
+              "/meta.json",
+          ),
         ).catch(() => ({}));
       }
 
@@ -836,11 +838,12 @@
           grid.innerHTML = rows
             .map(({ p, meta }) => {
               const url = prototypeUrl(projectId, p.id);
-              const previewHref =
+              const previewHref = withCompany(
                 "prototype.html?project=" +
-                encodeURIComponent(projectId) +
-                "&proto=" +
-                encodeURIComponent(p.id);
+                  encodeURIComponent(projectId) +
+                  "&proto=" +
+                  encodeURIComponent(p.id),
+              );
               const deviceMeta = getPrototypeDeviceMeta(p.device);
               const name = escapeHtml(p.name);
               const desc = escapeHtml(p.description || "Interactive prototype");
@@ -856,13 +859,14 @@
                   .filter(Boolean)
                   .map((seg) => encodeURIComponent(seg))
                   .join("/");
-                const thumbSrc =
-                  "data/projects/" +
-                  encodeURIComponent(projectId) +
-                  "/prototypes/" +
-                  encodeURIComponent(p.id) +
-                  "/" +
-                  thumbPath;
+                const thumbSrc = dataPath(
+                  "projects/" +
+                    encodeURIComponent(projectId) +
+                    "/prototypes/" +
+                    encodeURIComponent(p.id) +
+                    "/" +
+                    thumbPath,
+                );
                 thumbContent = `<img src="${escapeHtml(thumbSrc)}" alt="" loading="lazy" />`;
               } else {
                 const initial = escapeHtml(
@@ -979,7 +983,7 @@
                 status: status || null,
                 tags: tags.length ? tags : null,
               };
-              putDataJson("data/projects/" + projectId + "/project.json", next)
+              putDataJson(dataPath("projects/" + projectId + "/project.json"), next)
                 .then(() => syncProjectIndexEntry(projectId, indexPatch))
                 .then(() => {
                   showToast("Saved");
@@ -1050,7 +1054,7 @@
           postProjectAdmin({ action: "delete-project", id: projectId })
             .then(() => {
               closeDeleteProjectModal();
-              window.location.href = "index.html";
+              window.location.href = withCompany("index.html");
             })
             .catch((err) => {
               closeDeleteProjectModal();
@@ -1062,7 +1066,7 @@
         return Promise.all([
           isLocalToolServer(),
           loadSiteConfig(),
-          fetchJSON("data/projects/" + projectId + "/project.json"),
+          fetchJSON(dataPath("projects/" + projectId + "/project.json")),
         ])
           .then(([isLocal, , data]) => {
             localEdit = isLocal;
@@ -1100,12 +1104,12 @@
             el.prototypesSection.hidden = false;
 
             return Promise.all([
-              fetchJSON("data/projects/" + projectId + "/canvas.json").then(
+              fetchJSON(dataPath("projects/" + projectId + "/canvas.json")).then(
                 (c) => ({ ok: true, screens: c.screens || [] }),
                 () => ({ ok: false, screens: [] }),
               ),
               fetchJSON(
-                "data/projects/" + projectId + "/prototypes/index.json",
+                dataPath("projects/" + projectId + "/prototypes/index.json"),
               ).then(
                 (d) => ({ ok: true, list: d.prototypes || [] }),
                 () => ({ ok: false, list: [] }),
@@ -1140,7 +1144,7 @@
 
       /* ── Live reload ── */
       window.__onDataChanged = function(paths) {
-        const prefix = "data/projects/" + projectId + "/";
+        const prefix = dataPath("projects/" + projectId + "/");
         const relevant = paths.length === 0 || paths.some(p => p.startsWith(prefix));
         if (relevant) loadProjectHub().catch(() => {});
       };

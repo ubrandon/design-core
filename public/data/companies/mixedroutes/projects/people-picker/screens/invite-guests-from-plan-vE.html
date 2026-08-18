@@ -1,0 +1,193 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .invp-scope { --v5-bg: #06080e; --v5-line: rgba(255,255,255,0.08); }
+  .invp-scope, .invp-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .invp-scope::-webkit-scrollbar, .invp-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .invp-wrap { background: var(--v5-bg); min-height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .invp-body { flex: 1; overflow-y: auto; padding-bottom: 8px; }
+
+  .invp-header { display: grid; grid-template-columns: 1fr 28px; align-items: center; padding: 22px 20px 8px; }
+  .invp-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .invp-close { background: transparent; border: 0; color: rgba(255,255,255,0.85); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+  .invp-close i { font-size: 22px; }
+
+  .invp-search { display: grid; grid-template-columns: 20px 1fr; align-items: center; gap: 10px; margin: 8px 20px 16px; padding: 12px 15px; background: rgba(255,255,255,0.07); border-radius: 999px; }
+  .invp-search i { color: rgba(255,255,255,0.54); font-size: 17px; }
+  .invp-search input { width: 100%; border: 0; outline: 0; padding: 0; background: transparent; color: #fff; font: inherit; font-size: 0.94rem; }
+
+  .invp-label { display: flex; align-items: baseline; justify-content: space-between; padding: 10px 20px 12px; color: #fff; font-size: 1.25rem; font-weight: 850; letter-spacing: -0.005em; }
+
+  .invp-groups { display: flex; gap: 8px; padding: 0 20px 6px; overflow-x: auto; }
+  .invp-group { flex: 0 0 96px; padding: 4px 0; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; background: transparent; border: 0; }
+  .invp-thumb { width: 64px; height: 64px; border-radius: 18px; overflow: hidden; background: rgba(255,255,255,0.08); display: inline-flex; align-items: center; justify-content: center; }
+  .invp-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .invp-gname { color: #fff; font-size: 0.92rem; line-height: 1.15; font-weight: 850; }
+  .invp-gmeta { color: rgba(255,255,255,0.54); font-size: 0.76rem; font-weight: 700; margin-top: -2px; }
+
+  .invp-list { padding: 0; display: flex; flex-direction: column; }
+  .invp-row { display: grid; grid-template-columns: 44px 1fr 22px; align-items: center; gap: 13px; padding: 11px 20px; border-radius: 0; width: 100%; }
+  .invp-row.is-on { background: rgba(32,224,207,0.07); }
+  .invp-row .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; background: var(--neon-teal); color: #061016; font-weight: 900; }
+  .invp-row .av.muted { background: #4a5462; color: #fff; }
+  .invp-name { color: #fff; font-size: 0.98rem; font-weight: 850; line-height: 1.15; }
+  .invp-handle { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+
+  .invp-cta { padding: 14px 20px 22px; display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .invp-cta button { min-height: 50px; border: 0; border-radius: 999px; color: #fff; font-size: 0.98rem; font-weight: 850; }
+  .invp-cta .primary { background: linear-gradient(135deg, #24b8aa, #4c87cf); }
+  .invp-cta .primary[disabled] { opacity: 0.5; }
+
+  .invp-chips { display: flex; gap: 8px; padding: 0 20px 14px; overflow-x: auto; flex-wrap: nowrap; }
+  .invp-chips .mr-pp-chip { flex: 0 0 auto; }
+  .invp-chips-hint { flex: 1; min-height: 39px; display: inline-flex; align-items: center; padding: 8px 14px; border-radius: 12px; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.55); font-size: 0.85rem; font-weight: 650; line-height: 1.35; }
+</style>
+
+<div class="mr-scope invp-scope">
+  <div class="invp-wrap">
+    <div class="invp-body">
+      <header class="invp-header">
+        <div class="invp-title">Invite guests</div>
+        <button type="button" class="invp-close" aria-label="Close"><i class="ph ph-x"></i></button>
+      </header>
+
+      <div class="invp-search">
+        <i class="ph ph-magnifying-glass"></i>
+        <input type="search" placeholder="Search people" />
+      </div>
+
+      <div class="invp-chips">
+        <span class="invp-chips-hint">Select to add to a group or invite friends</span>
+      </div>
+
+      <div class="invp-label" style="padding-top:0;"><span>Groups</span></div>
+      <div class="invp-groups">
+        <div class="invp-group">
+          <div class="invp-thumb"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" /></div>
+          <div class="invp-gname">Lake House</div>
+          <div class="invp-gmeta">8 members</div>
+        </div>
+        <div class="invp-group">
+          <div class="invp-thumb"><img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" /></div>
+          <div class="invp-gname">Family</div>
+          <div class="invp-gmeta">6 members</div>
+        </div>
+        <div class="invp-group">
+          <div class="invp-thumb"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=200&h=200&q=80" alt="" loading="lazy" /></div>
+          <div class="invp-gname">Climbing</div>
+          <div class="invp-gmeta">12 members</div>
+        </div>
+      </div>
+
+      <div class="invp-label"><span>Friends</span></div>
+      <div class="invp-list">
+        <div class="invp-row">
+          <span class="av">M</span>
+          <div><div class="invp-name">Milo Wren</div><div class="invp-handle">@milowren</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+        <div class="invp-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=23" alt="" loading="lazy" />
+          <div><div class="invp-name">Rosa Klein</div><div class="invp-handle">@rosaklein</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+      </div>
+
+      <div class="invp-label"><span>Suggested</span></div>
+      <div class="invp-list">
+        <div class="invp-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=44" alt="" loading="lazy" />
+          <div><div class="invp-name">Wren Holt</div><div class="invp-handle">@wrenholt</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+        <div class="invp-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=58" alt="" loading="lazy" />
+          <div><div class="invp-name">Eli Park</div><div class="invp-handle">@elipark</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+        <div class="invp-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=15" alt="" loading="lazy" />
+          <div><div class="invp-name">Theo Marsh</div><div class="invp-handle">@theomarsh</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+        <div class="invp-row">
+          <img class="av" src="https://i.pravatar.cc/96?img=27" alt="" loading="lazy" />
+          <div><div class="invp-name">Ada Brook</div><div class="invp-handle">@adabrook</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+        <div class="invp-row">
+          <span class="av muted">JR</span>
+          <div><div class="invp-name">Juno Reyes</div><div class="invp-handle">@junoreyes</div></div>
+          <span class="mr-checkbox"><i class="ph ph-square"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="invp-cta">
+      <button type="button" class="primary" disabled>Invite</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var scope = document.querySelector('.invp-scope');
+    if (!scope) return;
+    var chips = scope.querySelector('.invp-chips');
+    var cta = scope.querySelector('.invp-cta .primary');
+    var rows = Array.prototype.slice.call(scope.querySelectorAll('.invp-row'));
+
+    function firstName(full) { return (full || '').trim().split(/\s+/)[0] || full; }
+
+    function avatarHTML(row) {
+      var img = row.querySelector('.av img, img.av');
+      if (img) return '<img class="mr-pp-chip-avatar" src="' + img.getAttribute('src') + '" alt="" loading="lazy" />';
+      var initials = row.querySelector('.av').textContent.trim();
+      return '<span class="mr-pp-chip-avatar is-initials">' + initials + '</span>';
+    }
+
+    function render() {
+      var on = rows.filter(function (r) { return r.classList.contains('is-on'); });
+      if (on.length === 0) {
+        chips.innerHTML = '<span class="invp-chips-hint">Select to add to a group or invite friends</span>';
+        cta.textContent = 'Invite';
+        cta.disabled = true;
+        return;
+      }
+      chips.innerHTML = on.map(function (r) {
+        var name = firstName(r.querySelector('.invp-name').textContent);
+        return '<span class="mr-pp-chip" data-row="' + rows.indexOf(r) + '">' +
+          avatarHTML(r) + name +
+          '<button type="button" class="mr-pp-chip-remove" aria-label="Remove"><i class="ph ph-x"></i></button>' +
+          '</span>';
+      }).join('');
+      cta.textContent = 'Invite (' + on.length + ')';
+      cta.disabled = false;
+    }
+
+    function setRow(row, isOn) {
+      row.classList.toggle('is-on', isOn);
+      var box = row.querySelector('.mr-checkbox');
+      box.classList.toggle('is-checked', isOn);
+      box.querySelector('i').className = isOn ? 'ph-fill ph-check-square' : 'ph ph-square';
+      render();
+    }
+
+    rows.forEach(function (row) {
+      row.addEventListener('click', function () {
+        setRow(row, !row.classList.contains('is-on'));
+      });
+    });
+
+    chips.addEventListener('click', function (e) {
+      var chip = e.target.closest('.mr-pp-chip');
+      if (!chip) return;
+      var row = rows[+chip.getAttribute('data-row')];
+      if (row) setRow(row, false);
+    });
+
+    render();
+  })();
+</script>

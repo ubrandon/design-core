@@ -1,0 +1,186 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  .rlfq {
+    --bh-paper: #f5f2ec;
+    --bh-ink: #1a2332;
+    --bh-ink-soft: rgba(26, 35, 50, 0.68);
+    --bh-ember: #e8880a;
+    --bh-line: rgba(26, 35, 50, 0.14);
+    --bh-grad: linear-gradient(145deg, #14b8a6, #3b82f6);
+    --bh-grad-text: linear-gradient(145deg, #2dd4bf, #60a5fa);
+    --bh-pad-y: 104px;
+    font-family: "Geist", -apple-system, sans-serif;
+    color: var(--bh-ink);
+    background: var(--bh-paper);
+    overflow-x: clip;
+  }
+  .rlfq * { box-sizing: border-box; }
+  .rlfq a { text-decoration: none; color: inherit; }
+  .rlfq-wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+  .rlfq-h1, .rlfq-h2 { font-weight: 800; letter-spacing: -0.025em; line-height: 1.05; margin: 0; }
+  .rlfq-h1 { font-size: 62px; color: #fff; }
+  .rlfq-h2 { font-size: 40px; color: var(--bh-ink); }
+  .rlfq-grad-word { font-style: normal; background: var(--bh-grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .rlfq-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 16px; border-radius: 999px; padding: 15px 32px;
+  }
+  .rlfq .rlfq-btn-grad { background: var(--bh-grad); color: #fff; }
+  .rlfq .rlfq-btn-nav { padding: 10px 22px; font-size: 14px; background: #fff; color: var(--bh-ink); }
+
+  .rlfq-head { position: relative; background: var(--bh-ink); overflow: hidden; }
+  .rlfq-head-art { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.85; }
+  .rlfq-nav {
+    position: relative; z-index: 2; display: flex; align-items: center;
+    justify-content: space-between; width: 100%; max-width: 1160px;
+    margin: 0 auto; padding: 24px 28px;
+  }
+  .rlfq .rlfq-nav-logo { font-weight: 800; font-size: 20px; letter-spacing: -0.02em; color: #fff; }
+  .rlfq-nav-links { display: flex; align-items: center; gap: 28px; font-weight: 600; font-size: 15px; color: rgba(255, 255, 255, 0.92); }
+  .rlfq-nav-links a.rlfq-nav-on { color: #fff; text-decoration: underline; text-decoration-color: var(--bh-ember); text-decoration-thickness: 2px; text-underline-offset: 7px; }
+  .rlfq-head-content { position: relative; z-index: 1; padding: 72px 28px 96px; max-width: 1160px; margin: 0 auto; text-align: center; }
+  .rlfq-eyebrow { margin: 0 0 16px; font-weight: 700; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bh-ember); }
+  .rlfq-head-sub { margin: 20px auto 0; max-width: 560px; font-size: 20px; line-height: 1.55; color: rgba(255, 255, 255, 0.78); }
+
+  .rlfq-list { padding: var(--bh-pad-y) 0; }
+  .rlfq-list-inner { max-width: 780px; margin: 0 auto; }
+  .rlfq-item { border-top: 1px solid var(--bh-line); }
+  .rlfq-item:last-child { border-bottom: 1px solid var(--bh-line); }
+  .rlfq-item summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    list-style: none; cursor: pointer; padding: 26px 4px;
+    font-weight: 800; font-size: 20px; letter-spacing: -0.01em; color: var(--bh-ink);
+  }
+  .rlfq-item summary::-webkit-details-marker { display: none; }
+  .rlfq-item summary i { font-size: 22px; color: var(--bh-ember); flex-shrink: 0; transition: transform 0.2s ease; }
+  .rlfq-item[open] summary i { transform: rotate(45deg); }
+  .rlfq-answer { margin: 0; padding: 0 4px 28px; max-width: 640px; font-size: 17px; line-height: 1.7; color: var(--bh-ink-soft); }
+
+  .rlfq-contact { background: #fff; padding: var(--bh-pad-y) 0; text-align: center; }
+  .rlfq-contact-sub { max-width: 520px; margin: 18px auto 0; font-size: 18px; line-height: 1.65; color: var(--bh-ink-soft); }
+  .rlfq-contact-link {
+    display: inline-block; margin-top: 28px; font-family: ui-monospace, monospace;
+    font-size: 15px; font-weight: 600; color: var(--bh-ember);
+    padding: 13px 26px; border: 1.5px solid var(--bh-ember);
+    border-radius: 999px; background: #fff;
+  }
+
+  .rlfq-cta-band { position: relative; background: var(--bh-ink); padding: var(--bh-pad-y) 0; text-align: center; overflow: hidden; }
+  .rlfq-cta-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+  .rlfq-cta-shade { position: absolute; inset: 0; background: rgba(16, 23, 36, 0.62); }
+  .rlfq-cta-band .rlfq-wrap { position: relative; z-index: 1; }
+  .rlfq-cta-band .rlfq-h2 { color: #fff; font-size: 52px; }
+  .rlfq-cta-band .rlfq-btn { margin-top: 34px; }
+  .rlfq .rlfq-btn-big { padding: 17px 38px; font-size: 17px; }
+  .rlfq-cta-trust { margin: 18px 0 0; font-size: 15px; color: rgba(255, 255, 255, 0.75); }
+
+  .rlfq-footer { background: var(--bh-ink); padding: 36px 0; }
+  .rlfq-footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+  .rlfq-footer-brand { font-weight: 800; font-size: 16px; color: #fff; }
+  .rlfq-footer-links { display: flex; gap: 24px; font-size: 14px; font-weight: 600; color: rgba(255, 255, 255, 0.72); }
+</style>
+
+<div class="rlfq">
+
+  <section class="rlfq-head">
+    <svg class="rlfq-head-art" viewBox="0 0 1440 360" preserveAspectRatio="none" fill="none" stroke="#9fc3d8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M60 90 h18 M69 81 v18" opacity="0.6" />
+      <path d="M1360 250 h16 M1368 242 v16" opacity="0.6" />
+      <circle cx="180" cy="290" r="4" opacity="0.75" /><circle cx="260" cy="60" r="4" opacity="0.75" />
+      <circle cx="1180" cy="80" r="4" opacity="0.75" /><circle cx="1290" cy="300" r="4" opacity="0.75" />
+      <path d="M90 190 l50 22" stroke-dasharray="10 12" opacity="0.5" />
+      <path d="M1300 150 l54 -18" stroke-dasharray="10 12" opacity="0.5" />
+      <path d="M1220 190 c 16 -12 32 -12 48 0 c 16 12 32 12 48 0" opacity="0.4" />
+    </svg>
+
+    <header class="rlfq-nav">
+      <a href="redesign2-landing-v2-blue-hour-illustrated.html" class="rlfq-nav-logo">Mixed<i class="rlfq-grad-word">Routes</i></a>
+      <nav class="rlfq-nav-links">
+        <a href="redesign2-landing-v2-blue-hour-illustrated.html#rlbhi-how">How it works</a>
+        <a href="redesign2-about.html">About</a>
+        <a href="redesign2-faq.html" class="rlfq-nav-on">FAQ</a>
+        <a href="redesign2-get-the-app.html" class="rlfq-btn rlfq-btn-nav">Get the app</a>
+      </nav>
+    </header>
+
+    <div class="rlfq-head-content">
+      <p class="rlfq-eyebrow">FAQ</p>
+      <h1 class="rlfq-h1">Questions, <i class="rlfq-grad-word">answered.</i></h1>
+      <p class="rlfq-head-sub">The short version: it&apos;s free, your friends don&apos;t need the app, and there is no algorithm.</p>
+    </div>
+  </section>
+
+  <section class="rlfq-list">
+    <div class="rlfq-wrap">
+      <div class="rlfq-list-inner">
+        <details class="rlfq-item" open>
+          <summary>Is MixedRoutes free?<i class="ph ph-plus"></i></summary>
+          <p class="rlfq-answer">Yes, completely. No ads, no premium tier, no data selling. We don&apos;t make money from your attention, so we don&apos;t need to trap it.</p>
+        </details>
+        <details class="rlfq-item">
+          <summary>Do my friends need the app to join a plan?<i class="ph ph-plus"></i></summary>
+          <p class="rlfq-answer">No. Send a link and they see the plan and RSVP right in the browser, no app and no account needed. If they get the app later, they&apos;re already in.</p>
+        </details>
+        <details class="rlfq-item">
+          <summary>What can I use it on?<i class="ph ph-plus"></i></summary>
+          <p class="rlfq-answer">iOS, Android, and the web. Everything stays in sync, so you can plan from your laptop and get reminders on your phone.</p>
+        </details>
+        <details class="rlfq-item">
+          <summary>Who can see my plans?<i class="ph ph-plus"></i></summary>
+          <p class="rlfq-answer">You decide. Every plan can be private, friends-only, or open to anyone nearby. Nothing is public unless you make it public.</p>
+        </details>
+        <details class="rlfq-item">
+          <summary>Is there a feed or an algorithm?<i class="ph ph-plus"></i></summary>
+          <p class="rlfq-answer">No followers and no algorithm. You can see what your friends are up to, but there&apos;s nothing to endlessly scroll, no strangers, and nothing picked for you by an algorithm. Local events come from the interests you choose, and that&apos;s the only recommendation we do.</p>
+        </details>
+        <details class="rlfq-item">
+          <summary>What do you do with my data?<i class="ph ph-plus"></i></summary>
+          <p class="rlfq-answer">We use it to run the app and nothing else. We don&apos;t sell it, share it with advertisers, or build profiles on you.</p>
+        </details>
+        <details class="rlfq-item">
+          <summary>How do reminders work?<i class="ph ph-plus"></i></summary>
+          <p class="rlfq-answer">Once a plan is set, everyone who&apos;s in gets a nudge as it gets close. Reminders exist to get people out the door, not to pull you back into the app.</p>
+        </details>
+        <details class="rlfq-item">
+          <summary>What are groups and channels?<i class="ph ph-plus"></i></summary>
+          <p class="rlfq-answer">Every group of friends gets its own space, with channels for each plan, photos, and trip talk. Nothing important gets buried under 80 memes.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="rlfq-contact">
+    <div class="rlfq-wrap">
+      <h2 class="rlfq-h2">Still have a question?</h2>
+      <p class="rlfq-contact-sub">We&apos;re a small team and we read everything. Ask us anything.</p>
+      <div class="rlfq-contact-link">support@mixedroutes.com</div>
+    </div>
+  </section>
+
+  <section class="rlfq-cta-band">
+    <img class="rlfq-cta-img" src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=2200&q=75" alt="Friends sharing dinner at a long patio table" />
+    <div class="rlfq-cta-shade"></div>
+    <div class="rlfq-wrap">
+      <h2 class="rlfq-h2">Go where <i class="rlfq-grad-word">life is.</i></h2>
+      <a href="redesign2-get-the-app.html" class="rlfq-btn rlfq-btn-grad rlfq-btn-big">Get the app</a>
+      <p class="rlfq-cta-trust">Free on iOS, Android, and web · No ads · No data selling</p>
+    </div>
+  </section>
+
+  <footer class="rlfq-footer">
+    <div class="rlfq-wrap rlfq-footer-inner">
+      <span class="rlfq-footer-brand">Mixed<i class="rlfq-grad-word">Routes</i></span>
+      <nav class="rlfq-footer-links">
+        <a href="redesign2-about.html">About</a>
+        <a href="redesign2-faq.html">FAQ</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+</div>

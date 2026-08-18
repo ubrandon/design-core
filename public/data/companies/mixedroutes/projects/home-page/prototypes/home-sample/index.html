@@ -1,0 +1,854 @@
+<link rel="stylesheet" href="../../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../../design-system/company.css" />
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg-0); overflow-x: clip; }
+  body { font-family: var(--font-body); }
+
+  .view { display: none; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
+  .view.active { display: flex; }
+
+  .home-scroll { flex: 1; overflow-y: auto; padding-bottom: 80px; }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px 10px;
+  }
+  .section-title { font-size: 1.02rem; font-weight: 800; color: var(--text); }
+  .section-link {
+    font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em;
+    color: #e8c96b; text-transform: uppercase; cursor: pointer;
+    background: none; border: none; font-family: inherit;
+  }
+  .section-link--teal { color: var(--neon-teal); }
+
+  .featured-banner {
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255,255,255,0.12);
+    background: linear-gradient(135deg, rgba(91,165,255,0.18), rgba(32,224,207,0.1));
+    padding: 14px 14px 12px;
+  }
+  .featured-eyebrow {
+    font-size: 0.65rem; font-weight: 800; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #e8c96b; margin-bottom: 6px;
+  }
+  .featured-title { font-size: 1.05rem; font-weight: 800; color: var(--text); line-height: 1.25; }
+  .featured-desc { font-size: 0.82rem; color: var(--muted); margin-top: 6px; }
+  .featured-actions { display: flex; gap: 8px; margin-top: 12px; }
+  .featured-actions .btn { flex: 1; }
+
+  .tab-bar-fixed {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+    padding-top: 8px;
+    background: linear-gradient(180deg, transparent, var(--bg-0) 28%);
+  }
+
+  .empty-view {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; flex: 1; padding: 48px 24px; text-align: center;
+  }
+  .empty-view-icon {
+    font-size: 64px; margin-bottom: 16px;
+    background: linear-gradient(135deg, #5ba5ff, #20e0cf);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent; -webkit-text-fill-color: transparent;
+  }
+  .empty-view-title { font-size: 1.15rem; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+  .empty-view-desc { font-size: 0.88rem; color: var(--muted-2); max-width: 260px; line-height: 1.5; }
+
+  .notification-item {
+    display: flex; gap: 14px; padding: 14px 16px; align-items: flex-start;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .notification-item:last-child { border-bottom: none; }
+  .notification-avatar {
+    width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.18); flex-shrink: 0;
+  }
+  .notification-content { flex: 1; min-width: 0; }
+  .notification-text { font-size: 0.9rem; color: var(--text); line-height: 1.45; }
+  .notification-text strong { font-weight: 800; }
+  .notification-time { font-size: 0.78rem; color: var(--muted-2); margin-top: 3px; }
+  .notification-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--neon-blue); flex-shrink: 0; margin-top: 6px;
+  }
+
+  .profile-section { padding: 32px 16px; text-align: center; }
+  .profile-avatar-lg {
+    width: 80px; height: 80px; border-radius: 50%; object-fit: cover;
+    border: 3px solid rgba(255,255,255,0.2); margin-bottom: 14px;
+  }
+  .profile-name { font-size: 1.3rem; font-weight: 900; letter-spacing: -0.02em; color: var(--text); }
+  .profile-handle { font-size: 0.85rem; color: var(--muted-2); margin-top: 2px; }
+  .profile-stats-row {
+    display: flex; justify-content: center; gap: 32px; margin-top: 18px;
+  }
+  .profile-stat-num { font-size: 1.15rem; font-weight: 900; color: var(--text); }
+  .profile-stat-label {
+    font-size: 0.72rem; font-weight: 600; color: var(--muted-2);
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+
+  .profile-menu { padding: 0 16px; }
+  .profile-menu-item {
+    display: flex; align-items: center; gap: 14px; padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08); cursor: pointer;
+  }
+  .profile-menu-item:last-child { border-bottom: none; }
+  .profile-menu-icon {
+    width: 40px; height: 40px; border-radius: 12px;
+    background: rgba(255,255,255,0.06); display: grid; place-items: center;
+    color: var(--muted); font-size: 20px;
+  }
+  .profile-menu-label { font-size: 0.95rem; font-weight: 700; color: var(--text); flex: 1; }
+  .profile-menu-chevron { color: var(--muted-2); font-size: 18px; }
+
+  .create-sheet-overlay {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(6px);
+    display: none; align-items: flex-end; justify-content: center;
+  }
+  .create-sheet-overlay.is-open { display: flex; }
+  .create-sheet {
+    width: 100%; max-width: 420px; border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    background: linear-gradient(165deg, rgba(18,32,52,0.98), rgba(4,10,22,0.99) 45%, rgba(2,8,18,1));
+    border: 1px solid rgba(255,255,255,0.12); border-bottom: none;
+    padding: 8px 18px 24px;
+    transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.32,0.72,0,1);
+  }
+  .create-sheet-overlay.is-open .create-sheet { transform: translateY(0); }
+  .create-sheet-handle {
+    width: 40px; height: 5px; border-radius: 999px; margin: 6px auto 18px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.28), rgba(255,255,255,0.12));
+  }
+  .create-option {
+    display: flex; align-items: center; gap: 14px; padding: 14px 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.08); cursor: pointer;
+  }
+  .create-option:last-child { border-bottom: none; }
+  .create-option-icon {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: grid; place-items: center; font-size: 20px;
+  }
+  .create-option-icon--plan {
+    background: rgba(var(--neon-blue-rgb),0.15); border: 1px solid rgba(var(--neon-blue-rgb),0.3);
+    color: var(--neon-blue);
+  }
+  .create-option-icon--activity {
+    background: rgba(var(--neon-teal-rgb),0.15); border: 1px solid rgba(var(--neon-teal-rgb),0.3);
+    color: var(--neon-teal);
+  }
+  .create-option-icon--event {
+    background: rgba(255,191,74,0.15); border: 1px solid rgba(255,191,74,0.3);
+    color: rgb(255,210,120);
+  }
+  .create-option-text { flex: 1; }
+  .create-option-title { font-size: 0.95rem; font-weight: 800; color: var(--text); }
+  .create-option-desc { font-size: 0.78rem; color: var(--muted-2); margin-top: 2px; }
+
+  .messages-header { padding: 16px 16px 12px; }
+  .messages-header-title { font-size: 1.3rem; font-weight: 900; color: var(--text); letter-spacing: -0.02em; }
+  .message-item {
+    display: flex; gap: 14px; padding: 12px 16px; align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06); cursor: pointer;
+  }
+  .message-item:last-child { border-bottom: none; }
+  .message-avatar {
+    width: 50px; height: 50px; border-radius: 50%; object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.15); flex-shrink: 0;
+  }
+  .message-content { flex: 1; min-width: 0; }
+  .message-name { font-size: 0.95rem; font-weight: 800; color: var(--text); }
+  .message-preview {
+    font-size: 0.82rem; color: var(--muted-2); margin-top: 2px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .message-meta { flex-shrink: 0; text-align: right; }
+  .message-time { font-size: 0.72rem; color: var(--muted-2); }
+  .message-unread {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 20px; height: 20px; border-radius: 50%; margin-top: 4px;
+    background: var(--neon-blue); font-size: 0.65rem; font-weight: 800;
+    color: #fff;
+  }
+</style>
+
+<div class="mr-scope" id="app">
+
+  <!-- ===== HOME ===== -->
+  <div class="view" id="view-home">
+    <header class="mr-top-nav-home">
+      <a class="mr-top-nav-home-logo" href="#home" aria-label="MixedRoutes home">
+        <img src="../../../../design-system/mixedroutes-assets/icon-foreground.svg" width="36" height="36" alt="" loading="lazy" />
+        <span class="mr-top-nav-home-wordmark">MixedRoutes</span>
+      </a>
+      <div class="mr-top-nav-home-actions">
+        <button type="button" class="mr-nav-icon-btn" aria-label="Notifications" onclick="navigate('notifications')">
+          <i class="ph-fill ph-bell" aria-hidden="true"></i>
+        </button>
+        <img class="mr-top-nav-avatar" src="https://i.pravatar.cc/72?img=11" alt="" width="36" height="36" loading="lazy" onclick="navigate('profile')" style="cursor:pointer" />
+      </div>
+    </header>
+
+    <div class="home-scroll">
+      <div style="padding:0 16px 10px">
+        <div class="mr-search-bar">
+          <i class="ph-fill ph-magnifying-glass" aria-hidden="true"></i>
+          <input type="search" placeholder="Search plans, events, friends…" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="ds-scroll-x" style="padding:0 16px 8px">
+        <div class="mr-chip-row" style="flex-wrap:nowrap;width:max-content;padding:2px 0" id="chip-row">
+          <button type="button" class="mr-chip mr-chip-active" data-filter="all">All</button>
+          <button type="button" class="mr-chip" data-filter="music"><span>🎸</span> Music</button>
+          <button type="button" class="mr-chip" data-filter="art"><span>🎨</span> Art</button>
+          <button type="button" class="mr-chip" data-filter="hiking"><span>🥾</span> Hiking</button>
+          <button type="button" class="mr-chip" data-filter="games"><span>🎮</span> Games</button>
+        </div>
+      </div>
+
+      <!-- Featured banner (shown when Music filter is active) -->
+      <div id="featured-banner" style="padding:0 16px 14px;display:none">
+        <div class="featured-banner">
+          <div class="featured-eyebrow">Tonight</div>
+          <div class="featured-title">3 live hangs near you</div>
+          <div class="featured-desc">Rock climbing, jazz set, and a food truck crawl.</div>
+          <div class="featured-actions">
+            <button type="button" class="btn btn-primary btn-sm">See map</button>
+            <button type="button" class="btn btn-secondary btn-sm">Invite friends</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent activity -->
+      <div style="padding:16px 0 8px">
+        <div class="section-header">
+          <span class="section-title" id="activity-title">Recent activity</span>
+        </div>
+        <div class="mr-recent-activity" style="max-width:none;padding:0 16px">
+          <div class="mr-recent-item">
+            <div class="mr-recent-avatar">
+              <img src="https://i.pravatar.cc/80?img=12" alt="" loading="lazy" />
+              <span class="mr-recent-count" aria-hidden="true">1</span>
+            </div>
+            <span class="mr-recent-name">John</span>
+            <span class="mr-recent-detail">Climbing • Rock Gym…</span>
+            <span class="mr-recent-status">Live now</span>
+          </div>
+          <div class="mr-recent-item">
+            <div class="mr-recent-avatar">
+              <img src="https://i.pravatar.cc/80?img=45" alt="" loading="lazy" />
+            </div>
+            <span class="mr-recent-name">Concerts</span>
+            <span class="mr-recent-detail">Downtown stage</span>
+            <span class="mr-recent-status">Live now</span>
+          </div>
+          <div class="mr-recent-item">
+            <div class="mr-recent-avatar">
+              <img src="https://i.pravatar.cc/80?img=32" alt="" loading="lazy" />
+            </div>
+            <span class="mr-recent-name">Sara</span>
+            <span class="mr-recent-detail">Food trucks • 2 friends</span>
+          </div>
+          <div class="mr-recent-item">
+            <div class="mr-recent-avatar">
+              <img src="https://i.pravatar.cc/80?img=8" alt="" loading="lazy" />
+            </div>
+            <span class="mr-recent-name">Game night</span>
+            <span class="mr-recent-detail">Starts 8 PM</span>
+            <span class="mr-recent-status">Trending</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Your plans -->
+      <div style="padding:12px 0">
+        <div class="section-header">
+          <span class="section-title">Your plans</span>
+          <button type="button" class="section-link">View all</button>
+        </div>
+        <div style="padding:0 16px">
+          <div class="mr-plan-carousel ds-scroll-x">
+            <div class="plan-card plan-card-mini plan-card-cafe">
+              <div class="plan-card-mini-media" aria-hidden="true"></div>
+              <div class="plan-card-mini-body">
+                <div class="plan-card-mini-time">Today, 2 PM</div>
+                <div class="plan-card-mini-title">Cafe meetup</div>
+                <div class="plan-card-mini-location">
+                  <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+                  <span>Asheville NC</span>
+                </div>
+                <div class="plan-card-mini-social">
+                  <i class="ph-fill ph-users" aria-hidden="true"></i>
+                  <span>5 friends</span>
+                </div>
+              </div>
+            </div>
+            <div class="plan-card plan-card-mini plan-card-food">
+              <div class="plan-card-mini-media" aria-hidden="true"></div>
+              <div class="plan-card-mini-body">
+                <div class="plan-card-mini-time">Today, 2 PM</div>
+                <div class="plan-card-mini-title">Food truck crawl</div>
+                <div class="plan-card-mini-location">
+                  <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+                  <span>Riverfront, Asheville</span>
+                </div>
+                <div class="plan-card-mini-social plan-card-mini-social--avatars">
+                  <div class="plan-card-mini-avatar-stack" aria-hidden="true">
+                    <img class="plan-card-mini-avatar" src="https://i.pravatar.cc/48?img=3" alt="" loading="lazy" />
+                    <img class="plan-card-mini-avatar" src="https://i.pravatar.cc/48?img=14" alt="" loading="lazy" />
+                    <img class="plan-card-mini-avatar" src="https://i.pravatar.cc/48?img=27" alt="" loading="lazy" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mr-plan-rows" style="max-width:100%;padding:14px 16px 0;margin:0">
+          <div class="mr-plan-row mr-plan-row-sponsored">
+            <div class="mr-plan-row-media"
+              style="background-image:url(https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=280&h=280&q=80)"
+              aria-hidden="true">
+              <span class="mr-plan-row-badge mr-plan-row-badge--sm">Sponsored</span>
+            </div>
+            <div class="mr-plan-row-content">
+              <div class="plan-card-mini-time">Today, 2 PM</div>
+              <div class="mr-plan-row-title">Bar live music</div>
+              <div class="mr-plan-row-desc" style="-webkit-line-clamp:2">Weekend lineup at the riverfront stage.</div>
+              <div class="mr-plan-row-meta">
+                <div class="mr-plan-row-when-where-item mr-plan-row-when-where-item--solo">
+                  <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+                  <span>Asheville NC</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Your interests -->
+      <div style="padding:12px 0">
+        <div class="section-header">
+          <span class="section-title">Your interests</span>
+          <button type="button" class="section-link section-link--teal">Edit</button>
+        </div>
+        <div class="ds-scroll-x" style="display:flex;gap:12px;padding:0 16px 8px;-webkit-overflow-scrolling:touch">
+          <div class="mr-interest-card" style="flex:0 0 auto;width:118px;padding:12px 10px">
+            <div class="mr-interest-icon">
+              <span>🎸</span>
+              <span class="mr-interest-count">3</span>
+            </div>
+            <span class="mr-interest-title">Concerts</span>
+            <span class="mr-interest-detail accent-text">2 active</span>
+          </div>
+          <div class="mr-interest-card" style="flex:0 0 auto;width:118px;padding:12px 10px">
+            <div class="mr-interest-icon"><span>🎮</span></div>
+            <span class="mr-interest-title">Gaming</span>
+            <span class="mr-interest-detail accent-text">8 friends</span>
+          </div>
+          <div class="mr-interest-card" style="flex:0 0 auto;width:118px;padding:12px 10px">
+            <div class="mr-interest-icon">
+              <span>🥾</span>
+              <span class="mr-interest-count">1</span>
+            </div>
+            <span class="mr-interest-title">Hiking</span>
+            <span class="mr-interest-detail accent-text">4 friends</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Updates -->
+      <div style="padding:12px 16px">
+        <div style="font-size:1.02rem;font-weight:800;color:var(--text);margin-bottom:12px">Updates</div>
+        <div class="mr-activity-rows" style="max-width:none">
+          <div class="mr-activity-row">
+            <img class="mr-activity-avatar" src="https://i.pravatar.cc/80?img=12" alt="" loading="lazy" />
+            <div class="mr-activity-content">
+              <div class="mr-activity-top">
+                <span class="mr-type-pill mr-type-activity">Activity</span>
+                <span class="mr-activity-status mr-status-live">Live now</span>
+              </div>
+              <div class="mr-activity-title">Mike is rock climbing</div>
+              <div class="mr-activity-meta">30 min ago • Rock Gym, Asheville</div>
+              <div class="mr-activity-footer">
+                <div class="mr-activity-note">
+                  <i class="ph-fill ph-users" aria-hidden="true"></i>
+                  <span>5 others ready</span>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm">Join</button>
+              </div>
+            </div>
+          </div>
+          <div class="mr-activity-row">
+            <img class="mr-activity-avatar" src="https://i.pravatar.cc/80?img=32" alt="" loading="lazy" />
+            <div class="mr-activity-content">
+              <div class="mr-activity-top">
+                <span class="mr-type-pill mr-type-activity">Activity</span>
+                <span class="mr-activity-status mr-status-recurring">Recurring</span>
+              </div>
+              <div class="mr-activity-title">Emma wants to game</div>
+              <div class="mr-activity-meta">45 min ago • Downtown</div>
+              <div class="mr-activity-footer">
+                <div class="mr-activity-note">
+                  <i class="ph-fill ph-users" aria-hidden="true"></i>
+                  <span>5 others ready</span>
+                </div>
+                <button type="button" class="btn btn-secondary btn-sm">Plan</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Events near you -->
+      <div style="padding:12px 0 8px">
+        <div class="section-header">
+          <span class="section-title">Events near you</span>
+          <button type="button" class="section-link" style="color:#e8c96b">View all ›</button>
+        </div>
+        <div class="mr-event-mini-grid" style="max-width:100%;padding:0 16px;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="mr-event-mini-card event-card event-card--mini" style="min-height:0" aria-label="Jazz night">
+            <div class="event-card-media" aria-hidden="true">
+              <img class="event-card-img" src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=400&h=400&q=80" alt="" loading="lazy" />
+            </div>
+            <div class="event-card-content">
+              <div class="event-card-pills">
+                <div class="event-card-pill">Sat, Jan 18</div>
+                <div class="event-card-pill">🎵 Live music</div>
+              </div>
+              <div class="event-card-title">Jazz night at The Blue Note</div>
+              <div class="event-card-description">An evening of smooth jazz and great vibes</div>
+              <div class="event-card-location">
+                <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+                <span>The Blue Note • Chicago, IL</span>
+              </div>
+            </div>
+          </div>
+          <div class="mr-event-mini-card event-card event-card--mini" style="min-height:0" aria-label="Comedy night">
+            <div class="event-card-media" aria-hidden="true">
+              <img class="event-card-img" src="https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&w=400&h=400&q=80" alt="" loading="lazy" />
+            </div>
+            <div class="event-card-content">
+              <div class="event-card-pills">
+                <div class="event-card-pill">Fri, Jan 24</div>
+                <div class="event-card-pill">😂 Comedy</div>
+              </div>
+              <div class="event-card-title">Comedy night downtown</div>
+              <div class="event-card-description">Stand-up comedy featuring local and touring comedians</div>
+              <div class="event-card-location">
+                <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+                <span>Laugh Factory • Los Angeles, CA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Try something new -->
+      <div style="padding:12px 0">
+        <div style="font-size:1.02rem;font-weight:800;color:var(--text);padding:0 16px 10px">Try something new</div>
+        <div class="ds-scroll-x" style="display:flex;gap:12px;padding:0 16px;-webkit-overflow-scrolling:touch">
+          <div class="mr-interest-card" style="flex:0 0 auto;width:118px">
+            <div class="mr-interest-icon"><span>🚚</span></div>
+            <span class="mr-interest-title">Food trucks</span>
+            <span class="mr-interest-detail">12 friends nearby</span>
+          </div>
+          <div class="mr-interest-card" style="flex:0 0 auto;width:118px">
+            <div class="mr-interest-icon"><span>🥾</span></div>
+            <span class="mr-interest-title">Hiking</span>
+            <span class="mr-interest-detail accent-text">Trending</span>
+          </div>
+          <div class="mr-interest-card" style="flex:0 0 auto;width:118px">
+            <div class="mr-interest-icon"><span>🎸</span></div>
+            <span class="mr-interest-title">Concerts</span>
+            <span class="mr-interest-detail">6 friends</span>
+          </div>
+          <div class="mr-interest-card" style="flex:0 0 auto;width:118px">
+            <div class="mr-interest-icon"><span>🎮</span></div>
+            <span class="mr-interest-title">Gaming</span>
+            <span class="mr-interest-detail accent-text">Hot this week</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hiking plans -->
+      <div style="padding:12px 0">
+        <div style="font-size:1.02rem;font-weight:800;color:var(--text);padding:0 16px 10px">Hiking</div>
+        <div style="padding:0 16px">
+          <div class="mr-plan-carousel ds-scroll-x">
+            <div class="plan-card plan-card-mini plan-card-cafe">
+              <div class="plan-card-mini-media" aria-hidden="true"></div>
+              <div class="plan-card-mini-body">
+                <div class="plan-card-mini-time">Sat, 8 AM</div>
+                <div class="plan-card-mini-title">Trail coffee</div>
+                <div class="plan-card-mini-location">
+                  <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+                  <span>Blue Ridge access</span>
+                </div>
+                <div class="plan-card-mini-social plan-card-mini-social--avatars">
+                  <div class="plan-card-mini-avatar-stack" aria-hidden="true">
+                    <img class="plan-card-mini-avatar" src="https://i.pravatar.cc/48?img=19" alt="" loading="lazy" />
+                    <img class="plan-card-mini-avatar" src="https://i.pravatar.cc/48?img=41" alt="" loading="lazy" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="plan-card plan-card-mini plan-card-hiking">
+              <div class="plan-card-mini-media" aria-hidden="true"></div>
+              <div class="plan-card-mini-body">
+                <div class="plan-card-mini-time">Sun, 7 AM</div>
+                <div class="plan-card-mini-title">Sunrise hike</div>
+                <div class="plan-card-mini-location">
+                  <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+                  <span>Craggy Pinnacle</span>
+                </div>
+                <div class="plan-card-mini-social">
+                  <span>8 going</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== EXPLORE ===== -->
+  <div class="view" id="view-explore">
+    <div class="mr-nav-bar mr-nav-bar--inner">
+      <span class="mr-nav-bar-title">Explore</span>
+    </div>
+    <div class="empty-view">
+      <i class="ph ph-compass empty-view-icon" aria-hidden="true"></i>
+      <div class="empty-view-title">Discover what's around you</div>
+      <div class="empty-view-desc">Find events, activities, and plans from friends and your community.</div>
+    </div>
+  </div>
+
+  <!-- ===== NOTIFICATIONS ===== -->
+  <div class="view" id="view-notifications">
+    <div class="mr-nav-bar mr-nav-bar--inner">
+      <button class="mr-nav-bar-back" type="button" onclick="navigate('home')">
+        <i class="ph ph-arrow-left" aria-hidden="true"></i>
+      </button>
+      <span class="mr-nav-bar-title">Notifications</span>
+      <div style="width:48px"></div>
+    </div>
+    <div class="home-scroll" style="padding-bottom:80px">
+      <div class="notification-item">
+        <img class="notification-avatar" src="https://i.pravatar.cc/80?img=12" alt="" loading="lazy" />
+        <div class="notification-content">
+          <div class="notification-text"><strong>Mike</strong> invited you to <strong>Rock Climbing</strong> at the gym</div>
+          <div class="notification-time">30 min ago</div>
+        </div>
+        <div class="notification-dot"></div>
+      </div>
+      <div class="notification-item">
+        <img class="notification-avatar" src="https://i.pravatar.cc/80?img=32" alt="" loading="lazy" />
+        <div class="notification-content">
+          <div class="notification-text"><strong>Emma</strong> wants to start a <strong>Game Night</strong></div>
+          <div class="notification-time">45 min ago</div>
+        </div>
+        <div class="notification-dot"></div>
+      </div>
+      <div class="notification-item">
+        <img class="notification-avatar" src="https://i.pravatar.cc/80?img=45" alt="" loading="lazy" />
+        <div class="notification-content">
+          <div class="notification-text"><strong>Jazz at The Blue Note</strong> is happening this Saturday</div>
+          <div class="notification-time">2 hours ago</div>
+        </div>
+      </div>
+      <div class="notification-item">
+        <img class="notification-avatar" src="https://i.pravatar.cc/80?img=3" alt="" loading="lazy" />
+        <div class="notification-content">
+          <div class="notification-text"><strong>Alex</strong> joined the <strong>Food truck crawl</strong></div>
+          <div class="notification-time">3 hours ago</div>
+        </div>
+      </div>
+      <div class="notification-item">
+        <img class="notification-avatar" src="https://i.pravatar.cc/80?img=14" alt="" loading="lazy" />
+        <div class="notification-content">
+          <div class="notification-text"><strong>Taylor</strong> shared a new hiking trail near Asheville</div>
+          <div class="notification-time">Yesterday</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PROFILE ===== -->
+  <div class="view" id="view-profile">
+    <div class="mr-nav-bar mr-nav-bar--inner">
+      <button class="mr-nav-bar-back" type="button" onclick="navigate('home')">
+        <i class="ph ph-arrow-left" aria-hidden="true"></i>
+      </button>
+      <span class="mr-nav-bar-title">Profile</span>
+      <button class="mr-nav-bar-action" type="button">
+        <i class="ph ph-gear-six" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="home-scroll" style="padding-bottom:80px">
+      <div class="profile-section">
+        <img class="profile-avatar-lg" src="https://i.pravatar.cc/160?img=11" alt="" loading="lazy" />
+        <div class="profile-name">Jordan Lee</div>
+        <div class="profile-handle">@jordanlee</div>
+        <div class="profile-stats-row">
+          <div>
+            <div class="profile-stat-num">127</div>
+            <div class="profile-stat-label">Friends</div>
+          </div>
+          <div>
+            <div class="profile-stat-num">34</div>
+            <div class="profile-stat-label">Plans</div>
+          </div>
+          <div>
+            <div class="profile-stat-num">12</div>
+            <div class="profile-stat-label">Groups</div>
+          </div>
+        </div>
+      </div>
+      <div class="profile-menu">
+        <div class="profile-menu-item">
+          <div class="profile-menu-icon"><i class="ph ph-calendar-dots" aria-hidden="true"></i></div>
+          <span class="profile-menu-label">My Plans</span>
+          <i class="ph ph-caret-right profile-menu-chevron" aria-hidden="true"></i>
+        </div>
+        <div class="profile-menu-item">
+          <div class="profile-menu-icon"><i class="ph ph-heart" aria-hidden="true"></i></div>
+          <span class="profile-menu-label">Interests</span>
+          <i class="ph ph-caret-right profile-menu-chevron" aria-hidden="true"></i>
+        </div>
+        <div class="profile-menu-item">
+          <div class="profile-menu-icon"><i class="ph ph-users-three" aria-hidden="true"></i></div>
+          <span class="profile-menu-label">Groups</span>
+          <i class="ph ph-caret-right profile-menu-chevron" aria-hidden="true"></i>
+        </div>
+        <div class="profile-menu-item">
+          <div class="profile-menu-icon"><i class="ph ph-bookmark-simple" aria-hidden="true"></i></div>
+          <span class="profile-menu-label">Saved</span>
+          <i class="ph ph-caret-right profile-menu-chevron" aria-hidden="true"></i>
+        </div>
+        <div class="profile-menu-item">
+          <div class="profile-menu-icon"><i class="ph ph-gear-six" aria-hidden="true"></i></div>
+          <span class="profile-menu-label">Settings</span>
+          <i class="ph ph-caret-right profile-menu-chevron" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MESSAGES ===== -->
+  <div class="view" id="view-messages">
+    <div class="mr-nav-bar mr-nav-bar--inner">
+      <span class="mr-nav-bar-title">Messages</span>
+      <button class="mr-nav-bar-action" type="button">
+        <i class="ph ph-pencil-simple" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="home-scroll" style="padding-bottom:80px">
+      <div style="padding:8px 16px 12px">
+        <div class="mr-search-bar">
+          <i class="ph-fill ph-magnifying-glass" aria-hidden="true"></i>
+          <input type="search" placeholder="Search messages…" autocomplete="off" />
+        </div>
+      </div>
+      <div class="message-item">
+        <img class="message-avatar" src="https://i.pravatar.cc/100?img=12" alt="" loading="lazy" />
+        <div class="message-content">
+          <div class="message-name">Mike</div>
+          <div class="message-preview">Hey! Are you coming to rock climbing today?</div>
+        </div>
+        <div class="message-meta">
+          <div class="message-time">2m</div>
+          <div class="message-unread">1</div>
+        </div>
+      </div>
+      <div class="message-item">
+        <img class="message-avatar" src="https://i.pravatar.cc/100?img=32" alt="" loading="lazy" />
+        <div class="message-content">
+          <div class="message-name">Emma</div>
+          <div class="message-preview">Game night this weekend? I found a great new board game</div>
+        </div>
+        <div class="message-meta">
+          <div class="message-time">15m</div>
+        </div>
+      </div>
+      <div class="message-item">
+        <img class="message-avatar" src="https://i.pravatar.cc/100?img=45" alt="" loading="lazy" />
+        <div class="message-content">
+          <div class="message-name">Hiking Club</div>
+          <div class="message-preview">Sara: Trail conditions look perfect for Sunday!</div>
+        </div>
+        <div class="message-meta">
+          <div class="message-time">1h</div>
+          <div class="message-unread">3</div>
+        </div>
+      </div>
+      <div class="message-item">
+        <img class="message-avatar" src="https://i.pravatar.cc/100?img=3" alt="" loading="lazy" />
+        <div class="message-content">
+          <div class="message-name">Alex</div>
+          <div class="message-preview">The food truck crawl was amazing!</div>
+        </div>
+        <div class="message-meta">
+          <div class="message-time">3h</div>
+        </div>
+      </div>
+      <div class="message-item">
+        <img class="message-avatar" src="https://i.pravatar.cc/100?img=14" alt="" loading="lazy" />
+        <div class="message-content">
+          <div class="message-name">Taylor</div>
+          <div class="message-preview">Check out this new cafe I found downtown</div>
+        </div>
+        <div class="message-meta">
+          <div class="message-time">Yesterday</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CREATE SHEET ===== -->
+  <div class="create-sheet-overlay" id="create-sheet" onclick="closeCreateSheet(event)">
+    <div class="create-sheet" onclick="event.stopPropagation()">
+      <div class="create-sheet-handle"></div>
+      <div style="font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:16px;text-align:center">Create</div>
+      <div class="create-option" onclick="closeCreateSheet()">
+        <div class="create-option-icon create-option-icon--plan">
+          <i class="ph-fill ph-calendar-dots" aria-hidden="true"></i>
+        </div>
+        <div class="create-option-text">
+          <div class="create-option-title">New Plan</div>
+          <div class="create-option-desc">Set a time and invite friends</div>
+        </div>
+      </div>
+      <div class="create-option" onclick="closeCreateSheet()">
+        <div class="create-option-icon create-option-icon--activity">
+          <i class="ph-fill ph-lightning" aria-hidden="true"></i>
+        </div>
+        <div class="create-option-text">
+          <div class="create-option-title">Start Activity</div>
+          <div class="create-option-desc">Share what you're doing right now</div>
+        </div>
+      </div>
+      <div class="create-option" onclick="closeCreateSheet()">
+        <div class="create-option-icon create-option-icon--event">
+          <i class="ph-fill ph-star" aria-hidden="true"></i>
+        </div>
+        <div class="create-option-text">
+          <div class="create-option-title">Host Event</div>
+          <div class="create-option-desc">Create a public event for everyone</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB BAR ===== -->
+  <div class="tab-bar-fixed">
+    <div class="mr-tab-bar" style="margin:0 8px" id="tab-bar">
+      <button type="button" class="mr-tab-item mr-tab-active" data-tab="home" aria-label="Home">
+        <i class="ph-fill ph-house" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="mr-tab-item" data-tab="explore" aria-label="Explore">
+        <i class="ph ph-compass" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="mr-tab-item mr-tab-create" data-tab="create" aria-label="Create">
+        <i class="ph ph-plus-circle" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="mr-tab-item" data-tab="profile" aria-label="Profile">
+        <i class="ph ph-user" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="mr-tab-item" data-tab="messages" aria-label="Messages">
+        <i class="ph ph-chat-teardrop-text" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var defaultView = 'home';
+  var mainTabs = ['home', 'explore', 'profile', 'messages'];
+  var iconMap = {
+    home:     { off: 'ph ph-house',              on: 'ph-fill ph-house' },
+    explore:  { off: 'ph ph-compass',            on: 'ph-fill ph-compass' },
+    profile:  { off: 'ph ph-user',               on: 'ph-fill ph-user' },
+    messages: { off: 'ph ph-chat-teardrop-text',  on: 'ph-fill ph-chat-teardrop-text' }
+  };
+
+  function navigate(viewId) {
+    location.hash = viewId;
+  }
+
+  function updateTabBar(hash) {
+    var tabBar = document.getElementById('tab-bar');
+    var buttons = tabBar.querySelectorAll('.mr-tab-item[data-tab]');
+    buttons.forEach(function (btn) {
+      var tab = btn.getAttribute('data-tab');
+      if (tab === 'create') return;
+      var isActive = (tab === hash) || (hash === 'notifications' && tab === 'home');
+      btn.classList.toggle('mr-tab-active', isActive);
+      var icon = btn.querySelector('i');
+      if (icon && iconMap[tab]) {
+        icon.className = isActive ? iconMap[tab].on : iconMap[tab].off;
+      }
+    });
+  }
+
+  function applyRoute() {
+    var hash = location.hash.slice(1) || defaultView;
+    document.querySelectorAll('.view').forEach(function (v) {
+      v.classList.toggle('active', v.id === 'view-' + hash);
+    });
+    updateTabBar(hash);
+    var scroll = document.querySelector('.view.active .home-scroll');
+    if (scroll) scroll.scrollTop = 0;
+  }
+
+  window.addEventListener('hashchange', applyRoute);
+  applyRoute();
+
+  window.navigate = navigate;
+
+  // Tab bar clicks
+  document.getElementById('tab-bar').addEventListener('click', function (e) {
+    var btn = e.target.closest('.mr-tab-item[data-tab]');
+    if (!btn) return;
+    var tab = btn.getAttribute('data-tab');
+    if (tab === 'create') {
+      document.getElementById('create-sheet').classList.add('is-open');
+      return;
+    }
+    navigate(tab);
+  });
+
+  window.closeCreateSheet = function (e) {
+    if (e && e.target !== document.getElementById('create-sheet')) return;
+    document.getElementById('create-sheet').classList.remove('is-open');
+  };
+
+  // Chip filter
+  document.getElementById('chip-row').addEventListener('click', function (e) {
+    var chip = e.target.closest('.mr-chip');
+    if (!chip) return;
+    this.querySelectorAll('.mr-chip').forEach(function (c) { c.classList.remove('mr-chip-active'); });
+    chip.classList.add('mr-chip-active');
+
+    var filter = chip.getAttribute('data-filter');
+    var banner = document.getElementById('featured-banner');
+    var actTitle = document.getElementById('activity-title');
+    if (filter !== 'all') {
+      banner.style.display = 'block';
+      actTitle.textContent = 'Friends live';
+    } else {
+      banner.style.display = 'none';
+      actTitle.textContent = 'Recent activity';
+    }
+  });
+})();
+</script>

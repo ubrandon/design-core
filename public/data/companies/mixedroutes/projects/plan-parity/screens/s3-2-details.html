@@ -1,0 +1,126 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link rel="stylesheet" href="../pp.css" />
+
+<div class="pp s3 s3-2a" data-state="empty" style="background: #ffffff;">
+  <div class="status"><span>9:41</span><span class="r"><i class="ph-fill ph-cell-signal-full"></i><i class="ph-fill ph-wifi-high"></i><i class="ph-fill ph-battery-full"></i></span></div>
+
+  <div class="ts-toolbar">
+    <span class="icon-btn"><i class="ph ph-arrow-left"></i></span>
+    <span class="ttl">Add details</span>
+    <span class="skip">Skip</span>
+  </div>
+  <div class="steps"><span class="done"></span><span class="on"></span><span></span></div>
+
+  <div class="content">
+    <div class="recap">
+      <span class="thumb" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=200&q=60');"></span>
+      <div class="rtxt"><b>🏃 Afternoon run</b><span>Run · Outdoors</span></div>
+      <i class="ph ph-pencil-simple"></i>
+    </div>
+
+    <!-- WHEN -->
+    <div class="nf-label" style="margin-top:20px;">When <span class="opt">Optional</span></div>
+    <div class="qs" data-sec="when">
+      <div class="drow qs-empty">
+        <span class="ibox"><i class="ph ph-calendar-blank"></i></span>
+        <div class="dtxt"><span class="ph-text" style="font-size:16px;">Add date</span></div>
+        <i class="ph ph-plus trail plus"></i>
+      </div>
+      <div class="drow filled qs-filled hide">
+        <span class="ibox"><i class="ph-fill ph-calendar-blank"></i></span>
+        <div class="dtxt"><b>Tonight</b><span>7:00 PM</span></div>
+        <i class="ph ph-pencil-simple trail"></i>
+      </div>
+      <div class="when-pills">
+        <span class="chip" data-b="Now" data-s="Today, 2:15 PM"><i class="ph ph-lightning"></i>Now</span>
+        <span class="chip" data-b="Tonight" data-s="Today, 7:00 PM"><i class="ph ph-moon-stars"></i>Tonight</span>
+        <span class="chip" data-b="Tomorrow" data-s="Tue, Aug 18th · 7:00 AM"><i class="ph ph-sun"></i>Tomorrow</span>
+        <span class="chip" data-b="Friday" data-s="Fri, Aug 21st · 6:00 PM"><i class="ph ph-calendar-check"></i>Friday</span>
+        <span class="chip" data-b="Saturday" data-s="Sat, Aug 22nd · 8:00 AM"><i class="ph ph-calendar-check"></i>Saturday</span>
+        <span class="chip" data-b="Sunday" data-s="Sun, Aug 23rd · 8:00 AM"><i class="ph ph-calendar-check"></i>Sunday</span>
+      </div>
+    </div>
+
+    <!-- WHERE -->
+    <div class="nf-label" style="margin-top:20px;">Where <span class="opt">Optional</span></div>
+    <div class="qs" data-sec="where">
+      <div class="drow qs-empty">
+        <span class="ibox"><i class="ph ph-map-pin"></i></span>
+        <div class="dtxt"><span class="ph-text" style="font-size:16px;">Add location</span></div>
+        <i class="ph ph-plus trail plus"></i>
+      </div>
+      <div class="drow filled qs-filled hide">
+        <span class="ibox"><i class="ph-fill ph-map-pin"></i></span>
+        <div class="dtxt"><b>Marina Green</b><span>Marina Blvd, San Francisco, CA</span></div>
+        <i class="ph ph-pencil-simple trail"></i>
+      </div>
+    </div>
+
+    <!-- ANYTHING ELSE -->
+    <div class="nf-label" style="margin-top:20px;">Anything else</div>
+    <div class="qs qs-multi" data-sec="else">
+      <div class="qs-rows"></div>
+      <div class="add-pills">
+        <span class="chip" data-k="desc" data-b="Description" data-s="Easy pace along the water, all levels welcome." data-i="ph-text-align-left"><i class="ph ph-text-align-left"></i>Description</span>
+        <span class="chip" data-k="cost" data-b="Cost" data-s="Free" data-i="ph-currency-dollar"><i class="ph ph-currency-dollar"></i>Cost</span>
+        <span class="chip" data-k="bring" data-b="What to bring" data-s="Water, running shoes" data-i="ph-backpack"><i class="ph ph-backpack"></i>What to bring</span>
+        <span class="chip" data-k="wear" data-b="What to wear" data-s="Layers, it's windy by the water" data-i="ph-t-shirt"><i class="ph ph-t-shirt"></i>What to wear</span>
+        <span class="chip" data-k="link" data-b="Link" data-s="strava.com/routes/marina-loop" data-i="ph-link"><i class="ph ph-link"></i>Link</span>
+        <span class="chip" data-k="custom" data-b="Custom" data-s="Add your own field" data-i="ph-plus"><i class="ph ph-plus"></i>Custom</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer" style="padding-top:20px;">
+    <span class="btn-grad">Continue</span>
+    <span class="btn-ghost">Create now, just me</span>
+    <div class="home-bar"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var root = document.querySelector('.s3-2a'); if (!root) return;
+  var filledStart = root.getAttribute('data-state') === 'filled';
+
+  // When: pill fills the row, pencil clears it
+  var w = root.querySelector('[data-sec=when]'), wE = w.querySelector('.qs-empty'), wF = w.querySelector('.qs-filled'), pills = w.querySelectorAll('.when-pills .chip');
+  function setWhen(p) {
+    pills.forEach(function (x) { x.classList.toggle('sel', x === p); });
+    if (p) { wF.querySelector('b').textContent = p.getAttribute('data-b'); wF.querySelector('.dtxt span').textContent = p.getAttribute('data-s'); }
+    wE.classList.toggle('hide', !!p); wF.classList.toggle('hide', !p); w.querySelector('.when-pills').classList.toggle('hide', !!p);
+  }
+  pills.forEach(function (p) { p.addEventListener('click', function () { setWhen(p.classList.contains('sel') ? null : p); }); });
+  wF.querySelector('.trail').addEventListener('click', function () { setWhen(null); });
+
+  // Where: tap to fill with a suggested place, pencil clears
+  var l = root.querySelector('[data-sec=where]'), lE = l.querySelector('.qs-empty'), lF = l.querySelector('.qs-filled');
+  lE.addEventListener('click', function () { lE.classList.add('hide'); lF.classList.remove('hide'); });
+  lF.querySelector('.trail').addEventListener('click', function () { lF.classList.add('hide'); lE.classList.remove('hide'); });
+
+  // Anything else: chip adds a row, pencil returns it to a chip
+  var rows = root.querySelector('.qs-rows'), addPills = root.querySelector('.add-pills');
+  function addElse(p) {
+    var row = document.createElement('div');
+    row.className = 'drow filled anim';
+    row.innerHTML = '<span class="ibox"><i class="ph-fill ' + p.getAttribute('data-i') + '"></i></span><div class="dtxt"><b></b><span></span></div><i class="ph ph-pencil-simple trail"></i>';
+    row.querySelector('b').textContent = p.getAttribute('data-b');
+    row.querySelector('.dtxt span').textContent = p.getAttribute('data-s');
+    row.querySelector('.trail').addEventListener('click', function () { row.remove(); p.classList.remove('hide'); });
+    rows.appendChild(row);
+    if (p.getAttribute('data-k') !== 'custom') p.classList.add('hide');
+  }
+  addPills.querySelectorAll('.chip').forEach(function (p) { p.addEventListener('click', function () { addElse(p); }); });
+
+
+  if (filledStart) {
+    setWhen(pills[4]);
+    lE.classList.add('hide'); lF.classList.remove('hide');
+    addElse(addPills.querySelector('[data-k=desc]')); addElse(addPills.querySelector('[data-k=bring]'));
+    root.querySelectorAll('.anim').forEach(function (a) { a.classList.remove('anim'); });
+  }
+})();
+</script>

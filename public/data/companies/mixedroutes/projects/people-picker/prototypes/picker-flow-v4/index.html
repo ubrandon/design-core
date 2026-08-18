@@ -1,0 +1,357 @@
+<link rel="stylesheet" href="../../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../../design-system/company.css" />
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #06080e; overflow-x: clip; }
+  body { font-family: var(--font-body); }
+
+  .v4-scope { --v4-bg: #06080e; --v4-line: rgba(255,255,255,0.08); --v4-warn: #f5c451; }
+  .v4-scope, .v4-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .v4-scope::-webkit-scrollbar, .v4-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .v4-wrap { background: var(--v4-bg); height: 100vh; height: 100dvh; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .v4-body { flex: 1; overflow-y: auto; padding-bottom: 8px; }
+
+  .v4-header { display: grid; grid-template-columns: 1fr 28px; align-items: center; padding: 22px 20px 12px; }
+  .v4-header.has-back { grid-template-columns: 28px 1fr 28px; gap: 10px; }
+  .v4-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .v4-back, .v4-close { background: transparent; border: 0; color: rgba(255,255,255,0.85); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
+  .v4-back i, .v4-close i { font-size: 22px; }
+  .v4-back { color: #fff; }
+
+  .v4-search { display: grid; grid-template-columns: 20px 1fr; align-items: center; gap: 10px; margin: 0 20px 16px; padding: 12px 15px; background: rgba(255,255,255,0.07); border-radius: 999px; }
+  .v4-search i { color: rgba(255,255,255,0.54); font-size: 17px; }
+  .v4-search input { width: 100%; border: 0; outline: 0; padding: 0; background: transparent; color: #fff; font: inherit; font-size: 0.94rem; }
+
+  .v4-banner { margin: 0 20px 14px; padding: 12px 14px; border-radius: 18px; background: rgba(32,224,207,0.08); border: 1px solid rgba(32,224,207,0.32); display: grid; grid-template-columns: 44px 1fr; align-items: center; gap: 12px; }
+  .v4-banner .bthumb { width: 44px; height: 44px; border-radius: 14px; overflow: hidden; background: rgba(255,255,255,0.08); display: inline-flex; align-items: center; justify-content: center; }
+  .v4-banner .bthumb img { width: 100%; height: 100%; object-fit: cover; }
+  .v4-banner-label { color: var(--neon-teal); font-size: 0.7rem; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
+  .v4-banner-name { color: #fff; font-size: 1rem; font-weight: 850; margin-top: 2px; line-height: 1.15; }
+
+  .v4-chips { display: flex; gap: 8px; padding: 0 20px 14px; overflow-x: auto; flex-wrap: nowrap; }
+  .v4-chips .mr-pp-chip { flex: 0 0 auto; }
+
+  .v4-label { display: flex; align-items: baseline; justify-content: space-between; padding: 14px 20px 10px; color: #fff; font-size: 0.74rem; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
+  .v4-label .count { color: rgba(255,255,255,0.5); font-size: inherit; letter-spacing: inherit; }
+  .v4-label .action { background: transparent; border: 0; color: var(--neon-teal); font-size: 0.78rem; font-weight: 850; padding: 4px 0; cursor: pointer; letter-spacing: 0.04em; text-transform: none; }
+
+  .v4-list { padding: 0 20px; display: flex; flex-direction: column; }
+  .v4-row { display: grid; grid-template-columns: 44px 1fr 22px; align-items: center; gap: 13px; padding: 11px 8px; margin: 0 -4px; border-radius: 14px; cursor: pointer; }
+  .v4-row.is-on { background: rgba(32,224,207,0.09); }
+  .v4-row .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; background: var(--neon-teal); color: #061016; font-weight: 900; }
+  .v4-row .av.muted { background: #4a5462; color: #fff; }
+  .v4-name { color: #fff; font-size: 0.98rem; font-weight: 850; line-height: 1.15; }
+  .v4-handle, .v4-meta { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+  .v4-meta .host { color: var(--v4-warn); font-weight: 800; }
+
+  .v4-row.is-group .gthumb { width: 44px; height: 44px; border-radius: 14px; overflow: hidden; background: rgba(255,255,255,0.08); display: inline-flex; align-items: center; justify-content: center; }
+  .v4-row.is-group .gthumb img { width: 100%; height: 100%; object-fit: cover; }
+  .v4-row .chev { color: rgba(255,255,255,0.4); font-size: 18px; display: inline-flex; align-items: center; justify-content: center; }
+  .v4-row .partial { color: var(--neon-teal); font-weight: 850; }
+
+  .v4-cta { padding: 14px 20px 22px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 12px; }
+  .v4-cta button { min-height: 50px; border: 0; border-radius: 999px; color: #fff; font-size: 0.98rem; font-weight: 850; cursor: pointer; }
+  .v4-cta .ghost { background: rgba(255,255,255,0.08); }
+  .v4-cta .primary { background: linear-gradient(135deg, var(--neon-teal), var(--neon-blue)); }
+  .v4-cta .primary[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+  .v4-toast { position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%) translateY(20px); background: rgba(255,255,255,0.96); color: #061016; font-weight: 850; font-size: 0.9rem; padding: 12px 18px; border-radius: 999px; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 100; }
+  .v4-toast.is-on { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+
+<div class="mr-scope v4-scope">
+  <div class="v4-wrap" id="screen"></div>
+  <div class="v4-toast" id="toast"></div>
+</div>
+
+<script>
+(function () {
+  var FRIENDS = [
+    { id: 'nova',  name: 'Nova Finch', handle: '@novafinch', avatar: 'https://i.pravatar.cc/96?img=12' },
+    { id: 'milo',  name: 'Milo Wren',  handle: '@milowren',  initials: 'M' },
+    { id: 'lila',  name: 'Lila Quill', handle: '@lilaquill', avatar: 'https://i.pravatar.cc/96?img=49' },
+    { id: 'soren', name: 'Soren Vale', handle: '@sorenvale', avatar: 'https://i.pravatar.cc/96?img=33' },
+    { id: 'piper', name: 'Piper Sol',  handle: '@pipersol',  initials: 'PS', muted: true },
+    { id: 'wren',  name: 'Wren Holt',  handle: '@wrenholt',  avatar: 'https://i.pravatar.cc/96?img=44' },
+    { id: 'iris',  name: 'Iris Mae',   handle: '@irismae',   avatar: 'https://i.pravatar.cc/96?img=22' }
+  ];
+
+  var GROUPS = [
+    {
+      id: 'lake', name: 'Lake House',
+      thumb: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&h=200&q=80',
+      members: [
+        { id: 'milo',  name: 'Milo Wren',  handle: '@milowren', initials: 'M', host: true },
+        { id: 'nova',  name: 'Nova Finch', handle: '@novafinch', avatar: 'https://i.pravatar.cc/96?img=12' },
+        { id: 'lila',  name: 'Lila Quill', handle: '@lilaquill', avatar: 'https://i.pravatar.cc/96?img=49' },
+        { id: 'soren', name: 'Soren Vale', handle: '@sorenvale', avatar: 'https://i.pravatar.cc/96?img=33' },
+        { id: 'wren',  name: 'Wren Holt',  handle: '@wrenholt',  avatar: 'https://i.pravatar.cc/96?img=44' },
+        { id: 'iris',  name: 'Iris Mae',   handle: '@irismae',   avatar: 'https://i.pravatar.cc/96?img=22' },
+        { id: 'theo',  name: 'Theo Mar',   handle: '@theomar',   avatar: 'https://i.pravatar.cc/96?img=15' },
+        { id: 'juno',  name: 'Juno Pax',   handle: '@junopax',   avatar: 'https://i.pravatar.cc/96?img=18' }
+      ]
+    },
+    {
+      id: 'family', name: 'Family',
+      thumb: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=200&h=200&q=80',
+      members: [
+        { id: 'mom', name: 'Mom', handle: '@mom', initials: 'MM' },
+        { id: 'dad', name: 'Dad', handle: '@dad', initials: 'DD' },
+        { id: 'sam', name: 'Sam', handle: '@sam', avatar: 'https://i.pravatar.cc/96?img=51' },
+        { id: 'rae', name: 'Rae', handle: '@rae', avatar: 'https://i.pravatar.cc/96?img=47' }
+      ]
+    },
+    {
+      id: 'gym', name: 'Climbing gym',
+      thumb: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=200&h=200&q=80',
+      members: [
+        { id: 'kai', name: 'Kai Brun', handle: '@kaibrun', avatar: 'https://i.pravatar.cc/96?img=64' },
+        { id: 'ari', name: 'Ari Lex',  handle: '@arilex',  avatar: 'https://i.pravatar.cc/96?img=68' },
+        { id: 'tom', name: 'Tom Reed', handle: '@tomreed', avatar: 'https://i.pravatar.cc/96?img=12' }
+      ]
+    }
+  ];
+
+  var RECENT_IDS = ['nova', 'lila', 'soren'];
+
+  var state = {
+    view: 'main',
+    selectedPeople: new Set(),
+    openGroupId: null,
+    selectedMembers: {}
+  };
+
+  function findGroup(id) { return GROUPS.find(function (g) { return g.id === id; }); }
+  function findPerson(id) {
+    for (var i = 0; i < FRIENDS.length; i++) if (FRIENDS[i].id === id) return FRIENDS[i];
+    return null;
+  }
+  function escAttr(s) { return String(s).replace(/"/g, '&quot;'); }
+
+  function avatarHTML(p) {
+    var cls = 'av' + (p.muted ? ' muted' : '');
+    if (p.avatar) return '<img class="' + cls + '" src="' + escAttr(p.avatar) + '" alt="" loading="lazy" />';
+    return '<span class="' + cls + '">' + (p.initials || p.name[0]) + '</span>';
+  }
+
+  function chipAvatarHTML(p) {
+    if (p.avatar) return '<img class="mr-pp-chip-avatar" src="' + escAttr(p.avatar) + '" alt="" loading="lazy" />';
+    return '<span class="mr-pp-chip-avatar is-initials">' + (p.initials || p.name[0]) + '</span>';
+  }
+
+  var toastTimer;
+  function toast(msg) {
+    var el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('is-on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.classList.remove('is-on'); }, 1800);
+  }
+
+  function personRowHTML(p) {
+    var on = state.selectedPeople.has(p.id);
+    var cls = 'v4-row' + (on ? ' is-on' : '');
+    var box = on
+      ? '<span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>'
+      : '<span class="mr-checkbox"><i class="ph ph-square"></i></span>';
+    return '<div class="' + cls + '" data-act="toggle-person" data-id="' + p.id + '">'
+      + avatarHTML(p)
+      + '<div><div class="v4-name">' + p.name + '</div><div class="v4-handle">' + p.handle + '</div></div>'
+      + box + '</div>';
+  }
+
+  function groupRowHTML(g) {
+    var sel = state.selectedMembers[g.id];
+    var picked = sel ? sel.size : 0;
+    var thumb = '<div class="gthumb"><img src="' + g.thumb + '" alt="" loading="lazy" /></div>';
+    var meta = picked > 0
+      ? '<span class="partial">' + picked + ' of ' + g.members.length + ' selected</span>'
+      : g.members.length + ' members';
+    return '<div class="v4-row is-group" data-act="open-group" data-id="' + g.id + '">'
+      + thumb
+      + '<div><div class="v4-name">' + g.name + '</div><div class="v4-meta">' + meta + '</div></div>'
+      + '<span class="chev"><i class="ph ph-caret-right"></i></span></div>';
+  }
+
+  function totalSelected() {
+    var n = state.selectedPeople.size;
+    Object.keys(state.selectedMembers).forEach(function (gid) { n += state.selectedMembers[gid].size; });
+    return n;
+  }
+
+  function render() {
+    if (state.view === 'members') return renderMembers();
+
+    var picked = totalSelected();
+
+    var html = '';
+    html += '<div class="v4-body">';
+    html += '<header class="v4-header"><div class="v4-title">Who\'s going?</div>';
+    html += '<button type="button" class="v4-close" data-act="close" aria-label="Close"><i class="ph ph-x"></i></button></header>';
+
+    html += '<div class="v4-search"><i class="ph ph-magnifying-glass"></i><input type="search" placeholder="Search people and groups" /></div>';
+
+    if (picked > 0) {
+      html += '<div class="v4-chips">';
+      state.selectedPeople.forEach(function (pid) {
+        var p = findPerson(pid);
+        if (!p) return;
+        html += '<span class="mr-pp-chip">' + chipAvatarHTML(p) + p.name.split(' ')[0]
+          + '<button type="button" class="mr-pp-chip-remove" data-act="toggle-person" data-id="' + p.id + '" aria-label="Remove"><i class="ph ph-x"></i></button></span>';
+      });
+      Object.keys(state.selectedMembers).forEach(function (gid) {
+        var sel = state.selectedMembers[gid];
+        if (sel.size === 0) return;
+        var g = findGroup(gid);
+        html += '<span class="mr-pp-chip"><i class="ph ph-users-three" style="font-size:14px;margin-right:2px;"></i>' + g.name + ' · ' + sel.size
+          + '<button type="button" class="mr-pp-chip-remove" data-act="clear-group" data-id="' + gid + '" aria-label="Remove"><i class="ph ph-x"></i></button></span>';
+      });
+      html += '</div>';
+    }
+
+    var recents = RECENT_IDS.map(findPerson).filter(Boolean);
+    if (recents.length) {
+      html += '<div class="v4-label"><span>Recently added</span></div>';
+      html += '<div class="v4-list">';
+      recents.forEach(function (p) { html += personRowHTML(p); });
+      html += '</div>';
+    }
+
+    html += '<div class="v4-label"><span>Groups and people</span>' + (picked > 0 ? '<span class="count">' + picked + ' selected</span>' : '') + '</div>';
+    html += '<div class="v4-list">';
+    GROUPS.forEach(function (g) { html += groupRowHTML(g); });
+    var recentSet = {};
+    RECENT_IDS.forEach(function (id) { recentSet[id] = true; });
+    FRIENDS.forEach(function (p) { if (!recentSet[p.id]) html += personRowHTML(p); });
+    html += '</div>';
+
+    html += '</div>';
+
+    var ctaLabel = picked > 0 ? 'Add ' + picked + ' to plan' : 'Add to plan';
+    html += '<div class="v4-cta">';
+    html += '<button type="button" class="ghost" data-act="cancel">Cancel</button>';
+    html += '<button type="button" class="primary" data-act="cta"' + (picked === 0 ? ' disabled' : '') + '>' + ctaLabel + '</button>';
+    html += '</div>';
+
+    document.getElementById('screen').innerHTML = html;
+  }
+
+  function renderMembers() {
+    var g = findGroup(state.openGroupId);
+    var sel = state.selectedMembers[g.id];
+    var allOn = sel.size === g.members.length;
+
+    var html = '';
+    html += '<div class="v4-body">';
+    html += '<header class="v4-header has-back">';
+    html += '<button type="button" class="v4-back" data-act="back-to-main" aria-label="Back"><i class="ph ph-arrow-left"></i></button>';
+    html += '<div class="v4-title">' + g.name + '</div>';
+    html += '<button type="button" class="v4-close" data-act="close" aria-label="Close"><i class="ph ph-x"></i></button>';
+    html += '</header>';
+
+    html += '<div class="v4-banner"><div class="bthumb"><img src="' + g.thumb + '" alt="" loading="lazy" /></div>';
+    html += '<div><div class="v4-banner-label">Inviting from</div><div class="v4-banner-name">' + g.name + '</div></div></div>';
+
+    html += '<div class="v4-label"><span>' + g.name + ' members</span>';
+    html += '<button type="button" class="action" data-act="select-all">' + (allOn ? 'Clear all' : 'Select all') + '</button></div>';
+
+    html += '<div class="v4-list">';
+    g.members.forEach(function (m) {
+      var on = sel.has(m.id);
+      var cls = 'v4-row' + (on ? ' is-on' : '');
+      var meta = m.host ? '<span class="host">Host</span>' : (m.handle || '');
+      var box = on
+        ? '<span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>'
+        : '<span class="mr-checkbox"><i class="ph ph-square"></i></span>';
+      html += '<div class="' + cls + '" data-act="toggle-member" data-id="' + m.id + '">'
+        + avatarHTML(m)
+        + '<div><div class="v4-name">' + m.name + '</div><div class="v4-meta">' + meta + '</div></div>'
+        + box + '</div>';
+    });
+    html += '</div>';
+
+    html += '</div>';
+
+    var ctaLabel = sel.size > 0 ? 'Done · ' + sel.size + ' selected' : 'Pick members';
+    html += '<div class="v4-cta">';
+    html += '<button type="button" class="ghost" data-act="back-to-main">Cancel</button>';
+    html += '<button type="button" class="primary" data-act="confirm-members"' + (sel.size === 0 ? ' disabled' : '') + '>' + ctaLabel + '</button>';
+    html += '</div>';
+
+    document.getElementById('screen').innerHTML = html;
+  }
+
+  document.getElementById('screen').addEventListener('click', function (e) {
+    var t = e.target.closest('[data-act]');
+    if (!t) return;
+    var act = t.getAttribute('data-act');
+    var id = t.getAttribute('data-id');
+
+    switch (act) {
+      case 'close':
+      case 'cancel':
+        toast('Closed');
+        return;
+
+      case 'toggle-person':
+        e.stopPropagation();
+        if (state.selectedPeople.has(id)) state.selectedPeople.delete(id);
+        else state.selectedPeople.add(id);
+        render();
+        return;
+
+      case 'open-group':
+        state.openGroupId = id;
+        if (!state.selectedMembers[id]) {
+          state.selectedMembers[id] = new Set(findGroup(id).members.map(function (m) { return m.id; }));
+        }
+        state.view = 'members';
+        render();
+        return;
+
+      case 'back-to-main':
+        state.view = 'main';
+        state.openGroupId = null;
+        render();
+        return;
+
+      case 'clear-group':
+        e.stopPropagation();
+        delete state.selectedMembers[id];
+        render();
+        return;
+
+      case 'toggle-member': {
+        var sel = state.selectedMembers[state.openGroupId];
+        if (sel.has(id)) sel.delete(id);
+        else sel.add(id);
+        render();
+        return;
+      }
+
+      case 'select-all': {
+        var grp = findGroup(state.openGroupId);
+        var s = state.selectedMembers[grp.id];
+        if (s.size === grp.members.length) s.clear();
+        else grp.members.forEach(function (m) { s.add(m.id); });
+        render();
+        return;
+      }
+
+      case 'confirm-members':
+        state.view = 'main';
+        state.openGroupId = null;
+        render();
+        return;
+
+      case 'cta':
+        toast('Added ' + totalSelected() + ' to plan');
+        return;
+    }
+  });
+
+  render();
+})();
+</script>

@@ -1,0 +1,240 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .mr-tab-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    display: block;
+  }
+  .mr-tab-item--avatar { padding: 2px 4px; }
+  .mr-tab-item--avatar.mr-tab-active .mr-tab-avatar {
+    border: 2px solid var(--neon-teal);
+  }
+  .yp-header-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(40, 44, 52, 0.85);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .yp-header-btn i { font-size: 18px; }
+  .yp-share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: rgba(40, 44, 52, 0.6);
+    border: 1px solid rgba(255,255,255,0.12);
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--text);
+    cursor: pointer;
+  }
+  .yp-share-btn i { font-size: 15px; }
+  .yp-friend-row {
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+  }
+  .yp-friend-row > * + * { margin-left: -10px; }
+  .yp-friend-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #5a6068;
+    border: 3px solid var(--bg-0);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.7rem;
+    font-weight: 700;
+    object-fit: cover;
+    overflow: hidden;
+  }
+  .yp-friend-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .yp-section-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .yp-section-action {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: #f4c542;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .yp-interest-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: rgba(20, 28, 44, 0.7);
+    border: 1px solid rgba(91,165,255,0.15);
+    color: var(--text);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+  .yp-interest-chip-more {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+  }
+</style>
+
+<div style="background: var(--bg-0); overflow-x: clip; min-height: 100vh">
+  <div class="mr-scope" style="padding-bottom: 96px">
+
+    <div style="position: relative; overflow: hidden; padding-bottom: 24px; background: rgba(8, 10, 18, 0.7)">
+      <div aria-hidden="true" style="position: absolute; inset: 0; background-image: url(https://i.pravatar.cc/240?img=11); background-size: cover; background-position: center; filter: blur(34px) saturate(1.25); transform: scale(1.3); opacity: 0.85"></div>
+      <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,10,18,0.05) 0%, rgba(8,10,18,0.2) 40%, rgba(8,10,18,0.6) 75%, var(--bg-0) 100%)"></div>
+
+      <div style="position: relative; display: flex; justify-content: space-between; padding: 14px 16px 0">
+        <button type="button" class="yp-header-btn" aria-label="Back">
+          <i class="ph ph-caret-left"></i>
+        </button>
+        <div style="display: flex; gap: 8px">
+          <button type="button" class="yp-header-btn" aria-label="Share profile">
+            <i class="ph ph-share-network"></i>
+          </button>
+          <button type="button" class="yp-header-btn" aria-label="Edit profile">
+            <i class="ph ph-pencil-simple"></i>
+          </button>
+        </div>
+      </div>
+
+      <div style="position: relative; display: flex; flex-direction: column; align-items: center; padding: 8px 16px 0">
+        <img src="https://i.pravatar.cc/240?img=11" alt="" style="width: 132px; height: 132px; border-radius: 50%; object-fit: cover" />
+        <div style="font-size: 2rem; font-weight: 800; color: var(--text); letter-spacing: -0.02em; margin-top: 18px; text-align: center">Brandon Unglaub</div>
+        <div style="font-size: 0.82rem; color: rgba(255,255,255,0.7); margin-top: 4px; text-align: center">@ubrandon · Joined Apr 2025</div>
+        <button type="button" class="yp-share-btn" style="margin-top: 14px">
+          <i class="ph ph-share-network"></i>
+          Share profile
+        </button>
+      </div>
+    </div>
+
+    <div style="padding: 8px 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+      <div class="yp-friend-row">
+        <span class="yp-friend-avatar">CL</span>
+        <span class="yp-friend-avatar">CL</span>
+        <span class="yp-friend-avatar"><img src="https://i.pravatar.cc/96?img=47" alt="" /></span>
+        <span class="yp-friend-avatar">MU</span>
+        <span class="yp-friend-avatar"><img src="https://i.pravatar.cc/96?img=12" alt="" /></span>
+        <span class="yp-friend-avatar">CS</span>
+      </div>
+      <button type="button" style="background: transparent; border: none; color: var(--text); display: flex; align-items: center; gap: 6px; cursor: pointer; padding: 0">
+        <div style="text-align: right">
+          <div style="font-size: 0.95rem; font-weight: 800">33 friends</div>
+          <div style="font-size: 0.74rem; color: rgba(255,255,255,0.65); margin-top: 1px">View and invite</div>
+        </div>
+        <i class="ph ph-caret-right" style="font-size: 16px; color: rgba(255,255,255,0.65)"></i>
+      </button>
+    </div>
+
+    <div style="padding: 8px 16px 12px; display: flex; align-items: center; justify-content: space-between">
+      <span class="yp-section-title">Interests</span>
+      <button type="button" class="yp-section-action">Edit</button>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px; padding: 0 16px 22px">
+      <span class="yp-interest-chip">🏄 Paddle Boarding</span>
+      <span class="yp-interest-chip">🎪 Music Festivals</span>
+      <span class="yp-interest-chip">🏙️ City Exploring</span>
+      <span class="yp-interest-chip">📖 Reading</span>
+      <span class="yp-interest-chip">🎲 Board Games</span>
+      <span class="yp-interest-chip">🍸 Bars</span>
+      <span class="yp-interest-chip">🏄‍♂️ Surfing</span>
+      <button type="button" class="yp-interest-chip yp-interest-chip-more">More <i class="ph ph-caret-down" style="font-size: 12px"></i></button>
+    </div>
+
+    <div style="padding: 0 16px 12px; display: flex; align-items: center; justify-content: space-between">
+      <span class="yp-section-title">My Groups</span>
+      <button type="button" class="yp-section-action">New Group</button>
+    </div>
+    <div class="ds-scroll-x" style="display: flex; gap: 12px; padding: 0 16px 22px">
+      <div class="mr-group-card" style="flex: 0 0 auto; width: 150px; --mr-group-bg: url('https://i.pravatar.cc/200?img=15')">
+        <div class="mr-group-avatar"><img src="https://i.pravatar.cc/200?img=15" alt="" loading="lazy" /></div>
+        <div class="mr-group-title">The Bois</div>
+        <div class="mr-group-detail">7 members</div>
+      </div>
+      <div class="mr-group-card" style="flex: 0 0 auto; width: 150px; --mr-group-bg: linear-gradient(160deg, #a9c8e0, #6a8fb5)">
+        <div class="mr-group-avatar" style="background: #fff"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" loading="lazy" style="object-fit: contain; padding: 8px; background: #fff" /></div>
+        <div class="mr-group-title">MixedRoutes Team</div>
+        <div class="mr-group-detail">3 members</div>
+      </div>
+      <div class="mr-group-card" style="flex: 0 0 auto; width: 150px; --mr-group-bg: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&q=70')">
+        <div class="mr-group-avatar"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200&q=70" alt="" loading="lazy" /></div>
+        <div class="mr-group-title">Family</div>
+        <div class="mr-group-detail">7 members</div>
+      </div>
+    </div>
+
+    <div style="padding: 0 16px 12px; display: flex; align-items: center; justify-content: space-between">
+      <span class="yp-section-title">Saved places</span>
+      <button type="button" class="yp-section-action">New List</button>
+    </div>
+    <div class="ds-scroll-x" style="display: flex; gap: 10px; padding: 0 16px 18px">
+      <button type="button" class="mr-places-list-card" style="flex: 0 0 auto; width: 150px">
+        <div class="mr-places-list-card-icon">❤️</div>
+        <div class="mr-places-list-card-body">
+          <div class="mr-places-list-card-title">Saved</div>
+          <div class="mr-places-list-card-count">13 places</div>
+          <div class="mr-places-list-card-meta">Private</div>
+        </div>
+      </button>
+      <button type="button" class="mr-places-list-card" style="flex: 0 0 auto; width: 150px">
+        <div class="mr-places-list-card-icon">🌍</div>
+        <div class="mr-places-list-card-body">
+          <div class="mr-places-list-card-title">Germany</div>
+          <div class="mr-places-list-card-count">5 places</div>
+          <div class="mr-places-list-card-meta">Shared</div>
+        </div>
+      </button>
+      <button type="button" class="mr-places-list-card" style="flex: 0 0 auto; width: 150px">
+        <div class="mr-places-list-card-icon">🏔️</div>
+        <div class="mr-places-list-card-body">
+          <div class="mr-places-list-card-title">North Carolina</div>
+          <div class="mr-places-list-card-count">9 places</div>
+          <div class="mr-places-list-card-meta">Shared</div>
+        </div>
+      </button>
+    </div>
+
+    <div style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; padding: 10px 8px 14px; background: linear-gradient(180deg, transparent, var(--bg-0) 35%)">
+      <div class="mr-tab-bar" style="margin: 0 8px">
+        <button type="button" class="mr-tab-item" aria-label="Home">
+          <i class="ph ph-house" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="mr-tab-item" aria-label="Calendar">
+          <i class="ph ph-calendar-blank" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="mr-tab-item mr-tab-item--avatar mr-tab-active" aria-label="You">
+          <img class="mr-tab-avatar" src="https://i.pravatar.cc/72?img=11" alt="" width="36" height="36" loading="lazy" />
+        </button>
+        <button type="button" class="mr-tab-item" aria-label="Explore">
+          <i class="ph ph-compass" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="mr-tab-item" aria-label="Messages">
+          <i class="ph ph-chat-teardrop-text" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

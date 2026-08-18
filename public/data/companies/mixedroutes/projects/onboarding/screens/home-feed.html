@@ -1,0 +1,474 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+  .hfl-root {
+    background: #f2f2f7;
+    font-family: 'Geist', sans-serif;
+    color: #1a2332;
+    overflow-x: clip;
+    position: relative;
+  }
+  .hfl-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px 6px;
+  }
+  .hfl-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hfl-wordmark {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #1a2332;
+  }
+  .hfl-header-actions {
+    display: flex;
+    gap: 6px;
+  }
+  .hfl-icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(118, 118, 128, 0.12);
+    color: #1a2332;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hfl-icon-btn i {
+    font-size: 20px;
+  }
+  .hfl-greeting {
+    padding: 18px 16px 10px;
+    font-size: 2.35rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    color: #1a2332;
+  }
+  .hfl-greeting-tail {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #5c6b7d;
+    margin-top: 10px;
+  }
+  .hfl-gradient-text {
+    background: linear-gradient(145deg, #14b8a6, #3b82f6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hfl-banner-stack {
+    padding: 14px 16px 20px;
+  }
+  .hfl-banner-stack-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .hfl-banner-stub {
+    height: 14px;
+    border-radius: 0 0 18px 18px;
+    background: #ffffff;
+    border: 1px solid rgba(20, 184, 166, 0.35);
+    border-top: none;
+    position: relative;
+    z-index: 1;
+  }
+  .hfl-banner-stub.is-second {
+    width: calc(100% - 16px);
+    margin-top: -8px;
+    order: 2;
+    z-index: 1;
+  }
+  .hfl-banner-stub.is-third {
+    width: calc(100% - 32px);
+    margin-top: -8px;
+    order: 3;
+    z-index: 0;
+  }
+  .hfl-banner {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    border-radius: 20px;
+    padding: 20px 18px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.12), rgba(59, 130, 246, 0.06)), #ffffff;
+    border: 1px solid rgba(20, 184, 166, 0.35);
+    box-shadow: 0 8px 24px rgba(26, 35, 50, 0.08);
+    order: 1;
+  }
+  .hfl-banner-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(20, 184, 166, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    flex-shrink: 0;
+  }
+  .hfl-banner-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #1a2332;
+    line-height: 1.2;
+    padding-right: 24px;
+  }
+  .hfl-banner-desc {
+    font-size: 0.95rem;
+    color: #5c6b7d;
+    margin-top: 5px;
+    line-height: 1.35;
+  }
+  .hfl-banner-cta {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #0d9a8a;
+  }
+  .hfl-banner-dismiss {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    border: none;
+    background: none;
+    color: #848994;
+    padding: 4px;
+    line-height: 1;
+  }
+  .hfl-banner-dismiss i {
+    font-size: 20px;
+  }
+  .hfl-row-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px 14px;
+    gap: 10px;
+  }
+  .hfl-row-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #1a2332;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+  .hfl-row-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #5c6b7d;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .hfl-row-link i {
+    font-size: 15px;
+  }
+  .hfl-carousel {
+    display: flex;
+    gap: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    overflow-x: auto;
+  }
+  .hfl-card {
+    flex: 0 0 auto;
+    width: 195px;
+    border-radius: 22px;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(26, 35, 50, 0.06);
+  }
+  .hfl-card-media {
+    position: relative;
+    height: 120px;
+  }
+  .hfl-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hfl-card-bookmark {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a2332;
+    border: none;
+  }
+  .hfl-card-bookmark i {
+    font-size: 18px;
+  }
+  .hfl-card-body {
+    padding: 14px 16px 18px;
+  }
+  .hfl-card-date {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #848994;
+    margin-bottom: 8px;
+  }
+  .hfl-card-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: #1a2332;
+    margin-bottom: 12px;
+  }
+  .hfl-card-location,
+  .hfl-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #5c6b7d;
+    font-size: 0.88rem;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .hfl-card-location span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hfl-card-location i,
+  .hfl-card-meta i {
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .hfl-meta-sep {
+    color: #c3c8d1;
+  }
+  .hfl-new-plan-row {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 16px 12px;
+  }
+  .hfl-new-plan {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 26px;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(145deg, #14b8a6, #3b82f6);
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 800;
+    box-shadow: 0 10px 26px rgba(59, 130, 246, 0.35);
+  }
+  .hfl-new-plan i {
+    font-size: 22px;
+  }
+  .hfl-tab-scope .mr-tab-bar {
+    border-radius: 0;
+  }
+  .hfl-tab-scope .mr-tab-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #d8dde5;
+    color: #1a2332;
+    font-size: 12px;
+    font-weight: 700;
+  }
+</style>
+
+<div class="hfl-root">
+  <div style="padding-bottom: 8px">
+
+    <header class="hfl-header">
+      <a class="hfl-logo" href="#" aria-label="MixedRoutes home">
+        <img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" width="36" height="36" alt="" loading="lazy" />
+        <span class="hfl-wordmark">MixedRoutes</span>
+      </a>
+      <div class="hfl-header-actions">
+        <button type="button" class="hfl-icon-btn" aria-label="Find people">
+          <i class="ph ph-user-plus" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="hfl-icon-btn" aria-label="Notifications">
+          <i class="ph ph-bell" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="hfl-icon-btn" aria-label="Settings">
+          <i class="ph ph-gear-six" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="hfl-greeting">
+      <span class="hfl-gradient-text">Evening</span>, Brandon
+      <span class="hfl-greeting-tail">Find something to do tonight &#127769;</span>
+    </div>
+
+    <div class="hfl-banner-stack">
+      <div class="hfl-banner-stack-inner">
+        <div class="hfl-banner-stub is-third" aria-hidden="true"></div>
+        <div class="hfl-banner-stub is-second" aria-hidden="true"></div>
+        <div class="hfl-banner">
+          <button type="button" class="hfl-banner-dismiss" aria-label="Dismiss">
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+          <div class="hfl-banner-icon"><span aria-hidden="true">&#128075;</span></div>
+          <div>
+            <div class="hfl-banner-title">Welcome to MixedRoutes</div>
+            <div class="hfl-banner-desc">Let's get you set up in a few quick steps.</div>
+            <span class="hfl-banner-cta">Get started</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 14px 0 4px">
+      <div class="hfl-row-header">
+        <span class="hfl-row-title">&#127881; Events nearby</span>
+        <span class="hfl-row-link">All events <i class="ph ph-caret-right" aria-hidden="true"></i></span>
+      </div>
+      <div class="hfl-carousel ds-scroll-x">
+        <div class="hfl-card">
+          <div class="hfl-card-media">
+            <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&h=400&q=80" alt="" loading="lazy" />
+          </div>
+          <div class="hfl-card-body">
+            <div class="hfl-card-date">Tomorrow &bull; 5:30 PM</div>
+            <div class="hfl-card-title">Seth and Sara</div>
+            <div class="hfl-card-location">
+              <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+              <span>The North Carolina Arboretum</span>
+            </div>
+          </div>
+        </div>
+        <div class="hfl-card">
+          <div class="hfl-card-media">
+            <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=400&h=400&q=80" alt="" loading="lazy" />
+          </div>
+          <div class="hfl-card-body">
+            <div class="hfl-card-date">Sat, Jul 4th &bull; 12 PM</div>
+            <div class="hfl-card-title">Independence Day at The Funkatorium</div>
+            <div class="hfl-card-location">
+              <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+              <span>The BarrelHouse at The Funkatorium</span>
+            </div>
+          </div>
+        </div>
+        <div class="hfl-card">
+          <div class="hfl-card-media">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&h=400&q=80" alt="" loading="lazy" />
+          </div>
+          <div class="hfl-card-body">
+            <div class="hfl-card-date">Sun &bull; 6 PM</div>
+            <div class="hfl-card-title">Sunday folk session</div>
+            <div class="hfl-card-location">
+              <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+              <span>Jack of the Wood</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 22px 0 4px">
+      <div class="hfl-row-header">
+        <span class="hfl-row-title">&#128205; Popular places</span>
+        <span class="hfl-row-link">All places <i class="ph ph-caret-right" aria-hidden="true"></i></span>
+      </div>
+      <div class="hfl-carousel ds-scroll-x">
+        <div class="hfl-card">
+          <div class="hfl-card-media">
+            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&h=400&q=80" alt="" loading="lazy" />
+            <button type="button" class="hfl-card-bookmark" aria-label="Save Hollywood Wax Museum">
+              <i class="ph ph-bookmark-simple" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="hfl-card-body">
+            <div class="hfl-card-title">Hollywood Wax Museum</div>
+            <div class="hfl-card-meta">
+              <i class="ph-fill ph-star" aria-hidden="true"></i>
+              <span>4.5</span>
+              <span class="hfl-meta-sep">&bull;</span>
+              <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+              <span>Pigeon Forge</span>
+            </div>
+          </div>
+        </div>
+        <div class="hfl-card">
+          <div class="hfl-card-media">
+            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=400&h=400&q=80" alt="" loading="lazy" />
+            <button type="button" class="hfl-card-bookmark" aria-label="Save Ole Smoky Emporium">
+              <i class="ph ph-bookmark-simple" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="hfl-card-body">
+            <div class="hfl-card-title">Ole Smoky Emporium</div>
+            <div class="hfl-card-meta">
+              <i class="ph-fill ph-star" aria-hidden="true"></i>
+              <span>4.8</span>
+              <span class="hfl-meta-sep">&bull;</span>
+              <i class="ph-fill ph-map-pin" aria-hidden="true"></i>
+              <span>Gatlinburg, TN</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="height: 16px"></div>
+
+    <div style="position: sticky; bottom: 0; z-index: 5; padding-top: 8px; background: linear-gradient(180deg, transparent, #f2f2f7 55%)">
+      <div class="hfl-new-plan-row">
+        <button type="button" class="hfl-new-plan">
+          <i class="ph-fill ph-calendar-blank" aria-hidden="true"></i>
+          New plan
+        </button>
+      </div>
+      <div class="mr-scope hfl-tab-scope">
+        <div class="mr-tab-bar mr-tab-bar--light">
+          <button type="button" class="mr-tab-item mr-tab-active" aria-label="Home">
+            <i class="ph-fill ph-house" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="mr-tab-item" aria-label="Calendar">
+            <i class="ph ph-calendar-blank" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="mr-tab-item mr-tab-item--avatar" aria-label="You">
+            <span class="mr-tab-avatar" aria-hidden="true">TT</span>
+          </button>
+          <button type="button" class="mr-tab-item" aria-label="Explore">
+            <i class="ph ph-compass" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="mr-tab-item" aria-label="Messages">
+            <i class="ph ph-chat-teardrop-text" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

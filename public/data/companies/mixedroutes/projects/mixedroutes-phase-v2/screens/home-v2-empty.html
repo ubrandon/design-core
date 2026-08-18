@@ -1,0 +1,184 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&display=swap");
+
+  .mrv2-hempty, .mrv2-hempty * { box-sizing: border-box; font-family: "Geist", sans-serif; margin: 0; }
+  .mrv2-hempty { background: #ffffff; color: #1a2332; position: relative; overflow-x: clip; }
+  .mrv2-hempty .content { padding: 0 16px; display: flex; flex-direction: column; gap: 18px; padding-bottom: 96px; }
+
+  .mrv2-hempty .toolbar { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: #ffffff; }
+  .mrv2-hempty .toolbar .brand { display: flex; align-items: center; gap: 7px; }
+  .mrv2-hempty .toolbar .brand img { width: 34px; height: 34px; object-fit: contain; display: block; }
+  .mrv2-hempty .toolbar .brand span { font-size: 24px; font-weight: 700; color: #1a2332; }
+  .mrv2-hempty .toolbar .actions { display: flex; align-items: center; gap: 18px; }
+  .mrv2-hempty .toolbar .actions .tbtn { position: relative; color: #1a2332; font-size: 24px; line-height: 1; }
+
+  .mrv2-hempty .greet { padding-top: 8px; }
+  .mrv2-hempty .greet h1 { font-size: 36px; font-weight: 800; line-height: 1.15; color: #1a2332; }
+  .mrv2-hempty .greet p { margin-top: 6px; font-size: 16px; color: #5c6b7d; line-height: 1.4; }
+
+  /* Hero: the one job is adding friends */
+  .mrv2-hempty .hero { position: relative; border-radius: 24px; padding: 1.5px; background: linear-gradient(135deg, #14b8a6, #3b82f6); }
+  .mrv2-hempty .hero .inner { border-radius: 22.5px; background: linear-gradient(135deg, rgba(20, 184, 166, 0.07), rgba(59, 130, 246, 0.07)), #ffffff; padding: 24px 20px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+  .mrv2-hempty .hero .faces { display: flex; align-items: center; margin-bottom: 4px; }
+  .mrv2-hempty .hero .faces img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 3px solid #ffffff; margin-left: -14px; box-shadow: 0 2px 8px rgba(16, 24, 40, 0.14); }
+  .mrv2-hempty .hero .faces img:first-child { margin-left: 0; }
+  .mrv2-hempty .hero .faces .you-ring { width: 52px; height: 52px; border-radius: 50%; margin-left: -14px; border: 3px solid #ffffff; background: linear-gradient(145deg, #14b8a6, #3b82f6); display: grid; place-items: center; color: #ffffff; font-size: 24px; box-shadow: 0 2px 8px rgba(16, 24, 40, 0.14); }
+  .mrv2-hempty .hero strong { font-size: 20px; font-weight: 800; color: #101724; line-height: 1.25; }
+  .mrv2-hempty .hero p { font-size: 15px; color: #5c6b7d; line-height: 1.45; max-width: 280px; }
+  .mrv2-hempty .hero .btn-grad { margin-top: 10px; width: 100%; height: 48px; border: 0; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #fff; font-size: 16px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .mrv2-hempty .hero .quiet-link { margin-top: 2px; border: 0; background: none; color: #5c6b7d; font-size: 15px; font-weight: 600; }
+
+  .mrv2-hempty section { display: flex; flex-direction: column; gap: 11px; }
+  .mrv2-hempty .sec-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .mrv2-hempty .sec-head .h-wrap { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .mrv2-hempty .sec-head h2 { font-size: 22px; font-weight: 700; line-height: 1.2; color: #1a2332; }
+  .mrv2-hempty .sec-head .sub { font-size: 14px; color: #5c6b7d; }
+  .mrv2-hempty .sec-head .action { display: inline-flex; align-items: center; gap: 3px; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #5c6b7d; white-space: nowrap; }
+  .mrv2-hempty .sec-head .action i { font-size: 16px; }
+
+  .mrv2-hempty .rail { display: flex; align-items: stretch; overflow-x: auto; margin: -4px -16px -8px; padding: 4px 16px 8px; gap: 16px; scrollbar-width: none; -ms-overflow-style: none; }
+  .mrv2-hempty .rail::-webkit-scrollbar { display: none; }
+  .mrv2-hempty .rail-people { gap: 7px; }
+
+  .mrv2-hempty .mini-card { width: 108px; flex-shrink: 0; border-radius: 16px; padding: 7px 5px; display: flex; flex-direction: column; align-items: center; gap: 11px; text-align: center; color: #101724; }
+  .mrv2-hempty .mini-card .av { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; display: block; background: #68707a; }
+  .mrv2-hempty .mini-card .txt { display: flex; flex-direction: column; gap: 5px; min-width: 0; width: 100%; }
+  .mrv2-hempty .mini-card .txt strong { font-size: 16px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-hempty .mini-card .txt span { font-size: 14px; color: #5c6b7d; line-height: 1.3; }
+  .mrv2-hempty .add-btn { height: 32px; padding: 0 12px; border-radius: 999px; background: #e1e3e6; color: #101724; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; border: 0; }
+
+  /* Interest-based suggestions: flat tiles, matched to onboarding interests */
+  .mrv2-hempty .serp-card { width: 192px; flex-shrink: 0; display: flex; flex-direction: column; }
+  .mrv2-hempty .serp-card .img { position: relative; width: 100%; aspect-ratio: 1.85 / 1; border-radius: 20px; overflow: hidden; background-size: cover; background-position: center; }
+  .mrv2-hempty .serp-card .body { padding: 10px 4px 0; display: flex; flex-direction: column; gap: 3px; }
+  .mrv2-hempty .serp-card .date { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; color: #5c6b7d; line-height: 1; margin-bottom: 3px; }
+  .mrv2-hempty .serp-card .title { font-size: 16px; font-weight: 700; line-height: 1.25; }
+  .mrv2-hempty .serp-card .meta { padding-top: 2px; display: flex; align-items: center; gap: 5px; font-size: 14px; font-weight: 600; color: #5c6b7d; }
+  .mrv2-hempty .serp-card .meta i { font-size: 14px; flex-shrink: 0; }
+  .mrv2-hempty .serp-card .meta .loc-txt { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-hempty .more-link { width: 100%; height: 48px; border: 0; border-radius: 16px; background: #f1f4f7; color: #1a2332; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 15px; font-weight: 700; }
+
+  .mrv2-hempty .fab { position: absolute; right: 16px; bottom: 99px; z-index: 10; height: 56px; min-width: 56px; padding: 0 16px; border: 0; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #fff; display: inline-flex; align-items: center; white-space: nowrap; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14), 0 16px 44px rgba(0, 0, 0, 0.2); }
+  .mrv2-hempty .fab i { font-size: 24px; }
+  .mrv2-hempty .fab span { font-size: 18px; font-weight: 700; margin-left: 5px; }
+
+  .mrv2-hempty .tab-bar { position: relative; z-index: 5; height: 67px; background: #ffffff; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12); display: flex; align-items: flex-start; padding-top: 9px; margin-top: 24px; }
+  .mrv2-hempty .tab-bar .tab { flex: 1; display: flex; align-items: center; justify-content: center; color: #3b4551; }
+  .mrv2-hempty .tab-bar .tab i { font-size: 24px; }
+  .mrv2-hempty .tab-bar .tab.discover i { font-size: 26px; }
+  .mrv2-hempty .tab-bar .tab.selected { color: #1a2332; }
+  .mrv2-hempty .tab-bar .tab .you { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; display: block; }
+</style>
+
+<div class="mrv2-hempty" style="background: #ffffff;">
+  <div class="toolbar">
+    <div class="brand">
+      <img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" />
+      <span>MixedRoutes</span>
+    </div>
+    <div class="actions">
+      <span class="tbtn"><i class="ph ph-user-plus"></i></span>
+      <span class="tbtn"><i class="ph ph-bell"></i></span>
+      <span class="tbtn"><i class="ph ph-gear-six"></i></span>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="greet">
+      <h1>Welcome, Brandon</h1>
+      <p>Let's get your people in here.</p>
+    </div>
+
+    <div class="hero">
+      <div class="inner">
+        <div class="faces">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          <span class="you-ring"><i class="ph ph-plus"></i></span>
+        </div>
+        <strong>MixedRoutes is better with your people</strong>
+        <p>Add friends to see their plans, share spots, and make things happen together.</p>
+        <button class="btn-grad"><i class="ph ph-user-plus"></i>Add your friends</button>
+        <button class="quiet-link">Share your invite link</button>
+      </div>
+    </div>
+
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>People you may know</h2></div>
+        <span class="action">View more <i class="ph ph-caret-right"></i></span>
+      </div>
+      <div class="rail rail-people">
+        <div class="mini-card">
+          <img class="av" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          <div class="txt"><strong>Devon</strong><span>From your contacts</span></div>
+          <button class="add-btn">Add</button>
+        </div>
+        <div class="mini-card">
+          <img class="av" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          <div class="txt"><strong>Maya</strong><span>From your contacts</span></div>
+          <button class="add-btn">Add</button>
+        </div>
+        <div class="mini-card">
+          <img class="av" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          <div class="txt"><strong>Jordan</strong><span>From your contacts</span></div>
+          <button class="add-btn">Add</button>
+        </div>
+        <div class="mini-card">
+          <img class="av" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          <div class="txt"><strong>Alex</strong><span>From your contacts</span></div>
+          <button class="add-btn">Add</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>Things to do near you</h2></div>
+      </div>
+      <div class="sec-head" style="margin-top: -8px;"><span class="sub">Picked for your interests: hiking, live music</span></div>
+      <div class="rail">
+        <div class="serp-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=420&h=196&q=80');"></div>
+          <div class="body">
+            <div class="date">Sat, Aug 15 · 8:00 AM</div>
+            <div class="title">Craggy Gardens sunrise hike</div>
+            <div class="meta"><i class="ph-fill ph-map-pin"></i><span class="loc-txt">Blue Ridge Pkwy</span></div>
+          </div>
+        </div>
+        <div class="serp-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=420&h=196&q=80');"></div>
+          <div class="body">
+            <div class="date">Fri, Aug 14 · 9:00 PM</div>
+            <div class="title">The Wood Brothers</div>
+            <div class="meta"><i class="ph-fill ph-map-pin"></i><span class="loc-txt">The Orange Peel</span></div>
+          </div>
+        </div>
+        <div class="serp-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=420&h=196&q=80');"></div>
+          <div class="body">
+            <div class="date">Thu, Aug 20 · 6:00 PM</div>
+            <div class="title">Pickin' in the Park</div>
+            <div class="meta"><i class="ph-fill ph-map-pin"></i><span class="loc-txt">Pritchard Park</span></div>
+          </div>
+        </div>
+      </div>
+      <button class="more-link">More on Discover <i class="ph ph-arrow-right"></i></button>
+    </section>
+  </div>
+
+  <button class="fab"><i class="ph-fill ph-calendar-blank"></i><span>New plan</span></button>
+
+  <div class="tab-bar">
+    <span class="tab selected"><i class="ph-fill ph-house"></i></span>
+    <span class="tab discover"><i class="ph ph-compass"></i></span>
+    <span class="tab"><img class="you" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /></span>
+    <span class="tab"><i class="ph ph-calendar-blank"></i></span>
+    <span class="tab"><i class="ph ph-chat"></i></span>
+  </div>
+</div>

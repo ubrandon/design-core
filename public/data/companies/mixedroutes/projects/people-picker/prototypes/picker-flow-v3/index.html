@@ -1,0 +1,401 @@
+<link rel="stylesheet" href="../../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../../design-system/company.css" />
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #06080e; overflow-x: clip; }
+  body { font-family: var(--font-body); }
+
+  .v3-scope { --v3-bg: #06080e; --v3-line: rgba(255,255,255,0.08); --v3-warn: #f5c451; }
+  .v3-scope, .v3-scope * { box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+  .v3-scope::-webkit-scrollbar, .v3-scope *::-webkit-scrollbar { display: none; width: 0; height: 0; }
+  .v3-wrap { background: var(--v3-bg); height: 100vh; height: 100dvh; position: relative; overflow: hidden; display: flex; flex-direction: column; font-family: var(--font-body); }
+  .v3-body { flex: 1; overflow-y: auto; padding-bottom: 8px; }
+
+  .v3-header { display: grid; grid-template-columns: 1fr 28px; align-items: center; padding: 22px 20px 12px; }
+  .v3-header.has-back { grid-template-columns: 28px 1fr 28px; gap: 10px; }
+  .v3-title { color: #fff; font-size: 1.7rem; font-weight: 850; letter-spacing: -0.01em; }
+  .v3-back, .v3-close { background: transparent; border: 0; color: rgba(255,255,255,0.85); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
+  .v3-back i, .v3-close i { font-size: 22px; }
+  .v3-back { color: #fff; }
+
+  .v3-banner { margin: 0 20px 14px; padding: 12px 14px; border-radius: 18px; background: rgba(32,224,207,0.08); border: 1px solid rgba(32,224,207,0.32); display: grid; grid-template-columns: 44px 1fr; align-items: center; gap: 12px; }
+  .v3-banner .bthumb { width: 44px; height: 44px; border-radius: 14px; overflow: hidden; background: rgba(255,255,255,0.08); display: inline-flex; align-items: center; justify-content: center; }
+  .v3-banner .bthumb img { width: 100%; height: 100%; object-fit: cover; }
+  .v3-banner .bthumb i { color: #fff; font-size: 22px; }
+  .v3-banner-label { color: var(--neon-teal); font-size: 0.7rem; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
+  .v3-banner-name { color: #fff; font-size: 1rem; font-weight: 850; margin-top: 2px; line-height: 1.15; }
+
+  .v3-meta .host { color: var(--v3-warn); font-weight: 800; }
+
+  .v3-toggle { margin: 4px 20px 16px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,0.06); display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .v3-toggle button { min-height: 40px; border: 0; border-radius: 999px; background: transparent; color: rgba(255,255,255,0.6); font-size: 0.92rem; font-weight: 850; display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+  .v3-toggle button i { font-size: 17px; }
+  .v3-toggle button.is-active { background: #fff; color: #061016; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+
+  .v3-search { display: grid; grid-template-columns: 20px 1fr; align-items: center; gap: 10px; margin: 0 20px 16px; padding: 12px 15px; background: rgba(255,255,255,0.07); border-radius: 999px; }
+  .v3-search i { color: rgba(255,255,255,0.54); font-size: 17px; }
+  .v3-search input { width: 100%; border: 0; outline: 0; padding: 0; background: transparent; color: #fff; font: inherit; font-size: 0.94rem; }
+
+  .v3-chips { display: flex; gap: 8px; padding: 0 20px 14px; overflow-x: auto; flex-wrap: nowrap; }
+  .v3-chips .mr-pp-chip { flex: 0 0 auto; }
+
+  .v3-label { display: flex; align-items: baseline; justify-content: space-between; padding: 10px 20px 12px; color: #fff; font-size: 1.6rem; font-weight: 850; letter-spacing: -0.01em; text-transform: none; }
+  .v3-label .count { color: rgba(255,255,255,0.5); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+  .v3-label .action { background: transparent; border: 0; color: var(--neon-teal); font-size: 0.86rem; font-weight: 850; padding: 4px 0; cursor: pointer; letter-spacing: 0; text-transform: none; }
+
+  .v3-list { padding: 0 20px; display: flex; flex-direction: column; }
+  .v3-row { display: grid; grid-template-columns: 44px 1fr 22px; align-items: center; gap: 13px; padding: 11px 8px; margin: 0 -4px; border-radius: 14px; cursor: pointer; }
+  .v3-row.is-on { background: rgba(32,224,207,0.09); }
+  .v3-row .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: inline-flex; align-items: center; justify-content: center; background: var(--neon-teal); color: #061016; font-weight: 900; }
+  .v3-row .av.muted { background: #4a5462; color: #fff; }
+  .v3-name { color: #fff; font-size: 0.98rem; font-weight: 850; line-height: 1.15; }
+  .v3-handle, .v3-meta { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+
+  .v3-grouplist { padding: 0 20px; display: flex; flex-direction: column; }
+  .v3-grouprow { display: grid; grid-template-columns: 48px 1fr 22px; align-items: center; gap: 13px; padding: 11px 8px; margin: 0 -4px; border-radius: 14px; cursor: pointer; }
+  .v3-grouprow.is-on { background: rgba(32,224,207,0.09); }
+  .v3-grouprow .gthumb { width: 48px; height: 48px; border-radius: 14px; overflow: hidden; background: rgba(255,255,255,0.08); display: inline-flex; align-items: center; justify-content: center; }
+  .v3-grouprow .gthumb img { width: 100%; height: 100%; object-fit: cover; }
+  .v3-grouprow .gname { color: #fff; font-size: 0.98rem; font-weight: 850; line-height: 1.15; }
+  .v3-grouprow .gmeta { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 2px; }
+  .v3-grouprow .chev { color: rgba(255,255,255,0.4); font-size: 18px; display: inline-flex; align-items: center; justify-content: center; }
+
+  .v3-cta { padding: 14px 20px 22px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 12px; }
+  .v3-cta button { min-height: 50px; border: 0; border-radius: 999px; color: #fff; font-size: 0.98rem; font-weight: 850; cursor: pointer; }
+  .v3-cta .ghost { background: rgba(255,255,255,0.08); }
+  .v3-cta .primary { background: linear-gradient(135deg, var(--neon-teal), var(--neon-blue)); }
+  .v3-cta .primary[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+  .v3-toast { position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%) translateY(20px); background: rgba(255,255,255,0.96); color: #061016; font-weight: 850; font-size: 0.9rem; padding: 12px 18px; border-radius: 999px; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 100; }
+  .v3-toast.is-on { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+
+<div class="mr-scope v3-scope">
+  <div class="v3-wrap" id="screen"></div>
+  <div class="v3-toast" id="toast"></div>
+</div>
+
+<script>
+(function () {
+  var FRIENDS = [
+    { id: 'nova',  name: 'Nova Finch', handle: '@novafinch', avatar: 'https://i.pravatar.cc/96?img=12' },
+    { id: 'milo',  name: 'Milo Wren',  handle: '@milowren',  initials: 'M' },
+    { id: 'lila',  name: 'Lila Quill', handle: '@lilaquill', avatar: 'https://i.pravatar.cc/96?img=49' },
+    { id: 'wren',  name: 'Wren Holt',  handle: '@wrenholt',  avatar: 'https://i.pravatar.cc/96?img=44' }
+  ];
+  var SUGGESTED = [
+    { id: 'soren', name: 'Soren Vale', handle: '@sorenvale', avatar: 'https://i.pravatar.cc/96?img=33' },
+    { id: 'piper', name: 'Piper Sol',  handle: '@pipersol',  initials: 'PS', muted: true },
+    { id: 'iris',  name: 'Iris Mae',   handle: '@irismae',   avatar: 'https://i.pravatar.cc/96?img=22' }
+  ];
+
+  var GROUPS = [
+    {
+      id: 'lake', name: 'Lake House',
+      thumb: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&h=200&q=80',
+      members: [
+        { id: 'milo',  name: 'Milo Wren',  initials: 'M',  host: true },
+        { id: 'nova',  name: 'Nova Finch', handle: '@novafinch', avatar: 'https://i.pravatar.cc/96?img=12' },
+        { id: 'lila',  name: 'Lila Quill', handle: '@lilaquill', avatar: 'https://i.pravatar.cc/96?img=49' },
+        { id: 'soren', name: 'Soren Vale', handle: '@sorenvale', avatar: 'https://i.pravatar.cc/96?img=33' },
+        { id: 'wren',  name: 'Wren Holt',  handle: '@wrenholt',  avatar: 'https://i.pravatar.cc/96?img=44' },
+        { id: 'iris',  name: 'Iris Mae',   handle: '@irismae',   avatar: 'https://i.pravatar.cc/96?img=22' },
+        { id: 'theo',  name: 'Theo Mar',   handle: '@theomar',   avatar: 'https://i.pravatar.cc/96?img=15' },
+        { id: 'juno',  name: 'Juno Pax',   handle: '@junopax',   avatar: 'https://i.pravatar.cc/96?img=18' }
+      ]
+    },
+    {
+      id: 'family', name: 'Family',
+      thumb: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=200&h=200&q=80',
+      members: [
+        { id: 'mom', name: 'Mom', handle: '@mom', initials: 'MM' },
+        { id: 'dad', name: 'Dad', handle: '@dad', initials: 'DD' },
+        { id: 'sam', name: 'Sam', handle: '@sam', avatar: 'https://i.pravatar.cc/96?img=51' },
+        { id: 'rae', name: 'Rae', handle: '@rae', avatar: 'https://i.pravatar.cc/96?img=47' }
+      ]
+    },
+    {
+      id: 'gym', name: 'Climbing gym',
+      thumb: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=200&h=200&q=80',
+      members: [
+        { id: 'kai', name: 'Kai Brun', handle: '@kaibrun', avatar: 'https://i.pravatar.cc/96?img=64' },
+        { id: 'ari', name: 'Ari Lex',  handle: '@arilex',  avatar: 'https://i.pravatar.cc/96?img=68' },
+        { id: 'tom', name: 'Tom Reed', handle: '@tomreed', avatar: 'https://i.pravatar.cc/96?img=12' }
+      ]
+    },
+    {
+      id: 'work', name: 'Work friends',
+      thumb: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=200&h=200&q=80',
+      members: [
+        { id: 'em',  name: 'Em Cole',   handle: '@emcole',   avatar: 'https://i.pravatar.cc/96?img=24' },
+        { id: 'jo',  name: 'Jo Park',   handle: '@jopark',   avatar: 'https://i.pravatar.cc/96?img=36' },
+        { id: 'al',  name: 'Al Reyes',  handle: '@alreyes',  avatar: 'https://i.pravatar.cc/96?img=41' },
+        { id: 'ren', name: 'Ren Diaz',  handle: '@rendiaz',  avatar: 'https://i.pravatar.cc/96?img=52' },
+        { id: 'sky', name: 'Sky Yoo',   handle: '@skyyoo',   avatar: 'https://i.pravatar.cc/96?img=58' },
+        { id: 'val', name: 'Val Quin',  handle: '@valquin',  avatar: 'https://i.pravatar.cc/96?img=62' }
+      ]
+    },
+    {
+      id: 'college', name: 'College friends', icon: 'ph-pizza',
+      members: [
+        { id: 'fin', name: 'Fin Ash',   handle: '@finash',   avatar: 'https://i.pravatar.cc/96?img=11' },
+        { id: 'gus', name: 'Gus Lo',    handle: '@guslo',    avatar: 'https://i.pravatar.cc/96?img=14' },
+        { id: 'hen', name: 'Henley',    handle: '@henley',   avatar: 'https://i.pravatar.cc/96?img=17' },
+        { id: 'ivy', name: 'Ivy June',  handle: '@ivyjune',  avatar: 'https://i.pravatar.cc/96?img=19' },
+        { id: 'leo', name: 'Leo Sun',   handle: '@leosun',   avatar: 'https://i.pravatar.cc/96?img=20' }
+      ]
+    }
+  ];
+
+  var state = {
+    view: 'main',
+    mode: 'people',
+    selectedPeople: new Set(),
+    openGroupId: null,
+    selectedMembers: {}
+  };
+
+  function findGroup(id) { return GROUPS.find(function (g) { return g.id === id; }); }
+
+  function escAttr(s) { return String(s).replace(/"/g, '&quot;'); }
+
+  function avatarHTML(p) {
+    var cls = 'av' + (p.muted ? ' muted' : '');
+    if (p.avatar) return '<img class="' + cls + '" src="' + escAttr(p.avatar) + '" alt="" loading="lazy" />';
+    return '<span class="' + cls + '">' + (p.initials || p.name[0]) + '</span>';
+  }
+
+  var toastTimer;
+  function toast(msg) {
+    var el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('is-on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.classList.remove('is-on'); }, 1800);
+  }
+
+  function rowHTML(p) {
+    var on = state.selectedPeople.has(p.id);
+    var cls = 'v3-row' + (on ? ' is-on' : '');
+    var box = on
+      ? '<span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>'
+      : '<span class="mr-checkbox"><i class="ph ph-square"></i></span>';
+    return '<div class="' + cls + '" data-act="toggle-person" data-id="' + p.id + '">'
+      + avatarHTML(p)
+      + '<div><div class="v3-name">' + p.name + '</div><div class="v3-handle">' + p.handle + '</div></div>'
+      + box + '</div>';
+  }
+
+  function groupRowHTML(g) {
+    var thumb = g.thumb
+      ? '<div class="gthumb"><img src="' + g.thumb + '" alt="" loading="lazy" /></div>'
+      : '<div class="gthumb"><i class="ph ' + g.icon + '" style="color:#fff;font-size:22px;"></i></div>';
+    var sel = state.selectedMembers[g.id];
+    var meta = sel && sel.size > 0
+      ? sel.size + ' of ' + g.members.length + ' selected'
+      : g.members.length + ' members';
+    return '<div class="v3-grouprow" data-act="open-group" data-id="' + g.id + '">'
+      + thumb
+      + '<div><div class="gname">' + g.name + '</div><div class="gmeta">' + meta + '</div></div>'
+      + '<span class="chev"><i class="ph ph-caret-right"></i></span></div>';
+  }
+
+  function memberRowHTML(m, groupId) {
+    var sel = state.selectedMembers[groupId];
+    var on = sel.has(m.id);
+    var cls = 'v3-row' + (on ? ' is-on' : '');
+    var meta = m.host ? '<span class="host">Host</span>' : (m.handle || '');
+    var box = on
+      ? '<span class="mr-checkbox is-checked"><i class="ph-fill ph-check-square"></i></span>'
+      : '<span class="mr-checkbox"><i class="ph ph-square"></i></span>';
+    return '<div class="' + cls + '" data-act="toggle-member" data-id="' + m.id + '">'
+      + avatarHTML(m)
+      + '<div><div class="v3-name">' + m.name + '</div><div class="v3-meta">' + meta + '</div></div>'
+      + box + '</div>';
+  }
+
+  function render() {
+    if (state.view === 'members') return renderMembers();
+
+    var isPeople = state.mode === 'people';
+    var peopleCount = state.selectedPeople.size;
+
+    var html = '';
+    html += '<div class="v3-body">';
+    html += '<header class="v3-header"><div class="v3-title">Who\'s going?</div>';
+    html += '<button type="button" class="v3-close" data-act="close" aria-label="Close"><i class="ph ph-x"></i></button></header>';
+
+    html += '<div class="v3-toggle">';
+    html += '<button type="button" class="' + (isPeople ? 'is-active' : '') + '" data-act="mode" data-id="people"><i class="ph ph-user"></i>Invite friends</button>';
+    html += '<button type="button" class="' + (!isPeople ? 'is-active' : '') + '" data-act="mode" data-id="group"><i class="ph ph-users-three"></i>Add to group</button>';
+    html += '</div>';
+
+    if (isPeople) {
+      html += '<div class="v3-search"><i class="ph ph-magnifying-glass"></i><input type="search" placeholder="Search people" /></div>';
+      if (peopleCount > 0) {
+        html += '<div class="v3-chips">';
+        var all = FRIENDS.concat(SUGGESTED);
+        all.forEach(function (p) {
+          if (!state.selectedPeople.has(p.id)) return;
+          var av = p.avatar
+            ? '<img class="mr-pp-chip-avatar" src="' + escAttr(p.avatar) + '" alt="" loading="lazy" />'
+            : '<span class="mr-pp-chip-avatar is-initials">' + (p.initials || p.name[0]) + '</span>';
+          var first = p.name.split(' ')[0];
+          html += '<span class="mr-pp-chip">' + av + first
+            + '<button type="button" class="mr-pp-chip-remove" data-act="toggle-person" data-id="' + p.id + '" aria-label="Remove"><i class="ph ph-x"></i></button></span>';
+        });
+        html += '</div>';
+      }
+      html += '<div class="v3-label"><span>Friends</span>' + (peopleCount > 0 ? '<span class="count">' + peopleCount + ' selected</span>' : '') + '</div>';
+      html += '<div class="v3-list">';
+      FRIENDS.forEach(function (p) { html += rowHTML(p); });
+      html += '</div>';
+      html += '<div class="v3-label"><span>Suggested</span></div>';
+      html += '<div class="v3-list">';
+      SUGGESTED.forEach(function (p) { html += rowHTML(p); });
+      html += '</div>';
+    } else {
+      html += '<div class="v3-label"><span>Add to group</span></div>';
+      html += '<div class="v3-grouplist">';
+      GROUPS.forEach(function (g) { html += groupRowHTML(g); });
+      html += '</div>';
+    }
+
+    html += '</div>'; // body
+
+    var ctaLabel, ctaDisabled;
+    if (isPeople) {
+      ctaLabel = peopleCount > 0 ? 'Add ' + peopleCount + ' to plan' : 'Add to plan';
+      ctaDisabled = peopleCount === 0;
+    } else {
+      var picked = 0;
+      Object.keys(state.selectedMembers).forEach(function (gid) { picked += state.selectedMembers[gid].size; });
+      ctaLabel = picked > 0 ? 'Invite ' + picked + ' member' + (picked === 1 ? '' : 's') : 'Pick a group';
+      ctaDisabled = picked === 0;
+    }
+    html += '<div class="v3-cta">';
+    html += '<button type="button" class="ghost" data-act="cancel">Cancel</button>';
+    html += '<button type="button" class="primary" data-act="cta"' + (ctaDisabled ? ' disabled' : '') + '>' + ctaLabel + '</button>';
+    html += '</div>';
+
+    document.getElementById('screen').innerHTML = html;
+  }
+
+  function renderMembers() {
+    var g = findGroup(state.openGroupId);
+    var sel = state.selectedMembers[g.id];
+    var allOn = sel.size === g.members.length;
+
+    var html = '';
+    html += '<div class="v3-body">';
+    html += '<header class="v3-header has-back">';
+    html += '<button type="button" class="v3-back" data-act="back-to-groups" aria-label="Back"><i class="ph ph-arrow-left"></i></button>';
+    html += '<div class="v3-title">Who\'s going?</div>';
+    html += '<button type="button" class="v3-close" data-act="close" aria-label="Close"><i class="ph ph-x"></i></button>';
+    html += '</header>';
+
+    var bthumb = g.thumb
+      ? '<div class="bthumb"><img src="' + g.thumb + '" alt="" loading="lazy" /></div>'
+      : '<div class="bthumb"><i class="ph ' + g.icon + '"></i></div>';
+    html += '<div class="v3-banner">' + bthumb
+      + '<div><div class="v3-banner-label">Inviting from</div><div class="v3-banner-name">' + g.name + '</div></div></div>';
+
+    html += '<div class="v3-label"><span>' + g.name + ' members</span>';
+    html += '<button type="button" class="action" data-act="select-all">' + (allOn ? 'Clear all' : 'Select all') + '</button></div>';
+
+    html += '<div class="v3-list">';
+    g.members.forEach(function (m) { html += memberRowHTML(m, g.id); });
+    html += '</div>';
+
+    html += '</div>'; // body
+
+    var ctaLabel = sel.size > 0 ? 'Invite ' + sel.size + ' member' + (sel.size === 1 ? '' : 's') : 'Pick members';
+    html += '<div class="v3-cta">';
+    html += '<button type="button" class="ghost" data-act="back-to-groups">Cancel</button>';
+    html += '<button type="button" class="primary" data-act="cta-members"' + (sel.size === 0 ? ' disabled' : '') + '>' + ctaLabel + '</button>';
+    html += '</div>';
+
+    document.getElementById('screen').innerHTML = html;
+  }
+
+  document.getElementById('screen').addEventListener('click', function (e) {
+    var t = e.target.closest('[data-act]');
+    if (!t) return;
+    var act = t.getAttribute('data-act');
+    var id = t.getAttribute('data-id');
+
+    switch (act) {
+      case 'close':
+      case 'cancel':
+        toast('Closed');
+        return;
+
+      case 'mode':
+        if (state.mode !== id) {
+          state.mode = id;
+          render();
+        }
+        return;
+
+      case 'toggle-person':
+        if (state.selectedPeople.has(id)) state.selectedPeople.delete(id);
+        else state.selectedPeople.add(id);
+        render();
+        return;
+
+      case 'open-group':
+        state.openGroupId = id;
+        if (!state.selectedMembers[id]) {
+          state.selectedMembers[id] = new Set(findGroup(id).members.map(function (m) { return m.id; }));
+        }
+        state.view = 'members';
+        render();
+        return;
+
+      case 'back-to-groups':
+        state.view = 'main';
+        state.openGroupId = null;
+        render();
+        return;
+
+      case 'toggle-member': {
+        var sel = state.selectedMembers[state.openGroupId];
+        if (sel.has(id)) sel.delete(id);
+        else sel.add(id);
+        render();
+        return;
+      }
+
+      case 'select-all': {
+        var grp = findGroup(state.openGroupId);
+        var s = state.selectedMembers[grp.id];
+        if (s.size === grp.members.length) s.clear();
+        else grp.members.forEach(function (m) { s.add(m.id); });
+        render();
+        return;
+      }
+
+      case 'cta-members': {
+        var g2 = findGroup(state.openGroupId);
+        var ms = state.selectedMembers[g2.id];
+        toast('Invited ' + ms.size + ' from ' + g2.name);
+        return;
+      }
+
+      case 'cta':
+        if (state.mode === 'people') {
+          toast('Added ' + state.selectedPeople.size + ' to plan');
+        } else {
+          var picked = 0;
+          Object.keys(state.selectedMembers).forEach(function (gid) { picked += state.selectedMembers[gid].size; });
+          toast('Invited ' + picked + ' member' + (picked === 1 ? '' : 's'));
+        }
+        return;
+    }
+  });
+
+  render();
+})();
+</script>

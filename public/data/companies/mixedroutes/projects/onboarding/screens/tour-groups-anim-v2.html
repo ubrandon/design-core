@@ -1,0 +1,109 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  .mr-grpc .grpc-msg { animation-duration: 7s; animation-timing-function: ease; animation-iteration-count: infinite; }
+  .mr-grpc .grpc-msg.m1 { animation-name: grpcMsg1; }
+  .mr-grpc .grpc-msg.m2 { animation-name: grpcMsg2; }
+  .mr-grpc .grpc-msg.m3 { animation-name: grpcMsg3; }
+  @keyframes grpcMsg1 { 0%,6%{opacity:0;transform:translateY(12px);} 13%,94%{opacity:1;transform:translateY(0);} 99%,100%{opacity:0;transform:translateY(12px);} }
+  @keyframes grpcMsg2 { 0%,26%{opacity:0;transform:translateY(12px);} 33%,94%{opacity:1;transform:translateY(0);} 99%,100%{opacity:0;transform:translateY(12px);} }
+  @keyframes grpcMsg3 { 0%,62%{opacity:0;transform:translateY(12px);} 69%,94%{opacity:1;transform:translateY(0);} 99%,100%{opacity:0;transform:translateY(12px);} }
+  .mr-grpc .grpc-type { animation: grpcType 7s ease infinite; }
+  @keyframes grpcType { 0%,44%{opacity:0;transform:translateY(8px);} 48%,58%{opacity:1;transform:translateY(0);} 62%,100%{opacity:0;transform:translateY(8px);} }
+  .mr-grpc .grpc-react { animation: grpcReact 7s ease infinite; }
+  @keyframes grpcReact { 0%,40%{opacity:0;transform:scale(0);} 46%{opacity:1;transform:scale(1.25);} 50%,94%{opacity:1;transform:scale(1);} 99%,100%{opacity:0;transform:scale(0);} }
+  .mr-grpc .grpc-dot { animation: grpcDot 1.1s ease-in-out infinite; }
+  .mr-grpc .grpc-dot.d2 { animation-delay: 0.15s; }
+  .mr-grpc .grpc-dot.d3 { animation-delay: 0.3s; }
+  @keyframes grpcDot { 0%,100%{transform:translateY(0);opacity:0.4;} 50%{transform:translateY(-4px);opacity:1;} }
+  .mr-grpc .grpc-badge { animation: grpcBadge 1.8s ease-in-out infinite; }
+  @keyframes grpcBadge { 0%,100%{transform:scale(1);} 50%{transform:scale(1.14);} }
+</style>
+<div class="mr-grpc" style="background: #f2f2f7; height: 844px; display: flex; flex-direction: column; font-family: 'Geist', sans-serif; color: #1a2332; overflow: hidden;">
+
+  <div style="position: relative; height: 470px; flex-shrink: 0; background: linear-gradient(160deg, #f3e8ff, #e4eefe); border-radius: 0 0 32px 32px; overflow: hidden;">
+    <span style="position: absolute; top: 18px; right: 16px; color: #5c6b7d; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05rem; z-index: 6;">Skip</span>
+
+    <div style="position: absolute; top: 46px; left: 16px; right: 16px; bottom: 28px; background: #ffffff; border-radius: 24px; box-shadow: 0 20px 48px rgba(16,23,36,0.18); display: flex; flex-direction: column; overflow: hidden;">
+
+      <div style="display: flex; align-items: center; gap: 11px; padding: 16px 16px 12px;">
+        <div style="width: 42px; height: 42px; border-radius: 13px; background: #d7f5f0; display: flex; align-items: center; justify-content: center; font-size: 23px; flex-shrink: 0;">&#129462;</div>
+        <div style="flex: 1; min-width: 0;">
+          <div style="font-size: 17px; font-weight: 700;">Hiking Crew</div>
+          <div style="font-size: 12px; color: #98a1ad;">8 members</div>
+        </div>
+        <div style="display: flex;">
+          <img src="https://i.pravatar.cc/48?img=15" alt="" style="width: 26px; height: 26px; border-radius: 50%; border: 2px solid #ffffff;" />
+          <img src="https://i.pravatar.cc/48?img=32" alt="" style="width: 26px; height: 26px; border-radius: 50%; border: 2px solid #ffffff; margin-left: -8px;" />
+          <img src="https://i.pravatar.cc/48?img=5" alt="" style="width: 26px; height: 26px; border-radius: 50%; border: 2px solid #ffffff; margin-left: -8px;" />
+        </div>
+      </div>
+
+      <div style="flex: 1; padding: 12px 14px 0; display: flex; flex-direction: column; gap: 12px; overflow: hidden; border-top: 1px solid #eef0f2;">
+        <div class="grpc-msg m1" style="display: flex; gap: 9px; align-items: flex-start;">
+          <img src="https://i.pravatar.cc/48?img=15" alt="" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;" />
+          <div>
+            <div style="font-size: 11px; font-weight: 700; color: #98a1ad; margin-bottom: 3px;">Maya</div>
+            <div style="position: relative; display: inline-block; background: #f2f2f7; border-radius: 4px 16px 16px 16px; padding: 9px 13px; font-size: 14px; font-weight: 500; line-height: 1.3; max-width: 210px;">Anyone free Sat for the sunrise hike?
+              <span class="grpc-react" style="position: absolute; bottom: -11px; right: 6px; background: #ffffff; border: 1px solid #eceef1; border-radius: 999px; padding: 1px 7px; font-size: 11px; font-weight: 700; box-shadow: 0 3px 8px rgba(16,23,36,0.1);">&#128293; 3</span>
+            </div>
+          </div>
+        </div>
+        <div class="grpc-msg m2" style="display: flex; gap: 9px; align-items: flex-start;">
+          <img src="https://i.pravatar.cc/48?img=32" alt="" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;" />
+          <div>
+            <div style="font-size: 11px; font-weight: 700; color: #98a1ad; margin-bottom: 3px;">Jordan</div>
+            <div style="display: inline-block; background: #f2f2f7; border-radius: 4px 16px 16px 16px; padding: 9px 13px; font-size: 14px; font-weight: 500; line-height: 1.3;">I'm in! &#128588;</div>
+          </div>
+        </div>
+        <div class="grpc-type" style="display: flex; gap: 9px; align-items: center;">
+          <img src="https://i.pravatar.cc/48?img=5" alt="" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;" />
+          <div style="display: flex; gap: 4px; background: #f2f2f7; border-radius: 16px; padding: 11px 14px;">
+            <span class="grpc-dot" style="width: 6px; height: 6px; border-radius: 50%; background: #98a1ad;"></span>
+            <span class="grpc-dot d2" style="width: 6px; height: 6px; border-radius: 50%; background: #98a1ad;"></span>
+            <span class="grpc-dot d3" style="width: 6px; height: 6px; border-radius: 50%; background: #98a1ad;"></span>
+          </div>
+        </div>
+        <div class="grpc-msg m3" style="display: flex; gap: 9px; align-items: flex-start;">
+          <img src="https://i.pravatar.cc/48?img=5" alt="" style="width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;" />
+          <div>
+            <div style="font-size: 11px; font-weight: 700; color: #98a1ad; margin-bottom: 3px;">Sam</div>
+            <div style="display: inline-block; background: #f2f2f7; border-radius: 4px 16px 16px 16px; padding: 9px 13px; font-size: 14px; font-weight: 500; line-height: 1.3;">Booking the campsite now &#127957;&#65039;</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 6px; padding: 11px 14px 0; overflow: hidden; border-top: 1px solid #eef0f2;">
+        <span style="flex-shrink: 0; padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #ffffff; background: linear-gradient(145deg, #14b8a6, #3b82f6);">&#128172; Main</span>
+        <span style="flex-shrink: 0; padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #5c6b7d; background: #f2f2f7;">&#128197; Plans</span>
+        <span style="position: relative; flex-shrink: 0; padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #5c6b7d; background: #f2f2f7;">&#128248; Photos
+          <span class="grpc-badge" style="position: absolute; top: -5px; right: -4px; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 999px; background: #12b886; color: #ffffff; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center;">2</span>
+        </span>
+        <span style="flex-shrink: 0; padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #5c6b7d; background: #f2f2f7;">&#129462; Trail</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 9px; padding: 10px 14px 14px;">
+        <div style="flex: 1; height: 38px; border-radius: 999px; background: #f2f2f7; display: flex; align-items: center; padding: 0 15px; font-size: 13px; color: #98a1ad;">Message the crew</div>
+        <div style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(145deg, #14b8a6, #3b82f6); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <i class="ph-fill ph-paper-plane-tilt" style="font-size: 17px; color: #ffffff;"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex: 1; overflow: hidden; padding: 36px 16px 0; display: flex; flex-direction: column; align-items: center;">
+    <h1 style="margin: 0 0 10px; font-size: 32px; font-weight: 700; line-height: 1.15; text-align: center;">One home for your crew</h1>
+    <div style="font-size: 16px; color: #5c6b7d; text-align: center; max-width: 300px; line-height: 1.45;">Every group gets its own chat, split into channels for plans, photos, and trip talk. No more scattered group texts.</div>
+  </div>
+
+  <div style="flex-shrink: 0; padding: 8px 16px 20px;">
+    <div style="display: flex; justify-content: center; gap: 7px; margin-bottom: 18px;">
+      <div style="width: 7px; height: 7px; border-radius: 50%; background: rgba(16,23,36,0.18);"></div>
+      <div style="width: 7px; height: 7px; border-radius: 50%; background: rgba(16,23,36,0.18);"></div>
+      <div style="width: 22px; height: 7px; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6);"></div>
+    </div>
+    <div style="height: 48px; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; font-size: 18px; font-weight: 700; display: flex; align-items: center; justify-content: center;">Let's go!</div>
+  </div>
+</div>

@@ -1,0 +1,169 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  .chat-scope { --chat-bg: #0b0f14; --chat-surface: #1b2027; --chat-out: #2f7a72; --bubble-radius: 18px; }
+  .chat-scope .chat-wrap { background: var(--chat-bg); height: 844px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .chat-scope .chat-body { overflow-y: auto; }
+  .chat-scope .chat-pattern { position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/telegramdesktop/tdesktop/dev/Telegram/Resources/art/bg/pattern.png'); background-size: 420px; opacity: 0.06; pointer-events: none; mix-blend-mode: screen; }
+  .chat-scope .chat-header { position: sticky; top: 0; z-index: 3; display: grid; grid-template-columns: 28px 36px 1fr 28px; align-items: center; gap: 10px; padding: 10px 12px; background: rgba(11,15,20,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .chat-scope .chat-header .back { background: transparent; border: 0; color: rgba(255,255,255,0.95); display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
+  .chat-scope .chat-header .back i { font-size: 22px; }
+  .chat-scope .chat-header .avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
+  .chat-scope .chat-header .title { font-size: 1rem; font-weight: 800; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .chat-scope .chat-header .tag-btn { background: transparent; border: 0; color: rgba(255,255,255,0.85); padding: 0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+  .chat-scope .chat-header .tag-btn i { font-size: 20px; }
+
+  .chat-scope .chat-body { position: relative; z-index: 1; flex: 1; padding: 12px 10px 8px; display: flex; flex-direction: column; gap: 10px; }
+
+  .chat-scope .msg-row { display: grid; grid-template-columns: 36px 1fr; gap: 8px; align-items: flex-start; }
+  .chat-scope .msg-row.out { grid-template-columns: 1fr; }
+  .chat-scope .msg-row .avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; align-self: flex-start; }
+  .chat-scope .msg-row .avatar.initials { background: #4b5563; color: #fff; font-size: 0.7rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; letter-spacing: 0.02em; }
+  .chat-scope .msg-stack { display: flex; flex-direction: column; gap: 4px; max-width: 78%; }
+  .chat-scope .msg-row.out .msg-stack { margin-left: auto; align-items: flex-end; }
+
+  .chat-scope .bubble { padding: 9px 12px 10px; border-radius: var(--bubble-radius); color: #fff; font-size: 0.95rem; line-height: 1.3; word-wrap: break-word; }
+  .chat-scope .bubble.in { background: var(--chat-surface); border-bottom-left-radius: 6px; }
+  .chat-scope .bubble.out { background: var(--chat-out); border-bottom-right-radius: 6px; }
+  .chat-scope .bubble.emoji-only { background: transparent; padding: 0; font-size: 2.4rem; line-height: 1; }
+  .chat-scope .bubble .sender { font-size: 0.82rem; font-weight: 800; color: #5eb3ff; margin-bottom: 2px; }
+
+  .chat-scope .day-divider { text-align: center; color: rgba(255,255,255,0.55); font-size: 0.85rem; padding: 6px 0; }
+  .chat-scope .seen { text-align: center; color: rgba(255,255,255,0.45); font-size: 0.78rem; padding: 6px 0 2px; }
+
+  /* Cross-channel widget — shows a peek of another channel's unread messages */
+  .chat-scope .channel-widget { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 10px 12px; display: flex; flex-direction: column; gap: 10px; }
+  .chat-scope .channel-widget .cw-head { display: grid; grid-template-columns: 28px 1fr auto auto; align-items: center; gap: 10px; }
+  .chat-scope .channel-widget .cw-emoji { font-size: 20px; line-height: 1; }
+  .chat-scope .channel-widget .cw-title { font-size: 1.02rem; font-weight: 800; color: #fff; }
+  .chat-scope .channel-widget .cw-count { font-size: 0.95rem; font-weight: 700; color: #ffb84d; }
+  .chat-scope .channel-widget .cw-caret { color: rgba(255,255,255,0.6); display: inline-flex; align-items: center; justify-content: center; }
+  .chat-scope .channel-widget .cw-caret i { font-size: 18px; }
+  .chat-scope .channel-widget .cw-msgs { display: flex; flex-direction: column; gap: 6px; }
+  .chat-scope .channel-widget .cw-msg { display: grid; grid-template-columns: 26px 1fr; align-items: center; gap: 10px; color: #fff; }
+  .chat-scope .channel-widget .cw-msg .av { width: 26px; height: 26px; border-radius: 50%; background: #2c8d8b; color: #fff; font-size: 0.72rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .chat-scope .channel-widget .cw-msg .av img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+  .chat-scope .channel-widget .cw-msg .text { font-size: 1rem; }
+  .chat-scope .channel-widget .cw-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .chat-scope .channel-widget .cw-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 12px; border-radius: 10px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); color: #fff; font-size: 0.95rem; font-weight: 600; cursor: pointer; }
+  .chat-scope .channel-widget .cw-btn i { font-size: 16px; }
+
+  /* Channel tabs above composer */
+  .chat-scope .channel-tabs { position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; padding: 8px 10px 8px 12px; overflow-x: auto; background: rgba(11,15,20,0.92); border-top: 1px solid rgba(255,255,255,0.05); }
+  .chat-scope .channel-tabs::-webkit-scrollbar { display: none; }
+  .chat-scope .ch-tab { position: relative; display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 999px; background: transparent; border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.9); font-weight: 700; font-size: 0.9rem; white-space: nowrap; cursor: pointer; flex-shrink: 0; }
+  .chat-scope .ch-tab.active { background: #fff; color: #111; border-color: #fff; }
+  .chat-scope .ch-tab .tab-emoji { font-size: 14px; line-height: 1; }
+  .chat-scope .ch-tab .tab-badge { position: absolute; top: -6px; right: -4px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #16a34a; color: #fff; font-size: 0.72rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; border: 2px solid #0b0f14; }
+  .chat-scope .ch-tab-edit { width: 32px; height: 32px; border-radius: 50%; background: transparent; border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.7); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0; }
+  .chat-scope .ch-tab-edit i { font-size: 14px; }
+
+  .chat-scope .composer { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 44px; align-items: center; gap: 10px; padding: 6px 12px 18px; background: rgba(11,15,20,0.92); }
+  .chat-scope .composer .input-pill { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 999px; background: #1b2027; }
+  .chat-scope .composer .input-pill .placeholder { color: rgba(255,255,255,0.5); font-size: 0.98rem; padding-left: 4px; }
+  .chat-scope .composer .icon-btn { background: transparent; border: 0; color: rgba(255,255,255,0.55); width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+  .chat-scope .composer .icon-btn i { font-size: 22px; }
+  .chat-scope .composer .plus-btn { color: rgba(255,255,255,0.75); }
+  .chat-scope .composer .send-btn { width: 44px; height: 44px; border-radius: 50%; background: #2c333d; color: rgba(255,255,255,0.85); border: 0; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+  .chat-scope .composer .send-btn i { font-size: 20px; }
+</style>
+
+<div class="mr-scope chat-scope">
+  <div class="chat-wrap">
+    <div class="chat-pattern" aria-hidden="true"></div>
+
+    <header class="chat-header">
+      <button type="button" class="back" aria-label="Back"><i class="ph ph-caret-left"></i></button>
+      <img class="avatar" src="https://i.pravatar.cc/80?img=15" alt="" />
+      <div class="title">UFC 329: McGregor vs. Hollowa…</div>
+      <button type="button" class="tag-btn" aria-label="Tag"><i class="ph ph-tag"></i></button>
+    </header>
+
+    <div class="chat-body">
+      <div class="msg-row out">
+        <div class="msg-stack">
+          <div class="bubble out">Just so we can get it out and I get start getting people on without having to test more</div>
+        </div>
+      </div>
+
+      <div class="msg-row">
+        <img class="avatar" src="https://i.pravatar.cc/64?img=12" alt="" />
+        <div class="msg-stack">
+          <div class="bubble in">
+            <div class="sender">Eric Hechavarria</div>
+            It's not meant to work on iOS
+          </div>
+          <div class="bubble in">It's android only</div>
+        </div>
+      </div>
+
+      <div class="msg-row out">
+        <div class="msg-stack">
+          <div class="bubble out">Oh nice ok</div>
+        </div>
+      </div>
+
+      <div class="day-divider">Today</div>
+
+      <!-- Cross-channel widget — message arrived in #Games while user is in Main -->
+      <div class="channel-widget" role="button" aria-label="Open Games channel">
+        <div class="cw-head">
+          <span class="cw-emoji">🎮</span>
+          <span class="cw-title">Games channel</span>
+          <span class="cw-count">2 New</span>
+          <span class="cw-caret"><i class="ph ph-caret-right"></i></span>
+        </div>
+        <div class="cw-msgs">
+          <div class="cw-msg">
+            <span class="av">B</span>
+            <span class="text">Anyone want to run a Rocket League set tonight?</span>
+          </div>
+          <div class="cw-msg">
+            <span class="av">B</span>
+            <span class="text">I'll be on around 9</span>
+          </div>
+        </div>
+        <div class="cw-actions">
+          <button type="button" class="cw-btn"><i class="ph ph-check"></i> Mark read</button>
+          <button type="button" class="cw-btn"><i class="ph ph-arrow-bend-up-left"></i> Quick reply</button>
+        </div>
+      </div>
+
+      <div class="msg-row">
+        <div class="avatar initials" aria-hidden="true">B</div>
+        <div class="msg-stack">
+          <div class="bubble in">
+            <div class="sender">Brandon Unglaub</div>
+            Cool I'm in
+          </div>
+        </div>
+      </div>
+
+      <div class="seen">Seen by 1 other</div>
+    </div>
+
+    <!-- Channel tabs row -->
+    <div class="channel-tabs">
+      <button type="button" class="ch-tab active">Main</button>
+      <button type="button" class="ch-tab">
+        <span class="tab-emoji">🎮</span> Games
+        <span class="tab-badge">2</span>
+      </button>
+      <button type="button" class="ch-tab"><span class="tab-emoji">🗓️</span> Plans</button>
+      <button type="button" class="ch-tab"><span class="tab-emoji">🪨</span> Rocks</button>
+      <button type="button" class="ch-tab-edit" aria-label="Manage channels"><i class="ph ph-pencil-simple"></i></button>
+    </div>
+
+    <div class="composer">
+      <div class="input-pill">
+        <button type="button" class="icon-btn plus-btn" aria-label="Add"><i class="ph ph-plus"></i></button>
+        <span class="placeholder">Message</span>
+        <button type="button" class="icon-btn" aria-label="Photo"><i class="ph ph-image"></i></button>
+        <button type="button" class="icon-btn" aria-label="Emoji"><i class="ph ph-smiley"></i></button>
+      </div>
+      <button type="button" class="send-btn" aria-label="Send"><i class="ph ph-paper-plane-right"></i></button>
+    </div>
+  </div>
+</div>

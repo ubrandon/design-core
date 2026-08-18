@@ -1,0 +1,410 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&display=swap");
+
+  .mrv2-home2, .mrv2-home2 * { box-sizing: border-box; font-family: "Geist", sans-serif; margin: 0; }
+  .mrv2-home2 { background: #ffffff; color: #1a2332; position: relative; overflow-x: clip; }
+  .mrv2-home2 .content { padding: 0 16px; display: flex; flex-direction: column; gap: 16px; padding-bottom: 96px; }
+
+  /* Toolbar */
+  .mrv2-home2 .toolbar { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: #ffffff; }
+  .mrv2-home2 .toolbar .brand { display: flex; align-items: center; gap: 7px; }
+  .mrv2-home2 .toolbar .brand img { width: 34px; height: 34px; object-fit: contain; display: block; }
+  .mrv2-home2 .toolbar .brand span { font-size: 24px; font-weight: 700; color: #1a2332; }
+  .mrv2-home2 .toolbar .actions { display: flex; align-items: center; gap: 18px; }
+  .mrv2-home2 .toolbar .actions .tbtn { position: relative; color: #1a2332; font-size: 24px; line-height: 1; }
+  .mrv2-home2 .badge-dot { position: absolute; top: -8px; right: -8px; min-width: 22px; height: 22px; border-radius: 999px; background: #0ca678; color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center; border: 2px solid #ffffff; padding: 0 4px; }
+
+  /* Greeting */
+  .mrv2-home2 .greet { display: flex; flex-direction: column; gap: 7px; padding-top: 8px; }
+  .mrv2-home2 .greet h1 { font-size: 36px; font-weight: 800; line-height: 1.15; }
+  .mrv2-home2 .greet h1 .grad { background-image: linear-gradient(90deg, #14b8a6, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+  .mrv2-home2 .greet h1 .name { color: #5c6b7d; }
+  .mrv2-home2 .now { display: inline-flex; align-items: center; gap: 7px; font-size: 16px; font-weight: 600; color: #5c6b7d; line-height: 1.4; }
+  .mrv2-home2 .now .pulse { width: 8px; height: 8px; border-radius: 50%; background: #0ca678; flex-shrink: 0; box-shadow: 0 0 0 4px rgba(12, 166, 120, 0.15); }
+  .mrv2-home2 .now strong { color: #1a2332; font-weight: 700; }
+
+  /* Section header */
+  .mrv2-home2 section { display: flex; flex-direction: column; gap: 11px; }
+  .mrv2-home2 .sec-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .mrv2-home2 .sec-head h2 { font-size: 22px; font-weight: 700; line-height: 1.2; color: #1a2332; }
+  .mrv2-home2 .sec-head .action { display: inline-flex; align-items: center; gap: 3px; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #5c6b7d; white-space: nowrap; }
+  .mrv2-home2 .sec-head .action i { font-size: 16px; }
+
+  /* Rails */
+  .mrv2-home2 .rail { display: flex; align-items: stretch; overflow-x: auto; margin: -19px -16px -36px; padding: 24px 16px 56px; scrollbar-width: none; -ms-overflow-style: none; }
+  .mrv2-home2 .rail::-webkit-scrollbar { display: none; }
+  .mrv2-home2 .rail-cards { gap: 16px; }
+  .mrv2-home2 .rail-people { gap: 7px; padding-bottom: 8px; margin-bottom: 0; }
+
+  /* Needs your answer */
+  .mrv2-home2 .ask-card { background: #ffffff; border-radius: 24px; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.09), 0 16px 40px rgba(0, 0, 0, 0.14); padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .mrv2-home2 .ask-card .who { display: flex; align-items: center; gap: 11px; }
+  .mrv2-home2 .ask-card .who img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .mrv2-home2 .ask-card .who .w-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .mrv2-home2 .ask-card .who .w-txt span { font-size: 14px; color: #5c6b7d; }
+  .mrv2-home2 .ask-card .who .w-txt strong { font-size: 17px; font-weight: 700; color: #101724; }
+  .mrv2-home2 .ask-card .when { display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; color: #5c6b7d; }
+  .mrv2-home2 .ask-card .when i { font-size: 16px; }
+  .mrv2-home2 .ask-card .btns { display: flex; gap: 8px; }
+  .mrv2-home2 .btn-grad { flex: 1; height: 44px; border: 0; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #fff; font-size: 16px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
+  .mrv2-home2 .btn-quiet { flex: 1; height: 44px; border: 1.5px solid rgba(32, 36, 42, 0.16); border-radius: 999px; background: #ffffff; color: #1a2332; font-size: 16px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; }
+
+  /* Plan card (white variant) */
+  .mrv2-home2 .plan-card { width: 280px; flex-shrink: 0; position: relative; border-radius: 24px; padding: 8px; background: #ffffff; overflow: hidden; color: #1a2332; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.09), 0 16px 40px rgba(0, 0, 0, 0.14); }
+  .mrv2-home2 .plan-card .photo { width: 100%; aspect-ratio: 2 / 1; border-radius: 18px; background-size: cover; background-position: center; }
+  .mrv2-home2 .plan-card .details { padding: 4px 8px 8px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .mrv2-home2 .plan-card .date { font-size: 13px; font-weight: 700; text-transform: uppercase; color: #5c6b7d; letter-spacing: 0.4px; line-height: 1; }
+  .mrv2-home2 .plan-card .title-row { display: flex; align-items: baseline; gap: 7px; }
+  .mrv2-home2 .plan-card .title { font-size: 21px; font-weight: 700; line-height: 1.2; color: #101724; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .mrv2-home2 .plan-card .emoji { font-size: 21px; line-height: 1; }
+  .mrv2-home2 .plan-card .meta { margin-top: auto; min-height: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .mrv2-home2 .plan-card .loc { display: flex; align-items: center; gap: 4px; font-size: 14px; color: #5c6b7d; min-width: 0; }
+  .mrv2-home2 .plan-card .loc span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-home2 .plan-card .loc i { font-size: 16px; flex-shrink: 0; }
+  .mrv2-home2 .stack { display: flex; align-items: center; flex-shrink: 0; }
+  .mrv2-home2 .stack img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; margin-left: -6px; border: 2px solid #ffffff; }
+  .mrv2-home2 .stack img:first-child { margin-left: 0; }
+  .mrv2-home2 .plan-card .group { display: flex; align-items: center; gap: 6px; min-width: 0; flex-shrink: 0; }
+  .mrv2-home2 .plan-card .group img { width: 24px; height: 24px; border-radius: 6px; object-fit: cover; }
+  .mrv2-home2 .plan-card .group span { font-size: 14px; font-weight: 600; color: #5c6b7d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 90px; }
+
+  /* Joinable plan: friend attribution row + join pill */
+  .mrv2-home2 .plan-card .join-row { display: flex; align-items: center; gap: 7px; min-width: 0; }
+  .mrv2-home2 .plan-card .join-row img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .mrv2-home2 .plan-card .join-row span { font-size: 14px; font-weight: 600; color: #5c6b7d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-home2 .plan-card .join-row span strong { font-weight: 700; color: #101724; }
+  .mrv2-home2 .join-pill { height: 32px; padding: 0 16px; border: 0; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+  /* Tail affordance */
+  .mrv2-home2 .tail { width: 96px; margin: 0 24px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; }
+  .mrv2-home2 .tail .circ { width: 72px; height: 72px; border-radius: 50%; background: #f1f4f7; display: grid; place-items: center; font-size: 28px; color: #1a2332; }
+  .mrv2-home2 .tail span { font-size: 14px; color: #5c6b7d; }
+
+  /* Group nudge */
+  .mrv2-home2 .nudge { background: #ffffff; border-radius: 24px; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.09), 0 16px 40px rgba(0, 0, 0, 0.14); padding: 16px; display: flex; align-items: center; gap: 12px; }
+  .mrv2-home2 .nudge img { width: 52px; height: 52px; border-radius: 16px; object-fit: cover; flex-shrink: 0; }
+  .mrv2-home2 .nudge .n-txt { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }
+  .mrv2-home2 .nudge .n-txt strong { font-size: 16px; font-weight: 700; color: #101724; line-height: 1.3; }
+  .mrv2-home2 .nudge .n-txt span { font-size: 14px; color: #5c6b7d; line-height: 1.4; }
+  .mrv2-home2 .nudge .btn-grad { flex: none; height: 38px; padding: 0 16px; font-size: 14px; }
+
+  /* Friend place activity rows */
+  .mrv2-home2 .feed { display: flex; flex-direction: column; gap: 5px; }
+  .mrv2-home2 .feed-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+  .mrv2-home2 .feed-row .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .mrv2-home2 .feed-row .f-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+  .mrv2-home2 .feed-row .f-txt p { font-size: 15px; color: #1a2332; line-height: 1.4; }
+  .mrv2-home2 .feed-row .f-txt p strong { font-weight: 700; }
+  .mrv2-home2 .feed-row .f-txt .sub { display: flex; align-items: center; gap: 5px; font-size: 13px; color: #5c6b7d; }
+  .mrv2-home2 .feed-row .f-txt .stars { color: #f5a524; font-size: 13px; letter-spacing: 1px; }
+  .mrv2-home2 .feed-row .thumb { width: 56px; height: 56px; border-radius: 16px; object-fit: cover; background: #f1f4f7; flex-shrink: 0; }
+
+  /* Chat + person cards */
+  .mrv2-home2 .mini-card { width: 108px; flex-shrink: 0; border-radius: 16px; padding: 7px 5px; display: flex; flex-direction: column; align-items: center; gap: 11px; text-align: center; color: #101724; }
+  .mrv2-home2 .mini-card .av-wrap { position: relative; width: 72px; height: 72px; flex-shrink: 0; }
+  .mrv2-home2 .mini-card .av { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; display: block; background: #68707a; }
+  .mrv2-home2 .mini-card .av-sq { border-radius: 16px; }
+  .mrv2-home2 .mini-card .unread { position: absolute; right: -4px; bottom: -4px; min-width: 26px; height: 26px; border-radius: 999px; background: #0ca678; color: #fff; font-size: 14px; font-weight: 700; display: grid; place-items: center; border: 2px solid #ffffff; padding: 0 5px; }
+  .mrv2-home2 .mini-card .txt { display: flex; flex-direction: column; gap: 5px; min-width: 0; width: 100%; }
+  .mrv2-home2 .mini-card .txt strong { font-size: 16px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-home2 .mini-card .txt span { font-size: 14px; color: #5c6b7d; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .mrv2-home2 .add-btn { height: 32px; padding: 0 12px; border-radius: 999px; background: #e1e3e6; color: #101724; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; border: 0; box-shadow: none; }
+
+  /* Ideas teaser */
+  .mrv2-home2 .teaser { position: relative; border-radius: 24px; padding: 1.5px; background: linear-gradient(135deg, #14b8a6, #3b82f6); }
+  .mrv2-home2 .teaser .inner { border-radius: 22.5px; background: linear-gradient(135deg, rgba(20, 184, 166, 0.07), rgba(59, 130, 246, 0.07)), #ffffff; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+  .mrv2-home2 .teaser .spark { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #fff; display: grid; place-items: center; font-size: 22px; flex-shrink: 0; }
+  .mrv2-home2 .teaser .t-txt { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }
+  .mrv2-home2 .teaser .t-txt strong { font-size: 16px; font-weight: 700; color: #101724; }
+  .mrv2-home2 .teaser .t-txt span { font-size: 14px; color: #5c6b7d; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .mrv2-home2 .teaser > .inner > i { color: #3b82f6; font-size: 18px; flex-shrink: 0; }
+
+  /* FAB */
+  .mrv2-home2 .fab { position: absolute; right: 16px; bottom: 99px; z-index: 10; height: 56px; min-width: 56px; padding: 0 16px; border: 0; outline: none; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #fff; display: inline-flex; align-items: center; white-space: nowrap; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14), 0 16px 44px rgba(0, 0, 0, 0.2); }
+  .mrv2-home2 .fab i { font-size: 24px; }
+  .mrv2-home2 .fab span { font-size: 18px; font-weight: 700; margin-left: 5px; }
+
+  /* Tab bar */
+  .mrv2-home2 .tab-bar { position: relative; z-index: 5; height: 67px; background: #ffffff; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12); display: flex; align-items: flex-start; padding-top: 9px; }
+  .mrv2-home2 .tab-bar .tab { flex: 1; display: flex; align-items: center; justify-content: center; color: #3b4551; }
+  .mrv2-home2 .tab-bar .tab i { font-size: 24px; }
+  .mrv2-home2 .tab-bar .tab.discover i { font-size: 26px; }
+  .mrv2-home2 .tab-bar .tab.selected { color: #1a2332; }
+  .mrv2-home2 .tab-bar .tab .icon-wrap { position: relative; display: inline-flex; }
+  .mrv2-home2 .tab-bar .tab .badge-dot { position: absolute; top: -8px; right: -14px; }
+  .mrv2-home2 .tab-bar .tab .you { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; display: block; }
+</style>
+
+<div class="mrv2-home2" style="background: #ffffff;">
+  <div class="toolbar">
+    <div class="brand">
+      <img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" />
+      <span>MixedRoutes</span>
+    </div>
+    <div class="actions">
+      <span class="tbtn"><i class="ph ph-user-plus"></i></span>
+      <span class="tbtn"><i class="ph ph-bell"></i><span class="badge-dot">2</span></span>
+      <span class="tbtn"><i class="ph ph-gear-six"></i></span>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="greet">
+      <h1><span class="grad">Evening</span><span class="name">, Brandon</span></h1>
+      <div class="now"><span class="pulse"></span><span>Happening now: <strong>Trivia at The Well</strong></span></div>
+    </div>
+
+    <section>
+      <div class="sec-head">
+        <h2>Needs your answer</h2>
+      </div>
+      <div class="ask-card">
+        <div class="who">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          <div class="w-txt">
+            <span>Sam invited you</span>
+            <strong>Hike at Craggy Gardens 🥾</strong>
+          </div>
+        </div>
+        <div class="when"><i class="ph ph-calendar-blank"></i><span>Saturday · 9:00 AM</span><i class="ph ph-map-pin"></i><span>Blue Ridge Pkwy</span></div>
+        <div class="btns">
+          <button class="btn-grad"><i class="ph ph-check"></i>Going</button>
+          <button class="btn-quiet">Can't make it</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <h2>Your plans</h2>
+        <span class="action">All plans <i class="ph ph-caret-right"></i></span>
+      </div>
+      <div class="rail rail-cards">
+        <div class="plan-card">
+          <div class="photo" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=560&h=315&q=80');"></div>
+          <div class="details">
+            <div class="date">Fri · 7pm</div>
+            <div class="title-row">
+              <div class="title">Dinner at Bavette's</div>
+              <span class="emoji">🍽️</span>
+            </div>
+            <div class="meta">
+              <div class="loc"><i class="ph-fill ph-map-pin"></i><span>Downtown</span></div>
+              <div class="stack">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="plan-card">
+          <div class="photo" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=560&h=315&q=80');"></div>
+          <div class="details">
+            <div class="date">Sat · 8am</div>
+            <div class="title-row">
+              <div class="title">Sunrise trail hike</div>
+              <span class="emoji">🥾</span>
+            </div>
+            <div class="meta">
+              <div class="loc"><i class="ph-fill ph-map-pin"></i><span>Craggy Gardens</span></div>
+              <div class="group">
+                <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+                <span>Hiking Club</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <h2>Friends are going</h2>
+      </div>
+      <div class="rail rail-cards">
+        <div class="plan-card">
+          <div class="photo" style="background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=560&h=315&q=80');"></div>
+          <div class="details">
+            <div class="date">Sat · 5pm</div>
+            <div class="title-row">
+              <div class="title">Shindig on the Green</div>
+              <span class="emoji">🪕</span>
+            </div>
+            <div class="join-row">
+              <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+              <span><strong>Alex</strong> is going</span>
+            </div>
+            <div class="meta">
+              <div class="loc"><i class="ph-fill ph-map-pin"></i><span>Pack Square Park</span></div>
+              <button class="join-pill">Join</button>
+            </div>
+          </div>
+        </div>
+        <div class="plan-card">
+          <div class="photo" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=560&h=315&q=80');"></div>
+          <div class="details">
+            <div class="date">Sun · 11am</div>
+            <div class="title-row">
+              <div class="title">Farmers market brunch</div>
+              <span class="emoji">🥐</span>
+            </div>
+            <div class="join-row">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+              <span><strong>Priya</strong> + 3 are going</span>
+            </div>
+            <div class="meta">
+              <div class="loc"><i class="ph-fill ph-map-pin"></i><span>North Asheville</span></div>
+              <button class="join-pill">Join</button>
+            </div>
+          </div>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="nudge">
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+      <div class="n-txt">
+        <strong>Weekend Crew is quiet</strong>
+        <span>Nothing planned this month.</span>
+      </div>
+      <button class="btn-grad"><i class="ph ph-sparkle"></i>Get ideas</button>
+    </div>
+
+    <section>
+      <div class="sec-head">
+        <h2>Friend activity</h2>
+      </div>
+      <div class="feed">
+        <div class="feed-row">
+          <img class="av" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          <div class="f-txt">
+            <p><strong>Jordan</strong> saved <strong>Little Jumbo</strong> to Date Spots</p>
+            <div class="sub">2h ago</div>
+          </div>
+          <img class="thumb" src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+        </div>
+        <div class="feed-row">
+          <img class="av" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          <div class="f-txt">
+            <p><strong>Riley</strong> reviewed <strong>Ultra Coffeebar</strong></p>
+            <div class="sub"><span class="stars">★★★★★</span><span>· 5h ago</span></div>
+          </div>
+          <img class="thumb" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+        </div>
+        <div class="feed-row">
+          <img class="av" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          <div class="f-txt">
+            <p><strong>Devon</strong> saved <strong>Salt &amp; Straw</strong> to Sweet Tooth</p>
+            <div class="sub">Yesterday</div>
+          </div>
+          <img class="thumb" src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <h2>Recent chats</h2>
+        <span class="action">All chats <i class="ph ph-caret-right"></i></span>
+      </div>
+      <div class="rail rail-people">
+        <div class="mini-card">
+          <div class="av-wrap">
+            <img class="av av-sq" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+            <span class="unread">3</span>
+          </div>
+          <div class="txt"><strong>Weekend Crew</strong><span>Sara: who's in for Sat?</span></div>
+        </div>
+        <div class="mini-card">
+          <div class="av-wrap">
+            <img class="av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+            <span class="unread">1</span>
+          </div>
+          <div class="txt"><strong>Sara</strong><span>See you at 7!</span></div>
+        </div>
+        <div class="mini-card">
+          <div class="av-wrap">
+            <img class="av av-sq" src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          </div>
+          <div class="txt"><strong>Hiking Club</strong><span>Trail is open again 🎉</span></div>
+        </div>
+        <div class="mini-card">
+          <div class="av-wrap">
+            <img class="av" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          </div>
+          <div class="txt"><strong>Sam</strong><span>Sounds good 👍</span></div>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <h2>Suggested people</h2>
+        <span class="action">View more <i class="ph ph-caret-right"></i></span>
+      </div>
+      <div class="rail rail-people">
+        <div class="mini-card">
+          <img class="av" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          <div class="txt"><strong>Devon</strong><span>3 mutual</span></div>
+          <button class="add-btn">Add</button>
+        </div>
+        <div class="mini-card">
+          <img class="av" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          <div class="txt"><strong>Maya</strong><span>From your contacts</span></div>
+          <button class="add-btn">Add</button>
+        </div>
+        <div class="mini-card">
+          <img class="av" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          <div class="txt"><strong>Jordan</strong><span>2 mutual</span></div>
+          <button class="add-btn">Add</button>
+        </div>
+        <div class="mini-card">
+          <img class="av" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+          <div class="txt"><strong>Alex</strong><span>From your contacts</span></div>
+          <button class="add-btn">Add</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="teaser">
+      <div class="inner">
+        <span class="spark"><i class="ph-fill ph-sparkle"></i></span>
+        <div class="t-txt">
+          <strong>This weekend near Asheville</strong>
+          <span>Comedy festival, drag brunch, Shindig on the Green…</span>
+        </div>
+        <i class="ph ph-caret-right"></i>
+      </div>
+    </div>
+  </div>
+
+  <button class="fab"><i class="ph-fill ph-calendar-blank"></i><span>New plan</span></button>
+
+  <div class="tab-bar">
+    <span class="tab selected"><i class="ph-fill ph-house"></i></span>
+    <span class="tab discover"><i class="ph ph-compass"></i></span>
+    <span class="tab"><img class="you" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /></span>
+    <span class="tab"><i class="ph ph-calendar-blank"></i></span>
+    <span class="tab">
+      <span class="icon-wrap"><i class="ph ph-chat"></i><span class="badge-dot">4</span></span>
+    </span>
+  </div>
+</div>
