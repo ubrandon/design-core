@@ -4,7 +4,7 @@
   "recents": [
     {
       "id": "plan-parity",
-      "ts": 1787075627746
+      "ts": 1787091780870
     }
   ],
   "theme": null,
@@ -12,6 +12,6 @@
     "sort": "",
     "status": ""
   },
-  "navCollapsed": false,
-  "updatedAt": 1787075627747
+  "navCollapsed": true,
+  "updatedAt": 1787091780870
 }

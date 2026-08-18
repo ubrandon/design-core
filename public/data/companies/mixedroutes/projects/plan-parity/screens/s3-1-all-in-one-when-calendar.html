@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="../../../design-system/company.css" />
 <link rel="stylesheet" href="../pp.css" />
 
-<div class="pp s3 s3-1w" style="background: #ffffff; min-height: 844px;">
+<div class="pp s3 s3-1w s3-1wc" style="background: #ffffff; min-height: 844px;">
   <div class="status"><span>9:41</span><span class="r"><i class="ph-fill ph-cell-signal-full"></i><i class="ph-fill ph-wifi-high"></i><i class="ph-fill ph-battery-full"></i></span></div>
 
   <div class="ts-toolbar">
@@ -81,27 +81,30 @@
   <div class="sheet s3-when-sheet">
     <div class="sh-tb"><h2>When</h2><span class="icon-btn"><i class="ph ph-x"></i></span></div>
     <div class="sh-body">
-      <div class="days" style="margin-top:0;">
-        <div class="day"><span>Mon</span><b>17</b></div>
-        <div class="day"><span>Tue</span><b>18</b></div>
-        <div class="day"><span>Wed</span><b>19</b></div>
-        <div class="day"><span>Thu</span><b>20</b></div>
-        <div class="day"><span>Fri</span><b>21</b></div>
-        <div class="day sel"><span>Sat</span><b>22</b></div>
-        <div class="day day-more"><i class="ph ph-calendar-dots"></i><b>Other</b></div>
+      <div class="cal wh-cal">
+        <div class="cal-head">
+          <span class="month">August 2026 <i class="ph ph-caret-down"></i></span>
+          <span class="nav"><i class="ph ph-caret-left"></i><i class="ph ph-caret-right"></i></span>
+        </div>
+        <div class="grid">
+          <span class="dow">S</span><span class="dow">M</span><span class="dow">T</span><span class="dow">W</span><span class="dow">T</span><span class="dow">F</span><span class="dow">S</span>
+          <span class="d muted"><span>26</span></span><span class="d muted"><span>27</span></span><span class="d muted"><span>28</span></span><span class="d muted"><span>29</span></span><span class="d muted"><span>30</span></span><span class="d muted"><span>31</span></span><span class="d"><span>1</span></span>
+          <span class="d"><span>2</span></span><span class="d"><span>3</span></span><span class="d"><span>4</span></span><span class="d"><span>5</span></span><span class="d"><span>6</span></span><span class="d"><span>7</span></span><span class="d"><span>8</span></span>
+          <span class="d"><span>9</span></span><span class="d"><span>10</span></span><span class="d"><span>11</span></span><span class="d"><span>12</span></span><span class="d"><span>13</span></span><span class="d"><span>14</span></span><span class="d"><span>15</span></span>
+          <span class="d"><span>16</span></span><span class="d today"><span>17</span></span><span class="d"><span>18</span></span><span class="d"><span>19</span></span><span class="d"><span>20</span></span><span class="d"><span>21</span></span><span class="d"><span>22</span></span>
+          <span class="d"><span>23</span></span><span class="d"><span>24</span></span><span class="d"><span>25</span></span><span class="d"><span>26</span></span><span class="d"><span>27</span></span><span class="d"><span>28</span></span><span class="d sel"><span>29</span></span>
+          <span class="d"><span>30</span></span><span class="d"><span>31</span></span><span class="d muted"><span>1</span></span><span class="d muted"><span>2</span></span><span class="d muted"><span>3</span></span><span class="d muted"><span>4</span></span><span class="d muted"><span>5</span></span>
+        </div>
       </div>
       <div class="wh-times">
         <div class="wh-time"><div><span class="lbl">Starts</span><span class="val">8:00 AM</span></div><i class="ph ph-caret-down"></i></div>
         <div class="wh-time"><div><span class="lbl">Ends</span><span class="val ph-text">Optional</span></div><i class="ph ph-caret-down"></i></div>
       </div>
-      <div class="tchips">
-        <span class="chip tchip">6:00 AM</span><span class="chip tchip">7:00 AM</span><span class="chip tchip sel">8:00 AM</span><span class="chip tchip">9:00 AM</span><span class="chip tchip">12:00 PM</span>
-      </div>
       <div class="wh-opts">
         <div class="wh-opt"><i class="ph ph-repeat"></i><span class="lbl">Repeats</span><span class="val">Never <i class="ph ph-caret-right"></i></span></div>
       </div>
     </div>
-    <div class="sh-foot"><span class="btn-grad">Set time</span></div>
+    <div class="sh-foot"><span class="btn-grad">Set Sat, Aug 29th</span></div>
   </div>
 </div>
 
@@ -188,4 +191,16 @@
   .s3-1w .s3-when-sheet .sh-tb h2 { font-size: 22px; }
   .s3-1w .s3-when-sheet .wh-opts { margin-top: 12px; }
   .s3-1w .s3-when-sheet .sh-foot { padding-top: 14px; }
+</style>
+<style>
+  .s3-1wc .s3-when-sheet .wh-cal { margin-top: 0; padding: 10px 8px 6px; border-radius: 16px; background: #f8f9fb; }
+  .s3-1wc .s3-when-sheet .wh-cal .cal-head { margin-bottom: 4px; padding: 0 4px; }
+  .s3-1wc .s3-when-sheet .wh-cal .month { font-size: 14px; padding: 5px 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .s3-1wc .s3-when-sheet .wh-cal .grid { row-gap: 0; }
+  .s3-1wc .s3-when-sheet .wh-cal .dow { font-size: 11px; padding: 2px 0; }
+  .s3-1wc .s3-when-sheet .wh-cal .d { height: 34px; font-size: 14px; }
+  .s3-1wc .s3-when-sheet .wh-cal .d span { width: 32px; height: 32px; }
+  .s3-1wc .s3-when-sheet .wh-cal .d.sel span { background: #234e8a; }
+  .s3-1wc .s3-when-sheet .wh-times { margin-top: 12px; }
+  .s3-1wc .s3-when-sheet .sh-tb { height: 52px; }
 </style>
