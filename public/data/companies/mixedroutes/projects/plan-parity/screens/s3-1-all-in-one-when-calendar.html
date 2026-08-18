@@ -81,6 +81,12 @@
   <div class="sheet s3-when-sheet">
     <div class="sh-tb"><h2>When</h2><span class="icon-btn"><i class="ph ph-x"></i></span></div>
     <div class="sh-body">
+      <div class="chip-row wh-quick">
+        <span class="chip"><i class="ph ph-sun"></i>Today</span>
+        <span class="chip"><i class="ph ph-arrow-bend-down-right"></i>Tomorrow</span>
+        <span class="chip sel"><i class="ph ph-calendar-check"></i>This Sat</span>
+        <span class="chip"><i class="ph ph-calendar-plus"></i>Next weekend</span>
+      </div>
       <div class="cal wh-cal">
         <div class="cal-head">
           <span class="month">August 2026 <i class="ph ph-caret-down"></i></span>
@@ -193,6 +199,10 @@
   .s3-1w .s3-when-sheet .sh-foot { padding-top: 14px; }
 </style>
 <style>
+  .s3-1wc .s3-when-sheet .wh-quick { margin: 0 -16px 10px; padding: 2px 16px; }
+  .s3-1wc .s3-when-sheet .wh-quick .chip { height: 34px; padding: 0 12px 0 10px; font-size: 13px; gap: 6px; }
+  .s3-1wc .s3-when-sheet .wh-quick .chip i { font-size: 16px; color: #5c6b7d; }
+  .s3-1wc .s3-when-sheet .wh-quick .chip.sel i { color: #234e8a; }
   .s3-1wc .s3-when-sheet .wh-cal { margin-top: 0; padding: 10px 8px 6px; border-radius: 16px; background: #f8f9fb; }
   .s3-1wc .s3-when-sheet .wh-cal .cal-head { margin-bottom: 4px; padding: 0 4px; }
   .s3-1wc .s3-when-sheet .wh-cal .month { font-size: 14px; padding: 5px 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }

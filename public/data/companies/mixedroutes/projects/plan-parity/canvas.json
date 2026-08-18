@@ -5,21 +5,21 @@
       "x": 25,
       "y": 2138,
       "width": 390,
-      "name": "create-plan-current"
+      "name": "current-1-create-plan"
     },
     {
       "file": "create-plan-date.html",
       "x": 448,
       "y": 2138,
       "width": 390,
-      "name": "create-plan-date-facet"
+      "name": "current-2-date-facet"
     },
     {
       "file": "create-plan-location.html",
       "x": 868,
       "y": 2138,
       "width": 390,
-      "name": "create-plan-location-facet"
+      "name": "current-3-location-facet"
     },
     {
       "file": "plan-view.html",
@@ -236,14 +236,7 @@
       "x": 2152,
       "y": 2164,
       "width": 390,
-      "name": "3step-1-name-gotos-dropdown"
-    },
-    {
-      "file": "s3-3-invite-privacy.html",
-      "x": 4864,
-      "y": 2122,
-      "width": 390,
-      "name": "3step-3-invite-privacy-row"
+      "name": "new-1-details-name-dropdown"
     },
     {
       "file": "s3-1-name-empty.html",
@@ -264,42 +257,56 @@
       "x": 1732,
       "y": 2164,
       "width": 390,
-      "name": "2step-1-empty"
+      "name": "new-1-details-empty"
     },
     {
       "file": "s3-1-all-in-one-stacked.html",
       "x": 2574,
       "y": 2164,
       "width": 390,
-      "name": "2step-1-stacked-buttons"
+      "name": "new-1-details-stacked-buttons"
     },
     {
       "file": "s3-1-all-in-one-when-calendar.html",
-      "x": 3005,
-      "y": 2164,
+      "x": 3425,
+      "y": 2169,
       "width": 390,
-      "name": "2step-1-when-sheet-calendar"
+      "name": "new-1-details-when-calendar"
     },
     {
       "file": "qk-3-place-modal-copy.html",
-      "x": 3615,
-      "y": 2164,
+      "x": 3894,
+      "y": 2169,
       "width": 390,
-      "name": "quick-3-place-modal Copy"
+      "name": "new-1-details-where-modal"
     },
     {
       "file": "qk-4-place-search-copy.html",
-      "x": 4037,
-      "y": 2164,
+      "x": 4316,
+      "y": 2169,
       "width": 390,
-      "name": "quick-4-place-search Copy"
+      "name": "new-1-details-where-search"
     },
     {
       "file": "plan-view-empty-copy.html",
-      "x": 5344,
-      "y": 2122,
+      "x": 5323,
+      "y": 2164,
       "width": 390,
-      "name": "plan-view-empty Copy"
+      "name": "new-3-plan-view-empty"
+    },
+    {
+      "file": "s3-3-invite-vis-switch.html",
+      "x": 4820,
+      "y": 2164,
+      "width": 390,
+      "name": "new-2-invite"
+    },
+    {
+      "file": "s3-1-details-invite-settings-sheet.html",
+      "x": 3003,
+      "y": 2164,
+      "width": 390,
+      "name": "new-1-details-invite-settings-sheet"
     }
   ],
   "texts": [
@@ -365,13 +372,19 @@
     },
     {
       "text": "Invite others",
-      "x": 4873,
-      "y": 2044,
+      "x": 4820,
+      "y": 2086,
       "size": 36
     },
     {
-      "text": "Details",
+      "text": "New flow 1: Details",
       "x": 1732,
+      "y": 2086,
+      "size": 36
+    },
+    {
+      "text": "New flow 3: Plan view",
+      "x": 5323,
       "y": 2086,
       "size": 36
     }

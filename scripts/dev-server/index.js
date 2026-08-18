@@ -144,6 +144,23 @@ function inferGithubPagesRootFromGit() {
   return remote ? githubPagesRootFromRemote(remote) : null;
 }
 
+/** Dev only: never let the browser reuse cached design data. Screens are cache-busted by the canvas, but the stylesheets they link (pp.css, company.css, shared.css) are not, so edits could look stale until a hard reload. */
+function noStoreDataPlugin() {
+  return {
+    name: "no-store-design-data",
+    enforce: "pre",
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const pathOnly = (req.url || "").split("?")[0];
+        if (pathOnly.startsWith("/data/") || pathOnly.startsWith("/styles/")) {
+          res.setHeader("Cache-Control", "no-store, max-age=0");
+        }
+        next();
+      });
+    },
+  };
+}
+
 /** Dev only: serve merged data/site.json so Copy link uses GitHub Pages while on localhost. */
 function siteJsonDevPlugin(viteEnv) {
   return {
@@ -1322,6 +1339,7 @@ function liveDataPlugin() {
 // The full set of dev-server plugins, in order. viteEnv is the loadEnv() result.
 export function designCorePlugins(viteEnv) {
   return [
+    noStoreDataPlugin(),
     siteJsonDevPlugin(viteEnv),
     liveDataPlugin(),
     dataFilesPlugin(),

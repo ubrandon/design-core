@@ -42,7 +42,6 @@
         <span class="ibox"><i class="ph ph-calendar-blank"></i></span>
         <div class="dc-txt"><b>When</b><span>No time yet</span></div>
         <div class="dc-acts">
-          <span class="sug-btn"><i class="ph-fill ph-sparkle"></i>Suggest</span>
           <span class="plus-btn"><i class="ph ph-plus"></i></span>
         </div>
       </div>
@@ -52,7 +51,6 @@
         <span class="ibox"><i class="ph ph-map-pin"></i></span>
         <div class="dc-txt"><b>Where</b><span>No place yet</span></div>
         <div class="dc-acts">
-          <span class="sug-btn"><i class="ph-fill ph-sparkle"></i>Suggest</span>
           <span class="plus-btn"><i class="ph ph-plus"></i></span>
         </div>
       </div>
@@ -69,6 +67,14 @@
       <span class="chip"><i class="ph ph-plus"></i>Custom</span>
     </div>
 
+    <div class="nf-label" style="margin-top:20px;">Settings</div>
+    <div class="set-list">
+      <div class="set-item">
+        <i class="ph ph-lock"></i>
+        <div class="st"><b>Invite settings</b><span>Private, link sharing off</span></div>
+        <i class="ph ph-caret-right end"></i>
+      </div>
+    </div>
 
   </div>
 
@@ -125,6 +131,8 @@
   .pp.s3 .dc-head { display: flex; align-items: center; gap: 12px; }
   .pp.s3 .dc-head .ibox { width: 40px; height: 40px; border-radius: 12px; background: rgba(16,23,36,0.06); color: #5c6b7d; display: grid; place-items: center; font-size: 22px; flex-shrink: 0; }
   .pp.s3 .dc.set .dc-head .ibox { background: #e4eefe; color: #234e8a; }
+  .pp.s3 .dc.link { cursor: pointer; }
+  .pp.s3 .dc-caret { font-size: 16px; color: #858b94; margin-right: 2px; }
   .pp.s3 .dc-txt { flex: 1; min-width: 0; }
   .pp.s3 .dc-txt b { display: block; font-size: 16px; font-weight: 700; }
   .pp.s3 .dc-txt span { display: block; font-size: 14px; color: #858b94; margin-top: 1px; }
@@ -155,4 +163,14 @@
 </style>
 <style>
   .s3-1o .tags .chip.sel i { color: #234e8a; }
+</style>
+<style>
+  .pp.s3 .set-list { background: #f1f4f7; border-radius: 20px; padding: 0 12px; }
+  .pp.s3 .set-item { display: flex; align-items: center; gap: 12px; min-height: 58px; padding: 10px 2px 10px 6px; cursor: pointer; }
+  .pp.s3 .set-item + .set-item { box-shadow: inset 0 1px 0 rgba(16,23,36,0.08); }
+  .pp.s3 .set-item > i { font-size: 20px; color: #5c6b7d; width: 22px; text-align: center; flex-shrink: 0; }
+  .pp.s3 .set-item > i.end { font-size: 16px; color: #858b94; width: auto; }
+  .pp.s3 .set-item .st { flex: 1; min-width: 0; }
+  .pp.s3 .set-item .st b { display: block; font-size: 16px; font-weight: 600; color: #1a2332; line-height: 1.25; }
+  .pp.s3 .set-item .st span { display: block; font-size: 13px; color: #5c6b7d; margin-top: 2px; }
 </style>

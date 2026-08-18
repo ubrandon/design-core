@@ -625,3 +625,23 @@
 .pp.s3 .anim { animation: s3-in 0.18s ease-out; }
 .pp.s3 .banner-hero .bh-actions { right: auto; bottom: auto; left: 50%; top: 50%; transform: translate(-50%, -50%); }
 .pp.s3 .banner-hero::after { background: rgba(0,0,0,0.18); }
+
+/* Visibility segmented control (Private / Friends / Public) shared by the s3-3 invite screens */
+.pp .vis-seg { display: flex; padding: 4px; border-radius: 999px; background: #f1f4f7; }
+.pp .vis-seg .sg { flex: 1; height: 38px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: 600; color: #5c6b7d; cursor: pointer; }
+.pp .vis-seg .sg i { font-size: 17px; }
+.pp .vis-seg .sg.sel { background: #fff; color: #1a2332; font-weight: 700; box-shadow: 0 1px 3px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06); }
+.pp .vis-seg .sg.sel i { color: #234e8a; }
+.pp .vis-sub { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 8px 6px 0; font-size: 13px; color: #858b94; }
+.pp .vis-sub .vs-more { display: inline-flex; align-items: center; gap: 2px; font-weight: 600; color: #0891b2; white-space: nowrap; cursor: pointer; }
+.pp .vis-sub .vs-more i { font-size: 13px; }
+/* Card that wraps the visibility switch, its caption and the invite settings row */
+.pp .vis-card { background: #f1f4f7; border-radius: 22px; padding: 6px 6px 0; }
+.pp .vis-card .vis-seg { padding: 4px; background: #e3e8ee; }
+.pp .vis-card .vis-sub { margin: 10px 12px 0; }
+.pp .set-row { display: flex; align-items: center; gap: 12px; margin: 10px 8px 0; padding: 10px 6px 12px; border-top: 1px solid #e2e7ec; color: #858b94; cursor: pointer; }
+.pp .set-row .set-ic { width: 36px; height: 36px; border-radius: 11px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.06); display: grid; place-items: center; font-size: 19px; color: #234e8a; flex-shrink: 0; }
+.pp .set-row .set-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.pp .set-row .set-txt b { font-size: 15px; font-weight: 700; color: #1a2332; }
+.pp .set-row .set-txt span { font-size: 13px; color: #858b94; margin-top: 1px; }
+.pp .set-row > i { font-size: 16px; }

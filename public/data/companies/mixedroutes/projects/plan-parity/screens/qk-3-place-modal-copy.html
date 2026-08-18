@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="../../../design-system/company.css" />
 <link rel="stylesheet" href="../pp.css" />
 
-<div class="pp pp-qk3" data-state="place-modal" style="background: #ffffff; min-height: 844px;">
+<div class="pp pp-qk3" data-state="place-modal" style="background: #ffffff; min-height: 1180px;">
   <div class="status"><span>9:41</span><span class="r"><i class="ph-fill ph-cell-signal-full"></i><i class="ph-fill ph-wifi-high"></i><i class="ph-fill ph-battery-full"></i></span></div>
 
   <div class="ts-toolbar">
@@ -120,6 +120,25 @@
       <div class="searchbar pm-search"><i class="ph ph-magnifying-glass"></i><span class="q ph-text">Search places</span><span class="caret hide"></span></div>
 
       <div class="pm-sugg">
+        <div class="pm-sec">Recent</div>
+        <div class="pm-list">
+          <div class="pm-row" data-b="Baker Beach" data-s="1504 Pershing Dr, San Francisco, CA">
+            <span class="pm-ic"><i class="ph-fill ph-map-pin"></i></span>
+            <div class="pm-txt"><b>Baker Beach</b><span>Yesterday · Sunset walk</span></div>
+            <i class="ph ph-plus"></i>
+          </div>
+          <div class="pm-row" data-b="Video call" data-s="Remote · link added when you share">
+            <span class="pm-ic"><i class="ph-fill ph-video-camera"></i></span>
+            <div class="pm-txt"><b>Video call</b><span>Remote · Thursday book club</span></div>
+            <i class="ph ph-plus"></i>
+          </div>
+          <div class="pm-row" data-b="Presidio Wall" data-s="Presidio Wall Playground, San Francisco, CA">
+            <span class="pm-ic"><i class="ph-fill ph-map-pin"></i></span>
+            <div class="pm-txt"><b>Presidio Wall</b><span>Last week · Pickup soccer</span></div>
+            <i class="ph ph-plus"></i>
+          </div>
+        </div>
+
         <div class="pm-sec">Suggested for you</div>
         <div class="pm-list">
           <div class="pm-row" data-b="Marina Green" data-s="Marina Blvd, San Francisco, CA">
@@ -167,6 +186,11 @@
           <div class="pm-row" data-b="Current location" data-s="Chestnut St, San Francisco, CA">
             <span class="pm-ic dim"><i class="ph ph-navigation-arrow"></i></span>
             <div class="pm-txt"><b>Use my current location</b><span>Chestnut St, San Francisco</span></div>
+            <i class="ph ph-caret-right"></i>
+          </div>
+          <div class="pm-row" data-b="Remote" data-s="Video call · add a link later">
+            <span class="pm-ic dim"><i class="ph ph-video-camera"></i></span>
+            <div class="pm-txt"><b>Make it remote</b><span>Video call, no place needed</span></div>
             <i class="ph ph-caret-right"></i>
           </div>
         </div>
@@ -245,11 +269,12 @@
   .pp-qk3 .qs-filled { animation: qk-in 0.18s ease-out; }
 
   /* Place modal (full-screen, matches app GooglePlacesSearchModal) */
-  .pp-qk3 .pmodal { position: absolute; inset: 0; z-index: 30; background: #fff; display: flex; flex-direction: column; animation: qk-up 0.22s ease-out; }
+  .pp-qk3 .pmodal { position: absolute; inset: 0; min-height: 1180px; z-index: 30; background: #fff; display: flex; flex-direction: column; animation: qk-up 0.22s ease-out; }
   .pp-qk3 .pm-tb { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 8px 0 16px; }
   .pp-qk3 .pm-tb h2 { font-size: 20px; font-weight: 700; }
   .pp-qk3 .pm-tb .icon-btn { width: 44px; height: 44px; display: grid; place-items: center; font-size: 24px; color: #1a2332; }
-  .pp-qk3 .pm-body { flex: 1; padding: 4px 16px 16px; overflow: hidden; }
+  .pp-qk3 .pm-body { flex: 1; padding: 4px 16px 16px; }
+  .pp-qk3 .pm-sugg .pm-sec:first-child { margin-top: 14px; }
   .pp-qk3 .pm-search .q { color: #1a2332; font-weight: 500; }
   .pp-qk3 .pm-search .q.ph-text { color: #5c6b7d; font-weight: 400; }
   .pp-qk3 .pm-search .caret { width: 2px; height: 20px; background: #0891b2; margin-left: -6px; animation: qk-blink 1s steps(1) infinite; }
