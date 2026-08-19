@@ -3,21 +3,21 @@
     {
       "file": "create-plan.html",
       "x": 25,
-      "y": 1819,
+      "y": 1850,
       "width": 390,
       "name": "current-1-create-plan"
     },
     {
       "file": "create-plan-date.html",
       "x": 448,
-      "y": 1819,
+      "y": 1850,
       "width": 390,
       "name": "current-2-date-facet"
     },
     {
       "file": "create-plan-location.html",
       "x": 868,
-      "y": 1819,
+      "y": 1850,
       "width": 390,
       "name": "current-3-location-facet"
     },
@@ -233,7 +233,7 @@
     },
     {
       "file": "s3-1-name-gotos.html",
-      "x": 2152,
+      "x": 2050,
       "y": 1845,
       "width": 390,
       "name": "new-1-details-name-dropdown"
@@ -254,56 +254,56 @@
     },
     {
       "file": "s3-1-all-in-one-empty.html",
-      "x": 1732,
+      "x": 1630,
       "y": 1845,
       "width": 390,
       "name": "new-1-details-empty"
     },
     {
       "file": "s3-1-all-in-one-stacked.html",
-      "x": 2574,
+      "x": 2472,
       "y": 1845,
       "width": 390,
       "name": "new-1-details-stacked-buttons"
     },
     {
       "file": "s3-1-all-in-one-when-calendar.html",
-      "x": 3425,
+      "x": 3323,
       "y": 1850,
       "width": 390,
       "name": "new-1-details-when-calendar"
     },
     {
       "file": "qk-3-place-modal-copy.html",
-      "x": 3894,
+      "x": 3792,
       "y": 1850,
       "width": 390,
       "name": "new-1-details-where-modal"
     },
     {
       "file": "qk-4-place-search-copy.html",
-      "x": 4316,
+      "x": 4214,
       "y": 1850,
       "width": 390,
       "name": "new-1-details-where-search"
     },
     {
       "file": "plan-view-empty-copy.html",
-      "x": 5323,
+      "x": 5221,
       "y": 1845,
       "width": 390,
       "name": "new-3-plan-view-empty"
     },
     {
       "file": "s3-3-invite-vis-switch.html",
-      "x": 4820,
+      "x": 4718,
       "y": 1845,
       "width": 390,
       "name": "new-2-invite"
     },
     {
       "file": "s3-1-details-invite-settings-sheet.html",
-      "x": 3003,
+      "x": 2901,
       "y": 1845,
       "width": 390,
       "name": "new-1-details-invite-settings-sheet"
@@ -366,25 +366,25 @@
     },
     {
       "text": "New plan creation",
-      "x": 1733,
+      "x": 1630,
       "y": 1660,
       "size": 72
     },
     {
       "text": "Invite others",
-      "x": 4820,
+      "x": 4718,
       "y": 1767,
       "size": 36
     },
     {
       "text": "New flow 1: Details",
-      "x": 1732,
+      "x": 1630,
       "y": 1767,
       "size": 36
     },
     {
       "text": "New flow 3: Plan view",
-      "x": 5323,
+      "x": 5221,
       "y": 1767,
       "size": 36
     }

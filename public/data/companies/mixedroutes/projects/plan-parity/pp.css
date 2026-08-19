@@ -368,8 +368,8 @@
 .pp .wh-opt .toggle { width: 44px; height: 26px; }
 .pp .wh-opt .toggle::after { width: 22px; height: 22px; }
 .pp .wh-opt .toggle.on::after { left: 20px; }
-.pp .wh-note { display: flex; gap: 8px; align-items: flex-start; margin-top: 8px; padding: 10px 12px; border-radius: 12px; background: #e4eefe; color: #234e8a; font-size: 13px; line-height: 1.35; }
-.pp .wh-note i { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.pp .wh-note { display: flex; gap: 8px; align-items: flex-start; margin-top: 8px; padding: 10px 12px; border-radius: 12px; background: #f1f4f7; color: #5c6b7d; font-size: 13px; line-height: 1.35; }
+.pp .wh-note i { font-size: 18px; flex-shrink: 0; margin-top: 1px; color: #234e8a; }
 
 /* Repeat picker sheet */
 .pp .sheet .sh-sec { padding: 12px 16px 6px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #5c6b7d; }
@@ -647,13 +647,22 @@
 .pp .set-row > i { font-size: 16px; }
 
 /* Recurring flow (rec-*): shared new-flow pieces so the recurring screens can drop the inline copies */
-.pp.s3 .hero-banner { position: relative; height: 240px; background: #f1f4f7; overflow: hidden; }
-.pp.s3 .hero-banner::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(20, 184, 166, 0.06), rgba(59, 130, 246, 0.06)); }
-.pp.s3 .hero-banner .status, .pp.s3 .hero-banner .ts-toolbar { position: relative; z-index: 1; }
-.pp.s3 .hero-banner .hb-btn { position: absolute; left: 50%; bottom: 48px; transform: translateX(-50%); z-index: 1; height: 44px; padding: 0 16px 0 12px; border-radius: 999px; background: #ffffff; border: 1.5px solid rgba(32, 36, 42, 0.14); color: #1a2332; font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); cursor: pointer; white-space: nowrap; }
-.pp.s3 .hero-banner .hb-btn i { font-size: 20px; color: #1a2332; }
-.pp.s3 .name-wrap2.over-banner { z-index: 2; margin-top: -32px; }
-.pp.s3 .name-wrap2.over-banner .name-input { background: #ffffff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.08); }
+.pp .hero-banner { position: relative; height: 208px; background: #f1f4f7; overflow: hidden; }
+.pp .hero-banner::before { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(20, 184, 166, 0.06), rgba(59, 130, 246, 0.06)); }
+.pp .hero-banner .status, .pp .hero-banner .ts-toolbar { position: relative; z-index: 1; }
+.pp .hero-banner .hb-btn { position: absolute; left: 50%; bottom: 48px; transform: translateX(-50%); z-index: 1; height: 44px; padding: 0 16px 0 12px; border-radius: 999px; background: #ffffff; border: 1.5px solid rgba(32, 36, 42, 0.14); color: #1a2332; font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); cursor: pointer; white-space: nowrap; }
+.pp .hero-banner .hb-btn i { font-size: 20px; color: #1a2332; }
+/* Photo variant: image fills the block, controls sit over a soft scrim, status and toolbar go white */
+.pp .hero-banner.photo { height: 240px; background-size: cover; background-position: center; }
+.pp .hero-banner.photo::before { background: linear-gradient(180deg, rgba(0,0,0,0.38), rgba(0,0,0,0.12) 45%, rgba(0,0,0,0.28)); }
+.pp .hero-banner.photo .status, .pp .hero-banner.photo .ts-toolbar, .pp .hero-banner.photo .ts-toolbar .icon-btn, .pp .hero-banner.photo .ts-toolbar .ttl { color: #ffffff; }
+.pp .hero-banner .hb-actions { position: absolute; left: 50%; bottom: 48px; transform: translateX(-50%); z-index: 1; display: flex; gap: 6px; }
+.pp .hero-banner .hb-actions .bh-btn { height: 40px; padding: 0 14px 0 12px; border-radius: 999px; background: rgba(20, 24, 30, 0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); color: #fff; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; }
+.pp .hero-banner .hb-actions .bh-btn i { font-size: 18px; }
+.pp .hero-banner .hb-actions .bh-btn.icon-only { padding: 0 10px; }
+.pp .name-wrap2.over-banner { z-index: 2; margin-top: -32px; }
+.pp .name-wrap2.over-banner .name-input { background: #ffffff; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.08); }
+.pp .name-wrap2.over-banner .name-input.focus { box-shadow: 0 0 0 2px #3b82f6, 0 6px 16px rgba(0, 0, 0, 0.08); }
 .pp.s3 .dc { border-radius: 20px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.07), 0 4px 12px rgba(0,0,0,0.1); padding: 12px 12px 12px 14px; }
 .pp.s3 .dc + .dc { margin-top: 12px; }
 .pp.s3 .dc-head { display: flex; align-items: center; gap: 12px; }
@@ -661,7 +670,7 @@
 .pp.s3 .dc.set .dc-head .ibox { background: #e4eefe; color: #234e8a; }
 .pp.s3 .dc-txt { flex: 1; min-width: 0; }
 .pp.s3 .dc-txt b { display: block; font-size: 16px; font-weight: 700; }
-.pp.s3 .dc-txt span { display: block; font-size: 14px; color: #858b94; margin-top: 1px; }
+.pp.s3 .dc-txt span { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 14px; color: #858b94; margin-top: 1px; }
 .pp.s3 .dc.set .dc-txt span { color: #5c6b7d; }
 .pp.s3 .dc-txt span .rep-ic { font-size: 14px; vertical-align: -2px; margin-right: 4px; color: #0891b2; }
 .pp.s3 .dc-acts { display: flex; gap: 6px; align-items: center; }
@@ -734,3 +743,11 @@
 .pp .plan-series .next-dates .nd { background: #fff; }
 .pp .plan-series .next-dates .nd.first { background: #e4eefe; }
 .pp .date-badge .rep-ic { margin-left: 6px; font-size: 13px; vertical-align: -2px; }
+.pp.s3 .freq-chips { display: flex; flex-wrap: wrap; gap: 7px; padding: 0 16px; }
+.pp.s3 .freq-chips .chip { height: 36px; font-size: 14px; padding: 0 14px 0 12px; gap: 6px; }
+.pp.s3 .freq-chips .chip i { font-size: 16px; color: #5c6b7d; }
+.pp.s3 .freq-chips .chip.sel i { color: #234e8a; }
+.pp.s3 .freq-sum { display: flex; align-items: center; gap: 7px; margin: 10px 16px 0; padding: 10px 12px; border-radius: 12px; background: #f1f4f7; font-size: 14px; color: #5c6b7d; }
+.pp.s3 .freq-sum i { font-size: 18px; color: #234e8a; }
+.pp.s3 .freq-sum b { color: #1a2332; font-weight: 600; }
+.pp.s3 .freq-sum .lnk { margin-left: auto; color: #0891b2; font-weight: 600; white-space: nowrap; }
