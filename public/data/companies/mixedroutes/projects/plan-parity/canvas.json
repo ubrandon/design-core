@@ -23,22 +23,22 @@
     },
     {
       "file": "plan-view.html",
-      "x": 25,
-      "y": 26,
+      "x": -11,
+      "y": 11542,
       "width": 390,
       "name": "plan-view-current"
     },
     {
       "file": "plan-view-rsvp.html",
-      "x": 455,
-      "y": 26,
+      "x": 419,
+      "y": 11542,
       "width": 390,
       "name": "plan-view-rsvp-modal"
     },
     {
       "file": "plan-view-attendees.html",
-      "x": 891,
-      "y": 26,
+      "x": 855,
+      "y": 11542,
       "width": 390,
       "name": "plan-view-attendees-modal"
     },
@@ -312,15 +312,15 @@
   "texts": [
     {
       "text": "Current designs",
-      "x": 25,
-      "y": -173,
+      "x": -11,
+      "y": 11343,
       "size": 72
     },
     {
-      "text": "Current plan creation",
+      "text": "Create plan",
       "x": 25,
-      "y": 1660,
-      "size": 72
+      "y": 1493,
+      "size": 144
     },
     {
       "text": "New plan creation",
@@ -387,6 +387,12 @@
       "x": 5221,
       "y": 1767,
       "size": 36
+    },
+    {
+      "text": "Current designs",
+      "x": 25,
+      "y": 1702,
+      "size": 72
     }
   ]
 }
