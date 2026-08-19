@@ -85,6 +85,7 @@ function checkCompanyData(slug) {
   if (checked && !bad) ok(`${slug}: all ${checked} data files are valid JSON`);
 
   let missing = 0;
+  let duplicates = 0;
   let orphans = 0;
   let total = 0;
   for (const id of projects) {
@@ -93,8 +94,14 @@ function checkCompanyData(slug) {
     const screensDir = resolve(base, `projects/${id}/screens`);
     const files = existsSync(screensDir) ? readdirSync(screensDir).filter((f) => f.endsWith(".html")) : [];
     const inCanvas = new Set(r.data.screens.map((s) => s.file));
+    const seenCanvasFiles = new Set();
     total += inCanvas.size;
     for (const s of r.data.screens) {
+      if (s.file && seenCanvasFiles.has(s.file)) {
+        duplicates++;
+        problem(`${slug}/${id}: canvas.json lists "${s.file}" more than once`, "Give each canvas card its own duplicated screen file, or remove the extra entry.");
+      }
+      if (s.file) seenCanvasFiles.add(s.file);
       if (!s.file || !files.includes(s.file)) {
         missing++;
         problem(`${slug}/${id}: canvas.json lists "${s.file}" but that screen file does not exist`, "Ask the AI to create the screen file or remove its canvas.json entry.");
@@ -103,6 +110,7 @@ function checkCompanyData(slug) {
     for (const f of files) if (!inCanvas.has(f)) orphans++;
   }
   if (total && !missing) ok(`${slug}: all canvas screens point to files that exist`);
+  if (total && !duplicates) ok(`${slug}: every canvas card has its own screen file`);
   if (orphans) note(`${slug}: ${orphans} screen file(s) exist on disk but are not on any canvas.`);
 
   checkStylesheetDepth(slug, base);

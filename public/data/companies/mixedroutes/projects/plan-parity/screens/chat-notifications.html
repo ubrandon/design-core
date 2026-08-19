@@ -16,47 +16,46 @@
   .chat-scope .chat-header .tag-btn i { font-size: 20px; }
 
   .chat-scope .chat-body { position: relative; z-index: 1; flex: 1; padding: 12px 10px 8px; display: flex; flex-direction: column; gap: 10px; }
+
   .chat-scope .msg-row { display: grid; grid-template-columns: 36px 1fr; gap: 8px; align-items: flex-start; }
   .chat-scope .msg-row.out { grid-template-columns: 1fr; }
   .chat-scope .msg-row .avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; align-self: flex-start; }
-  .chat-scope .msg-row .avatar.initials { background: #b45309; color: #fff; font-size: 0.7rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .chat-scope .msg-row .avatar.initials { background: #b45309; color: #fff; font-size: 0.7rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; letter-spacing: 0.02em; }
   .chat-scope .msg-stack { display: flex; flex-direction: column; gap: 4px; max-width: 78%; }
   .chat-scope .msg-row.out .msg-stack { margin-left: auto; align-items: flex-end; }
-  .chat-scope .bubble { padding: 9px 12px 10px; border-radius: var(--bubble-radius); color: var(--chat-text); font-size: 0.95rem; line-height: 1.3; }
+
+  .chat-scope .bubble { padding: 9px 12px 10px; border-radius: var(--bubble-radius); color: var(--chat-text); font-size: 0.95rem; line-height: 1.3; word-wrap: break-word; }
   .chat-scope .bubble.in { background: var(--chat-surface); border-bottom-left-radius: 6px; }
   .chat-scope .bubble.out { background: var(--chat-out); border-bottom-right-radius: 6px; }
   .chat-scope .bubble.emoji-only { background: transparent; padding: 0; font-size: 2.4rem; line-height: 1; }
   .chat-scope .bubble .sender { font-size: 0.82rem; font-weight: 800; color: #7c3aed; margin-bottom: 2px; }
+
   .chat-scope .seen { text-align: center; color: var(--chat-muted); font-size: 0.78rem; padding: 6px 0 2px; }
 
+  .chat-scope .day-divider { text-align: center; color: var(--chat-muted); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.02em; padding: 2px 0; }
+
+  .chat-scope .sys-note { text-align: center; color: var(--chat-muted); font-size: 0.78rem; line-height: 1.35; padding: 0 24px; }
+  .chat-scope .sys-note b { font-weight: 700; color: var(--chat-muted); }
+
+  .chat-scope .sys-update { display: flex; justify-content: center; }
+  .chat-scope .sys-update .pill { display: inline-flex; align-items: center; gap: 6px; max-width: 86%; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,0.9); border: 1px solid #e1e3e6; color: var(--chat-muted); font-size: 0.78rem; line-height: 1.3; }
+  .chat-scope .sys-update .pill i { font-size: 14px; color: var(--chat-primary); flex-shrink: 0; }
+  .chat-scope .sys-update .pill b { font-weight: 700; color: var(--chat-text); }
+
   .chat-scope .composer { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 48px; align-items: center; gap: 8px; padding: 8px 16px 20px; background: #ffffff; }
-  .chat-scope .composer .input-pill { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 999px; background: rgba(118,118,128,0.12); }
+  .chat-scope .composer .input-pill { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 4px; height: 48px; padding: 0 8px; border-radius: 24px; background: var(--chat-input); }
   .chat-scope .composer .input-pill .placeholder { color: var(--chat-muted); font-size: 0.98rem; padding-left: 4px; }
   .chat-scope .composer .icon-btn { background: transparent; border: 0; color: var(--chat-medium); width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
   .chat-scope .composer .icon-btn i { font-size: 24px; }
-  .chat-scope .composer .plus-btn { color: #5eb3ff; }
+  .chat-scope .composer .plus-btn { color: var(--chat-medium); }
   .chat-scope .composer .send-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--chat-input); color: var(--chat-medium); border: 0; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
   .chat-scope .composer .send-btn i { font-size: 22px; }
-
-  .chat-scope .scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.45); z-index: 4; }
-  .chat-scope .sheet { position: absolute; left: 0; right: 0; bottom: 0; background: #ffffff; border-top-left-radius: 18px; border-top-right-radius: 18px; padding: 10px 16px 22px; z-index: 5; }
-  .chat-scope .sheet .grabber { width: 40px; height: 4px; border-radius: 2px; background: rgba(0,0,0,0.15); margin: 4px auto 12px; }
-  .chat-scope .sheet h3 { margin: 4px 4px 12px; font-size: 1.05rem; font-weight: 800; color: #111827; }
-  .chat-scope .attach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 6px; padding: 4px 4px 6px; }
-  .chat-scope .attach-item { display: flex; flex-direction: column; align-items: center; gap: 8px; background: transparent; border: 0; color: #111827; cursor: pointer; padding: 6px 2px; }
-  .chat-scope .attach-item .ico { width: 54px; height: 54px; border-radius: 16px; background: #232a33; display: inline-flex; align-items: center; justify-content: center; }
-  .chat-scope .attach-item .ico i { font-size: 30px; }
-  .chat-scope .attach-item .label { font-size: 0.78rem; color: rgba(17,24,39,0.85); font-weight: 600; text-align: center; }
-  .chat-scope .attach-item.gif .ico { background: linear-gradient(135deg, #4834d4, #686de0); }
-  .chat-scope .attach-item.photo .ico { background: linear-gradient(135deg, #dbeafe, #e0e7ff); } .chat-scope .attach-item.photo .ico i { color: #2563eb; }
-  .chat-scope .attach-item.gif .ico { background: linear-gradient(135deg, #f3e8ff, #fff1e6); } .chat-scope .attach-item.gif .ico i { color: #d97706; }
-  .chat-scope .attach-item.channel .ico { background: linear-gradient(135deg, #d1fae5, #dbeafe); } .chat-scope .attach-item.channel .ico i { color: #059669; }
-  .chat-scope .scrim { background: rgba(0,0,0,0.35) !important; }
 </style>
 
 <div class="mr-scope chat-scope">
   <div class="chat-wrap">
     <div class="chat-pattern" aria-hidden="true"></div>
+
     <header class="chat-header">
       <button type="button" class="back" aria-label="Back"><i class="ph ph-caret-left"></i></button>
       <img class="avatar" src="https://i.pravatar.cc/80?img=15" alt="" />
@@ -65,42 +64,40 @@
     </header>
 
     <div class="chat-body">
-      <div class="msg-row">
-        <img class="avatar" src="https://i.pravatar.cc/64?img=12" alt="" />
-        <div class="msg-stack">
-          <div class="bubble in"><div class="sender">Maya Chen</div>Who's up for the sunrise hike this weekend?</div>
-        </div>
-      </div>
-      <div class="msg-row">
-        <div class="avatar initials">SO</div>
-        <div class="msg-stack">
-          <div class="bubble in"><div class="sender" style="color:#b45309">Sam Ortiz</div>I'm in, as long as we carpool</div>
-          <div class="bubble emoji-only">❤️</div>
-        </div>
-      </div>
-      <div class="msg-row out"><div class="msg-stack"><div class="bubble out">Same. I can drive from the Pantoll lot if we leave by 5:45</div></div></div>
-      <div class="seen">Seen by you</div>
+      <div class="day-divider">Mon, Jun 9</div>
+
+      <div class="sys-note"><b>Maya Chen</b> created the plan</div>
+      <div class="sys-note"><b>Sam Ortiz</b> joined the chat</div>
+      <div class="sys-note"><b>Alex Kim</b> and 2 others joined the chat</div>
+
+      <div class="sys-update"><div class="pill"><i class="ph ph-check-circle"></i><span><b>Sam Ortiz</b> RSVP'd Going</span></div></div>
+      <div class="sys-update"><div class="pill"><i class="ph ph-chart-bar"></i><span><b>Maya Chen</b> started a time poll</span></div></div>
+
+      <div class="day-divider">Tue, Jun 10</div>
+
+      <div class="sys-update"><div class="pill"><i class="ph ph-calendar-check"></i><span>Time decided: <b>Sat, Jun 14 at 5:30 AM</b></span></div></div>
+
+      <div class="sys-update"><div class="pill"><i class="ph ph-clock"></i><span><b>Maya Chen</b> changed the time to <b>6:00 AM</b></span></div></div>
+      <div class="sys-update"><div class="pill"><i class="ph ph-map-pin"></i><span><b>Maya Chen</b> set the location to <b>Pantoll Ranger Station</b></span></div></div>
+      <div class="sys-update"><div class="pill"><i class="ph ph-pencil-simple"></i><span><b>Maya Chen</b> updated the plan details</span></div></div>
+      <div class="sys-update"><div class="pill"><i class="ph ph-push-pin"></i><span><b>Maya Chen</b> pinned a message</span></div></div>
+
+      <div class="sys-update"><div class="pill"><i class="ph ph-x-circle"></i><span><b>Riley Nguyen</b> RSVP'd Can't make it</span></div></div>
+      <div class="sys-note"><b>Jordan Lee</b> left the chat</div>
+
+      <div class="day-divider">Fri, Jun 13</div>
+
+      <div class="sys-update"><div class="pill"><i class="ph ph-bell"></i><span>Reminder: this plan starts tomorrow at <b>6:00 AM</b></span></div></div>
     </div>
 
     <div class="composer">
       <div class="input-pill">
-        <button type="button" class="icon-btn plus-btn" aria-label="Add"><i class="ph-fill ph-plus-circle"></i></button>
+        <button type="button" class="icon-btn plus-btn" aria-label="Add"><i class="ph ph-plus"></i></button>
         <span class="placeholder">Message</span>
         <button type="button" class="icon-btn" aria-label="Photo"><i class="ph ph-image"></i></button>
         <button type="button" class="icon-btn" aria-label="Emoji"><i class="ph ph-smiley"></i></button>
       </div>
       <button type="button" class="send-btn" aria-label="Send"><i class="ph ph-paper-plane-right"></i></button>
-    </div>
-
-    <div class="scrim" aria-hidden="true"></div>
-    <div class="sheet" role="dialog" aria-label="Add to chat">
-      <div class="grabber"></div>
-      <h3>Add to chat</h3>
-      <div class="attach-grid">
-        <button class="attach-item photo"><span class="ico"><i class="ph-fill ph-image-square"></i></span><span class="label">Photo</span></button>
-        <button class="attach-item gif"><span class="ico"><i class="ph-fill ph-gif"></i></span><span class="label">GIF</span></button>
-        <button class="attach-item channel"><span class="ico"><i class="ph-fill ph-chat-circle-dots"></i></span><span class="label">Channel</span></button>
-      </div>
     </div>
   </div>
 </div>

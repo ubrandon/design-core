@@ -323,13 +323,6 @@
       "name": "tp-current-chat"
     },
     {
-      "file": "tp-current-chat-attach.html",
-      "x": 939,
-      "y": 6914,
-      "width": 390,
-      "name": "tp-current-chat-attach-sheet"
-    },
-    {
       "file": "tp-poll-chat-card.html",
       "x": 2765,
       "y": 6924,
@@ -338,17 +331,10 @@
     },
     {
       "file": "tp-plan-undated.html",
-      "x": 2335,
+      "x": 939,
       "y": 6924,
       "width": 390,
       "name": "poll-1-plan-undated"
-    },
-    {
-      "file": "tp-poll-chat-card.html",
-      "x": 2765,
-      "y": 6924,
-      "width": 390,
-      "name": "poll-2-chat-poll-open"
     },
     {
       "file": "tp-plan-poll-open.html",
@@ -370,6 +356,27 @@
       "y": 6924,
       "width": 390,
       "name": "poll-4-plan-decided"
+    },
+    {
+      "file": "plan-view-empty-copy-copy.html",
+      "x": 1733,
+      "y": 6924,
+      "width": 390,
+      "name": "new-3-plan-view-empty Copy"
+    },
+    {
+      "file": "chat-notifications.html",
+      "x": 42,
+      "y": 9130,
+      "width": 390,
+      "name": "chat-notifications"
+    },
+    {
+      "file": "chat-ai-collapsed.html",
+      "x": 888,
+      "y": 9130,
+      "width": 390,
+      "name": "chat-ai-collapsed"
     }
   ],
   "texts": [
@@ -602,10 +609,10 @@
       "size": 72
     },
     {
-      "text": "New concepts: plan view and chat",
-      "x": 2335,
-      "y": 6774,
-      "size": 72
+      "text": "Chat notications",
+      "x": 25,
+      "y": 8883,
+      "size": 144
     }
   ]
 }
