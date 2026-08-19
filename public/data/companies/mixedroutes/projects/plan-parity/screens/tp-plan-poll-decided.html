@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link rel="stylesheet" href="../pp.css" />
+
+<style>
+  .pp .when-card { margin-top: 8px; border: 1px solid #e1e3e6; border-radius: 16px; padding: 12px; background: #fff; }
+  .pp .when-card .wc-head { display: flex; align-items: center; gap: 8px; }
+  .pp .when-card .wc-head i { font-size: 20px; }
+  .pp .when-card .wc-head b { font-size: 16px; font-weight: 700; }
+  .pp .when-card .wc-head .kick { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #5c6b7d; }
+  .pp .when-card .wc-head .link { margin-left: auto; font-size: 13px; font-weight: 700; color: #3b82f6; display: inline-flex; align-items: center; gap: 3px; }
+  .pp .when-card .wc-sub { color: #5c6b7d; font-size: 14px; margin: 4px 0 0 28px; }
+  .pp .when-card .wc-btns { display: flex; gap: 8px; margin-top: 12px; }
+  .pp .when-card .wc-btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 40px; border-radius: 12px; font-size: 14px; font-weight: 700; }
+  .pp .when-card .wc-btn.primary { background: linear-gradient(145deg,#14b8a6,#3b82f6); color: #fff; }
+  .pp .when-card .wc-btn.ghost { background: rgba(118,118,128,0.12); color: #1a2332; }
+  .pp .when-card .q { font-size: 15px; font-weight: 700; margin: 8px 0 8px; }
+  .pp .when-card .opt { position: relative; overflow: hidden; display: grid; grid-template-columns: 20px 1fr auto; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 10px; background: #f1f4f7; margin-bottom: 6px; font-size: 14px; font-weight: 700; }
+  .pp .when-card .opt .bar { position: absolute; left: 0; top: 0; bottom: 0; background: #cae9ee; z-index: 0; border-radius: 10px; }
+  .pp .when-card .opt > * { position: relative; z-index: 1; }
+  .pp .when-card .opt .ck { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #c5ccd6; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; }
+  .pp .when-card .opt.mine .ck { background: #14b8a6; border-color: #14b8a6; color: #fff; }
+  .pp .when-card .opt.win { outline: 2px solid #14b8a6; background: #e6f7f5; }
+  .pp .when-card .opt.win .ck { background: #14b8a6; border-color: #14b8a6; color: #fff; }
+  .pp .when-card .opt .sub { font-weight: 600; color: #5c6b7d; font-size: 12px; margin-left: 4px; }
+  .pp .when-card .opt .cnt { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: #5c6b7d; }
+  .pp .when-card .opt .cnt img { width: 16px; height: 16px; border-radius: 50%; margin-left: -6px; border: 1px solid #fff; }
+  .pp .when-card .wc-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; font-size: 12px; color: #5c6b7d; }
+  .pp .when-card .wc-foot .who { display: inline-flex; align-items: center; gap: 4px; }
+  .pp .when-card .wc-foot .who img { width: 18px; height: 18px; border-radius: 50%; margin-left: -6px; border: 1px solid #fff; }
+  .pp .date-row .poll-chip { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 999px; background: #e6f7f5; color: #0f766e; font-size: 12px; font-weight: 700; }
+  .pp .date-row .poll-chip i { font-size: 13px; }
+  .pp .hb-chat .cnt { background: #3b82f6; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 999px; }
+  .pp .date-badge.tbd { background: rgba(0,0,0,0.55); }
+  .pp .date-badge.vote { background: rgba(20,184,166,0.85); border-color: rgba(255,255,255,0.35); }
+</style>
+<div class="pp pp-plan-view" style="background: #ffffff;">
+  <div class="status light"><span>9:41</span><span class="r"><i class="ph-fill ph-cell-signal-full"></i><i class="ph-fill ph-wifi-high"></i><i class="ph-fill ph-battery-full"></i></span></div>
+
+  <div class="overlay-tb">
+    <span class="circ"><i class="ph ph-caret-left"></i></span>
+    <span class="right">
+      <span class="circ"><i class="ph ph-share-network"></i></span>
+      <span class="circ"><i class="ph ph-pencil-simple"></i></span>
+      <span class="circ"><i class="ph ph-dots-three-vertical"></i></span>
+    </span>
+  </div>
+
+  <div class="hero" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=70');">
+    <div class="grad"></div>
+    <div class="fade"></div>
+    <div class="hero-inner">
+      <span class="date-badge">Sat, Aug 22 • 6 AM</span>
+      <h1>Sunrise hike at Mt. Tam</h1>
+      <div class="hero-btns">
+        <span class="hb-chat"><i class="ph-fill ph-chat-circle"></i>Chat <span class="new">New</span></span>
+        <span class="hb-going"><i class="ph-fill ph-check-circle"></i>Going</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="below">
+    <div class="top-info">
+      <div class="part-row">
+        <div class="stack">
+          <span class="st"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><span class="tag host"><i class="ph-fill ph-crown"></i></span></span>
+          <span class="st"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><span class="tag going"><i class="ph-fill ph-check-circle"></i></span></span>
+          <span class="st"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><span class="tag going"><i class="ph-fill ph-check-circle"></i></span></span>
+          <span class="st"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><span class="tag maybe"><i class="ph-fill ph-question"></i></span></span>
+          <span class="st"><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=96&h=96&q=80" alt="" /></span>
+        </div>
+        <div class="ptext"><b>7 guests</b><span><i class="ph-fill ph-lock"></i>Private plan</span></div>
+        <i class="ph ph-caret-right"></i>
+      </div>
+
+      <div class="date-row"><i class="ph-fill ph-calendar-blank"></i><b>Sat, Aug 22nd</b><span>· 6 AM - 9 AM</span><span class="poll-chip"><i class="ph-fill ph-chart-bar"></i>Voted 4 of 7</span></div>
+
+      <div class="desc">
+        <p>Catching sunrise from the East Peak, then an easy loop back down. Meet at the Pantoll lot by 5:45 so we can carpool the last stretch. Bring layers, water and a headlamp for the first 20 minutes.</p>
+        <div class="meta"><i class="ph ph-shopping-bag"></i><div><b>Items to bring</b><span>Headlamp, 1L water, snacks, a warm layer</span></div></div>
+        <div class="meta"><i class="ph ph-currency-circle-dollar"></i><div><b>Cost</b><span>$8 parking per car, split at the lot</span></div></div>
+      </div>
+    </div>
+
+    <div class="facets">
+      <div class="chips-wrap">
+        <span class="chip">🥾 Hiking</span>
+        <span class="chip">🌄 Outdoors</span>
+      </div>
+
+      <div class="loc-card">
+        <div class="lh">
+          <div>
+            <div class="t">Pantoll Trailhead</div>
+            <div class="addr"><i class="ph-fill ph-map-pin"></i>3801 Panoramic Hwy, Mill Valley, CA 94941</div>
+          </div>
+          <span class="dir"><i class="ph-fill ph-navigation-arrow"></i></span>
+        </div>
+        <div class="rating">4.7 <span class="stars"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star-half"></i></span></div>
+        <div class="map"><span class="park"></span><span class="water"></span><i class="ph-fill ph-map-pin pin"></i></div>
+      </div>
+    </div>
+  </div>
+  <div class="home-bar"></div>
+</div>

@@ -55,6 +55,21 @@
   .chat-scope .composer .plus-btn { color: var(--chat-medium); }
   .chat-scope .composer .send-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--chat-input); color: var(--chat-medium); border: 0; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
   .chat-scope .composer .send-btn i { font-size: 22px; }
+
+  .chat-scope .poll { width: 100%; max-width: 100%; background: var(--chat-surface); border-radius: var(--bubble-radius); border-bottom-left-radius: 6px; padding: 12px 12px 10px; color: var(--chat-text); }
+  .chat-scope .poll .kicker { display: flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--chat-muted); margin-bottom: 4px; }
+  .chat-scope .poll .q { font-size: 1rem; font-weight: 800; line-height: 1.25; margin-bottom: 10px; }
+  .chat-scope .poll .opt { position: relative; display: grid; grid-template-columns: 22px 1fr auto; align-items: center; gap: 8px; padding: 9px 10px; border-radius: 12px; background: #f1f4f7; margin-bottom: 6px; overflow: hidden; font-size: 0.9rem; font-weight: 700; }
+  .chat-scope .poll .opt .bar { position: absolute; left: 0; top: 0; bottom: 0; background: #cae9ee; border-radius: 12px; z-index: 0; }
+  .chat-scope .poll .opt > * { position: relative; z-index: 1; }
+  .chat-scope .poll .opt .check { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #c5ccd6; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; }
+  .chat-scope .poll .opt.mine .check { background: #14b8a6; border-color: #14b8a6; color: #fff; }
+  .chat-scope .poll .opt .sub { display: block; font-size: 0.75rem; font-weight: 600; color: var(--chat-muted); }
+  .chat-scope .poll .opt .count { display: flex; align-items: center; gap: 4px; font-size: 0.8rem; color: rgba(17,24,39,0.7); }
+  .chat-scope .poll .opt .count img { width: 16px; height: 16px; border-radius: 50%; margin-left: -6px; border: 1px solid #fff; }
+  .chat-scope .poll .foot { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font-size: 0.75rem; color: var(--chat-muted); }
+  .chat-scope .poll .foot b { color: #3b82f6; font-weight: 800; }
+  .chat-scope .msg-stack.wide { max-width: 92%; }
 </style>
 
 <div class="mr-scope chat-scope">
@@ -93,6 +108,21 @@
       <div class="msg-row out">
         <div class="msg-stack">
           <div class="bubble out">Same. I can drive from the Pantoll lot if we leave by 5:45</div>
+        </div>
+      </div>
+
+
+      <div class="msg-row">
+        <img class="avatar" src="https://i.pravatar.cc/64?img=12" alt="" />
+        <div class="msg-stack wide">
+          <div class="poll">
+            <div class="kicker"><i class="ph-fill ph-chart-bar"></i> Time poll</div>
+            <div class="q">When should we do the hike?</div>
+            <div class="opt mine"><span class="bar" style="width:70%"></span><span class="check"><i class="ph-bold ph-check"></i></span><span>Sat, Aug 22 <span class="sub">6:00 AM</span></span><span class="count"><img src="https://i.pravatar.cc/32?img=12" alt=""><img src="https://i.pravatar.cc/32?img=5" alt=""><img src="https://i.pravatar.cc/32?img=8" alt=""> 4</span></div>
+            <div class="opt"><span class="bar" style="width:35%"></span><span class="check"></span><span>Sun, Aug 23 <span class="sub">6:00 AM</span></span><span class="count"><img src="https://i.pravatar.cc/32?img=15" alt=""><img src="https://i.pravatar.cc/32?img=3" alt=""> 2</span></div>
+            <div class="opt"><span class="bar" style="width:0%"></span><span class="check"></span><span>Sat, Aug 29 <span class="sub">6:30 AM</span></span><span class="count">0</span></div>
+            <div class="foot"><span>6 voted · closes in 2 days</span><b>Set as plan time</b></div>
+          </div>
         </div>
       </div>
 

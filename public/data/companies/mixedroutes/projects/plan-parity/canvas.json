@@ -311,30 +311,65 @@
     {
       "file": "tp-current-plan-view.html",
       "x": 25,
-      "y": 7120,
+      "y": 6914,
       "width": 390,
       "name": "tp-current-plan-view"
     },
     {
       "file": "tp-current-chat.html",
-      "x": 455,
-      "y": 7120,
+      "x": 448,
+      "y": 6914,
       "width": 390,
       "name": "tp-current-chat"
     },
     {
       "file": "tp-current-chat-attach.html",
-      "x": 885,
-      "y": 7120,
+      "x": 939,
+      "y": 6914,
       "width": 390,
       "name": "tp-current-chat-attach-sheet"
     },
     {
-      "file": "tp-current-when-facet.html",
-      "x": 1315,
-      "y": 7120,
+      "file": "tp-poll-chat-card.html",
+      "x": 2765,
+      "y": 6924,
       "width": 390,
-      "name": "tp-current-when-facet"
+      "name": "poll-2-chat-poll-open"
+    },
+    {
+      "file": "tp-plan-undated.html",
+      "x": 2335,
+      "y": 6924,
+      "width": 390,
+      "name": "poll-1-plan-undated"
+    },
+    {
+      "file": "tp-poll-chat-card.html",
+      "x": 2765,
+      "y": 6924,
+      "width": 390,
+      "name": "poll-2-chat-poll-open"
+    },
+    {
+      "file": "tp-plan-poll-open.html",
+      "x": 3195,
+      "y": 6924,
+      "width": 390,
+      "name": "poll-2b-plan-poll-open"
+    },
+    {
+      "file": "tp-chat-poll-decided.html",
+      "x": 3625,
+      "y": 6924,
+      "width": 390,
+      "name": "poll-3-chat-decided"
+    },
+    {
+      "file": "tp-plan-poll-decided.html",
+      "x": 4055,
+      "y": 6924,
+      "width": 390,
+      "name": "poll-4-plan-decided"
     }
   ],
   "texts": [
@@ -430,141 +465,147 @@
     },
     {
       "text": "Time / place poll",
-      "x": 5931,
-      "y": 6646,
+      "x": -909,
+      "y": 14328,
       "size": 48
     },
     {
       "text": "Add to calendar",
-      "x": 5931,
-      "y": 6710,
+      "x": -909,
+      "y": 14392,
       "size": 48
     },
     {
       "text": "Pre-plan reminders",
-      "x": 5931,
-      "y": 6774,
+      "x": -909,
+      "y": 14456,
       "size": 48
     },
     {
       "text": "RSVP notification to host",
-      "x": 5931,
-      "y": 6838,
+      "x": -909,
+      "y": 14520,
       "size": 48
     },
     {
       "text": "Capacity + Full state",
-      "x": 5931,
-      "y": 6902,
+      "x": -909,
+      "y": 14584,
       "size": 48
     },
     {
       "text": "Plus-ones",
-      "x": 5931,
-      "y": 6966,
+      "x": -909,
+      "y": 14648,
       "size": 48
     },
     {
       "text": "Link landing guest count",
-      "x": 5931,
-      "y": 7030,
+      "x": -909,
+      "y": 14712,
       "size": 48
     },
     {
       "text": "Host announce + pin",
-      "x": 5931,
-      "y": 7094,
+      "x": -909,
+      "y": 14776,
       "size": 48
     },
     {
       "text": "Notification quiet controls",
-      "x": 5931,
-      "y": 7158,
+      "x": -909,
+      "y": 14840,
       "size": 48
     },
     {
       "text": "Duplicate plan",
-      "x": 5931,
-      "y": 7222,
+      "x": -909,
+      "y": 14904,
       "size": 48
     },
     {
       "text": "Host approval to join",
-      "x": 5931,
-      "y": 7286,
+      "x": -909,
+      "y": 14968,
       "size": 48
     },
     {
       "text": "Guest RSVP without account",
-      "x": 5931,
-      "y": 7350,
+      "x": -909,
+      "y": 15032,
       "size": 48
     },
     {
       "text": "Cover themes",
-      "x": 5931,
-      "y": 7414,
+      "x": -909,
+      "y": 15096,
       "size": 48
     },
     {
       "text": "Contact-picker invites",
-      "x": 5931,
-      "y": 7478,
+      "x": -909,
+      "y": 15160,
       "size": 48
     },
     {
       "text": "Per-plan link preview (OG)",
-      "x": 5931,
-      "y": 7542,
+      "x": -909,
+      "y": 15224,
       "size": 48
     },
     {
       "text": "Shared photo album / memories",
-      "x": 5931,
-      "y": 7606,
+      "x": -909,
+      "y": 15288,
       "size": 48
     },
     {
       "text": "Message host privately",
-      "x": 5931,
-      "y": 7670,
+      "x": -909,
+      "y": 15352,
       "size": 48
     },
     {
       "text": "Cost split note",
-      "x": 5931,
-      "y": 7734,
+      "x": -909,
+      "y": 15416,
       "size": 48
     },
     {
       "text": "Weather on plan",
-      "x": 5931,
-      "y": 7798,
+      "x": -909,
+      "y": 15480,
       "size": 48
     },
     {
       "text": "Schedule it (idea to plan)",
-      "x": 5931,
-      "y": 7862,
+      "x": -909,
+      "y": 15544,
       "size": 48
     },
     {
       "text": "Web push prompt",
-      "x": 5931,
-      "y": 7926,
+      "x": -909,
+      "y": 15608,
       "size": 48
     },
     {
       "text": "Current designs",
       "x": 25,
-      "y": 6980,
+      "y": 6774,
       "size": 72
     },
     {
-      "text": "Where polls could live: plan view, plan chat + attach sheet, When facet in create/edit",
-      "x": 25,
-      "y": 7060,
-      "size": 24
+      "text": "Time poll designs",
+      "x": 939,
+      "y": 6774,
+      "size": 72
+    },
+    {
+      "text": "New concepts: plan view and chat",
+      "x": 2335,
+      "y": 6774,
+      "size": 72
     }
   ]
 }

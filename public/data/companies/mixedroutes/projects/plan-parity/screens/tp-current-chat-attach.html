@@ -3,58 +3,55 @@
 <link rel="stylesheet" href="../../../design-system/company.css" />
 
 <style>
-  .chat-scope { --chat-bg: #0b0f14; --chat-surface: #1b2027; --chat-out: #2f7a72; --bubble-radius: 18px; }
+  .chat-scope { --chat-bg: #f1f4f7; --chat-surface: #ffffff; --chat-out: linear-gradient(90deg,#d8f0f1 0%,#cae9ee 100%); --chat-text: #1a2332; --chat-muted: #5c6b7d; --chat-primary: #06b6d4; --chat-medium: #9aa4b2; --chat-input: rgba(118,118,128,0.12); --chat-grad: linear-gradient(145deg,#14b8a6,#3b82f6); --bubble-radius: 18px; }
   .chat-scope .chat-wrap { background: var(--chat-bg); height: 844px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
   .chat-scope .chat-body { overflow-y: auto; }
-  .chat-scope .chat-pattern { position: absolute; inset: 0; background-image: url('https://raw.githubusercontent.com/telegramdesktop/tdesktop/dev/Telegram/Resources/art/bg/pattern.png'); background-size: 420px; opacity: 0.06; pointer-events: none; mix-blend-mode: screen; }
-  .chat-scope .chat-header { position: sticky; top: 0; z-index: 3; display: grid; grid-template-columns: 28px 36px 1fr 28px; align-items: center; gap: 10px; padding: 10px 12px; background: rgba(11,15,20,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-  .chat-scope .chat-header .back { background: transparent; border: 0; color: rgba(255,255,255,0.95); display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
+  .chat-scope .chat-pattern { position: absolute; inset: 0; background: linear-gradient(rgba(241,244,247,0.85), rgba(241,244,247,0.85)), url('../../../design-system/mixedroutes-assets/plan-default.png'); background-size: 300px 300px; background-repeat: repeat; pointer-events: none; }
+  .chat-scope .chat-header { position: sticky; top: 0; z-index: 3; display: grid; grid-template-columns: 28px 36px 1fr 28px; align-items: center; gap: 10px; padding: 10px 12px; background: #ffffff; border-bottom: 1px solid #e1e3e6; }
+  .chat-scope .chat-header .back { background: transparent; border: 0; color: var(--chat-text); display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
   .chat-scope .chat-header .back i { font-size: 22px; }
   .chat-scope .chat-header .avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
-  .chat-scope .chat-header .title { font-size: 1rem; font-weight: 800; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .chat-scope .chat-header .tag-btn { background: transparent; border: 0; color: rgba(255,255,255,0.85); padding: 0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+  .chat-scope .chat-header .title { font-size: 1rem; font-weight: 800; color: var(--chat-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .chat-scope .chat-header .tag-btn { background: transparent; border: 0; color: var(--chat-text); padding: 0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
   .chat-scope .chat-header .tag-btn i { font-size: 20px; }
 
   .chat-scope .chat-body { position: relative; z-index: 1; flex: 1; padding: 12px 10px 8px; display: flex; flex-direction: column; gap: 10px; }
   .chat-scope .msg-row { display: grid; grid-template-columns: 36px 1fr; gap: 8px; align-items: flex-start; }
   .chat-scope .msg-row.out { grid-template-columns: 1fr; }
   .chat-scope .msg-row .avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; align-self: flex-start; }
-  .chat-scope .msg-row .avatar.initials { background: #4b5563; color: #fff; font-size: 0.7rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .chat-scope .msg-row .avatar.initials { background: #b45309; color: #fff; font-size: 0.7rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
   .chat-scope .msg-stack { display: flex; flex-direction: column; gap: 4px; max-width: 78%; }
   .chat-scope .msg-row.out .msg-stack { margin-left: auto; align-items: flex-end; }
-  .chat-scope .bubble { padding: 9px 12px 10px; border-radius: var(--bubble-radius); color: #fff; font-size: 0.95rem; line-height: 1.3; }
+  .chat-scope .bubble { padding: 9px 12px 10px; border-radius: var(--bubble-radius); color: var(--chat-text); font-size: 0.95rem; line-height: 1.3; }
   .chat-scope .bubble.in { background: var(--chat-surface); border-bottom-left-radius: 6px; }
   .chat-scope .bubble.out { background: var(--chat-out); border-bottom-right-radius: 6px; }
   .chat-scope .bubble.emoji-only { background: transparent; padding: 0; font-size: 2.4rem; line-height: 1; }
-  .chat-scope .bubble .sender { font-size: 0.82rem; font-weight: 800; color: #5eb3ff; margin-bottom: 2px; }
-  .chat-scope .seen { text-align: center; color: rgba(255,255,255,0.45); font-size: 0.78rem; padding: 6px 0 2px; }
+  .chat-scope .bubble .sender { font-size: 0.82rem; font-weight: 800; color: #7c3aed; margin-bottom: 2px; }
+  .chat-scope .seen { text-align: center; color: var(--chat-muted); font-size: 0.78rem; padding: 6px 0 2px; }
 
-  .chat-scope .composer { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 44px; align-items: center; gap: 10px; padding: 6px 12px 18px; background: rgba(11,15,20,0.92); border-top: 1px solid rgba(255,255,255,0.05); }
-  .chat-scope .composer .input-pill { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 999px; background: #1b2027; }
-  .chat-scope .composer .input-pill .placeholder { color: rgba(255,255,255,0.5); font-size: 0.98rem; padding-left: 4px; }
-  .chat-scope .composer .icon-btn { background: transparent; border: 0; color: rgba(255,255,255,0.55); width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
-  .chat-scope .composer .icon-btn i { font-size: 22px; }
+  .chat-scope .composer { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 48px; align-items: center; gap: 8px; padding: 8px 16px 20px; background: #ffffff; }
+  .chat-scope .composer .input-pill { display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 999px; background: rgba(118,118,128,0.12); }
+  .chat-scope .composer .input-pill .placeholder { color: var(--chat-muted); font-size: 0.98rem; padding-left: 4px; }
+  .chat-scope .composer .icon-btn { background: transparent; border: 0; color: var(--chat-medium); width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+  .chat-scope .composer .icon-btn i { font-size: 24px; }
   .chat-scope .composer .plus-btn { color: #5eb3ff; }
-  .chat-scope .composer .send-btn { width: 44px; height: 44px; border-radius: 50%; background: #2c333d; color: rgba(255,255,255,0.85); border: 0; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
-  .chat-scope .composer .send-btn i { font-size: 20px; }
+  .chat-scope .composer .send-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--chat-input); color: var(--chat-medium); border: 0; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+  .chat-scope .composer .send-btn i { font-size: 22px; }
 
   .chat-scope .scrim { position: absolute; inset: 0; background: rgba(0,0,0,0.45); z-index: 4; }
-  .chat-scope .sheet { position: absolute; left: 0; right: 0; bottom: 0; background: #161b22; border-top-left-radius: 18px; border-top-right-radius: 18px; padding: 10px 16px 22px; z-index: 5; }
-  .chat-scope .sheet .grabber { width: 40px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.18); margin: 4px auto 12px; }
-  .chat-scope .sheet h3 { margin: 4px 4px 12px; font-size: 1.05rem; font-weight: 800; color: #fff; }
-  .chat-scope .attach-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px 6px; padding: 4px 4px 6px; }
-  .chat-scope .attach-item { display: flex; flex-direction: column; align-items: center; gap: 8px; background: transparent; border: 0; color: #fff; cursor: pointer; padding: 6px 2px; }
+  .chat-scope .sheet { position: absolute; left: 0; right: 0; bottom: 0; background: #ffffff; border-top-left-radius: 18px; border-top-right-radius: 18px; padding: 10px 16px 22px; z-index: 5; }
+  .chat-scope .sheet .grabber { width: 40px; height: 4px; border-radius: 2px; background: rgba(0,0,0,0.15); margin: 4px auto 12px; }
+  .chat-scope .sheet h3 { margin: 4px 4px 12px; font-size: 1.05rem; font-weight: 800; color: #111827; }
+  .chat-scope .attach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 6px; padding: 4px 4px 6px; }
+  .chat-scope .attach-item { display: flex; flex-direction: column; align-items: center; gap: 8px; background: transparent; border: 0; color: #111827; cursor: pointer; padding: 6px 2px; }
   .chat-scope .attach-item .ico { width: 54px; height: 54px; border-radius: 16px; background: #232a33; display: inline-flex; align-items: center; justify-content: center; }
-  .chat-scope .attach-item .ico i { font-size: 26px; color: #fff; }
-  .chat-scope .attach-item .label { font-size: 0.78rem; color: rgba(255,255,255,0.85); font-weight: 600; text-align: center; }
-  .chat-scope .attach-item.photo .ico { background: linear-gradient(135deg, #6c5ce7, #a55eea); }
-  .chat-scope .attach-item.camera .ico { background: linear-gradient(135deg, #2d3436, #535c68); }
-  .chat-scope .attach-item.doc .ico { background: linear-gradient(135deg, #00a8ff, #0984e3); }
-  .chat-scope .attach-item.channel .ico { background: linear-gradient(135deg, #2f7a72, #20bf6b); }
-  .chat-scope .attach-item.location .ico { background: linear-gradient(135deg, #ff6b6b, #e84393); }
-  .chat-scope .attach-item.poll .ico { background: linear-gradient(135deg, #fdcb6e, #e17055); }
-  .chat-scope .attach-item.event .ico { background: linear-gradient(135deg, #00b894, #0fb9b1); }
+  .chat-scope .attach-item .ico i { font-size: 30px; }
+  .chat-scope .attach-item .label { font-size: 0.78rem; color: rgba(17,24,39,0.85); font-weight: 600; text-align: center; }
   .chat-scope .attach-item.gif .ico { background: linear-gradient(135deg, #4834d4, #686de0); }
+  .chat-scope .attach-item.photo .ico { background: linear-gradient(135deg, #dbeafe, #e0e7ff); } .chat-scope .attach-item.photo .ico i { color: #2563eb; }
+  .chat-scope .attach-item.gif .ico { background: linear-gradient(135deg, #f3e8ff, #fff1e6); } .chat-scope .attach-item.gif .ico i { color: #d97706; }
+  .chat-scope .attach-item.channel .ico { background: linear-gradient(135deg, #d1fae5, #dbeafe); } .chat-scope .attach-item.channel .ico i { color: #059669; }
+  .chat-scope .scrim { background: rgba(0,0,0,0.35) !important; }
 </style>
 
 <div class="mr-scope chat-scope">
@@ -63,7 +60,7 @@
     <header class="chat-header">
       <button type="button" class="back" aria-label="Back"><i class="ph ph-caret-left"></i></button>
       <img class="avatar" src="https://i.pravatar.cc/80?img=15" alt="" />
-      <div class="title">UFC 329: McGregor vs. Hollowa…</div>
+      <div class="title">Sunrise hike at Mt. Tam</div>
       <button type="button" class="tag-btn" aria-label="Tag"><i class="ph ph-tag"></i></button>
     </header>
 
@@ -71,17 +68,17 @@
       <div class="msg-row">
         <img class="avatar" src="https://i.pravatar.cc/64?img=12" alt="" />
         <div class="msg-stack">
-          <div class="bubble in"><div class="sender">Eric Hechavarria</div>Heather likes UFC lol</div>
+          <div class="bubble in"><div class="sender">Maya Chen</div>Who's up for the sunrise hike this weekend?</div>
         </div>
       </div>
       <div class="msg-row">
-        <div class="avatar initials">DM</div>
+        <div class="avatar initials">SO</div>
         <div class="msg-stack">
-          <div class="bubble in"><div class="sender">Daniel Murphy</div>She loves it</div>
+          <div class="bubble in"><div class="sender" style="color:#b45309">Sam Ortiz</div>I'm in, as long as we carpool</div>
           <div class="bubble emoji-only">❤️</div>
         </div>
       </div>
-      <div class="msg-row out"><div class="msg-stack"><div class="bubble out">Damn I looked up if we can add a small betting feature just for friends, but its illegal lol</div></div></div>
+      <div class="msg-row out"><div class="msg-stack"><div class="bubble out">Same. I can drive from the Pantoll lot if we leave by 5:45</div></div></div>
       <div class="seen">Seen by you</div>
     </div>
 
@@ -100,14 +97,9 @@
       <div class="grabber"></div>
       <h3>Add to chat</h3>
       <div class="attach-grid">
-        <button class="attach-item photo"><span class="ico"><i class="ph-fill ph-image"></i></span><span class="label">Photo</span></button>
-        <button class="attach-item camera"><span class="ico"><i class="ph-fill ph-camera"></i></span><span class="label">Camera</span></button>
-        <button class="attach-item doc"><span class="ico"><i class="ph-fill ph-file"></i></span><span class="label">Document</span></button>
-        <button class="attach-item channel"><span class="ico"><i class="ph-fill ph-chat-circle-text"></i></span><span class="label">Channel</span></button>
-        <button class="attach-item location"><span class="ico"><i class="ph-fill ph-map-pin"></i></span><span class="label">Location</span></button>
-        <button class="attach-item poll"><span class="ico"><i class="ph-fill ph-chart-bar"></i></span><span class="label">Poll</span></button>
-        <button class="attach-item event"><span class="ico"><i class="ph-fill ph-calendar-blank"></i></span><span class="label">Event</span></button>
+        <button class="attach-item photo"><span class="ico"><i class="ph-fill ph-image-square"></i></span><span class="label">Photo</span></button>
         <button class="attach-item gif"><span class="ico"><i class="ph-fill ph-gif"></i></span><span class="label">GIF</span></button>
+        <button class="attach-item channel"><span class="ico"><i class="ph-fill ph-chat-circle-dots"></i></span><span class="label">Channel</span></button>
       </div>
     </div>
   </div>

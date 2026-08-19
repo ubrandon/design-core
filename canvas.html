@@ -105,6 +105,7 @@
   <script src="scripts/nav.js"></script>
   <script src="scripts/sidenav.js"></script>
   <script src="scripts/canvas-pan-zoom.js"></script>
+  <script src="scripts/canvas-sync.js"></script>
   <script src="scripts/live-reload.js"></script>
   <script>
     const CARD_GAP = 40;
@@ -200,7 +201,11 @@
 
     let screens = [];
     let texts = [];
+    const canvasSync = new CanvasSyncState();
     let layoutInteractionActive = false;
+    let deferredCanvasLoad = null;
+    let canvasLoadRequest = 0;
+    let latestCanvasResponse = 0;
     let pendingSavePayload = null;
     let saveInFlight = null;
 
@@ -308,15 +313,7 @@
     }
 
     function buildCanvasPayload() {
-      const payload = { screens: screens.map(s => {
-        const out = { file: s.file, x: Math.round(s.x), y: Math.round(s.y), width: s.width };
-        if (s.name && s.name.trim()) out.name = s.name.trim();
-        return out;
-      }) };
-      if (texts.length) {
-        payload.texts = texts.map(t => ({ text: t.text, x: Math.round(t.x), y: Math.round(t.y), size: t.size }));
-      }
-      return payload;
+      return canvasSync.payload(screens, texts);
     }
 
     async function flushCanvasSaveQueue() {
@@ -341,7 +338,7 @@
       return saved;
     }
 
-    function saveCanvas() {
+    function queueCanvasSave() {
       // Keep only the newest waiting snapshot. The active request always finishes
       // first, so an older response can never overwrite a newer canvas state.
       pendingSavePayload = buildCanvasPayload();
@@ -350,10 +347,15 @@
           saveInFlight = null;
           // A promise callback can enqueue work just as the current flush settles.
           // Start another flush so that snapshot cannot remain stranded.
-          if (pendingSavePayload) saveCanvas();
+          if (pendingSavePayload) queueCanvasSave();
         });
       }
       return saveInFlight;
+    }
+
+    function saveCanvas() {
+      canvasSync.capture(screens, texts);
+      return queueCanvasSave();
     }
 
     async function duplicateScreenFile(file) {
@@ -397,7 +399,7 @@
         return null;
       }
 
-      const copiedTexts = textIndices.map(i => ({
+      const copiedTexts = textIndices.map(i => canvasSync.newText({
         text: texts[i].text,
         x: roundCanvasPosition(texts[i].x + offsetX),
         y: roundCanvasPosition(texts[i].y + offsetY),
@@ -1102,6 +1104,7 @@
         }
         cardPointer = null;
         layoutInteractionActive = false;
+        flushDeferredCanvasLoad();
         releaseViewportCaptureSafe(pid);
         return true;
       }
@@ -1247,6 +1250,7 @@
         }
         cardPointer = null;
         layoutInteractionActive = false;
+        flushDeferredCanvasLoad();
       }
       if (marquee && marquee.pointerId === e.pointerId) {
         endMarqueePointer(e);
@@ -1314,62 +1318,74 @@
       return true;
     }
 
+    function applyCanvasData(data, changedFiles, reloadAllScreens) {
+      const merged = canvasSync.ingest(data);
+      const next = merged.screens;
+      const nextTexts = merged.texts;
+      const structureSame = screens.length === next.length && next.every((n, i) =>
+        screens[i] && n.file === screens[i].file && n.width === screens[i].width && (n.name || "") === (screens[i].name || "")
+      );
+      const textsSame = texts.length === nextTexts.length && nextTexts.every((n, i) =>
+        texts[i] && n.text === texts[i].text && n.x === texts[i].x && n.y === texts[i].y && n.size === texts[i].size
+      );
+      if (!structureSame) {
+        screens = next;
+        renderCards();
+        var empty = document.getElementById("canvas-empty");
+        if (empty) empty.remove();
+      } else {
+        const positionsChanged = next.some((n, i) => n.x !== screens[i].x || n.y !== screens[i].y);
+        if (positionsChanged) {
+          next.forEach((n, i) => {
+            screens[i].x = n.x;
+            screens[i].y = n.y;
+            const card = document.getElementById("card-" + i);
+            if (card) {
+              card.style.left = n.x + "px";
+              card.style.top = n.y + "px";
+            }
+          });
+        }
+        if (reloadAllScreens) {
+          reloadChangedIframes([], true);
+        } else if (changedFiles && changedFiles.length) {
+          reloadChangedIframes(changedFiles, false);
+        }
+      }
+      if (!textsSame) {
+        texts = nextTexts;
+        renderTexts();
+      }
+      if (merged.needsSave) queueCanvasSave();
+    }
+
+    function flushDeferredCanvasLoad() {
+      if (layoutInteractionActive || !deferredCanvasLoad) return;
+      const pending = deferredCanvasLoad;
+      deferredCanvasLoad = null;
+      applyCanvasData(pending.data, pending.changedFiles, pending.reloadAllScreens);
+    }
+
     function loadCanvas(changedFiles, reloadAllScreens) {
+      const requestId = ++canvasLoadRequest;
       return fetch(dataPath("projects/" + encProjectId + "/canvas.json") + "?t=" + Date.now())
         .then(r => {
           if (!r.ok) throw new Error(r.status);
           return r.json();
         })
         .then(data => {
-          let autoX = 0;
-          const next = data.screens.map((s) => {
-            const w = s.width || 390;
-            const x = s.x != null ? s.x : autoX;
-            const y = s.y != null ? s.y : 0;
-            autoX = x + w + CARD_GAP;
-            const name = typeof s.name === "string" ? s.name : "";
-            return { file: s.file, x, y, width: w, name };
-          });
-          const nextTexts = Array.isArray(data.texts) ? data.texts.map(t => ({
-            text: typeof t.text === "string" ? t.text : "",
-            x: t.x != null ? t.x : 0,
-            y: t.y != null ? t.y : 0,
-            size: t.size || TITLE_FONT_SIZE,
-          })) : [];
-          const structureSame = screens.length === next.length && next.every((n, i) =>
-            screens[i] && n.file === screens[i].file && n.width === screens[i].width && (n.name || "") === (screens[i].name || "")
-          );
-          const textsSame = texts.length === nextTexts.length && nextTexts.every((n, i) =>
-            texts[i] && n.text === texts[i].text && n.x === texts[i].x && n.y === texts[i].y && n.size === texts[i].size
-          );
-          if (!structureSame) {
-            screens = next;
-            renderCards();
-            var empty = document.getElementById("canvas-empty");
-            if (empty) empty.remove();
-          } else {
-            const positionsChanged = next.some((n, i) => n.x !== screens[i].x || n.y !== screens[i].y);
-            if (positionsChanged && !layoutInteractionActive) {
-              next.forEach((n, i) => {
-                screens[i].x = n.x;
-                screens[i].y = n.y;
-                const card = document.getElementById("card-" + i);
-                if (card) {
-                  card.style.left = n.x + "px";
-                  card.style.top = n.y + "px";
-                }
-              });
-            }
-            if (reloadAllScreens) {
-              reloadChangedIframes([], true);
-            } else if (changedFiles && changedFiles.length) {
-              reloadChangedIframes(changedFiles, false);
-            }
+          if (requestId < latestCanvasResponse) return;
+          latestCanvasResponse = requestId;
+          if (layoutInteractionActive) {
+            const previousFiles = deferredCanvasLoad ? deferredCanvasLoad.changedFiles : [];
+            deferredCanvasLoad = {
+              data,
+              changedFiles: Array.from(new Set(previousFiles.concat(changedFiles || []))),
+              reloadAllScreens: Boolean(reloadAllScreens || (deferredCanvasLoad && deferredCanvasLoad.reloadAllScreens)),
+            };
+            return;
           }
-          if (!textsSame) {
-            texts = nextTexts;
-            renderTexts();
-          }
+          applyCanvasData(data, changedFiles, reloadAllScreens);
         })
         .catch(() => {
           if (!screens.length) {
@@ -1654,7 +1670,7 @@
       const point = stagePointFromClient(clientX, clientY);
       const x = point.x;
       const y = point.y;
-      texts.push({ text: "", x: roundCanvasPosition(x), y: roundCanvasPosition(y), size: TITLE_FONT_SIZE });
+      texts.push(canvasSync.newText({ text: "", x: roundCanvasPosition(x), y: roundCanvasPosition(y), size: TITLE_FONT_SIZE }));
       cancelPlaceText();
       renderTexts();
       const idx = texts.length - 1;
@@ -1750,6 +1766,7 @@
       }
       textPointer = null;
       layoutInteractionActive = false;
+      flushDeferredCanvasLoad();
       clearTextPointerListeners();
       releaseViewportCaptureSafe(e.pointerId);
       return true;
