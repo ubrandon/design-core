@@ -3,21 +3,21 @@
     {
       "file": "create-plan.html",
       "x": 25,
-      "y": 2138,
+      "y": 1819,
       "width": 390,
       "name": "current-1-create-plan"
     },
     {
       "file": "create-plan-date.html",
       "x": 448,
-      "y": 2138,
+      "y": 1819,
       "width": 390,
       "name": "current-2-date-facet"
     },
     {
       "file": "create-plan-location.html",
       "x": 868,
-      "y": 2138,
+      "y": 1819,
       "width": 390,
       "name": "current-3-location-facet"
     },
@@ -44,66 +44,66 @@
     },
     {
       "file": "create-plan-date-copy.html",
-      "x": 446,
-      "y": 7298,
+      "x": 471,
+      "y": 4321,
       "width": 390,
       "name": "create-plan-date-facet Copy"
     },
     {
       "file": "plan-view-copy.html",
-      "x": 17,
-      "y": 7298,
+      "x": 42,
+      "y": 4321,
       "width": 390,
       "name": "plan-view-current Copy"
     },
     {
       "file": "nf-when-open.html",
-      "x": 1009,
-      "y": 7298,
+      "x": 1034,
+      "y": 4321,
       "width": 390,
-      "name": "when-card-v2-open"
+      "name": "rec-1-when-sheet"
     },
     {
       "file": "nf-when-repeat-sheet.html",
-      "x": 1439,
-      "y": 7298,
+      "x": 1464,
+      "y": 4321,
       "width": 390,
-      "name": "when-card-v2-repeat-sheet"
+      "name": "rec-2-repeats-sheet"
     },
     {
       "file": "nf-when-repeating.html",
-      "x": 2370,
-      "y": 7298,
+      "x": 2395,
+      "y": 4321,
       "width": 390,
-      "name": "when-card-v2-repeating"
+      "name": "rec-4-details-when-set"
     },
     {
       "file": "create-flow-2-details-recurring.html",
-      "x": 2800,
-      "y": 7298,
+      "x": 2825,
+      "y": 4321,
       "width": 390,
-      "name": "new-2-details-recurring"
+      "name": "rec-5-details-filled"
     },
     {
       "file": "plan-view-recurring.html",
-      "x": 3230,
-      "y": 7298,
+      "x": 3255,
+      "y": 4321,
       "width": 390,
       "name": "plan-view-recurring"
     },
     {
       "file": "plans-list-recurring.html",
-      "x": 3850,
-      "y": 7298,
+      "x": 3875,
+      "y": 4321,
       "width": 390,
       "name": "plans-list-recurring"
     },
     {
       "file": "nf-when-calendar-sheet.html",
-      "x": 1862,
-      "y": 7298,
+      "x": 1887,
+      "y": 4321,
       "width": 390,
-      "name": "when-card-v2-calendar-sheet"
+      "name": "rec-3-when-sheet-repeating"
     },
     {
       "file": "plan-view-empty.html",
@@ -170,8 +170,8 @@
     },
     {
       "file": "plans-list-tiles-color.html",
-      "x": 4269,
-      "y": 7298,
+      "x": 4294,
+      "y": 4321,
       "width": 390,
       "name": "plans-list-tiles-color"
     },
@@ -234,7 +234,7 @@
     {
       "file": "s3-1-name-gotos.html",
       "x": 2152,
-      "y": 2164,
+      "y": 1845,
       "width": 390,
       "name": "new-1-details-name-dropdown"
     },
@@ -255,56 +255,56 @@
     {
       "file": "s3-1-all-in-one-empty.html",
       "x": 1732,
-      "y": 2164,
+      "y": 1845,
       "width": 390,
       "name": "new-1-details-empty"
     },
     {
       "file": "s3-1-all-in-one-stacked.html",
       "x": 2574,
-      "y": 2164,
+      "y": 1845,
       "width": 390,
       "name": "new-1-details-stacked-buttons"
     },
     {
       "file": "s3-1-all-in-one-when-calendar.html",
       "x": 3425,
-      "y": 2169,
+      "y": 1850,
       "width": 390,
       "name": "new-1-details-when-calendar"
     },
     {
       "file": "qk-3-place-modal-copy.html",
       "x": 3894,
-      "y": 2169,
+      "y": 1850,
       "width": 390,
       "name": "new-1-details-where-modal"
     },
     {
       "file": "qk-4-place-search-copy.html",
       "x": 4316,
-      "y": 2169,
+      "y": 1850,
       "width": 390,
       "name": "new-1-details-where-search"
     },
     {
       "file": "plan-view-empty-copy.html",
       "x": 5323,
-      "y": 2164,
+      "y": 1845,
       "width": 390,
       "name": "new-3-plan-view-empty"
     },
     {
       "file": "s3-3-invite-vis-switch.html",
       "x": 4820,
-      "y": 2164,
+      "y": 1845,
       "width": 390,
       "name": "new-2-invite"
     },
     {
       "file": "s3-1-details-invite-settings-sheet.html",
       "x": 3003,
-      "y": 2164,
+      "y": 1845,
       "width": 390,
       "name": "new-1-details-invite-settings-sheet"
     }
@@ -319,7 +319,7 @@
     {
       "text": "Current plan creation",
       "x": 25,
-      "y": 1979,
+      "y": 1660,
       "size": 72
     },
     {
@@ -330,20 +330,20 @@
     },
     {
       "text": "Recurring",
-      "x": 0,
-      "y": 6905,
+      "x": 25,
+      "y": 3928,
       "size": 144
     },
     {
       "text": "New concepts",
-      "x": 1009,
-      "y": 7158,
+      "x": 1034,
+      "y": 4181,
       "size": 72
     },
     {
       "text": "List variations / recurring",
-      "x": 3850,
-      "y": 7172,
+      "x": 3875,
+      "y": 4195,
       "size": 48
     },
     {
@@ -360,32 +360,32 @@
     },
     {
       "text": "Current designs",
-      "x": 0,
-      "y": 7145,
+      "x": 25,
+      "y": 4168,
       "size": 72
     },
     {
       "text": "New plan creation",
       "x": 1733,
-      "y": 1979,
+      "y": 1660,
       "size": 72
     },
     {
       "text": "Invite others",
       "x": 4820,
-      "y": 2086,
+      "y": 1767,
       "size": 36
     },
     {
       "text": "New flow 1: Details",
       "x": 1732,
-      "y": 2086,
+      "y": 1767,
       "size": 36
     },
     {
       "text": "New flow 3: Plan view",
       "x": 5323,
-      "y": 2086,
+      "y": 1767,
       "size": 36
     }
   ]
