@@ -23,22 +23,22 @@
     },
     {
       "file": "plan-view.html",
-      "x": -11,
-      "y": 11542,
+      "x": 42,
+      "y": 15839,
       "width": 390,
       "name": "plan-view-current"
     },
     {
       "file": "plan-view-rsvp.html",
-      "x": 419,
-      "y": 11542,
+      "x": 472,
+      "y": 15839,
       "width": 390,
       "name": "plan-view-rsvp-modal"
     },
     {
       "file": "plan-view-attendees.html",
-      "x": 855,
-      "y": 11542,
+      "x": 908,
+      "y": 15839,
       "width": 390,
       "name": "plan-view-attendees-modal"
     },
@@ -107,64 +107,64 @@
     },
     {
       "file": "plan-view-empty.html",
-      "x": 8182,
-      "y": 10199,
+      "x": 8235,
+      "y": 14496,
       "width": 390,
       "name": "plan-view-empty"
     },
     {
       "file": "ts-1-name-open.html",
-      "x": 5027,
-      "y": 10199,
+      "x": 5080,
+      "y": 14496,
       "width": 390,
       "name": "2step-1-name-open"
     },
     {
       "file": "ts-2-invite.html",
-      "x": 7760,
-      "y": 10199,
+      "x": 7813,
+      "y": 14496,
       "width": 390,
       "name": "2step-2-invite"
     },
     {
       "file": "qk-1-empty.html",
-      "x": 5456,
-      "y": 10199,
+      "x": 5509,
+      "y": 14496,
       "width": 390,
       "name": "quick-1-empty"
     },
     {
       "file": "qk-2-when-picker.html",
-      "x": 5878,
-      "y": 10199,
+      "x": 5931,
+      "y": 14496,
       "width": 390,
       "name": "quick-2-when-picker"
     },
     {
       "file": "qk-3-place-modal.html",
-      "x": 6300,
-      "y": 10199,
+      "x": 6353,
+      "y": 14496,
       "width": 390,
       "name": "quick-3-place-modal"
     },
     {
       "file": "qk-4-place-search.html",
-      "x": 6722,
-      "y": 10199,
+      "x": 6775,
+      "y": 14496,
       "width": 390,
       "name": "quick-4-place-search"
     },
     {
       "file": "qk-5-filled.html",
-      "x": 7144,
-      "y": 10199,
+      "x": 7197,
+      "y": 14496,
       "width": 390,
       "name": "quick-5-filled"
     },
     {
       "file": "ts-2-invite-suggest.html",
-      "x": 8639,
-      "y": 10199,
+      "x": 8692,
+      "y": 14496,
       "width": 390,
       "name": "2step-2-invite-suggestions"
     },
@@ -177,57 +177,57 @@
     },
     {
       "file": "s3-1-name-filled.html",
-      "x": 3003,
-      "y": 10168,
+      "x": 3056,
+      "y": 14465,
       "width": 390,
       "name": "3step-1-name-filled"
     },
     {
       "file": "s3-2-details.html",
-      "x": 3425,
-      "y": 10168,
+      "x": 3478,
+      "y": 14465,
       "width": 390,
       "name": "3step-2-details"
     },
     {
       "file": "s3-2-details-filled.html",
-      "x": 3847,
-      "y": 10168,
+      "x": 3900,
+      "y": 14465,
       "width": 390,
       "name": "3step-2-details-filled"
     },
     {
       "file": "s3-3-invite.html",
-      "x": 4269,
-      "y": 10168,
+      "x": 4322,
+      "y": 14465,
       "width": 390,
       "name": "3step-3-invite"
     },
     {
       "file": "s3-1-name-simple.html",
-      "x": 0,
-      "y": 10182,
+      "x": 53,
+      "y": 14479,
       "width": 390,
       "name": "3step-1-simple-ask"
     },
     {
       "file": "s3-1-name-simple-drop.html",
-      "x": 422,
-      "y": 10182,
+      "x": 475,
+      "y": 14479,
       "width": 390,
       "name": "3step-1-simple-ask-history"
     },
     {
       "file": "s3-C-details-empty.html",
-      "x": 1948,
-      "y": 10182,
+      "x": 2001,
+      "y": 14479,
       "width": 390,
       "name": "C-details-empty"
     },
     {
       "file": "s3-C-details-suggested.html",
-      "x": 2370,
-      "y": 10182,
+      "x": 2423,
+      "y": 14479,
       "width": 390,
       "name": "C-details-suggest-pressed"
     },
@@ -240,15 +240,15 @@
     },
     {
       "file": "s3-1-name-empty.html",
-      "x": 1009,
-      "y": 10182,
+      "x": 1062,
+      "y": 14479,
       "width": 390,
       "name": "3step-1-name-empty"
     },
     {
       "file": "s3-1-name-filled-plain.html",
-      "x": 1439,
-      "y": 10182,
+      "x": 1492,
+      "y": 14479,
       "width": 390,
       "name": "3step-1-name-filled-plain"
     },
@@ -307,13 +307,41 @@
       "y": 1845,
       "width": 390,
       "name": "new-1-details-invite-settings-sheet"
+    },
+    {
+      "file": "tp-current-plan-view.html",
+      "x": 25,
+      "y": 7120,
+      "width": 390,
+      "name": "tp-current-plan-view"
+    },
+    {
+      "file": "tp-current-chat.html",
+      "x": 455,
+      "y": 7120,
+      "width": 390,
+      "name": "tp-current-chat"
+    },
+    {
+      "file": "tp-current-chat-attach.html",
+      "x": 885,
+      "y": 7120,
+      "width": 390,
+      "name": "tp-current-chat-attach-sheet"
+    },
+    {
+      "file": "tp-current-when-facet.html",
+      "x": 1315,
+      "y": 7120,
+      "width": 390,
+      "name": "tp-current-when-facet"
     }
   ],
   "texts": [
     {
       "text": "Current designs",
-      "x": -11,
-      "y": 11343,
+      "x": 42,
+      "y": 15640,
       "size": 72
     },
     {
@@ -324,8 +352,8 @@
     },
     {
       "text": "New plan creation",
-      "x": 5027,
-      "y": 9905,
+      "x": 5080,
+      "y": 14202,
       "size": 144
     },
     {
@@ -348,14 +376,14 @@
     },
     {
       "text": "3-step plan creation",
-      "x": 3003,
-      "y": 10049,
+      "x": 3056,
+      "y": 14346,
       "size": 72
     },
     {
       "text": "Archive",
-      "x": 0,
-      "y": 9905,
+      "x": 53,
+      "y": 14202,
       "size": 144
     },
     {
@@ -371,19 +399,19 @@
       "size": 72
     },
     {
-      "text": "Invite others",
+      "text": "2. Invite others",
       "x": 4718,
       "y": 1767,
       "size": 36
     },
     {
-      "text": "New flow 1: Details",
+      "text": "1. Create plan details",
       "x": 1630,
       "y": 1767,
       "size": 36
     },
     {
-      "text": "New flow 3: Plan view",
+      "text": "3. Invite others",
       "x": 5221,
       "y": 1767,
       "size": 36
@@ -393,6 +421,150 @@
       "x": 25,
       "y": 1702,
       "size": 72
+    },
+    {
+      "text": "Time polls",
+      "x": 25,
+      "y": 6540,
+      "size": 144
+    },
+    {
+      "text": "Time / place poll",
+      "x": 5931,
+      "y": 6646,
+      "size": 48
+    },
+    {
+      "text": "Add to calendar",
+      "x": 5931,
+      "y": 6710,
+      "size": 48
+    },
+    {
+      "text": "Pre-plan reminders",
+      "x": 5931,
+      "y": 6774,
+      "size": 48
+    },
+    {
+      "text": "RSVP notification to host",
+      "x": 5931,
+      "y": 6838,
+      "size": 48
+    },
+    {
+      "text": "Capacity + Full state",
+      "x": 5931,
+      "y": 6902,
+      "size": 48
+    },
+    {
+      "text": "Plus-ones",
+      "x": 5931,
+      "y": 6966,
+      "size": 48
+    },
+    {
+      "text": "Link landing guest count",
+      "x": 5931,
+      "y": 7030,
+      "size": 48
+    },
+    {
+      "text": "Host announce + pin",
+      "x": 5931,
+      "y": 7094,
+      "size": 48
+    },
+    {
+      "text": "Notification quiet controls",
+      "x": 5931,
+      "y": 7158,
+      "size": 48
+    },
+    {
+      "text": "Duplicate plan",
+      "x": 5931,
+      "y": 7222,
+      "size": 48
+    },
+    {
+      "text": "Host approval to join",
+      "x": 5931,
+      "y": 7286,
+      "size": 48
+    },
+    {
+      "text": "Guest RSVP without account",
+      "x": 5931,
+      "y": 7350,
+      "size": 48
+    },
+    {
+      "text": "Cover themes",
+      "x": 5931,
+      "y": 7414,
+      "size": 48
+    },
+    {
+      "text": "Contact-picker invites",
+      "x": 5931,
+      "y": 7478,
+      "size": 48
+    },
+    {
+      "text": "Per-plan link preview (OG)",
+      "x": 5931,
+      "y": 7542,
+      "size": 48
+    },
+    {
+      "text": "Shared photo album / memories",
+      "x": 5931,
+      "y": 7606,
+      "size": 48
+    },
+    {
+      "text": "Message host privately",
+      "x": 5931,
+      "y": 7670,
+      "size": 48
+    },
+    {
+      "text": "Cost split note",
+      "x": 5931,
+      "y": 7734,
+      "size": 48
+    },
+    {
+      "text": "Weather on plan",
+      "x": 5931,
+      "y": 7798,
+      "size": 48
+    },
+    {
+      "text": "Schedule it (idea to plan)",
+      "x": 5931,
+      "y": 7862,
+      "size": 48
+    },
+    {
+      "text": "Web push prompt",
+      "x": 5931,
+      "y": 7926,
+      "size": 48
+    },
+    {
+      "text": "Current designs",
+      "x": 25,
+      "y": 6980,
+      "size": 72
+    },
+    {
+      "text": "Where polls could live: plan view, plan chat + attach sheet, When facet in create/edit",
+      "x": 25,
+      "y": 7060,
+      "size": 24
     }
   ]
 }
