@@ -23,6 +23,10 @@
   .pushcat .st.today { background: #1a2332; }
   .pushcat .st.changed { background: #f59e0b; color: #1a2332; }
   .pushcat .st.new { background: #0ca678; }
+  .pushcat .st.later { background: #6b7280; }
+  .pushcat .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 6px 6px 10px; font-size: 12px; color: rgba(255,255,255,0.8); }
+  .pushcat .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .pushcat .legend .st { position: static; transform: none; width: 18px; height: 18px; font-size: 10px; border-width: 1.5px; }
   .pushcat .push .icon { width: 40px; height: 40px; border-radius: 11px; background: linear-gradient(145deg, #14b8a6, #3b82f6); display: grid; place-items: center; flex-shrink: 0; overflow: hidden; }
   .pushcat .push .icon img { width: 30px; height: 30px; object-fit: contain; }
   .pushcat .push .body { flex: 1; min-width: 0; }
@@ -38,6 +42,7 @@
 <div class="pushcat" style="background: #0b1220;">
   <div class="wall"></div>
   <div class="inner">
+    <div class="legend"><span><span class="st today"><i class="ph ph-check"></i></span>Shipped</span><span><span class="st changed"><i class="ph ph-pencil-simple"></i></span>Copy change</span><span><span class="st new"><i class="ph ph-plus"></i></span>New in v1</span><span><span class="st later"><i class="ph ph-clock"></i></span>Later</span></div>
 
     <div class="cap">Invites <span class="when">· channel: invites</span></div>
 
@@ -78,10 +83,10 @@
       </div>
     </div>
 
-    <div class="cap">Invite nudges <span class="when">· while you haven't replied</span></div>
+    <div class="cap">Invite nudges <span class="when">· later, needs scheduling</span></div>
 
     <div class="push">
-      <span class="st new"><i class="ph ph-plus"></i></span>
+      <span class="st later"><i class="ph ph-clock"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Still deciding?</b><span>1d later</span></div>
@@ -90,7 +95,7 @@
     </div>
 
     <div class="push">
-      <span class="st new"><i class="ph ph-plus"></i></span>
+      <span class="st later"><i class="ph ph-clock"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Maya nudged you</b><span>2h ago</span></div>
@@ -99,7 +104,7 @@
     </div>
 
     <div class="push">
-      <span class="st new"><i class="ph ph-plus"></i></span>
+      <span class="st later"><i class="ph ph-clock"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Last call for Saturday</b><span>Fri 6 PM</span></div>
@@ -124,7 +129,7 @@
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Starting in 1 hour</b><span>Sat 5:30 AM</span></div>
-        <p>Sunrise hike at Mt. Tam. 25 min to Pantoll Ranger Station from you. Sam and Alex are on their way.</p>
+        <p>Sunrise hike at Mt. Tam, Pantoll Ranger Station. Tap for directions.</p>
       </div>
     </div>
 
@@ -157,10 +162,19 @@
       </div>
     </div>
 
-    <div class="cap">Host side <span class="when">· plans you host</span></div>
+    <div class="cap">Host side <span class="when">· v1 is one push per reply</span></div>
 
     <div class="push">
       <span class="st new"><i class="ph ph-plus"></i></span>
+      <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
+      <div class="body">
+        <div class="top"><b>Alex is going</b><span>4h ago</span></div>
+        <p>Alex replied going to Trivia at The Well. 3 going so far.</p>
+      </div>
+    </div>
+
+    <div class="push">
+      <span class="st later"><i class="ph ph-clock"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>3 new replies</b><span>1h ago</span></div>
@@ -227,7 +241,7 @@
     </div>
 
     <div class="push">
-      <span class="st new"><i class="ph ph-plus"></i></span>
+      <span class="st later"><i class="ph ph-clock"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Alex and 2 others are going</b><span>Thu</span></div>
