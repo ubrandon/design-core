@@ -436,17 +436,52 @@
     },
     {
       "file": "settings-notifications-future.html",
-      "x": 42,
-      "y": 12130,
+      "x": 4138,
+      "y": 12092,
       "width": 390,
       "name": "future-1-settings-notifications"
     },
     {
       "file": "plan-notif-settings-future.html",
-      "x": 487,
-      "y": 12130,
+      "x": 4583,
+      "y": 12092,
       "width": 390,
       "name": "future-2-plan-notif-settings"
+    },
+    {
+      "file": "plan-view-muted.html",
+      "x": 5590,
+      "y": 9437,
+      "width": 390,
+      "name": "notif-12-plan-view-muted"
+    },
+    {
+      "file": "settings-muted-plans.html",
+      "x": 6035,
+      "y": 9437,
+      "width": 390,
+      "name": "notif-13-muted-plans"
+    },
+    {
+      "file": "settings-notifications-push-off.html",
+      "x": 6480,
+      "y": 9437,
+      "width": 390,
+      "name": "notif-15-settings-push-off"
+    },
+    {
+      "file": "settings-entry-push-off.html",
+      "x": 6925,
+      "y": 9437,
+      "width": 390,
+      "name": "notif-16-entry-push-off"
+    },
+    {
+      "file": "notifications-inapp-rsvp-states.html",
+      "x": 7370,
+      "y": 9437,
+      "width": 390,
+      "name": "notif-17-inapp-rsvp-states"
     }
   ],
   "texts": [
@@ -746,27 +781,57 @@
     },
     {
       "text": "Future scope",
-      "x": 25,
-      "y": 11820,
+      "x": 4121,
+      "y": 11782,
       "size": 96
     },
     {
-      "text": "Fuller versions kept for reference. Need a preference model, scheduled reminders, bundling and nudges before they can ship.",
-      "x": 25,
-      "y": 11960,
-      "size": 20
-    },
-    {
       "text": "Notification settings, full",
-      "x": 42,
-      "y": 12047,
+      "x": 4138,
+      "y": 12009,
       "size": 36
     },
     {
       "text": "Plan notif settings, full",
-      "x": 487,
-      "y": 12047,
+      "x": 4583,
+      "y": 12009,
       "size": 36
+    },
+    {
+      "text": "Plan page: muted",
+      "x": 5590,
+      "y": 9354,
+      "size": 36
+    },
+    {
+      "text": "Muted plans",
+      "x": 6035,
+      "y": 9354,
+      "size": 36
+    },
+    {
+      "text": "Settings: push off",
+      "x": 6480,
+      "y": 9354,
+      "size": 36
+    },
+    {
+      "text": "Entry: push off",
+      "x": 6925,
+      "y": 9354,
+      "size": 36
+    },
+    {
+      "text": "Inbox: RSVP states",
+      "x": 7370,
+      "y": 9354,
+      "size": 36
+    },
+    {
+      "text": "Supporting states and entry points for v1",
+      "x": 5590,
+      "y": 9402,
+      "size": 14
     }
   ]
 }

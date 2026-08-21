@@ -31,6 +31,9 @@
   .pp-sn .seg span { height: 34px; font-size: 13px; }
   .pp-sn .seg span.on { font-weight: 700; }
 
+  .pp-sn .row.warn { background: #fff7ed; }
+  .pp-sn .row.warn > i { color: #c2410c; }
+  .pp-sn .row .val.turn-on { color: #c2410c; font-weight: 700; }
   .pp-sn .note { font-size: 12px; color: #858b94; padding: 8px 18px 0; line-height: 1.4; }
 </style>
 
@@ -45,9 +48,9 @@
 
   <div class="sec-label" style="padding-top: 6px;">Delivery</div>
   <div class="group">
-    <div class="row"><i class="ph ph-device-mobile"></i><div class="rtxt"><b>Push notifications</b><span>Allowed. Sounds and banners are managed in iOS Settings</span></div><span class="val">Open <i class="ph ph-arrow-square-out"></i></span></div>
+    <div class="row warn"><i class="ph ph-bell-slash"></i><div class="rtxt"><b>Push notifications are off</b><span>Turn them on in iOS Settings to get banners and sounds. Until then, check Notifications in the app.</span></div><span class="val turn-on">Turn on <i class="ph ph-arrow-square-out"></i></span></div>
   </div>
-  <div class="note">Everything below also appears in Notifications in the app. Push only controls banners and sounds.</div>
+  <div class="note">Your choices below are saved and apply as soon as push is allowed again. Everything still appears in Notifications in the app.</div>
 
   <div class="sec-label">Plans</div>
   <div class="group">

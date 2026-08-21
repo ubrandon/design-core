@@ -31,6 +31,9 @@
   .pp-sn .seg span { height: 34px; font-size: 13px; }
   .pp-sn .seg span.on { font-weight: 700; }
 
+  .pp-sn .plan-thumb { width: 44px; height: 44px; border-radius: 12px; background: center / cover no-repeat; flex-shrink: 0; }
+  .pp-sn .row .unmute { font-size: 14px; font-weight: 700; color: #0891b2; white-space: nowrap; }
+  .pp-sn .empty-hint { margin: 18px 16px 0; padding: 14px; border-radius: 16px; background: #fff; border: 1px dashed #d4d8de; font-size: 13px; color: #5c6b7d; line-height: 1.4; text-align: center; }
   .pp-sn .note { font-size: 12px; color: #858b94; padding: 8px 18px 0; line-height: 1.4; }
 </style>
 
@@ -39,31 +42,19 @@
 
   <div class="toolbar" style="background: #f8f9fb;">
     <span class="icon-btn"><i class="ph ph-caret-left"></i></span>
-    <h1>Notification settings</h1>
+    <h1>Muted plans</h1>
     <span class="spacer"></span>
   </div>
 
-  <div class="sec-label" style="padding-top: 6px;">Delivery</div>
-  <div class="group">
-    <div class="row"><i class="ph ph-device-mobile"></i><div class="rtxt"><b>Push notifications</b><span>Allowed. Sounds and banners are managed in iOS Settings</span></div><span class="val">Open <i class="ph ph-arrow-square-out"></i></span></div>
-  </div>
-  <div class="note">Everything below also appears in Notifications in the app. Push only controls banners and sounds.</div>
+  <div class="note" style="padding-top: 2px;">Muted plans skip reminders and chat pushes. Cancellations and time or place changes still come through, and everything still appears in Notifications.</div>
 
-  <div class="sec-label">Plans</div>
+  <div class="sec-label">Muted</div>
   <div class="group">
-    <div class="row"><i class="ph ph-alarm"></i><div class="rtxt"><b>Plan reminders</b><span>Day before and 1 hour before, for plans you're going to or maybe</span></div><button type="button" class="mr-toggle mr-toggle-on" aria-label="Plan reminders"></button></div>
-    <div class="row"><i class="ph ph-map-pin"></i><div class="rtxt"><b>Cancellations, time or place changes</b><span>Always on for plans you're going to</span></div><span class="val"><i class="ph ph-lock"></i> On</span></div>
+    <div class="row"><span class="plan-thumb" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=120&q=70');"></span><div class="rtxt"><b>Sunrise hike at Mt. Tam</b><span>Sat, Aug 22 · 6:30 AM · Going</span></div><span class="unmute">Unmute</span></div>
+    <div class="row"><span class="plan-thumb" style="background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=120&q=70');"></span><div class="rtxt"><b>Tuesday pizza night</b><span>Tue, Aug 25 · 7 PM · Maybe</span></div><span class="unmute">Unmute</span></div>
   </div>
 
-  <div class="sec-label">Chat</div>
-  <div class="group">
-    <div class="row"><i class="ph ph-chat-circle"></i><div class="rtxt"><b>Set per chat</b><span>Open a chat, then choose All, Mentions or Off from its menu</span></div></div>
-  </div>
-
-  <div class="sec-label">Mute</div>
-  <div class="group">
-    <div class="row"><i class="ph ph-bell-slash"></i><div class="rtxt"><b>Muted plans</b><span>Sunrise hike at Mt. Tam, Tuesday pizza night</span></div><span class="val">2 <i class="ph ph-caret-right"></i></span></div>
-  </div>
+  <div class="empty-hint">To mute another plan, open it and tap the bell.</div>
 
   <div class="home-bar" style="margin-top: 24px;"></div>
 </div>
