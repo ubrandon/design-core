@@ -8,20 +8,9 @@
   .pp-inv .hero-btns .hb-chat { flex: 0 0 auto; padding: 0 16px; }
   .pp-inv .hb-decline { background: rgba(255, 255, 255, 0.14); border: 1.5px solid rgba(255, 255, 255, 0.45); color: #fff; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
   .pp-inv .hb-decline i { font-size: 18px; }
-  .pp-inv .circ.has-dot::after { content: ""; position: absolute; top: 9px; right: 9px; width: 9px; height: 9px; border-radius: 50%; background: #0ca678; outline: 2px solid rgba(0, 0, 0, 0.58); }
   .pp-inv .circ { position: relative; }
 
-  .pp-inv .inv-banner { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 20px; background: linear-gradient(135deg, rgba(20, 184, 166, 0.12), rgba(59, 130, 246, 0.12)); border: 1.5px solid rgba(59, 130, 246, 0.18); margin-bottom: 14px; }
-  .pp-inv .inv-banner img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; outline: 2px solid #fff; }
-  .pp-inv .inv-banner .txt { flex: 1; min-width: 0; }
-  .pp-inv .inv-banner .txt b { display: block; font-size: 15px; font-weight: 700; }
-  .pp-inv .inv-banner .txt span { display: block; font-size: 13px; color: #5c6b7d; margin-top: 2px; line-height: 1.35; }
-  .pp-inv .inv-banner .maybe { flex-shrink: 0; height: 36px; padding: 0 14px; border-radius: 999px; background: #fff; border: 1.5px solid rgba(32, 36, 42, 0.16); font-size: 14px; font-weight: 700; color: #1a2332; display: inline-flex; align-items: center; gap: 6px; }
-  .pp-inv .inv-banner .maybe i { font-size: 16px; color: #5c6b7d; }
 
-  .pp-inv .pending-note { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #5c6b7d; padding: 0 4px; }
-  .pp-inv .pending-note i { font-size: 16px; color: #0891b2; }
-  .pp-inv .pending-note b { color: #1a2332; font-weight: 700; }
 </style>
 
 <div class="pp pp-plan-view pp-inv" style="background: #ffffff;">
@@ -30,7 +19,7 @@
   <div class="overlay-tb">
     <span class="circ"><i class="ph ph-caret-left"></i></span>
     <span class="right">
-      <span class="circ has-dot" aria-label="Notifications for this plan"><i class="ph ph-bell"></i></span>
+      <span class="circ" aria-label="Notifications for this plan"><i class="ph ph-bell"></i></span>
       <span class="circ"><i class="ph ph-share-network"></i></span>
       <span class="circ"><i class="ph ph-dots-three-vertical"></i></span>
     </span>
@@ -43,23 +32,13 @@
       <span class="date-badge">Sat, Aug 22 • 6 AM</span>
       <h1>Sunrise hike at Mt. Tam</h1>
       <div class="hero-btns">
-        <span class="hb-chat"><i class="ph-fill ph-chat-circle"></i>Chat</span>
-        <span class="hb-rsvp"><i class="ph ph-check"></i>Going</span>
-        <span class="hb-decline"><i class="ph ph-x"></i>Decline</span>
+        <span class="hb-rsvp">Join</span>
+        <span class="hb-decline">Decline</span>
       </div>
     </div>
   </div>
 
   <div class="below">
-    <div class="inv-banner">
-      <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
-      <div class="txt">
-        <b>Maya invited you · 2 days ago</b>
-        <span>Reply by Thursday so she can sort carpools. Not sure yet?</span>
-      </div>
-      <span class="maybe"><i class="ph ph-question"></i>Maybe</span>
-    </div>
-
     <div class="top-info">
       <div class="part-row">
         <div class="stack">
@@ -69,11 +48,10 @@
           <span class="st"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><span class="tag maybe"><i class="ph-fill ph-question"></i></span></span>
           <span class="st"><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=96&h=96&q=80" alt="" /></span>
         </div>
-        <div class="ptext"><b>4 going · 3 invited</b><span><i class="ph-fill ph-lock"></i>Private plan</span></div>
+        <div class="ptext"><b>6 guests</b><span><i class="ph-fill ph-lock"></i>Private plan</span></div>
         <i class="ph ph-caret-right"></i>
       </div>
 
-      <div class="pending-note"><i class="ph ph-users-three"></i><span><b>Alex</b> and <b>Sam</b> are going. Jordan hasn't replied yet.</span></div>
 
       <div class="date-row"><i class="ph-fill ph-calendar-blank"></i><b>Sat, Aug 22nd</b><span>· 6 AM - 9 AM</span></div>
 

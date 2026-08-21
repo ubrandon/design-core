@@ -19,14 +19,6 @@
   .pushcat .cap .when { text-transform: none; letter-spacing: 0; font-weight: 500; color: rgba(255, 255, 255, 0.6); }
 
   .pushcat .push { position: relative; display: flex; gap: 10px; padding: 12px 14px; border-radius: 22px; background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); color: #101724; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18); margin-bottom: 18px; }
-  .pushcat .push .st { position: absolute; left: -8px; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; color: #fff; border: 2px solid rgba(255,255,255,0.95); box-shadow: 0 2px 6px rgba(0,0,0,0.25); }
-  .pushcat .st.today { background: #1a2332; }
-  .pushcat .st.changed { background: #f59e0b; color: #1a2332; }
-  .pushcat .st.new { background: #0ca678; }
-  .pushcat .st.later { background: #6b7280; }
-  .pushcat .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; padding: 6px 6px 10px; font-size: 12px; color: rgba(255,255,255,0.8); }
-  .pushcat .legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .pushcat .legend .st { position: static; transform: none; width: 18px; height: 18px; font-size: 10px; border-width: 1.5px; }
   .pushcat .push .icon { width: 40px; height: 40px; border-radius: 11px; background: linear-gradient(145deg, #14b8a6, #3b82f6); display: grid; place-items: center; flex-shrink: 0; overflow: hidden; }
   .pushcat .push .icon img { width: 30px; height: 30px; object-fit: contain; }
   .pushcat .push .body { flex: 1; min-width: 0; }
@@ -42,150 +34,117 @@
 <div class="pushcat" style="background: #0b1220;">
   <div class="wall"></div>
   <div class="inner">
-    <div class="legend"><span><span class="st today"><i class="ph ph-check"></i></span>Shipped</span><span><span class="st changed"><i class="ph ph-pencil-simple"></i></span>Copy change</span><span><span class="st new"><i class="ph ph-plus"></i></span>New in v1</span><span><span class="st later"><i class="ph ph-clock"></i></span>Later</span></div>
-
     <div class="cap">Invites <span class="when">· channel: invites</span></div>
 
     <div class="push">
-      <span class="st changed"><i class="ph ph-pencil-simple"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
-        <div class="top"><b>Maya invited you 🥾</b><span>now</span></div>
-        <p>Sunrise hike at Mt. Tam, Sat 6:30 AM at Pantoll Ranger Station. Reply so she can sort carpools.</p>
+        <div class="top"><b>Maya invited you</b><span>now</span></div>
+        <p>Sunrise hike at Mt. Tam · Sat 6:30 AM · Pantoll Ranger Station</p>
       </div>
       <span class="thumb" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&q=70');"></span>
     </div>
 
     <div class="push">
-      <span class="st changed"><i class="ph ph-pencil-simple"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>New plan in Hiking Club</b><span>3h ago</span></div>
-        <p>Maya made Sunrise hike at Mt. Tam for Sat 6:30 AM. You're in as a member, reply when you can.</p>
+        <p>Maya made Sunrise hike at Mt. Tam · Sat 6:30 AM</p>
       </div>
     </div>
 
     <div class="push">
-      <span class="st today"><i class="ph ph-check"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>You're invited!</b><span>Mon</span></div>
-        <p>You were invited to Hiking Club.</p>
+        <p>You were invited to Hiking Club</p>
       </div>
     </div>
 
     <div class="push">
-      <span class="st today"><i class="ph ph-check"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>List invitation</b><span>Mon</span></div>
-        <p>Sam invited you to Best coffee in Asheville.</p>
+        <p>Sam invited you to Best coffee in Asheville</p>
       </div>
     </div>
 
-    <div class="cap">Invite nudges <span class="when">· later, needs scheduling</span></div>
+    <div class="cap">Invite nudge <span class="when">· host sends to anyone who hasn't replied</span></div>
 
     <div class="push">
-      <span class="st later"><i class="ph ph-clock"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
-        <div class="top"><b>Still deciding?</b><span>1d later</span></div>
-        <p>Maya's Sunrise hike is this Saturday. Alex and 3 others are going. Tap to reply.</p>
+        <div class="top"><b>Still deciding?</b><span>2h ago</span></div>
+        <p>Sunrise hike at Mt. Tam · Sat 6:30 AM · Pantoll Ranger Station</p>
       </div>
     </div>
 
-    <div class="push">
-      <span class="st later"><i class="ph ph-clock"></i></span>
-      <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
-      <div class="body">
-        <div class="top"><b>Maya nudged you</b><span>2h ago</span></div>
-        <p>"Need a headcount for cars by tonight, can you let me know?"</p>
-      </div>
-    </div>
+    <div class="cap">Reminders <span class="when">· everyone invited, replied or not</span></div>
 
     <div class="push">
-      <span class="st later"><i class="ph ph-clock"></i></span>
-      <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
-      <div class="body">
-        <div class="top"><b>Last call for Saturday</b><span>Fri 6 PM</span></div>
-        <p>Sunrise hike is tomorrow at 6:30 AM and you haven't replied. Maya is locking in rides.</p>
-      </div>
-    </div>
-
-    <div class="cap">Reminders <span class="when">· going or maybe</span></div>
-
-    <div class="push">
-      <span class="st new"><i class="ph ph-plus"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Tomorrow: Sunrise hike at Mt. Tam</b><span>Fri 6 PM</span></div>
-        <p>6:30 AM at Pantoll Ranger Station. Bring a headlamp, water and a warm layer.</p>
+        <p>6:30 AM at Pantoll Ranger Station · 4 going</p>
       </div>
       <span class="thumb" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=200&q=70');"></span>
     </div>
 
     <div class="push">
-      <span class="st new"><i class="ph ph-plus"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Starting in 1 hour</b><span>Sat 5:30 AM</span></div>
-        <p>Sunrise hike at Mt. Tam, Pantoll Ranger Station. Tap for directions.</p>
+        <p>Sunrise hike at Mt. Tam · Pantoll Ranger Station</p>
       </div>
     </div>
 
     <div class="cap">Plan updates <span class="when">· channel: activity-updates</span></div>
 
     <div class="push">
-      <span class="st changed"><i class="ph ph-pencil-simple"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Time changed</b><span>Wed</span></div>
-        <p>Sunrise hike moved to 6:30 AM Saturday. Still works for you?</p>
+        <p>Sunrise hike at Mt. Tam moved to Sat 6:30 AM</p>
       </div>
     </div>
 
     <div class="push">
-      <span class="st changed"><i class="ph ph-pencil-simple"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Place changed</b><span>Wed</span></div>
-        <p>Sunrise hike now meets at Pantoll Ranger Station, 3801 Panoramic Hwy.</p>
+        <p>Sunrise hike at Mt. Tam now meets at Pantoll Ranger Station</p>
       </div>
     </div>
 
     <div class="push">
-      <span class="st changed"><i class="ph ph-pencil-simple"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Plan cancelled</b><span>Tue</span></div>
-        <p>Maya cancelled Board game night. It's off your plans and calendar.</p>
+        <p>Maya cancelled Board game night</p>
       </div>
     </div>
 
     <div class="cap">Host side <span class="when">· v1 is one push per reply</span></div>
 
     <div class="push">
-      <span class="st new"><i class="ph ph-plus"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Alex is going</b><span>4h ago</span></div>
-        <p>Alex replied going to Trivia at The Well. 3 going so far.</p>
+        <p>Alex is going to Trivia at The Well · 3 going</p>
       </div>
     </div>
 
     <div class="push">
-      <span class="st later"><i class="ph ph-clock"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>3 new replies</b><span>1h ago</span></div>
-        <p>Alex and Sam are going, Riley can't make it. 2 people still haven't replied.</p>
+        <p>Alex and Sam are going, Riley can't make it · 2 haven't replied</p>
       </div>
     </div>
 
     <div class="cap">Chat <span class="when">· channel: messages, push only</span></div>
 
     <div class="push">
-      <span class="st today"><i class="ph ph-check"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Sam in Sunrise hike at Mt. Tam</b><span>now</span></div>
@@ -194,7 +153,6 @@
     </div>
 
     <div class="push">
-      <span class="st today"><i class="ph ph-check"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Maya mentioned you in Sunrise hike</b><span>5m ago</span></div>
@@ -203,7 +161,6 @@
     </div>
 
     <div class="push">
-      <span class="st today"><i class="ph ph-check"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>MixedRoutes Support</b><span>Yesterday</span></div>
@@ -214,38 +171,34 @@
     <div class="cap">Social <span class="when">· channel: social</span></div>
 
     <div class="push">
-      <span class="st today"><i class="ph ph-check"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>New friend request!</b><span>2d ago</span></div>
-        <p>Priya sent you a friend request.</p>
+        <p>Priya sent you a friend request</p>
       </div>
     </div>
 
     <div class="push">
-      <span class="st today"><i class="ph ph-check"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Friend request accepted!</b><span>2d ago</span></div>
-        <p>Alex has accepted your friend request.</p>
+        <p>Alex accepted your friend request</p>
       </div>
     </div>
 
     <div class="push">
-      <span class="st today"><i class="ph ph-check"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Someone you know is here!</b><span>3d ago</span></div>
-        <p>Jordan from your contacts just joined MixedRoutes.</p>
+        <p>Jordan from your contacts joined MixedRoutes</p>
       </div>
     </div>
 
     <div class="push">
-      <span class="st later"><i class="ph ph-clock"></i></span>
       <span class="icon"><img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" /></span>
       <div class="body">
         <div class="top"><b>Alex and 2 others are going</b><span>Thu</span></div>
-        <p>Friends are in for Sunrise hike at Mt. Tam this Saturday. You're still invited.</p>
+        <p>Alex and 2 friends are going to Sunrise hike at Mt. Tam</p>
       </div>
     </div>
   </div>
