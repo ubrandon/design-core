@@ -387,14 +387,21 @@
     },
     {
       "file": "plans-invites-list-actions.html",
-      "x": 3878,
+      "x": 3911,
       "y": 9437,
       "width": 390,
       "name": "notif-6-invites-list-actions"
     },
     {
+      "file": "plans-invites-decline-confirm.html",
+      "x": 4356,
+      "y": 9437,
+      "width": 390,
+      "name": "notif-6b-invites-decline-confirm"
+    },
+    {
       "file": "home-invites-consolidated.html",
-      "x": 4308,
+      "x": 4786,
       "y": 9437,
       "width": 390,
       "name": "notif-7-home-invites-card"
@@ -429,43 +436,36 @@
     },
     {
       "file": "plan-view-muted.html",
-      "x": 4753,
+      "x": 5231,
       "y": 9437,
       "width": 390,
       "name": "notif-12-plan-view-muted"
     },
     {
-      "file": "settings-muted-plans.html",
-      "x": 5198,
-      "y": 9437,
-      "width": 390,
-      "name": "notif-13-muted-plans"
-    },
-    {
       "file": "settings-notifications-push-off.html",
-      "x": 5643,
+      "x": 5676,
       "y": 9437,
       "width": 390,
       "name": "notif-15-settings-push-off"
     },
     {
       "file": "settings-entry-push-off.html",
-      "x": 6088,
+      "x": 6121,
       "y": 9437,
       "width": 390,
       "name": "notif-16-entry-push-off"
     },
     {
       "file": "notifications-inapp-rsvp-states.html",
-      "x": 6533,
+      "x": 6566,
       "y": 9437,
       "width": 390,
       "name": "notif-17-inapp-rsvp-states"
     },
     {
       "file": "push-plan-nudges-2.html",
-      "x": 916,
-      "y": 9437,
+      "x": 885,
+      "y": 9434,
       "width": 390,
       "name": "notif-9b-push-social"
     }
@@ -725,13 +725,13 @@
     },
     {
       "text": "Invites list",
-      "x": 3878,
+      "x": 3911,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Home: invites card",
-      "x": 4308,
+      "x": 4786,
       "y": 9354,
       "size": 36
     },
@@ -761,37 +761,31 @@
     },
     {
       "text": "Plan page: muted",
-      "x": 4753,
-      "y": 9354,
-      "size": 36
-    },
-    {
-      "text": "Muted plans",
-      "x": 5198,
+      "x": 5231,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Settings: push off",
-      "x": 5643,
+      "x": 5676,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Entry: push off",
-      "x": 6088,
+      "x": 6121,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Inbox: RSVP states",
-      "x": 6533,
+      "x": 6566,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Supporting states and entry points for v1",
-      "x": 4753,
+      "x": 5231,
       "y": 9402,
       "size": 14
     },
@@ -815,8 +809,20 @@
     },
     {
       "text": "Push catalogue 2",
-      "x": 916,
+      "x": 885,
+      "y": 9351,
+      "size": 36
+    },
+    {
+      "text": "Invites: decline confirm",
+      "x": 4356,
       "y": 9354,
+      "size": 36
+    },
+    {
+      "text": "Invites list",
+      "x": 3919,
+      "y": 10353,
       "size": 36
     }
   ]
