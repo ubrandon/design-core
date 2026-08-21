@@ -1,0 +1,134 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link rel="stylesheet" href="../pp.css" />
+
+<style>
+  .pp-il .toolbar { padding: 0 8px; }
+  .pp-il .toolbar .ttl { flex: 1; text-align: center; }
+  .pp-il .toolbar .ttl h1 { font-size: 20px; font-weight: 800; line-height: 1.1; }
+  .pp-il .toolbar .ttl span { font-size: 12px; color: #5c6b7d; }
+
+  .pp-il .nudge-strip { margin: 4px 16px 14px; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 16px; background: linear-gradient(135deg, rgba(20, 184, 166, 0.12), rgba(59, 130, 246, 0.12)); border: 1.5px solid rgba(59, 130, 246, 0.18); font-size: 13px; line-height: 1.35; }
+  .pp-il .nudge-strip i { font-size: 20px; color: #0891b2; flex-shrink: 0; }
+  .pp-il .nudge-strip b { font-weight: 700; }
+
+  .pp-il .item { padding: 0 16px; margin-bottom: 20px; }
+  .pp-il .from { display: flex; align-items: center; gap: 8px; padding: 0 2px 8px; font-size: 13px; color: #5c6b7d; }
+  .pp-il .from img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; }
+  .pp-il .from b { color: #1a2332; font-weight: 700; }
+  .pp-il .from .due { margin-left: auto; font-size: 12px; font-weight: 700; color: #b45309; background: #fef3c7; border-radius: 999px; padding: 3px 8px; display: inline-flex; align-items: center; gap: 4px; }
+  .pp-il .from .due i { font-size: 13px; }
+
+  .pp-il .il-tile { position: relative; overflow: hidden; display: grid; grid-template-columns: 76px 1fr; gap: 14px; padding: 14px; border-radius: 20px; color: #fff; background: #1e2832; isolation: isolate; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 4px 22px rgba(0,0,0,.22); }
+  .pp-il .il-tile .ambient { position: absolute; inset: 0; z-index: -2; background: center / cover no-repeat; filter: blur(70px) saturate(4) brightness(1.35); transform: scale(1.35); }
+  .pp-il .il-tile .shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(8,10,18,0), rgba(8,10,18,.18)); }
+  .pp-il .il-tile .il-media { width: 76px; height: 76px; border-radius: 18px; background: center / cover no-repeat; }
+  .pp-il .il-tile .copy { min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 4px; padding-right: 70px; }
+  .pp-il .il-tile .time { font-size: 12px; font-weight: 700; color: rgba(255,255,255,.85); text-shadow: 0 0 16px rgba(0,0,0,.32); }
+  .pp-il .il-tile .title { font-size: 16px; font-weight: 800; line-height: 1.25; text-shadow: 0 0 18px rgba(0,0,0,.38); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .pp-il .il-tile .il-meta { display: flex; flex-direction: column; gap: 5px; font-size: 11px; color: rgba(255,255,255,.9); margin-top: 2px; }
+  .pp-il .il-tile .il-meta .loc { display: flex; align-items: center; gap: 4px; min-width: 0; }
+  .pp-il .il-tile .il-meta .loc span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .pp-il .il-tile .il-meta .who { display: flex; align-items: center; gap: 6px; }
+  .pp-il .il-tile .avs { display: flex; align-items: center; }
+  .pp-il .il-tile .avs img { width: 18px; height: 18px; border-radius: 50%; object-fit: cover; border: 1.5px solid #fff; margin-left: -8px; }
+  .pp-il .il-tile .avs img:first-child { margin-left: 0; }
+  .pp-il .il-tile .badge { position: absolute; top: 14px; right: 14px; z-index: 2; display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px 0 6px; border-radius: 999px; background: rgba(255,255,255,.22); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font-size: 11px; font-weight: 700; box-shadow: inset 0 0 0 1px rgba(255,255,255,.28); }
+  .pp-il .il-tile .badge i { font-size: 14px; color: #38bdf8; }
+
+  .pp-il .actions { display: flex; gap: 6px; margin-top: 8px; }
+  .pp-il .actions > * { height: 44px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 15px; font-weight: 700; }
+  .pp-il .actions > * i { font-size: 17px; }
+  .pp-il .actions .go { flex: 1.3; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #fff; box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3); }
+  .pp-il .actions .maybe { flex: 1; background: #fff; border: 1.5px solid rgba(32, 36, 42, 0.16); color: #1a2332; }
+  .pp-il .actions .no { flex: 1; background: #fff; border: 1.5px solid rgba(32, 36, 42, 0.16); color: #5c6b7d; }
+
+  .pp-il .item.handled .il-tile { opacity: 0.45; filter: saturate(0.6); }
+  .pp-il .state { display: flex; align-items: center; gap: 8px; margin-top: 8px; padding: 10px 12px; border-radius: 14px; background: #f1f4f7; font-size: 14px; font-weight: 700; color: #5c6b7d; }
+  .pp-il .state i { font-size: 18px; }
+  .pp-il .state.declined i { color: #d0293e; }
+  .pp-il .state .undo { margin-left: auto; color: #0891b2; font-size: 13px; }
+
+  .pp-il .declined-row { margin: 4px 16px 0; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; border: 1px solid #dfe3e8; background: #f7f8fa; font-size: 14px; font-weight: 700; color: #465262; }
+  .pp-il .declined-row .ic { width: 30px; height: 30px; border-radius: 50%; background: #f8e8e6; color: #a5453d; display: grid; place-items: center; font-size: 16px; }
+  .pp-il .declined-row .cnt { margin-left: auto; min-width: 24px; height: 24px; padding: 0 7px; border-radius: 999px; background: #e7eaee; font-size: 12px; display: grid; place-items: center; }
+  .pp-il .declined-row > i { font-size: 16px; color: #697586; }
+</style>
+
+<div class="pp pp-il" style="background: #ffffff;">
+  <div class="status"><span>9:41</span><span class="r"><i class="ph-fill ph-cell-signal-full"></i><i class="ph-fill ph-wifi-high"></i><i class="ph-fill ph-battery-full"></i></span></div>
+
+  <div class="toolbar">
+    <span class="icon-btn"><i class="ph ph-caret-left"></i></span>
+    <div class="ttl"><h1>Invites</h1><span>3 waiting on your reply</span></div>
+    <span class="icon-btn"><i class="ph ph-bell"></i></span>
+  </div>
+
+  <div class="nudge-strip"><i class="ph ph-hand-waving"></i><span><b>Maya nudged you</b> about Saturday. She's sorting carpools tonight.</span></div>
+
+  <div class="item">
+    <div class="from"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><span><b>Maya</b> invited you · 2 days ago</span><span class="due"><i class="ph ph-clock"></i>Reply by Thu</span></div>
+    <div class="il-tile">
+      <div class="ambient" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=70');"></div><div class="shade"></div>
+      <div class="il-media" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80');"></div>
+      <span class="badge"><i class="ph-fill ph-paper-plane-tilt"></i>Invited</span>
+      <div class="copy">
+        <div class="time">Sat, Aug 22 • 6 AM</div>
+        <div class="title">Sunrise hike at Mt. Tam</div>
+        <div class="il-meta">
+          <span class="loc"><i class="ph-fill ph-map-pin"></i><span>Pantoll Trailhead</span></span>
+          <span class="who"><span class="avs"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=70&q=80" alt="" /></span><span>Alex + 3 going</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <span class="go"><i class="ph ph-check"></i>Going</span>
+      <span class="maybe"><i class="ph ph-question"></i>Maybe</span>
+      <span class="no"><i class="ph ph-x"></i>Decline</span>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="from"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><span><b>Sam</b> invited you · Yesterday</span></div>
+    <div class="il-tile">
+      <div class="ambient" style="background-image:url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=70');"></div><div class="shade"></div>
+      <div class="il-media" style="background-image:url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80');"></div>
+      <span class="badge"><i class="ph-fill ph-paper-plane-tilt"></i>Invited</span>
+      <div class="copy">
+        <div class="time">Tue, Aug 25 • 7 PM <i class="ph ph-repeat"></i></div>
+        <div class="title">Tuesday pizza night</div>
+        <div class="il-meta">
+          <span class="loc"><i class="ph-fill ph-map-pin"></i><span>Tony's, Mission</span></span>
+          <span class="who"><span class="avs"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=70&q=80" alt="" /></span><span>Sam + 2 going · repeats weekly</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <span class="go"><i class="ph ph-check"></i>Going</span>
+      <span class="maybe"><i class="ph ph-question"></i>Maybe</span>
+      <span class="no"><i class="ph ph-x"></i>Decline</span>
+    </div>
+  </div>
+
+  <div class="item handled">
+    <div class="from"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><span><b>Priya</b> invited you · 3 days ago</span></div>
+    <div class="il-tile">
+      <div class="ambient" style="background-image:url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=500&q=70');"></div><div class="shade"></div>
+      <div class="il-media" style="background-image:url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=400&q=80');"></div>
+      <div class="copy">
+        <div class="time">Thu, Aug 27 • 8 PM</div>
+        <div class="title">Live music night</div>
+        <div class="il-meta">
+          <span class="loc"><i class="ph-fill ph-map-pin"></i><span>The Chapel</span></span>
+          <span class="who"><span class="avs"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=70&q=80" alt="" /></span><span>Priya + 1 going</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="state declined"><i class="ph-fill ph-x-circle"></i>Declined. Priya was told you can't make it.<span class="undo">Undo</span></div>
+  </div>
+
+  <div class="declined-row"><span class="ic"><i class="ph ph-x"></i></span>Declined earlier<span class="cnt">2</span><i class="ph ph-caret-down"></i></div>
+
+  <div class="home-bar" style="margin-top: 20px;"></div>
+</div>

@@ -23,22 +23,22 @@
     },
     {
       "file": "plan-view.html",
-      "x": 42,
-      "y": 15839,
+      "x": -57,
+      "y": 18027,
       "width": 390,
       "name": "plan-view-current"
     },
     {
       "file": "plan-view-rsvp.html",
-      "x": 472,
-      "y": 15839,
+      "x": 373,
+      "y": 18027,
       "width": 390,
       "name": "plan-view-rsvp-modal"
     },
     {
       "file": "plan-view-attendees.html",
-      "x": 908,
-      "y": 15839,
+      "x": 809,
+      "y": 18027,
       "width": 390,
       "name": "plan-view-attendees-modal"
     },
@@ -107,64 +107,64 @@
     },
     {
       "file": "plan-view-empty.html",
-      "x": 8235,
-      "y": 14496,
+      "x": 8136,
+      "y": 16684,
       "width": 390,
       "name": "plan-view-empty"
     },
     {
       "file": "ts-1-name-open.html",
-      "x": 5080,
-      "y": 14496,
+      "x": 4981,
+      "y": 16684,
       "width": 390,
       "name": "2step-1-name-open"
     },
     {
       "file": "ts-2-invite.html",
-      "x": 7813,
-      "y": 14496,
+      "x": 7714,
+      "y": 16684,
       "width": 390,
       "name": "2step-2-invite"
     },
     {
       "file": "qk-1-empty.html",
-      "x": 5509,
-      "y": 14496,
+      "x": 5410,
+      "y": 16684,
       "width": 390,
       "name": "quick-1-empty"
     },
     {
       "file": "qk-2-when-picker.html",
-      "x": 5931,
-      "y": 14496,
+      "x": 5832,
+      "y": 16684,
       "width": 390,
       "name": "quick-2-when-picker"
     },
     {
       "file": "qk-3-place-modal.html",
-      "x": 6353,
-      "y": 14496,
+      "x": 6254,
+      "y": 16684,
       "width": 390,
       "name": "quick-3-place-modal"
     },
     {
       "file": "qk-4-place-search.html",
-      "x": 6775,
-      "y": 14496,
+      "x": 6676,
+      "y": 16684,
       "width": 390,
       "name": "quick-4-place-search"
     },
     {
       "file": "qk-5-filled.html",
-      "x": 7197,
-      "y": 14496,
+      "x": 7098,
+      "y": 16684,
       "width": 390,
       "name": "quick-5-filled"
     },
     {
       "file": "ts-2-invite-suggest.html",
-      "x": 8692,
-      "y": 14496,
+      "x": 8593,
+      "y": 16684,
       "width": 390,
       "name": "2step-2-invite-suggestions"
     },
@@ -177,57 +177,57 @@
     },
     {
       "file": "s3-1-name-filled.html",
-      "x": 3056,
-      "y": 14465,
+      "x": 2957,
+      "y": 16653,
       "width": 390,
       "name": "3step-1-name-filled"
     },
     {
       "file": "s3-2-details.html",
-      "x": 3478,
-      "y": 14465,
+      "x": 3379,
+      "y": 16653,
       "width": 390,
       "name": "3step-2-details"
     },
     {
       "file": "s3-2-details-filled.html",
-      "x": 3900,
-      "y": 14465,
+      "x": 3801,
+      "y": 16653,
       "width": 390,
       "name": "3step-2-details-filled"
     },
     {
       "file": "s3-3-invite.html",
-      "x": 4322,
-      "y": 14465,
+      "x": 4223,
+      "y": 16653,
       "width": 390,
       "name": "3step-3-invite"
     },
     {
       "file": "s3-1-name-simple.html",
-      "x": 53,
-      "y": 14479,
+      "x": -46,
+      "y": 16667,
       "width": 390,
       "name": "3step-1-simple-ask"
     },
     {
       "file": "s3-1-name-simple-drop.html",
-      "x": 475,
-      "y": 14479,
+      "x": 376,
+      "y": 16667,
       "width": 390,
       "name": "3step-1-simple-ask-history"
     },
     {
       "file": "s3-C-details-empty.html",
-      "x": 2001,
-      "y": 14479,
+      "x": 1902,
+      "y": 16667,
       "width": 390,
       "name": "C-details-empty"
     },
     {
       "file": "s3-C-details-suggested.html",
-      "x": 2423,
-      "y": 14479,
+      "x": 2324,
+      "y": 16667,
       "width": 390,
       "name": "C-details-suggest-pressed"
     },
@@ -240,15 +240,15 @@
     },
     {
       "file": "s3-1-name-empty.html",
-      "x": 1062,
-      "y": 14479,
+      "x": 963,
+      "y": 16667,
       "width": 390,
       "name": "3step-1-name-empty"
     },
     {
       "file": "s3-1-name-filled-plain.html",
-      "x": 1492,
-      "y": 14479,
+      "x": 1393,
+      "y": 16667,
       "width": 390,
       "name": "3step-1-name-filled-plain"
     },
@@ -367,23 +367,72 @@
     {
       "file": "chat-notifications.html",
       "x": 42,
-      "y": 9130,
+      "y": 9437,
       "width": 390,
       "name": "chat-notifications"
     },
     {
-      "file": "chat-ai-collapsed.html",
-      "x": 486,
-      "y": 9130,
+      "file": "plan-notif-settings.html",
+      "x": 2120,
+      "y": 9437,
       "width": 390,
-      "name": "chat-ai-collapsed"
+      "name": "notif-3-plan-notif-settings"
+    },
+    {
+      "file": "plan-view-invited.html",
+      "x": 2550,
+      "y": 9437,
+      "width": 390,
+      "name": "notif-4-plan-view-invited"
+    },
+    {
+      "file": "plan-view-decline-sheet.html",
+      "x": 2980,
+      "y": 9437,
+      "width": 390,
+      "name": "notif-5-plan-decline-sheet"
+    },
+    {
+      "file": "plans-invites-list-actions.html",
+      "x": 3410,
+      "y": 9437,
+      "width": 390,
+      "name": "notif-6-invites-list-actions"
+    },
+    {
+      "file": "home-invites-consolidated.html",
+      "x": 3840,
+      "y": 9437,
+      "width": 390,
+      "name": "notif-7-home-invites-card"
+    },
+    {
+      "file": "settings-notifications.html",
+      "x": 4270,
+      "y": 9437,
+      "width": 390,
+      "name": "notif-8-settings-notifications"
+    },
+    {
+      "file": "push-plan-nudges.html",
+      "x": 471,
+      "y": 9437,
+      "width": 390,
+      "name": "notif-9-push-nudges"
+    },
+    {
+      "file": "notifications-inapp.html",
+      "x": 2324,
+      "y": 9679,
+      "width": 390,
+      "name": "notif-10-inapp-notifications"
     }
   ],
   "texts": [
     {
       "text": "Current designs",
-      "x": 42,
-      "y": 15640,
+      "x": -57,
+      "y": 17828,
       "size": 72
     },
     {
@@ -394,8 +443,8 @@
     },
     {
       "text": "New plan creation",
-      "x": 5080,
-      "y": 14202,
+      "x": 4981,
+      "y": 16390,
       "size": 144
     },
     {
@@ -418,14 +467,14 @@
     },
     {
       "text": "3-step plan creation",
-      "x": 3056,
-      "y": 14346,
+      "x": 2957,
+      "y": 16534,
       "size": 72
     },
     {
       "text": "Archive",
-      "x": 53,
-      "y": 14202,
+      "x": -46,
+      "y": 16390,
       "size": 144
     },
     {
@@ -472,128 +521,128 @@
     },
     {
       "text": "Time / place poll",
-      "x": -909,
-      "y": 14328,
+      "x": -1008,
+      "y": 16516,
       "size": 48
     },
     {
       "text": "Add to calendar",
-      "x": -909,
-      "y": 14392,
+      "x": -1008,
+      "y": 16580,
       "size": 48
     },
     {
       "text": "Pre-plan reminders",
-      "x": -909,
-      "y": 14456,
+      "x": -1008,
+      "y": 16644,
       "size": 48
     },
     {
       "text": "RSVP notification to host",
-      "x": -909,
-      "y": 14520,
+      "x": -1008,
+      "y": 16708,
       "size": 48
     },
     {
       "text": "Capacity + Full state",
-      "x": -909,
-      "y": 14584,
+      "x": -1008,
+      "y": 16772,
       "size": 48
     },
     {
       "text": "Plus-ones",
-      "x": -909,
-      "y": 14648,
+      "x": -1008,
+      "y": 16836,
       "size": 48
     },
     {
       "text": "Link landing guest count",
-      "x": -909,
-      "y": 14712,
+      "x": -1008,
+      "y": 16900,
       "size": 48
     },
     {
       "text": "Host announce + pin",
-      "x": -909,
-      "y": 14776,
+      "x": -1008,
+      "y": 16964,
       "size": 48
     },
     {
       "text": "Notification quiet controls",
-      "x": -909,
-      "y": 14840,
+      "x": -1008,
+      "y": 17028,
       "size": 48
     },
     {
       "text": "Duplicate plan",
-      "x": -909,
-      "y": 14904,
+      "x": -1008,
+      "y": 17092,
       "size": 48
     },
     {
       "text": "Host approval to join",
-      "x": -909,
-      "y": 14968,
+      "x": -1008,
+      "y": 17156,
       "size": 48
     },
     {
       "text": "Guest RSVP without account",
-      "x": -909,
-      "y": 15032,
+      "x": -1008,
+      "y": 17220,
       "size": 48
     },
     {
       "text": "Cover themes",
-      "x": -909,
-      "y": 15096,
+      "x": -1008,
+      "y": 17284,
       "size": 48
     },
     {
       "text": "Contact-picker invites",
-      "x": -909,
-      "y": 15160,
+      "x": -1008,
+      "y": 17348,
       "size": 48
     },
     {
       "text": "Per-plan link preview (OG)",
-      "x": -909,
-      "y": 15224,
+      "x": -1008,
+      "y": 17412,
       "size": 48
     },
     {
       "text": "Shared photo album / memories",
-      "x": -909,
-      "y": 15288,
+      "x": -1008,
+      "y": 17476,
       "size": 48
     },
     {
       "text": "Message host privately",
-      "x": -909,
-      "y": 15352,
+      "x": -1008,
+      "y": 17540,
       "size": 48
     },
     {
       "text": "Cost split note",
-      "x": -909,
-      "y": 15416,
+      "x": -1008,
+      "y": 17604,
       "size": 48
     },
     {
       "text": "Weather on plan",
-      "x": -909,
-      "y": 15480,
+      "x": -1008,
+      "y": 17668,
       "size": 48
     },
     {
       "text": "Schedule it (idea to plan)",
-      "x": -909,
-      "y": 15544,
+      "x": -1008,
+      "y": 17732,
       "size": 48
     },
     {
       "text": "Web push prompt",
-      "x": -909,
-      "y": 15608,
+      "x": -1008,
+      "y": 17796,
       "size": 48
     },
     {
@@ -609,10 +658,64 @@
       "size": 72
     },
     {
-      "text": "Chat notications",
+      "text": "Notifications & reminders",
       "x": 25,
-      "y": 8883,
+      "y": 9127,
       "size": 144
+    },
+    {
+      "text": "Chat notif",
+      "x": 42,
+      "y": 9354,
+      "size": 36
+    },
+    {
+      "text": "Plan notif settings",
+      "x": 2120,
+      "y": 9354,
+      "size": 36
+    },
+    {
+      "text": "Plan page: invited",
+      "x": 2550,
+      "y": 9354,
+      "size": 36
+    },
+    {
+      "text": "Decline sheet",
+      "x": 2980,
+      "y": 9354,
+      "size": 36
+    },
+    {
+      "text": "Invites list",
+      "x": 3410,
+      "y": 9354,
+      "size": 36
+    },
+    {
+      "text": "Home: invites card",
+      "x": 3840,
+      "y": 9354,
+      "size": 36
+    },
+    {
+      "text": "Global settings",
+      "x": 4270,
+      "y": 9354,
+      "size": 36
+    },
+    {
+      "text": "Push catalogue",
+      "x": 471,
+      "y": 9354,
+      "size": 36
+    },
+    {
+      "text": "In-app notifications",
+      "x": 991,
+      "y": 9354,
+      "size": 36
     }
   ]
 }

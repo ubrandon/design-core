@@ -4,7 +4,10 @@
 
 <style>
   .chat-scope { --chat-bg: #f1f4f7; --chat-surface: #ffffff; --chat-out: linear-gradient(90deg,#d8f0f1 0%,#cae9ee 100%); --chat-text: #1a2332; --chat-muted: #5c6b7d; --chat-primary: #06b6d4; --chat-medium: #9aa4b2; --chat-input: rgba(118,118,128,0.12); --chat-grad: linear-gradient(145deg,#14b8a6,#3b82f6); --bubble-radius: 18px; }
-  .chat-scope .chat-wrap { background: var(--chat-bg); height: 844px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .chat-scope .chat-wrap { background: var(--chat-bg); min-height: 844px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .chat-scope .sec { display: flex; align-items: center; gap: 10px; padding: 6px 8px 2px; }
+  .chat-scope .sec::before, .chat-scope .sec::after { content: ""; flex: 1; height: 1px; background: rgba(92,107,125,0.3); }
+  .chat-scope .sec span { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #0891b2; }
   .chat-scope .chat-body { overflow-y: auto; }
   .chat-scope .chat-pattern { position: absolute; inset: 0; background: linear-gradient(rgba(241,244,247,0.85), rgba(241,244,247,0.85)), url('../../../design-system/mixedroutes-assets/plan-default.png'); background-size: 300px 300px; background-repeat: repeat; pointer-events: none; }
   .chat-scope .chat-header { position: sticky; top: 0; z-index: 3; display: grid; grid-template-columns: 28px 36px 1fr 28px; align-items: center; gap: 10px; padding: 10px 12px; background: #ffffff; border-bottom: 1px solid #e1e3e6; }
@@ -16,21 +19,6 @@
   .chat-scope .chat-header .tag-btn i { font-size: 20px; }
 
   .chat-scope .chat-body { position: relative; z-index: 1; flex: 1; padding: 12px 10px 8px; display: flex; flex-direction: column; gap: 10px; }
-
-  .chat-scope .msg-row { display: grid; grid-template-columns: 36px 1fr; gap: 8px; align-items: flex-start; }
-  .chat-scope .msg-row.out { grid-template-columns: 1fr; }
-  .chat-scope .msg-row .avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; align-self: flex-start; }
-  .chat-scope .msg-row .avatar.initials { background: #b45309; color: #fff; font-size: 0.7rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; letter-spacing: 0.02em; }
-  .chat-scope .msg-stack { display: flex; flex-direction: column; gap: 4px; max-width: 78%; }
-  .chat-scope .msg-row.out .msg-stack { margin-left: auto; align-items: flex-end; }
-
-  .chat-scope .bubble { padding: 9px 12px 10px; border-radius: var(--bubble-radius); color: var(--chat-text); font-size: 0.95rem; line-height: 1.3; word-wrap: break-word; }
-  .chat-scope .bubble.in { background: var(--chat-surface); border-bottom-left-radius: 6px; }
-  .chat-scope .bubble.out { background: var(--chat-out); border-bottom-right-radius: 6px; }
-  .chat-scope .bubble.emoji-only { background: transparent; padding: 0; font-size: 2.4rem; line-height: 1; }
-  .chat-scope .bubble .sender { font-size: 0.82rem; font-weight: 800; color: #7c3aed; margin-bottom: 2px; }
-
-  .chat-scope .seen { text-align: center; color: var(--chat-muted); font-size: 0.78rem; padding: 6px 0 2px; }
 
   .chat-scope .day-divider { text-align: center; color: var(--chat-muted); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.02em; padding: 2px 0; }
 
@@ -47,7 +35,6 @@
   .chat-scope .composer .input-pill .placeholder { color: var(--chat-muted); font-size: 0.98rem; padding-left: 4px; }
   .chat-scope .composer .icon-btn { background: transparent; border: 0; color: var(--chat-medium); width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
   .chat-scope .composer .icon-btn i { font-size: 24px; }
-  .chat-scope .composer .plus-btn { color: var(--chat-medium); }
   .chat-scope .composer .send-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--chat-input); color: var(--chat-medium); border: 0; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
   .chat-scope .composer .send-btn i { font-size: 22px; }
 </style>
@@ -64,30 +51,42 @@
     </header>
 
     <div class="chat-body">
-      <div class="day-divider">Mon, Jun 9</div>
+      <div class="sec"><span>All chats</span></div>
 
-      <div class="sys-note"><b>Maya Chen</b> created the plan</div>
+      <div class="day-divider">Membership</div>
+      <div class="sys-note"><b>Maya Chen</b> created the chat</div>
       <div class="sys-note"><b>Sam Ortiz</b> joined the chat</div>
-      <div class="sys-note"><b>Alex Kim</b> and 2 others joined the chat</div>
+      <div class="sys-note"><b>Alex Kim</b> joined the chat</div>
+      <div class="sys-note"><b>Priya Patel</b> joined the chat</div>
+      <div class="sys-note"><b>Maya Chen</b> added <b>Jordan Lee</b></div>
+      <div class="sys-note"><b>Jordan Lee</b> left the chat</div>
+      <div class="sys-note"><b>Maya Chen</b> removed <b>Riley Nguyen</b></div>
 
-      <div class="sys-update"><div class="pill"><i class="ph ph-check-circle"></i><span><b>Sam Ortiz</b> RSVP'd Going</span></div></div>
+      <div class="day-divider">Chat settings</div>
+      <div class="sys-note"><b>Maya Chen</b> changed the chat name to <b>Sunrise hike at Mt. Tam</b></div>
+      <div class="sys-note"><b>Maya Chen</b> changed the chat photo</div>
+      <div class="sys-note"><b>Maya Chen</b> created the channel <b>#carpools</b></div>
+      <div class="sys-note"><b>Maya Chen</b> made <b>Sam Ortiz</b> a moderator</div>
+
+      <div class="sec"><span>Plan chats only</span></div>
+
+      <div class="day-divider">RSVPs</div>
+      <div class="sys-note"><b>Sam Ortiz</b> is going</div>
+      <div class="sys-note"><b>Alex Kim</b> might go</div>
+      <div class="sys-note"><b>Riley Nguyen</b> can't make it</div>
+      <div class="sys-note"><b>Alex Kim</b> changed to going</div>
+
+      <div class="day-divider">Time and place</div>
       <div class="sys-update"><div class="pill"><i class="ph ph-chart-bar"></i><span><b>Maya Chen</b> started a time poll</span></div></div>
-
-      <div class="day-divider">Tue, Jun 10</div>
-
       <div class="sys-update"><div class="pill"><i class="ph ph-calendar-check"></i><span>Time decided: <b>Sat, Jun 14 at 5:30 AM</b></span></div></div>
-
       <div class="sys-update"><div class="pill"><i class="ph ph-clock"></i><span><b>Maya Chen</b> changed the time to <b>6:00 AM</b></span></div></div>
       <div class="sys-update"><div class="pill"><i class="ph ph-map-pin"></i><span><b>Maya Chen</b> set the location to <b>Pantoll Ranger Station</b></span></div></div>
-      <div class="sys-update"><div class="pill"><i class="ph ph-pencil-simple"></i><span><b>Maya Chen</b> updated the plan details</span></div></div>
-      <div class="sys-update"><div class="pill"><i class="ph ph-push-pin"></i><span><b>Maya Chen</b> pinned a message</span></div></div>
+      <div class="sys-update"><div class="pill"><i class="ph ph-x-circle"></i><span><b>Maya Chen</b> cancelled the plan</span></div></div>
 
-      <div class="sys-update"><div class="pill"><i class="ph ph-x-circle"></i><span><b>Riley Nguyen</b> RSVP'd Can't make it</span></div></div>
-      <div class="sys-note"><b>Jordan Lee</b> left the chat</div>
-
-      <div class="day-divider">Fri, Jun 13</div>
-
+      <div class="day-divider">Reminders</div>
+      <div class="sys-update"><div class="pill"><i class="ph ph-hand-waving"></i><span><b>Maya Chen</b> nudged everyone who hasn't replied</span></div></div>
       <div class="sys-update"><div class="pill"><i class="ph ph-bell"></i><span>Reminder: this plan starts tomorrow at <b>6:00 AM</b></span></div></div>
+      <div class="sys-update"><div class="pill"><i class="ph ph-bell"></i><span>Starting in <b>1 hour</b></span></div></div>
     </div>
 
     <div class="composer">

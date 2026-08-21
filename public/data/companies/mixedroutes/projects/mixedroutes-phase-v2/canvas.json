@@ -161,6 +161,13 @@
       "x": 6203,
       "y": -1297,
       "width": 390
+    },
+    {
+      "file": "chat-ai-collapsed.html",
+      "x": 3371,
+      "y": 694,
+      "width": 390,
+      "name": "chat-ai-collapsed"
     }
   ],
   "texts": [
@@ -257,6 +264,12 @@
     {
       "text": "Prompt governance",
       "x": 2451,
+      "y": 609,
+      "size": 48
+    },
+    {
+      "text": "AI in chat",
+      "x": 3371,
       "y": 609,
       "size": 48
     }
