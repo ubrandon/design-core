@@ -373,35 +373,35 @@
     },
     {
       "file": "plan-notif-settings.html",
-      "x": 2232,
+      "x": 2799,
       "y": 9437,
       "width": 390,
       "name": "notif-3-plan-notif-settings"
     },
     {
       "file": "plan-view-invited.html",
-      "x": 3018,
+      "x": 3463,
       "y": 9437,
       "width": 390,
       "name": "notif-4-plan-view-invited"
     },
     {
       "file": "plans-invites-list-actions.html",
-      "x": 3433,
+      "x": 3878,
       "y": 9437,
       "width": 390,
       "name": "notif-6-invites-list-actions"
     },
     {
       "file": "home-invites-consolidated.html",
-      "x": 3863,
+      "x": 4308,
       "y": 9437,
       "width": 390,
       "name": "notif-7-home-invites-card"
     },
     {
       "file": "settings-notifications.html",
-      "x": 1787,
+      "x": 2354,
       "y": 9437,
       "width": 390,
       "name": "notif-8-settings-notifications"
@@ -415,52 +415,59 @@
     },
     {
       "file": "notifications-inapp.html",
-      "x": 903,
+      "x": 1348,
       "y": 9437,
       "width": 390,
       "name": "notif-10-inapp-notifications"
     },
     {
       "file": "settings-entry.html",
-      "x": 1342,
+      "x": 1909,
       "y": 9437,
       "width": 390,
       "name": "notif-11-settings-entry"
     },
     {
       "file": "plan-view-muted.html",
-      "x": 4308,
+      "x": 4753,
       "y": 9437,
       "width": 390,
       "name": "notif-12-plan-view-muted"
     },
     {
       "file": "settings-muted-plans.html",
-      "x": 4753,
+      "x": 5198,
       "y": 9437,
       "width": 390,
       "name": "notif-13-muted-plans"
     },
     {
       "file": "settings-notifications-push-off.html",
-      "x": 5198,
+      "x": 5643,
       "y": 9437,
       "width": 390,
       "name": "notif-15-settings-push-off"
     },
     {
       "file": "settings-entry-push-off.html",
-      "x": 5643,
+      "x": 6088,
       "y": 9437,
       "width": 390,
       "name": "notif-16-entry-push-off"
     },
     {
       "file": "notifications-inapp-rsvp-states.html",
-      "x": 6088,
+      "x": 6533,
       "y": 9437,
       "width": 390,
       "name": "notif-17-inapp-rsvp-states"
+    },
+    {
+      "file": "push-plan-nudges-2.html",
+      "x": 916,
+      "y": 9437,
+      "width": 390,
+      "name": "notif-9b-push-social"
     }
   ],
   "texts": [
@@ -693,9 +700,9 @@
       "size": 72
     },
     {
-      "text": "Notifications",
-      "x": 25,
-      "y": 9127,
+      "text": "Notifications & reminders",
+      "x": 42,
+      "y": 8999,
       "size": 144
     },
     {
@@ -706,31 +713,31 @@
     },
     {
       "text": "Plan notif settings",
-      "x": 2232,
+      "x": 2799,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Plan page: invited",
-      "x": 3018,
+      "x": 3463,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Invites list",
-      "x": 3433,
+      "x": 3878,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Home: invites card",
-      "x": 3863,
+      "x": 4308,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Notification settings",
-      "x": 1787,
+      "x": 2354,
       "y": 9354,
       "size": 36
     },
@@ -742,51 +749,75 @@
     },
     {
       "text": "In-app notifications",
-      "x": 903,
+      "x": 1348,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Settings entry",
-      "x": 1342,
+      "x": 1909,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Plan page: muted",
-      "x": 4308,
-      "y": 9354,
-      "size": 36
-    },
-    {
-      "text": "Muted plans",
       "x": 4753,
       "y": 9354,
       "size": 36
     },
     {
-      "text": "Settings: push off",
+      "text": "Muted plans",
       "x": 5198,
       "y": 9354,
       "size": 36
     },
     {
-      "text": "Entry: push off",
+      "text": "Settings: push off",
       "x": 5643,
       "y": 9354,
       "size": 36
     },
     {
-      "text": "Inbox: RSVP states",
+      "text": "Entry: push off",
       "x": 6088,
       "y": 9354,
       "size": 36
     },
     {
+      "text": "Inbox: RSVP states",
+      "x": 6533,
+      "y": 9354,
+      "size": 36
+    },
+    {
       "text": "Supporting states and entry points for v1",
-      "x": 4308,
+      "x": 4753,
       "y": 9402,
       "size": 14
+    },
+    {
+      "text": "Types and UI",
+      "x": 36,
+      "y": 9209,
+      "size": 72
+    },
+    {
+      "text": "Settings",
+      "x": 1464,
+      "y": 9209,
+      "size": 72
+    },
+    {
+      "text": "Interfaces",
+      "x": 3018,
+      "y": 9209,
+      "size": 72
+    },
+    {
+      "text": "Push catalogue 2",
+      "x": 916,
+      "y": 9354,
+      "size": 36
     }
   ]
 }
