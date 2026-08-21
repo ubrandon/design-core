@@ -373,42 +373,42 @@
     },
     {
       "file": "plan-notif-settings.html",
-      "x": 2120,
+      "x": 2232,
       "y": 9437,
       "width": 390,
       "name": "notif-3-plan-notif-settings"
     },
     {
       "file": "plan-view-invited.html",
-      "x": 2550,
+      "x": 3855,
       "y": 9437,
       "width": 390,
       "name": "notif-4-plan-view-invited"
     },
     {
       "file": "plan-view-decline-sheet.html",
-      "x": 2980,
+      "x": 4285,
       "y": 9437,
       "width": 390,
       "name": "notif-5-plan-decline-sheet"
     },
     {
       "file": "plans-invites-list-actions.html",
-      "x": 3410,
+      "x": 4715,
       "y": 9437,
       "width": 390,
       "name": "notif-6-invites-list-actions"
     },
     {
       "file": "home-invites-consolidated.html",
-      "x": 3840,
+      "x": 5145,
       "y": 9437,
       "width": 390,
       "name": "notif-7-home-invites-card"
     },
     {
       "file": "settings-notifications.html",
-      "x": 4270,
+      "x": 1787,
       "y": 9437,
       "width": 390,
       "name": "notif-8-settings-notifications"
@@ -422,10 +422,17 @@
     },
     {
       "file": "notifications-inapp.html",
-      "x": 2324,
-      "y": 9679,
+      "x": 903,
+      "y": 9437,
       "width": 390,
       "name": "notif-10-inapp-notifications"
+    },
+    {
+      "file": "settings-entry.html",
+      "x": 1342,
+      "y": 9437,
+      "width": 390,
+      "name": "notif-11-settings-entry"
     }
   ],
   "texts": [
@@ -664,44 +671,44 @@
       "size": 144
     },
     {
-      "text": "Chat notif",
+      "text": "Chat catalogue",
       "x": 42,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Plan notif settings",
-      "x": 2120,
+      "x": 2232,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Plan page: invited",
-      "x": 2550,
+      "x": 3855,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Decline sheet",
-      "x": 2980,
+      "x": 4285,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Invites list",
-      "x": 3410,
+      "x": 4715,
       "y": 9354,
       "size": 36
     },
     {
       "text": "Home: invites card",
-      "x": 3840,
+      "x": 5145,
       "y": 9354,
       "size": 36
     },
     {
-      "text": "Global settings",
-      "x": 4270,
+      "text": "Notification settings",
+      "x": 1787,
       "y": 9354,
       "size": 36
     },
@@ -713,7 +720,13 @@
     },
     {
       "text": "In-app notifications",
-      "x": 991,
+      "x": 903,
+      "y": 9354,
+      "size": 36
+    },
+    {
+      "text": "Settings entry",
+      "x": 1342,
       "y": 9354,
       "size": 36
     }

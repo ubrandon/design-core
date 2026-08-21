@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link rel="stylesheet" href="../pp.css" />
+
+<style>
+  .pp-se .hdr { display: flex; align-items: center; gap: 14px; padding: 6px 18px 18px; }
+  .pp-se .hdr .back { display: inline-flex; align-items: center; justify-content: center; color: #1a2332; font-size: 22px; }
+  .pp-se .hdr h1 { font-size: 1.45rem; font-weight: 800; color: #1a2332; letter-spacing: -0.01em; margin: 0; }
+
+  .pp-se .sec-label { font-size: 0.72rem; font-weight: 800; color: #5c6b7d; letter-spacing: 0.12em; text-transform: uppercase; padding: 0 20px 8px; }
+  .pp-se .card { margin: 0 16px 18px; border-radius: 18px; background: #fff; border: 1px solid #e1e3e6; overflow: hidden; }
+  .pp-se .row { display: flex; align-items: center; gap: 14px; padding: 16px 18px; color: #1a2332; }
+  .pp-se .row + .row { border-top: 1px solid #eef0f3; }
+  .pp-se .row .ico { flex: 0 0 auto; width: 22px; display: inline-flex; align-items: center; justify-content: center; color: #1a2332; font-size: 22px; }
+  .pp-se .row .body { flex: 1; min-width: 0; }
+  .pp-se .row .title { display: block; font-size: 1rem; font-weight: 700; line-height: 1.2; }
+  .pp-se .row .desc { display: block; font-size: 0.82rem; color: #5c6b7d; margin-top: 3px; padding-left: 0; }
+  .pp-se .row .caret { color: #858b94; font-size: 18px; }
+  .pp-se .row .select { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 10px 0 14px; border-radius: 10px; border: 1px solid #e1e3e6; background: #f8f9fb; font-size: 14px; font-weight: 600; color: #1a2332; width: 112px; justify-content: space-between; }
+  .pp-se .row .select i { font-size: 14px; color: #5c6b7d; }
+  .pp-se .row.danger .ico, .pp-se .row.danger .title { color: #d0293e; }
+</style>
+
+<div class="pp pp-se mr-scope mr-scope--light" style="background: #f8f9fb; min-height: 844px;">
+  <div class="status"><span>9:41</span><span class="r"><i class="ph-fill ph-cell-signal-full"></i><i class="ph-fill ph-wifi-high"></i><i class="ph-fill ph-battery-full"></i></span></div>
+
+  <div class="hdr">
+    <span class="back"><i class="ph ph-arrow-left"></i></span>
+    <h1>Settings</h1>
+  </div>
+
+  <div class="sec-label">Preferences</div>
+  <div class="card">
+    <div class="row">
+      <span class="ico"><i class="ph ph-bell"></i></span>
+      <span class="body"><span class="title">Notifications</span><span class="desc">Push allowed</span></span>
+      <i class="ph ph-caret-right caret"></i>
+    </div>
+    <div class="row">
+      <span class="ico"><i class="ph ph-moon"></i></span>
+      <span class="body"><span class="title">Appearance</span></span>
+      <span class="select">System <i class="ph ph-caret-up-down"></i></span>
+    </div>
+    <div class="row">
+      <span class="ico"><i class="ph ph-chart-bar"></i></span>
+      <span class="body"><span class="title">Analytics</span><span class="desc">Help improve MixedRoutes with usage data</span></span>
+      <button type="button" class="mr-toggle mr-toggle-on" aria-label="Analytics on"></button>
+    </div>
+  </div>
+
+  <div class="sec-label">Help &amp; Support</div>
+  <div class="card">
+    <div class="row">
+      <span class="ico"><i class="ph ph-chat-circle"></i></span>
+      <span class="body"><span class="title">Chat with us</span></span>
+      <i class="ph ph-caret-right caret"></i>
+    </div>
+    <div class="row">
+      <span class="ico"><i class="ph ph-bug"></i></span>
+      <span class="body"><span class="title">Report a bug</span></span>
+      <i class="ph ph-caret-right caret"></i>
+    </div>
+    <div class="row">
+      <span class="ico"><i class="ph ph-lightbulb"></i></span>
+      <span class="body"><span class="title">Request a feature</span></span>
+      <i class="ph ph-caret-right caret"></i>
+    </div>
+  </div>
+
+  <div class="sec-label">Account</div>
+  <div class="card">
+    <div class="row">
+      <span class="ico"><i class="ph ph-sign-out"></i></span>
+      <span class="body"><span class="title">Log out</span></span>
+    </div>
+    <div class="row danger">
+      <span class="ico"><i class="ph ph-trash"></i></span>
+      <span class="body"><span class="title">Delete account</span></span>
+    </div>
+  </div>
+
+  <div class="home-bar" style="margin-top: 24px;"></div>
+</div>

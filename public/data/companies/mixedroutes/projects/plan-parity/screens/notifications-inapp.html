@@ -8,18 +8,11 @@
   .pp-nl .toolbar h1 { flex: 1; text-align: center; font-size: 20px; }
   .pp-nl .toolbar .mark { font-size: 14px; font-weight: 700; color: #0891b2; padding: 0 8px; white-space: nowrap; }
 
-  .pp-nl .legend { display: flex; justify-content: center; gap: 14px; padding: 4px 16px 8px; font-size: 12px; color: #5c6b7d; }
-  .pp-nl .legend span { display: inline-flex; align-items: center; gap: 5px; }
 
   .pp-nl .grp { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #5c6b7d; padding: 16px 16px 6px; }
 
   .pp-nl .n { position: relative; display: flex; align-items: center; gap: 12px; padding: 12px 16px; min-height: 68px; }
   .pp-nl .n.unread { background: rgba(6, 182, 212, 0.1); }
-  .pp-nl .n .st { position: absolute; left: 8px; top: calc(50% - 26px); width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; font-size: 10px; color: #fff; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.15); z-index: 1; }
-  .pp-nl .st.today { background: #1a2332; }
-  .pp-nl .st.changed { background: #f59e0b; color: #1a2332; }
-  .pp-nl .st.new { background: #0ca678; }
-  .pp-nl .legend .st { position: static; width: 16px; height: 16px; border: 0; box-shadow: none; border-radius: 50%; display: grid; place-items: center; font-size: 9px; color: #fff; }
   .pp-nl .n .av { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
   .pp-nl .n .img { width: 44px; height: 44px; border-radius: 12px; background: center / cover no-repeat; flex-shrink: 0; }
   .pp-nl .n .ico { width: 44px; height: 44px; border-radius: 12px; background: #f1f4f7; color: #5c6b7d; display: grid; place-items: center; font-size: 22px; flex-shrink: 0; }
@@ -45,23 +38,10 @@
     <h1>Notifications</h1>
     <span class="mark">Mark all read</span>
   </div>
-  <div class="legend"><span><span class="st today"><i class="ph ph-check"></i></span>Today</span><span><span class="st changed"><i class="ph ph-pencil-simple"></i></span>Changed copy</span><span><span class="st new"><i class="ph ph-plus"></i></span>New</span></div>
 
   <div class="grp">Today</div>
 
   <div class="n unread">
-    <span class="st changed"><i class="ph ph-pencil-simple"></i></span>
-    <span class="img" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=120&q=70');"></span>
-    <div class="txt">
-      <p><b>Maya</b> invited you to <b>Sunrise hike at Mt. Tam</b></p>
-      <span class="sub">Sat, Aug 22 · 6 AM · Hosted by Maya</span>
-      <div class="nl-act"><span class="pri"><i class="ph ph-check"></i>Going</span><span>Maybe</span><span>Decline</span></div>
-    </div>
-    <div class="side"><time>2m</time></div>
-  </div>
-
-  <div class="n unread">
-    <span class="st new"><i class="ph ph-plus"></i></span>
     <img class="av" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
     <div class="txt">
       <p><b>Maya</b> nudged you about <b>Sunrise hike at Mt. Tam</b></p>
@@ -71,7 +51,6 @@
   </div>
 
   <div class="n unread">
-    <span class="st changed"><i class="ph ph-pencil-simple"></i></span>
     <span class="ico"><i class="ph ph-clock"></i></span>
     <div class="txt">
       <p><b>Sunrise hike at Mt. Tam</b> moved to <b>6:30 AM</b></p>
@@ -81,7 +60,6 @@
   </div>
 
   <div class="n">
-    <span class="st changed"><i class="ph ph-pencil-simple"></i></span>
     <span class="ico"><i class="ph ph-map-pin"></i></span>
     <div class="txt">
       <p><b>Sunrise hike at Mt. Tam</b> now meets at <b>Pantoll Ranger Station</b></p>
@@ -91,17 +69,15 @@
   </div>
 
   <div class="n">
-    <span class="st new"><i class="ph ph-plus"></i></span>
     <span class="ico good"><i class="ph ph-users"></i></span>
     <div class="txt">
       <p><b>Alex</b> and <b>Sam</b> are going, <b>Riley</b> can't make it</p>
-      <span class="sub">Sunrise hike at Mt. Tam · 2 still haven't replied</span>
+      <span class="sub">Trivia at The Well · 2 still haven't replied</span>
     </div>
     <div class="side"><time>4h</time></div>
   </div>
 
   <div class="n">
-    <span class="st new"><i class="ph ph-plus"></i></span>
     <span class="ico brand"><i class="ph ph-users-three"></i></span>
     <div class="txt">
       <p><b>Alex</b> and 2 others are going to <b>Sunrise hike at Mt. Tam</b></p>
@@ -111,7 +87,6 @@
   </div>
 
   <div class="n">
-    <span class="st new"><i class="ph ph-plus"></i></span>
     <span class="ico brand"><i class="ph ph-bell"></i></span>
     <div class="txt">
       <p>Reminder: <b>Trivia at The Well</b> starts tonight at <b>8 PM</b></p>
@@ -122,8 +97,17 @@
 
   <div class="grp">Yesterday</div>
 
+  <div class="n unread">
+    <span class="img" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=120&q=70');"></span>
+    <div class="txt">
+      <p><b>Maya</b> invited you to <b>Sunrise hike at Mt. Tam</b></p>
+      <span class="sub">Sat, Aug 22 · 6:30 AM · Hosted by Maya</span>
+      <div class="nl-act"><span class="pri"><i class="ph ph-check"></i>Going</span><span>Maybe</span><span>Decline</span></div>
+    </div>
+    <div class="side"><time>1d</time></div>
+  </div>
+
   <div class="n">
-    <span class="st today"><i class="ph ph-check"></i></span>
     <span class="img" style="background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=120&q=70');"></span>
     <div class="txt">
       <p>New plan in <b>Hiking Club</b>: <b>Tuesday pizza night</b></p>
@@ -133,7 +117,6 @@
   </div>
 
   <div class="n">
-    <span class="st today"><i class="ph ph-check"></i></span>
     <span class="ico"><i class="ph ph-users-four"></i></span>
     <div class="txt">
       <p>You were invited to <b>Hiking Club</b></p>
@@ -142,7 +125,6 @@
   </div>
 
   <div class="n">
-    <span class="st today"><i class="ph ph-check"></i></span>
     <span class="ico"><i class="ph ph-bookmark-simple"></i></span>
     <div class="txt">
       <p><b>Sam</b> invited you to <b>Best coffee in Asheville</b></p>
@@ -152,7 +134,6 @@
   </div>
 
   <div class="n">
-    <span class="st changed"><i class="ph ph-pencil-simple"></i></span>
     <span class="ico warn"><i class="ph ph-x-circle"></i></span>
     <div class="txt">
       <p><b>Maya</b> cancelled <b>Board game night</b></p>
@@ -162,7 +143,6 @@
   </div>
 
   <div class="n">
-    <span class="st new"><i class="ph ph-plus"></i></span>
     <span class="ico brand"><i class="ph ph-hand-waving"></i></span>
     <div class="txt">
       <p>Still deciding? <b>Live music night</b> is Thursday</p>
@@ -174,7 +154,6 @@
   <div class="grp">Last 7 days</div>
 
   <div class="n">
-    <span class="st today"><i class="ph ph-check"></i></span>
     <img class="av" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
     <div class="txt">
       <p><b>Priya</b> sent you a friend request</p>
@@ -184,7 +163,6 @@
   </div>
 
   <div class="n">
-    <span class="st today"><i class="ph ph-check"></i></span>
     <img class="av" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
     <div class="txt">
       <p><b>Alex</b> accepted your friend request</p>
@@ -193,7 +171,6 @@
   </div>
 
   <div class="n">
-    <span class="st today"><i class="ph ph-check"></i></span>
     <img class="av" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
     <div class="txt">
       <p><b>Jordan</b> from your contacts just joined MixedRoutes</p>
@@ -204,7 +181,6 @@
   <div class="grp">Older</div>
 
   <div class="n">
-    <span class="st today"><i class="ph ph-check"></i></span>
     <span class="ico"><i class="ph ph-trash"></i></span>
     <div class="txt">
       <p><b>Rooftop dinner</b> was deleted</p>

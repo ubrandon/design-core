@@ -8,13 +8,6 @@
   .pp-sn .toolbar h1 { flex: 1; text-align: center; font-size: 20px; }
   .pp-sn .toolbar .spacer { width: 44px; }
 
-  .pp-sn .sys { margin: 4px 16px 0; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 20px; background: #ecfdf5; border: 1.5px solid rgba(12, 166, 120, 0.25); }
-  .pp-sn .sys .ibox { width: 40px; height: 40px; border-radius: 12px; background: #0ca678; color: #fff; display: grid; place-items: center; font-size: 20px; flex-shrink: 0; }
-  .pp-sn .sys .stxt { flex: 1; min-width: 0; }
-  .pp-sn .sys .stxt b { display: block; font-size: 15px; font-weight: 700; }
-  .pp-sn .sys .stxt span { font-size: 13px; color: #5c6b7d; }
-  .pp-sn .sys > i { font-size: 20px; color: #5c6b7d; }
-
   .pp-sn .sec-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #5c6b7d; padding: 22px 16px 8px; }
   .pp-sn .group { margin: 0 16px; border-radius: 20px; background: #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07), 0 4px 12px rgba(0, 0, 0, 0.1); overflow: hidden; }
   .pp-sn .row { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 10px 14px; }
@@ -46,15 +39,15 @@
 
   <div class="toolbar" style="background: #f8f9fb;">
     <span class="icon-btn"><i class="ph ph-caret-left"></i></span>
-    <h1>Notifications</h1>
+    <h1>Notification settings</h1>
     <span class="spacer"></span>
   </div>
 
-  <div class="sys">
-    <span class="ibox"><i class="ph-fill ph-bell-ringing"></i></span>
-    <div class="stxt"><b>Push notifications are on</b><span>Sounds and banners are managed in iOS Settings</span></div>
-    <i class="ph ph-arrow-square-out"></i>
+  <div class="sec-label" style="padding-top: 6px;">Delivery</div>
+  <div class="group">
+    <div class="row"><i class="ph ph-device-mobile"></i><div class="rtxt"><b>Push notifications</b><span>Allowed. Sounds and banners are managed in iOS Settings</span></div><span class="val">Open <i class="ph ph-arrow-square-out"></i></span></div>
   </div>
+  <div class="note">Everything below also appears in Notifications in the app. Push only controls banners and sounds.</div>
 
   <div class="sec-label">Plans</div>
   <div class="group">
@@ -62,33 +55,23 @@
     <div class="row"><i class="ph ph-hand-waving"></i><div class="rtxt"><b>Invite reminders</b><span>A nudge if you haven't replied after a day, and a last call before the plan</span></div><button type="button" class="mr-toggle mr-toggle-on" aria-label="Invite reminders"></button></div>
     <div class="row"><i class="ph ph-alarm"></i><div class="rtxt"><b>Plan reminders</b><span>For plans you're going to or maybe</span></div><button type="button" class="mr-toggle mr-toggle-on" aria-label="Plan reminders"></button></div>
     <div class="row sub"><div class="rtxt"><b>Default timing</b></div><span class="val">Day before, 1 hour before <i class="ph ph-caret-right"></i></span></div>
-    <div class="row sub"><div class="rtxt"><b>Add to calendar</b><span>Mirror plans you're going to into iOS Calendar</span></div><button type="button" class="mr-toggle" aria-label="Add to calendar"></button></div>
-    <div class="row"><i class="ph ph-map-pin"></i><div class="rtxt"><b>Plan updates</b><span>Time, place, or details change</span></div><button type="button" class="mr-toggle mr-toggle-on" aria-label="Plan updates"></button></div>
+    <div class="row"><i class="ph ph-map-pin"></i><div class="rtxt"><b>Plan updates</b><span>Details and itinerary edits. Cancellations and time or place changes are always on for plans you're going to.</span></div><button type="button" class="mr-toggle mr-toggle-on" aria-label="Plan updates"></button></div>
     <div class="row"><i class="ph ph-users"></i><div class="rtxt"><b>RSVPs to your plans</b><span>When guests reply to plans you host</span></div><button type="button" class="mr-toggle mr-toggle-on" aria-label="RSVPs to your plans"></button></div>
     <div class="row sub"><div class="rtxt"><b>Bundle RSVPs</b><span>One summary instead of one push per guest</span></div><button type="button" class="mr-toggle mr-toggle-on" aria-label="Bundle RSVPs"></button></div>
-    <div class="row"><i class="ph ph-users-three"></i><div class="rtxt"><b>Friends are going</b><span>When 3 or more friends join a plan you're invited to</span></div><button type="button" class="mr-toggle mr-toggle-on" aria-label="Friends are going"></button></div>
+    <div class="row"><i class="ph ph-users-three"></i><div class="rtxt"><b>Friends are going</b><span>When 3 or more friends join a plan you're invited to</span></div><span class="val">In-app only <i class="ph ph-caret-right"></i></span></div>
   </div>
-
-  <div class="sec-label">Invites from friends</div>
-  <div class="group">
-    <div class="row"><i class="ph ph-user-check"></i><div class="rtxt"><b>Auto-accept invites</b><span>Skip the invite step and mark you going right away. You can still change your answer.</span></div><button type="button" class="mr-toggle" aria-label="Auto-accept invites"></button></div>
-    <div class="row sub off"><div class="rtxt"><b>From</b></div><span class="val">Nobody <i class="ph ph-caret-right"></i></span></div>
-    <div class="row"><i class="ph ph-users-four"></i><div class="rtxt"><b>Plans from your groups</b><span>Get invited when a group you're in makes a plan</span></div><button type="button" class="mr-toggle mr-toggle-on" aria-label="Plans from your groups"></button></div>
-  </div>
-  <div class="callout"><i class="ph ph-info"></i><span><b>Off by default.</b> Auto-accepting puts plans on your calendar and in "going" counts before you've seen them, so it's opt-in and scoped to people you choose, for example Favorites.</span></div>
 
   <div class="sec-label">Chat</div>
   <div class="group">
-    <div class="row"><i class="ph ph-chat-circle"></i><div class="rtxt"><b>Messages</b><span>Default for new plan and group chats</span></div><button type="button" class="mr-toggle mr-toggle-on" aria-label="Messages"></button></div>
-    <div class="seg-wrap"><div class="seg"><span class="on">All</span><span>Mentions only</span><span>Off</span></div></div>
-    <div class="row"><i class="ph ph-at"></i><div class="rtxt"><b>Mentions and replies</b><span>Always on, even in muted chats</span></div><button type="button" class="mr-toggle mr-toggle-on" aria-label="Mentions and replies"></button></div>
+    <div class="row"><i class="ph ph-chat-circle"></i><div class="rtxt"><b>Messages</b><span>Default for new plan and group chats</span></div></div>
+    <div class="seg-wrap"><div class="seg"><span class="on">All</span><span>Mentions</span><span>Off</span></div></div>
   </div>
   <div class="note">Per-chat settings override these.</div>
 
   <div class="sec-label">Social</div>
   <div class="group">
     <div class="row"><i class="ph ph-user-plus"></i><div class="rtxt"><b>Friend requests</b></div><button type="button" class="mr-toggle mr-toggle-on" aria-label="Friend requests"></button></div>
-    <div class="row"><i class="ph ph-address-book"></i><div class="rtxt"><b>Contacts who join</b></div><button type="button" class="mr-toggle mr-toggle-on" aria-label="Contacts who join"></button></div>
+    <div class="row"><i class="ph ph-address-book"></i><div class="rtxt"><b>Contacts who join</b></div><span class="val">In-app only <i class="ph ph-caret-right"></i></span></div>
     <div class="row off"><i class="ph ph-sparkle"></i><div class="rtxt"><b>Suggested plans near you</b><span>At most once a week</span></div><button type="button" class="mr-toggle" aria-label="Suggested plans near you"></button></div>
   </div>
 
@@ -97,7 +80,13 @@
     <div class="row"><i class="ph ph-moon"></i><div class="rtxt"><b>Quiet hours</b><span>Hold non-urgent pushes and deliver them in the morning</span></div><button type="button" class="mr-toggle mr-toggle-on" aria-label="Quiet hours"></button></div>
     <div class="row sub"><div class="rtxt"><b>From</b></div><span class="val">10:00 PM to 8:00 AM <i class="ph ph-caret-right"></i></span></div>
   </div>
-  <div class="note">Time or place changes for plans starting within 12 hours still come through.</div>
+  <div class="note">Cancellations and time or place changes for plans starting within 12 hours still come through.</div>
+
+  <div class="sec-label">Also in Settings</div>
+  <div class="group">
+    <div class="row"><i class="ph ph-user-check"></i><div class="rtxt"><b>Invite preferences</b><span>Auto-accept off · Plans from your groups on</span></div><span class="val"><i class="ph ph-caret-right"></i></span></div>
+    <div class="row"><i class="ph ph-calendar-plus"></i><div class="rtxt"><b>Calendar</b><span>Add plans you're going to into iOS Calendar</span></div><span class="val"><i class="ph ph-caret-right"></i></span></div>
+  </div>
 
   <div class="home-bar" style="margin-top: 24px;"></div>
 </div>

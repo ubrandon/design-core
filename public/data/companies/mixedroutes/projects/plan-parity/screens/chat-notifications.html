@@ -14,6 +14,7 @@
   .chat-scope .chat-header .back { background: transparent; border: 0; color: var(--chat-text); display: inline-flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; }
   .chat-scope .chat-header .back i { font-size: 22px; }
   .chat-scope .chat-header .avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
+  .chat-scope .chat-header .avatar.plan { border-radius: 10px; }
   .chat-scope .chat-header .title { font-size: 1rem; font-weight: 800; color: var(--chat-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .chat-scope .chat-header .tag-btn { background: transparent; border: 0; color: var(--chat-text); padding: 0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
   .chat-scope .chat-header .tag-btn i { font-size: 20px; }
@@ -45,7 +46,7 @@
 
     <header class="chat-header">
       <button type="button" class="back" aria-label="Back"><i class="ph ph-caret-left"></i></button>
-      <img class="avatar" src="https://i.pravatar.cc/80?img=15" alt="" />
+      <img class="avatar plan" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=120&h=120&q=70" alt="" />
       <div class="title">Sunrise hike at Mt. Tam</div>
       <button type="button" class="tag-btn" aria-label="Tag"><i class="ph ph-tag"></i></button>
     </header>
@@ -55,9 +56,7 @@
 
       <div class="day-divider">Membership</div>
       <div class="sys-note"><b>Maya Chen</b> created the chat</div>
-      <div class="sys-note"><b>Sam Ortiz</b> joined the chat</div>
-      <div class="sys-note"><b>Alex Kim</b> joined the chat</div>
-      <div class="sys-note"><b>Priya Patel</b> joined the chat</div>
+      <div class="sys-note"><b>Sam Ortiz</b>, <b>Alex Kim</b> and <b>Priya Patel</b> joined the chat</div>
       <div class="sys-note"><b>Maya Chen</b> added <b>Jordan Lee</b></div>
       <div class="sys-note"><b>Jordan Lee</b> left the chat</div>
       <div class="sys-note"><b>Maya Chen</b> removed <b>Riley Nguyen</b></div>
@@ -71,22 +70,17 @@
       <div class="sec"><span>Plan chats only</span></div>
 
       <div class="day-divider">RSVPs</div>
-      <div class="sys-note"><b>Sam Ortiz</b> is going</div>
-      <div class="sys-note"><b>Alex Kim</b> might go</div>
-      <div class="sys-note"><b>Riley Nguyen</b> can't make it</div>
-      <div class="sys-note"><b>Alex Kim</b> changed to going</div>
+      <div class="sys-note"><b>Sam Ortiz</b> and <b>Alex Kim</b> are going, <b>Riley Nguyen</b> can't make it</div>
 
       <div class="day-divider">Time and place</div>
       <div class="sys-update"><div class="pill"><i class="ph ph-chart-bar"></i><span><b>Maya Chen</b> started a time poll</span></div></div>
-      <div class="sys-update"><div class="pill"><i class="ph ph-calendar-check"></i><span>Time decided: <b>Sat, Jun 14 at 5:30 AM</b></span></div></div>
-      <div class="sys-update"><div class="pill"><i class="ph ph-clock"></i><span><b>Maya Chen</b> changed the time to <b>6:00 AM</b></span></div></div>
+      <div class="sys-update"><div class="pill"><i class="ph ph-calendar-check"></i><span>Time decided: <b>Sat, Aug 22 at 6:00 AM</b></span></div></div>
+      <div class="sys-update"><div class="pill"><i class="ph ph-clock"></i><span><b>Maya Chen</b> changed the time to <b>6:30 AM</b></span></div></div>
       <div class="sys-update"><div class="pill"><i class="ph ph-map-pin"></i><span><b>Maya Chen</b> set the location to <b>Pantoll Ranger Station</b></span></div></div>
       <div class="sys-update"><div class="pill"><i class="ph ph-x-circle"></i><span><b>Maya Chen</b> cancelled the plan</span></div></div>
 
-      <div class="day-divider">Reminders</div>
+      <div class="day-divider">Nudges</div>
       <div class="sys-update"><div class="pill"><i class="ph ph-hand-waving"></i><span><b>Maya Chen</b> nudged everyone who hasn't replied</span></div></div>
-      <div class="sys-update"><div class="pill"><i class="ph ph-bell"></i><span>Reminder: this plan starts tomorrow at <b>6:00 AM</b></span></div></div>
-      <div class="sys-update"><div class="pill"><i class="ph ph-bell"></i><span>Starting in <b>1 hour</b></span></div></div>
     </div>
 
     <div class="composer">
