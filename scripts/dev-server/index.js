@@ -6,6 +6,7 @@
 import { resolve, dirname, sep, relative } from "path";
 import { writeFileSync, readFileSync, unlinkSync, existsSync, mkdirSync, rmSync, copyFileSync } from "fs";
 import { spawn } from "child_process";
+import { createHash } from "crypto";
 import {
   root,
   sh,
@@ -112,6 +113,10 @@ function safePublicDataFilePath(urlPath) {
   return abs;
 }
 
+function fileRevision(body) {
+  return '"' + createHash("sha256").update(body).digest("hex") + '"';
+}
+
 function readJsonBody(req) {
   return new Promise((resolvePromise, reject) => {
     let body = "";
@@ -207,6 +212,23 @@ function dataFilesPlugin() {
         const url = req.url.split("?")[0];
         if (!url.startsWith("/data/")) return next();
 
+        if (req.method === "GET" && url.endsWith("/canvas.json")) {
+          const filePath = safePublicDataFilePath(url);
+          if (!filePath || !existsSync(filePath)) return next();
+          try {
+            const body = readFileSync(filePath, "utf8");
+            res.writeHead(200, {
+              "Content-Type": "application/json",
+              "ETag": fileRevision(body),
+            });
+            res.end(body);
+          } catch (e) {
+            res.writeHead(500, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ error: e.message || "Could not read canvas" }));
+          }
+          return;
+        }
+
         if (req.method === "PUT" && url.endsWith(".json")) {
           const filePath = safePublicDataFilePath(url);
           if (!filePath) {
@@ -219,10 +241,24 @@ function dataFilesPlugin() {
           req.on("end", () => {
             try {
               JSON.parse(body);
+              const expectedRevision = req.headers["if-match"];
+              const currentBody = existsSync(filePath) ? readFileSync(filePath, "utf8") : "";
+              const currentRevision = fileRevision(currentBody);
+              if (expectedRevision && expectedRevision !== currentRevision) {
+                let current = null;
+                try { current = JSON.parse(currentBody); } catch {}
+                res.writeHead(409, {
+                  "Content-Type": "application/json",
+                  "ETag": currentRevision,
+                });
+                res.end(JSON.stringify({ error: "Canvas changed on disk", revision: currentRevision, current }));
+                return;
+              }
               mkdirSync(dirname(filePath), { recursive: true });
               writeFileSync(filePath, body, "utf-8");
-              res.writeHead(200, { "Content-Type": "application/json" });
-              res.end('{"ok":true}');
+              const revision = fileRevision(body);
+              res.writeHead(200, { "Content-Type": "application/json", "ETag": revision });
+              res.end(JSON.stringify({ ok: true, revision }));
             } catch (e) {
               res.writeHead(400, { "Content-Type": "application/json" });
               res.end(JSON.stringify({ error: e.message || "Invalid JSON" }));

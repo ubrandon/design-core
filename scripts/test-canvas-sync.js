@@ -100,4 +100,15 @@ assert.equal(recovered.screens[0].name, "External rename");
 assert.equal(recovered.screens[1].file, "new-after-draft.html");
 assert.equal(recovered.texts[1].text, "New after draft");
 
+const duplicateTextIds = new globalThis.CanvasSyncState().ingest({
+  screens: [],
+  texts: [
+    { id: "repeated-title", text: "First", x: 0, y: 0, size: 36 },
+    { id: "repeated-title", text: "Second", x: 100, y: 0, size: 36 },
+  ],
+});
+assert.equal(duplicateTextIds.texts[0].id, "repeated-title");
+assert.notEqual(duplicateTextIds.texts[1].id, "repeated-title");
+assert.notEqual(duplicateTextIds.texts[0].id, duplicateTextIds.texts[1].id);
+
 console.log("Canvas synchronization regression checks passed.");

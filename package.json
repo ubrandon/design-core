@@ -10,6 +10,8 @@
     "preview": "vite preview",
     "capture": "node scripts/capture-screens.js",
     "test:canvas-sync": "node scripts/test-canvas-sync.js",
+    "test:canvas-browser": "node scripts/test-canvas-browser.js",
+    "test:canvas": "npm run test:canvas-sync && npm run test:canvas-browser",
     "sync-public-url": "node scripts/sync-public-site-url.js",
     "doctor": "node scripts/doctor.js",
     "import-company": "node scripts/import-company.js"

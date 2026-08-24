@@ -3,6 +3,10 @@
   var SCREEN_FIELDS = ["x", "y", "width", "name"];
   var TEXT_FIELDS = ["text", "x", "y", "size"];
 
+  function makeTextId(prefix) {
+    return prefix + "-" + Date.now().toString(36) + "-" + nextTextId++;
+  }
+
   function cloneScreen(screen) {
     return {
       file: screen.file,
@@ -15,16 +19,18 @@
 
   function cloneText(item) {
     return {
+      id: item.id,
       text: item.text || "",
       x: item.x,
       y: item.y,
       size: item.size,
-      _syncId: item._syncId,
     };
   }
 
   function publicText(item) {
-    return { text: item.text || "", x: Math.round(item.x), y: Math.round(item.y), size: item.size };
+    var out = { text: item.text || "", x: Math.round(item.x), y: Math.round(item.y), size: item.size };
+    if (item.id) out.id = item.id;
+    return out;
   }
 
   function fieldsEqual(a, b, fields) {
@@ -65,7 +71,7 @@
 
   CanvasSyncState.prototype.newText = function (data) {
     var item = cloneText(data);
-    item._syncId = "local-text-" + nextTextId++;
+    item.id = item.id || makeTextId("text");
     return item;
   };
 
@@ -91,23 +97,25 @@
     var previous = this.remoteTexts;
     var used = new Set();
     return (Array.isArray(rawTexts) ? rawTexts : []).map(function (raw, index) {
+      var requestedId = typeof raw.id === "string" && raw.id && !used.has(raw.id) ? raw.id : "";
       var item = {
+        id: requestedId,
         text: typeof raw.text === "string" ? raw.text : "",
         x: raw.x != null ? raw.x : 0,
         y: raw.y != null ? raw.y : 0,
         size: raw.size || 48,
       };
       var match = previous.find(function (candidate) {
-        return !used.has(candidate._syncId) && fieldsEqual(candidate, item, TEXT_FIELDS);
+        return !used.has(candidate.id) && (item.id ? candidate.id === item.id : fieldsEqual(candidate, item, TEXT_FIELDS));
       });
       if (!match) {
         match = Array.from(self.textAdditions.values()).find(function (candidate) {
-          return !used.has(candidate._syncId) && fieldsEqual(candidate, item, TEXT_FIELDS);
+          return !used.has(candidate.id) && (item.id ? candidate.id === item.id : fieldsEqual(candidate, item, TEXT_FIELDS));
         });
       }
-      if (!match && previous[index] && !used.has(previous[index]._syncId)) match = previous[index];
-      item._syncId = match ? match._syncId : "remote-text-" + nextTextId++;
-      used.add(item._syncId);
+      if (!match && previous[index] && !used.has(previous[index].id)) match = previous[index];
+      item.id = item.id || (match && match.id) || makeTextId("text-legacy");
+      used.add(item.id);
       return item;
     });
   };
@@ -140,30 +148,30 @@
       }
     });
 
-    var remoteTexts = new Map(this.remoteTexts.map(function (item) { return [item._syncId, item]; }));
+    var remoteTexts = new Map(this.remoteTexts.map(function (item) { return [item.id, item]; }));
     var currentTextIds = new Set();
     texts.forEach(function (item) {
-      if (!item._syncId) item._syncId = "local-text-" + nextTextId++;
-      currentTextIds.add(item._syncId);
-      self.textDeletes.delete(item._syncId);
-      var remote = remoteTexts.get(item._syncId);
+      if (!item.id) item.id = makeTextId("text");
+      currentTextIds.add(item.id);
+      self.textDeletes.delete(item.id);
+      var remote = remoteTexts.get(item.id);
       if (!remote) {
-        self.textAdditions.set(item._syncId, cloneText(item));
+        self.textAdditions.set(item.id, cloneText(item));
         return;
       }
-      var existing = self.textOverrides.get(item._syncId) || { fields: new Set(), value: cloneText(item) };
+      var existing = self.textOverrides.get(item.id) || { fields: new Set(), value: cloneText(item) };
       TEXT_FIELDS.forEach(function (field) {
         if (item[field] !== remote[field]) existing.fields.add(field);
       });
       existing.value = cloneText(item);
-      if (existing.fields.size) self.textOverrides.set(item._syncId, existing);
+      if (existing.fields.size) self.textOverrides.set(item.id, existing);
     });
 
     this.remoteTexts.forEach(function (item) {
-      if (!currentTextIds.has(item._syncId)) {
-        self.textDeletes.add(item._syncId);
-        self.textOverrides.delete(item._syncId);
-        self.textAdditions.delete(item._syncId);
+      if (!currentTextIds.has(item.id)) {
+        self.textDeletes.add(item.id);
+        self.textOverrides.delete(item.id);
+        self.textAdditions.delete(item.id);
       }
     });
   };
@@ -189,14 +197,14 @@
     var texts = [];
     var seenTexts = new Set();
     this.remoteTexts.forEach(function (remote) {
-      if (self.textDeletes.has(remote._syncId)) return;
+      if (self.textDeletes.has(remote.id)) return;
       var next = cloneText(remote);
-      var override = self.textOverrides.get(remote._syncId);
+      var override = self.textOverrides.get(remote.id);
       if (override) {
         override.fields.forEach(function (field) { next[field] = override.value[field]; });
       }
       texts.push(next);
-      seenTexts.add(next._syncId);
+      seenTexts.add(next.id);
     });
     this.textAdditions.forEach(function (item, id) {
       if (!seenTexts.has(id) && !self.textDeletes.has(id)) texts.push(cloneText(item));
