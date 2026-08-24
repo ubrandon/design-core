@@ -88,8 +88,7 @@
       "file": "plan-view-recurring.html",
       "x": 3255,
       "y": 4321,
-      "width": 390,
-      "name": "plan-view-recurring"
+      "width": 390
     },
     {
       "file": "plans-list-recurring.html",
@@ -380,29 +379,29 @@
     },
     {
       "file": "plan-view-invited.html",
-      "x": 7451,
-      "y": 9434,
+      "x": 4615,
+      "y": 9459,
       "width": 390,
       "name": "notif-4-plan-view-invited"
     },
     {
       "file": "plans-invites-list-actions.html",
-      "x": 7899,
-      "y": 9434,
+      "x": 5543,
+      "y": 9459,
       "width": 390,
       "name": "notif-6-invites-list-actions"
     },
     {
       "file": "plans-invites-decline-confirm.html",
-      "x": 8344,
-      "y": 9434,
+      "x": 5967,
+      "y": 9461,
       "width": 390,
       "name": "notif-6b-invites-decline-confirm"
     },
     {
       "file": "home-invites-consolidated.html",
-      "x": 8788,
-      "y": 9437,
+      "x": 6396,
+      "y": 9459,
       "width": 390,
       "name": "notif-7-home-invites-card"
     },
@@ -436,8 +435,8 @@
     },
     {
       "file": "plan-view-muted.html",
-      "x": 4627,
-      "y": 9451,
+      "x": 5042,
+      "y": 9466,
       "width": 390,
       "name": "notif-12-plan-view-muted"
     },
@@ -753,22 +752,22 @@
     },
     {
       "text": "Plan page: invited",
-      "x": 7451,
-      "y": 9351,
+      "x": 4615,
+      "y": 9376,
       "size": 36,
       "id": "text-legacy-mt7k9233-42"
     },
     {
       "text": "Invites list",
-      "x": 7899,
-      "y": 9351,
+      "x": 5543,
+      "y": 9376,
       "size": 36,
       "id": "text-legacy-mt7k9233-43"
     },
     {
       "text": "Home: invites card",
-      "x": 8788,
-      "y": 9354,
+      "x": 6396,
+      "y": 9376,
       "size": 36,
       "id": "text-legacy-mt7k9233-44"
     },
@@ -802,8 +801,8 @@
     },
     {
       "text": "Plan page: muted",
-      "x": 4627,
-      "y": 9368,
+      "x": 5042,
+      "y": 9376,
       "size": 36,
       "id": "text-legacy-mt7k9233-49"
     },
@@ -820,13 +819,6 @@
       "y": 9357,
       "size": 36,
       "id": "text-legacy-mt7k9233-51"
-    },
-    {
-      "text": "Supporting states and entry points for v1",
-      "x": 4627,
-      "y": 9416,
-      "size": 14,
-      "id": "text-legacy-mt7k9233-53"
     },
     {
       "text": "Types and UI",
@@ -858,8 +850,8 @@
     },
     {
       "text": "Invites: decline confirm",
-      "x": 8344,
-      "y": 9351,
+      "x": 5967,
+      "y": 9378,
       "size": 36,
       "id": "text-legacy-mt7k9233-58"
     }
