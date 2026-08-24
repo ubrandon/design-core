@@ -373,43 +373,43 @@
     },
     {
       "file": "plan-notif-settings.html",
-      "x": 2799,
-      "y": 9437,
+      "x": 3893,
+      "y": 9443,
       "width": 390,
       "name": "notif-3-plan-notif-settings"
     },
     {
       "file": "plan-view-invited.html",
-      "x": 3463,
-      "y": 9437,
+      "x": 7451,
+      "y": 9434,
       "width": 390,
       "name": "notif-4-plan-view-invited"
     },
     {
       "file": "plans-invites-list-actions.html",
-      "x": 3911,
-      "y": 9437,
+      "x": 7899,
+      "y": 9434,
       "width": 390,
       "name": "notif-6-invites-list-actions"
     },
     {
       "file": "plans-invites-decline-confirm.html",
-      "x": 4356,
-      "y": 9437,
+      "x": 8344,
+      "y": 9434,
       "width": 390,
       "name": "notif-6b-invites-decline-confirm"
     },
     {
       "file": "home-invites-consolidated.html",
-      "x": 4786,
+      "x": 8788,
       "y": 9437,
       "width": 390,
       "name": "notif-7-home-invites-card"
     },
     {
       "file": "settings-notifications.html",
-      "x": 2354,
-      "y": 9437,
+      "x": 2965,
+      "y": 9443,
       "width": 390,
       "name": "notif-8-settings-notifications"
     },
@@ -429,38 +429,31 @@
     },
     {
       "file": "settings-entry.html",
-      "x": 1909,
+      "x": 2029,
       "y": 9437,
       "width": 390,
       "name": "notif-11-settings-entry"
     },
     {
       "file": "plan-view-muted.html",
-      "x": 5231,
-      "y": 9437,
+      "x": 4627,
+      "y": 9451,
       "width": 390,
       "name": "notif-12-plan-view-muted"
     },
     {
       "file": "settings-notifications-push-off.html",
-      "x": 5676,
-      "y": 9437,
+      "x": 3382,
+      "y": 9440,
       "width": 390,
       "name": "notif-15-settings-push-off"
     },
     {
       "file": "settings-entry-push-off.html",
-      "x": 6121,
-      "y": 9437,
+      "x": 2444,
+      "y": 9440,
       "width": 390,
       "name": "notif-16-entry-push-off"
-    },
-    {
-      "file": "notifications-inapp-rsvp-states.html",
-      "x": 6566,
-      "y": 9437,
-      "width": 390,
-      "name": "notif-17-inapp-rsvp-states"
     },
     {
       "file": "push-plan-nudges-2.html",
@@ -475,355 +468,400 @@
       "text": "Current designs",
       "x": -57,
       "y": 17828,
-      "size": 72
+      "size": 72,
+      "id": "text-legacy-mt7k9233-1"
     },
     {
       "text": "Create plan",
       "x": 25,
       "y": 1493,
-      "size": 144
+      "size": 144,
+      "id": "text-legacy-mt7k9233-2"
     },
     {
       "text": "New plan creation",
       "x": 4981,
       "y": 16390,
-      "size": 144
+      "size": 144,
+      "id": "text-legacy-mt7k9233-3"
     },
     {
       "text": "Recurring",
       "x": 25,
       "y": 3928,
-      "size": 144
+      "size": 144,
+      "id": "text-legacy-mt7k9233-4"
     },
     {
       "text": "New concepts",
       "x": 1034,
       "y": 4181,
-      "size": 72
+      "size": 72,
+      "id": "text-legacy-mt7k9233-5"
     },
     {
       "text": "List variations / recurring",
       "x": 3875,
       "y": 4195,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-6"
     },
     {
       "text": "3-step plan creation",
       "x": 2957,
       "y": 16534,
-      "size": 72
+      "size": 72,
+      "id": "text-legacy-mt7k9233-7"
     },
     {
       "text": "Archive",
       "x": -46,
       "y": 16390,
-      "size": 144
+      "size": 144,
+      "id": "text-legacy-mt7k9233-8"
     },
     {
       "text": "Current designs",
       "x": 25,
       "y": 4168,
-      "size": 72
+      "size": 72,
+      "id": "text-legacy-mt7k9233-9"
     },
     {
       "text": "New plan creation",
       "x": 1630,
       "y": 1660,
-      "size": 72
+      "size": 72,
+      "id": "text-legacy-mt7k9233-10"
     },
     {
       "text": "2. Invite others",
       "x": 4718,
       "y": 1767,
-      "size": 36
+      "size": 36,
+      "id": "text-legacy-mt7k9233-11"
     },
     {
       "text": "1. Create plan details",
       "x": 1630,
       "y": 1767,
-      "size": 36
+      "size": 36,
+      "id": "text-legacy-mt7k9233-12"
     },
     {
       "text": "3. Invite others",
       "x": 5221,
       "y": 1767,
-      "size": 36
+      "size": 36,
+      "id": "text-legacy-mt7k9233-13"
     },
     {
       "text": "Current designs",
       "x": 25,
       "y": 1702,
-      "size": 72
+      "size": 72,
+      "id": "text-legacy-mt7k9233-14"
     },
     {
       "text": "Time polls",
       "x": 25,
       "y": 6540,
-      "size": 144
+      "size": 144,
+      "id": "text-legacy-mt7k9233-15"
     },
     {
       "text": "Time / place poll",
       "x": -1008,
       "y": 16516,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-16"
     },
     {
       "text": "Add to calendar",
       "x": -1008,
       "y": 16580,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-17"
     },
     {
       "text": "Pre-plan reminders",
       "x": -1008,
       "y": 16644,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-18"
     },
     {
       "text": "RSVP notification to host",
       "x": -1008,
       "y": 16708,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-19"
     },
     {
       "text": "Capacity + Full state",
       "x": -1008,
       "y": 16772,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-20"
     },
     {
       "text": "Plus-ones",
       "x": -1008,
       "y": 16836,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-21"
     },
     {
       "text": "Link landing guest count",
       "x": -1008,
       "y": 16900,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-22"
     },
     {
       "text": "Host announce + pin",
       "x": -1008,
       "y": 16964,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-23"
     },
     {
       "text": "Notification quiet controls",
       "x": -1008,
       "y": 17028,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-24"
     },
     {
       "text": "Duplicate plan",
       "x": -1008,
       "y": 17092,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-25"
     },
     {
       "text": "Host approval to join",
       "x": -1008,
       "y": 17156,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-26"
     },
     {
       "text": "Guest RSVP without account",
       "x": -1008,
       "y": 17220,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-27"
     },
     {
       "text": "Cover themes",
       "x": -1008,
       "y": 17284,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-28"
     },
     {
       "text": "Contact-picker invites",
       "x": -1008,
       "y": 17348,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-29"
     },
     {
       "text": "Per-plan link preview (OG)",
       "x": -1008,
       "y": 17412,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-30"
     },
     {
       "text": "Shared photo album / memories",
       "x": -1008,
       "y": 17476,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-31"
     },
     {
       "text": "Message host privately",
       "x": -1008,
       "y": 17540,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-32"
     },
     {
       "text": "Cost split note",
       "x": -1008,
       "y": 17604,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-33"
     },
     {
       "text": "Weather on plan",
       "x": -1008,
       "y": 17668,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-34"
     },
     {
       "text": "Schedule it (idea to plan)",
       "x": -1008,
       "y": 17732,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-35"
     },
     {
       "text": "Web push prompt",
       "x": -1008,
       "y": 17796,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-mt7k9233-36"
     },
     {
       "text": "Current designs",
       "x": 25,
       "y": 6774,
-      "size": 72
+      "size": 72,
+      "id": "text-legacy-mt7k9233-37"
     },
     {
       "text": "Time poll designs",
       "x": 939,
       "y": 6774,
-      "size": 72
+      "size": 72,
+      "id": "text-legacy-mt7k9233-38"
     },
     {
       "text": "Notifications & reminders",
       "x": 42,
       "y": 8999,
-      "size": 144
+      "size": 144,
+      "id": "text-legacy-mt7k9233-39"
     },
     {
       "text": "Chat catalogue",
       "x": 42,
       "y": 9354,
-      "size": 36
+      "size": 36,
+      "id": "text-legacy-mt7k9233-40"
     },
     {
       "text": "Plan notif settings",
-      "x": 2799,
-      "y": 9354,
-      "size": 36
+      "x": 3893,
+      "y": 9360,
+      "size": 36,
+      "id": "text-legacy-mt7k9233-41"
     },
     {
       "text": "Plan page: invited",
-      "x": 3463,
-      "y": 9354,
-      "size": 36
+      "x": 7451,
+      "y": 9351,
+      "size": 36,
+      "id": "text-legacy-mt7k9233-42"
     },
     {
       "text": "Invites list",
-      "x": 3911,
-      "y": 9354,
-      "size": 36
+      "x": 7899,
+      "y": 9351,
+      "size": 36,
+      "id": "text-legacy-mt7k9233-43"
     },
     {
       "text": "Home: invites card",
-      "x": 4786,
+      "x": 8788,
       "y": 9354,
-      "size": 36
+      "size": 36,
+      "id": "text-legacy-mt7k9233-44"
     },
     {
       "text": "Notification settings",
-      "x": 2354,
-      "y": 9354,
-      "size": 36
+      "x": 2965,
+      "y": 9360,
+      "size": 36,
+      "id": "text-legacy-mt7k9233-45"
     },
     {
       "text": "Push catalogue",
       "x": 471,
       "y": 9354,
-      "size": 36
+      "size": 36,
+      "id": "text-legacy-mt7k9233-46"
     },
     {
       "text": "In-app notifications",
       "x": 1348,
       "y": 9354,
-      "size": 36
+      "size": 36,
+      "id": "text-legacy-mt7k9233-47"
     },
     {
       "text": "Settings entry",
-      "x": 1909,
+      "x": 2029,
       "y": 9354,
-      "size": 36
+      "size": 36,
+      "id": "text-legacy-mt7k9233-48"
     },
     {
       "text": "Plan page: muted",
-      "x": 5231,
-      "y": 9354,
-      "size": 36
+      "x": 4627,
+      "y": 9368,
+      "size": 36,
+      "id": "text-legacy-mt7k9233-49"
     },
     {
       "text": "Settings: push off",
-      "x": 5676,
-      "y": 9354,
-      "size": 36
+      "x": 3382,
+      "y": 9357,
+      "size": 36,
+      "id": "text-legacy-mt7k9233-50"
     },
     {
       "text": "Entry: push off",
-      "x": 6121,
-      "y": 9354,
-      "size": 36
-    },
-    {
-      "text": "Inbox: RSVP states",
-      "x": 6566,
-      "y": 9354,
-      "size": 36
+      "x": 2444,
+      "y": 9357,
+      "size": 36,
+      "id": "text-legacy-mt7k9233-51"
     },
     {
       "text": "Supporting states and entry points for v1",
-      "x": 5231,
-      "y": 9402,
-      "size": 14
+      "x": 4627,
+      "y": 9416,
+      "size": 14,
+      "id": "text-legacy-mt7k9233-53"
     },
     {
       "text": "Types and UI",
       "x": 36,
       "y": 9209,
-      "size": 72
+      "size": 72,
+      "id": "text-legacy-mt7k9233-54"
     },
     {
       "text": "Settings",
-      "x": 1464,
+      "x": 2022,
       "y": 9209,
-      "size": 72
+      "size": 72,
+      "id": "text-legacy-mt7k9233-55"
     },
     {
       "text": "Interfaces",
-      "x": 3018,
+      "x": 4615,
       "y": 9209,
-      "size": 72
+      "size": 72,
+      "id": "text-legacy-mt7k9233-56"
     },
     {
       "text": "Push catalogue 2",
       "x": 885,
       "y": 9351,
-      "size": 36
+      "size": 36,
+      "id": "text-legacy-mt7k9233-57"
     },
     {
       "text": "Invites: decline confirm",
-      "x": 4356,
-      "y": 9354,
-      "size": 36
-    },
-    {
-      "text": "Invites list",
-      "x": 3919,
-      "y": 10353,
-      "size": 36
+      "x": 8344,
+      "y": 9351,
+      "size": 36,
+      "id": "text-legacy-mt7k9233-58"
     }
   ]
 }
