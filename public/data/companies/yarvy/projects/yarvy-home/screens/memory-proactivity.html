@@ -1,0 +1,192 @@
+<div class="yv6">
+  <style>
+    html, body { margin: 0; padding: 0; background: #0a0a0c; }
+    .yv6 { position: relative; overflow: hidden; background: #0a0a0c; color: #e8e8ea;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .yv6 *, .yv6 *::before, .yv6 *::after { box-sizing: border-box; }
+    .yv6 .glow { position: absolute; top: -240px; left: 40%; width: 720px; height: 520px; pointer-events: none;
+      background: radial-gradient(closest-side, rgba(124,198,255,0.1), rgba(167,139,250,0.07) 50%, transparent 72%); filter: blur(8px); }
+
+    .yv6 .topbar { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; padding: 22px 40px; }
+    .yv6 .brand { display: flex; align-items: center; gap: 11px; font-weight: 700; font-size: 16px; }
+    .yv6 .orb { width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #cfe8ff, #7cc6ff 45%, #a78bfa); box-shadow: 0 0 14px rgba(124,198,255,0.7); }
+    .yv6 .me { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 700; color: #cdd6e6; background: #17171d; border: 1px solid #2a2a33; }
+
+    .yv6 .wrap { position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 22px 40px 56px; }
+    .yv6 .head { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+    .yv6 .miniface { position: relative; width: 38px; height: 38px; flex: none; }
+    .yv6 .miniface .a { position: absolute; inset: -9px; border-radius: 50%; background: radial-gradient(closest-side, rgba(124,198,255,0.4), transparent 72%); filter: blur(3px); animation: yv-aura 4.5s ease-in-out infinite; }
+    .yv6 .miniface .e { position: absolute; top: 9px; width: 6px; height: 15px; border-radius: 4px; background: linear-gradient(180deg,#d6ecff,#7cc6ff 55%,#a78bfa); box-shadow: 0 0 8px rgba(124,198,255,0.8); }
+    .yv6 .miniface .e.l { left: 10px; } .yv6 .miniface .e.r { right: 10px; }
+    .yv6 .head h1 { font-size: 25px; font-weight: 700; letter-spacing: -0.02em; margin: 0; }
+    .yv6 .subline { font-size: 14.5px; color: #8a8a96; margin: 0 0 26px 52px; max-width: 640px; line-height: 1.5; }
+
+    .yv6 .layout { display: grid; grid-template-columns: 1fr 360px; gap: 22px; align-items: start; }
+    .yv6 .mem { display: flex; flex-direction: column; gap: 18px; }
+    .yv6 .sec { background: #101015; border: 1px solid #1c1c23; border-radius: 20px; padding: 8px 22px 14px; }
+    .yv6 .sec-h { display: flex; align-items: center; gap: 10px; padding: 16px 0 4px; }
+    .yv6 .sec-h .ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; background: rgba(124,198,255,0.1); color: #9fd4ff; }
+    .yv6 .sec-h .ic svg { width: 17px; height: 17px; stroke: currentColor; }
+    .yv6 .sec-h h2 { font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #9a9aa6; margin: 0; }
+    .yv6 .sec-h .ct { margin-left: auto; font-size: 12px; color: #5f5f6a; }
+
+    .yv6 .fact { display: flex; align-items: flex-start; gap: 12px; padding: 13px 0; border-top: 1px solid #1a1a21; }
+    .yv6 .fact:first-of-type { border-top: none; }
+    .yv6 .ftext { flex: 1; min-width: 0; font-size: 15.5px; color: #d8d8de; line-height: 1.45; }
+    .yv6 .guess { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #9a9aa6; border: 1px solid #2c2c35; border-radius: 999px; padding: 1px 7px; margin-left: 8px; vertical-align: middle; }
+    .yv6 .facts-act { display: flex; gap: 4px; flex: none; }
+    .yv6 .ico { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; cursor: pointer; color: #6f6f7b; }
+    .yv6 .ico:hover { background: rgba(255,255,255,0.05); color: #e8e8ea; }
+    .yv6 .ico svg { width: 15px; height: 15px; stroke: currentColor; }
+    .yv6 .ico.why { width: auto; padding: 0 11px; font-size: 12px; font-weight: 600; gap: 5px; color: #8fb6dc; }
+    .yv6 .ico.why:hover { color: #bfe0ff; background: rgba(124,198,255,0.08); }
+
+    .yv6 .why-panel { margin: 2px 0 6px 0; padding: 14px 16px; background: rgba(124,198,255,0.05); border: 1px solid rgba(124,198,255,0.2); border-radius: 14px; }
+    .yv6 .why-panel .wl { font-size: 11.5px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #8fb6dc; margin-bottom: 8px; }
+    .yv6 .quote { font-size: 14.5px; color: #cfe0f2; line-height: 1.5; font-style: italic; padding-left: 12px; border-left: 2px solid rgba(124,198,255,0.5); }
+    .yv6 .qfrom { font-size: 12px; color: #6f8197; margin-top: 8px; font-style: normal; }
+
+    /* controls */
+    .yv6 .controls { display: flex; flex-direction: column; gap: 18px; }
+    .yv6 .panel { background: linear-gradient(180deg, #14141a, #101015); border: 1px solid #24242c; border-radius: 20px; padding: 22px; }
+    .yv6 .panel h3 { font-size: 16px; font-weight: 700; margin: 0 0 4px; }
+    .yv6 .panel .desc { font-size: 13px; color: #8a8a96; line-height: 1.5; margin: 0 0 20px; }
+
+    .yv6 .slider { margin-top: 6px; }
+    .yv6 .strack { position: relative; height: 6px; border-radius: 999px; background: #232330; }
+    .yv6 .sfill { position: absolute; left: 0; top: 0; height: 6px; width: 50%; border-radius: 999px; background: linear-gradient(90deg, #7cc6ff, #a78bfa); }
+    .yv6 .stick { position: absolute; top: 50%; transform: translate(-50%,-50%); width: 7px; height: 7px; border-radius: 50%; background: #3a3a46; }
+    .yv6 .stick.s0 { left: 0; } .yv6 .stick.s1 { left: 50%; background: transparent; } .yv6 .stick.s2 { left: 100%; }
+    .yv6 .sknob { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 20px; height: 20px; border-radius: 50%;
+      background: #fff; box-shadow: 0 2px 10px rgba(124,198,255,0.5), 0 0 0 4px rgba(124,198,255,0.18); cursor: grab; }
+    .yv6 .slabels { display: flex; justify-content: space-between; margin-top: 14px; }
+    .yv6 .slabels span { font-size: 12.5px; font-weight: 600; color: #6a6a76; }
+    .yv6 .slabels span.on { color: #bfe0ff; }
+    .yv6 .sexpl { margin-top: 16px; padding: 13px 14px; background: rgba(255,255,255,0.02); border: 1px solid #20202a; border-radius: 12px; font-size: 13px; color: #b6b6c0; line-height: 1.55; }
+    .yv6 .sexpl b { color: #e8e8ea; font-weight: 600; }
+
+    .yv6 .switch { display: flex; align-items: flex-start; gap: 14px; padding: 16px 0; }
+    .yv6 .switch + .switch { border-top: 1px solid #1c1c23; }
+    .yv6 .switch .sw-main { flex: 1; }
+    .yv6 .switch .sw-t { font-size: 14.5px; font-weight: 600; color: #e0e0e6; }
+    .yv6 .switch .sw-d { font-size: 12.5px; color: #7a7a86; margin-top: 3px; line-height: 1.45; }
+    .yv6 .tog { position: relative; width: 46px; height: 27px; flex: none; border-radius: 999px; background: #2a2a33; border: none; cursor: pointer; margin-top: 2px; }
+    .yv6 .tog::after { content: ""; position: absolute; top: 3px; left: 3px; width: 21px; height: 21px; border-radius: 50%; background: #c7c7d1; transition: .2s; }
+    .yv6 .tog.on { background: linear-gradient(135deg, #7cc6ff, #a78bfa); }
+    .yv6 .tog.on::after { transform: translateX(19px); background: #fff; }
+
+    .yv6 .pause { background: rgba(255,157,107,0.05); border: 1px solid rgba(255,157,107,0.22); }
+    .yv6 .pause .tog.on { background: #ff9d6b; }
+    .yv6 .reassure { display: flex; align-items: center; gap: 9px; font-size: 12.5px; color: #6f6f7b; padding: 2px 4px; }
+    .yv6 .reassure svg { width: 15px; height: 15px; stroke: #6f6f7b; flex: none; }
+
+    @keyframes yv-aura { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
+  </style>
+
+  <div class="glow"></div>
+
+  <header class="topbar">
+    <div class="brand"><span class="orb"></span> Yarvy</div>
+    <div class="me">B</div>
+  </header>
+
+  <div class="wrap">
+    <div class="head">
+      <span class="miniface"><span class="a"></span><span class="e l"></span><span class="e r"></span></span>
+      <h1>What Yarvy knows about you</h1>
+    </div>
+    <p class="subline">Everything here is editable, and you can ask me to forget any of it. Only your own words ever change what I remember.</p>
+
+    <div class="layout">
+      <!-- memory -->
+      <div class="mem">
+        <div class="sec">
+          <div class="sec-h">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 20c0-3.3 3.1-6 7-6s7 2.7 7 6"/></svg></span>
+            <h2>About you</h2><span class="ct">4 things</span>
+          </div>
+          <div class="fact"><div class="ftext">Your sister Maya lives about two hours away.</div>
+            <div class="facts-act"><span class="ico" aria-label="Edit"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="ico" aria-label="Forget"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div></div>
+          <div class="fact"><div class="ftext">You would rather be told the truth than be comforted.</div>
+            <div class="facts-act"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div></div>
+          <div class="fact"><div class="ftext">You usually work from home on Tuesdays and Thursdays.<span class="guess">guessed</span></div>
+            <div class="facts-act"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div></div>
+        </div>
+
+        <div class="sec">
+          <div class="sec-h">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></span>
+            <h2>Your patterns</h2><span class="ct">4 things</span>
+          </div>
+          <div class="fact"><div class="ftext">You run best first thing in the morning.<span class="guess">guessed</span></div>
+            <div class="facts-act"><span class="ico why">Why?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div></div>
+          <div class="why-panel">
+            <div class="wl">Why I think this</div>
+            <div class="quote">"honestly i always feel best getting my run in before work, by evening i'm completely wiped."<div class="qfrom">Because you told me this in a chat with me.</div></div>
+          </div>
+          <div class="fact"><div class="ftext">Evenings are usually too full for hard tasks.<span class="guess">guessed</span></div>
+            <div class="facts-act"><span class="ico why">Why?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div></div>
+          <div class="fact"><div class="ftext">You finish writing tasks fastest in the early afternoon.<span class="guess">guessed</span></div>
+            <div class="facts-act"><span class="ico why">Why?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div></div>
+        </div>
+
+        <div class="sec">
+          <div class="sec-h">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg></span>
+            <h2>Your goals</h2><span class="ct">3 things</span>
+          </div>
+          <div class="fact"><div class="ftext">Run a half marathon in October. <span style="color:#8a8a96">About 3 runs a week.</span></div>
+            <div class="facts-act"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div></div>
+          <div class="fact"><div class="ftext">Read more. <span style="color:#8a8a96">About a book a month.</span></div>
+            <div class="facts-act"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div></div>
+          <div class="fact"><div class="ftext">See friends more. <span style="color:#8a8a96">Roughly weekly.</span></div>
+            <div class="facts-act"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div></div>
+        </div>
+      </div>
+
+      <!-- proactivity controls -->
+      <div class="controls">
+        <div class="panel">
+          <h3>How much should I reach out?</h3>
+          <p class="desc">Set the volume on nudges and check-ins. You can change this any time.</p>
+          <div class="slider">
+            <div class="strack">
+              <div class="sfill"></div>
+              <span class="stick s0"></span><span class="stick s2"></span>
+              <span class="sknob"></span>
+            </div>
+            <div class="slabels"><span>Quiet</span><span class="on">Balanced</span><span>Chatty</span></div>
+          </div>
+          <div class="sexpl"><b>Balanced:</b> a short plan each morning, a light nudge only when something slips, and a soft check-in at the end of the day.</div>
+        </div>
+
+        <div class="panel">
+          <div class="switch">
+            <div class="sw-main"><div class="sw-t">End-of-day check-in</div><div class="sw-d">A quick, skippable two-way about how today went.</div></div>
+            <button class="tog on" aria-label="End of day check-in"></button>
+          </div>
+          <div class="switch">
+            <div class="sw-main"><div class="sw-t">Morning day-ahead</div><div class="sw-d">A brief look at the day, timed to when you usually wake up.</div></div>
+            <button class="tog on" aria-label="Morning day ahead"></button>
+          </div>
+          <div class="switch">
+            <div class="sw-main"><div class="sw-t">Celebrate the big wins</div><div class="sw-d">Only the meaningful ones. Never confetti on every checkbox.</div></div>
+            <button class="tog" aria-label="Celebrate wins"></button>
+          </div>
+        </div>
+
+        <div class="panel pause">
+          <div class="switch" style="padding-top:0;">
+            <div class="sw-main"><div class="sw-t">Pause Yarvy</div><div class="sw-d">Stop all nudges and check-ins. Your tasks and plan stay exactly as they are.</div></div>
+            <button class="tog" aria-label="Pause Yarvy"></button>
+          </div>
+        </div>
+
+        <div class="reassure">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14l-4 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2Z"/></svg>
+          You are always in charge. Undo is available on everything I do.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

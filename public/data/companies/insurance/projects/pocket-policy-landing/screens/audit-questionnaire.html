@@ -1,0 +1,154 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css">
+<link rel="stylesheet" href="../../../../../../styles/ds.css">
+<style>
+  .aq-root { background: #FBF9F5; font-family: var(--font-body, "Plus Jakarta Sans", sans-serif); color: #171D26; overflow-x: clip; }
+  .aq-wrap { max-width: 720px; margin: 0 auto; padding: 0 48px; }
+  .aq-btn-gold { display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(180deg, #F0BC55, #D99A2B); color: #1A1206; font-weight: 800; font-size: 0.95rem; padding: 14px 26px; border-radius: 12px; border: none; text-decoration: none; white-space: nowrap; box-shadow: 0 8px 24px rgba(217, 154, 43, 0.28); }
+  .aq-card { background: #FFFFFF; border: 1px solid #E9E4D9; border-radius: 18px; }
+  .aq-input { width: 100%; box-sizing: border-box; padding: 13px 16px; border-radius: 12px; border: 1px solid #DDD6C8; background: #FFFFFF; color: #171D26; font-size: 0.95rem; font-family: inherit; }
+  .aq-input::placeholder { color: #9AA2AE; }
+  .aq-q { font-size: 0.95rem; font-weight: 800; color: #171D26; margin-bottom: 4px; }
+  .aq-hint { font-size: 0.8rem; color: #8A93A0; margin-bottom: 12px; }
+  .aq-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+  .aq-pill { display: inline-flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 99px; border: 1px solid #DDD6C8; background: #FFFFFF; font-size: 0.88rem; font-weight: 700; color: #55606E; }
+  .aq-pill.is-on { border-color: #D99A2B; background: #FDF1DC; color: #8A6115; font-weight: 800; }
+  .aq-section { padding: 26px 0; border-bottom: 1px solid #EEEAE1; }
+  .aq-opt { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border: 1px solid #DDD6C8; border-radius: 12px; background: #FFFFFF; font-size: 0.9rem; font-weight: 700; color: #55606E; }
+  .aq-opt.is-on { border-color: #D99A2B; background: #FFFDF7; color: #171D26; font-weight: 800; }
+  .aq-dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #C9CFD8; flex-shrink: 0; }
+  .aq-opt.is-on .aq-dot { border-color: #D99A2B; background: radial-gradient(circle, #D99A2B 45%, #FFFFFF 50%); }
+</style>
+<div class="aq-root">
+
+  <!-- Minimal nav -->
+  <div style="border-bottom: 1px solid #ECE7DC; background: #FBF9F5;">
+    <div style="max-width: 1040px; margin: 0 auto; padding: 22px 48px; display: flex; align-items: center; justify-content: space-between;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 34px; height: 34px; border-radius: 9px; background: #171D26; display: flex; align-items: center; justify-content: center; color: #F0BC55; font-weight: 800; font-size: 1.05rem;">P</div>
+        <span style="font-weight: 800; font-size: 1.08rem; letter-spacing: -0.01em;">Pocket Policy</span>
+      </div>
+      <span style="font-size: 0.88rem; color: #8A93A0; font-weight: 600;">Free statement audit</span>
+    </div>
+  </div>
+
+  <div class="aq-wrap" style="padding-top: 64px; padding-bottom: 110px;">
+
+    <!-- Progress -->
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 28px;">
+      <span style="font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #B7893A;">Step 2 of 2</span>
+      <div style="flex: 1; height: 6px; border-radius: 99px; background: #ECE7DC; overflow: hidden;">
+        <div style="width: 90%; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #F0BC55, #D99A2B);"></div>
+      </div>
+    </div>
+
+    <h1 style="font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 12px;">Tell us about your agency</h1>
+    <p style="font-size: 1rem; line-height: 1.7; color: #55606E; margin-bottom: 36px;">This helps us size your audit and read your statements correctly. About 2 minutes, and every answer can be changed later.</p>
+
+    <div class="aq-card" style="padding: 10px 32px 32px; box-shadow: 0 24px 60px rgba(23,29,38,0.08);">
+
+      <!-- Agency basics -->
+      <div class="aq-section" style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+        <div>
+          <p class="aq-q">Agency name</p>
+          <p class="aq-hint">As it appears on your statements</p>
+          <input class="aq-input" type="text" value="Vega Benefits Group">
+        </div>
+        <div>
+          <p class="aq-q">Your name</p>
+          <p class="aq-hint">So we know who to talk to</p>
+          <input class="aq-input" type="text" placeholder="First and last name">
+        </div>
+      </div>
+
+      <!-- Role -->
+      <div class="aq-section">
+        <p class="aq-q">What's your role?</p>
+        <p class="aq-hint">Pick the closest fit</p>
+        <div class="aq-pills">
+          <span class="aq-pill is-on">Owner / principal</span>
+          <span class="aq-pill">Operations / admin</span>
+          <span class="aq-pill">Agent</span>
+          <span class="aq-pill">Something else</span>
+        </div>
+      </div>
+
+      <!-- Agent count -->
+      <div class="aq-section">
+        <p class="aq-q">How many agents write business with you?</p>
+        <p class="aq-hint">Include downline agents you pay overrides on</p>
+        <div class="aq-pills">
+          <span class="aq-pill">Just me</span>
+          <span class="aq-pill is-on">2 to 10</span>
+          <span class="aq-pill">11 to 50</span>
+          <span class="aq-pill">More than 50</span>
+        </div>
+      </div>
+
+      <!-- Lines of business -->
+      <div class="aq-section">
+        <p class="aq-q">What do you sell?</p>
+        <p class="aq-hint">Select all that apply</p>
+        <div class="aq-pills">
+          <span class="aq-pill is-on">✓ Medicare Advantage</span>
+          <span class="aq-pill is-on">✓ Med Supp</span>
+          <span class="aq-pill">ACA / Marketplace</span>
+          <span class="aq-pill is-on">✓ Life</span>
+          <span class="aq-pill">Dental / vision / ancillary</span>
+          <span class="aq-pill">Group benefits</span>
+        </div>
+      </div>
+
+      <!-- Carrier count -->
+      <div class="aq-section">
+        <p class="aq-q">How many carriers pay you commissions?</p>
+        <p class="aq-hint">A rough count is fine</p>
+        <div class="aq-pills">
+          <span class="aq-pill">1 to 5</span>
+          <span class="aq-pill is-on">6 to 15</span>
+          <span class="aq-pill">16 to 30</span>
+          <span class="aq-pill">More than 30</span>
+        </div>
+      </div>
+
+      <!-- Commission volume -->
+      <div class="aq-section">
+        <p class="aq-q">Roughly how much commission flows through the agency each year?</p>
+        <p class="aq-hint">This sets the size of your recovery estimate</p>
+        <div class="aq-pills">
+          <span class="aq-pill">Under $250k</span>
+          <span class="aq-pill">$250k to $1M</span>
+          <span class="aq-pill is-on">$1M to $5M</span>
+          <span class="aq-pill">More than $5M</span>
+        </div>
+      </div>
+
+      <!-- Reconciliation today -->
+      <div class="aq-section">
+        <p class="aq-q">How do you check statements today?</p>
+        <p class="aq-hint">Honest answers get better audits</p>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div class="aq-opt"><span class="aq-dot"></span>Someone checks them by hand in spreadsheets</div>
+          <div class="aq-opt is-on"><span class="aq-dot"></span>We spot-check the big carriers, the rest we trust</div>
+          <div class="aq-opt"><span class="aq-dot"></span>Our agency software does some of it</div>
+          <div class="aq-opt"><span class="aq-dot"></span>We don't really check them</div>
+        </div>
+      </div>
+
+      <!-- Current software -->
+      <div class="aq-section" style="border-bottom: none;">
+        <p class="aq-q">What runs your agency today? <span style="font-weight: 600; color: #8A93A0;">(optional)</span></p>
+        <p class="aq-hint">CRM, AMS, spreadsheets, anything</p>
+        <input class="aq-input" type="text" placeholder="e.g. AgencyBloc, Salesforce, Excel">
+      </div>
+
+    </div>
+
+    <!-- Footer actions -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 24px;">
+      <span style="font-size: 0.9rem; font-weight: 700; color: #8A93A0;">← Back</span>
+      <a class="aq-btn-gold">Finish and start my audit</a>
+    </div>
+    <p style="text-align: right; font-size: 0.8rem; color: #8A93A0; margin-top: 12px;">Next: upload last quarter's statement CSVs. We'll email your results.</p>
+
+  </div>
+</div>

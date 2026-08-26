@@ -1,0 +1,141 @@
+<div class="yva">
+  <style>
+    .yva { position: relative; background: #faf7f0; color: #2b2620; height: 880px; display: flex; overflow: hidden;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .yva *, .yva *::before, .yva *::after { box-sizing: border-box; }
+
+    .yva .rail { width: 78px; flex: none; background: #f3eee4; border-right: 1px solid #ece3d4;
+      display: flex; flex-direction: column; align-items: center; padding: 20px 0; gap: 6px; }
+    .yva .mark { display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 24px; }
+    .yva .mark i { width: 13px; height: 26px; flex: none; border-radius: 7px; display: block;
+      background: linear-gradient(160deg, #f2ac6b, #d9764a 55%, #b8583a); }
+    .yva .nav-btn { width: 46px; height: 46px; border-radius: 14px; border: none; background: none; cursor: pointer;
+      display: grid; place-items: center; color: #9d917e; }
+    .yva .nav-btn svg { width: 22px; height: 22px; }
+    .yva .nav-btn.on { color: #a8502b; background: #f8ecdf; box-shadow: inset 0 0 0 1px #eed9c8; }
+    .yva .rail .spacer { margin-top: auto; }
+    .yva .me { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; margin-top: 8px;
+      font-size: 13px; font-weight: 700; color: #463f35; background: #efe7d8; border: 1px solid #e0d6c6; }
+
+    .yva .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .yva .mhead { display: flex; align-items: flex-end; justify-content: space-between; padding: 26px 36px 14px; }
+    .yva .mhead h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; margin: 0; }
+    .yva .mhead .sub { font-size: 14px; color: #8a8073; margin-top: 5px; }
+    .yva .addbtn { font: inherit; font-size: 13.5px; font-weight: 600; color: #fff7ef; background: linear-gradient(140deg, #e89a5c, #c2663c);
+      border: none; padding: 9px 16px; border-radius: 999px; cursor: pointer; display: flex; align-items: center; gap: 7px; }
+    .yva .addbtn svg { width: 15px; height: 15px; stroke: #fff7ef; }
+
+    .yva .chips { display: flex; gap: 9px; padding: 2px 36px 12px; flex-wrap: wrap; }
+    .yva .chip { font: inherit; font-size: 13.5px; font-weight: 600; color: #463f35; background: #ffffff;
+      border: 1px solid #ece3d3; padding: 8px 15px; border-radius: 999px; cursor: pointer; }
+    .yva .chip.on { color: #fff7ef; border-color: transparent; background: linear-gradient(140deg, #e89a5c, #c2663c); }
+
+    .yva .brief { display: flex; align-items: center; gap: 12px; margin: 0 36px 12px; padding: 13px 16px;
+      background: #fdf6ec; border: 1px solid #f4e8d6; border-radius: 16px; }
+    .yva .brief .eyes { display: flex; gap: 7px; flex: none; }
+    .yva .brief .eye { width: 9px; height: 19px; border-radius: 5px; background: linear-gradient(160deg, #f2ac6b, #c2663c); }
+    .yva .brief p { margin: 0; font-size: 14px; line-height: 1.45; color: #6d6458; }
+    .yva .brief b { color: #a8502b; font-weight: 700; }
+
+    .yva .scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 4px 36px 30px; }
+    .yva .cols { display: grid; grid-template-columns: 1.4fr 1fr; gap: 22px; align-items: start; }
+
+    .yva .grp { display: flex; align-items: center; gap: 9px; margin: 14px 2px 10px; }
+    .yva .grp .gl { font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #948a79; }
+    .yva .grp .gc { font-size: 11.5px; font-weight: 700; color: #b3a892; }
+    .yva .grp.over .gl { color: #b6452b; }
+    .yva .grp:first-child { margin-top: 0; }
+
+    .yva .task { display: flex; align-items: flex-start; gap: 13px; background: #ffffff; border: 1px solid #efe7d8;
+      border-radius: 14px; padding: 14px 16px; margin-bottom: 9px; box-shadow: 0 4px 14px rgba(120,88,48,0.04); }
+    .yva .task.over { border-left: 3px solid #cf6a42; }
+    .yva .task.done { background: #f7f3ea; border-color: #ece3d4; box-shadow: none; }
+    .yva .ring { width: 21px; height: 21px; flex: none; border-radius: 50%; border: 1.8px solid #dcd2c0; margin-top: 1px; cursor: pointer; }
+    .yva .ring.r-over { border-color: #cf6a42; }
+    .yva .ring.r-done { border-color: #c2663c; background: #c2663c; display: grid; place-items: center; }
+    .yva .ring.r-done svg { width: 13px; height: 13px; stroke: #fff7ef; }
+    .yva .tbody { flex: 1; }
+    .yva .ttl { font-size: 15px; color: #332e27; line-height: 1.35; }
+    .yva .task.done .ttl { color: #a99d8b; text-decoration: line-through; }
+    .yva .meta { font-size: 12px; color: #948a79; margin-top: 4px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .yva .meta.over { color: #b6452b; }
+    .yva .pill { font-size: 10.5px; font-weight: 700; color: #a8502b; background: #f8ecdf; border: 1px solid #eed9c8;
+      padding: 2px 9px; border-radius: 999px; }
+    .yva .pill.life { color: #5e7a48; background: #ecf1e4; border-color: #d9e3cb; }
+
+    /* right column — by area */
+    .yva .side { background: #ffffff; border: 1px solid #efe7d8; border-radius: 18px; padding: 18px 20px; box-shadow: 0 6px 20px rgba(120,88,48,0.06); }
+    .yva .side h3 { font-size: 13px; font-weight: 700; color: #6d6458; margin: 0 0 14px; }
+    .yva .arow { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid #f4ecdd; }
+    .yva .arow:first-of-type { border-top: none; }
+    .yva .adot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+    .yva .aname { font-size: 14px; color: #332e27; font-weight: 600; }
+    .yva .acnt { margin-left: auto; font-size: 13px; color: #948a79; font-weight: 600; }
+  </style>
+
+  <nav class="rail">
+    <div class="mark" aria-label="Yarvy"><i></i><i></i></div>
+    <button class="nav-btn" aria-label="Chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5Z"/></svg></button>
+    <button class="nav-btn on" aria-label="List"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+    <button class="nav-btn" aria-label="Calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg></button>
+    <button class="nav-btn" aria-label="Goals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg></button>
+    <button class="nav-btn" aria-label="Memory"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15l-1.8-4.2L5.5 9l4.7-1.3L12 3Z"/></svg></button>
+    <div class="spacer"></div>
+    <button class="nav-btn" aria-label="Pause"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5v14M15 5v14"/></svg></button>
+    <div class="me">B</div>
+  </nav>
+
+  <section class="main">
+    <div class="mhead">
+      <div>
+        <h1>Tasks</h1>
+        <div class="sub">7 open · 1 overdue · 2 done today</div>
+      </div>
+      <button class="addbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> New task</button>
+    </div>
+
+    <div class="chips">
+      <button class="chip on">All</button>
+      <button class="chip">Today</button>
+      <button class="chip">Marathon prep</button>
+      <button class="chip">Mom &amp; friends</button>
+      <button class="chip">Errands</button>
+    </div>
+
+    <div class="brief">
+      <span class="eyes"><span class="eye"></span><span class="eye"></span></span>
+      <p>Two quick wins before 3:00 clears most of this. <b>Insoles</b> slipped, want it for tomorrow?</p>
+    </div>
+
+    <div class="scroll">
+      <div class="cols">
+        <div>
+          <div class="grp over"><span class="gl">Overdue</span><span class="gc">1</span></div>
+          <div class="task over"><span class="ring r-over"></span><div class="tbody"><div class="ttl">Pick up new insoles</div><div class="meta over">Yesterday <span class="pill">Marathon prep</span></div></div></div>
+
+          <div class="grp"><span class="gl">Today</span><span class="gc">4</span></div>
+          <div class="task"><span class="ring"></span><div class="tbody"><div class="ttl">Easy 5k run</div><div class="meta"><span class="pill">Goal</span> 1:30 window</div></div></div>
+          <div class="task"><span class="ring"></span><div class="tbody"><div class="ttl">Call mom</div><div class="meta"><span class="pill life">Mom &amp; friends</span></div></div></div>
+          <div class="task"><span class="ring"></span><div class="tbody"><div class="ttl">Text Sam to confirm Thursday</div><div class="meta"><span class="pill life">Mom &amp; friends</span></div></div></div>
+          <div class="task"><span class="ring"></span><div class="tbody"><div class="ttl">Pick up dry cleaning</div><div class="meta">By 6:00 <span class="pill">Errands</span></div></div></div>
+
+          <div class="grp"><span class="gl">This week</span><span class="gc">2</span></div>
+          <div class="task"><span class="ring"></span><div class="tbody"><div class="ttl">Book physio check-in</div><div class="meta">Thu <span class="pill">Marathon prep</span></div></div></div>
+          <div class="task"><span class="ring"></span><div class="tbody"><div class="ttl">Renew library books</div><div class="meta">Fri</div></div></div>
+
+          <div class="grp"><span class="gl">Done today</span><span class="gc">2</span></div>
+          <div class="task done"><span class="ring r-done"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div class="tbody"><div class="ttl">Reply to landlord</div></div></div>
+          <div class="task done"><span class="ring r-done"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><div class="tbody"><div class="ttl">Morning stretch</div></div></div>
+        </div>
+
+        <div class="side">
+          <h3>By area</h3>
+          <div class="arow"><span class="adot" style="background:#c2663c;"></span><span class="aname">Marathon prep</span><span class="acnt">3</span></div>
+          <div class="arow"><span class="adot" style="background:#8fae7a;"></span><span class="aname">Mom &amp; friends</span><span class="acnt">2</span></div>
+          <div class="arow"><span class="adot" style="background:#5384a8;"></span><span class="aname">Errands</span><span class="acnt">1</span></div>
+          <div class="arow"><span class="adot" style="background:#b9a98c;"></span><span class="aname">Unsorted</span><span class="acnt">1</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

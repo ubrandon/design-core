@@ -1,0 +1,186 @@
+<div class="fm">
+  <style>
+    .fm { background: #f1ece2; color: #2c2823; padding: 36px 40px 48px; overflow: hidden;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .fm *, .fm *::before, .fm *::after { box-sizing: border-box; }
+
+    .fm .head { margin-bottom: 28px; }
+    .fm .kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #8a3f6e; margin: 0 0 8px; }
+    .fm .title { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 8px; }
+    .fm .sub { font-size: 15px; color: #6f675b; margin: 0; max-width: 620px; line-height: 1.5; }
+
+    .fm .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .fm .tile { background: #fffdf9; border: 1px solid #e8e1d3; border-radius: 20px; padding: 22px 18px 18px;
+      display: flex; flex-direction: column; align-items: center; box-shadow: 0 8px 24px rgba(80,66,40,0.05); }
+    .fm .stage { width: 100%; height: 124px; display: grid; place-items: center; position: relative; margin-bottom: 16px; }
+    .fm .name { font-size: 15px; font-weight: 700; color: #2c2823; text-align: center; }
+    .fm .desc { font-size: 12.5px; color: #938a7c; text-align: center; margin-top: 4px; line-height: 1.4; }
+
+    /* 1. Terminal */
+    .fm .f-term { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 44px; font-weight: 700; color: #c14f6b; letter-spacing: 2px; }
+    .fm .f-term .cur { animation: fm-blink-cur 1.1s steps(1) infinite; }
+
+    /* 2. Kaomoji */
+    .fm .f-kao { font-size: 34px; font-weight: 700; color: #c14f6b; letter-spacing: 1px; }
+
+    /* 3. Pixel — blocky eyes */
+    .fm .f-pixel { display: flex; gap: 16px; }
+    .fm .f-pixel .px { display: grid; grid-template-columns: repeat(3, 12px); grid-template-rows: repeat(3, 12px); gap: 2px; }
+    .fm .f-pixel .px b { background: #e4ddd0; border-radius: 2px; }
+    .fm .f-pixel .px b.on { background: #c14f6b; box-shadow: 0 0 6px rgba(193,79,107,0.5); }
+
+    /* 4. Line — flat outline */
+    .fm .f-line .eyes { display: flex; gap: 26px; justify-content: center; }
+    .fm .f-line .dot { width: 14px; height: 14px; border-radius: 50%; background: #c14f6b; }
+    .fm .f-line .mouth { width: 50px; height: 22px; margin: 16px auto 0;
+      border-bottom: 3px solid #c14f6b; border-radius: 0 0 50px 50px / 0 0 22px 22px; }
+
+    /* 5. Bracket */
+    .fm .f-brk { display: flex; align-items: center; gap: 6px; }
+    .fm .f-brk .b { font-size: 64px; font-weight: 300; color: #b3a995; line-height: 1; }
+    .fm .f-brk .eyes { display: flex; gap: 12px; }
+    .fm .f-brk .eyes i { width: 13px; height: 13px; border-radius: 50%; background: #c14f6b; box-shadow: 0 0 6px rgba(193,79,107,0.45);
+      animation: fm-blink 5s ease-in-out infinite; }
+
+    /* 6. Dot matrix smile */
+    .fm .f-matrix { display: grid; grid-template-columns: repeat(7, 9px); grid-template-rows: repeat(6, 9px); gap: 5px; }
+    .fm .f-matrix b { width: 9px; height: 9px; border-radius: 50%; background: #e4ddd0; }
+    .fm .f-matrix b.on { background: #c14f6b; box-shadow: 0 0 5px rgba(193,79,107,0.5); }
+
+    /* 7. Emoticon */
+    .fm .f-emo { font-size: 50px; font-weight: 700; color: #c14f6b; transform: rotate(90deg); letter-spacing: -4px; }
+
+    /* 8. Square bot */
+    .fm .f-sq .ant { width: 3px; height: 16px; background: #c3bbac; margin: 0 auto; }
+    .fm .f-sq .ant::before { content: ""; display: block; width: 9px; height: 9px; border-radius: 50%; background: #c14f6b;
+      margin: -4px auto 0; box-shadow: 0 0 6px rgba(193,79,107,0.5); }
+    .fm .f-sq .head { width: 84px; height: 62px; border-radius: 12px; background: #f4efe6; border: 2px solid #ddd5c7;
+      display: flex; align-items: center; justify-content: center; gap: 16px; }
+    .fm .f-sq .head i { width: 14px; height: 14px; border-radius: 4px; background: #c14f6b; box-shadow: 0 0 6px rgba(193,79,107,0.45);
+      animation: fm-blink 6s ease-in-out infinite; }
+
+    /* 9. Round bot */
+    .fm .f-rnd .ant { width: 3px; height: 14px; background: #c3bbac; margin: 0 auto; }
+    .fm .f-rnd .ant::before { content: ""; display: block; width: 8px; height: 8px; border-radius: 50%; background: #c14f6b;
+      margin: -3px auto 0; box-shadow: 0 0 6px rgba(193,79,107,0.55); }
+    .fm .f-rnd .head { width: 78px; height: 78px; border-radius: 50%; background: #f4efe6; border: 2px solid #ddd5c7;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .fm .f-rnd .eyes { display: flex; gap: 14px; }
+    .fm .f-rnd .eyes i { width: 13px; height: 13px; border-radius: 50%; background: #c14f6b; box-shadow: 0 0 6px rgba(193,79,107,0.45); }
+    .fm .f-rnd .sm { width: 26px; height: 11px; margin-top: 9px; border-bottom: 2.5px solid #c14f6b; border-radius: 0 0 26px 26px; }
+
+    /* 10. Loading dots */
+    .fm .f-load { display: flex; gap: 12px; }
+    .fm .f-load i { width: 15px; height: 15px; border-radius: 50%; background: #c14f6b; box-shadow: 0 0 8px rgba(193,79,107,0.45);
+      animation: fm-bounce 1.2s ease-in-out infinite; }
+    .fm .f-load i:nth-child(2) { animation-delay: 0.18s; }
+    .fm .f-load i:nth-child(3) { animation-delay: 0.36s; }
+
+    /* 11. Dizzy */
+    .fm .f-dizzy { display: flex; gap: 22px; font-size: 38px; font-weight: 800; color: #c14f6b; }
+    .fm .f-dizzy span { display: inline-block; animation: fm-spin 4s linear infinite; }
+
+    /* 12. Helmet */
+    .fm .f-helm .head { width: 86px; height: 80px; border-radius: 40px 40px 34px 34px; background: #f4efe6;
+      border: 2px solid #ddd5c7; display: grid; place-items: center; }
+    .fm .f-helm .visor { width: 58px; height: 38px; border-radius: 999px;
+      background: linear-gradient(135deg, #ffce5c, #f5894e 34%, #e05c75 66%, #8a3f6e); border: 1px solid #b85a7a; position: relative; overflow: hidden; }
+    .fm .f-helm .visor::after { content: ""; position: absolute; top: 6px; left: 8px; width: 18px; height: 10px; border-radius: 999px;
+      background: rgba(255,255,255,0.6); filter: blur(1px); }
+
+    @keyframes fm-blink { 0%,93%,100% { transform: scaleY(1); } 96% { transform: scaleY(0.1); } }
+    @keyframes fm-blink-cur { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+    @keyframes fm-bounce { 0%,100% { transform: translateY(0); opacity: 0.6; } 50% { transform: translateY(-12px); opacity: 1; } }
+    @keyframes fm-spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+  </style>
+
+  <div class="head">
+    <p class="kicker">Yarvy · Face library</p>
+    <h1 class="title">Minimal &amp; character</h1>
+    <p class="sub">Flatter, lower-key looks: terminal text, pixel eyes, little robot heads. Good for compact spots like the nav orb, status pills, or a quieter theme.</p>
+  </div>
+
+  <div class="grid">
+    <div class="tile">
+      <div class="stage"><div class="f-term">&gt;_<span class="cur">|</span></div></div>
+      <div class="name">Terminal</div>
+      <div class="desc">A blinking cursor. Techy and tiny.</div>
+    </div>
+
+    <div class="tile">
+      <div class="stage"><div class="f-kao">( ^ ‿ ^ )</div></div>
+      <div class="name">Kaomoji</div>
+      <div class="desc">Text-only smiley. Friendly, light.</div>
+    </div>
+
+    <div class="tile">
+      <div class="stage"><div class="f-pixel">
+        <div class="px"><b></b><b class="on"></b><b></b><b></b><b class="on"></b><b></b><b></b><b class="on"></b><b></b></div>
+        <div class="px"><b></b><b class="on"></b><b></b><b></b><b class="on"></b><b></b><b></b><b class="on"></b><b></b></div>
+      </div></div>
+      <div class="name">Pixel</div>
+      <div class="desc">Blocky 8-bit eyes. Retro.</div>
+    </div>
+
+    <div class="tile">
+      <div class="stage"><div class="f-line"><div class="eyes"><span class="dot"></span><span class="dot"></span></div><div class="mouth"></div></div></div>
+      <div class="name">Line</div>
+      <div class="desc">Flat ink-on-paper. No glow.</div>
+    </div>
+
+    <div class="tile">
+      <div class="stage"><div class="f-brk"><span class="b">[</span><span class="eyes"><i></i><i></i></span><span class="b">]</span></div></div>
+      <div class="name">Bracket</div>
+      <div class="desc">Eyes inside brackets. Coder vibe.</div>
+    </div>
+
+    <div class="tile">
+      <div class="stage"><div class="f-matrix">
+        <b></b><b class="on"></b><b></b><b></b><b></b><b class="on"></b><b></b>
+        <b></b><b class="on"></b><b></b><b></b><b></b><b class="on"></b><b></b>
+        <b></b><b></b><b></b><b></b><b></b><b></b><b></b>
+        <b class="on"></b><b></b><b></b><b></b><b></b><b></b><b class="on"></b>
+        <b></b><b class="on"></b><b></b><b></b><b></b><b class="on"></b><b></b>
+        <b></b><b></b><b class="on"></b><b class="on"></b><b class="on"></b><b></b><b></b>
+      </div></div>
+      <div class="name">Dot Matrix</div>
+      <div class="desc">LED-board smile. Playful display.</div>
+    </div>
+
+    <div class="tile">
+      <div class="stage"><div class="f-emo">:)</div></div>
+      <div class="name">Emoticon</div>
+      <div class="desc">The classic colon-smile. Casual.</div>
+    </div>
+
+    <div class="tile">
+      <div class="stage"><div class="f-sq"><div class="ant"></div><div class="head"><i></i><i></i></div></div></div>
+      <div class="name">Square Bot</div>
+      <div class="desc">Boxy head with a status light.</div>
+    </div>
+
+    <div class="tile">
+      <div class="stage"><div class="f-rnd"><div class="ant"></div><div class="head"><div class="eyes"><i></i><i></i></div><div class="sm"></div></div></div></div>
+      <div class="name">Round Bot</div>
+      <div class="desc">A little mascot with an antenna.</div>
+    </div>
+
+    <div class="tile">
+      <div class="stage"><div class="f-load"><i></i><i></i><i></i></div></div>
+      <div class="name">Thinking</div>
+      <div class="desc">Bouncing dots while it works.</div>
+    </div>
+
+    <div class="tile">
+      <div class="stage"><div class="f-dizzy"><span>x</span><span>x</span></div></div>
+      <div class="name">Dizzy</div>
+      <div class="desc">Spinning x-eyes for errors.</div>
+    </div>
+
+    <div class="tile">
+      <div class="stage"><div class="f-helm"><div class="head"><div class="visor"></div></div></div></div>
+      <div class="name">Helmet</div>
+      <div class="desc">Astronaut visor. Sleek mascot.</div>
+    </div>
+  </div>
+</div>

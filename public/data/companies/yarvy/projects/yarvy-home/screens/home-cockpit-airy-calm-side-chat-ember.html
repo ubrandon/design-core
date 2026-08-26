@@ -1,0 +1,221 @@
+<div class="yvc">
+  <style>
+    .yvc { position: relative; background: #fdf6ef; color: #2b2620; height: 1000px; display: flex; overflow: hidden;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .yvc *, .yvc *::before, .yvc *::after { box-sizing: border-box; }
+
+    /* nav rail */
+    .yvc .rail { width: 78px; flex: none; background: #f6ece1; border-right: 1px solid #efdfd0; display: flex; flex-direction: column; align-items: center; padding: 22px 0; gap: 6px; }
+    .yvc .nav-btn { width: 46px; height: 46px; border-radius: 14px; border: none; background: none; cursor: pointer; display: grid; place-items: center; color: #ab9c8c; }
+    .yvc .nav-btn svg { width: 22px; height: 22px; }
+    .yvc .nav-btn.on { color: #c0397f; background: #fbe7f0; box-shadow: inset 0 0 0 1px #f3d0e0; }
+    .yvc .rail .spacer { margin-top: auto; }
+    .yvc .me { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; margin-top: 8px; font-size: 13px; font-weight: 700; color: #463f35; background: #f0e6d9; border: 1px solid #e2d6c6; }
+
+    .yvc .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .yvc .body { flex: 1; min-height: 0; display: flex; }
+    .yvc .center { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .yvc .scroll { flex: 1; min-height: 0; overflow: hidden; padding: 60px 32px 14px; display: flex; flex-direction: column; align-items: center; }
+    .yvc .wrap { width: 100%; max-width: 540px; }
+
+    .yvc .face { width: 76px; height: 76px; margin: 0 auto; border-radius: 24px; background: linear-gradient(160deg, #fffdf6, #fdeef0); border: 1px solid #f7e4d6; display: grid; place-items: center; box-shadow: 0 10px 26px rgba(200,120,80,0.14); animation: yvc-float 7s ease-in-out infinite; }
+    .yvc .eyes { display: flex; gap: 14px; }
+    .yvc .eye { width: 15px; height: 34px; border-radius: 8px; background: linear-gradient(150deg, #fbbf24, #fb7185 52%, #d6409f); background-size: 200% 200%; animation: yvc-drift 14s ease-in-out infinite alternate; }
+    .yvc .eye:nth-child(2) { animation-delay: -3s; }
+
+    .yvc .date { text-align: center; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #bbab97; margin-top: 24px; }
+    .yvc .hello { text-align: center; font-size: 38px; font-weight: 800; letter-spacing: -0.025em; margin: 8px 0 0; }
+    .yvc .hello span { background: linear-gradient(110deg, #fbbf24, #fb7185 50%, #d6409f); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    /* conversation */
+    .yvc .thread { margin-top: 34px; display: flex; flex-direction: column; gap: 12px; }
+    .yvc .bub { max-width: 82%; padding: 13px 16px; border-radius: 18px; font-size: 15px; line-height: 1.5; }
+    .yvc .bub.bot { align-self: flex-start; background: #fff; border: 1px solid #f3e8da; border-top-left-radius: 6px; color: #4a4339; box-shadow: 0 5px 16px rgba(170,110,70,0.06); }
+    .yvc .bub.you { align-self: flex-end; background: #fde8ee; border: 1px solid #f6d4dd; border-top-right-radius: 6px; color: #b23f6e; }
+    .yvc .bub b { color: #c0397f; font-weight: 700; }
+
+    /* dock */
+    .yvc .dock { flex: none; padding: 14px 32px 22px; }
+    .yvc .dockwrap { max-width: 540px; margin: 0 auto; }
+    .yvc .chips { display: flex; gap: 9px; margin-bottom: 12px; flex-wrap: wrap; justify-content: center; }
+    .yvc .chip { font: inherit; font-size: 13px; font-weight: 600; color: #5a4c40; background: #fff; border: 1px solid #f1e4d5; padding: 8px 15px; border-radius: 999px; cursor: pointer; }
+    .yvc .chip.lead { color: #c0397f; border-color: #f3d0e0; background: #fbe7f0; }
+    .yvc .composer { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid #f1e2d3; border-radius: 999px; padding: 7px 7px 7px 22px; box-shadow: 0 12px 30px rgba(170,110,70,0.10); }
+    .yvc .composer input { flex: 1; background: none; border: none; outline: none; color: #2b2620; font: inherit; font-size: 16px; padding: 11px 0; }
+    .yvc .composer input::placeholder { color: #b6a895; }
+    .yvc .send { width: 42px; height: 42px; flex: none; border: none; border-radius: 50%; cursor: pointer; background: linear-gradient(140deg, #fbbf24, #fb7185 52%, #d6409f); display: grid; place-items: center; }
+    .yvc .send svg { width: 18px; height: 18px; stroke: #fffaf4; }
+
+    /* right: sidebar */
+    .yvc .panel { width: 372px; flex: none; background: #f9efe6; border-left: 1px solid #efe1d3; padding: 30px 24px; overflow: hidden; display: flex; flex-direction: column; }
+    .yvc .slab { font-size: 11px; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: #b0a191; margin: 0 0 12px; }
+    .yvc .slab.up { color: #c0397f; }
+    .yvc .sect { margin-bottom: 26px; }
+    .yvc .sect:last-child { margin-bottom: 0; }
+
+    /* cards */
+    .yvc .card { display: flex; align-items: flex-start; gap: 11px; background: #fff; border: 1px solid #f4e8da; border-radius: 14px; padding: 11px 13px; box-shadow: 0 4px 14px rgba(170,110,70,0.05); margin-bottom: 8px; }
+    .yvc .card:last-child { margin-bottom: 0; }
+    .yvc .card .ct { font-size: 14.5px; font-weight: 700; }
+    .yvc .card .cm { font-size: 12px; color: #998d7e; margin-top: 2px; }
+
+    /* up next — soft blush with a thin gradient edge */
+    .yvc .card.now { background: linear-gradient(135deg, #fdf0ea, #fde6ec); border-color: #f6d8d6; border-left: 3px solid transparent; border-image: linear-gradient(180deg, #fbbf24, #fb7185 52%, #d6409f) 1; }
+    .yvc .card.done { opacity: 0.7; }
+    .yvc .card.done .ct { text-decoration: line-through; text-decoration-color: #d3c3b5; }
+
+    /* round select / checkbox tasks */
+    .yvc .check { width: 19px; height: 19px; flex: none; border-radius: 50%; border: 1.5px solid #ddccbf; background: #fff; cursor: pointer; display: grid; place-items: center; padding: 0; margin-top: 1px; transition: background .15s, border-color .15s; }
+    .yvc .check svg { width: 11px; height: 11px; stroke: #fffaf4; opacity: 0; }
+    .yvc .card.done .check { background: #c43c80; border-color: #c43c80; }
+    .yvc .card.done .check svg { opacity: 1; }
+    .yvc .card.now .check { border-color: #f0a58f; }
+    .yvc .card .body-txt { min-width: 0; flex: 1; }
+    .yvc .meta { display: flex; align-items: center; gap: 6px; margin-top: 7px; flex-wrap: wrap; }
+    .yvc .mp { display: inline-flex; align-items: center; gap: 4px; font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: 999px; white-space: nowrap; color: #998d7e; background: #f3ece2; }
+    .yvc .mp svg { width: 11px; height: 11px; }
+    .yvc .mp i { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+    .yvc .mp.due { color: #c0397f; background: #fbe7f0; }
+    .yvc .mp.pri { color: #c2562a; background: #fce3d4; }
+    .yvc .mp.goal .em { font-size: 11px; line-height: 1; }
+    .yvc .mp.g-move { color: #5f7d49; background: #eef3e7; }
+    .yvc .mp.g-run { color: #d6409f; background: #fbe6f3; }
+    .yvc .mp.g-proj { color: #46708f; background: #e7eef4; }
+
+    @keyframes yvc-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @keyframes yvc-drift { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
+  </style>
+
+  <nav class="rail">
+    <button class="nav-btn on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M5.5 10v9.5h13V10"/></svg></button>
+    <button class="nav-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+    <button class="nav-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg></button>
+    <button class="nav-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg></button>
+    <div class="spacer"></div>
+    <button class="nav-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5v14M15 5v14"/></svg></button>
+    <div class="me">B</div>
+  </nav>
+
+  <section class="main">
+    <div class="body">
+      <div class="center">
+        <div class="scroll">
+          <div class="wrap">
+            <div class="face"><div class="eyes"><span class="eye"></span><span class="eye"></span></div></div>
+            <div class="date">Tuesday, June 17</div>
+            <h1 class="hello">Good afternoon, <span>Brandon</span></h1>
+
+            <div class="thread">
+              <div class="bub bot">You've got a clear <b>90-minute window</b> before your 3:00. Perfect for your easy run, the rest can wait.</div>
+              <div class="bub you">Good call. What should I tackle first after?</div>
+              <div class="bub bot"><b>Book the movers</b> next. It's the one thing blocking 4 other tasks. Want me to pull quotes from three companies?</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dock">
+          <div class="dockwrap">
+            <div class="chips">
+              <button class="chip lead">Slot the run at 1:30</button>
+              <button class="chip">What's overdue?</button>
+              <button class="chip">Plan my evening</button>
+            </div>
+            <div class="composer">
+              <input placeholder="Talk to Yarvy…" />
+              <button class="send"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <div class="sect">
+          <p class="slab up">Up next</p>
+          <div class="card now">
+            <button class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+            <div class="body-txt">
+              <div class="ct">Easy 5k run</div>
+              <div class="cm">Keeps the half marathon on pace</div>
+              <div class="meta">
+                <span class="mp goal g-run"><span class="em">🏃</span>Half marathon</span>
+                <span class="mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>1:30 PM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sect">
+          <p class="slab">Today</p>
+          <div class="card done">
+            <button class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+            <div class="body-txt">
+              <div class="ct">Morning walk</div>
+              <div class="meta">
+                <span class="mp"><i style="background:#6f9356"></i>Health</span>
+                <span class="mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>8:00 AM</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <button class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+            <div class="body-txt">
+              <div class="ct">Call with Sam</div>
+              <div class="meta">
+                <span class="mp"><i style="background:#4f82a8"></i>Work</span>
+                <span class="mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>3:00 PM</span>
+                <span class="mp pri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4h11l-2 4 2 4H5"/></svg>High</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <button class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+            <div class="body-txt">
+              <div class="ct">Call mom</div>
+              <div class="meta">
+                <span class="mp"><i style="background:#a8502b"></i>Personal</span>
+                <span class="mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>5:30 PM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sect">
+          <p class="slab">This week at a glance</p>
+          <div class="card lead">
+            <button class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+            <div class="body-txt">
+              <div class="ct">Book the movers</div>
+              <div class="cm">Blocks 4 other tasks</div>
+              <div class="meta">
+                <span class="mp goal g-move"><span class="em">📦</span>Move house</span>
+                <span class="mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>Wed</span>
+                <span class="mp pri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4h11l-2 4 2 4H5"/></svg>High</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <button class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+            <div class="body-txt">
+              <div class="ct">Long run · 10 miles</div>
+              <div class="cm">Keeps you on pace</div>
+              <div class="meta">
+                <span class="mp goal g-run"><span class="em">🏃</span>Half marathon</span>
+                <span class="mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>Sat</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <button class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+            <div class="body-txt">
+              <div class="ct">Sketch the home screen</div>
+              <div class="cm">When you have an hour</div>
+              <div class="meta">
+                <span class="mp goal g-proj"><span class="em">🎨</span>Side project</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>

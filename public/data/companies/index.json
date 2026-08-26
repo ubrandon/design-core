@@ -4,6 +4,16 @@
       "slug": "mixedroutes",
       "name": "MixedRoutes",
       "createdAt": "2026-08-18T17:41:23.411Z"
+    },
+    {
+      "slug": "insurance",
+      "name": "Insurance",
+      "createdAt": "2026-08-26T03:14:05.403Z"
+    },
+    {
+      "slug": "yarvy",
+      "name": "Yarvy",
+      "createdAt": "2026-08-26T03:14:05.538Z"
     }
   ]
 }

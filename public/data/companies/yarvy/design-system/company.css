@@ -1,0 +1,47 @@
+/* Yarvy brand overrides. Loaded after shared.css and ds.css. */
+
+:root {
+  /* Yarvy light theme — warm cream surfaces, terracotta accent.
+     This is the default look for Yarvy screens (see home-cockpit-light). */
+
+  /* Surfaces */
+  --yv-bg: #f6f2ea;        /* page background */
+  --yv-surface: #f1ece2;   /* side rails, panels */
+  --yv-card: #fffdf9;      /* cards, composer */
+  --yv-inset: #f4efe6;     /* insets, robot heads */
+
+  /* Borders */
+  --yv-border: #e4ddd0;
+  --yv-border-soft: #e8e1d3;
+  --yv-border-strong: #ddd5c7;
+
+  /* Text */
+  --yv-text: #2c2823;      /* primary */
+  --yv-muted: #6f675b;     /* secondary */
+  --yv-muted-2: #938a7c;   /* tertiary / meta */
+  --yv-faint: #a59b8b;     /* placeholders */
+
+  /* Accents — terracotta */
+  --yv-terra: #cf7f53;          /* primary accent: lines, mouths, pulse */
+  --yv-terra-deep: #d07f54;     /* deep eye / button end */
+  --yv-terra-text: #a8542e;     /* accent text, links, active states on cream */
+  --yv-terra-soft: #f4e6dc;     /* terracotta tint background (chips, badges) */
+  --yv-terra-border: #ecd9cb;
+  --yv-clay: #e3a071;           /* mid warm tone, eye body */
+  --yv-clay-light: #f7d9c0;     /* light highlight, eye top */
+  --yv-gold: #efa877;           /* warm secondary, gradient start */
+  --yv-rose: #b5677e;           /* dusty rose accent */
+  --yv-danger: #c2683f;         /* overdue / error text */
+  --yv-danger-soft: #e08a4a;    /* overdue markers */
+
+  /* Eye / orb gradient: linear-gradient(180deg, #f7d9c0, #e3a071 52%, #d07f54) */
+  /* Accent glow: rgba(207, 127, 83, a) */
+
+  /* Brand gradient (send button, progress bars) */
+  --yv-gradient: linear-gradient(135deg, #efa877, #d4794e);
+
+  /* Elevation — warm cream-theme shadows */
+  --yv-shadow-card: 0 6px 20px rgba(120,88,48,0.06);     /* resting cards */
+  --yv-shadow-raised: 0 8px 24px rgba(120,88,48,0.08);   /* lead / featured cards */
+  --yv-shadow-pop: 0 12px 30px rgba(120,88,48,0.09);     /* floating: composer, menus */
+}

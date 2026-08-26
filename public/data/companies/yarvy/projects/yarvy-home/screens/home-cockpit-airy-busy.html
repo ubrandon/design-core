@@ -1,0 +1,154 @@
+<div class="yvm">
+  <style>
+    .yvm { position: relative; width: 390px; height: 844px; background: #faf7f0; color: #2b2620;
+      display: flex; flex-direction: column; overflow: hidden;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .yvm *, .yvm *::before, .yvm *::after { box-sizing: border-box; }
+
+    .yvm .top { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px 8px; }
+    .yvm .top .date { font-size: 14px; font-weight: 600; color: #8a8073; }
+    .yvm .status { display: flex; align-items: center; gap: 7px; font-size: 12px; color: #6d6458;
+      background: #ffffff; border: 1px solid #ece3d4; padding: 5px 11px; border-radius: 999px; }
+    .yvm .pulse { width: 7px; height: 7px; border-radius: 50%; background: #c2663c; box-shadow: 0 0 8px rgba(194,102,60,0.55);
+      animation: yvm-pulse 2s ease-in-out infinite; }
+
+    .yvm .hero { display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 14px 26px 6px; }
+    .yvm .face { position: relative; margin-bottom: 18px; display: flex; flex-direction: column; align-items: center;
+      animation: yvm-float 7s ease-in-out infinite; }
+    .yvm .eyes { display: flex; align-items: center; justify-content: center; gap: 18px; }
+    .yvm .eye { width: 20px; height: 42px; border-radius: 10px;
+      background: linear-gradient(160deg, #f2ac6b, #d9764a 55%, #b8583a);
+      background-size: 200% 200%; animation: yvm-drift 14s ease-in-out infinite alternate; }
+    @keyframes yvm-drift { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
+    .yvm .reply-lead { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 7px; color: #2b2620; }
+    .yvm .reply-body { font-size: 15px; line-height: 1.5; color: #6d6458; margin: 0; }
+
+    .yvm .chips { display: flex; gap: 8px; overflow-x: auto; padding: 8px 20px 12px; scrollbar-width: none; }
+    .yvm .chips::-webkit-scrollbar { display: none; }
+    .yvm .chip { font: inherit; font-size: 13px; font-weight: 600; color: #463f35; background: #ffffff; white-space: nowrap;
+      border: 1px solid #ece3d3; padding: 8px 14px; border-radius: 999px; cursor: pointer; flex: none; }
+    .yvm .chip.lead { color: #a8502b; border-color: #eed9c8; background: #f8ecdf; }
+
+    .yvm .feed { flex: 1; min-height: 0; overflow-y: auto; padding: 4px 20px 16px; display: flex; flex-direction: column; gap: 14px; }
+
+    .yvm .next { background: #fdf6ec; border: 1px solid #f4e8d6; border-radius: 18px; padding: 16px;
+      box-shadow: 0 8px 24px rgba(120,88,48,0.08); }
+    .yvm .next .lab { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #a8502b; margin-bottom: 9px; }
+    .yvm .next .ev { display: flex; align-items: center; gap: 12px; }
+    .yvm .next .evd { width: 42px; height: 42px; border-radius: 12px; flex: none; display: grid; place-items: center;
+      background: #f6e9d8; color: #a8502b; font-weight: 700; font-size: 12px; line-height: 1.1; text-align: center; }
+    .yvm .next .evt { font-size: 15px; font-weight: 600; color: #2b2620; }
+    .yvm .next .evm { font-size: 12px; color: #8a8073; margin-top: 2px; }
+    .yvm .next .win { font-size: 12px; color: #a8502b; margin-top: 11px; padding-top: 11px; border-top: 1px solid #f4e8d6; }
+
+    /* full-day agenda card */
+    .yvm .card { background: #ffffff; border: 1px solid #efe7d8; border-radius: 18px; padding: 16px; box-shadow: 0 6px 20px rgba(120,88,48,0.06); }
+    .yvm .card h3 { font-size: 13px; font-weight: 700; color: #6d6458; margin: 0 0 14px; display: flex; justify-content: space-between; align-items: center; }
+    .yvm .card h3 .more { font-size: 12px; color: #8a8073; font-weight: 600; }
+    .yvm .sched { display: flex; flex-direction: column; }
+    .yvm .slot { display: flex; gap: 12px; align-items: flex-start; }
+    .yvm .time { width: 52px; flex: none; font-size: 12px; font-weight: 600; color: #948a79; padding-top: 1px; text-align: right; }
+    .yvm .rail { width: 12px; flex: none; display: flex; flex-direction: column; align-items: center; }
+    .yvm .dot { width: 9px; height: 9px; border-radius: 50%; background: #d9bb98; margin-top: 3px; }
+    .yvm .dot.hot { background: #c2663c; box-shadow: 0 0 0 4px rgba(194,102,60,0.12); }
+    .yvm .dot.free { background: #ffffff; border: 1.6px dashed #d9cdb7; }
+    .yvm .line { width: 1.6px; flex: 1; background: #efe5d4; margin: 2px 0; min-height: 18px; }
+    .yvm .body { flex: 1; padding-bottom: 16px; }
+    .yvm .ttl { font-size: 14px; font-weight: 600; color: #332e27; }
+    .yvm .sub { font-size: 12px; color: #948a79; margin-top: 2px; }
+    .yvm .body.gap .ttl { color: #a8502b; font-weight: 600; }
+    .yvm .body.gap { background: #f8ecdf; border: 1px dashed #ecd6bf; border-radius: 12px; padding: 9px 12px; margin: 0 0 16px;
+      display: flex; justify-content: space-between; align-items: center; }
+    .yvm .body.gap .pin { font-size: 11px; font-weight: 700; color: #a8502b; }
+
+    .yvm .composer { display: flex; align-items: center; gap: 10px; margin: 0 16px 10px; background: #ffffff;
+      border: 1px solid #ece2d2; border-radius: 999px; padding: 6px 6px 6px 18px; box-shadow: 0 12px 30px rgba(120,88,48,0.09); }
+    .yvm .composer input { flex: 1; background: none; border: none; outline: none; color: #2b2620; font: inherit; font-size: 15px; padding: 10px 0; }
+    .yvm .composer input::placeholder { color: #a99d8b; }
+    .yvm .send { width: 38px; height: 38px; flex: none; border: none; border-radius: 50%; cursor: pointer;
+      background: linear-gradient(140deg, #e89a5c, #c2663c); display: grid; place-items: center; }
+    .yvm .send svg { width: 17px; height: 17px; stroke: #fffaf4; }
+
+    .yvm .tabbar { display: flex; align-items: center; justify-content: space-around; padding: 8px 14px 22px;
+      background: #f3eee4; border-top: 1px solid #ece3d4; }
+    .yvm .tab { width: 44px; height: 40px; border: none; background: none; cursor: pointer; display: grid; place-items: center; color: #9d917e; }
+    .yvm .tab svg { width: 22px; height: 22px; }
+    .yvm .tab.on { color: #a8502b; }
+
+    @keyframes yvm-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+    @keyframes yvm-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  </style>
+
+  <header class="top">
+    <span class="date">Tuesday, June 17</span>
+    <span class="status"><span class="pulse"></span> Yarvy is here</span>
+  </header>
+
+  <section class="hero">
+    <div class="face"><div class="eyes"><span class="eye"></span><span class="eye"></span></div></div>
+    <p class="reply-lead">Today is a full one.</p>
+    <p class="reply-body">Five things on the calendar. The only real gap is 1:30 to 3:00, so let's protect it for the run.</p>
+  </section>
+
+  <div class="chips">
+    <button class="chip lead">Protect 1:30 for the run</button>
+    <button class="chip">Move standup?</button>
+    <button class="chip">What can wait?</button>
+  </div>
+
+  <section class="feed">
+    <div class="next">
+      <div class="lab">Happening next</div>
+      <div class="ev">
+        <div class="evd">11:30<br>AM</div>
+        <div><div class="evt">Design review</div><div class="evm">in 25 min · 45 min · Room 2</div></div>
+      </div>
+      <div class="win">Then lunch is open. I held your 1:30 window clear.</div>
+    </div>
+
+    <div class="card">
+      <h3>Rest of today <span class="more">5 events</span></h3>
+      <div class="sched">
+        <div class="slot">
+          <div class="time">11:30</div>
+          <div class="rail"><span class="dot hot"></span><span class="line"></span></div>
+          <div class="body"><div class="ttl">Design review</div><div class="sub">45 min · Room 2</div></div>
+        </div>
+        <div class="slot">
+          <div class="time">12:30</div>
+          <div class="rail"><span class="dot"></span><span class="line"></span></div>
+          <div class="body"><div class="ttl">Lunch with Priya</div><div class="sub">Cafe on 5th</div></div>
+        </div>
+        <div class="slot">
+          <div class="time">1:30</div>
+          <div class="rail"><span class="dot free"></span><span class="line"></span></div>
+          <div class="body gap"><span class="ttl">Free until 3:00</span><span class="pin">Run goes here</span></div>
+        </div>
+        <div class="slot">
+          <div class="time">3:00</div>
+          <div class="rail"><span class="dot"></span><span class="line"></span></div>
+          <div class="body"><div class="ttl">Call with Sam</div><div class="sub">30 min</div></div>
+        </div>
+        <div class="slot">
+          <div class="time">5:30</div>
+          <div class="rail"><span class="dot"></span></div>
+          <div class="body" style="padding-bottom:0;"><div class="ttl">Pick up dry cleaning</div><div class="sub">Closes at 6:00</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="composer">
+    <input placeholder="Talk to Yarvy…" />
+    <button class="send" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg></button>
+  </div>
+
+  <nav class="tabbar">
+    <button class="tab on" aria-label="Chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5Z"/></svg></button>
+    <button class="tab" aria-label="List"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+    <button class="tab" aria-label="Calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg></button>
+    <button class="tab" aria-label="Goals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg></button>
+    <button class="tab" aria-label="Memory"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15l-1.8-4.2L5.5 9l4.7-1.3L12 3Z"/></svg></button>
+  </nav>
+</div>

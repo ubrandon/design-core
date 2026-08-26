@@ -1,0 +1,39 @@
+{
+  "groups": [
+    { "id": "foundations", "name": "Foundations" }
+  ],
+  "categories": [
+    {
+      "group": "foundations",
+      "name": "Light Theme — Surfaces",
+      "layout": "row",
+      "components": [
+        { "id": "yv-light-surfaces", "file": "yarvy/light-surfaces.html", "label": "Backgrounds & borders" }
+      ]
+    },
+    {
+      "group": "foundations",
+      "name": "Light Theme — Accents",
+      "layout": "row",
+      "components": [
+        { "id": "yv-light-accents", "file": "yarvy/light-accents.html", "label": "Accent colors" }
+      ]
+    },
+    {
+      "group": "foundations",
+      "name": "Light Theme — Text",
+      "layout": "row",
+      "components": [
+        { "id": "yv-light-text", "file": "yarvy/light-text.html", "label": "Text hierarchy" }
+      ]
+    },
+    {
+      "group": "foundations",
+      "name": "Light Theme — Elevation",
+      "layout": "row",
+      "components": [
+        { "id": "yv-light-elevation", "file": "yarvy/light-elevation.html", "label": "Shadows" }
+      ]
+    }
+  ]
+}

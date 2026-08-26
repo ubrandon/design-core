@@ -1,0 +1,181 @@
+<div class="yv5">
+  <style>
+    html, body { margin: 0; padding: 0; background: #0a0a0c; }
+    .yv5 { position: relative; overflow: hidden; background: #0a0a0c; color: #e8e8ea;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .yv5 *, .yv5 *::before, .yv5 *::after { box-sizing: border-box; }
+    .yv5 .glow { position: absolute; top: -260px; right: -60px; width: 640px; height: 520px; pointer-events: none;
+      background: radial-gradient(closest-side, rgba(167,139,250,0.1), transparent 72%); filter: blur(8px); }
+
+    .yv5 .topbar { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; padding: 22px 40px; }
+    .yv5 .brand { display: flex; align-items: center; gap: 11px; font-weight: 700; font-size: 16px; }
+    .yv5 .orb { width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #cfe8ff, #7cc6ff 45%, #a78bfa); box-shadow: 0 0 14px rgba(124,198,255,0.7); }
+    .yv5 .seg { display: flex; padding: 4px; gap: 2px; background: rgba(255,255,255,0.03); border: 1px solid #22222a; border-radius: 999px; }
+    .yv5 .seg button { font: inherit; font-size: 13px; font-weight: 600; color: #8a8a96; background: none; border: none; padding: 7px 16px; border-radius: 999px; cursor: pointer; }
+    .yv5 .seg button.on { color: #0a0a0c; background: linear-gradient(135deg, #9fd4ff, #b9a6fb); font-weight: 700; }
+    .yv5 .topright { display: flex; align-items: center; gap: 16px; }
+    .yv5 .me { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 700; color: #cdd6e6; background: #17171d; border: 1px solid #2a2a33; }
+
+    .yv5 .wrap { position: relative; z-index: 1; max-width: 1240px; margin: 0 auto; padding: 10px 40px 56px; }
+
+    /* week strip */
+    .yv5 .week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; margin-bottom: 18px; }
+    .yv5 .day { text-align: center; padding: 12px 0 11px; border-radius: 16px; border: 1px solid #1c1c23; background: #101015; cursor: pointer; }
+    .yv5 .day .dn { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #6a6a76; }
+    .yv5 .day .dd { font-size: 18px; font-weight: 700; color: #c7c7d1; margin-top: 4px; }
+    .yv5 .day .load { display: flex; gap: 3px; justify-content: center; margin-top: 7px; height: 5px; }
+    .yv5 .day .load i { width: 5px; height: 5px; border-radius: 50%; background: #2f2f3a; }
+    .yv5 .day .load i.f { background: linear-gradient(135deg,#7cc6ff,#a78bfa); }
+    .yv5 .day.today { border-color: rgba(124,198,255,0.45); background: linear-gradient(180deg, rgba(124,198,255,0.1), rgba(167,139,250,0.05)); }
+    .yv5 .day.today .dn { color: #9fd4ff; } .yv5 .day.today .dd { color: #fff; }
+
+    /* re-plan nudge */
+    .yv5 .nudge { display: flex; align-items: center; gap: 14px; padding: 14px 18px; margin-bottom: 18px;
+      background: linear-gradient(180deg, rgba(255,157,107,0.08), rgba(255,157,107,0.03)); border: 1px solid rgba(255,157,107,0.28); border-radius: 16px; }
+    .yv5 .nudge .nf { position: relative; width: 30px; height: 30px; flex: none; }
+    .yv5 .nudge .nf .a { position: absolute; inset: -7px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,157,107,0.45), transparent 72%); filter: blur(3px); }
+    .yv5 .nudge .nf .e { position: absolute; top: 7px; width: 5px; height: 12px; border-radius: 4px; background: #ffcaa6; box-shadow: 0 0 8px rgba(255,157,107,0.8); }
+    .yv5 .nudge .nf .e.l { left: 8px; } .yv5 .nudge .nf .e.r { right: 8px; }
+    .yv5 .nudge .ntext { font-size: 14.5px; color: #e7d8cf; flex: 1; } .yv5 .nudge .ntext b { color: #fff; font-weight: 600; }
+    .yv5 .nudge .yes { font: inherit; font-size: 13.5px; font-weight: 700; color: #1a0f08; background: #ffb487; border: none; padding: 9px 16px; border-radius: 10px; cursor: pointer; }
+    .yv5 .nudge .no { font: inherit; font-size: 13.5px; font-weight: 600; color: #c9b3a6; background: none; border: 1px solid rgba(255,157,107,0.3); padding: 9px 14px; border-radius: 10px; cursor: pointer; }
+
+    .yv5 .layout { display: grid; grid-template-columns: 1fr 330px; gap: 20px; align-items: start; }
+
+    /* day timeline */
+    .yv5 .cal { background: #101015; border: 1px solid #1c1c23; border-radius: 22px; padding: 20px 22px 24px; }
+    .yv5 .cal-h { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .yv5 .cal-h .ttl { font-size: 17px; font-weight: 700; }
+    .yv5 .cal-h .pill-today { font-size: 11.5px; font-weight: 700; color: #9fd4ff; border: 1px solid rgba(124,198,255,0.3); border-radius: 999px; padding: 3px 10px; }
+    .yv5 .cal-h .navs { margin-left: auto; display: flex; gap: 6px; }
+    .yv5 .cal-h .navs button { width: 30px; height: 30px; border-radius: 9px; border: 1px solid #26262e; background: none; color: #9a9aa6; cursor: pointer; display: grid; place-items: center; }
+    .yv5 .cal-h .navs svg { width: 16px; height: 16px; stroke: currentColor; }
+
+    .yv5 .tl { position: relative; height: 720px; margin-left: 54px; }
+    .yv5 .tick { position: absolute; left: -54px; width: 46px; text-align: right; font-size: 11.5px; color: #5a5a64; font-variant-numeric: tabular-nums; transform: translateY(-7px); }
+    .yv5 .tline { position: absolute; left: 0; right: 0; height: 1px; background: #18181f; }
+    .yv5 .blk { position: absolute; left: 8px; right: 10px; border-radius: 11px; padding: 9px 13px; overflow: hidden; }
+    .yv5 .blk .bt { font-size: 13.5px; font-weight: 600; line-height: 1.2; }
+    .yv5 .blk .bm { font-size: 11.5px; margin-top: 2px; }
+    .yv5 .blk.fixed { background: linear-gradient(135deg, rgba(124,198,255,0.92), rgba(167,139,250,0.92)); color: #0a0a0c; box-shadow: 0 8px 20px rgba(124,198,255,0.22); }
+    .yv5 .blk.fixed .bm { opacity: 0.8; }
+    .yv5 .blk.task { background: rgba(124,198,255,0.08); border: 1px solid rgba(124,198,255,0.3); color: #d6ecff; }
+    .yv5 .blk.task .bm { color: #8fb6dc; }
+    .yv5 .blk.goal { background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.35); color: #ddd2ff; }
+    .yv5 .blk.goal .bm { color: #b0a0df; }
+    .yv5 .blk.risk { background: rgba(255,157,107,0.1); border: 1px dashed rgba(255,157,107,0.5); color: #ffd9c4; }
+    .yv5 .blk.risk .bm { color: #d3a78f; }
+    .yv5 .blk.past { opacity: 0.4; }
+    .yv5 .blk .gtag { display: inline-block; font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; background: rgba(167,139,250,0.25); color: #ddd2ff; border-radius: 999px; padding: 1px 6px; margin-left: 6px; vertical-align: middle; }
+    .yv5 .now { position: absolute; left: -6px; right: 10px; border-top: 2px solid #ff9d6b; }
+    .yv5 .now::before { content: ""; position: absolute; left: -3px; top: -5px; width: 9px; height: 9px; border-radius: 50%; background: #ff9d6b; box-shadow: 0 0 10px rgba(255,157,107,0.7); }
+    .yv5 .now .lab { position: absolute; right: 0; top: -9px; font-size: 10.5px; font-weight: 700; color: #ff9d6b; background: #101015; padding: 0 5px; }
+
+    /* unscheduled tray */
+    .yv5 .tray { background: #101015; border: 1px solid #1c1c23; border-radius: 22px; padding: 20px; }
+    .yv5 .tray h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #8a8a96; margin: 0 0 4px; }
+    .yv5 .tray .hint { font-size: 12.5px; color: #6a6a76; margin-bottom: 16px; line-height: 1.5; }
+    .yv5 .ucard { display: flex; align-items: flex-start; gap: 11px; padding: 12px 12px; border-radius: 13px; border: 1px solid #24242c; background: #15151b; margin-bottom: 10px; cursor: grab; }
+    .yv5 .ucard:hover { border-color: #34343f; }
+    .yv5 .grip { display: grid; grid-template-columns: repeat(2, 3px); gap: 3px; margin-top: 4px; flex: none; }
+    .yv5 .grip i { width: 3px; height: 3px; border-radius: 50%; background: #4a4a56; }
+    .yv5 .uc-main { flex: 1; min-width: 0; }
+    .yv5 .uc-t { font-size: 14px; color: #d8d8de; line-height: 1.3; }
+    .yv5 .uc-tags { display: flex; gap: 6px; margin-top: 7px; }
+    .yv5 .utag { font-size: 10.5px; font-weight: 600; padding: 2px 8px; border-radius: 999px; }
+    .yv5 .utag.call { color: #9fd4ff; background: rgba(124,198,255,0.1); }
+    .yv5 .utag.home { color: #8fe3c2; background: rgba(16,185,129,0.1); }
+    .yv5 .utag.goal { color: #c8b9ff; background: rgba(167,139,250,0.12); }
+    .yv5 .utag.errand { color: #f0c38a; background: rgba(234,179,8,0.1); }
+    .yv5 .let { width: 100%; margin-top: 8px; font: inherit; font-size: 13.5px; font-weight: 700; color: #07111c; cursor: pointer; border: none; background: linear-gradient(135deg, #9fd4ff, #b9a6fb); padding: 12px; border-radius: 12px; }
+
+    @keyframes yv-aura { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
+  </style>
+
+  <div class="glow"></div>
+
+  <header class="topbar">
+    <div class="brand"><span class="orb"></span> Yarvy</div>
+    <div class="topright">
+      <div class="seg"><button>Chat</button><button>List</button><button class="on">Calendar</button></div>
+      <div class="me">B</div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <!-- week strip -->
+    <div class="week">
+      <div class="day"><div class="dn">Mon</div><div class="dd">16</div><div class="load"><i class="f"></i><i></i><i></i></div></div>
+      <div class="day today"><div class="dn">Tue</div><div class="dd">17</div><div class="load"><i class="f"></i><i class="f"></i><i class="f"></i></div></div>
+      <div class="day"><div class="dn">Wed</div><div class="dd">18</div><div class="load"><i class="f"></i><i class="f"></i><i></i></div></div>
+      <div class="day"><div class="dn">Thu</div><div class="dd">19</div><div class="load"><i class="f"></i><i class="f"></i><i></i></div></div>
+      <div class="day"><div class="dn">Fri</div><div class="dd">20</div><div class="load"><i class="f"></i><i></i><i></i></div></div>
+      <div class="day"><div class="dn">Sat</div><div class="dd">21</div><div class="load"><i></i><i></i><i></i></div></div>
+      <div class="day"><div class="dn">Sun</div><div class="dd">22</div><div class="load"><i></i><i></i><i></i></div></div>
+    </div>
+
+    <!-- re-plan nudge -->
+    <div class="nudge">
+      <span class="nf"><span class="a"></span><span class="e l"></span><span class="e r"></span></span>
+      <span class="ntext">The hardware store closes at 6:00, so <b>Buy sink parts</b> is cutting it close today. Move it to 10am tomorrow?</span>
+      <button class="yes">Yes, move it</button>
+      <button class="no">Keep it</button>
+    </div>
+
+    <div class="layout">
+      <!-- day timeline -->
+      <div class="cal">
+        <div class="cal-h">
+          <span class="ttl">Tuesday, June 17</span>
+          <span class="pill-today">Today</span>
+          <span class="navs">
+            <button aria-label="Previous day"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button aria-label="Next day"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+          </span>
+        </div>
+
+        <div class="tl">
+          <div class="tick" style="top:0">8 AM</div><div class="tline" style="top:0"></div>
+          <div class="tick" style="top:60px">9 AM</div><div class="tline" style="top:60px"></div>
+          <div class="tick" style="top:120px">10 AM</div><div class="tline" style="top:120px"></div>
+          <div class="tick" style="top:180px">11 AM</div><div class="tline" style="top:180px"></div>
+          <div class="tick" style="top:240px">12 PM</div><div class="tline" style="top:240px"></div>
+          <div class="tick" style="top:300px">1 PM</div><div class="tline" style="top:300px"></div>
+          <div class="tick" style="top:360px">2 PM</div><div class="tline" style="top:360px"></div>
+          <div class="tick" style="top:420px">3 PM</div><div class="tline" style="top:420px"></div>
+          <div class="tick" style="top:480px">4 PM</div><div class="tline" style="top:480px"></div>
+          <div class="tick" style="top:540px">5 PM</div><div class="tline" style="top:540px"></div>
+          <div class="tick" style="top:600px">6 PM</div><div class="tline" style="top:600px"></div>
+          <div class="tick" style="top:660px">7 PM</div><div class="tline" style="top:660px"></div>
+          <div class="tick" style="top:720px">8 PM</div>
+
+          <div class="blk fixed past" style="top:60px; height:28px;"><div class="bt">Team standup</div></div>
+          <div class="blk task" style="top:150px; height:48px;"><div class="bt">Draft Q3 update for Sam</div><div class="bm">10:30 · ~50 min</div></div>
+          <div class="blk goal" style="top:330px; height:42px;"><div class="bt">Easy 5k run<span class="gtag">goal</span></div><div class="bm">1:30 · 45 min</div></div>
+          <div class="blk fixed" style="top:420px; height:28px;"><div class="bt">Call with Sam</div><div class="bm">3:00 – 3:30</div></div>
+          <div class="blk risk" style="top:510px; height:28px;"><div class="bt">Buy sink parts</div><div class="bm">5:30 · store closes 6:00</div></div>
+          <div class="blk fixed" style="top:660px; height:86px;"><div class="bt">Dinner with Maya</div><div class="bm">7:00 – 8:30</div></div>
+
+          <div class="now" style="top:130px;"><span class="lab">10:10</span></div>
+        </div>
+      </div>
+
+      <!-- unscheduled tray -->
+      <aside class="tray">
+        <h3>Unscheduled</h3>
+        <p class="hint">Drag any of these onto a time, or let Yarvy find a slot for them.</p>
+
+        <div class="ucard"><span class="grip"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <div class="uc-main"><div class="uc-t">Call mom back</div><div class="uc-tags"><span class="utag call">call</span></div></div></div>
+        <div class="ucard"><span class="grip"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <div class="uc-main"><div class="uc-t">Look up how to fix the sink trap</div><div class="uc-tags"><span class="utag home">home</span></div></div></div>
+        <div class="ucard"><span class="grip"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <div class="uc-main"><div class="uc-t">Read a chapter before bed</div><div class="uc-tags"><span class="utag goal">goal</span></div></div></div>
+        <div class="ucard"><span class="grip"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <div class="uc-main"><div class="uc-t">Reply to the landlord</div><div class="uc-tags"><span class="utag errand">errand</span></div></div></div>
+
+        <button class="let">Let Yarvy schedule these</button>
+      </aside>
+    </div>
+  </div>
+</div>

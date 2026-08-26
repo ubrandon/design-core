@@ -1,0 +1,189 @@
+<div class="yv4">
+  <style>
+    html, body { margin: 0; padding: 0; background: #0a0a0c; }
+    .yv4 { position: relative; overflow: hidden; background: #0a0a0c; color: #e8e8ea;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .yv4 *, .yv4 *::before, .yv4 *::after { box-sizing: border-box; }
+    .yv4 .glow { position: absolute; top: -240px; left: 50%; transform: translateX(-50%); width: 820px; height: 560px;
+      pointer-events: none; background: radial-gradient(closest-side, rgba(124,198,255,0.12), rgba(167,139,250,0.07) 50%, transparent 72%); filter: blur(8px); }
+
+    .yv4 .topbar { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; padding: 22px 40px; }
+    .yv4 .brand { display: flex; align-items: center; gap: 11px; font-weight: 700; font-size: 16px; }
+    .yv4 .orb { width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #cfe8ff, #7cc6ff 45%, #a78bfa); box-shadow: 0 0 14px rgba(124,198,255,0.7); }
+    .yv4 .me { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 700; color: #cdd6e6; background: #17171d; border: 1px solid #2a2a33; }
+
+    .yv4 .wrap { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 26px 40px 56px; }
+    .yv4 .head { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+    .yv4 .miniface { position: relative; width: 38px; height: 38px; flex: none; }
+    .yv4 .miniface .a { position: absolute; inset: -9px; border-radius: 50%; background: radial-gradient(closest-side, rgba(124,198,255,0.4), transparent 72%); filter: blur(3px); animation: yv-aura 4.5s ease-in-out infinite; }
+    .yv4 .miniface .e { position: absolute; top: 9px; width: 6px; height: 15px; border-radius: 4px; background: linear-gradient(180deg,#d6ecff,#7cc6ff 55%,#a78bfa); box-shadow: 0 0 8px rgba(124,198,255,0.8); }
+    .yv4 .miniface .e.l { left: 10px; } .yv4 .miniface .e.r { right: 10px; }
+    .yv4 .head h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; margin: 0; }
+    .yv4 .subline { font-size: 14.5px; color: #8a8a96; margin: 0 0 24px 52px; }
+    .yv4 .subline b { color: #9fd4ff; font-weight: 600; }
+
+    .yv4 .grid { display: grid; grid-template-columns: 420px 1fr; gap: 22px; align-items: start; }
+
+    /* note column */
+    .yv4 .note { background: #121217; border: 1px solid #1f1f26; border-radius: 22px; padding: 22px; }
+    .yv4 .note .nh { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .yv4 .note .nh .lab { font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #7a7a86; }
+    .yv4 .note .keep { font-size: 11px; color: #6f6f7b; border: 1px solid #26262e; border-radius: 999px; padding: 3px 9px; }
+    .yv4 .note p { font-size: 15px; line-height: 1.8; color: #b6b6c0; margin: 0; }
+    .yv4 mark { background: rgba(124,198,255,0.14); color: #dcefff; border-radius: 5px; padding: 1px 4px;
+      box-shadow: inset 0 -1px 0 rgba(124,198,255,0.4); }
+    .yv4 .recount { margin-top: 18px; padding-top: 16px; border-top: 1px solid #1c1c23; font-size: 13px; color: #7a7a86; display: flex; align-items: center; gap: 8px; }
+    .yv4 .recount .spark { width: 16px; height: 16px; }
+    .yv4 .recount .spark svg { width: 16px; height: 16px; stroke: #9fd4ff; }
+
+    /* proposal column */
+    .yv4 .prop { background: linear-gradient(180deg, #15151b, #121217); border: 1px solid #2a2a33; border-radius: 22px; overflow: hidden; box-shadow: 0 22px 60px rgba(0,0,0,0.45); }
+    .yv4 .prop-top { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid #20202a; }
+    .yv4 .prop-top .t { font-size: 16px; font-weight: 700; }
+    .yv4 .prop-top .meta { font-size: 12.5px; color: #7a7a86; }
+    .yv4 .pbody { padding: 8px 24px 16px; }
+
+    .yv4 .pg { padding: 16px 0 6px; }
+    .yv4 .pg-h { display: flex; align-items: center; gap: 9px; margin-bottom: 6px; }
+    .yv4 .pg-name { font-size: 14px; font-weight: 700; color: #e8e8ea; }
+    .yv4 .pg-new { font-size: 9.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: #bfe0ff; background: rgba(124,198,255,0.12); border: 1px solid rgba(124,198,255,0.28); border-radius: 999px; padding: 2px 7px; }
+    .yv4 .pg-edit { margin-left: auto; color: #5f5f6a; cursor: pointer; display: grid; place-items: center; }
+    .yv4 .pg-edit svg { width: 15px; height: 15px; stroke: currentColor; }
+    .yv4 .pg-edit:hover { color: #bdbdc7; }
+
+    .yv4 .row { display: flex; align-items: flex-start; gap: 12px; padding: 11px 10px; border-radius: 12px; }
+    .yv4 .row:hover { background: rgba(255,255,255,0.025); }
+    .yv4 .row.sub { margin-left: 30px; padding-top: 8px; padding-bottom: 8px; }
+    .yv4 .ck { width: 18px; height: 18px; flex: none; border-radius: 6px; border: 1.6px solid #3c3c47; margin-top: 1px; }
+    .yv4 .row.sub .ck { width: 15px; height: 15px; border-radius: 5px; }
+    .yv4 .rc { flex: 1; min-width: 0; }
+    .yv4 .rt { font-size: 15px; color: #dedee4; line-height: 1.35; }
+    .yv4 .row.sub .rt { font-size: 13.5px; color: #b6b6c0; }
+    .yv4 .rmeta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 7px; }
+    .yv4 .pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; padding: 3px 9px; border-radius: 999px; border: 1px solid transparent; }
+    .yv4 .pill.date { color: #c7c7d1; background: rgba(255,255,255,0.04); border-color: #2a2a33; }
+    .yv4 .pill.guess { color: #a9b6c8; background: rgba(124,198,255,0.06); border: 1px dashed rgba(124,198,255,0.35); }
+    .yv4 .pill.guess::before { content: "≈"; opacity: 0.8; }
+    .yv4 .pill.goal { color: #c8b9ff; background: rgba(167,139,250,0.1); border-color: rgba(167,139,250,0.3); }
+    .yv4 .pill.tag-call { color: #9fd4ff; background: rgba(124,198,255,0.08); border-color: rgba(124,198,255,0.22); }
+    .yv4 .pill.tag-errand { color: #f0c38a; background: rgba(234,179,8,0.08); border-color: rgba(234,179,8,0.22); }
+    .yv4 .pill.tag-home { color: #8fe3c2; background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.22); }
+    .yv4 .ractions { display: flex; gap: 4px; flex: none; opacity: 0.55; }
+    .yv4 .ico { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; cursor: pointer; color: #8a8a96; }
+    .yv4 .ico:hover { background: rgba(255,255,255,0.05); color: #e8e8ea; }
+    .yv4 .ico svg { width: 15px; height: 15px; stroke: currentColor; }
+
+    .yv4 .foot { display: flex; align-items: center; gap: 14px; padding: 18px 24px; border-top: 1px solid #20202a; background: rgba(255,255,255,0.015); }
+    .yv4 .foot .count { font-size: 13px; color: #8a8a96; }
+    .yv4 .foot .count b { color: #cfcfd6; }
+    .yv4 .spacer { margin-left: auto; }
+    .yv4 .btn-save { font: inherit; font-size: 15px; font-weight: 700; color: #07111c; cursor: pointer; border: none; background: linear-gradient(135deg, #9fd4ff, #b9a6fb); padding: 13px 24px; border-radius: 12px; box-shadow: 0 8px 22px rgba(124,198,255,0.28); }
+    .yv4 .btn-ghost { font: inherit; font-size: 14px; font-weight: 600; color: #c1c1cb; cursor: pointer; background: none; border: 1px solid #2e2e38; padding: 12px 18px; border-radius: 12px; }
+    .yv4 .btn-discard { font: inherit; font-size: 14px; font-weight: 600; color: #7a7a86; cursor: pointer; background: none; border: none; padding: 12px 6px; }
+
+    @keyframes yv-aura { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
+  </style>
+
+  <div class="glow"></div>
+
+  <header class="topbar">
+    <div class="brand"><span class="orb"></span> Yarvy</div>
+    <div class="me">B</div>
+  </header>
+
+  <div class="wrap">
+    <div class="head">
+      <span class="miniface"><span class="a"></span><span class="e l"></span><span class="e r"></span></span>
+      <h1>Here is what I pulled from your note</h1>
+    </div>
+    <p class="subline">Nothing is saved yet. <b>Edit anything, then confirm.</b> I kept your original words as notes.</p>
+
+    <div class="grid">
+      <!-- raw note -->
+      <div class="note">
+        <div class="nh"><span class="lab">Your note</span><span class="keep">kept as notes</span></div>
+        <p>ok this week is kind of a lot. i really want to <mark>see sam before he leaves, maybe thurs or fri</mark>, and i need to <mark>book the train tickets</mark> for that. also still haven't <mark>called mom back</mark>, bad. the <mark>kitchen sink is leaking</mark> again, need to get someone or at least look up the trap thing. and i told myself i'd <mark>start running again for the half in october</mark>. oh and <mark>buy a birthday gift for maya, her bday is the 28th</mark>.</p>
+        <div class="recount">
+          <span class="spark"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6L12 3Z"/></svg></span>
+          Found 6 things to do across 3 areas of your life.
+        </div>
+      </div>
+
+      <!-- structured proposal -->
+      <div class="prop">
+        <div class="prop-top">
+          <span class="t">Proposed plan</span>
+          <span class="meta">6 tasks · 3 projects · 4 dates guessed</span>
+        </div>
+
+        <div class="pbody">
+          <div class="pg">
+            <div class="pg-h"><span class="pg-name">Sam's visit</span><span class="pg-new">new project</span><span class="pg-edit"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span></div>
+            <div class="row">
+              <span class="ck"></span>
+              <div class="rc"><div class="rt">See Sam before he leaves</div>
+                <div class="rmeta"><span class="pill guess">Thursday</span><span class="pill tag-call">friends</span></div></div>
+              <div class="ractions"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div>
+            </div>
+            <div class="row sub">
+              <span class="ck"></span>
+              <div class="rc"><div class="rt">Book the train tickets</div>
+                <div class="rmeta"><span class="pill guess">by Wednesday</span><span class="pill tag-errand">errand</span></div></div>
+              <div class="ractions"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div>
+            </div>
+          </div>
+
+          <div class="pg">
+            <div class="pg-h"><span class="pg-name">Home</span><span class="pg-new">new project</span><span class="pg-edit"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span></div>
+            <div class="row">
+              <span class="ck"></span>
+              <div class="rc"><div class="rt">Fix the leaking kitchen sink</div>
+                <div class="rmeta"><span class="pill guess">this week</span><span class="pill tag-home">home</span></div></div>
+              <div class="ractions"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div>
+            </div>
+            <div class="row sub">
+              <span class="ck"></span>
+              <div class="rc"><div class="rt">Look up how to fix the sink trap</div>
+                <div class="rmeta"><span class="pill tag-home">home</span></div></div>
+              <div class="ractions"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div>
+            </div>
+          </div>
+
+          <div class="pg">
+            <div class="pg-h"><span class="pg-name">People</span><span class="pg-new">new project</span><span class="pg-edit"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span></div>
+            <div class="row">
+              <span class="ck"></span>
+              <div class="rc"><div class="rt">Call mom back</div>
+                <div class="rmeta"><span class="pill guess">today</span><span class="pill tag-call">call</span></div></div>
+              <div class="ractions"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div>
+            </div>
+            <div class="row">
+              <span class="ck"></span>
+              <div class="rc"><div class="rt">Buy a birthday gift for Maya</div>
+                <div class="rmeta"><span class="pill date">Jun 28</span><span class="pill tag-errand">errand</span></div></div>
+              <div class="ractions"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div>
+            </div>
+          </div>
+
+          <div class="pg">
+            <div class="pg-h"><span class="pg-name">Half marathon</span><span class="pg-new" style="color:#c8b9ff;background:rgba(167,139,250,0.12);border-color:rgba(167,139,250,0.3)">your goal</span></div>
+            <div class="row">
+              <span class="ck"></span>
+              <div class="rc"><div class="rt">Start running again this week</div>
+                <div class="rmeta"><span class="pill goal">adds to your goal</span><span class="pill guess">3 runs / week</span></div></div>
+              <div class="ractions"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="foot">
+          <span class="count"><b>6 tasks</b> ready to save</span>
+          <span class="spacer"></span>
+          <button class="btn-discard">Discard</button>
+          <button class="btn-ghost">Let me edit</button>
+          <button class="btn-save">Save all 6</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

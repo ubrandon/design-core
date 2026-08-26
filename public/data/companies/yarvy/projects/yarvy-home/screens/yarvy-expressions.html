@@ -1,0 +1,322 @@
+<div class="yx">
+  <style>
+    .yx { background: #f6f2ea; color: #2c2823; padding: 36px 40px 48px; overflow: hidden;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .yx *, .yx *::before, .yx *::after { box-sizing: border-box; }
+
+    .yx .head { margin-bottom: 26px; }
+    .yx .kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #a8502b; margin: 0 0 8px; }
+    .yx .title { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 8px; }
+    .yx .sub { font-size: 15px; color: #6f675b; margin: 0; max-width: 660px; line-height: 1.5; }
+
+    /* hero — the resting face, straight from the side chat */
+    .yx .hero { background: #fffdf9; border: 1px solid #e8e1d3; border-radius: 24px; padding: 38px 24px 30px;
+      display: flex; flex-direction: column; align-items: center; margin-bottom: 28px; box-shadow: 0 10px 30px rgba(80,66,40,0.06); }
+    .yx .hero .big { transform: scale(1.7); margin: 14px 0 32px; }
+    .yx .hero .date { font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #b3a892; }
+    .yx .hero .hname { font-size: 18px; font-weight: 700; color: #2c2823; margin-top: 16px; }
+    .yx .hero .hdesc { font-size: 13.5px; color: #938a7c; margin-top: 4px; }
+
+    /* grid */
+    .yx .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .yx .tile { background: #fffdf9; border: 1px solid #e8e1d3; border-radius: 20px; padding: 22px 18px 18px;
+      display: flex; flex-direction: column; align-items: center; box-shadow: 0 8px 24px rgba(80,66,40,0.05); }
+    .yx .stage { height: 132px; display: grid; place-items: center; margin-bottom: 14px; }
+    .yx .name { font-size: 15px; font-weight: 700; color: #2c2823; text-align: center; }
+    .yx .desc { font-size: 12.5px; color: #938a7c; text-align: center; margin-top: 4px; line-height: 1.4; }
+
+    /* ---- the face: a cream rounded tile that holds the eyes ---- */
+    .yx .face { position: relative; width: 86px; height: 86px; border-radius: 26px; background: #fdf6ec;
+      border: 1px solid #f3e3cd; display: grid; place-items: center; box-shadow: 0 10px 26px rgba(120,88,48,0.12);
+      animation: yx-float 7s ease-in-out infinite; }
+    .yx .inner { display: grid; place-items: center; }
+    .yx .eyes { display: flex; gap: 14px; align-items: center; }
+
+    /* every eye blinks; the blink masks the change from eyes to expression */
+    .yx .eye { position: relative; display: grid; place-items: center; width: 16px; height: 36px;
+      animation: yx-blink 6s ease-in-out infinite; animation-delay: var(--d, 0s); }
+    .yx .eye > * { grid-area: 1 / 1; }
+
+    /* resting eye — the terracotta pill from the side chat */
+    .yx .pill { width: 16px; height: 36px; border-radius: 9px; background-size: 200% 200%;
+      background: linear-gradient(165deg, #f2ac6b, #d9764a 55%, #b8583a);
+      animation: yx-drift 14s ease-in-out infinite alternate; }
+    /* on a changing eye the pill fades out as the new shape fades in */
+    .yx .eye.swap .pill { animation: yx-drift 14s ease-in-out infinite alternate, yx-pill-out 6s ease-in-out infinite; animation-delay: 0s, var(--d, 0s); }
+    .yx .eye.swap .shape { animation: yx-shape-in 6s ease-in-out infinite; animation-delay: var(--d, 0s); }
+    /* shapes that keep their own life need it listed alongside the fade-in */
+    .yx .eye.swap .circle { animation: yx-shape-in 6s ease-in-out infinite, yx-drift 14s ease-in-out infinite alternate; animation-delay: var(--d, 0s), 0s; }
+    .yx .eye.swap .star { animation: yx-shape-in 6s ease-in-out infinite, yx-twinkle 2.4s ease-in-out infinite, yx-drift 14s ease-in-out infinite alternate; animation-delay: var(--d, 0s), 0s, 0s; }
+    .yx .eye.swap .heart { animation: yx-shape-in 6s ease-in-out infinite, yx-beat 1.5s ease-in-out infinite; animation-delay: var(--d, 0s), 0s; }
+
+    /* expression eye shapes */
+    .yx .arc { width: 26px; height: 13px; border-top: 5px solid #bd6038; border-radius: 26px 26px 0 0; opacity: 0; }
+    .yx .circle { width: 28px; height: 28px; border-radius: 50%; opacity: 0; background-size: 200% 200%;
+      background: radial-gradient(circle at 38% 32%, #f7c190, #d9764a 52%, #ad5234); }
+    .yx .slit { width: 24px; height: 9px; border-radius: 6px; opacity: 0;
+      background: linear-gradient(90deg, #e0884f, #b8583a); }
+    .yx .lid { width: 24px; height: 13px; border-radius: 0 0 24px 24px; opacity: 0;
+      background: linear-gradient(180deg, #e6925a, #ad5234); }
+    .yx .star { width: 26px; height: 26px; opacity: 0; background-size: 200% 200%;
+      background: linear-gradient(165deg, #f7c190, #d9764a 52%, #b8583a);
+      clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%); }
+    .yx .heart { position: relative; width: 24px; height: 22px; opacity: 0; }
+    .yx .heart::before, .yx .heart::after { content: ""; position: absolute; left: 12px; top: 0;
+      width: 12px; height: 19px; border-radius: 12px 12px 0 0; background: linear-gradient(180deg, #e8895c, #c2522f);
+      transform: rotate(-45deg); transform-origin: 0 100%; }
+    .yx .heart::after { left: 0; transform: rotate(45deg); transform-origin: 100% 100%; }
+
+    /* mouths — sit low in the face, fade in with the expression */
+    .yx .mouth { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); opacity: 0; }
+    .yx .m-smile { width: 26px; height: 12px; border-bottom: 3.5px solid #bd6038; border-radius: 0 0 26px 26px;
+      animation: yx-mouth-pop 6s ease-in-out infinite; animation-delay: var(--d, 0s); }
+    .yx .m-o { width: 13px; height: 16px; border: 3px solid #bd6038; border-radius: 50%;
+      animation: yx-mouth-pop 6s ease-in-out infinite; animation-delay: var(--d, 0s); }
+    .yx .m-talk { width: 16px; height: 15px; border-radius: 50%; background: #bd6038; transform-origin: center;
+      animation: yx-fade 6s ease-in-out infinite, yx-talk 0.6s ease-in-out infinite; animation-delay: var(--d, 0s), 0s; }
+
+    /* per-expression extras applied to .eyes (lift for the mouth) or .inner (tilt) */
+    .yx .eyes.up { animation: yx-eyes-up 6s ease-in-out infinite; animation-delay: var(--d, 0s); }
+    .yx .eyes.glance { animation: yx-glance 6s ease-in-out infinite; animation-delay: var(--d, 0s); }
+    .yx .inner.tilt { animation: yx-tilt 6s ease-in-out infinite; animation-delay: var(--d, 0s); transform-origin: 50% 70%; }
+
+    /* sleepy z's */
+    .yx .zzz { position: absolute; top: 8px; right: 8px; color: #b8583a; font-weight: 800; font-size: 14px;
+      opacity: 0; animation: yx-z 6s ease-in-out infinite; animation-delay: var(--d, 0s); }
+    .yx .zzz b { font-size: 10px; opacity: 0.8; }
+
+    /* ---- keyframes ---- */
+    @keyframes yx-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @keyframes yx-drift { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
+    @keyframes yx-twinkle { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.2); } }
+    @keyframes yx-beat { 0%,100% { transform: scale(1); } 45% { transform: scale(1.14); } }
+
+    @keyframes yx-blink {
+      0%, 33% { transform: scaleY(1); }
+      38% { transform: scaleY(0.07); }
+      43%, 81% { transform: scaleY(1); }
+      86% { transform: scaleY(0.07); }
+      91%, 100% { transform: scaleY(1); }
+    }
+    @keyframes yx-pill-out {
+      0%, 37% { opacity: 1; }
+      41%, 82% { opacity: 0; }
+      86%, 100% { opacity: 1; }
+    }
+    @keyframes yx-shape-in {
+      0%, 37% { opacity: 0; }
+      41%, 82% { opacity: 1; }
+      86%, 100% { opacity: 0; }
+    }
+    @keyframes yx-mouth-pop {
+      0%, 37% { opacity: 0; transform: translateX(-50%) translateY(3px) scale(0.5); }
+      43%, 81% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+      86%, 100% { opacity: 0; transform: translateX(-50%) translateY(3px) scale(0.5); }
+    }
+    @keyframes yx-fade {
+      0%, 37% { opacity: 0; }
+      43%, 81% { opacity: 1; }
+      86%, 100% { opacity: 0; }
+    }
+    @keyframes yx-talk {
+      0%, 100% { transform: translateX(-50%) scaleY(0.4); }
+      50% { transform: translateX(-50%) scaleY(1); }
+    }
+    @keyframes yx-eyes-up {
+      0%, 37% { transform: translateY(0); }
+      43%, 81% { transform: translateY(-5px); }
+      86%, 100% { transform: translateY(0); }
+    }
+    @keyframes yx-glance {
+      0%, 40% { transform: translateX(0); }
+      52% { transform: translateX(-7px); }
+      66% { transform: translateX(7px); }
+      78%, 100% { transform: translateX(0); }
+    }
+    @keyframes yx-tilt {
+      0%, 34% { transform: rotate(0); }
+      45%, 80% { transform: rotate(-9deg); }
+      90%, 100% { transform: rotate(0); }
+    }
+    @keyframes yx-z {
+      0%, 38% { opacity: 0; transform: translateY(4px) scale(0.7); }
+      50% { opacity: 0.9; transform: translateY(-3px) scale(1); }
+      66% { opacity: 0.9; transform: translateY(-10px) scale(1.05); }
+      80% { opacity: 0; transform: translateY(-16px) scale(1.1); }
+      100% { opacity: 0; transform: translateY(4px) scale(0.7); }
+    }
+  </style>
+
+  <div class="head">
+    <p class="kicker">Yarvy · Expressions</p>
+    <h1 class="title">Mostly eyes, until he isn't</h1>
+    <p class="sub">The same face from the side chat. Each one rests as a pair of eyes, blinks, then changes into a mood, the blink hides the switch so the change feels alive. Twelve little moments he reaches for when something happens.</p>
+  </div>
+
+  <div class="hero">
+    <div class="big">
+      <div class="face" style="--d: 0s;">
+        <div class="inner"><div class="eyes">
+          <span class="eye"><i class="pill"></i></span>
+          <span class="eye"><i class="pill"></i></span>
+        </div></div>
+      </div>
+    </div>
+    <div class="date">Tuesday, June 17</div>
+    <div class="hname">Yarvy, resting</div>
+    <div class="hdesc">Mostly just eyes. He changes when it matters.</div>
+  </div>
+
+  <div class="grid">
+
+    <!-- 1. Blink / awake -->
+    <div class="tile">
+      <div class="stage"><div class="face" style="--d: 0s;">
+        <div class="inner"><div class="eyes">
+          <span class="eye"><i class="pill"></i></span>
+          <span class="eye"><i class="pill"></i></span>
+        </div></div>
+      </div></div>
+      <div class="name">Awake</div>
+      <div class="desc">The resting face, just a slow blink.</div>
+    </div>
+
+    <!-- 2. Happy -->
+    <div class="tile">
+      <div class="stage"><div class="face" style="--d: -0.5s;">
+        <div class="inner"><div class="eyes">
+          <span class="eye swap"><i class="pill"></i><i class="shape arc"></i></span>
+          <span class="eye swap"><i class="pill"></i><i class="shape arc"></i></span>
+        </div></div>
+      </div></div>
+      <div class="name">Happy</div>
+      <div class="desc">Eyes curl up at good news.</div>
+    </div>
+
+    <!-- 3. Surprised -->
+    <div class="tile">
+      <div class="stage"><div class="face" style="--d: -1s;">
+        <div class="inner"><div class="eyes up">
+          <span class="eye swap"><i class="pill"></i><i class="shape circle"></i></span>
+          <span class="eye swap"><i class="pill"></i><i class="shape circle"></i></span>
+        </div></div>
+        <div class="mouth m-o"></div>
+      </div></div>
+      <div class="name">Surprised</div>
+      <div class="desc">Eyes pop wide for a nudge.</div>
+    </div>
+
+    <!-- 4. Sleepy -->
+    <div class="tile">
+      <div class="stage"><div class="face" style="--d: -1.5s;">
+        <span class="zzz">z<b>z</b></span>
+        <div class="inner"><div class="eyes">
+          <span class="eye swap"><i class="pill"></i><i class="shape lid"></i></span>
+          <span class="eye swap"><i class="pill"></i><i class="shape lid"></i></span>
+        </div></div>
+      </div></div>
+      <div class="name">Sleepy</div>
+      <div class="desc">Lids droop when nothing's due.</div>
+    </div>
+
+    <!-- 5. Focused -->
+    <div class="tile">
+      <div class="stage"><div class="face" style="--d: -2s;">
+        <div class="inner"><div class="eyes">
+          <span class="eye swap"><i class="pill"></i><i class="shape slit"></i></span>
+          <span class="eye swap"><i class="pill"></i><i class="shape slit"></i></span>
+        </div></div>
+      </div></div>
+      <div class="name">Focused</div>
+      <div class="desc">Narrows in for heads-down work.</div>
+    </div>
+
+    <!-- 6. Wink -->
+    <div class="tile">
+      <div class="stage"><div class="face" style="--d: -2.5s;">
+        <div class="inner"><div class="eyes up">
+          <span class="eye swap"><i class="pill"></i><i class="shape arc"></i></span>
+          <span class="eye"><i class="pill"></i></span>
+        </div></div>
+        <div class="mouth m-smile"></div>
+      </div></div>
+      <div class="name">Wink</div>
+      <div class="desc">One eye shuts, playful.</div>
+    </div>
+
+    <!-- 7. Curious -->
+    <div class="tile">
+      <div class="stage"><div class="face" style="--d: -3s;">
+        <div class="inner tilt"><div class="eyes">
+          <span class="eye"><i class="pill"></i></span>
+          <span class="eye"><i class="pill"></i></span>
+        </div></div>
+      </div></div>
+      <div class="name">Curious</div>
+      <div class="desc">A little head tilt, intrigued.</div>
+    </div>
+
+    <!-- 8. Looking around -->
+    <div class="tile">
+      <div class="stage"><div class="face" style="--d: -3.5s;">
+        <div class="inner"><div class="eyes glance">
+          <span class="eye"><i class="pill"></i></span>
+          <span class="eye"><i class="pill"></i></span>
+        </div></div>
+      </div></div>
+      <div class="name">Looking</div>
+      <div class="desc">Glances about while thinking.</div>
+    </div>
+
+    <!-- 9. Love -->
+    <div class="tile">
+      <div class="stage"><div class="face" style="--d: -4s;">
+        <div class="inner"><div class="eyes">
+          <span class="eye swap"><i class="pill"></i><i class="shape heart"></i></span>
+          <span class="eye swap"><i class="pill"></i><i class="shape heart"></i></span>
+        </div></div>
+      </div></div>
+      <div class="name">Love</div>
+      <div class="desc">Heart eyes for a small win.</div>
+    </div>
+
+    <!-- 10. Excited -->
+    <div class="tile">
+      <div class="stage"><div class="face" style="--d: -4.5s;">
+        <div class="inner"><div class="eyes">
+          <span class="eye swap"><i class="pill"></i><i class="shape star"></i></span>
+          <span class="eye swap"><i class="pill"></i><i class="shape star"></i></span>
+        </div></div>
+      </div></div>
+      <div class="name">Excited</div>
+      <div class="desc">Sparkle eyes when he's thrilled.</div>
+    </div>
+
+    <!-- 11. Talking -->
+    <div class="tile">
+      <div class="stage"><div class="face" style="--d: -5s;">
+        <div class="inner"><div class="eyes up">
+          <span class="eye"><i class="pill"></i></span>
+          <span class="eye"><i class="pill"></i></span>
+        </div></div>
+        <div class="mouth m-talk"></div>
+      </div></div>
+      <div class="name">Talking</div>
+      <div class="desc">Mouth moves as he speaks.</div>
+    </div>
+
+    <!-- 12. Content -->
+    <div class="tile">
+      <div class="stage"><div class="face" style="--d: -5.5s;">
+        <div class="inner"><div class="eyes up">
+          <span class="eye swap"><i class="pill"></i><i class="shape arc"></i></span>
+          <span class="eye swap"><i class="pill"></i><i class="shape arc"></i></span>
+        </div></div>
+        <div class="mouth m-smile"></div>
+      </div></div>
+      <div class="name">Content</div>
+      <div class="desc">A calm little smile.</div>
+    </div>
+
+  </div>
+</div>

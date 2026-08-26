@@ -1,0 +1,22 @@
+{
+  "screens": [
+    {
+      "file": "landing-research.html",
+      "x": 1406,
+      "y": 0,
+      "width": 1280
+    },
+    {
+      "file": "email-capture.html",
+      "x": 2726,
+      "y": 0,
+      "width": 1280
+    },
+    {
+      "file": "audit-questionnaire.html",
+      "x": 4046,
+      "y": 0,
+      "width": 1280
+    }
+  ]
+}

@@ -1,0 +1,938 @@
+<div class="yvhs">
+  <style>
+    .yvhs {
+      position: relative;
+      height: 1000px;
+      overflow: hidden;
+      background: #fbf7f2;
+      color: #2b2620;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+    }
+    .yvhs * { box-sizing: border-box; }
+
+    /* LEFT NAV RAIL */
+    .yvhs .rail {
+      width: 78px;
+      flex: 0 0 78px;
+      background: #f6ece8;
+      border-right: 1px solid #efddd6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 18px 0 16px;
+      gap: 10px;
+    }
+    .yvhs .nbtn {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ab9a92;
+      background: transparent;
+      border: none;
+    }
+    .yvhs .nbtn svg { width: 23px; height: 23px; }
+    .yvhs .nbtn.active {
+      color: #b5318c;
+      background: #fbe9f2;
+      box-shadow: inset 0 0 0 1px #f3d2e4;
+    }
+    .yvhs .rail .spacer { flex: 1 1 auto; }
+    .yvhs .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #f0e3dd;
+      border: 1px solid #e2d2cb;
+      color: #463f35;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    /* MAIN COLUMN */
+    .yvhs .main {
+      flex: 1 1 auto;
+      min-width: 0;
+      height: 1000px;
+      overflow: hidden;
+      padding: 20px 40px 0;
+    }
+
+    /* HERO BAND */
+    .yvhs .hero {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      padding-top: 6px;
+    }
+    .yvhs .face {
+      width: 68px;
+      height: 68px;
+      border-radius: 22px;
+      margin: 0 auto 14px;
+      background: linear-gradient(160deg, #fffaf6, #fdeaf1);
+      border: 1px solid #f7dde6;
+      box-shadow: 0 10px 26px rgba(180,60,140,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      animation: yvhsFloat 6s ease-in-out infinite;
+    }
+    @keyframes yvhsFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .yvhs .eye {
+      width: 13px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(160deg, #fb8c5a, #d63b8f 48%, #7c3aed);
+      animation: yvhsDrift 7s ease-in-out infinite;
+    }
+    .yvhs .eye.b { animation-delay: -3s; }
+    @keyframes yvhsDrift {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(3px); }
+    }
+    .yvhs .date {
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #b09b91;
+      margin-bottom: 6px;
+    }
+    .yvhs .greet {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+    .yvhs .greet .nm {
+      background: linear-gradient(110deg, #fb8c5a, #d63b8f 50%, #7c3aed);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .yvhs .botline {
+      display: inline-block;
+      max-width: 520px;
+      text-align: left;
+      background: #fff;
+      border: 1px solid #f3e3dc;
+      color: #4a4339;
+      border-radius: 16px;
+      border-top-left-radius: 6px;
+      padding: 13px 18px;
+      font-size: 14.5px;
+      line-height: 1.5;
+      box-shadow: 0 4px 14px rgba(150,70,110,0.05);
+      margin-bottom: 10px;
+    }
+    .yvhs .botline b { color: #b5318c; }
+
+    .yvhs .composer {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1px solid #f1ded7;
+      border-radius: 999px;
+      padding: 7px 7px 7px 22px;
+      box-shadow: 0 12px 30px rgba(150,70,110,0.10);
+      margin-bottom: 10px;
+    }
+    .yvhs .composer input {
+      flex: 1 1 auto;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 16px;
+      color: #2b2620;
+      font-family: inherit;
+    }
+    .yvhs .composer input::placeholder { color: #b6a59d; }
+    .yvhs .send {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(140deg, #fb8c5a, #d63b8f 55%, #7c3aed);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .yvhs .send svg { width: 19px; height: 19px; }
+
+    .yvhs .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .yvhs .chip {
+      background: #fff;
+      border: 1px solid #f1e0d9;
+      color: #5a4a44;
+      padding: 8px 15px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .yvhs .chip.lead {
+      color: #b5318c;
+      border-color: #f3d2e4;
+      background: #fbe9f2;
+    }
+
+    /* DIVIDER TO DASHBOARD */
+    .yvhs .sect {
+      max-width: 100%;
+      margin: 16px auto 0;
+    }
+    .yvhs .sect-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .yvhs .sect-head h2 {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      margin: 0;
+      color: #2b2620;
+    }
+    .yvhs .sect-head .ln {
+      flex: 1 1 auto;
+      height: 1px;
+      background: #efddd6;
+    }
+    .yvhs .sect-head .cnt {
+      font-size: 12px;
+      font-weight: 700;
+      color: #b09b91;
+    }
+
+    /* DASHBOARD GRID */
+    .yvhs .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .yvhs .card {
+      background: #fff;
+      border: 1px solid #f4e4dd;
+      border-radius: 20px;
+      box-shadow: 0 4px 14px rgba(150,70,110,0.05);
+      padding: 18px 18px 16px;
+    }
+
+    .yvhs .ch {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 14px;
+    }
+    .yvhs .ch .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex: 0 0 9px;
+    }
+    .yvhs .ch h3 {
+      font-size: 13.5px;
+      font-weight: 800;
+      margin: 0;
+      flex: 1 1 auto;
+    }
+    .yvhs .ch .tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: #b09b91;
+    }
+
+    /* TASK ROW */
+    .yvhs .task {
+      display: flex;
+      gap: 11px;
+      padding: 10px 0;
+      border-top: 1px solid #f6ece6;
+    }
+    .yvhs .task:first-of-type { border-top: none; }
+    .yvhs .lead-task {
+      background: #fbe9f2;
+      border: 1px solid #f3d2e4;
+      border-radius: 14px;
+      padding: 11px 13px;
+      margin-bottom: 4px;
+    }
+    .yvhs .lead-task.task { border-top: none; }
+    .yvhs .cbx {
+      width: 19px;
+      height: 19px;
+      flex: 0 0 19px;
+      margin-top: 1px;
+      border-radius: 50%;
+      border: 1.5px solid #ddc8c0;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .yvhs .cbx svg { width: 12px; height: 12px; display: none; }
+    .yvhs .cbx.done {
+      background: #c0398a;
+      border-color: #c0398a;
+    }
+    .yvhs .cbx.done svg { display: block; }
+    .yvhs .cbx.grad {
+      background: linear-gradient(140deg, #fb8c5a, #d63b8f 55%, #7c3aed);
+      border: none;
+    }
+    .yvhs .body { flex: 1 1 auto; min-width: 0; }
+    .yvhs .ct {
+      font-size: 14.5px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .yvhs .task.is-done .ct {
+      text-decoration: line-through;
+      color: #d3bcc7;
+    }
+    .yvhs .cm {
+      font-size: 12px;
+      color: #998a83;
+      margin-top: 2px;
+    }
+    .yvhs .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 7px;
+    }
+    .yvhs .mp {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 999px;
+      color: #998a83;
+      background: #f3e9e4;
+    }
+    .yvhs .mp svg { width: 10px; height: 10px; }
+    .yvhs .mp.due { color: #b5318c; background: #fbe9f2; }
+    .yvhs .mp.pri { color: #c65a2c; background: #fce3d4; }
+    .yvhs .mp i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* PROJECT PROGRESS */
+    .yvhs .proj {
+      background: #f5efe8;
+      border: 1px solid #ece1da;
+      border-radius: 14px;
+      padding: 12px 13px;
+      margin-bottom: 12px;
+    }
+    .yvhs .proj-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 9px;
+    }
+    .yvhs .proj-top .pn {
+      font-size: 13px;
+      font-weight: 800;
+      flex: 1 1 auto;
+    }
+    .yvhs .proj-top .pc {
+      font-size: 11px;
+      font-weight: 700;
+      color: #b5318c;
+    }
+    .yvhs .bar {
+      height: 6px;
+      border-radius: 999px;
+      background: #e7d8d0;
+      overflow: hidden;
+    }
+    .yvhs .bar span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #fb8c5a, #d63b8f);
+    }
+    .yvhs .proj-meta {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #a8978f;
+      margin-top: 7px;
+    }
+
+    /* NOTES */
+    .yvhs .notes {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .yvhs .note {
+      background: linear-gradient(165deg, #fdf3d8, #fcecc6);
+      border: 1px solid #f3e3b8;
+      border-radius: 13px;
+      padding: 11px 13px;
+    }
+    .yvhs .note .nt {
+      font-size: 13px;
+      font-weight: 700;
+      color: #5c5036;
+      line-height: 1.35;
+    }
+    .yvhs .note .ns {
+      font-size: 11px;
+      color: #9a8c6a;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .yvhs .note .ns svg { width: 12px; height: 12px; }
+
+    /* WATCH + READ LISTS */
+    .yvhs .media {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .yvhs .mrow {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+    .yvhs .poster {
+      width: 38px;
+      height: 52px;
+      flex: 0 0 38px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .yvhs .mbody { flex: 1 1 auto; min-width: 0; }
+    .yvhs .mtitle {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .yvhs .msub {
+      font-size: 11px;
+      color: #998a83;
+      margin-top: 2px;
+    }
+    .yvhs .mtag {
+      font-size: 10px;
+      font-weight: 700;
+      color: #b09b91;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .yvhs .rbar {
+      height: 4px;
+      border-radius: 999px;
+      background: #efe1da;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+    .yvhs .rbar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, #fb8c5a, #d63b8f);
+      border-radius: 999px;
+    }
+
+    /* ---------- RIGHT SIDEBAR (Up next / Today / This week) ---------- */
+    .yvhs .panel {
+      width: 372px;
+      flex: 0 0 372px;
+      background: #f5efe8;
+      border-left: 1px solid #ece1da;
+      padding: 30px 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .yvhs .slab {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #b09aa3;
+      margin: 0 0 12px;
+    }
+    .yvhs .slab.up { color: #b5318c; }
+    .yvhs .s-sect { margin-bottom: 24px; }
+    .yvhs .s-sect:last-child { margin-bottom: 0; }
+    .yvhs .s-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      background: #fff;
+      border: 1px solid #f4e4dd;
+      border-radius: 14px;
+      padding: 11px 13px;
+      box-shadow: 0 4px 14px rgba(150,70,110,0.05);
+      margin-bottom: 8px;
+    }
+    .yvhs .s-card:last-child { margin-bottom: 0; }
+    .yvhs .s-card.now {
+      background: linear-gradient(135deg, #fdeef5, #fbe7f1);
+      border-color: #f3d2e4;
+    }
+    .yvhs .s-card.done { opacity: 0.7; }
+    .yvhs .s-card.done .s-ct {
+      text-decoration: line-through;
+      text-decoration-color: #d3bcc7;
+    }
+    .yvhs .s-check {
+      width: 19px;
+      height: 19px;
+      flex: 0 0 19px;
+      margin-top: 1px;
+      border-radius: 50%;
+      border: 1.5px solid #ddc8c0;
+      background: #fff;
+      display: grid;
+      place-items: center;
+    }
+    .yvhs .s-check svg { width: 11px; height: 11px; stroke: #fffaf4; opacity: 0; }
+    .yvhs .s-card.done .s-check { background: #c0398a; border-color: #c0398a; }
+    .yvhs .s-card.done .s-check svg { opacity: 1; }
+    .yvhs .s-card.now .s-check { border-color: #eaa0c4; }
+    .yvhs .s-card.lead .s-check { border-color: #eaa0c4; }
+    .yvhs .s-body { min-width: 0; flex: 1; }
+    .yvhs .s-ct { font-size: 14.5px; font-weight: 700; }
+    .yvhs .s-cm { font-size: 12px; color: #998a83; margin-top: 2px; }
+    .yvhs .s-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 7px;
+      flex-wrap: wrap;
+    }
+    .yvhs .s-mp {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+      color: #998a83;
+      background: #f3e9e4;
+    }
+    .yvhs .s-mp svg { width: 11px; height: 11px; }
+    .yvhs .s-mp i { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+    .yvhs .s-mp.due { color: #b5318c; background: #fbe9f2; }
+    .yvhs .s-mp.pri { color: #c65a2c; background: #fce3d4; }
+    .yvhs .s-mp.goal .em { font-size: 11px; line-height: 1; }
+    .yvhs .s-mp.g-move { color: #5f7d49; background: #eef3e7; }
+    .yvhs .s-mp.g-run { color: #7c3aed; background: #efe7fd; }
+    .yvhs .s-mp.g-proj { color: #46708f; background: #e7eef4; }
+  </style>
+
+  <!-- LEFT NAV RAIL -->
+  <div class="rail">
+    <button class="nbtn active" aria-label="Home">
+      <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M5.5 10v9.5h13V10"/></svg>
+    </button>
+    <button class="nbtn" aria-label="Lists">
+      <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>
+    </button>
+    <button class="nbtn" aria-label="Calendar">
+      <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg>
+    </button>
+    <button class="nbtn" aria-label="Goals">
+      <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg>
+    </button>
+    <div class="spacer"></div>
+    <button class="nbtn" aria-label="Settings">
+      <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5v14M15 5v14"/></svg>
+    </button>
+    <div class="avatar">B</div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="face">
+        <span class="eye a"></span>
+        <span class="eye b"></span>
+      </div>
+      <div class="date">Tuesday, June 17</div>
+      <div class="greet">Good afternoon, <span class="nm">Brandon</span></div>
+      <div class="botline">Clear <b>90-minute window</b> before your 3:00, perfect for the run.</div>
+      <div class="composer">
+        <input type="text" placeholder="Talk to Yarvy…" />
+        <button class="send" aria-label="Send">
+          <svg viewBox="0 0 24 24" stroke="#fffaf4" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+        </button>
+      </div>
+      <div class="chips">
+        <span class="chip lead">Slot the run at 1:30</span>
+        <span class="chip">What's overdue?</span>
+        <span class="chip">Plan my evening</span>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="sect">
+      <div class="sect-head">
+        <h2>Your spaces</h2>
+        <div class="ln"></div>
+        <div class="cnt">5 spaces · 3 projects</div>
+      </div>
+
+      <div class="grid">
+
+        <!-- HEALTH -->
+        <div class="card">
+          <div class="ch">
+            <span class="dot" style="background:#6f9356"></span>
+            <h3>Health</h3>
+            <span class="tag">Marathon prep</span>
+          </div>
+
+          <div class="proj">
+            <div class="proj-top">
+              <span class="pn">Marathon prep</span>
+              <span class="pc">1/3</span>
+            </div>
+            <div class="bar"><span style="width:33%"></span></div>
+            <div class="proj-meta">Race · Oct 12</div>
+          </div>
+
+          <div class="lead-task task">
+            <span class="cbx grad"></span>
+            <div class="body">
+              <div class="ct">Easy 5k run</div>
+              <div class="cm">Yarvy's top pick for your window</div>
+              <div class="meta">
+                <span class="mp due"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>1:30 PM</span>
+                <span class="mp"><i style="background:#6f9356"></i>Health</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="task">
+            <span class="cbx"><svg viewBox="0 0 24 24" stroke="#fff" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></span>
+            <div class="body">
+              <div class="ct">Long run · 10 miles</div>
+              <div class="meta">
+                <span class="mp">Sat</span>
+                <span class="mp"><i style="background:#6f9356"></i>Health</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WORK + PERSONAL -->
+        <div class="card">
+          <div class="ch">
+            <span class="dot" style="background:#4f82a8"></span>
+            <h3>Work</h3>
+            <span class="tag">1 today</span>
+          </div>
+
+          <div class="task">
+            <span class="cbx"><svg viewBox="0 0 24 24" stroke="#fff" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></span>
+            <div class="body">
+              <div class="ct">Call with Sam</div>
+              <div class="cm">Roadmap sync, Q3 priorities</div>
+              <div class="meta">
+                <span class="mp due"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>3:00 PM</span>
+                <span class="mp pri">High</span>
+                <span class="mp"><i style="background:#4f82a8"></i>Work</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ch" style="margin-top:8px">
+            <span class="dot" style="background:#c65a2c"></span>
+            <h3>Personal</h3>
+          </div>
+
+          <div class="task">
+            <span class="cbx"><svg viewBox="0 0 24 24" stroke="#fff" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></span>
+            <div class="body">
+              <div class="ct">Call mom</div>
+              <div class="meta">
+                <span class="mp due"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5:30 PM</span>
+                <span class="mp"><i style="background:#c65a2c"></i>Personal</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="task is-done">
+            <span class="cbx done"><svg viewBox="0 0 24 24" stroke="#fff" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></span>
+            <div class="body">
+              <div class="ct">Morning walk</div>
+              <div class="meta">
+                <span class="mp">8:00 AM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOVE HOUSE + SIDE PROJECT -->
+        <div class="card">
+          <div class="ch">
+            <span class="dot" style="background:#5f7d49"></span>
+            <h3>Move house</h3>
+            <span class="tag">Apartment move</span>
+          </div>
+
+          <div class="proj">
+            <div class="proj-top">
+              <span class="pn">Apartment move</span>
+              <span class="pc">3/6</span>
+            </div>
+            <div class="bar"><span style="width:50%"></span></div>
+            <div class="proj-meta">Due · Jul 1</div>
+          </div>
+
+          <div class="task">
+            <span class="cbx"><svg viewBox="0 0 24 24" stroke="#fff" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></span>
+            <div class="body">
+              <div class="ct">Book the movers</div>
+              <div class="cm">Blocks 4 other tasks</div>
+              <div class="meta">
+                <span class="mp pri">High</span>
+                <span class="mp"><i style="background:#5f7d49"></i>Move house</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ch" style="margin-top:8px">
+            <span class="dot" style="background:#7c3aed"></span>
+            <h3>Side project</h3>
+            <span class="tag">Yarvy</span>
+          </div>
+
+          <div class="task">
+            <span class="cbx"><svg viewBox="0 0 24 24" stroke="#fff" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></span>
+            <div class="body">
+              <div class="ct">Sketch the home screen</div>
+              <div class="meta">
+                <span class="mp"><i style="background:#7c3aed"></i>Side project</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NOTES -->
+        <div class="card">
+          <div class="ch">
+            <span class="dot" style="background:#e0a93c"></span>
+            <h3>Notes</h3>
+            <span class="tag">3 pinned</span>
+          </div>
+          <div class="notes">
+            <div class="note">
+              <div class="nt">Ideas for the offsite talk</div>
+              <div class="ns"><svg viewBox="0 0 24 24" stroke="#b39a55" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 10h16M4 15h10"/></svg>Personal · 2 days ago</div>
+            </div>
+            <div class="note">
+              <div class="nt">Gift ideas for mom — headphones?</div>
+              <div class="ns"><svg viewBox="0 0 24 24" stroke="#b39a55" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 10h16M4 15h10"/></svg>Personal</div>
+            </div>
+            <div class="note">
+              <div class="nt">Apartment — measure the doorway</div>
+              <div class="ns"><svg viewBox="0 0 24 24" stroke="#b39a55" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 10h16M4 15h10"/></svg>Move house</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WATCH LIST -->
+        <div class="card">
+          <div class="ch">
+            <span class="dot" style="background:#7c3aed"></span>
+            <h3>Watch list</h3>
+            <span class="tag">3 queued</span>
+          </div>
+          <div class="media">
+            <div class="mrow">
+              <div class="poster" style="background:linear-gradient(150deg,#c9893f,#6b4a2a)">D</div>
+              <div class="mbody">
+                <div class="mtitle">Dune: Part Two</div>
+                <div class="msub">2h 46m</div>
+              </div>
+              <span class="mtag">Film</span>
+            </div>
+            <div class="mrow">
+              <div class="poster" style="background:linear-gradient(150deg,#3f6f5e,#23423a)">B</div>
+              <div class="mbody">
+                <div class="mtitle">The Bear — S3</div>
+                <div class="msub">10 episodes</div>
+              </div>
+              <span class="mtag">Show</span>
+            </div>
+            <div class="mrow">
+              <div class="poster" style="background:linear-gradient(150deg,#8a4156,#4a2030)">S</div>
+              <div class="mbody">
+                <div class="mtitle">Shōgun</div>
+                <div class="msub">Limited series</div>
+              </div>
+              <span class="mtag">Show</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- READ LIST -->
+        <div class="card">
+          <div class="ch">
+            <span class="dot" style="background:#4f82a8"></span>
+            <h3>Read list</h3>
+            <span class="tag">3 saved</span>
+          </div>
+          <div class="media">
+            <div class="mrow">
+              <div class="poster" style="background:linear-gradient(150deg,#4f82a8,#2c4d66)">D</div>
+              <div class="mbody">
+                <div class="mtitle">Designing Data-Intensive Apps</div>
+                <div class="msub">Book · 40%</div>
+                <div class="rbar"><span style="width:40%"></span></div>
+              </div>
+            </div>
+            <div class="mrow">
+              <div class="poster" style="background:linear-gradient(150deg,#c65a2c,#7a3417)">T</div>
+              <div class="mbody">
+                <div class="mtitle">The Tetlock forecasting piece</div>
+                <div class="msub">Article · 12 min read</div>
+              </div>
+            </div>
+            <div class="mrow">
+              <div class="poster" style="background:linear-gradient(150deg,#6f9356,#43623a)">S</div>
+              <div class="mbody">
+                <div class="mtitle">Slow Productivity</div>
+                <div class="msub">Book · Not started</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="panel">
+    <div class="s-sect">
+      <p class="slab up">Up next</p>
+      <div class="s-card now">
+        <button class="s-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+        <div class="s-body">
+          <div class="s-ct">Easy 5k run</div>
+          <div class="s-cm">Keeps the half marathon on pace</div>
+          <div class="s-meta">
+            <span class="s-mp goal g-run"><span class="em">🏃</span>Half marathon</span>
+            <span class="s-mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>1:30 PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s-sect">
+      <p class="slab">Today</p>
+      <div class="s-card done">
+        <button class="s-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+        <div class="s-body">
+          <div class="s-ct">Morning walk</div>
+          <div class="s-meta">
+            <span class="s-mp"><i style="background:#6f9356"></i>Health</span>
+            <span class="s-mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>8:00 AM</span>
+          </div>
+        </div>
+      </div>
+      <div class="s-card">
+        <button class="s-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+        <div class="s-body">
+          <div class="s-ct">Call with Sam</div>
+          <div class="s-meta">
+            <span class="s-mp"><i style="background:#4f82a8"></i>Work</span>
+            <span class="s-mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>3:00 PM</span>
+            <span class="s-mp pri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4h11l-2 4 2 4H5"/></svg>High</span>
+          </div>
+        </div>
+      </div>
+      <div class="s-card">
+        <button class="s-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+        <div class="s-body">
+          <div class="s-ct">Call mom</div>
+          <div class="s-meta">
+            <span class="s-mp"><i style="background:#c65a2c"></i>Personal</span>
+            <span class="s-mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>5:30 PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s-sect">
+      <p class="slab">This week at a glance</p>
+      <div class="s-card lead">
+        <button class="s-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+        <div class="s-body">
+          <div class="s-ct">Book the movers</div>
+          <div class="s-cm">Blocks 4 other tasks</div>
+          <div class="s-meta">
+            <span class="s-mp goal g-move"><span class="em">📦</span>Move house</span>
+            <span class="s-mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>Wed</span>
+            <span class="s-mp pri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4h11l-2 4 2 4H5"/></svg>High</span>
+          </div>
+        </div>
+      </div>
+      <div class="s-card">
+        <button class="s-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+        <div class="s-body">
+          <div class="s-ct">Long run · 10 miles</div>
+          <div class="s-cm">Keeps you on pace</div>
+          <div class="s-meta">
+            <span class="s-mp goal g-run"><span class="em">🏃</span>Half marathon</span>
+            <span class="s-mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>Sat</span>
+          </div>
+        </div>
+      </div>
+      <div class="s-card">
+        <button class="s-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+        <div class="s-body">
+          <div class="s-ct">Sketch the home screen</div>
+          <div class="s-cm">When you have an hour</div>
+          <div class="s-meta">
+            <span class="s-mp goal g-proj"><span class="em">🎨</span>Side project</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>

@@ -1,0 +1,167 @@
+<div class="yv3">
+  <style>
+    html, body { margin: 0; padding: 0; background: #0a0a0c; }
+    .yv3 { position: relative; overflow: hidden; background: #0a0a0c; color: #e8e8ea;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .yv3 *, .yv3 *::before, .yv3 *::after { box-sizing: border-box; }
+    .yv3 .glow { position: absolute; top: -220px; left: 36%; transform: translateX(-50%); width: 760px; height: 600px;
+      pointer-events: none; background: radial-gradient(closest-side, rgba(124,198,255,0.15), rgba(167,139,250,0.09) 50%, transparent 72%); filter: blur(8px); }
+
+    .yv3 .topbar { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; padding: 22px 40px; }
+    .yv3 .brand { display: flex; align-items: center; gap: 11px; font-weight: 700; font-size: 16px; }
+    .yv3 .orb { width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #cfe8ff, #7cc6ff 45%, #a78bfa); box-shadow: 0 0 14px rgba(124,198,255,0.7); }
+    .yv3 .seg { display: flex; padding: 4px; gap: 2px; background: rgba(255,255,255,0.03); border: 1px solid #22222a; border-radius: 999px; }
+    .yv3 .seg button { font: inherit; font-size: 13px; font-weight: 600; color: #8a8a96; background: none; border: none; padding: 7px 16px; border-radius: 999px; cursor: pointer; }
+    .yv3 .seg button.on { color: #0a0a0c; background: linear-gradient(135deg, #9fd4ff, #b9a6fb); font-weight: 700; }
+    .yv3 .topright { display: flex; align-items: center; gap: 16px; }
+    .yv3 .me { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 700; color: #cdd6e6; background: #17171d; border: 1px solid #2a2a33; }
+
+    .yv3 .wrap { position: relative; z-index: 1; max-width: 1120px; margin: 0 auto; padding: 36px 40px 64px; }
+    .yv3 .eyebrow { display: flex; align-items: center; gap: 10px; justify-content: center; margin-bottom: 26px; }
+    .yv3 .miniface { position: relative; width: 30px; height: 30px; }
+    .yv3 .miniface .a { position: absolute; inset: -8px; border-radius: 50%; background: radial-gradient(closest-side, rgba(124,198,255,0.4), transparent 72%); filter: blur(3px); animation: yv-aura 4.5s ease-in-out infinite; }
+    .yv3 .miniface .e { position: absolute; top: 7px; width: 5px; height: 12px; border-radius: 4px; background: linear-gradient(180deg,#d6ecff,#7cc6ff 55%,#a78bfa); box-shadow: 0 0 8px rgba(124,198,255,0.8); }
+    .yv3 .miniface .e.l { left: 8px; } .yv3 .miniface .e.r { right: 8px; }
+    .yv3 .eyebrow span { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #9a9aa6; }
+
+    .yv3 .grid { display: grid; grid-template-columns: 1.55fr 1fr; gap: 22px; align-items: start; }
+
+    /* decision card */
+    .yv3 .pick { background: linear-gradient(180deg, #16161c, #121217); border: 1px solid #2b2b34; border-radius: 26px;
+      padding: 32px; box-shadow: 0 24px 70px rgba(0,0,0,0.5); position: relative; overflow: hidden; }
+    .yv3 .pick::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #7cc6ff, #a78bfa); }
+    .yv3 .pick-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+    .yv3 .ptag { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 700; color: #bfe0ff;
+      background: rgba(124,198,255,0.1); border: 1px solid rgba(124,198,255,0.3); padding: 6px 13px; border-radius: 999px; }
+    .yv3 .ptag .d { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg,#7cc6ff,#a78bfa); box-shadow: 0 0 8px #7cc6ff; }
+    .yv3 .clock { font-size: 13px; color: #7a7a86; font-variant-numeric: tabular-nums; }
+    .yv3 .do-eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #6f6f7b; margin-bottom: 10px; }
+    .yv3 .task-title { font-size: 34px; line-height: 1.18; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 16px; }
+    .yv3 .metarow { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+    .yv3 .mchip { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: #c7c7d1;
+      background: rgba(255,255,255,0.03); border: 1px solid #2a2a33; padding: 7px 13px; border-radius: 999px; }
+    .yv3 .mchip svg { width: 15px; height: 15px; stroke: #9a9aa6; }
+    .yv3 .mchip b { color: #e8e8ea; font-weight: 700; }
+    .yv3 .mchip .you { color: #8fb6dc; font-weight: 600; }
+
+    .yv3 .reason { font-size: 16.5px; line-height: 1.6; color: #c4c4cd; margin: 0 0 22px; }
+    .yv3 .reason b { color: #e8e8ea; font-weight: 600; }
+
+    .yv3 .why { background: rgba(255,255,255,0.02); border: 1px solid #20202a; border-radius: 16px; padding: 16px 18px; margin-bottom: 26px; }
+    .yv3 .why-h { font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #7a7a86; margin-bottom: 12px; }
+    .yv3 .rrow { display: flex; align-items: flex-start; gap: 11px; padding: 6px 0; font-size: 14.5px; color: #cfcfd6; line-height: 1.45; }
+    .yv3 .rrow .dot { width: 7px; height: 7px; border-radius: 50%; margin-top: 7px; flex: none; background: linear-gradient(135deg,#7cc6ff,#a78bfa); }
+    .yv3 .rrow .pat { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #9a9aa6; border: 1px solid #2c2c35; border-radius: 999px; padding: 1px 7px; margin-left: 6px; }
+
+    .yv3 .actions { display: flex; align-items: center; gap: 12px; }
+    .yv3 .btn-go { font: inherit; font-size: 16px; font-weight: 700; color: #07111c; cursor: pointer; border: none;
+      background: linear-gradient(135deg, #9fd4ff, #b9a6fb); padding: 15px 30px; border-radius: 14px; box-shadow: 0 8px 26px rgba(124,198,255,0.3); }
+    .yv3 .btn-ghost { font: inherit; font-size: 15px; font-weight: 600; color: #c1c1cb; cursor: pointer;
+      background: none; border: 1px solid #2e2e38; padding: 14px 20px; border-radius: 14px; }
+    .yv3 .btn-ghost:hover { border-color: #3e3e4a; }
+    .yv3 .btn-text { font: inherit; font-size: 15px; font-weight: 600; color: #8a8a96; cursor: pointer; background: none; border: none; padding: 14px 8px; margin-left: auto; }
+
+    .yv3 .fallback { margin-top: 22px; display: flex; align-items: center; gap: 12px; padding: 16px 18px;
+      background: rgba(255,255,255,0.015); border: 1px dashed #2a2a33; border-radius: 16px; font-size: 14.5px; color: #9a9aa6; }
+    .yv3 .fallback b { color: #c4c4cd; font-weight: 600; }
+    .yv3 .fallback .fi { width: 30px; height: 30px; border-radius: 50%; flex: none; display: grid; place-items: center; background: rgba(255,255,255,0.04); }
+    .yv3 .fallback .fi svg { width: 16px; height: 16px; stroke: #8a8a96; }
+
+    /* timeline */
+    .yv3 .side { background: #121217; border: 1px solid #1f1f26; border-radius: 26px; padding: 24px; }
+    .yv3 .side h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #8a8a96; margin: 0 0 4px; }
+    .yv3 .side .sub { font-size: 13px; color: #6f6f7b; margin-bottom: 20px; }
+    .yv3 .tl { position: relative; height: 430px; margin-left: 46px; border-left: 1px solid #232330; }
+    .yv3 .tick { position: absolute; left: -46px; width: 40px; text-align: right; font-size: 11.5px; color: #5f5f6a; font-variant-numeric: tabular-nums; transform: translateY(-7px); }
+    .yv3 .tline { position: absolute; left: 0; right: 0; height: 1px; background: #18181f; }
+    .yv3 .free { position: absolute; left: 12px; right: 8px; border-radius: 12px; border: 1px dashed rgba(124,198,255,0.4);
+      background: rgba(124,198,255,0.06); display: flex; align-items: flex-start; padding: 10px 12px; }
+    .yv3 .free .ft { font-size: 12.5px; font-weight: 700; color: #9fd4ff; } .yv3 .free .fm { font-size: 11.5px; color: #7fa9d6; margin-top: 2px; }
+    .yv3 .ev { position: absolute; left: 12px; right: 8px; border-radius: 12px; padding: 10px 12px; }
+    .yv3 .ev.fixed { background: linear-gradient(135deg, rgba(124,198,255,0.9), rgba(167,139,250,0.9)); color: #0a0a0c; box-shadow: 0 8px 22px rgba(124,198,255,0.25); }
+    .yv3 .ev.fixed .et { font-size: 13.5px; font-weight: 700; } .yv3 .ev.fixed .em { font-size: 11.5px; opacity: 0.8; margin-top: 1px; }
+    .yv3 .ev.soft { background: rgba(255,255,255,0.04); border: 1px solid #26262e; color: #c4c4cd; }
+    .yv3 .ev.soft .et { font-size: 13px; font-weight: 600; } .yv3 .ev.soft .em { font-size: 11px; color: #7a7a86; margin-top: 1px; }
+    .yv3 .now { position: absolute; left: -4px; right: 8px; height: 0; border-top: 2px solid #ff9d6b; }
+    .yv3 .now::before { content: ""; position: absolute; left: -4px; top: -5px; width: 9px; height: 9px; border-radius: 50%; background: #ff9d6b; box-shadow: 0 0 10px rgba(255,157,107,0.7); }
+    .yv3 .now .lab { position: absolute; right: 0; top: -9px; font-size: 10.5px; font-weight: 700; color: #ff9d6b; background: #121217; padding: 0 5px; }
+
+    @keyframes yv-aura { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
+  </style>
+
+  <div class="glow"></div>
+
+  <header class="topbar">
+    <div class="brand"><span class="orb"></span> Yarvy</div>
+    <div class="topright">
+      <div class="seg"><button class="on">Chat</button><button>List</button><button>Calendar</button></div>
+      <div class="me">B</div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="eyebrow">
+      <span class="miniface"><span class="a"></span><span class="e l"></span><span class="e r"></span></span>
+      <span>You asked what to do now</span>
+    </div>
+
+    <div class="grid">
+      <!-- the one decision -->
+      <div class="pick">
+        <div class="pick-head">
+          <span class="ptag"><span class="d"></span> Yarvy's pick</span>
+          <span class="clock">1:08 PM</span>
+        </div>
+
+        <div class="do-eyebrow">Do this now</div>
+        <h2 class="task-title">Draft the Q3 update for Sam</h2>
+
+        <div class="metarow">
+          <span class="mchip"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> <b>~50 min</b> <span class="you">your usual for this</span></span>
+          <span class="mchip">Sam project</span>
+          <span class="mchip">Blocks Thursday</span>
+        </div>
+
+        <p class="reason">You are free until your <b>3:00 call</b>, and this is the last thing standing between you and seeing Sam on Thursday. Knock it out while the window is clear.</p>
+
+        <div class="why">
+          <div class="why-h">Why this one</div>
+          <div class="rrow"><span class="dot"></span><div>You have a clear 1h 50m window before your next fixed event.</div></div>
+          <div class="rrow"><span class="dot"></span><div>It is the only task blocking Thursday with Sam, which you care about.</div></div>
+          <div class="rrow"><span class="dot"></span><div>You focus best on writing in early afternoon. <span class="pat">your pattern</span></div></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn-go">Start now</button>
+          <button class="btn-ghost">Why this?</button>
+          <button class="btn-text">Not now</button>
+        </div>
+
+        <div class="fallback">
+          <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4v6h6"/><path d="M20 4l-9 9-5-2 3 8"/></svg></span>
+          <div>Not feeling heads-down work? <b>Fallback: a 15 minute walk to reset.</b> That counts too.</div>
+        </div>
+      </div>
+
+      <!-- supporting timeline -->
+      <aside class="side">
+        <h3>Your afternoon</h3>
+        <div class="sub">Why now is the right time</div>
+        <div class="tl">
+          <div class="tick" style="top:0">12 PM</div><div class="tline" style="top:0"></div>
+          <div class="tick" style="top:80px">1 PM</div><div class="tline" style="top:80px"></div>
+          <div class="tick" style="top:160px">2 PM</div><div class="tline" style="top:160px"></div>
+          <div class="tick" style="top:240px">3 PM</div><div class="tline" style="top:240px"></div>
+          <div class="tick" style="top:320px">4 PM</div><div class="tline" style="top:320px"></div>
+          <div class="tick" style="top:400px">5 PM</div><div class="tline" style="top:400px"></div>
+
+          <div class="free" style="top:92px; height:142px;"><div><div class="ft">Free window</div><div class="fm">1h 50m · enough for the draft</div></div></div>
+          <div class="now" style="top:90px;"><span class="lab">NOW</span></div>
+          <div class="ev fixed" style="top:240px; height:40px;"><div class="et">Call with Sam</div><div class="em">3:00 – 3:30</div></div>
+          <div class="ev soft" style="top:400px; height:38px;"><div class="et">Dinner with Maya</div><div class="em">5:00</div></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>

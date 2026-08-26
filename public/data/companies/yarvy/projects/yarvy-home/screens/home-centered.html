@@ -1,0 +1,201 @@
+<div class="yv1">
+  <style>
+    html, body { margin: 0; padding: 0; background: #0a0a0c; }
+    .yv1 { position: relative; overflow: hidden; background: #0a0a0c; color: #e8e8ea;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .yv1 *, .yv1 *::before, .yv1 *::after { box-sizing: border-box; }
+    .yv1 .glow-top { position: absolute; top: -260px; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 700px; pointer-events: none; z-index: 0;
+      background: radial-gradient(closest-side, rgba(124,198,255,0.16), rgba(167,139,250,0.10) 45%, transparent 72%);
+      filter: blur(8px); }
+
+    /* top bar */
+    .yv1 .topbar { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 40px; }
+    .yv1 .brand { display: flex; align-items: center; gap: 11px; font-weight: 700; font-size: 16px; letter-spacing: -0.01em; }
+    .yv1 .orb { width: 16px; height: 16px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #cfe8ff, #7cc6ff 45%, #a78bfa);
+      box-shadow: 0 0 14px rgba(124,198,255,0.7); }
+    .yv1 .topright { display: flex; align-items: center; gap: 16px; }
+    .yv1 .seg { display: flex; padding: 4px; gap: 2px; background: rgba(255,255,255,0.03);
+      border: 1px solid #22222a; border-radius: 999px; }
+    .yv1 .seg button { font: inherit; font-size: 13px; font-weight: 600; color: #8a8a96; background: none;
+      border: none; padding: 7px 16px; border-radius: 999px; cursor: pointer; }
+    .yv1 .seg button.on { color: #0a0a0c; background: linear-gradient(135deg, #9fd4ff, #b9a6fb); font-weight: 700; }
+    .yv1 .me { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+      font-size: 13px; font-weight: 700; color: #cdd6e6; background: #17171d; border: 1px solid #2a2a33; }
+
+    /* stage */
+    .yv1 .stage { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 56px 24px 8px;
+      display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+    /* face */
+    .yv1 .face { position: relative; width: 150px; height: 104px; margin-bottom: 34px; animation: yv-float 7s ease-in-out infinite; }
+    .yv1 .face .aura { position: absolute; inset: -56px; border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(124,198,255,0.28), rgba(167,139,250,0.16) 55%, transparent 75%);
+      filter: blur(10px); animation: yv-aura 4.5s ease-in-out infinite; }
+    .yv1 .eyes { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 30px; }
+    .yv1 .eye { width: 20px; height: 40px; border-radius: 12px;
+      background: linear-gradient(180deg, #d6ecff, #7cc6ff 55%, #a78bfa);
+      box-shadow: 0 0 18px rgba(124,198,255,0.8), 0 0 34px rgba(167,139,250,0.35);
+      animation: yv-blink 6s ease-in-out infinite; transform-origin: center; }
+    .yv1 .mouth { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+      width: 48px; height: 22px; border-bottom: 3px solid rgba(167,139,250,0.85);
+      border-radius: 0 0 50px 50px / 0 0 26px 26px; box-shadow: 0 6px 16px rgba(167,139,250,0.25); }
+
+    /* reply */
+    .yv1 .reply-lead { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 10px; }
+    .yv1 .reply-body { font-size: 18px; line-height: 1.6; color: #b6b6c0; max-width: 560px; margin: 0 auto; font-weight: 400; }
+
+    /* chips */
+    .yv1 .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 30px 0 18px; }
+    .yv1 .chip { font: inherit; font-size: 14px; font-weight: 600; color: #c9c9d3;
+      background: rgba(255,255,255,0.025); border: 1px solid #28282f; padding: 9px 16px; border-radius: 999px; cursor: pointer; }
+    .yv1 .chip:hover { border-color: #3a3a46; color: #e8e8ea; }
+    .yv1 .chip.lead { color: #bfe0ff; border-color: rgba(124,198,255,0.35); background: rgba(124,198,255,0.06); }
+
+    /* composer */
+    .yv1 .composer { display: flex; align-items: center; gap: 12px; width: 100%; max-width: 620px;
+      background: #131318; border: 1px solid #2a2a33; border-radius: 999px; padding: 8px 8px 8px 22px; margin-top: 8px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+    .yv1 .composer input { flex: 1; background: none; border: none; outline: none; color: #e8e8ea;
+      font: inherit; font-size: 16px; padding: 12px 0; }
+    .yv1 .composer input::placeholder { color: #6c6c78; }
+    .yv1 .send { width: 42px; height: 42px; flex: none; border: none; border-radius: 50%; cursor: pointer;
+      background: linear-gradient(135deg, #9fd4ff, #b9a6fb); display: grid; place-items: center;
+      box-shadow: 0 4px 16px rgba(124,198,255,0.35); }
+    .yv1 .send svg { width: 19px; height: 19px; stroke: #0a0a0c; }
+    .yv1 .hint { font-size: 12.5px; color: #5f5f6a; margin-top: 14px; }
+
+    /* panels */
+    .yv1 .panels { position: relative; z-index: 1; max-width: 1080px; margin: 64px auto 0; padding: 0 40px 56px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .yv1 .panel { background: rgba(21,21,26,0.6); border: 1px solid #1f1f26; border-radius: 18px; padding: 20px; }
+    .yv1 .panel h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.02em; color: #9a9aa6; margin: 0 0 16px;
+      display: flex; align-items: center; justify-content: space-between; }
+    .yv1 .panel h3 .more { color: #5f5f6a; font-weight: 600; font-size: 12px; }
+    .yv1 .grp { font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #6a6a76; margin: 0 0 9px; }
+    .yv1 .grp:not(:first-of-type) { margin-top: 18px; }
+    .yv1 .task { display: flex; align-items: flex-start; gap: 11px; padding: 8px 0; }
+    .yv1 .task.over { padding-left: 10px; border-left: 2px solid #ff6b6b; margin-left: -12px; padding-left: 10px; }
+    .yv1 .ring { width: 17px; height: 17px; flex: none; border-radius: 50%; border: 1.6px solid #3c3c47; margin-top: 1px; }
+    .yv1 .ring.r-over { border-color: #ff6b6b; }
+    .yv1 .t-main { flex: 1; min-width: 0; }
+    .yv1 .t-text { font-size: 14.5px; color: #d8d8de; line-height: 1.35; }
+    .yv1 .t-meta { font-size: 12px; color: #6f6f7b; margin-top: 2px; }
+    .yv1 .t-meta.due-over { color: #ff8585; }
+    .yv1 .gbadge { display: inline-block; font-size: 10px; font-weight: 700; color: #bfe0ff; vertical-align: middle;
+      background: rgba(124,198,255,0.1); border: 1px solid rgba(124,198,255,0.25); padding: 1px 7px; border-radius: 999px; margin-left: 6px; }
+
+    /* goals */
+    .yv1 .goal { padding: 10px 0; }
+    .yv1 .goal + .goal { border-top: 1px solid #1c1c23; }
+    .yv1 .goal-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+    .yv1 .goal-name { font-size: 14.5px; color: #d8d8de; font-weight: 600; }
+    .yv1 .goal-cad { font-size: 12px; color: #8a8a96; }
+    .yv1 .bar { height: 5px; border-radius: 999px; background: #232330; margin-top: 9px; overflow: hidden; }
+    .yv1 .bar span { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #7cc6ff, #a78bfa); }
+    .yv1 .pace { font-size: 11.5px; color: #6f6f7b; margin-top: 6px; }
+
+    /* facts */
+    .yv1 .fact { font-size: 14px; color: #cfcfd6; line-height: 1.5; padding: 9px 0; border-top: 1px solid #1c1c23; }
+    .yv1 .fact:first-of-type { border-top: none; }
+    .yv1 .tag-guess { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      color: #9a9aa6; border: 1px solid #2c2c35; border-radius: 999px; padding: 1px 7px; margin-left: 6px; }
+
+    @keyframes yv-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+    @keyframes yv-aura { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
+    @keyframes yv-blink { 0%,92%,100% { transform: scaleY(1); } 95% { transform: scaleY(0.08); } }
+  </style>
+
+  <div class="glow-top"></div>
+
+  <header class="topbar">
+    <div class="brand"><span class="orb"></span> Yarvy</div>
+    <div class="topright">
+      <div class="seg">
+        <button class="on">Chat</button>
+        <button>List</button>
+        <button>Calendar</button>
+      </div>
+      <div class="me">B</div>
+    </div>
+  </header>
+
+  <main class="stage">
+    <div class="face">
+      <div class="aura"></div>
+      <div class="eyes"><span class="eye"></span><span class="eye"></span></div>
+      <div class="mouth"></div>
+    </div>
+
+    <p class="reply-lead">Morning, Brandon.</p>
+    <p class="reply-body">Your afternoon is wide open after the 3:00 with Sam. Want to drop your run in there, or call your mom first?</p>
+
+    <div class="chips">
+      <button class="chip lead">What should I do now?</button>
+      <button class="chip">See today</button>
+      <button class="chip">Add a task</button>
+      <button class="chip">Show my week</button>
+    </div>
+
+    <div class="composer">
+      <input placeholder="Talk to Yarvy…" />
+      <button class="send" aria-label="Send">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+      </button>
+    </div>
+    <p class="hint">Enter to send · Shift + Enter for a new line</p>
+  </main>
+
+  <section class="panels">
+    <div class="panel">
+      <h3>Today &amp; soon <span class="more">7 open</span></h3>
+      <p class="grp">Marathon prep</p>
+      <div class="task">
+        <span class="ring"></span>
+        <div class="t-main"><div class="t-text">Easy 5k run <span class="gbadge">goal</span></div><div class="t-meta">Today</div></div>
+      </div>
+      <div class="task over">
+        <span class="ring r-over"></span>
+        <div class="t-main"><div class="t-text">Pick up new insoles</div><div class="t-meta due-over">Overdue · yesterday</div></div>
+      </div>
+      <p class="grp">Mom &amp; friends</p>
+      <div class="task">
+        <span class="ring"></span>
+        <div class="t-main"><div class="t-text">Call mom</div><div class="t-meta">Today</div></div>
+      </div>
+      <div class="task">
+        <span class="ring"></span>
+        <div class="t-main"><div class="t-text">Text Sam to confirm Thursday</div><div class="t-meta">Today</div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Goals</h3>
+      <div class="goal">
+        <div class="goal-top"><span class="goal-name">Half marathon</span><span class="goal-cad">3 runs / week</span></div>
+        <div class="bar"><span style="width:33%"></span></div>
+        <div class="pace">1 of 3 done this week · race in October</div>
+      </div>
+      <div class="goal">
+        <div class="goal-top"><span class="goal-name">Read more</span><span class="goal-cad">1 book / month</span></div>
+        <div class="bar"><span style="width:60%"></span></div>
+        <div class="pace">On pace</div>
+      </div>
+      <div class="goal">
+        <div class="goal-top"><span class="goal-name">See friends</span><span class="goal-cad">weekly</span></div>
+        <div class="bar"><span style="width:80%"></span></div>
+        <div class="pace">Sam this week keeps it going</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>What Yarvy knows <span class="more">+ 12 more</span></h3>
+      <div class="fact">You run best first thing in the morning.<span class="tag-guess">guessed</span></div>
+      <div class="fact">Your sister Maya lives two hours away.</div>
+      <div class="fact">You would rather be told the truth than be comforted.</div>
+      <div class="fact">Evenings are usually too full for hard tasks.<span class="tag-guess">guessed</span></div>
+    </div>
+  </section>
+</div>

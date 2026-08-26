@@ -1,0 +1,260 @@
+<div class="yvc">
+  <style>
+    .yvc { position: relative; background: #faf7f0; color: #2b2620; height: 1000px; display: flex; overflow: hidden;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    .yvc *, .yvc *::before, .yvc *::after { box-sizing: border-box; }
+
+    /* nav rail */
+    .yvc .rail { width: 78px; flex: none; background: #f3eee4; border-right: 1px solid #ece3d4; display: flex; flex-direction: column; align-items: center; padding: 22px 0; gap: 6px; }
+    .yvc .nav-btn { width: 46px; height: 46px; border-radius: 14px; border: none; background: none; cursor: pointer; display: grid; place-items: center; color: #9d917e; }
+    .yvc .nav-btn svg { width: 22px; height: 22px; }
+    .yvc .nav-btn.on { color: #a8502b; background: #f8ecdf; box-shadow: inset 0 0 0 1px #eed9c8; }
+    .yvc .rail .spacer { margin-top: auto; }
+    .yvc .me { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; margin-top: 8px; font-size: 13px; font-weight: 700; color: #463f35; background: #efe7d8; border: 1px solid #e0d6c6; }
+
+    .yvc .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .yvc .body { flex: 1; min-height: 0; display: flex; }
+    .yvc .center { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    .yvc .scroll { flex: 1; min-height: 0; overflow: hidden; padding: 60px 32px 14px; display: flex; flex-direction: column; align-items: center; }
+    .yvc .wrap { width: 100%; max-width: 540px; }
+
+    .yvc .face { width: 76px; height: 76px; margin: 0 auto; border-radius: 24px; background: #fdf6ec; border: 1px solid #f3e3cd; display: grid; place-items: center; box-shadow: 0 10px 26px rgba(120,88,48,0.12); animation: yvc-float 7s ease-in-out infinite; }
+    .yvc .eyes { display: flex; gap: 14px; }
+    .yvc .eye { width: 15px; height: 34px; border-radius: 8px; background: linear-gradient(160deg, #f2ac6b, #d9764a 55%, #b8583a); background-size: 200% 200%; animation: yvc-drift 14s ease-in-out infinite alternate; }
+    .yvc .eye:nth-child(2) { animation-delay: -3s; }
+
+    .yvc .date { text-align: center; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #b3a892; margin-top: 24px; }
+    .yvc .hello { text-align: center; font-size: 38px; font-weight: 800; letter-spacing: -0.025em; margin: 8px 0 0; }
+    .yvc .hello span { color: #a8502b; }
+
+    /* conversation */
+    .yvc .thread { margin-top: 34px; display: flex; flex-direction: column; gap: 12px; }
+    .yvc .bub { max-width: 82%; padding: 13px 16px; border-radius: 18px; font-size: 15px; line-height: 1.5; }
+    .yvc .bub.bot { align-self: flex-start; background: #fff; border: 1px solid #efe7d8; border-top-left-radius: 6px; color: #4a4339; box-shadow: 0 5px 16px rgba(120,88,48,0.05); }
+    .yvc .bub.you { align-self: flex-end; background: #fbe7d6; border: 1px solid #f4dcc6; border-top-right-radius: 6px; color: #97492a; }
+    .yvc .bub b { color: #a8502b; font-weight: 700; }
+    .yvc .acts { display: flex; gap: 8px; margin-top: 13px; }
+    .yvc .acts button { font: inherit; font-size: 13px; font-weight: 700; border-radius: 11px; padding: 9px 15px; cursor: pointer; }
+    .yvc .acts .yes { color: #fff7ef; background: linear-gradient(140deg, #e89a5c, #c2663c); border: none; }
+    .yvc .acts .no { color: #a8502b; background: #f8ecdf; border: 1px solid #eed9c8; }
+
+    /* dock */
+    .yvc .dock { flex: none; padding: 14px 32px 22px; }
+    .yvc .dockwrap { max-width: 540px; margin: 0 auto; }
+    .yvc .chips { display: flex; gap: 9px; margin-bottom: 12px; flex-wrap: wrap; justify-content: center; }
+    .yvc .chip { font: inherit; font-size: 13px; font-weight: 600; color: #463f35; background: #fff; border: 1px solid #ece3d3; padding: 8px 15px; border-radius: 999px; cursor: pointer; }
+    .yvc .chip.lead { color: #a8502b; border-color: #eed9c8; background: #f8ecdf; }
+    .yvc .composer { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid #ece2d2; border-radius: 999px; padding: 7px 7px 7px 22px; box-shadow: 0 12px 30px rgba(120,88,48,0.09); }
+    .yvc .composer input { flex: 1; background: none; border: none; outline: none; color: #2b2620; font: inherit; font-size: 16px; padding: 11px 0; }
+    .yvc .composer input::placeholder { color: #a99d8b; }
+    .yvc .send { width: 42px; height: 42px; flex: none; border: none; border-radius: 50%; cursor: pointer; background: linear-gradient(140deg, #e89a5c, #c2663c); display: grid; place-items: center; }
+    .yvc .send svg { width: 18px; height: 18px; stroke: #fffaf4; }
+
+    /* right: prioritized sidebar */
+    .yvc .panel { width: 372px; flex: none; background: #f5f0e6; border-left: 1px solid #ece3d4; padding: 30px 24px; overflow: hidden; display: flex; flex-direction: column; }
+    .yvc .ptop { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+    .yvc .plab { display: flex; align-items: center; gap: 7px; font-size: 11.5px; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: #a8502b; }
+    .yvc .plab svg { width: 14px; height: 14px; }
+    .yvc .plive { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: #8a8073; }
+    .yvc .plive i { width: 7px; height: 7px; border-radius: 50%; background: #c2663c; box-shadow: 0 0 8px rgba(194,102,60,0.55); animation: yvc-p 2s ease-in-out infinite; }
+    .yvc .slab { font-size: 11px; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: #a99c87; margin: 0 0 12px; }
+    .yvc .slab.up { color: #a8502b; }
+    .yvc .sect { margin-bottom: 26px; }
+    .yvc .sect:last-child { margin-bottom: 0; }
+
+    /* up next hero card */
+    .yvc .upnext { background: linear-gradient(135deg, #fdf3e6, #fbeede); border: 1px solid #f3e3cd; border-radius: 18px; padding: 16px; box-shadow: 0 8px 22px rgba(120,88,48,0.08); }
+    .yvc .upnext .row { display: flex; align-items: center; gap: 13px; }
+    .yvc .upnext .ico { width: 48px; height: 48px; flex: none; border-radius: 15px; background: #fff; display: grid; place-items: center; font-size: 24px; box-shadow: 0 5px 14px rgba(120,88,48,0.1); }
+    .yvc .upnext .nm { font-size: 17px; font-weight: 700; }
+    .yvc .upnext .mt { font-size: 12.5px; color: #8a8073; margin-top: 3px; }
+    .yvc .upnext .do { margin-top: 14px; width: 100%; font: inherit; font-size: 14px; font-weight: 700; color: #fff7ef; background: linear-gradient(140deg, #e89a5c, #c2663c); border: none; padding: 12px; border-radius: 13px; cursor: pointer; }
+
+    /* consistent panel cards */
+    .yvc .card { display: flex; align-items: center; gap: 11px; background: #fff; border: 1px solid #efe7d8; border-radius: 14px; padding: 11px 13px; box-shadow: 0 4px 14px rgba(120,88,48,0.05); margin-bottom: 8px; }
+    .yvc .card:last-child { margin-bottom: 0; }
+    .yvc .card .box { width: 19px; height: 19px; flex: none; border-radius: 50%; display: grid; place-items: center; background: #c2663c; box-shadow: 0 0 0 4px #f8e6da; }
+    .yvc .card .box.dot { font-size: 0; }
+    .yvc .card .box svg { width: 17px; height: 17px; }
+    .yvc .card .ct { font-size: 14.5px; font-weight: 700; }
+    .yvc .card .cm { font-size: 12px; color: #8a8073; margin-top: 2px; }
+    .yvc .card .tag { margin-left: auto; flex: none; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+    .yvc .card.now { background: linear-gradient(135deg, #fdf3e6, #fbeede); border-color: #f3e3cd; }
+    .yvc .card.now .box { background: #c2663c; box-shadow: 0 0 0 4px #fbe7d6; }
+    .yvc .card.done { opacity: 0.7; }
+    .yvc .card.done .ct { text-decoration: line-through; text-decoration-color: #c3b9a6; }
+    .yvc .card.lead .box { color: #fffaf4; background: linear-gradient(140deg, #e89a5c, #c2663c); }
+
+    /* round select / checkbox tasks */
+    .yvc .check { width: 19px; height: 19px; flex: none; border-radius: 50%; border: 1.5px solid #d6c9b3; background: #fff; cursor: pointer; display: grid; place-items: center; padding: 0; transition: background .15s, border-color .15s; }
+    .yvc .check svg { width: 11px; height: 11px; stroke: #fffaf4; opacity: 0; }
+    .yvc .card.done .check { background: #c2663c; border-color: #c2663c; }
+    .yvc .card.done .check svg { opacity: 1; }
+    .yvc .card.lead .check { border-color: #e3a878; }
+    .yvc .card { align-items: flex-start; }
+    .yvc .card .check { margin-top: 1px; }
+    .yvc .card .body-txt { min-width: 0; flex: 1; }
+    .yvc .meta { display: flex; align-items: center; gap: 6px; margin-top: 7px; flex-wrap: wrap; }
+    .yvc .mp { display: inline-flex; align-items: center; gap: 4px; font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: 999px; white-space: nowrap; color: #8a8073; background: #f1eadd; }
+    .yvc .mp svg { width: 11px; height: 11px; }
+    .yvc .mp i { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+    .yvc .mp.due { color: #a8502b; background: #f8ecdf; }
+    .yvc .mp.pri { color: #c2663c; background: #f8e6da; }
+    .yvc .mp.goal .em { font-size: 11px; line-height: 1; }
+    .yvc .mp.g-move { color: #5f7d49; background: #eef3e7; }
+    .yvc .mp.g-run { color: #b4542f; background: #f9e9dd; }
+    .yvc .mp.g-proj { color: #46708f; background: #e7eef4; }
+
+    .yvc .tag.move { color: #6f9356; background: #e9f0e2; }
+    .yvc .tag.mar { color: #c2663c; background: #f8e6da; }
+    .yvc .tag.proj { color: #4f82a8; background: #e0eaf2; }
+    .yvc .tag.dur { color: #a8502b; background: #f8ecdf; }
+
+    @keyframes yvc-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @keyframes yvc-drift { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
+    @keyframes yvc-p { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  </style>
+
+  <nav class="rail">
+    <button class="nav-btn on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M5.5 10v9.5h13V10"/></svg></button>
+    <button class="nav-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg></button>
+    <button class="nav-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg></button>
+    <button class="nav-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg></button>
+    <div class="spacer"></div>
+    <button class="nav-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5v14M15 5v14"/></svg></button>
+    <div class="me">B</div>
+  </nav>
+
+  <section class="main">
+    <div class="body">
+      <div class="center">
+        <div class="scroll">
+          <div class="wrap">
+            <div class="face"><div class="eyes"><span class="eye"></span><span class="eye"></span></div></div>
+            <div class="date">Tuesday, June 17</div>
+            <h1 class="hello">Good afternoon, <span>Brandon</span></h1>
+
+            <div class="thread">
+              <div class="bub bot">You've got a clear <b>90-minute window</b> before your 3:00. Perfect for your easy run, the rest can wait.</div>
+              <div class="bub you">Good call. What should I tackle first after?</div>
+              <div class="bub bot">
+                <b>Book the movers</b> next. It's the one thing blocking 4 other tasks. Want me to pull quotes from three companies?
+                <div class="acts">
+                  <button class="yes">Get quotes</button>
+                  <button class="no">Later</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dock">
+          <div class="dockwrap">
+            <div class="chips">
+              <button class="chip lead">Slot the run at 1:30</button>
+              <button class="chip">What's overdue?</button>
+              <button class="chip">Plan my evening</button>
+            </div>
+            <div class="composer">
+              <input placeholder="Talk to Yarvy…" />
+              <button class="send"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <div class="ptop">
+          <span class="plab"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.3L21 9l-5 4.2L17.6 20 12 16.4 6.4 20 8 13.2 3 9l6.6-.7z"/></svg> Prioritized for you</span>
+          <span class="plive"><i></i> live</span>
+        </div>
+
+        <div class="sect">
+          <p class="slab up">Up next</p>
+          <div class="upnext">
+            <div class="row">
+              <div class="ico">🏃</div>
+              <div>
+                <div class="nm">Easy 5k run</div>
+                <div class="mt">Keeps the half marathon on pace</div>
+              </div>
+            </div>
+            <button class="do">Start now</button>
+          </div>
+        </div>
+
+        <div class="sect">
+          <p class="slab">Today</p>
+          <div class="card done">
+            <button class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+            <div class="body-txt">
+              <div class="ct">Morning walk</div>
+              <div class="meta">
+                <span class="mp"><i style="background:#6f9356"></i>Health</span>
+                <span class="mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>8:00 AM</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <button class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+            <div class="body-txt">
+              <div class="ct">Call with Sam</div>
+              <div class="meta">
+                <span class="mp"><i style="background:#4f82a8"></i>Work</span>
+                <span class="mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>3:00 PM</span>
+                <span class="mp pri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4h11l-2 4 2 4H5"/></svg>High</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <button class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+            <div class="body-txt">
+              <div class="ct">Call mom</div>
+              <div class="meta">
+                <span class="mp"><i style="background:#a8502b"></i>Personal</span>
+                <span class="mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>5:30 PM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sect">
+          <p class="slab">This week at a glance</p>
+          <div class="card lead">
+            <button class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+            <div class="body-txt">
+              <div class="ct">Book the movers</div>
+              <div class="cm">Blocks 4 other tasks</div>
+              <div class="meta">
+                <span class="mp goal g-move"><span class="em">📦</span>Move house</span>
+                <span class="mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>Wed</span>
+                <span class="mp pri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4h11l-2 4 2 4H5"/></svg>High</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <button class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+            <div class="body-txt">
+              <div class="ct">Long run · 10 miles</div>
+              <div class="cm">Keeps you on pace</div>
+              <div class="meta">
+                <span class="mp goal g-run"><span class="em">🏃</span>Half marathon</span>
+                <span class="mp due"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>Sat</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <button class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></button>
+            <div class="body-txt">
+              <div class="ct">Sketch the home screen</div>
+              <div class="cm">When you have an hour</div>
+              <div class="meta">
+                <span class="mp goal g-proj"><span class="em">🎨</span>Side project</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>
