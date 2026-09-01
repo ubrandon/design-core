@@ -3,29 +3,33 @@
 <link rel="stylesheet" href="../../../design-system/company.css" />
 <link rel="stylesheet" href="../pp.css" />
 
-<div class="pp s3 s3-1n s3-1sh" style="background: #ffffff;">
-  <div class="hero-banner">
+<div class="pp s3 s3-1o s3-3v" style="background: #ffffff;">
+  <div class="hero-banner photo" style="background-image:url('https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=70');">
     <div class="status"><span>9:41</span><span class="r"><i class="ph-fill ph-cell-signal-full"></i><i class="ph-fill ph-wifi-high"></i><i class="ph-fill ph-battery-full"></i></span></div>
     <div class="ts-toolbar">
       <span class="icon-btn"><i class="ph ph-x"></i></span>
       <span class="ttl">New plan</span>
       <span class="skip hide">Skip</span>
     </div>
-    <span class="hb-btn"><i class="ph ph-image"></i>Add banner</span>
+    <div class="hb-actions">
+      <span class="bh-btn"><i class="ph ph-image"></i>Change</span>
+      <span class="bh-btn icon-only"><i class="ph ph-trash"></i></span>
+    </div>
   </div>
 
   <div class="content">
     <div class="name-wrap2 over-banner">
-      <div class="name-input empty no-lead">
-        What are you planning?
+      <div class="name-input">
+        <span class="lead emoji">🥾</span>
+        Weekend hike
       </div>
     </div>
 
     <div class="tags">
-      <span class="chip"><em>🏃</em>Running <i class="ph ph-plus"></i></span>
-      <span class="chip"><em>☕</em>Coffee <i class="ph ph-plus"></i></span>
-      <span class="chip"><em>🥾</em>Hiking <i class="ph ph-plus"></i></span>
-      <span class="chip"><em>🍕</em>Pizza <i class="ph ph-plus"></i></span>
+      <span class="chip sel"><em>🥾</em>Hiking <i class="ph ph-x"></i></span>
+      <span class="chip"><em>🌲</em>Outdoors <i class="ph ph-plus"></i></span>
+      <span class="chip"><em>🏔️</em>Trails <i class="ph ph-plus"></i></span>
+      <span class="chip"><em>📸</em>Photography <i class="ph ph-plus"></i></span>
       <span class="chip add">Add tags <i class="ph ph-plus"></i></span>
     </div>
 
@@ -59,11 +63,12 @@
       <span class="chip custom"><i class="ph ph-plus"></i>Custom</span>
     </div>
 
-    <div class="nf-label" style="margin-top:20px;">Settings</div>
-    <div class="set-list">
+
+    <div class="nf-label" style="margin-top:20px;">Privacy</div>
+    <div class="set-list join-row">
       <div class="set-item">
         <i class="ph ph-lock"></i>
-        <div class="st"><b>Invite settings</b><span>Private, link sharing off</span></div>
+        <div class="st"><b>Who can join</b><span class="join-sub">Invite only. Guests can invite. Link on</span></div>
         <i class="ph ph-caret-right end"></i>
       </div>
     </div>
@@ -77,45 +82,92 @@
 
   <div class="scrim"></div>
   <div class="sheet vs-sheet">
-    <div class="sh-tb"><h2>Invite settings</h2><span class="icon-btn"><i class="ph ph-x"></i></span></div>
-    <div class="sh-sec">Who can see it?</div>
+    <div class="sh-tb"><h2>Who can join</h2><span class="icon-btn"><i class="ph ph-x"></i></span></div>
     <div class="vs-vis">
       <div class="vis-seg" data-seg>
-        <span class="sg sel" data-k="private"><i class="ph ph-lock"></i>Private</span>
+        <span class="sg sel" data-k="invite"><i class="ph ph-lock"></i>Invite only</span>
         <span class="sg" data-k="friends"><i class="ph ph-users"></i>Friends</span>
-        <span class="sg" data-k="public"><i class="ph ph-eye"></i>Public</span>
+        <span class="sg" data-k="anyone"><i class="ph ph-globe"></i>Anyone</span>
       </div>
-      <div class="vis-sub"><span class="vs-txt">Only invited people can find and join</span></div>
+      <div class="vs-seg-note"><span class="vs-txt">Only people you invite can join</span></div>
     </div>
-    <div class="sh-sec">Who can invite?</div>
+    <div class="vs-guests">
+    <div class="sh-sec">Guests</div>
     <div class="vs-list">
-      <div class="vs-row"><i class="ph ph-user-plus"></i><div class="vt"><b>Guests can invite</b><span>People you invite can bring friends.</span></div><span class="toggle on"></span></div>
-      <div class="vs-row"><i class="ph ph-link"></i><div class="vt"><b>Anyone with link</b><span>Guests can share a link to join.</span></div><span class="toggle"></span></div>
+      <div class="vs-row"><i class="ph ph-user-plus"></i><div class="vt"><b>Guests can invite</b><span>Guests can invite others and share the plan link.</span></div><span class="toggle on" data-t="guests"></span></div>
+      <div class="vs-row vs-link"><i class="ph ph-link"></i><div class="vt"><b>Plan link access</b><span>Anyone with the link can view and join.</span></div><span class="toggle on" data-t="link"></span></div>
     </div>
-    <div class="sh-sec">Joining</div>
-    <div class="vs-list">
-      <div class="vs-row"><i class="ph ph-check-circle"></i><div class="vt"><b>Approval required</b><span>You confirm each request to join.</span></div><span class="toggle on"></span></div>
     </div>
     <div class="sh-foot"><span class="btn-grad">Done</span></div>
   </div>
 </div>
 
 <style>
-  .s3-1n .idea-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .s3-1n .idea { position: relative; height: 112px; border-radius: 20px; padding: 14px; display: flex; flex-direction: column; justify-content: flex-end; cursor: pointer; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-  .s3-1n .idea em { position: absolute; top: 12px; left: 14px; font-style: normal; font-size: 30px; line-height: 1; }
-  .s3-1n .idea b { font-size: 16px; font-weight: 700; color: #1a2332; line-height: 1.15; }
-  .s3-1n .idea span { font-size: 12px; font-weight: 600; color: #5c6b7d; margin-top: 3px; }
-  .s3-1n .idea.sel { box-shadow: inset 0 0 0 2.5px #3b82f6, 0 2px 6px rgba(0,0,0,0.05); }
-  .s3-1n .idea.sel::after { content: ""; position: absolute; top: 12px; right: 12px; width: 22px; height: 22px; border-radius: 50%; background: #3b82f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center / 12px no-repeat; }
-  .s3-1n .g1 { background: linear-gradient(145deg, #dff5ee, #c9ecf5); }
-  .s3-1n .g2 { background: linear-gradient(145deg, #fde9c8, #fbd5d0); }
-  .s3-1n .g3 { background: linear-gradient(145deg, #f3e8dc, #eadbcd); }
-  .s3-1n .g4 { background: linear-gradient(145deg, #e6e3fb, #d9e6fc); }
-  .s3-1n .g5 { background: linear-gradient(145deg, #fde3d5, #fbd8dc); }
-  .s3-1n .g6 { background: linear-gradient(145deg, #e0f2f9, #dbe6fb); }
-  .s3-1n .g7 { background: linear-gradient(145deg, #eaf7d3, #d8f0dc); }
-  .s3-1n .g8 { background: linear-gradient(145deg, #fbe4f0, #ecdcf7); }
+  .s3-3v .join-row { margin-bottom: 12px; }
+  .s3-3v .join-row .set-item > i:first-child { color: #234e8a; }
+  .s3-3v .hide { display: none !important; }
+  .s3-3v .vs-sheet { border-radius: 24px 24px 0 0; padding-bottom: 28px; }
+  .s3-3v .vs-sheet .sh-tb { height: 60px; padding: 4px 8px 0 20px; }
+  .s3-3v .vs-sheet .sh-tb h2 { font-size: 22px; }
+  .s3-3v .vs-sheet .sh-sec { padding: 22px 20px 8px; font-size: 13px; letter-spacing: 0.06em; }
+  .s3-3v .vs-vis { margin: 0 16px; }
+  .s3-3v .vs-seg-note { margin: 10px 6px 0; font-size: 14px; color: #5c6b7d; line-height: 1.35; }
+  .s3-3v .vs-list { margin: 0 16px; border-radius: 18px; background: #f1f4f7; overflow: hidden; }
+  .s3-3v .join-row .set-item + .set-item { box-shadow: inset 0 1px 0 rgba(16,23,36,0.08); }
+  .s3-3v .vs-row { display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 10px 12px; cursor: pointer; }
+  .s3-3v .vs-row > i { font-size: 22px; color: #5c6b7d; width: 24px; text-align: center; flex-shrink: 0; }
+  .s3-3v .vs-row .vt { flex: 1; min-width: 0; }
+  .s3-3v .vs-row .vt b { display: block; font-size: 16px; font-weight: 700; color: #1a2332; line-height: 1.25; }
+  .s3-3v .vs-row .vt span { display: block; font-size: 13px; color: #5c6b7d; margin-top: 2px; line-height: 1.3; }
+  .s3-3v .vs-row .toggle { flex-shrink: 0; width: 46px; height: 28px; }
+  .s3-3v .vs-row .toggle::after { width: 24px; height: 24px; }
+  .s3-3v .vs-row .toggle.on::after { left: 20px; }
+  .s3-3v .vs-sheet .sh-foot { padding: 20px 16px 0; }
+</style>
+<script>
+(function () {
+  var root = document.querySelector('.s3-3v'); if (!root) return;
+  var subs = { invite: 'Only people you invite can join', friends: 'All your friends can find and join', anyone: 'Anyone can find and join this plan' };
+  var rowSubs = { invite: 'Invite only', friends: 'Friends', anyone: 'Anyone' };
+  var icons = { invite: 'ph-lock', friends: 'ph-users', anyone: 'ph-globe' };
+  root.querySelectorAll('.vs-row').forEach(function (r) { r.addEventListener('click', function () {
+    var t = r.querySelector('.toggle'), on = !t.classList.contains('on'); t.classList.toggle('on', on);
+    if (t.getAttribute('data-t') === 'guests') { var l = root.querySelector('.vs-link'); l.classList.toggle('hide', !on); l.querySelector('.toggle').classList.toggle('on', on); }
+    syncRow();
+  }); });
+  function syncRow() {
+    var k = (root.querySelector('.vis-seg .sg.sel') || {}).getAttribute ? root.querySelector('.vis-seg .sg.sel').getAttribute('data-k') : 'invite';
+    var guests = root.querySelector('[data-t=guests]').classList.contains('on'), link = root.querySelector('[data-t=link]').classList.contains('on');
+    var bits = [rowSubs[k]]; if (k !== 'anyone') { if (guests) bits.push('Guests can invite'); if (link) bits.push('Link on'); }
+    root.querySelector('.join-sub').textContent = k === 'anyone' ? 'Anyone can join' : bits.join('. ');
+  }
+  root.querySelectorAll('.vis-seg .sg').forEach(function (g) { g.addEventListener('click', function () {
+    var k = g.getAttribute('data-k');
+    root.querySelectorAll('.vis-seg .sg').forEach(function (x) { x.classList.remove('sel'); }); g.classList.add('sel');
+    root.querySelector('.vs-txt').textContent = subs[k];
+    root.querySelector('.vs-guests').classList.toggle('hide', k === 'anyone');
+    syncRow();
+    root.querySelector('.join-row .set-item > i').className = 'ph ' + icons[k];
+  }); });
+})();
+</script>
+
+<style>
+  .s3-1o .idea-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .s3-1o .idea { position: relative; height: 112px; border-radius: 20px; padding: 14px; display: flex; flex-direction: column; justify-content: flex-end; cursor: pointer; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .s3-1o .idea em { position: absolute; top: 12px; left: 14px; font-style: normal; font-size: 30px; line-height: 1; }
+  .s3-1o .idea b { font-size: 16px; font-weight: 700; color: #1a2332; line-height: 1.15; }
+  .s3-1o .idea span { font-size: 12px; font-weight: 600; color: #5c6b7d; margin-top: 3px; }
+  .s3-1o .idea.sel { box-shadow: inset 0 0 0 2.5px #3b82f6, 0 2px 6px rgba(0,0,0,0.05); }
+  .s3-1o .idea.sel::after { content: ""; position: absolute; top: 12px; right: 12px; width: 22px; height: 22px; border-radius: 50%; background: #3b82f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center / 12px no-repeat; }
+  .s3-1o .g1 { background: linear-gradient(145deg, #dff5ee, #c9ecf5); }
+  .s3-1o .g2 { background: linear-gradient(145deg, #fde9c8, #fbd5d0); }
+  .s3-1o .g3 { background: linear-gradient(145deg, #f3e8dc, #eadbcd); }
+  .s3-1o .g4 { background: linear-gradient(145deg, #e6e3fb, #d9e6fc); }
+  .s3-1o .g5 { background: linear-gradient(145deg, #fde3d5, #fbd8dc); }
+  .s3-1o .g6 { background: linear-gradient(145deg, #e0f2f9, #dbe6fb); }
+  .s3-1o .g7 { background: linear-gradient(145deg, #eaf7d3, #d8f0dc); }
+  .s3-1o .g8 { background: linear-gradient(145deg, #fbe4f0, #ecdcf7); }
   .pp.s3 .two-btns { display: flex; gap: 8px; }
   .pp.s3 .two-btns .btn-muted, .pp.s3 .two-btns .btn-grad { flex: 1; width: auto; font-size: 17px; padding: 0 12px; }
   .pp.s3 .two-btns .btn-muted i { font-size: 20px; }
@@ -123,7 +175,7 @@
 
 <script>
 (function () {
-  var root = document.querySelector('.s3-1n'); if (!root) return;
+  var root = document.querySelector('.s3-1o'); if (!root) return;
   var input = root.querySelector('.name-input'), cta = root.querySelector('.btn-grad.cta');
   function setLead(em) {
     var lead = input.querySelector('.lead');
@@ -184,36 +236,8 @@
   .pp.s3 .else-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
 </style>
 <style>
-  .s3-1n .tags .chip.sel i { color: #234e8a; }
+  .s3-1o .tags .chip.sel i { color: #234e8a; }
 </style>
-<style>
-  .s3-1sh .vs-sheet { border-radius: 24px 24px 0 0; padding-bottom: 28px; }
-  .s3-1sh .vs-sheet .sh-tb { height: 60px; padding: 4px 8px 0 20px; }
-  .s3-1sh .vs-sheet .sh-tb h2 { font-size: 22px; }
-  .s3-1sh .vs-sheet .sh-sec { padding: 12px 20px 8px; font-size: 13px; letter-spacing: 0.06em; }
-  .s3-1sh .vs-vis { margin: 0 16px; }
-  .s3-1sh .vs-vis + .sh-sec { padding-top: 22px; }
-  .s3-1sh .vs-list { margin: 0 16px; border-radius: 18px; background: #f1f4f7; overflow: hidden; }
-  .s3-1sh .vs-list + .sh-sec { padding-top: 22px; }
-  .s3-1sh .vs-row { display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 10px 12px; cursor: pointer; }
-  .s3-1sh .vs-row + .vs-row { box-shadow: inset 0 1px 0 rgba(16,23,36,0.08); }
-  .s3-1sh .vs-row > i { font-size: 22px; color: #5c6b7d; width: 24px; text-align: center; flex-shrink: 0; }
-  .s3-1sh .vs-row .vt { flex: 1; min-width: 0; }
-  .s3-1sh .vs-row .vt b { display: block; font-size: 16px; font-weight: 700; color: #1a2332; line-height: 1.25; }
-  .s3-1sh .vs-row .vt span { display: block; font-size: 13px; color: #5c6b7d; margin-top: 2px; line-height: 1.3; }
-  .s3-1sh .vs-row .toggle { flex-shrink: 0; width: 46px; height: 28px; }
-  .s3-1sh .vs-row .toggle::after { width: 24px; height: 24px; }
-  .s3-1sh .vs-row .toggle.on::after { left: 20px; }
-  .s3-1sh .vs-sheet .sh-foot { padding: 20px 16px 0; }
-</style>
-<script>
-(function () {
-  var root = document.querySelector('.s3-1sh'); if (!root) return;
-  root.querySelectorAll('.vs-row').forEach(function (r) { r.addEventListener('click', function () { r.querySelector('.toggle').classList.toggle('on'); }); });
-  var subs = { private: 'Only invited people can find and join', friends: 'All your friends can find and join', public: 'Anyone can find and join' };
-  root.querySelectorAll('.vis-seg .sg').forEach(function (g) { g.addEventListener('click', function () { root.querySelectorAll('.vis-seg .sg').forEach(function (x) { x.classList.remove('sel'); }); g.classList.add('sel'); root.querySelector('.vs-txt').textContent = subs[g.getAttribute('data-k')]; }); });
-})();
-</script>
 <style>
   .pp.s3 .set-list { background: #f1f4f7; border-radius: 20px; padding: 0 12px; }
   .pp.s3 .set-item { display: flex; align-items: center; gap: 12px; min-height: 58px; padding: 10px 2px 10px 6px; cursor: pointer; }

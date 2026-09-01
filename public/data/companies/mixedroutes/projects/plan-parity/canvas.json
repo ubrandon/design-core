@@ -267,35 +267,35 @@
     },
     {
       "file": "s3-1-all-in-one-when-calendar.html",
-      "x": 3323,
+      "x": 3745,
       "y": 1850,
       "width": 390,
       "name": "new-1-details-when-calendar"
     },
     {
       "file": "qk-3-place-modal-copy.html",
-      "x": 3792,
+      "x": 4214,
       "y": 1850,
       "width": 390,
       "name": "new-1-details-where-modal"
     },
     {
       "file": "qk-4-place-search-copy.html",
-      "x": 4214,
+      "x": 4636,
       "y": 1850,
       "width": 390,
       "name": "new-1-details-where-search"
     },
     {
       "file": "plan-view-empty-copy.html",
-      "x": 5221,
+      "x": 5643,
       "y": 1845,
       "width": 390,
       "name": "new-3-plan-view-empty"
     },
     {
       "file": "s3-3-invite-vis-switch.html",
-      "x": 4718,
+      "x": 5140,
       "y": 1845,
       "width": 390,
       "name": "new-2-invite"
@@ -305,7 +305,7 @@
       "x": 2901,
       "y": 1845,
       "width": 390,
-      "name": "new-1-details-invite-settings-sheet"
+      "name": "new-1-details-who-can-join-sheet"
     },
     {
       "file": "tp-current-plan-view.html",
@@ -462,39 +462,11 @@
       "name": "notif-9b-push-social"
     },
     {
-      "file": "v2-1-details-empty.html",
-      "x": 1630,
-      "y": 600,
-      "width": 390,
-      "name": "v2-1-details-empty"
-    },
-    {
-      "file": "v2-1-details-stacked.html",
-      "x": 2050,
-      "y": 600,
-      "width": 390,
-      "name": "v2-1-details-stacked"
-    },
-    {
-      "file": "v2-1-details-who-can-join-sheet.html",
-      "x": 2472,
-      "y": 600,
-      "width": 390,
-      "name": "v2-1-details-who-can-join-sheet"
-    },
-    {
-      "file": "v2-1-details-who-can-join-anyone.html",
-      "x": 2901,
-      "y": 600,
-      "width": 390,
-      "name": "v2-1-details-who-can-join-anyone"
-    },
-    {
-      "file": "v2-2-invite.html",
+      "file": "s3-1-details-who-can-join-anyone.html",
       "x": 3323,
-      "y": 600,
+      "y": 1845,
       "width": 390,
-      "name": "v2-2-invite"
+      "name": "new-1-details-who-can-join-anyone"
     }
   ],
   "texts": [
@@ -570,7 +542,7 @@
     },
     {
       "text": "2. Invite others",
-      "x": 4718,
+      "x": 5140,
       "y": 1767,
       "size": 36,
       "id": "text-legacy-mt7k9233-11"
@@ -584,7 +556,7 @@
     },
     {
       "text": "3. Invite others",
-      "x": 5221,
+      "x": 5643,
       "y": 1767,
       "size": 36,
       "id": "text-legacy-mt7k9233-13"
@@ -889,27 +861,6 @@
       "y": 9378,
       "size": 36,
       "id": "text-legacy-mt7k9233-58"
-    },
-    {
-      "text": "Proposed: invite settings move to step 2",
-      "x": 1630,
-      "y": 415,
-      "size": 72,
-      "id": "text-legacy-mt7k9233-59"
-    },
-    {
-      "text": "1. Details, who can join",
-      "x": 1630,
-      "y": 522,
-      "size": 36,
-      "id": "text-legacy-mt7k9233-60"
-    },
-    {
-      "text": "2. Invite others, share link",
-      "x": 3323,
-      "y": 522,
-      "size": 36,
-      "id": "text-legacy-mt7k9233-61"
     }
   ]
 }
