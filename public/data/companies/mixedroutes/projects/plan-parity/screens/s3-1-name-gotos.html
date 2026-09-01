@@ -8,7 +8,7 @@
     <div class="status"><span>9:41</span><span class="r"><i class="ph-fill ph-cell-signal-full"></i><i class="ph-fill ph-wifi-high"></i><i class="ph-fill ph-battery-full"></i></span></div>
     <div class="ts-toolbar">
       <span class="icon-btn"><i class="ph ph-x"></i></span>
-      <span class="ttl">Plan something</span>
+      <span class="ttl">New plan</span>
       <span class="skip hide">Skip</span>
     </div>
     <span class="hb-btn"><i class="ph ph-image"></i>Add banner</span>
@@ -16,8 +16,7 @@
 
   <div class="content">
     <div class="name-wrap2 over-banner">
-      <div class="name-input empty focus">
-        <span class="lead"><i class="ph ph-smiley"></i></span>
+      <div class="name-input empty focus no-lead">
         What are you planning?<span class="caret"></span>
       </div>
 
@@ -56,13 +55,17 @@
 
   </div>
 
-  <div class="footer under-drop" style="padding-top:20px;">
-    <span class="btn-grad">Continue</span>
+  <div class="kb">
+    <div class="kb-row"><span>Q</span><span>W</span><span>E</span><span>R</span><span>T</span><span>Y</span><span>U</span><span>I</span><span>O</span><span>P</span></div>
+    <div class="kb-row"><span>A</span><span>S</span><span>D</span><span>F</span><span>G</span><span>H</span><span>J</span><span>K</span><span>L</span></div>
+    <div class="kb-row"><span class="w">⇧</span><span>Z</span><span>X</span><span>C</span><span>V</span><span>B</span><span>N</span><span>M</span><span class="w">⌫</span></div>
+    <div class="kb-row"><span class="w">123</span><span class="sp">space</span><span class="w b">done</span></div>
     <div class="home-bar"></div>
   </div>
 </div>
 
 <style>
+  .s3-1i .name-drop { position: static; margin-top: 8px; }
   .s3-1i .idea-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .s3-1i .idea { position: relative; height: 112px; border-radius: 20px; padding: 14px; display: flex; flex-direction: column; justify-content: flex-end; cursor: pointer; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
   .s3-1i .idea em { position: absolute; top: 12px; left: 14px; font-style: normal; font-size: 30px; line-height: 1; }
@@ -83,19 +86,28 @@
 <script>
 (function () {
   var root = document.querySelector('.s3-1i'); if (!root) return;
-  var input = root.querySelector('.name-input'), lead = input.querySelector('.lead');
-  root.querySelectorAll('[data-act]').forEach(function (a) { a.addEventListener('click', function () { var em = a.querySelector('em').textContent, label = a.textContent.replace(em, '').trim(); input.classList.remove('empty'); lead.classList.add('emoji'); lead.textContent = em; input.childNodes.forEach(function (n) { if (n.nodeType === 3 && n.textContent.trim()) n.textContent = ' ' + label + ' '; }); root.querySelector('.name-drop').classList.add('hide'); root.querySelectorAll('.under-drop').forEach(function (u) { u.classList.remove('under-drop'); }); }); });
-  root.querySelectorAll('.repeat').forEach(function (r) { r.addEventListener('click', function () { input.classList.remove('empty'); lead.classList.add('emoji'); lead.textContent = r.querySelector('.re-emoji').textContent; input.childNodes.forEach(function (n) { if (n.nodeType === 3 && n.textContent.trim()) n.textContent = ' ' + r.querySelector('b').textContent + ' '; }); root.querySelector('.name-drop').classList.add('hide'); root.querySelectorAll('.under-drop').forEach(function (u) { u.classList.remove('under-drop'); }); }); });
-  root.querySelectorAll('.idea').forEach(function (t) {
-    t.addEventListener('click', function () {
-      var on = !t.classList.contains('sel');
-      root.querySelectorAll('[data-act]').forEach(function (a) { a.addEventListener('click', function () { var em = a.querySelector('em').textContent, label = a.textContent.replace(em, '').trim(); input.classList.remove('empty'); lead.classList.add('emoji'); lead.textContent = em; input.childNodes.forEach(function (n) { if (n.nodeType === 3 && n.textContent.trim()) n.textContent = ' ' + label + ' '; }); root.querySelector('.name-drop').classList.add('hide'); root.querySelectorAll('.under-drop').forEach(function (u) { u.classList.remove('under-drop'); }); }); });
-  root.querySelectorAll('.repeat').forEach(function (r) { r.addEventListener('click', function () { input.classList.remove('empty'); lead.classList.add('emoji'); lead.textContent = r.querySelector('.re-emoji').textContent; input.childNodes.forEach(function (n) { if (n.nodeType === 3 && n.textContent.trim()) n.textContent = ' ' + r.querySelector('b').textContent + ' '; }); root.querySelector('.name-drop').classList.add('hide'); root.querySelectorAll('.under-drop').forEach(function (u) { u.classList.remove('under-drop'); }); }); });
-  root.querySelectorAll('.idea').forEach(function (x) { x.classList.remove('sel'); });
-      if (on) { t.classList.add('sel'); input.classList.remove('empty'); lead.classList.add('emoji'); lead.textContent = t.getAttribute('data-e'); }
-      else { input.classList.add('empty'); lead.classList.remove('emoji'); lead.innerHTML = '<i class="ph ph-smiley"></i>'; }
-      input.childNodes.forEach(function (n) { if (n.nodeType === 3 && n.textContent.trim()) n.textContent = ' ' + (on ? t.getAttribute('data-n') : 'What are you planning?') + ' '; });
-    });
-  });
+  var input = root.querySelector('.name-input'), cta = root.querySelector('.btn-grad.cta');
+  function setLead(em) {
+    var lead = input.querySelector('.lead');
+    if (!em) { if (lead) lead.remove(); input.classList.add('no-lead'); return; }
+    if (!lead) { lead = document.createElement('span'); lead.className = 'lead emoji'; input.insertBefore(lead, input.firstChild); }
+    lead.textContent = em; input.classList.remove('no-lead');
+  }
+  function setName(label, em) {
+    input.classList.remove('empty');
+    input.childNodes.forEach(function (n) { if (n.nodeType === 3 && n.textContent.trim()) n.textContent = ' ' + label + ' '; });
+    var caret = input.querySelector('.caret'); if (caret) caret.remove();
+    if (em) setLead(em);
+    var drop = root.querySelector('.name-drop'); if (drop) drop.classList.add('hide');
+    root.querySelectorAll('.under-drop').forEach(function (u) { u.classList.remove('under-drop'); });
+    if (cta) cta.classList.remove('dis');
+  }
+  root.querySelectorAll('[data-act]').forEach(function (a) { a.addEventListener('click', function () { var em = a.querySelector('em').textContent; setName(a.textContent.replace(em, '').trim(), em); }); });
+  root.querySelectorAll('.repeat').forEach(function (r) { r.addEventListener('click', function () { setName(r.querySelector('b').textContent, r.querySelector('.re-emoji').textContent); }); });
+  // Tags are multiselect. The first selected tag supplies the plan emoji.
+  root.querySelectorAll('.tags .chip:not(.add)').forEach(function (c) { c.addEventListener('click', function () {
+    var on = !c.classList.contains('sel'); c.classList.toggle('sel', on); c.querySelector('i').className = on ? 'ph ph-x' : 'ph ph-plus';
+    var first = root.querySelector('.tags .chip.sel em'); setLead(first ? first.textContent : '');
+  }); });
 })();
 </script>

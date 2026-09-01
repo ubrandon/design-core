@@ -751,3 +751,20 @@
 .pp.s3 .freq-sum i { font-size: 18px; color: #234e8a; }
 .pp.s3 .freq-sum b { color: #1a2332; font-weight: 600; }
 .pp.s3 .freq-sum .lnk { margin-left: auto; color: #0891b2; font-weight: 600; white-space: nowrap; }
+
+/* ===== New plan (step 1) refinements ===== */
+.pp.s3 .name-input.no-lead { padding-left: 22px; }
+.pp.s3 .btn-grad i { font-size: 20px; }
+.pp.s3 .btn-grad.dis { background: linear-gradient(145deg, #a9ded7, #b4caf1); box-shadow: none; pointer-events: none; }
+.pp.s3 .plus-btn { background: #e4eefe; color: #234e8a; }
+.pp.s3 .else-chips .chip { background: #f1f4f7; border-color: transparent; font-weight: 600; gap: 6px; }
+.pp.s3 .else-chips .chip i { font-size: 16px; color: #234e8a; }
+.pp.s3 .else-chips .chip.custom { background: #ffffff; border: 1.5px dashed rgba(32, 36, 42, 0.24); color: #5c6b7d; }
+.pp.s3 .else-chips .chip.custom i { color: #5c6b7d; }
+.pp.s3 .kb { margin-top: auto; background: #d1d4d9; padding: 8px 4px 0; }
+.pp.s3 .kb-row { display: flex; gap: 5px; justify-content: center; margin-bottom: 8px; padding: 0 2px; }
+.pp.s3 .kb-row span { flex: 1; max-width: 33px; height: 42px; border-radius: 6px; background: #ffffff; color: #1a2332; display: grid; place-items: center; font-size: 17px; font-weight: 500; box-shadow: 0 1px 0 #898d94; }
+.pp.s3 .kb-row span.w { background: #aab1ba; max-width: 46px; flex: 1.4; font-size: 14px; }
+.pp.s3 .kb-row span.sp { max-width: none; flex: 5; font-size: 15px; }
+.pp.s3 .kb-row span.b { background: #234e8a; color: #ffffff; }
+.pp.s3 .kb .home-bar { margin-top: 4px; }
