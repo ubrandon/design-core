@@ -460,6 +460,41 @@
       "y": 9434,
       "width": 390,
       "name": "notif-9b-push-social"
+    },
+    {
+      "file": "v2-1-details-empty.html",
+      "x": 1630,
+      "y": 600,
+      "width": 390,
+      "name": "v2-1-details-empty"
+    },
+    {
+      "file": "v2-1-details-stacked.html",
+      "x": 2050,
+      "y": 600,
+      "width": 390,
+      "name": "v2-1-details-stacked"
+    },
+    {
+      "file": "v2-1-details-who-can-join-sheet.html",
+      "x": 2472,
+      "y": 600,
+      "width": 390,
+      "name": "v2-1-details-who-can-join-sheet"
+    },
+    {
+      "file": "v2-1-details-who-can-join-anyone.html",
+      "x": 2901,
+      "y": 600,
+      "width": 390,
+      "name": "v2-1-details-who-can-join-anyone"
+    },
+    {
+      "file": "v2-2-invite.html",
+      "x": 3323,
+      "y": 600,
+      "width": 390,
+      "name": "v2-2-invite"
     }
   ],
   "texts": [
@@ -854,6 +889,27 @@
       "y": 9378,
       "size": 36,
       "id": "text-legacy-mt7k9233-58"
+    },
+    {
+      "text": "Proposed: invite settings move to step 2",
+      "x": 1630,
+      "y": 415,
+      "size": 72,
+      "id": "text-legacy-mt7k9233-59"
+    },
+    {
+      "text": "1. Details, who can join",
+      "x": 1630,
+      "y": 522,
+      "size": 36,
+      "id": "text-legacy-mt7k9233-60"
+    },
+    {
+      "text": "2. Invite others, share link",
+      "x": 3323,
+      "y": 522,
+      "size": 36,
+      "id": "text-legacy-mt7k9233-61"
     }
   ]
 }
