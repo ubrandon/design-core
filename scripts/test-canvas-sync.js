@@ -112,3 +112,48 @@ assert.notEqual(duplicateTextIds.texts[1].id, "repeated-title");
 assert.notEqual(duplicateTextIds.texts[0].id, duplicateTextIds.texts[1].id);
 
 console.log("Canvas synchronization regression checks passed.");
+
+const pendingAddition = new globalThis.CanvasSyncState();
+pendingAddition.ingest({ screens: [], texts: [] });
+pendingAddition.capture([{ file: "copy.html", x: 0, y: 0, width: 390 }], [{ id: "new-title", text: "New", x: 0, y: 0, size: 48 }]);
+pendingAddition.capture([], []);
+const afterUndo = pendingAddition.ingest({ screens: [], texts: [] });
+assert.deepEqual(afterUndo.screens, [], "Undo must discard an unacknowledged screen addition");
+assert.deepEqual(afterUndo.texts, [], "Undo must discard an unacknowledged title addition");
+
+await import("../public/scripts/canvas-history.js");
+const storage = new Map();
+globalThis.sessionStorage = { getItem: key => storage.get(key), setItem: (key, value) => storage.set(key, value) };
+const historyOptions = { storageKey: "history-test" };
+const history = globalThis.createCanvasHistory(historyOptions);
+const initial = { screens: [{ file: "one.html", name: "One", x: 0, y: 0, width: 390 }], texts: [] };
+history.observe(initial);
+const moved = structuredClone(initial);
+moved.screens[0].x = 120;
+history.record(moved);
+const external = structuredClone(moved);
+external.screens[0].name = "External rename";
+external.screens.push({ file: "external.html", x: 500, y: 0, width: 390 });
+history.observe(external);
+const undone = history.undo(external);
+assert.equal(undone.screens[0].x, 0);
+assert.equal(undone.screens[0].name, "External rename");
+assert.equal(undone.screens[1].file, "external.html");
+const redone = history.redo(undone);
+assert.equal(redone.screens[0].x, 120);
+assert.equal(redone.screens[0].name, "External rename");
+const deleted = { screens: [redone.screens[1]], texts: [] };
+history.record(deleted);
+const reloadedHistory = globalThis.createCanvasHistory(historyOptions);
+reloadedHistory.observe(deleted);
+assert.deepEqual(reloadedHistory.undo(deleted), redone, "Deletion should remain undoable after reload");
+assert.deepEqual(reloadedHistory.redo(redone), deleted);
+const otherCompanyHistory = globalThis.createCanvasHistory({ storageKey: "another-company" });
+assert.equal(otherCompanyHistory.undo(deleted), null);
+
+const changedAgain = structuredClone(redone);
+changedAgain.screens[0].x = 240;
+history.observe(changedAgain);
+history.undo(changedAgain);
+assert.equal(history.undo(changedAgain).screens[0].x, 240, "Undo should preserve a newer disk change to the same field");
+console.log("Canvas history regression checks passed.");

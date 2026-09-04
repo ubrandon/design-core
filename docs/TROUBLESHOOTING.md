@@ -6,6 +6,8 @@ First move for almost everything: run `npm run doctor` (or ask the AI to). It ch
 
 Every screen needs two things: the HTML file in the project's `screens/` folder AND an entry in that project's `canvas.json`. If either is missing the screen silently doesn't appear. `npm run doctor` flags both directions (listed but missing, and existing but unlisted).
 
+Deleting a screen in the canvas intentionally keeps its HTML file on disk, so an unlisted-file note can also mean a screen was removed from the canvas. Use Undo in the same tab to restore a recent deletion, even after reloading.
+
 ## "My prototype or screen has no styling"
 
 The stylesheet links must climb back to the site root: canvas screens use **six** `../` (`../../../../../../styles/shared.css`), prototypes use **seven**. `company.css` is `../../../design-system/company.css` from a screen and `../../../../design-system/company.css` from a prototype. One level off and styles silently fail, sometimes only on the published site. `npm run doctor` checks the depth; otherwise inspect the `<link>` tags.

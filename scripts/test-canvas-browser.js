@@ -4,6 +4,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 import { createServer } from "vite";
+import { testCanvasInteractions } from "./test-canvas-interactions.js";
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const fixtureSuffix = process.pid + "-" + Date.now();
@@ -48,7 +49,11 @@ async function createCompanyFixture(root, x) {
 async function waitFor(check, message, timeout = 8000) {
   const started = Date.now();
   while (Date.now() - started < timeout) {
-    if (await check()) return;
+    try {
+      if (await check()) return;
+    } catch (error) {
+      if (!(error instanceof SyntaxError)) throw error;
+    }
     await new Promise((resolvePromise) => setTimeout(resolvePromise, 80));
   }
   throw new Error(message);
@@ -175,6 +180,8 @@ try {
   }, "Draft recovery did not preserve the newer external addition");
   assert.equal(await page.locator('.canvas-card[data-file="one.html"]').evaluate((card) => card.style.left), "260px");
   assert.deepEqual(errors, []);
+
+  await testCanvasInteractions({ browser, origin: `http://127.0.0.1:${port}`, company: companyB, projectId, root: companyBRoot });
 
   console.log("Canvas browser regression checks passed.");
 } finally {

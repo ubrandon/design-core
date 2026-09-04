@@ -334,6 +334,114 @@
   pointer-events: none;
 }
 
+.canvas-save-status {
+  min-width: 70px;
+  padding: 0 6px;
+  color: var(--tool-text-secondary);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.canvas-save-status[data-state="retrying"],
+.canvas-save-status[data-state="error"] {
+  color: var(--tool-text);
+  font-weight: 700;
+}
+
+.zoom-controls .zoom-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.canvas-selection-bar {
+  bottom: 82px;
+  max-width: calc(100vw - 36px);
+  box-sizing: border-box;
+}
+
+.canvas-selection-bar .canvas-selection-bar-btn--arrange {
+  color: var(--tool-text);
+  background: var(--tool-surface-muted);
+  border-color: var(--tool-border);
+}
+
+.canvas-shortcuts {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  height: fit-content;
+  width: min(580px, calc(100vw - 48px));
+  max-height: calc(100dvh - 48px);
+  box-sizing: border-box;
+  overflow: auto;
+  padding: 24px;
+  color: var(--tool-text);
+  background: var(--tool-surface-raised);
+  border: 1px solid var(--tool-border);
+  border-radius: 16px;
+  box-shadow: var(--tool-shadow-float);
+}
+
+.canvas-shortcuts::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.canvas-shortcuts form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.canvas-shortcuts h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.canvas-shortcuts form button {
+  color: var(--tool-text);
+  background: var(--tool-surface-muted);
+  border: 1px solid var(--tool-border);
+  border-radius: 8px;
+}
+
+.canvas-shortcuts dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 20px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.canvas-shortcuts dd {
+  margin: 0;
+  color: var(--tool-text-secondary);
+}
+
+.canvas-shortcuts kbd {
+  font: inherit;
+  font-weight: 650;
+}
+
+.canvas-shortcuts p {
+  margin: 20px 0 0;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--tool-text-secondary);
+}
+
+@media (max-width: 520px) {
+  .canvas-shortcuts dl {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .canvas-shortcuts dd {
+    margin-bottom: 12px;
+  }
+}
+
 .canvas-empty {
   position: fixed;
   inset: 56px 0 0;

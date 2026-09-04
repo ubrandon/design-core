@@ -58,12 +58,14 @@ try {
   if (s) restoreState = JSON.parse(s);
 } catch (_) {}
 
-const pz = initPanZoom(viewport, stage, { navHeight: 52, restoreState, dragToPan: false });
+const pz = initPanZoom(viewport, stage, { navHeight: 52, restoreState, dragToPan: false, focusViewport: true });
+let initialFrameVersion = pz.transformVersion;
 let canvasTool = "select";
 let placingText = false;
 
 function setCanvasTool(tool) {
   if (!["select", "hand", "text"].includes(tool)) return;
+  resetCanvasPointerSession();
   canvasTool = tool;
   placingText = tool === "text";
   pz.dragToPan = tool === "hand";
@@ -91,6 +93,15 @@ window.addEventListener("pagehide", savePanZoom);
 
 let screens = [];
 let texts = [];
+let duplicateBusy = false;
+let activeEditor = null;
+const canvasHistory = createCanvasHistory({
+  storageKey: "design-core:canvas-history:" + activeCompany() + ":" + projectId,
+  onChange: ({ canUndo, canRedo }) => {
+    document.getElementById("canvas-undo").disabled = !canUndo || duplicateBusy;
+    document.getElementById("canvas-redo").disabled = !canRedo || duplicateBusy;
+  },
+});
 const CANVAS_DRAFT_KEY = "design-core:canvas-draft:" + activeCompany() + ":" + projectId;
 const canvasPersistence = createCanvasPersistence({
   canvasUrl: dataPath("projects/" + encProjectId + "/canvas.json"),
@@ -98,14 +109,42 @@ const canvasPersistence = createCanvasPersistence({
   getState: () => ({ screens, texts }),
   applyState: applyCanvasState,
   onLoadError: showCanvasLoadError,
+  onStatusChange: updateSaveStatus,
 });
 
 function saveCanvas() {
+  canvasHistory.record({ screens, texts });
   return canvasPersistence.save();
 }
 
-function saveCanvasAndWait() {
-  return canvasPersistence.saveAndWait();
+function updateSaveStatus(status) {
+  if (activeEditor && status === "saved") status = "editing";
+  const el = document.getElementById("canvas-save-status");
+  const labels = { loading: "Loading...", editing: "Editing...", saving: "Saving...", saved: "Saved", retrying: "Retrying...", error: "Load failed" };
+  el.dataset.state = status;
+  el.textContent = labels[status] || status;
+}
+
+function undoCanvas() {
+  travelCanvasHistory("undo");
+}
+
+function redoCanvas() {
+  travelCanvasHistory("redo");
+}
+
+function travelCanvasHistory(direction) {
+  if (objectPointer || duplicateBusy || activeEditor) return;
+  const next = canvasHistory[direction]({ screens, texts });
+  if (!next) return;
+  clearSelection();
+  applyCanvasState(next, [], false);
+  canvasPersistence.save();
+}
+
+function showCanvasShortcuts() {
+  closeContextMenu();
+  document.getElementById("canvas-shortcuts").showModal();
 }
 
 // Selection state
@@ -116,6 +155,7 @@ const canvasRenderer = createCanvasRenderer({
   getScreens: () => screens,
   getTextLayer: () => textLayer,
   isSelected: (idx) => selected.has(idx),
+  isPanActive: () => pz.spaceHeld || pz.dragToPan,
   screenUrl,
   rawScreenPrefix: dataPath("projects/" + projectId + "/screens/"),
   screenLabel: screenDisplayName,
@@ -185,6 +225,7 @@ function updateSelectionBar() {
   const label = parts.join(" + ");
   selectionBar.innerHTML =
     '<span class="canvas-selection-bar-label">' + label + ' selected</span>' +
+    (total >= 2 ? '<button class="canvas-selection-bar-btn canvas-selection-bar-btn--arrange" onclick="showArrangeMenu(this)" aria-label="Align and distribute selection">Arrange</button>' : '') +
     '<button class="canvas-selection-bar-btn" onclick="deleteSelected()">' +
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>' +
     'Delete</button>';
@@ -199,36 +240,15 @@ function selectedObjectLabel() {
 
 // Delete selected canvas objects
 function deleteSelected() {
-  if (selected.size === 0 && selectedTexts.size === 0) return;
+  if (duplicateBusy || (selected.size === 0 && selectedTexts.size === 0)) return;
   const screenIndices = Array.from(selected).sort((a, b) => b - a);
   const textIndices = Array.from(selectedTexts).sort((a, b) => b - a);
-  const selectedFiles = screenIndices.map(i => screens[i] && screens[i].file).filter(Boolean);
   screenIndices.forEach(i => screens.splice(i, 1));
   textIndices.forEach(i => texts.splice(i, 1));
-  const filesToDelete = Array.from(new Set(selectedFiles)).filter(file =>
-    !screens.some(screen => screen.file === file)
-  );
   clearSelection();
   renderCards();
-  if (!filesToDelete.length) {
-    saveCanvas();
-    return;
-  }
-  const saved = saveCanvasAndWait();
-  let failures = 0;
-  saved.then(() => Promise.all(filesToDelete.map(f =>
-      fetch(screenUrl(f), { method: "DELETE" })
-        .then(r => { if (!r.ok) failures++; })
-        .catch(() => { failures++; }),
-    ))).then(() => {
-    if (failures > 0) {
-      showToast(
-        failures === 1
-          ? "1 screen file could not be deleted on disk"
-          : `${failures} screen files could not be deleted on disk`,
-      );
-    }
-  });
+  // Retain the screen files so undo remains safe, including after a reload.
+  saveCanvas();
 }
 
 async function duplicateScreenFile(file) {
@@ -246,17 +266,22 @@ async function duplicateScreenFile(file) {
 }
 
 async function duplicateSelection(options) {
+  if (duplicateBusy) return null;
   const opts = options || {};
   const offsetX = opts.offsetX == null ? DUPLICATE_OFFSET : opts.offsetX;
   const offsetY = opts.offsetY == null ? DUPLICATE_OFFSET : opts.offsetY;
   const screenIndices = Array.from(selected).sort((a, b) => a - b).filter(i => screens[i]);
   const textIndices = Array.from(selectedTexts).sort((a, b) => a - b).filter(i => texts[i]);
   if (!screenIndices.length && !textIndices.length) return null;
+  const sourceScreens = screenIndices.map(i => ({ ...screens[i] }));
+  const sourceTexts = textIndices.map(i => ({ ...texts[i] }));
+  duplicateBusy = true;
+  document.getElementById("canvas-undo").disabled = true;
+  document.getElementById("canvas-redo").disabled = true;
 
   const copiedScreens = [];
   try {
-    for (const i of screenIndices) {
-      const s = screens[i];
+    for (const s of sourceScreens) {
       const file = await duplicateScreenFile(s.file);
       copiedScreens.push({
         file,
@@ -272,14 +297,16 @@ async function duplicateSelection(options) {
     ));
     console.error(err);
     showToast("Could not copy screen file");
+    duplicateBusy = false;
+    canvasHistory.record({ screens, texts });
     return null;
   }
 
-  const copiedTexts = textIndices.map(i => canvasPersistence.newText({
-    text: texts[i].text,
-    x: roundCanvasPosition(texts[i].x + offsetX),
-    y: roundCanvasPosition(texts[i].y + offsetY),
-    size: texts[i].size,
+  const copiedTexts = sourceTexts.map(text => canvasPersistence.newText({
+    text: text.text,
+    x: roundCanvasPosition(text.x + offsetX),
+    y: roundCanvasPosition(text.y + offsetY),
+    size: text.size,
   }));
 
   const firstScreenIdx = screens.length;
@@ -291,6 +318,7 @@ async function duplicateSelection(options) {
   const nextTexts = copiedTexts.map((_, i) => firstTextIdx + i);
   setCanvasSelection(nextScreens, nextTexts);
   renderCards();
+  duplicateBusy = false;
   if (opts.save !== false) saveCanvas();
   return { screens: nextScreens, texts: nextTexts };
 }
@@ -332,11 +360,70 @@ function frameSelection() {
   if (bounds) frameBounds(bounds, 80);
 }
 
+function showArrangeMenu(button) {
+  const rect = button.getBoundingClientRect();
+  const items = [
+    ["Align left", "left"], ["Align horizontal centers", "center"], ["Align right", "right"],
+    ["Align top", "top"], ["Align vertical centers", "middle"], ["Align bottom", "bottom"],
+  ].map(([label, mode]) => ({ label, action: () => arrangeSelection(mode) }));
+  if (selected.size + selectedTexts.size >= 3) {
+    items.push({ sep: true },
+      { label: "Distribute horizontal spacing", action: () => arrangeSelection("horizontal") },
+      { label: "Distribute vertical spacing", action: () => arrangeSelection("vertical") });
+  }
+  showContextMenu(rect.left, rect.top, items);
+}
+
+function arrangeSelection(mode) {
+  if (duplicateBusy || objectPointer || activeEditor) return;
+  const items = [];
+  selected.forEach(i => { if (screens[i]) items.push({ object: screens[i], bounds: screenBounds(i) }); });
+  selectedTexts.forEach(i => { if (texts[i]) items.push({ object: texts[i], bounds: textBounds(i) }); });
+  if (items.length < 2) return;
+  const bounds = unionBounds(items.map(item => item.bounds));
+  const horizontal = ["left", "center", "right", "horizontal"].includes(mode);
+  const axis = horizontal ? "x" : "y";
+  const min = horizontal ? "minX" : "minY";
+  const max = horizontal ? "maxX" : "maxY";
+  if (mode === "horizontal" || mode === "vertical") {
+    if (items.length < 3) return;
+    items.sort((a, b) => a.bounds[min] - b.bounds[min]);
+    const last = items[items.length - 1];
+    const totalSize = items.slice(0, -1).reduce((sum, item) => sum + item.bounds[max] - item.bounds[min], 0);
+    const gap = (last.bounds[min] - items[0].bounds[min] - totalSize) / (items.length - 1);
+    let position = items[0].bounds[min];
+    items.forEach((item, index) => {
+      if (index > 0 && index < items.length - 1) item.object[axis] = roundCanvasPosition(position);
+      position += item.bounds[max] - item.bounds[min] + gap;
+    });
+  } else {
+    const fraction = { left: 0, top: 0, center: 0.5, middle: 0.5, right: 1, bottom: 1 }[mode];
+    if (fraction == null) return;
+    const target = bounds[min] + (bounds[max] - bounds[min]) * fraction;
+    items.forEach(item => {
+      item.object[axis] = roundCanvasPosition(target - (item.bounds[max] - item.bounds[min]) * fraction);
+    });
+  }
+  renderCards();
+  saveCanvas();
+}
+
 // Keyboard shortcuts
 window.addEventListener("keydown", function (e) {
-  const inField = e.target.closest("input, textarea, [contenteditable]");
-  if (inField) return;
+  const inField = e.target.closest("input, textarea, select, [contenteditable]");
+  if (inField || document.getElementById("canvas-shortcuts").open) return;
   const primaryModifier = e.metaKey || e.ctrlKey;
+
+  if (primaryModifier && !e.altKey && (e.key.toLowerCase() === "z" || e.key.toLowerCase() === "y")) {
+    e.preventDefault();
+    if (e.key.toLowerCase() === "y" || e.shiftKey) redoCanvas(); else undoCanvas();
+    return;
+  }
+  if (e.key === "?" && !primaryModifier && !e.altKey) {
+    e.preventDefault();
+    showCanvasShortcuts();
+    return;
+  }
 
   if (e.key === "Delete" || e.key === "Backspace") {
     if (selected.size > 0 || selectedTexts.size > 0) {
@@ -400,8 +487,8 @@ window.addEventListener("keydown", function (e) {
   }
   if (e.key === "Escape") {
     closeContextMenu();
-    clearSelection();
     setCanvasTool("select");
+    clearSelection();
   }
 });
 
@@ -570,6 +657,37 @@ let objectPointer = null;
 let marquee = null;
 let marqueeEl = null;
 
+function resetCanvasPointerSession() {
+  if (objectPointer) finishObjectPointer({ pointerId: objectPointer.pointerId }, true);
+  if (marquee) {
+    const pointerId = marquee.pointerId;
+    marquee = null;
+    marqueeEl?.remove();
+    marqueeEl = null;
+    clearMarqueePointerListeners();
+    releaseViewportCaptureSafe(pointerId);
+  }
+  clearAlignmentGuides();
+  viewport.classList.remove("dragging-card");
+  pz.cancelPan();
+}
+
+window.addEventListener("blur", resetCanvasPointerSession);
+document.addEventListener("visibilitychange", () => { if (document.hidden) resetCanvasPointerSession(); });
+window.addEventListener("pointerdown", () => {
+  if (objectPointer || marquee) resetCanvasPointerSession();
+}, true);
+viewport.addEventListener("pointerdown", () => { initialFrameVersion = -1; }, true);
+window.addEventListener("pointermove", (e) => {
+  if (e.pointerType !== "touch" && e.buttons === 0 && (objectPointer || marquee)) resetCanvasPointerSession();
+}, true);
+window.addEventListener("pointerup", (e) => {
+  if (!viewport.contains(e.target)) endCanvasPointerSession(e);
+}, true);
+window.addEventListener("pointercancel", (e) => {
+  if (!viewport.contains(e.target)) endCanvasPointerSession(e);
+}, true);
+
 function onCardPointerDown(e, idx) {
   if (e.button !== 0) return;
   if (placingText) return;
@@ -606,7 +724,6 @@ function onCardPointerDown(e, idx) {
     pointerId: e.pointerId,
   };
   canvasPersistence.setInteractionActive(true);
-  viewport.setPointerCapture(e.pointerId);
 }
 
 viewport.addEventListener("pointerdown", (e) => {
@@ -771,6 +888,7 @@ function drawAlignmentGuides(snap, movingBounds) {
 
 function beginSelectionDrag(pointer) {
   pointer.moved = true;
+  if (objectPointer === pointer) viewport.setPointerCapture(pointer.pointerId);
   viewport.classList.add("dragging-card");
   const start = stagePointFromClient(pointer.startX, pointer.startY);
   clearAlignmentGuides();
@@ -905,7 +1023,7 @@ function endCanvasPointerSession(e) {
   return false;
 }
 
-viewport.addEventListener("pointermove", (e) => {
+window.addEventListener("pointermove", (e) => {
   if (objectPointer && e.pointerId === objectPointer.pointerId) {
     const pointer = objectPointer;
     pointer.lastX = e.clientX;
@@ -926,7 +1044,6 @@ viewport.addEventListener("pointermove", (e) => {
     return;
   }
 
-  if (marquee && e.pointerId === marquee.pointerId) { updateMarqueeSelection(e); return; }
 });
 
 function clearMarqueePointerListeners() {
@@ -1054,24 +1171,24 @@ function getCanvasBounds() {
 //  Frame a bounds rect inside the viewport and apply the pan/zoom.
 function frameBounds(b, margin) {
   const rect = viewport.getBoundingClientRect();
+  const rail = document.getElementById("dc-rail")?.getBoundingClientRect();
+  const leftInset = rail && rail.width ? Math.max(0, Math.min(rect.width, rail.right - rect.left)) : 0;
   const m = margin == null ? 60 : margin;
   const contentW = Math.max(1, b.maxX - b.minX);
   const contentH = Math.max(1, b.maxY - b.minY);
-  const zX = (rect.width - m * 2) / contentW;
+  const zX = (rect.width - leftInset - m * 2) / contentW;
   const zY = (rect.height - m * 2) / contentH;
   let z = Math.min(zX, zY, 1);
-  z = Math.max(0.2, Math.min(2, z));
+  z = Math.max(pz.minZoom, Math.min(pz.maxZoom, z));
   const cx = (b.minX + b.maxX) / 2;
   const cy = (b.minY + b.maxY) / 2;
   pz.zoom = z;
-  pz.panX = -cx * z;
+  pz.panX = leftInset / 2 - cx * z;
   pz.panY = -cy * z;
   pz.applyTransform();
 }
 
-//  Frame all objects inside the viewport. The stage's (0,0) is CSS-positioned
-//  at the viewport center, so panning by (-cx*z, -cy*z) lands the content
-//  center at the viewport center.
+// Frame all objects inside the visible area to the right of the sidebar.
 function centerOnContent() {
   const b = getCanvasBounds();
   if (!b) {
@@ -1098,6 +1215,7 @@ function centerOnScreen(file) {
 }
 
 function applyCanvasState(merged, changedFiles, reloadAllScreens) {
+  document.getElementById("canvas-empty")?.remove();
   const next = merged.screens;
   const nextTexts = merged.texts;
   const structureSame = screens.length === next.length && next.every((n, i) =>
@@ -1136,6 +1254,7 @@ function applyCanvasState(merged, changedFiles, reloadAllScreens) {
     texts = nextTexts;
     renderTexts();
   }
+  canvasHistory.observe({ screens, texts });
 }
 
 function showCanvasLoadError() {
@@ -1148,7 +1267,7 @@ function showCanvasLoadError() {
   var el = document.createElement("div");
   el.id = "canvas-empty";
   el.className = "canvas-empty";
-  el.innerHTML = '<div class="canvas-empty__title">No screens yet</div><div class="canvas-empty__body">Ask the AI to create screens for this project. Describe the UI you want to explore.</div>';
+  el.innerHTML = '<div class="canvas-empty__title">Canvas could not load</div><div class="canvas-empty__body">Use Reload screens to try again.</div>';
   document.body.appendChild(el);
 }
 
@@ -1160,12 +1279,11 @@ function refreshScreens() {
   clearSelection();
   const btn = document.querySelector('[onclick="refreshScreens()"]');
   if (btn) { btn.disabled = true; }
-  loadCanvas([], true).then(() => {
+  loadCanvas([], true).then((ok) => {
     if (btn) {
-      btn.textContent = "✓ Refresh";
       btn.disabled = false;
-      setTimeout(() => { btn.textContent = "Refresh"; }, 1500);
     }
+    if (ok) showToast("Screens reloaded");
   });
 }
 
@@ -1175,9 +1293,10 @@ const deepLinkScreen = getParam("screen");
 
 loadCanvas().then(() => {
   const applyInitialFrame = () => {
-    if (deepLinkScreen && centerOnScreen(deepLinkScreen)) return;
-    if (restoreState) return;
-    centerOnContent();
+    // A manual zoom or pan owns the view from that point onward.
+    if (pz.transformVersion !== initialFrameVersion) return;
+    if (!(deepLinkScreen && centerOnScreen(deepLinkScreen)) && !restoreState) centerOnContent();
+    initialFrameVersion = pz.transformVersion;
   };
 
   // First frame uses a fallback height; refine once the iframes report their
@@ -1228,6 +1347,9 @@ function startLabelEdit(idx) {
   const label = card.querySelector(".canvas-card-label");
   if (!label || label.querySelector("input")) return;
   const current = screenDisplayName(screens[idx]);
+  const file = screens[idx].file;
+  activeEditor = file;
+  canvasPersistence.setInteractionActive(true);
   const input = document.createElement("input");
   input.type = "text";
   input.className = "canvas-card-label-input";
@@ -1244,21 +1366,32 @@ function startLabelEdit(idx) {
   input.addEventListener("dblclick", stop);
 
   let committed = false;
+  const finish = () => {
+    input.remove();
+    window.removeEventListener("pointerdown", onOutside, true);
+    activeEditor = null;
+    canvasPersistence.setInteractionActive(false);
+    updateSaveStatus(canvasPersistence.status);
+  };
   const commit = () => {
     if (committed) return;
     committed = true;
     const next = input.value.trim();
-    const defaultName = (screens[idx].file || "").replace(/\.html$/, "");
+    const screen = screens.find(item => item.file === file);
+    if (!screen) { finish(); return; }
+    const defaultName = (screen.file || "").replace(/\.html$/, "");
     const nameToStore = (!next || next === defaultName) ? "" : next;
-    const changed = (screens[idx].name || "") !== nameToStore;
-    screens[idx].name = nameToStore;
-    label.textContent = screenDisplayName(screens[idx]);
+    const changed = (screen.name || "") !== nameToStore;
+    screen.name = nameToStore;
+    label.textContent = screenDisplayName(screen);
     if (changed) saveCanvas();
+    finish();
   };
   const cancel = () => {
     if (committed) return;
     committed = true;
     label.textContent = current;
+    finish();
   };
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") { e.preventDefault(); commit(); input.blur(); }
@@ -1268,13 +1401,14 @@ function startLabelEdit(idx) {
     commit();
     window.removeEventListener("pointerdown", onOutside, true);
   });
+  input.addEventListener("input", () => updateSaveStatus("editing"));
   // Capture-phase: fires before pan-zoom and card handlers can preventDefault.
   const onOutside = (e) => {
     if (e.target === input || input.contains(e.target)) return;
     commit();
     window.removeEventListener("pointerdown", onOutside, true);
   };
-  setTimeout(() => window.addEventListener("pointerdown", onOutside, true), 0);
+  setTimeout(() => { if (!committed) window.addEventListener("pointerdown", onOutside, true); }, 0);
 }
 
 // Canvas titles
@@ -1409,13 +1543,15 @@ function onTextPointerDown(e, idx) {
     pointerId: e.pointerId,
   };
   canvasPersistence.setInteractionActive(true);
-  viewport.setPointerCapture(e.pointerId);
 }
 
 function startTextEdit(idx) {
   const el = textLayer && textLayer.querySelector('.canvas-text[data-idx="' + idx + '"]');
   if (!el || el.querySelector("input, textarea")) return;
   const current = singleLineText(texts[idx].text);
+  const id = texts[idx].id;
+  activeEditor = id;
+  canvasPersistence.setInteractionActive(true);
   const input = document.createElement("input");
   input.type = "text";
   input.className = "canvas-text-input";
@@ -1432,12 +1568,9 @@ function startTextEdit(idx) {
     input.style.width = Math.max(120, Math.ceil(measured) + 24) + "px";
   };
   autoSize();
-  requestAnimationFrame(() => {
-    input.focus();
-    const caret = input.value.length;
-    input.setSelectionRange(caret, caret);
-    autoSize();
-  });
+  input.focus();
+  const caret = input.value.length;
+  input.setSelectionRange(caret, caret);
 
   const stop = (e) => e.stopPropagation();
   input.addEventListener("pointerdown", stop);
@@ -1445,34 +1578,44 @@ function startTextEdit(idx) {
   input.addEventListener("click", stop);
   input.addEventListener("dblclick", stop);
   input.addEventListener("input", autoSize);
+  input.addEventListener("input", () => updateSaveStatus("editing"));
 
   let committed = false;
   let removeOutsideListeners = () => {};
+  const finish = () => {
+    input.remove();
+    measure.remove();
+    removeOutsideListeners();
+    renderTexts();
+    activeEditor = null;
+    canvasPersistence.setInteractionActive(false);
+    updateSaveStatus(canvasPersistence.status);
+  };
   const commit = () => {
     if (committed) return;
     committed = true;
+    const index = texts.findIndex(text => text.id === id);
+    if (index < 0) { finish(); return; }
     const next = singleLineText(input.value);
     if (!next) {
-      texts.splice(idx, 1);
+      texts.splice(index, 1);
       clearTextSelection();
-      renderTexts();
       saveCanvas();
-      removeOutsideListeners();
+      finish();
       return;
     }
-    const changed = texts[idx].text !== next;
-    texts[idx].text = next;
-    renderTexts();
-    selectText(idx);
+    const changed = texts[index].text !== next;
+    texts[index].text = next;
+    selectText(index);
     if (changed) saveCanvas();
-    removeOutsideListeners();
+    finish();
   };
   const cancel = () => {
     if (committed) return;
     committed = true;
-    if (!current) { texts.splice(idx, 1); clearTextSelection(); }
-    renderTexts();
-    removeOutsideListeners();
+    const index = texts.findIndex(text => text.id === id);
+    if (!current && index >= 0) { texts.splice(index, 1); clearTextSelection(); }
+    finish();
   };
   input.addEventListener("keydown", (e) => {
     e.stopPropagation();

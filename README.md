@@ -24,10 +24,19 @@ npm run dev                                                    # start the tool
 npm run build                                                  # production build (dist/)
 npm run preview                                                # preview the build
 npm run doctor                                                 # health check: Node, deps, every company's JSON, canvas entries, CSS link depth
+npm run test:canvas                                            # synchronization, undo, and browser interaction regression tests
 npm run capture -- --company <slug>                            # screenshot a live app into that company's captures/ (auto-picks if only one company)
 npm run sync-public-url                                        # write publicBaseUrl into public/data/site.json from the git remote
 npm run import-company -- <path-to-old-repo> <slug> "<Name>"   # copy an old single-company repo's public/data into a company folder and fix relative links
 ```
+
+## Canvas controls
+
+Use **V** to select, **H** to pan, and **T** to place a title. Space+drag temporarily pans. **Shift+1** frames all content, **Shift+2** frames the selection, and **0** returns to actual size. Automatic framing stops as soon as you interact with the view.
+
+Select two or more objects to use **Arrange** for alignment, or three or more for equal spacing. The toolbar shows save status, undo/redo, and a **?** shortcut guide.
+
+**Cmd/Ctrl+Z** undoes an action; **Cmd/Ctrl+Shift+Z** redoes it. History keeps the last 100 actions per company and project in the current tab, including across reloads. Delete removes an object from the canvas and retains its screen HTML file on disk so it can be restored. Undo preserves unrelated changes made by an AI or editor.
 
 ## Folder layout
 

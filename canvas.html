@@ -14,11 +14,18 @@
 </head>
 <body>
 
-  <div id="viewport" class="canvas-space-viewport is-select-tool">
+  <div id="viewport" class="canvas-space-viewport is-select-tool" tabindex="-1" aria-label="Design canvas">
     <div id="stage" class="canvas-space-stage"></div>
   </div>
 
   <div class="zoom-controls">
+    <span id="canvas-save-status" class="canvas-save-status" role="status" aria-live="polite" data-state="loading">Loading...</span>
+    <button id="canvas-undo" class="zoom-btn" type="button" onclick="undoCanvas()" title="Undo (Cmd/Ctrl+Z)" aria-label="Undo" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4L4 9l5 5M4 9h10a6 6 0 0 1 0 12"/></svg>
+    </button>
+    <button id="canvas-redo" class="zoom-btn" type="button" onclick="redoCanvas()" title="Redo (Cmd/Ctrl+Shift+Z)" aria-label="Redo" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4l5 5-5 5M20 9H10a6 6 0 0 0 0 12"/></svg>
+    </button>
     <div class="canvas-tool-group" role="toolbar" aria-label="Canvas tools">
       <button id="tool-select" class="zoom-btn is-active" type="button" onclick="setCanvasTool('select')" title="Select tool (V)" aria-label="Select tool" aria-pressed="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3l13.5 8.6-6.1 1.7-3 5.7L5 3z"/><path d="M13 13l5 5"/></svg>
@@ -42,13 +49,36 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M232,120h-8.34A96.14,96.14,0,0,0,136,32.34V24a8,8,0,0,0-16,0v8.34A96.14,96.14,0,0,0,32.34,120H24a8,8,0,0,0,0,16h8.34A96.14,96.14,0,0,0,120,223.66V232a8,8,0,0,0,16,0v-8.34A96.14,96.14,0,0,0,223.66,136H232a8,8,0,0,0,0-16Zm-96,87.6V200a8,8,0,0,0-16,0v7.6A80.15,80.15,0,0,1,48.4,136H56a8,8,0,0,0,0-16H48.4A80.15,80.15,0,0,1,120,48.4V56a8,8,0,0,0,16,0V48.4A80.15,80.15,0,0,1,207.6,120H200a8,8,0,0,0,0,16h7.6A80.15,80.15,0,0,1,136,207.6ZM128,88a40,40,0,1,0,40,40A40,40,0,0,0,128,88Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,152Z"/></svg>
       </button>
     </div>
+    <button class="zoom-btn" type="button" onclick="showCanvasShortcuts()" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts">?</button>
   </div>
+
+  <dialog id="canvas-shortcuts" class="canvas-shortcuts" aria-labelledby="canvas-shortcuts-title">
+    <form method="dialog"><h2 id="canvas-shortcuts-title">Canvas shortcuts</h2><button class="btn btn-sm" aria-label="Close keyboard shortcuts">Close</button></form>
+    <dl>
+      <dt>Select / Hand / Title</dt><dd><kbd>V</kbd> / <kbd>H</kbd> / <kbd>T</kbd></dd>
+      <dt>Pan</dt><dd><kbd>Space</kbd> + drag, or scroll</dd>
+      <dt>Zoom</dt><dd>Pinch, <kbd>+</kbd> / <kbd>-</kbd></dd>
+      <dt>Frame all / selection</dt><dd><kbd>Shift+1</kbd> / <kbd>Shift+2</kbd></dd>
+      <dt>Actual size</dt><dd><kbd>0</kbd></dd>
+      <dt>Select all</dt><dd><kbd>Cmd/Ctrl+A</kbd></dd>
+      <dt>Add to selection</dt><dd><kbd>Shift</kbd> + click or drag</dd>
+      <dt>Duplicate</dt><dd><kbd>Cmd/Ctrl+D</kbd> or <kbd>Alt</kbd> + drag</dd>
+      <dt>Move 1px / 10px</dt><dd>Arrow keys / <kbd>Shift</kbd> + arrows</dd>
+      <dt>Bypass snapping</dt><dd><kbd>Cmd/Ctrl</kbd> while dragging</dd>
+      <dt>Undo / Redo</dt><dd><kbd>Cmd/Ctrl+Z</kbd> / <kbd>Cmd/Ctrl+Shift+Z</kbd></dd>
+      <dt>Delete selection</dt><dd><kbd>Delete</kbd> or <kbd>Backspace</kbd></dd>
+      <dt>Rename screen / edit title</dt><dd>Double-click the label or title</dd>
+      <dt>Cancel / clear selection</dt><dd><kbd>Esc</kbd></dd>
+    </dl>
+    <p>Delete removes objects from the canvas. Undo restores them, and screen files stay on disk. The last 100 actions are kept in this tab across reloads.</p>
+  </dialog>
 
   <script src="scripts/shared.js"></script>
   <script src="scripts/nav.js"></script>
   <script src="scripts/sidenav.js"></script>
   <script src="scripts/canvas-pan-zoom.js"></script>
   <script src="scripts/canvas-sync.js"></script>
+  <script src="scripts/canvas-history.js"></script>
   <script src="scripts/canvas-persistence.js"></script>
   <script src="scripts/canvas-renderer.js"></script>
   <script src="scripts/canvas-export.js"></script>

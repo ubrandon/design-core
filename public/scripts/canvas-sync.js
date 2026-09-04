@@ -124,6 +124,9 @@
     var self = this;
     var remoteScreens = new Map(this.remoteScreens.map(function (screen) { return [screen.file, screen]; }));
     var currentScreens = new Map(screens.map(function (screen) { return [screen.file, screen]; }));
+    this.screenAdditions.forEach(function (_, file) {
+      if (!currentScreens.has(file)) self.screenAdditions.delete(file);
+    });
 
     screens.forEach(function (screen) {
       var remote = remoteScreens.get(screen.file);
@@ -173,6 +176,9 @@
         self.textOverrides.delete(item.id);
         self.textAdditions.delete(item.id);
       }
+    });
+    this.textAdditions.forEach(function (_, id) {
+      if (!currentTextIds.has(id)) self.textAdditions.delete(id);
     });
   };
 

@@ -13,6 +13,12 @@
     var saveInterrupted = false;
     var waiters = [];
     var draftApplied = false;
+    var status = "loading";
+
+    function reportStatus(nextStatus) {
+      status = nextStatus;
+      if (options.onStatusChange) options.onStatusChange(status);
+    }
 
     function state() {
       return options.getState();
@@ -91,6 +97,7 @@
           console.error(error);
           if (!saveInterrupted) showToast("Canvas save interrupted. Retrying...");
           saveInterrupted = true;
+          reportStatus("retrying");
           scheduleRetry();
           return false;
         }
@@ -99,6 +106,7 @@
       retryAttempt = 0;
       if (saveInterrupted) showToast("Canvas changes saved");
       saveInterrupted = false;
+      reportStatus("saved");
       var completed = waiters;
       waiters = [];
       completed.forEach(function (resolve) { resolve(); });
@@ -107,6 +115,7 @@
 
     function startQueue() {
       if (saveInFlight || !pendingPayload) return saveInFlight;
+      reportStatus(saveInterrupted ? "retrying" : "saving");
       saveInFlight = flushQueue().finally(function () {
         saveInFlight = null;
         if (pendingPayload && !retryTimer) startQueue();
@@ -117,6 +126,7 @@
     function queue(nextPayload) {
       pendingPayload = nextPayload;
       writeDraft(nextPayload);
+      reportStatus(saveInterrupted ? "retrying" : "saving");
       if (retryTimer) {
         clearTimeout(retryTimer);
         retryTimer = null;
@@ -139,8 +149,10 @@
     }
 
     function saveAndWait() {
-      save();
-      return new Promise(function (resolve) { waiters.push(resolve); });
+      return new Promise(function (resolve) {
+        waiters.push(resolve);
+        save();
+      });
     }
 
     function applyRemote(data, changedFiles, reloadAllScreens) {
@@ -184,7 +196,7 @@
           });
         })
         .then(function (result) {
-          if (requestId < latestResponse) return;
+          if (requestId < latestResponse) return true;
           latestResponse = requestId;
           revision = result.revision || revision;
           if (interactionActive) {
@@ -194,13 +206,17 @@
               changedFiles: Array.from(new Set(previousFiles.concat(changedFiles || []))),
               reloadAllScreens: Boolean(reloadAllScreens || (deferredLoad && deferredLoad.reloadAllScreens)),
             };
-            return;
+            return true;
           }
           applyRemote(result.data, changedFiles, reloadAllScreens);
+          if (!pendingPayload && !saveInFlight) reportStatus("saved");
+          return true;
         })
         .catch(function (error) {
           console.error(error);
           options.onLoadError(error);
+          if (!pendingPayload && !saveInFlight) reportStatus("error");
+          return false;
         });
     }
 
@@ -217,6 +233,7 @@
     });
 
     return {
+      get status() { return status; },
       load: load,
       save: save,
       saveAndWait: saveAndWait,

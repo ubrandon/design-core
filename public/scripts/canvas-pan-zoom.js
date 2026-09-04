@@ -19,8 +19,10 @@ function initPanZoom(viewport, stage, opts) {
   var panPointerId = null;
   var didPan = false;
   var spaceHeld = false;
+  var spacePressed = false;
   var dragToPan = !(opts && opts.dragToPan === false);
   var lastTouchDist = 0, lastTouchMidX = 0, lastTouchMidY = 0;
+  var transformVersion = 0;
 
   function isEditableTarget(target) {
     return Boolean(target && target.closest && target.closest("input, textarea, select, button, [contenteditable]"));
@@ -57,6 +59,7 @@ function initPanZoom(viewport, stage, opts) {
   }
 
   function applyTransform() {
+    transformVersion++;
     stage.style.transform = "translate(" + panX + "px, " + panY + "px) scale(" + zoom + ")";
     var label = document.getElementById("zoom-label");
     if (label) label.textContent = Math.round(zoom * 100) + "%";
@@ -83,7 +86,21 @@ function initPanZoom(viewport, stage, opts) {
     applyTransform();
   }
 
+  function cancelPan() {
+    var pointerId = panPointerId;
+    spaceHeld = false;
+    spacePressed = false;
+    panPending = null;
+    panPointerId = null;
+    isPanning = false;
+    lastTouchDist = 0;
+    releasePanCapture(pointerId);
+    clearPanVisual();
+    updatePanReadyVisual();
+  }
+
   window.addEventListener("keydown", function (e) {
+    if (e.code === "Space") spacePressed = true;
     if (e.code === "Space" && !isEditableTarget(e.target)) {
       e.preventDefault();
       spaceHeld = true;
@@ -92,6 +109,7 @@ function initPanZoom(viewport, stage, opts) {
   });
   window.addEventListener("keyup", function (e) {
     if (e.code === "Space") {
+      spacePressed = false;
       if (!isEditableTarget(e.target)) e.preventDefault();
       spaceHeld = false;
       updatePanReadyVisual();
@@ -106,15 +124,18 @@ function initPanZoom(viewport, stage, opts) {
     }
   });
 
-  window.addEventListener("blur", function () {
-    spaceHeld = false;
-    panPending = null;
-    if (panPointerId != null) releasePanCapture(panPointerId);
-    panPointerId = null;
-    isPanning = false;
-    clearPanVisual();
-    updatePanReadyVisual();
-  });
+  window.addEventListener("blur", cancelPan);
+  document.addEventListener("visibilitychange", function () { if (document.hidden) cancelPan(); });
+
+  viewport.addEventListener("pointerdown", function (e) {
+    if (isEditableTarget(e.target)) return;
+    // A sidebar button may still have focus when Space is pressed before dragging.
+    if (spacePressed) {
+      spaceHeld = true;
+      updatePanReadyVisual();
+    }
+    if (opts && opts.focusViewport) viewport.focus({ preventScroll: true });
+  }, true);
 
   viewport.addEventListener("pointerdown", function (e) {
     didPan = false;
@@ -137,6 +158,10 @@ function initPanZoom(viewport, stage, opts) {
   });
 
   viewport.addEventListener("pointermove", function (e) {
+    if (e.pointerType !== "touch" && e.buttons === 0 && (isPanning || panPending)) {
+      cancelPan();
+      return;
+    }
     if (isPanning && e.pointerId === panPointerId) {
       panX = panOriginX + (e.clientX - panStartX);
       panY = panOriginY + (e.clientY - panStartY);
@@ -167,6 +192,9 @@ function initPanZoom(viewport, stage, opts) {
   viewport.addEventListener("pointercancel", function (e) {
     endPanForPointer(e, true);
   });
+
+  window.addEventListener("pointerup", function (e) { endPanForPointer(e, true); }, true);
+  window.addEventListener("pointercancel", function (e) { endPanForPointer(e, true); }, true);
 
   viewport.addEventListener("lostpointercapture", function (e) {
     if (panPointerId != null && e.pointerId === panPointerId) {
@@ -210,7 +238,7 @@ function initPanZoom(viewport, stage, opts) {
   }, { passive: true });
 
   viewport.addEventListener("touchmove", function (e) {
-    if (e.touches.length === 2) {
+    if (e.touches.length === 2 && lastTouchDist > 0) {
       e.preventDefault();
       var dx = e.touches[0].clientX - e.touches[1].clientX;
       var dy = e.touches[0].clientY - e.touches[1].clientY;
@@ -235,6 +263,9 @@ function initPanZoom(viewport, stage, opts) {
   applyTransform();
 
   var api = {
+    get transformVersion() { return transformVersion; },
+    minZoom: MIN_ZOOM,
+    maxZoom: MAX_ZOOM,
     get panX() { return panX; },
     set panX(v) { panX = v; },
     get panY() { return panY; },
@@ -252,6 +283,7 @@ function initPanZoom(viewport, stage, opts) {
     clientToStage: clientToStage,
     zoomBy: zoomBy,
     resetView: resetView,
+    cancelPan: cancelPan,
     get isPanning() { return isPanning; },
     set isPanning(v) { isPanning = v; },
     get didPan() { return didPan; },

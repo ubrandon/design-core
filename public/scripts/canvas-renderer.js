@@ -29,7 +29,7 @@
         if (!isNaN(index)) options.onCardPointerDown(event, index);
       });
       label.addEventListener("pointerdown", function (event) {
-        if (!label.querySelector("input")) event.stopPropagation();
+        if (!label.querySelector("input") && !options.isPanActive?.()) event.stopPropagation();
       });
       label.addEventListener("mousedown", function (event) {
         if (!label.querySelector("input")) event.stopPropagation();
@@ -58,7 +58,7 @@
       if (!label.querySelector("input")) label.textContent = options.screenLabel(screen);
 
       var iframe = card.querySelector("iframe");
-      var widthChanged = iframe.width !== screen.width;
+      var widthChanged = Number(iframe.width) !== screen.width;
       iframe.width = screen.width;
       iframe.style.width = screen.width + "px";
       if (widthChanged) requestAnimationFrame(function () { autoSizeIframe(iframe); });
