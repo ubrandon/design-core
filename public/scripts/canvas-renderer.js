@@ -70,14 +70,19 @@
       var existing = new Map(
         Array.from(stage.querySelectorAll(":scope > .canvas-card"), function (card) { return [card.dataset.file, card]; }),
       );
+      var screenFiles = new Set(screens.map(function (screen) { return screen.file; }));
+      existing.forEach(function (card, file) {
+        if (!screenFiles.has(file)) card.remove();
+      });
+      var nextCard = stage.querySelector(":scope > .canvas-card") || options.getTextLayer() || null;
       screens.forEach(function (screen, index) {
         var card = existing.get(screen.file);
         if (!card) card = createCard(screen, bust);
-        existing.delete(screen.file);
         updateCard(card, screen, index);
-        stage.insertBefore(card, options.getTextLayer() || null);
+        // Reinserting an unchanged card reloads its iframe, even within the same parent.
+        if (card !== nextCard) stage.insertBefore(card, nextCard);
+        nextCard = card.nextElementSibling;
       });
-      existing.forEach(function (card) { card.remove(); });
       options.renderTexts();
     }
 

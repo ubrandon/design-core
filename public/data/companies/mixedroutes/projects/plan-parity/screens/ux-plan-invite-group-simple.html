@@ -8,9 +8,6 @@
   .mr-invite-simple button { font:inherit; cursor:pointer; }
   .mr-invite-simple .quiet-button { border:0; background:transparent; }
   .mr-invite-simple .ts-toolbar { flex-shrink:0; }
-  .mr-invite-simple .step-caption { display:flex; justify-content:space-between; align-items:center; padding:2px 20px 12px; font-size:13px; color:var(--muted); }
-  .mr-invite-simple .step-caption .steps { padding:0; width:76px; }
-  .mr-invite-simple .step-caption .steps span { height:3px; }
   .mr-invite-simple .content { padding:0 20px 12px; min-height:0; overflow-y:auto; scrollbar-width:none; }
   .mr-invite-simple .plan-recap { display:flex; align-items:center; gap:12px; padding:8px 0 14px; }
   .mr-invite-simple .plan-recap .emoji { font-size:28px; width:40px; text-align:center; flex-shrink:0; }
@@ -44,7 +41,6 @@
   .mr-invite-simple .footer { margin-top:auto; padding:16px 20px 12px; flex-shrink:0; }
   .mr-invite-simple .invite-count { text-align:center; color:var(--muted); font-size:13px; margin-bottom:12px; }
   .mr-invite-simple .btn-grad { height:50px; box-shadow:none; }
-  .mr-invite-simple .home-bar { margin-top:14px; }
 </style>
 
 <div class="pp s3 mr-scope mr-scope--light mr-invite-simple" style="background:var(--bg-0);">
@@ -54,7 +50,7 @@
     <h1 class="ttl">Who's coming?</h1>
     <button class="quiet-button skip">Skip</button>
   </div>
-  <div class="step-caption"><span>Step 3 of 3</span><div class="steps" aria-hidden="true"><span class="done"></span><span class="done"></span><span class="on"></span></div></div>
+  
 
   <div class="content">
     <div class="plan-recap">
@@ -94,6 +90,6 @@
   <div class="footer">
     <p class="invite-count">5 group members + 1 guest</p>
     <button class="btn-grad">Create &amp; invite</button>
-    <div class="home-bar"></div>
+    
   </div>
 </div>

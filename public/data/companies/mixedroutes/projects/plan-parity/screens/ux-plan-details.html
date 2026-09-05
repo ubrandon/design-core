@@ -4,12 +4,11 @@
 <link rel="stylesheet" href="../pp.css" />
 <link rel="stylesheet" href="../ux-plan.css" />
 <div class="pp s3 s3-1o ux-familiar" style="background:#ffffff;">
-<div class="status"><span>9:41</span><span class="r"><i class="ph-fill ph-cell-signal-full" aria-hidden="true"></i><i class="ph-fill ph-wifi-high" aria-hidden="true"></i><i class="ph-fill ph-battery-full" aria-hidden="true"></i></span></div><div class="ts-toolbar"><span class="icon-btn"><i class="ph ph-arrow-left" aria-hidden="true"></i></span><span class="ttl">Plan details</span></div><div class="ux-step-label"><b>2 of 3</b> · Plan details</div><div class="steps"><span class="done"></span><span class="on"></span><span class=""></span></div>  <div class="content">
-    <div class="name-wrap2 over-banner" style="margin-top:0;">
-      <div class="name-input">
-        <span class="lead emoji">🥾</span>
-        Weekend hike
-      </div>
+<div class="status"><span>9:41</span><span class="r"><i class="ph-fill ph-cell-signal-full" aria-hidden="true"></i><i class="ph-fill ph-wifi-high" aria-hidden="true"></i><i class="ph-fill ph-battery-full" aria-hidden="true"></i></span></div><div class="ts-toolbar"><span class="icon-btn"><i class="ph ph-arrow-left" aria-hidden="true"></i></span><span class="ttl">Plan details</span></div>  <div class="content">
+    <div class="mr-scope mr-scope--light ux-name-banner" role="button" aria-label="Rename Weekend hike">
+      <span class="ux-name-emoji" aria-hidden="true">🥾</span>
+      <b>Weekend hike</b>
+      <i class="ph ph-pencil-simple" aria-hidden="true"></i>
     </div>
 
     <div class="tags">
@@ -62,9 +61,8 @@
 
   </div>
 
-  <div class="footer" style="padding-top:20px;">
+  <div class="footer" style="padding:20px 16px 24px;">
     <span class="btn-grad cta">Next: invite people</span>
-    <div class="home-bar"></div>
   </div>
 </div>
 <style>
@@ -134,4 +132,11 @@
   .pp.s3 .set-item .st { flex: 1; min-width: 0; }
   .pp.s3 .set-item .st b { display: block; font-size: 16px; font-weight: 600; color: #1a2332; line-height: 1.25; }
   .pp.s3 .set-item .st span { display: block; font-size: 13px; color: #5c6b7d; margin-top: 2px; }
+</style>
+
+<style>
+  .pp .ux-name-banner { display:flex; align-items:center; gap:12px; min-height:60px; padding:12px 16px; margin-top:8px; border-radius:var(--radius-md); background:var(--mr-surface-3); }
+  .pp .ux-name-banner .ux-name-emoji { font-size:24px; flex-shrink:0; }
+  .pp .ux-name-banner b { flex:1; min-width:0; font-size:18px; font-weight:600; }
+  .pp .ux-name-banner > i { color:var(--muted); font-size:20px; flex-shrink:0; }
 </style>

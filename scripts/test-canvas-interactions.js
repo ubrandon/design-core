@@ -135,17 +135,31 @@ export async function testCanvasInteractions({ browser, origin, company, project
   }, "Editing and external changes did not merge");
 
   const first = page.locator('.canvas-card[data-file="one.html"]');
+  const survivingPreviews = page.locator('.canvas-card:not([data-file="one.html"]) iframe');
+  const markPreviews = () => survivingPreviews.evaluateAll(iframes => {
+    iframes.forEach(iframe => { iframe.contentDocument.documentElement.dataset.previewIdentity = iframe.dataset.file; });
+  });
+  const assertPreviewsPreserved = async action => {
+    assert.equal(await survivingPreviews.evaluateAll(iframes => iframes.every(iframe =>
+      iframe.contentDocument?.documentElement.dataset.previewIdentity === iframe.dataset.file
+    )), true, action + " reloaded an unchanged screen document");
+  };
+  await markPreviews();
   await first.click({ position: { x: 50, y: 80 } });
   await page.keyboard.press("Delete");
   await waitFor(async () => (await readScene()).screens.length === 2, "Delete did not save");
   assert.ok(await readFile(resolve(projectRoot, "screens/one.html"), "utf8"), "Delete must retain the screen file");
   await saved(page);
+  await assertPreviewsPreserved("Delete");
   await page.reload();
   await saved(page);
+  await markPreviews();
   await page.getByRole("button", { name: "Undo", exact: true }).click();
   await waitFor(async () => (await readScene()).screens.length === 3, "Delete could not be undone after reload");
+  await assertPreviewsPreserved("Undo delete");
   await page.getByRole("button", { name: "Redo", exact: true }).click();
   await waitFor(async () => (await readScene()).screens.length === 2, "Redo deletion failed");
+  await assertPreviewsPreserved("Redo delete");
   await page.getByRole("button", { name: "Undo", exact: true }).click();
   await waitFor(async () => (await readScene()).screens.length === 3, "Second undo deletion failed");
   await page.keyboard.press("Shift+Digit1");

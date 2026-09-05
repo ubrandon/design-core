@@ -497,71 +497,36 @@
       "name": "UX · access private"
     },
     {
-      "file": "ux-plan-access-public.html",
-      "x": 3323,
-      "y": 250,
-      "width": 390,
-      "name": "UX · access public"
-    },
-    {
       "file": "ux-plan-when.html",
-      "x": 3745,
+      "x": 3323,
       "y": 250,
       "width": 390,
       "name": "UX · when"
     },
     {
-      "file": "ux-plan-where.html",
-      "x": 4214,
-      "y": 250,
-      "width": 390,
-      "name": "UX · where"
-    },
-    {
-      "file": "ux-plan-where-search.html",
-      "x": 4636,
-      "y": 250,
-      "width": 390,
-      "name": "UX · where search"
-    },
-    {
       "file": "ux-plan-invite.html",
-      "x": 5140,
+      "x": 3875,
       "y": 250,
       "width": 390,
       "name": "UX · invite"
     },
     {
-      "file": "ux-plan-created.html",
-      "x": 5643,
-      "y": 250,
-      "width": 390,
-      "name": "UX · created"
-    },
-    {
       "file": "ux-plan-access-link.html",
-      "x": 6103,
+      "x": 4397,
       "y": 250,
       "width": 390,
       "name": "UX · access link"
     },
     {
-      "file": "ux-plan-invite-group.html",
-      "x": 6533,
-      "y": 250,
-      "width": 390,
-      "name": "UX · invite group"
-    },
-    {
       "file": "ux-plan-invite-group-simple.html",
-      "x": 6963,
+      "x": 4827,
       "y": 250,
       "width": 390,
       "name": "UX · invite group simplified"
     },
     {
       "file": "ux-plan-share.html",
-      "x": 7393,
+      "x": 5257,
       "y": 250,
       "width": 390,
       "name": "UX · share"
@@ -976,17 +941,10 @@
     },
     {
       "text": "3. Invite people",
-      "x": 5140,
+      "x": 3875,
       "y": 172,
       "size": 36,
       "id": "text-ux-plan-invite"
-    },
-    {
-      "text": "Plan created",
-      "x": 5643,
-      "y": 172,
-      "size": 36,
-      "id": "text-ux-plan-created"
     },
     {
       "text": "2. Details",
@@ -997,7 +955,7 @@
     },
     {
       "text": "Link access / group selection / share after creation",
-      "x": 6103,
+      "x": 4397,
       "y": 172,
       "size": 36,
       "id": "text-ux-plan-edge-states"
