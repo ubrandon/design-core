@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link rel="stylesheet" href="../pp.css" />
+
+<style>
+  .pp.mr-invite-simple { height:844px; display:flex; flex-direction:column; overflow:clip; }
+  .mr-invite-simple button { font:inherit; cursor:pointer; }
+  .mr-invite-simple .quiet-button { border:0; background:transparent; }
+  .mr-invite-simple .ts-toolbar { flex-shrink:0; }
+  .mr-invite-simple .step-caption { display:flex; justify-content:space-between; align-items:center; padding:2px 20px 12px; font-size:13px; color:var(--muted); }
+  .mr-invite-simple .step-caption .steps { padding:0; width:76px; }
+  .mr-invite-simple .step-caption .steps span { height:3px; }
+  .mr-invite-simple .content { padding:0 20px 12px; min-height:0; overflow-y:auto; scrollbar-width:none; }
+  .mr-invite-simple .plan-recap { display:flex; align-items:center; gap:12px; padding:8px 0 14px; }
+  .mr-invite-simple .plan-recap .emoji { font-size:28px; width:40px; text-align:center; flex-shrink:0; }
+  .mr-invite-simple .plan-recap b { display:block; font-size:16px; font-weight:600; }
+  .mr-invite-simple .plan-recap p { color:var(--muted); font-size:12px; margin-top:4px; }
+  .mr-invite-simple .mr-search-bar { height:48px; border-radius:24px; }
+  .mr-invite-simple .mr-search-bar input { font-size:15px; }
+  .mr-invite-simple .group-card { margin-top:16px; padding:12px 16px; border:1px solid var(--border); border-radius:var(--radius-lg); }
+  .mr-invite-simple .group-heading { display:flex; align-items:center; gap:12px; }
+  .mr-invite-simple .group-icon { display:grid; place-items:center; width:44px; height:44px; flex-shrink:0; border-radius:12px; background:var(--mr-surface-3); color:var(--muted); font-size:25px; }
+  .mr-invite-simple .group-heading .group-name { flex:1; }
+  .mr-invite-simple .group-name b { display:block; font-size:17px; font-weight:650; }
+  .mr-invite-simple .group-name p { font-size:13px; color:var(--muted); margin-top:3px; }
+  .mr-invite-simple .text-action { color:var(--link); min-height:44px; font-size:13px; font-weight:600; }
+  .mr-invite-simple .group-access { margin-top:10px; color:var(--muted); font-size:12px; line-height:1.5; }
+  .mr-invite-simple .member-selection { display:flex; align-items:center; gap:12px; margin-top:10px; border-top:1px solid var(--border); }
+  .mr-invite-simple .member-selection .selection-label { flex:1; font-size:13px; font-weight:500; }
+  .mr-invite-simple .member-row { display:flex; align-items:center; gap:10px; height:40px; font-size:14px; }
+  .mr-invite-simple .member-avatar { width:28px; height:28px; border-radius:50%; object-fit:cover; display:grid; place-items:center; background:var(--mr-surface-2); color:var(--muted); font-size:10px; font-weight:600; }
+  .mr-invite-simple .member-row .mr-checkbox { margin-left:auto; font-size:24px; }
+  .mr-invite-simple .guests-heading { display:flex; justify-content:space-between; align-items:center; margin-top:18px; }
+  .mr-invite-simple .guests-heading h2 { font-size:17px; font-weight:650; }
+  .mr-invite-simple .guest-hint { color:var(--muted); font-size:13px; margin:7px 0 12px; }
+  .mr-invite-simple .mr-pp-row { display:flex; padding:8px 0; gap:12px; }
+  .mr-invite-simple .mr-pp-row-body { flex:1; }
+  .mr-invite-simple .mr-pp-row .mr-pp-row-name { font-size:16px; font-weight:600; }
+  .mr-invite-simple .mr-pp-row .mr-pp-row-handle { color:var(--muted); font-size:13px; margin-top:4px; }
+  .mr-invite-simple .mr-checkbox.is-checked { color:var(--link); font-size:25px; }
+  .mr-invite-simple .privacy-note { display:flex; align-items:flex-start; gap:8px; margin-top:14px; color:var(--muted); font-size:12px; line-height:1.6; }
+  .mr-invite-simple .privacy-note i { font-size:16px; margin-top:2px; flex-shrink:0; }
+  .mr-invite-simple .footer { margin-top:auto; padding:16px 20px 12px; flex-shrink:0; }
+  .mr-invite-simple .invite-count { text-align:center; color:var(--muted); font-size:13px; margin-bottom:12px; }
+  .mr-invite-simple .btn-grad { height:50px; box-shadow:none; }
+  .mr-invite-simple .home-bar { margin-top:14px; }
+</style>
+
+<div class="pp s3 mr-scope mr-scope--light mr-invite-simple" style="background:var(--bg-0);">
+  <div class="status"><span>9:41</span><span class="r"><i class="ph-fill ph-cell-signal-full" aria-hidden="true"></i><i class="ph-fill ph-wifi-high" aria-hidden="true"></i><i class="ph-fill ph-battery-full" aria-hidden="true"></i></span></div>
+  <div class="ts-toolbar">
+    <button class="quiet-button icon-btn" aria-label="Back to plan details"><i class="ph ph-arrow-left" aria-hidden="true"></i></button>
+    <h1 class="ttl">Who's coming?</h1>
+    <button class="quiet-button skip">Skip</button>
+  </div>
+  <div class="step-caption"><span>Step 3 of 3</span><div class="steps" aria-hidden="true"><span class="done"></span><span class="done"></span><span class="on"></span></div></div>
+
+  <div class="content">
+    <div class="plan-recap">
+      <span class="emoji" aria-hidden="true">🥾</span>
+      <div><b>Weekend hike</b><p>Sat, Sep 5 · 8 AM · Pantoll Trailhead</p></div>
+    </div>
+    <div class="mr-search-bar"><i class="ph ph-magnifying-glass" aria-hidden="true"></i><input type="search" placeholder="Search people" aria-label="Search people to invite" readonly /></div>
+
+    <section class="group-card" aria-label="Selected group">
+      <div class="group-heading">
+        <span class="group-icon"><i class="ph-fill ph-mountains" aria-hidden="true"></i></span>
+        <div class="group-name"><b>Trail crew</b><p>6 members, including you</p></div>
+        <button class="quiet-button text-action" aria-label="Remove Trail crew from this plan">Remove</button>
+      </div>
+      <p class="group-access">All members can view and join, even if unselected.</p>
+      <div class="member-selection">
+        <span class="selection-label">5 of 5 selected</span>
+        <button class="quiet-button text-action">Deselect all</button>
+      </div>
+      <div class="member-row"><img class="member-avatar" src="../assets/ux-person-1.jpg" alt="" /><span>Maya Chen</span><span class="mr-checkbox is-checked" role="img" aria-label="Maya Chen selected"><i class="ph-fill ph-check-square" aria-hidden="true"></i></span></div>
+      <div class="member-row"><img class="member-avatar" src="../assets/ux-person-2.jpg" alt="" /><span>Jordan Lee</span><span class="mr-checkbox is-checked" role="img" aria-label="Jordan Lee selected"><i class="ph-fill ph-check-square" aria-hidden="true"></i></span></div>
+      <div class="member-row"><span class="member-avatar" aria-hidden="true">AK</span><span>Alex Kim</span><span class="mr-checkbox is-checked" role="img" aria-label="Alex Kim selected"><i class="ph-fill ph-check-square" aria-hidden="true"></i></span></div>
+      <div class="member-row"><span class="member-avatar" aria-hidden="true">TB</span><span>Taylor Brooks</span><span class="mr-checkbox is-checked" role="img" aria-label="Taylor Brooks selected"><i class="ph-fill ph-check-square" aria-hidden="true"></i></span></div>
+      <div class="member-row"><span class="member-avatar" aria-hidden="true">CM</span><span>Casey Morgan</span><span class="mr-checkbox is-checked" role="img" aria-label="Casey Morgan selected"><i class="ph-fill ph-check-square" aria-hidden="true"></i></span></div>
+    </section>
+
+    <div class="guests-heading"><h2>Guests</h2><span style="font-size:13px;color:var(--muted);">1 selected</span></div>
+    <p class="guest-hint">Invited to this plan, not added to the group.</p>
+    <div class="mr-pp-row">
+      <img class="mr-pp-row-avatar" src="../assets/ux-person-3.jpg" alt="" />
+      <div class="mr-pp-row-body"><div class="mr-pp-row-name">Sam Rivera</div><div class="mr-pp-row-handle">Into hiking</div></div>
+      <span class="mr-checkbox is-checked" role="img" aria-label="Sam Rivera selected"><i class="ph-fill ph-check-square" aria-hidden="true"></i></span>
+    </div>
+    <p class="privacy-note"><i class="ph ph-lock-simple" aria-hidden="true"></i><span>Only hosts can invite guests.<br>Group plans can't be shared by link.</span></p>
+  </div>
+
+  <div class="footer">
+    <p class="invite-count">5 group members + 1 guest</p>
+    <button class="btn-grad">Create &amp; invite</button>
+    <div class="home-bar"></div>
+  </div>
+</div>

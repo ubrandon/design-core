@@ -469,18 +469,102 @@
       "name": "new-1-details-who-can-join-anyone"
     },
     {
-      "file": "s3-1-all-in-one-stacked-copy.html",
+      "file": "ux-plan-empty.html",
       "x": 1630,
-      "y": 172,
+      "y": 250,
       "width": 390,
-      "name": "new-1-details-stacked-buttons Copy"
+      "name": "UX · empty"
     },
     {
-      "file": "s3-1-details-refined.html",
-      "x": 2060,
-      "y": 172,
+      "file": "ux-plan-name.html",
+      "x": 2050,
+      "y": 250,
       "width": 390,
-      "name": "new-1-details-refined"
+      "name": "UX · name"
+    },
+    {
+      "file": "ux-plan-details.html",
+      "x": 2472,
+      "y": 250,
+      "width": 390,
+      "name": "UX · details"
+    },
+    {
+      "file": "ux-plan-access-private.html",
+      "x": 2901,
+      "y": 250,
+      "width": 390,
+      "name": "UX · access private"
+    },
+    {
+      "file": "ux-plan-access-public.html",
+      "x": 3323,
+      "y": 250,
+      "width": 390,
+      "name": "UX · access public"
+    },
+    {
+      "file": "ux-plan-when.html",
+      "x": 3745,
+      "y": 250,
+      "width": 390,
+      "name": "UX · when"
+    },
+    {
+      "file": "ux-plan-where.html",
+      "x": 4214,
+      "y": 250,
+      "width": 390,
+      "name": "UX · where"
+    },
+    {
+      "file": "ux-plan-where-search.html",
+      "x": 4636,
+      "y": 250,
+      "width": 390,
+      "name": "UX · where search"
+    },
+    {
+      "file": "ux-plan-invite.html",
+      "x": 5140,
+      "y": 250,
+      "width": 390,
+      "name": "UX · invite"
+    },
+    {
+      "file": "ux-plan-created.html",
+      "x": 5643,
+      "y": 250,
+      "width": 390,
+      "name": "UX · created"
+    },
+    {
+      "file": "ux-plan-access-link.html",
+      "x": 6103,
+      "y": 250,
+      "width": 390,
+      "name": "UX · access link"
+    },
+    {
+      "file": "ux-plan-invite-group.html",
+      "x": 6533,
+      "y": 250,
+      "width": 390,
+      "name": "UX · invite group"
+    },
+    {
+      "file": "ux-plan-invite-group-simple.html",
+      "x": 6963,
+      "y": 250,
+      "width": 390,
+      "name": "UX · invite group simplified"
+    },
+    {
+      "file": "ux-plan-share.html",
+      "x": 7393,
+      "y": 250,
+      "width": 390,
+      "name": "UX · share"
     }
   ],
   "texts": [
@@ -875,6 +959,48 @@
       "y": 9378,
       "size": 36,
       "id": "text-legacy-mt7k9233-58"
+    },
+    {
+      "text": "New plan creation / familiar styling, 3-step example",
+      "x": 1630,
+      "y": 65,
+      "size": 72,
+      "id": "text-ux-plan-title"
+    },
+    {
+      "text": "1. Name & banner",
+      "x": 1630,
+      "y": 172,
+      "size": 36,
+      "id": "text-ux-plan-details"
+    },
+    {
+      "text": "3. Invite people",
+      "x": 5140,
+      "y": 172,
+      "size": 36,
+      "id": "text-ux-plan-invite"
+    },
+    {
+      "text": "Plan created",
+      "x": 5643,
+      "y": 172,
+      "size": 36,
+      "id": "text-ux-plan-created"
+    },
+    {
+      "text": "2. Details",
+      "x": 2472,
+      "y": 172,
+      "size": 36,
+      "id": "text-ux-plan-details-step"
+    },
+    {
+      "text": "Link access / group selection / share after creation",
+      "x": 6103,
+      "y": 172,
+      "size": 36,
+      "id": "text-ux-plan-edge-states"
     }
   ]
 }

@@ -1,0 +1,74 @@
+/* Reuse Plan Parity components; only new compositions are scoped here. */
+.pp.ux-familiar { height:844px; min-height:844px; display:flex; flex-direction:column; overflow:clip; }
+.pp.ux-familiar .content { min-height:0; }
+.pp.ux-familiar .footer { flex-shrink:0; margin-top:auto; padding-top:16px; }
+.pp.ux-familiar .hero-banner { flex-shrink:0; }
+.pp.ux-familiar .ux-step-label { color:#5c6b7d; font-size:13px; padding:0 16px 10px; }
+.pp.ux-familiar .ux-step-label b { color:#234e8a; font-weight:600; }
+.pp.ux-familiar .ux-hint { font-size:13px; color:#5c6b7d; line-height:1.4; }
+.pp.ux-familiar .ux-footnote { font-size:12px; color:#5c6b7d; text-align:center; margin-bottom:10px; }
+.pp.ux-familiar .ux-suggestions { margin-top:20px; }
+.pp.ux-familiar .ux-suggestions .act-grid { gap:8px; }
+.pp.ux-familiar .ux-suggestions .act { height:74px; background:#f1f4f7; box-shadow:none; border-radius:18px; font-size:12px; }
+.pp.ux-familiar .ux-suggestions .act em { font-size:26px; }
+.pp.ux-familiar .ux-suggestions .repeat + .repeat { margin-top:8px; }
+.pp.ux-familiar .ux-focused-title { font-size:24px; font-weight:700; margin:12px 0 8px; }
+.pp.ux-familiar .ux-focused-input { margin-top:20px; margin-bottom:20px; }
+.pp.ux-familiar .ux-focused-input .name-input { border-radius:32px; }
+.pp.ux-familiar .ux-focus-footer { padding:12px 16px; }
+.pp.ux-familiar .kb { flex-shrink:0; margin-top:0; }
+.pp.ux-familiar .ux-suggest-page { flex:1; }
+.pp.ux-familiar .ux-recap { margin-bottom:16px; }
+.pp.ux-familiar .ux-recap .thumb { background-image:url('assets/ux-hike-cover.jpg'); }
+.pp.ux-familiar .ux-recap .rtxt span { display:block; margin-top:3px; }
+.pp.ux-familiar .ux-recap .preview-emoji { font-size:27px; width:40px; text-align:center; flex-shrink:0; }
+.pp.ux-familiar .ux-privacy-choice { display:flex; align-items:center; gap:12px; padding:13px 12px; min-height:74px; border-radius:18px; background:#f1f4f7; margin-top:8px; border:1.5px solid transparent; }
+.pp.ux-familiar .ux-privacy-choice.sel { background:#e4eefe; border-color:#b9cef2; }
+.pp.ux-familiar .ux-privacy-choice > i { color:#234e8a; font-size:22px; width:24px; text-align:center; flex-shrink:0; }
+.pp.ux-familiar .ux-privacy-choice .ux-choice-text { flex:1; min-width:0; }
+.pp.ux-familiar .ux-privacy-choice b { display:block; font-size:16px; font-weight:700; }
+.pp.ux-familiar .ux-privacy-choice p { color:#5c6b7d; font-size:13px; line-height:1.35; margin-top:3px; }
+.pp.ux-familiar .ux-radio { width:22px; height:22px; border-radius:50%; border:1.5px solid #b9c0ca; flex-shrink:0; background:#fff; }
+.pp.ux-familiar .sel .ux-radio { border:6px solid #0891b2; }
+.pp.ux-familiar .ux-sheet { border-radius:24px 24px 0 0; }
+.pp.ux-familiar .ux-sheet .ux-sheet-body { padding:0 16px; }
+.pp.ux-familiar .ux-sheet .sh-tb h2 { font-size:22px; }
+.pp.ux-familiar .ux-sheet .ux-setting { display:flex; align-items:center; gap:12px; padding:14px 12px; min-height:76px; background:#f1f4f7; border-radius:18px; margin-top:8px; }
+.pp.ux-familiar .ux-setting > i { font-size:22px; color:#5c6b7d; }
+.pp.ux-familiar .ux-setting .ux-setting-text { flex:1; min-width:0; }
+.pp.ux-familiar .ux-setting b { display:block; font-size:15px; font-weight:600; }
+.pp.ux-familiar .ux-setting p { font-size:12px; color:#5c6b7d; line-height:1.35; margin-top:4px; }
+.pp.ux-familiar .ux-setting .toggle { flex-shrink:0; width:46px; height:28px; }
+.pp.ux-familiar .ux-setting .toggle::after { width:24px; height:24px; }
+.pp.ux-familiar .ux-setting .toggle.on::after { left:20px; }
+.pp.ux-familiar .ux-sheet .sh-foot { padding-top:18px; }
+.pp.ux-familiar .ux-link-note { display:flex; align-items:flex-start; gap:8px; font-size:13px; line-height:1.4; color:#5c6b7d; padding:12px 2px; }
+.pp.ux-familiar .ux-link-note > i { flex-shrink:0; font-size:19px; color:#234e8a; }
+.pp.ux-familiar .ux-invite-summary { margin-bottom:12px; }
+.pp.ux-familiar .ux-invite-summary .recap { padding:12px; }
+.pp.ux-familiar .ux-invite-summary .rtxt b { font-size:16px; }
+.pp.ux-familiar .ux-invite-summary .rtxt span { font-size:12px; }
+.pp.ux-familiar .ux-group-card { border-radius:20px; padding:10px 12px; background:#f1f4f7; margin:2px 0 16px; }
+.pp.ux-familiar .ux-group-card .prow { padding:4px 0; }
+.pp.ux-familiar .ux-group-card .ux-group-rule { font-size:12px; color:#5c6b7d; padding:10px 0; line-height:1.4; border-top:1px solid #e1e6ec; }
+.pp.ux-familiar .ux-group-card .ux-group-count { font-size:13px; color:#1a2332; padding-bottom:8px; font-weight:600; }
+.pp.ux-familiar .ux-group-card .ux-group-count span { float:right; font-weight:500; color:#0891b2; }
+.pp.ux-familiar .ux-group-member { display:flex; align-items:center; gap:10px; min-height:40px; font-size:13px; }
+.pp.ux-familiar .ux-group-member .mr-checkbox { margin-left:auto; font-size:22px; }
+.pp.ux-familiar .ux-group-member img { width:28px; height:28px; border-radius:50%; object-fit:cover; }
+.pp.ux-familiar .ux-remove { color:#0891b2; font-size:13px; font-weight:600; }
+.pp.ux-familiar .ux-group-add { color:#234e8a; font-size:24px; }
+.pp.ux-familiar .ux-share-row { margin-top:18px; }
+.pp.ux-familiar .ux-toast { display:flex; align-items:center; gap:8px; font-size:13px; background:#e2f6ee; color:#087e5b; padding:10px 12px; border-radius:14px; margin-bottom:14px; }
+.pp.ux-familiar.pp-plan-view { height:844px; }
+.pp.ux-familiar.pp-plan-view .hero { flex-shrink:0; }
+.pp.ux-familiar.pp-plan-view .below { flex:1; }
+.pp.ux-familiar .ux-share-dialog { position:absolute; top:260px; left:30px; right:30px; z-index:50; background:#fff; border-radius:24px; padding:24px; box-shadow:0 12px 48px #10172433; }
+.pp.ux-familiar .ux-share-dialog h2 { font-size:21px; text-align:center; margin-bottom:12px; }
+.pp.ux-familiar .ux-share-dialog p { font-size:14px; color:#5c6b7d; line-height:1.5; text-align:center; }
+.pp.ux-familiar .ux-share-dialog .btn-grad { margin-top:20px; font-size:16px; }
+.pp.ux-familiar .ux-share-dialog .btn-ghost { font-size:15px; }
+
+/* The approved preview uses the picker’s normal scrolling content area. */
+.pp.ux-familiar.s3-3p .content { overflow-y:auto; scrollbar-width:none; padding-bottom:12px; }
+.pp.ux-familiar.s3-3p .content::-webkit-scrollbar { display:none; }
