@@ -673,6 +673,8 @@ function resetCanvasPointerSession() {
 }
 
 window.addEventListener("blur", resetCanvasPointerSession);
+window.addEventListener("focus", resetCanvasPointerSession);
+window.addEventListener("pageshow", resetCanvasPointerSession);
 document.addEventListener("visibilitychange", () => { if (document.hidden) resetCanvasPointerSession(); });
 window.addEventListener("pointerdown", () => {
   if (objectPointer || marquee) resetCanvasPointerSession();
@@ -1073,6 +1075,8 @@ function updateMarqueeSelection(e) {
   if (!marquee.moved) {
     marquee.moved = true;
     pz.isPanning = false;
+    // Keep the gesture on the canvas while crossing cards, labels, and overlays.
+    viewport.setPointerCapture(e.pointerId);
     marqueeEl = document.createElement("div");
     marqueeEl.className = "canvas-marquee";
     document.body.appendChild(marqueeEl);
@@ -1121,7 +1125,8 @@ function updateMarqueeSelection(e) {
 
 function endMarqueePointer(e) {
   if (!marquee || marquee.pointerId !== e.pointerId) return false;
-  if (marquee.moved) updateMarqueeSelection(e);
+  // Capture loss and cancellation do not provide a reliable final pointer position.
+  if (e.type === "pointerup") updateMarqueeSelection(e);
   if (marqueeEl) { marqueeEl.remove(); marqueeEl = null; }
   marquee = null;
   clearMarqueePointerListeners();
@@ -1130,16 +1135,8 @@ function endMarqueePointer(e) {
 }
 
 viewport.addEventListener("pointerup", (e) => {
-  if (endCanvasPointerSession(e)) return;
-
-  if (
-    !pz.didPan &&
-    !e.target.closest(".canvas-card") &&
-    !e.target.closest(".canvas-text") &&
-    !e.target.closest(".canvas-context-menu")
-  ) {
-    clearSelection();
-  }
+  // Empty-canvas clicks deselect on pointerdown; a later release must not clear a completed box selection.
+  endCanvasPointerSession(e);
 });
 
 viewport.addEventListener("pointercancel", (e) => {

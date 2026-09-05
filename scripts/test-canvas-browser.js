@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 import { createServer } from "vite";
 import { testCanvasInteractions } from "./test-canvas-interactions.js";
+import { testCanvasFocus } from "./test-canvas-focus.js";
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const fixtureSuffix = process.pid + "-" + Date.now();
@@ -83,6 +84,7 @@ try {
   const port = typeof address === "object" && address ? address.port : 3000;
 
   browser = await chromium.launch({ headless: true });
+  await testCanvasFocus({ browser, url: `http://127.0.0.1:${port}/canvas.html?project=${projectId}&company=${companyB}` });
   const page = await browser.newPage({ viewport: { width: 1400, height: 900 } });
   const errors = [];
   page.on("pageerror", (error) => errors.push(error.message));

@@ -1,0 +1,115 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link rel="stylesheet" href="../pp.css" />
+
+<div class="pp mr-scope mr-scope--light mr-plan-refined" style="background: var(--bg-0);">
+  <div class="status"><span>9:41</span><span class="r"><i class="ph-fill ph-cell-signal-full" aria-hidden="true"></i><i class="ph-fill ph-wifi-high" aria-hidden="true"></i><i class="ph-fill ph-battery-full" aria-hidden="true"></i></span></div>
+  <div class="ds-nav-bar plan-nav">
+    <button class="plan-icon" type="button" aria-label="Close new plan"><i class="ph ph-x" aria-hidden="true"></i></button>
+    <h1 class="ds-nav-bar-title">New plan</h1>
+  </div>
+
+  <div class="plan-cover">
+    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&amp;fit=crop&amp;w=800&amp;q=70" alt="Hikers on a mountain trail" />
+    <button class="cover-edit" type="button"><i class="ph ph-image" aria-hidden="true"></i>Edit cover</button>
+  </div>
+
+  <div class="plan-body">
+    <div class="plan-identity">
+      <button class="plan-name" type="button" aria-label="Edit plan name: Weekend hike"><span class="plan-emoji" aria-hidden="true">🥾</span><span>Weekend hike</span><i class="ph ph-pencil-simple" aria-hidden="true"></i></button>
+      <div class="ds-chip-row plan-tags">
+        <button class="ds-chip is-active" type="button" aria-label="Remove Hiking tag">Hiking<i class="ph ph-x" aria-hidden="true"></i></button>
+        <button class="add-tags" type="button"><i class="ph ph-plus" aria-hidden="true"></i>Add tags</button>
+      </div>
+    </div>
+
+    <section class="plan-section" aria-labelledby="plan-details-title">
+      <div class="section-heading"><h2 id="plan-details-title">Time &amp; place</h2><span>Optional for now</span></div>
+      <div class="ds-list plan-details">
+        <button class="ds-list-item" type="button">
+          <span class="ds-list-item-icon"><i class="ph ph-calendar-blank" aria-hidden="true"></i></span>
+          <span class="ds-list-item-content"><span class="ds-list-item-label">When</span><span class="ds-list-item-desc">Add a date and time</span></span>
+          <i class="ph ph-plus row-action" aria-hidden="true"></i>
+        </button>
+        <button class="ds-list-item" type="button">
+          <span class="ds-list-item-icon"><i class="ph ph-map-pin" aria-hidden="true"></i></span>
+          <span class="ds-list-item-content"><span class="ds-list-item-label">Where</span><span class="ds-list-item-desc">Add a place or meeting point</span></span>
+          <i class="ph ph-plus row-action" aria-hidden="true"></i>
+        </button>
+      </div>
+    </section>
+
+    <section class="plan-section plan-extras" aria-labelledby="plan-extras-title">
+      <div class="section-heading"><h2 id="plan-extras-title">Make it yours</h2><span>Optional</span></div>
+      <div class="ds-chip-row extras-options">
+        <button class="ds-chip" type="button"><i class="ph ph-text-align-left" aria-hidden="true"></i>Description</button>
+        <button class="ds-chip" type="button"><i class="ph ph-backpack" aria-hidden="true"></i>What to bring</button>
+        <button class="ds-chip" type="button"><i class="ph ph-currency-dollar" aria-hidden="true"></i>Cost</button>
+        <button class="ds-chip" type="button"><i class="ph ph-t-shirt" aria-hidden="true"></i>What to wear</button>
+        <button class="ds-chip" type="button"><i class="ph ph-link" aria-hidden="true"></i>Link</button>
+        <button class="ds-chip" type="button"><i class="ph ph-plus" aria-hidden="true"></i>Custom</button>
+      </div>
+    </section>
+
+    <button class="plan-privacy" type="button">
+      <span class="privacy-icon"><i class="ph ph-lock" aria-hidden="true"></i></span>
+      <span class="privacy-copy"><span class="privacy-label">Who can join</span><strong>Invite only</strong><span class="privacy-summary">Guests can invite · Invite link on</span></span>
+      <i class="ph ph-caret-right" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div class="plan-footer">
+    <p>You can fill in the details later.</p>
+    <button class="btn btn-primary" type="button">Continue<i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+    <div class="home-bar" aria-hidden="true"></div>
+  </div>
+</div>
+
+<style>
+  .mr-plan-refined { min-height: 844px; display: flex; flex-direction: column; }
+  .mr-plan-refined button { font: inherit; color: inherit; cursor: default; }
+  .mr-plan-refined .plan-nav { position: relative; height: 48px; padding: 0 12px; border: 0; }
+  .mr-plan-refined .plan-nav h1 { font-size: 17px; font-weight: 650; color: var(--text); }
+  .mr-plan-refined .plan-icon { border: 0; background: transparent; width: 44px; height: 44px; display: grid; place-items: center; font-size: 23px; }
+  .mr-plan-refined .plan-cover { position: relative; height: 128px; margin: 8px 20px 0; border-radius: var(--radius-md); overflow: hidden; background: var(--bg-1); }
+  .mr-plan-refined .plan-cover img { width: 100%; height: 100%; object-fit: cover; object-position: center 48%; display: block; }
+  .mr-plan-refined .cover-edit { position: absolute; bottom: 8px; right: 8px; display: flex; align-items: center; gap: 7px; min-height: 40px; padding: 0 12px; border: 1px solid #ffffff40; border-radius: 999px; background: #14201ecc; color: #fff; font-size: 12px; font-weight: 600; backdrop-filter: blur(12px); }
+  .mr-plan-refined .cover-edit i { font-size: 17px; }
+  .mr-plan-refined .plan-body { padding: 0 20px; }
+  .mr-plan-refined .plan-identity { padding: 16px 0 20px; }
+  .mr-plan-refined .plan-name { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 38px; border: 0; background: transparent; text-align: left; font-size: 27px; font-weight: 650; letter-spacing: -1px; }
+  .mr-plan-refined .plan-emoji { font-size: 26px; letter-spacing: 0; }
+  .mr-plan-refined .plan-name > i { margin-left: auto; font-size: 18px; color: var(--muted); }
+  .mr-plan-refined .plan-tags { gap: 12px; margin-top: 8px; }
+  .mr-plan-refined .plan-tags .ds-chip { min-height: 32px; padding: 0 11px; gap: 9px; font-size: 12px; font-weight: 600; color: var(--link); background: #edf3ff; border-color: transparent; }
+  .mr-plan-refined .add-tags { display: flex; align-items: center; gap: 5px; min-height: 32px; border: 0; background: transparent; color: var(--muted); font-size: 12px; font-weight: 500; }
+  .mr-plan-refined .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .mr-plan-refined .section-heading h2 { font-size: 15px; font-weight: 650; letter-spacing: -0.2px; }
+  .mr-plan-refined .section-heading > span { font-size: 11px; color: var(--muted); }
+  .mr-plan-refined .plan-details { border: 1px solid var(--border); border-radius: var(--radius-md); }
+  .mr-plan-refined .plan-details .ds-list-item { width: 100%; min-height: 65px; padding: 11px 13px; border: 0; border-radius: 0; background: transparent; text-align: left; gap: 11px; }
+  .mr-plan-refined .plan-details .ds-list-item + .ds-list-item { position: relative; }
+  .mr-plan-refined .plan-details .ds-list-item + .ds-list-item::before { content: ""; position: absolute; left: 60px; right: 13px; top: 0; height: 1px; background: var(--border); }
+  .mr-plan-refined .ds-list-item-icon { width: 36px; height: 36px; border-radius: var(--radius-sm); color: var(--muted); background: var(--mr-surface-3); font-size: 22px; }
+  .mr-plan-refined .ds-list-item-label { display: block; font-size: 15px; font-weight: 600; color: var(--text); }
+  .mr-plan-refined .ds-list-item-desc { display: block; margin-top: 3px; font-size: 12px; color: var(--muted); }
+  .mr-plan-refined .row-action { font-size: 20px; color: var(--link); }
+  .mr-plan-refined .plan-extras { margin-top: 20px; }
+  .mr-plan-refined .extras-options { gap: 7px; }
+  .mr-plan-refined .extras-options .ds-chip { min-height: 38px; padding: 0 10px; gap: 6px; font-size: 12px; font-weight: 500; color: var(--text); background: var(--bg-0); border-color: var(--border); }
+  .mr-plan-refined .extras-options .ds-chip i { font-size: 17px; color: var(--muted); }
+  .mr-plan-refined .plan-privacy { margin-top: 20px; width: 100%; padding: 13px 12px; display: flex; align-items: center; gap: 11px; text-align: left; border: 0; border-radius: var(--radius-md); background: var(--mr-surface-3); }
+  .mr-plan-refined .privacy-icon { width: 25px; flex-shrink: 0; display: grid; place-items: center; font-size: 23px; color: var(--muted); }
+  .mr-plan-refined .privacy-copy { flex: 1; min-width: 0; }
+  .mr-plan-refined .privacy-copy > * { display: block; }
+  .mr-plan-refined .privacy-label { font-size: 11px; color: var(--muted); }
+  .mr-plan-refined .privacy-copy strong { font-size: 15px; font-weight: 600; margin-top: 3px; }
+  .mr-plan-refined .privacy-summary { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .mr-plan-refined .plan-privacy > i { color: var(--muted); font-size: 15px; }
+  .mr-plan-refined .plan-footer { margin-top: auto; padding: 18px 20px 0; }
+  .mr-plan-refined .plan-footer p { color: var(--muted); font-size: 11px; text-align: center; margin-bottom: 10px; }
+  .mr-plan-refined .plan-footer .btn-primary { width: 100%; height: 48px; padding: 0 20px; font-size: 16px; font-weight: 650; color: #fff; box-shadow: none; }
+  .mr-plan-refined .plan-footer .btn-primary > i { position: absolute; right: 18px; }
+  .mr-plan-refined .home-bar { margin: 16px auto 9px; }
+</style>

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { tmpdir } from "node:os";
+import { testCanvasMarquee } from "./test-canvas-marquee.js";
 
 export async function testCanvasInteractions({ browser, origin, company, projectId, root }) {
   const projectRoot = resolve(root, "projects", projectId);
@@ -74,6 +75,7 @@ export async function testCanvasInteractions({ browser, origin, company, project
   await page.goto(url);
   await saved(page);
   await page.keyboard.press("Shift+Digit1");
+  await testCanvasMarquee(page);
   const title = page.locator('.canvas-text[data-text-id="editable-title"]');
   for (const value of ["First edit", "Second edit"]) {
     await title.dblclick();

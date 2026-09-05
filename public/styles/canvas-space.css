@@ -20,6 +20,10 @@
   cursor: default;
 }
 
+.canvas-space-viewport:focus {
+  outline: none;
+}
+
 .canvas-space-viewport.is-pan-ready {
   cursor: grab;
 }

@@ -467,6 +467,20 @@
       "y": 1845,
       "width": 390,
       "name": "new-1-details-who-can-join-anyone"
+    },
+    {
+      "file": "s3-1-all-in-one-stacked-copy.html",
+      "x": 1630,
+      "y": 172,
+      "width": 390,
+      "name": "new-1-details-stacked-buttons Copy"
+    },
+    {
+      "file": "s3-1-details-refined.html",
+      "x": 2060,
+      "y": 172,
+      "width": 390,
+      "name": "new-1-details-refined"
     }
   ],
   "texts": [

@@ -99,6 +99,22 @@ function initPanZoom(viewport, stage, opts) {
     updatePanReadyVisual();
   }
 
+  function releaseSpace() {
+    var wasSpaceHeld = spaceHeld;
+    spaceHeld = false;
+    spacePressed = false;
+    updatePanReadyVisual();
+    if (wasSpaceHeld && (isPanning || panPointerId != null)) {
+      var pointerId = panPointerId;
+      didPan = isPanning;
+      isPanning = false;
+      panPending = null;
+      panPointerId = null;
+      releasePanCapture(pointerId);
+      clearPanVisual();
+    }
+  }
+
   window.addEventListener("keydown", function (e) {
     if (e.code === "Space") spacePressed = true;
     if (e.code === "Space" && !isEditableTarget(e.target)) {
@@ -106,26 +122,24 @@ function initPanZoom(viewport, stage, opts) {
       spaceHeld = true;
       updatePanReadyVisual();
     }
-  });
+  }, true);
   window.addEventListener("keyup", function (e) {
     if (e.code === "Space") {
-      spacePressed = false;
       if (!isEditableTarget(e.target)) e.preventDefault();
-      spaceHeld = false;
-      updatePanReadyVisual();
-      if (isPanning || panPointerId != null) {
-        didPan = isPanning;
-        isPanning = false;
-        panPending = null;
-        releasePanCapture(panPointerId);
-        panPointerId = null;
-        clearPanVisual();
-      }
+      releaseSpace();
+    } else if (["Meta", "Control", "Alt", "Escape"].includes(e.key)) {
+      // OS shortcuts can consume Space's keyup, especially while Command is held.
+      releaseSpace();
     }
-  });
+  }, true);
 
   window.addEventListener("blur", cancelPan);
+  window.addEventListener("focus", cancelPan);
+  window.addEventListener("pageshow", cancelPan);
   document.addEventListener("visibilitychange", function () { if (document.hidden) cancelPan(); });
+  window.addEventListener("pointerdown", function (e) {
+    if (!viewport.contains(e.target)) cancelPan();
+  }, true);
 
   viewport.addEventListener("pointerdown", function (e) {
     if (isEditableTarget(e.target)) return;
