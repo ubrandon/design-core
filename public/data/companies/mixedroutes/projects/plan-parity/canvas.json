@@ -470,64 +470,64 @@
     },
     {
       "file": "ux-plan-empty.html",
-      "x": 1630,
-      "y": 250,
+      "x": 6945,
+      "y": 1858,
       "width": 390,
       "name": "UX · empty"
     },
     {
       "file": "ux-plan-name.html",
-      "x": 2050,
-      "y": 250,
+      "x": 7365,
+      "y": 1858,
       "width": 390,
       "name": "UX · name"
     },
     {
       "file": "ux-plan-details.html",
-      "x": 2472,
-      "y": 250,
+      "x": 7787,
+      "y": 1858,
       "width": 390,
       "name": "UX · details"
     },
     {
       "file": "ux-plan-access-private.html",
-      "x": 2901,
-      "y": 250,
+      "x": 8216,
+      "y": 1858,
       "width": 390,
       "name": "UX · access private"
     },
     {
       "file": "ux-plan-when.html",
-      "x": 3323,
-      "y": 250,
+      "x": 8638,
+      "y": 1858,
       "width": 390,
       "name": "UX · when"
     },
     {
       "file": "ux-plan-invite.html",
-      "x": 3875,
-      "y": 250,
+      "x": 9190,
+      "y": 1858,
       "width": 390,
       "name": "UX · invite"
     },
     {
       "file": "ux-plan-access-link.html",
-      "x": 4397,
-      "y": 250,
+      "x": 9712,
+      "y": 1858,
       "width": 390,
       "name": "UX · access link"
     },
     {
       "file": "ux-plan-invite-group-simple.html",
-      "x": 4827,
-      "y": 250,
+      "x": 10142,
+      "y": 1858,
       "width": 390,
       "name": "UX · invite group simplified"
     },
     {
       "file": "ux-plan-share.html",
-      "x": 5257,
-      "y": 250,
+      "x": 10572,
+      "y": 1858,
       "width": 390,
       "name": "UX · share"
     }
@@ -927,36 +927,36 @@
     },
     {
       "text": "New plan creation / familiar styling, 3-step example",
-      "x": 1630,
-      "y": 65,
+      "x": 6945,
+      "y": 1673,
       "size": 72,
       "id": "text-ux-plan-title"
     },
     {
       "text": "1. Name & banner",
-      "x": 1630,
-      "y": 172,
+      "x": 6945,
+      "y": 1780,
       "size": 36,
       "id": "text-ux-plan-details"
     },
     {
       "text": "3. Invite people",
-      "x": 3875,
-      "y": 172,
+      "x": 9190,
+      "y": 1780,
       "size": 36,
       "id": "text-ux-plan-invite"
     },
     {
       "text": "2. Details",
-      "x": 2472,
-      "y": 172,
+      "x": 7787,
+      "y": 1780,
       "size": 36,
       "id": "text-ux-plan-details-step"
     },
     {
       "text": "Link access / group selection / share after creation",
-      "x": 4397,
-      "y": 172,
+      "x": 9712,
+      "y": 1780,
       "size": 36,
       "id": "text-ux-plan-edge-states"
     }
