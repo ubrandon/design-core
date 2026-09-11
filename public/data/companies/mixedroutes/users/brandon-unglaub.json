@@ -3,6 +3,10 @@
   "favorites": [],
   "recents": [
     {
+      "id": "logo-redesign",
+      "ts": 1789139690084
+    },
+    {
       "id": "marketing-site",
       "ts": 1789081510087
     },
@@ -25,5 +29,5 @@
     "status": ""
   },
   "navCollapsed": false,
-  "updatedAt": 1789081510087
+  "updatedAt": 1789139690084
 }

@@ -1,0 +1,25 @@
+{
+  "screens": [
+    {
+      "file": "current-logo.html",
+      "name": "Current logo \u00b7 Reference",
+      "x": 0,
+      "y": 0,
+      "width": 480
+    },
+    {
+      "file": "reference-mr.html",
+      "name": "Reference 01 \u00b7 MR",
+      "x": 520,
+      "y": 0,
+      "width": 480
+    },
+    {
+      "file": "reference-rounded-m.html",
+      "name": "Reference 02 \u00b7 Rounded M",
+      "x": 1040,
+      "y": 0,
+      "width": 480
+    }
+  ]
+}
