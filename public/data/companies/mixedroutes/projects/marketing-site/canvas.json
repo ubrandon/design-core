@@ -194,6 +194,20 @@
       "y": 0,
       "width": 640,
       "name": "H3 · Outdoors + brunch · Layered"
+    },
+    {
+      "file": "landing-v2-full.html",
+      "x": 29077,
+      "y": 0,
+      "width": 1280,
+      "name": "Landing · V2 · Full page"
+    },
+    {
+      "file": "website-v2-landing.html",
+      "x": 30397,
+      "y": 0,
+      "width": 1280,
+      "name": "Website · V2 · Landing page"
     }
   ],
   "texts": [
