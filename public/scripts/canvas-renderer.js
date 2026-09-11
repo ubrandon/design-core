@@ -104,6 +104,8 @@
         var win = iframe.contentWindow;
         var body = doc.body;
         var scrollTop = doc.documentElement.scrollTop || (body && body.scrollTop) || 0;
+        // Reset the viewport so its previous height cannot prevent shorter screens from shrinking.
+        iframe.style.height = "1px";
         var height = Math.max(
           body ? body.scrollHeight : 0,
           doc.documentElement.scrollHeight,

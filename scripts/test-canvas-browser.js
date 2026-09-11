@@ -95,6 +95,19 @@ try {
     const height = await firstCard.locator("iframe").evaluate((iframe) => parseFloat(iframe.style.height) || 0);
     return height >= 620;
   }, "Fixed content outside document flow was clipped by iframe sizing");
+  const resizedHeight = await page.evaluate(async () => {
+    const iframe = document.createElement("iframe");
+    iframe.style.cssText = "width:480px;height:620px;border:0";
+    const loaded = new Promise((resolveLoad) => iframe.addEventListener("load", resolveLoad, { once: true }));
+    iframe.srcdoc = '<style>html,body{margin:0;min-height:0}</style><div style="height:480px;background:white"></div>';
+    document.body.appendChild(iframe);
+    await loaded;
+    window.createCanvasRenderer({ stage: document.body }).autoSizeIframe(iframe);
+    const height = parseFloat(iframe.style.height);
+    iframe.remove();
+    return height;
+  });
+  assert.equal(resizedHeight, 480, "A shorter screen must shrink its existing iframe viewport");
   await firstCard.locator("iframe").evaluate((iframe) => { iframe.dataset.identity = "preserve-me"; });
 
   let conflictInjected = false;
