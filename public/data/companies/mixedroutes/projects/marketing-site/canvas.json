@@ -166,6 +166,20 @@
       "y": 0,
       "width": 1280,
       "name": "Get the app · Branding V2"
+    },
+    {
+      "file": "home-more-together.html",
+      "x": 16173,
+      "y": 0,
+      "width": 1280,
+      "name": "Home · More time together"
+    },
+    {
+      "file": "home-your-kind-of-plans.html",
+      "x": 17559,
+      "y": 0,
+      "width": 1280,
+      "name": "Home · Your kind of plans"
     }
   ],
   "texts": [
