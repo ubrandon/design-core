@@ -9,38 +9,17 @@
     },
     {
       "file": "reference-rounded-m.html",
-      "x": 879,
+      "x": 553,
       "y": 0,
       "width": 480,
       "name": "Reference 02 · Rounded M"
     },
     {
-      "file": "airy-logo.html",
-      "x": 1399,
+      "file": "logo-05-monolith.html",
+      "x": 1119,
       "y": 0,
       "width": 480,
-      "name": "19 · Airy"
-    },
-    {
-      "file": "selected-logo-explorations.html",
-      "x": 3559,
-      "y": 0,
-      "width": 1600,
-      "name": "12, 24, 34, 38 · Focused explorations"
-    },
-    {
-      "file": "logo-24a.html",
-      "x": 5199,
-      "y": 0,
-      "width": 480,
-      "name": "24A · M without lower piece"
-    },
-    {
-      "file": "logo-34.html",
-      "x": 5719,
-      "y": 0,
-      "width": 480,
-      "name": "34 · Winding route"
+      "name": "05 · Monolith"
     }
   ]
 }
