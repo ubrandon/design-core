@@ -138,6 +138,34 @@
       "y": 11550,
       "width": 1024,
       "name": "Store · Feature graphic v3 · 1024×500"
+    },
+    {
+      "file": "brand-v2-home.html",
+      "x": 14797,
+      "y": 0,
+      "width": 1280,
+      "name": "Home · Branding V2"
+    },
+    {
+      "file": "brand-v2-about.html",
+      "x": 20946,
+      "y": 0,
+      "width": 1280,
+      "name": "About · Branding V2"
+    },
+    {
+      "file": "brand-v2-faq.html",
+      "x": 22322,
+      "y": 0,
+      "width": 1280,
+      "name": "FAQ · Branding V2"
+    },
+    {
+      "file": "brand-v2-get-the-app.html",
+      "x": 23698,
+      "y": 0,
+      "width": 1280,
+      "name": "Get the app · Branding V2"
     }
   ],
   "texts": [
@@ -145,19 +173,29 @@
       "text": "App store images",
       "x": 3264,
       "y": 8343,
-      "size": 144
+      "size": 144,
+      "id": "text-legacy-mtw74gnk-1"
     },
     {
       "text": "Archive",
       "x": 3296,
       "y": 20147,
-      "size": 144
+      "size": 144,
+      "id": "text-legacy-mtw74gnk-2"
     },
     {
       "text": "Website",
       "x": 3264,
       "y": -273,
-      "size": 144
+      "size": 144,
+      "id": "text-legacy-mtw74gnk-3"
+    },
+    {
+      "text": "Website · Branding V2",
+      "x": 14797,
+      "y": -273,
+      "size": 144,
+      "id": "text-legacy-mtw74gnk-4"
     }
   ]
 }

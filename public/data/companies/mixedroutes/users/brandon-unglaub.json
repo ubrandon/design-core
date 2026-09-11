@@ -3,6 +3,10 @@
   "favorites": [],
   "recents": [
     {
+      "id": "marketing-site",
+      "ts": 1789081510087
+    },
+    {
       "id": "plan-parity",
       "ts": 1788294029552
     },
@@ -21,5 +25,5 @@
     "status": ""
   },
   "navCollapsed": false,
-  "updatedAt": 1788294247279
+  "updatedAt": 1789081510087
 }
