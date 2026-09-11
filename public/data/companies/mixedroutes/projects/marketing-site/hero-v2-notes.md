@@ -14,3 +14,16 @@ These are static concepts for planned V2 capabilities. Names, saves, counts, and
 ## Graphic-only spacing variations
 
 4A through 4D isolate the idea-to-plan graphic at 620px canvas width: compact stagger, aligned cards, integrated plan/chat, and horizontal idea. All use light chat surfaces. A shared-save suggestion and a friend activity status are included for comparison. Status is illustrative of the direction in 6_STATUS.md, which remains a placeholder, not a shipped claim.
+
+## Stacked variations (S1 through S4)
+
+September 11, 2026. Four hero screens to the right of 04, same nav, headline, copy, and CTA. Each graphic is a vertical stack instead of a rotated collage: no card rotation, straight edges, small horizontal offsets for depth, lilac circle and dot texture behind.
+
+- S1 Stacked column: ask bar, generated group idea (sparkle), your plan, chat, in reading order with a step-down cascade (3_DISCOVER ask bar, 2_AI_LAYER group ideas).
+- S2 Stacked deck: Discover chips with For you selected, a deck of For-you cards (lilac and mint cards peeking behind a citrus event card, "Because you like games" with no sparkle since that row is deterministic), then plan and chat.
+- S3 Stacked friend feed: Home v2 people-first stack (4_HOME): availability status line, friend-is-going row with Join, you-both-saved row on apricot, dark group nudge with Get ideas, inline invite with Going and Maybe.
+- S4 Stacked interest: interest page stack (9_INTEREST_PAGES): lilac Music header with Following, upcoming event with saved-by friends, friends into this, public plan with Join.
+
+Shared classes use the hs- prefix in company.css. Status remains illustrative of 6_STATUS.md, a placeholder phase; no ratings or nearby availability are shown.
+
+H1–H3 are fresh graphic-only layered studies mounted above and right of the selected header. They use V2 interest colors, real-life photos, lilac rings and dotted texture. Scenarios: art and coffee, music and dinner, outdoors and brunch. Friend activity, shared saves, and plan context use illustrative data from the pending V2 direction; no live-data claims. Search remains removed.

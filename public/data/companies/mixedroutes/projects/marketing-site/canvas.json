@@ -175,32 +175,25 @@
       "name": "V2 Hero · 04 · Idea to plan"
     },
     {
-      "file": "graphic-v2-idea-compact.html",
-      "x": 23797,
+      "file": "header-stack-v2-art.html",
+      "x": 23873,
       "y": 0,
-      "width": 620,
-      "name": "4A · Art + coffee"
+      "width": 640,
+      "name": "H1 · Art + coffee · Layered"
     },
     {
-      "file": "graphic-v2-idea-aligned.html",
-      "x": 24457,
+      "file": "header-stack-v2-music.html",
+      "x": 24553,
       "y": 0,
-      "width": 620,
-      "name": "4B · Outdoors + brunch"
+      "width": 640,
+      "name": "H2 · Music + friends · Layered"
     },
     {
-      "file": "graphic-v2-idea-connected.html",
-      "x": 24457,
-      "y": 715,
-      "width": 620,
-      "name": "4C · Music + dinner"
-    },
-    {
-      "file": "graphic-v2-idea-horizontal.html",
-      "x": 23797,
-      "y": 790,
-      "width": 620,
-      "name": "4D · Coffee + games"
+      "file": "header-stack-v2-outdoors.html",
+      "x": 25233,
+      "y": 0,
+      "width": 640,
+      "name": "H3 · Outdoors + brunch · Layered"
     }
   ],
   "texts": [
