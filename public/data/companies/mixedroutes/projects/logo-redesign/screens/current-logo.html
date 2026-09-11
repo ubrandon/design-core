@@ -5,7 +5,17 @@
   :root { --bg-0: #ffffff; }
   html, body { background: #ffffff; margin: 0; }
   body { min-height: 0; }
+
+.mr-app-comparison { --bg-0:#fff; position:relative; height:480px; overflow:clip; background:var(--bg-0); }
+.mr-app-main { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transform:translateX(-30px) scale(.8); }
+.mr-app-tile { position:absolute; right:24px; bottom:105px; width:76px; height:76px; border-radius:19px; background:#005bff; overflow:hidden; isolation:isolate; }
+.mr-app-mini { position:absolute; left:50%; top:50%; width:320px; height:280px; transform:translate(-50%,-50%) scale(0.16875); filter:brightness(0) invert(1);  }
+.mr-vote-letter { position:absolute; top:22px; left:24px; z-index:1; color:#000; font-size:24px; font-weight:700; line-height:1; }
 </style>
-<div class="mr-scope" style="background: #ffffff; height: 480px; display: flex; align-items: center; justify-content: center; overflow: clip;">
-  <img src="../assets/current-logo-blue.svg" width="320" height="280" alt="Current MixedRoutes logo" style="display: block; width: 320px; height: 280px; max-width: 100%; object-fit: contain;" />
+<div class="mr-scope mr-app-comparison" style="background:#fff;">
+  <span class="mr-vote-letter" aria-label="Option A">A</span>
+  <div class="mr-app-main"><img src="../assets/current-logo-blue.svg" width="320" height="280" alt="Current MixedRoutes logo" style="display: block; width: 320px; height: 280px; max-width: 100%; object-fit: contain;" /></div>
+  <div class="mr-app-tile" role="img" aria-label="White logo on a blue app icon">
+    <div class="mr-app-mini" aria-hidden="true"><img src="../assets/current-logo-blue.svg" width="320" height="280" alt="Current MixedRoutes logo" style="display: block; width: 320px; height: 280px; max-width: 100%; object-fit: contain;" /></div>
+  </div>
 </div>

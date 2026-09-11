@@ -6,7 +6,17 @@ html, body { margin: 0; min-height: 0; background: #fff; }
 .mr-modular-screen { --bg-0: #fff; height: 480px; display: flex; align-items: center; justify-content: center; overflow: clip; }
 .mr-modular-crop { position: relative; width: 400px; height: 310px; overflow: hidden; }
 .mr-modular-crop img { position: absolute; width: 1996.8px; height: 1331.2px; max-width: none; left: -1035px; top: -479px; }
+
+.mr-app-comparison { --bg-0:#fff; position:relative; height:480px; overflow:clip; background:var(--bg-0); }
+.mr-app-main { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transform:translateX(-30px) scale(.8); }
+.mr-app-tile { position:absolute; right:24px; bottom:105px; width:76px; height:76px; border-radius:19px; background:#005bff; overflow:hidden; isolation:isolate; }
+.mr-app-mini { position:absolute; left:50%; top:50%; width:400px; height:310px; transform:translate(-50%,-50%) scale(0.135); filter:grayscale(1) invert(1) contrast(12); mix-blend-mode:screen; }
+.mr-vote-letter { position:absolute; top:22px; left:24px; z-index:1; color:#000; font-size:24px; font-weight:700; line-height:1; }
 </style>
-<div class="mr-scope mr-scope--light mr-modular-screen" style="background: var(--bg-0);">
-  <div class="mr-modular-crop"><img src="../assets/selected-logo-explorations/fresh-logo-concepts-white.png" width="1536" height="1024" alt="MixedRoutes logo 07: a playful modular mark made of a circle, diagonal rounded stroke, and upright pill." /></div>
+<div class="mr-scope mr-app-comparison" style="background:#fff;">
+  <span class="mr-vote-letter" aria-label="Option E">E</span>
+  <div class="mr-app-main"><div class="mr-modular-crop"><img src="../assets/selected-logo-explorations/fresh-logo-concepts-white.png" width="1536" height="1024" alt="MixedRoutes logo 07: a playful modular mark made of a circle, diagonal rounded stroke, and upright pill." /></div></div>
+  <div class="mr-app-tile" role="img" aria-label="White logo on a blue app icon">
+    <div class="mr-app-mini" aria-hidden="true"><div class="mr-modular-crop"><img src="../assets/selected-logo-explorations/fresh-logo-concepts-white.png" width="1536" height="1024" alt="MixedRoutes logo 07: a playful modular mark made of a circle, diagonal rounded stroke, and upright pill." /></div></div>
+  </div>
 </div>

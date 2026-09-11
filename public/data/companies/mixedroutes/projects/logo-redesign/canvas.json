@@ -5,42 +5,49 @@
       "x": 0,
       "y": 0,
       "width": 480,
-      "name": "Current logo · Reference"
+      "name": "Option A"
     },
     {
       "file": "reference-rounded-m.html",
       "x": 528,
       "y": 0,
       "width": 480,
-      "name": "Reference 02 · Rounded M"
+      "name": "Option B"
     },
     {
       "file": "logo-05-monolith.html",
-      "x": 1055,
-      "y": 0,
+      "x": 0,
+      "y": 545,
       "width": 480,
-      "name": "05 · Monolith"
+      "name": "Option D"
     },
     {
       "file": "logo-07-modular.html",
-      "x": 1589,
-      "y": 0,
+      "x": 528,
+      "y": 545,
       "width": 480,
-      "name": "07 · Modular"
+      "name": "Option E"
     },
     {
       "file": "fresh-selected-25.html",
-      "x": 2112,
+      "x": 1058,
       "y": 0,
       "width": 480,
-      "name": "25 · MR monogram"
+      "name": "Option C"
     },
     {
-      "file": "folded-m-square-variations.html",
-      "x": 0,
+      "file": "folded-m-rounded-shoulders.html",
+      "x": 3440,
       "y": 581,
       "width": 1600,
-      "name": "30L evolved · Bold square app marks"
+      "name": "Rounded M · Folded top shoulders"
+    },
+    {
+      "file": "folded-m-crisp-corners.html",
+      "x": 5160,
+      "y": 581,
+      "width": 1600,
+      "name": "Folded M · Small radii, wider gaps"
     }
   ]
 }
