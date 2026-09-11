@@ -11,175 +11,196 @@
       "x": 3296,
       "y": 0,
       "width": 1280,
-      "name": "Landing v2 \u00b7 Blue Hour \u00b7 Illustrated"
+      "name": "Landing v2 · Blue Hour · Illustrated"
     },
     {
       "file": "brand-board-variation-field-notes.html",
       "x": 3296,
       "y": 20408,
       "width": 860,
-      "name": "Identity B \u00b7 Field Notes"
+      "name": "Identity B · Field Notes"
     },
     {
       "file": "brand-board-variation-golden-hour.html",
       "x": 4192,
       "y": 20408,
       "width": 860,
-      "name": "Identity D \u00b7 Golden Hour"
+      "name": "Identity D · Golden Hour"
     },
     {
       "file": "store-1c.html",
       "x": 3296,
       "y": 8608,
       "width": 1284,
-      "name": "Store 1C \u00b7 Blue Hour"
+      "name": "Store 1C · Blue Hour"
     },
     {
       "file": "store-2c.html",
       "x": 4617,
       "y": 8608,
       "width": 1284,
-      "name": "Store 2C \u00b7 Interests \u00b7 Blue Hour"
+      "name": "Store 2C · Interests · Blue Hour"
     },
     {
       "file": "store-3c.html",
       "x": 8591,
       "y": 8608,
       "width": 1284,
-      "name": "Store 3C \u00b7 Every event \u00b7 Blue Hour"
+      "name": "Store 3C · Every event · Blue Hour"
     },
     {
       "file": "store-4c.html",
       "x": 5934,
       "y": 8608,
       "width": 1284,
-      "name": "Store 4C \u00b7 Everything with everyone \u00b7 Blue Hour"
+      "name": "Store 4C · Everything with everyone · Blue Hour"
     },
     {
       "file": "store-5c.html",
       "x": 7252,
       "y": 8608,
       "width": 1284,
-      "name": "Store 5C \u00b7 Idea to plan \u00b7 Blue Hour"
+      "name": "Store 5C · Idea to plan · Blue Hour"
     },
     {
       "file": "store-6c.html",
       "x": 9925,
       "y": 8608,
       "width": 1284,
-      "name": "Store 6C \u00b7 Chats \u00b7 Blue Hour"
+      "name": "Store 6C · Chats · Blue Hour"
     },
     {
       "file": "store-tablet-1.html",
       "x": 11325,
       "y": 8608,
       "width": 2752,
-      "name": "Store \u00b7 iPad 13-inch \u00b7 Blue Hour \u00b7 2752\u00d72064"
+      "name": "Store · iPad 13-inch · Blue Hour · 2752×2064"
     },
     {
       "file": "interests-line-art.html",
       "x": 5152,
       "y": 20440,
       "width": 300,
-      "name": "Illustration guide \u00b7 Line art"
+      "name": "Illustration guide · Line art"
     },
     {
       "file": "brand-board-variation-blue-hour-illustrated.html",
       "x": 8800,
       "y": 0,
       "width": 860,
-      "name": "Identity E3 \u00b7 Blue Hour \u00b7 Illustrated"
+      "name": "Identity E3 · Blue Hour · Illustrated"
     },
     {
       "file": "interests-line-art-accent.html",
       "x": 9696,
       "y": 0,
       "width": 300,
-      "name": "Illustration guide \u00b7 Line art + orange accent"
+      "name": "Illustration guide · Line art + orange accent"
     },
     {
       "file": "redesign2-about.html",
       "x": 4608,
       "y": 0,
       "width": 1280,
-      "name": "About \u00b7 Blue Hour"
+      "name": "About · Blue Hour"
     },
     {
       "file": "redesign2-faq.html",
       "x": 5920,
       "y": 0,
       "width": 1280,
-      "name": "FAQ \u00b7 Blue Hour"
+      "name": "FAQ · Blue Hour"
     },
     {
       "file": "redesign2-get-the-app.html",
       "x": 7232,
       "y": 0,
       "width": 1280,
-      "name": "Get the app \u00b7 Blue Hour"
+      "name": "Get the app · Blue Hour"
     },
     {
       "file": "store-app-icon.html",
       "x": 3296,
       "y": 11550,
       "width": 512,
-      "name": "Store \u00b7 App icon \u00b7 512"
+      "name": "Store · App icon · 512"
     },
     {
       "file": "store-app-icon-gradient.html",
       "x": 3296,
       "y": 12142,
       "width": 512,
-      "name": "Store \u00b7 App icon \u00b7 512 \u00b7 Gradient"
+      "name": "Store · App icon · 512 · Gradient"
     },
     {
       "file": "store-feature-graphic-v3.html",
       "x": 3902,
       "y": 11550,
       "width": 1024,
-      "name": "Store \u00b7 Feature graphic v3 \u00b7 1024\u00d7500"
-    },
-    {
-      "file": "brand-v2-home.html",
-      "x": 21121,
-      "y": 0,
-      "width": 1280,
-      "name": "Home \u00b7 Branding V2"
+      "name": "Store · Feature graphic v3 · 1024×500"
     },
     {
       "file": "brand-v2-about.html",
       "x": 21121,
       "y": 6977,
       "width": 1280,
-      "name": "About \u00b7 Branding V2"
+      "name": "About · Branding V2"
     },
     {
       "file": "brand-v2-faq.html",
       "x": 22497,
       "y": 6977,
       "width": 1280,
-      "name": "FAQ \u00b7 Branding V2"
+      "name": "FAQ · Branding V2"
     },
     {
       "file": "brand-v2-get-the-app.html",
       "x": 23873,
       "y": 6977,
       "width": 1280,
-      "name": "Get the app \u00b7 Branding V2"
-    },
-    {
-      "file": "home-your-kind-of-plans.html",
-      "x": 22497,
-      "y": 0,
-      "width": 1280,
-      "name": "Home \u00b7 Your kind of plans"
+      "name": "Get the app · Branding V2"
     },
     {
       "file": "home-more-life-v2.html",
-      "x": 24260,
+      "x": 21121,
       "y": 0,
       "width": 1280,
-      "name": "Home \u00b7 More life \u00b7 V2 Base"
+      "name": "Home · More life · V2 Base"
+    },
+    {
+      "file": "hero-v2-idea-to-plan.html",
+      "x": 22477,
+      "y": 0,
+      "width": 1280,
+      "name": "V2 Hero · 04 · Idea to plan"
+    },
+    {
+      "file": "graphic-v2-idea-compact.html",
+      "x": 23797,
+      "y": 0,
+      "width": 620,
+      "name": "4A · Art + coffee"
+    },
+    {
+      "file": "graphic-v2-idea-aligned.html",
+      "x": 24457,
+      "y": 0,
+      "width": 620,
+      "name": "4B · Outdoors + brunch"
+    },
+    {
+      "file": "graphic-v2-idea-connected.html",
+      "x": 24457,
+      "y": 715,
+      "width": 620,
+      "name": "4C · Music + dinner"
+    },
+    {
+      "file": "graphic-v2-idea-horizontal.html",
+      "x": 23797,
+      "y": 790,
+      "width": 620,
+      "name": "4D · Coffee + games"
     }
   ],
   "texts": [
@@ -205,7 +226,7 @@
       "id": "text-legacy-mtw74gnk-3"
     },
     {
-      "text": "Website \u00b7 Branding V2",
+      "text": "Website · Branding V2",
       "x": 21121,
       "y": -273,
       "size": 144,
