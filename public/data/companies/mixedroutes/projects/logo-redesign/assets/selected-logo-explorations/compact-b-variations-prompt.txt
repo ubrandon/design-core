@@ -1,0 +1,12 @@
+Built-in image_gen. User's attached approved A and B logos used as reference.
+
+Use case: logo-brand. The user LOVES the two app logos in the attached reference, A on the left and B on the right. Create a careful premium brand designer's variation sheet, honoring the accepted shapes. Preserve chunky solid forms, beautifully soft rounded corners, simplicity, electric blue #005BFF tile, WHITE symbol, pure opaque WHITE sheet background. No gradients, glow, shadow, texture, bevel, 3D, multicolor, fine linework, road illustrations or extra decorations. These are app logo refinements, not new unrelated concepts.
+1536x1024 landscape sheet, 3 columns x 2 rows, six large identical-size blue rounded-square app tiles with white symbols. Each tile has one small matching standalone blue symbol beside it on white, exact same geometry. Large tiles at least 240px square, symbols occupy 68% of tile width, well centered with equal optical weight. Labels only below, black clean sans serif. Main marks consist of TWO solid chunky pieces and ONE clean negative-space seam. Preserve generous mass; keep seam readable when small. No wordmarks or headings.
+Work ONLY on the RIGHT reference, concept B: two chunky inward-facing rounded chevron/boomerang masses fit together with one broad angular zigzag seam, four bulbous corner lobes and a compact butterfly/hourglass-like overall silhouette. Do not develop A. Preserve the two-piece interlocking feel. Never turn it into two separated arrows or a skinny X.
+B1: faithful close refinement of original B, left piece convex toward center, right piece accepting it, rounded four lobes, generous clean seam.
+B2: squatter and wider, very broad lobes, softened central zigzag and more expansive negative space.
+B3: more balanced symmetry in outer silhouette, two evenly sized pieces with a crisp central directional notch, rounded pill-like ends.
+B4: soften center zigzag to a shallow smooth S-shaped seam, keeping four plump outer lobes and two interlocking masses.
+B5: slightly smaller corner radii, short flat segments on outer sides, more geometric but still thick and friendly, confident zigzag seam.
+B6: two pieces rotated together 12 degrees clockwise to suggest playful motion, retain equal mass, clean central gap and four rounded lobes.
+Exact captions B1 B2 B3 B4 B5 B6. Keep six visibly different constructions but strongly related to approved B. No tiny gaps, extra pieces, disconnected dots or complicated weaving.

@@ -1,0 +1,118 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<style>
+html, body { margin: 0; min-height: 0; background: #fff; }
+.mr-scope.mr-appicon { --bg-0: #fff; background: #fff; --text: #111827; --muted: #697281; --blue: #005BFF; overflow-x: clip; font-family: var(--font-body); color: var(--text); }
+.mr-appicon header { padding: 40px 56px 8px; }
+.mr-appicon h1 { margin: 0; font-size: 30px; letter-spacing: -.9px; font-weight: 700; }
+.mr-appicon header p { margin: 8px 0 0; font-size: 15px; color: var(--muted); }
+.mr-appicon .ai-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; padding: 32px 56px 8px; }
+.mr-appicon .ai-cell { display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 18px 24px; padding: 28px; border: 1px solid #e6e8ec; border-radius: 24px; background: #fff; }
+.mr-appicon .ai-big { display: flex; align-items: center; justify-content: center; aspect-ratio: 1; background: #f4f6f9; border-radius: 20px; }
+.mr-appicon .ai-big .ai-mark { width: 78%; height: 78%; }
+.mr-appicon .ai-mark path { fill: none; stroke: var(--blue); stroke-width: 17; stroke-linecap: round; stroke-linejoin: round; }
+.mr-appicon .ai-mark .dot { fill: var(--blue); }
+.mr-appicon .ai-mark path.ko { stroke: #f4f6f9; stroke-width: 29; }
+.mr-appicon .ai-icon .ai-mark path.ko { stroke: var(--blue); }
+.mr-appicon .ai-mark.ai-inv path { stroke: #fff; }
+.mr-appicon .ai-mark.ai-inv .dot { fill: #fff; }
+.mr-appicon .ai-side { display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 16px; }
+.mr-appicon .ai-icon { display: flex; align-items: center; justify-content: center; background: var(--blue); flex: none; }
+.mr-appicon .ai-icon .ai-mark { width: 74%; height: 74%; }
+.mr-appicon .ai-icon-lg { width: 120px; height: 120px; border-radius: 27px; }
+.mr-appicon .ai-sizes { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.mr-appicon .ai-cap { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 10px; font-size: 14px; color: var(--muted); }
+.mr-appicon .ai-cap strong { color: var(--text); font-size: 16px; }
+.mr-appicon .ai-num { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--blue); }
+.mr-appicon .ai-dock-wrap { padding: 28px 56px 48px; }
+.mr-appicon .ai-dock-label { font-size: 13px; color: var(--muted); margin: 0 0 14px; }
+.mr-appicon .ai-dock { display: flex; gap: 36px; padding: 28px 40px; border-radius: 28px; background: linear-gradient(135deg, #dfe7f5, #cdd8ea); }
+.mr-appicon .ai-dock-icon { position: relative; width: 60px; height: 60px; border-radius: 14px; box-shadow: 0 6px 16px rgba(0,40,120,.18); }
+.mr-appicon .ai-dock-icon span { position: absolute; top: 66px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #1a2332; white-space: nowrap; }
+.mr-appicon .ai-dock-icon { margin-bottom: 22px; }
+</style>
+<div class="mr-scope mr-appicon" style="background: var(--bg-0);">
+<header>
+  <h1>App icon marks: six flat symbols</h1>
+  <p>One uniform stroke weight, round caps, no fills. Each mark is built to hold up at 29 px, the smallest iOS icon size.</p>
+</header>
+<div class="ai-grid">
+<section class="ai-cell">
+  <div class="ai-big"><svg class="ai-mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M22 78 V28 L50 58 L78 28 V78"/></svg></div>
+  <div class="ai-side">
+    <div class="ai-icon ai-icon-lg"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M22 78 V28 L50 58 L78 28 V78"/></svg></div>
+    <div class="ai-sizes">
+      <div class="ai-icon" style="width:60px;height:60px;border-radius:14px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M22 78 V28 L50 58 L78 28 V78"/></svg></div>
+      <div class="ai-icon" style="width:40px;height:40px;border-radius:9px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M22 78 V28 L50 58 L78 28 V78"/></svg></div>
+      <div class="ai-icon" style="width:29px;height:29px;border-radius:7px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M22 78 V28 L50 58 L78 28 V78"/></svg></div>
+    </div>
+  </div>
+  <div class="ai-cap"><span class="ai-num">01</span><strong>Merge</strong><span>Two routes rise and meet. A capital M in one stroke.</span></div>
+</section>
+<section class="ai-cell">
+  <div class="ai-big"><svg class="ai-mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 82 V54 M50 54 L27 26 M50 54 L73 26"/></svg></div>
+  <div class="ai-side">
+    <div class="ai-icon ai-icon-lg"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 82 V54 M50 54 L27 26 M50 54 L73 26"/></svg></div>
+    <div class="ai-sizes">
+      <div class="ai-icon" style="width:60px;height:60px;border-radius:14px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 82 V54 M50 54 L27 26 M50 54 L73 26"/></svg></div>
+      <div class="ai-icon" style="width:40px;height:40px;border-radius:9px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 82 V54 M50 54 L27 26 M50 54 L73 26"/></svg></div>
+      <div class="ai-icon" style="width:29px;height:29px;border-radius:7px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 82 V54 M50 54 L27 26 M50 54 L73 26"/></svg></div>
+    </div>
+  </div>
+  <div class="ai-cap"><span class="ai-num">02</span><strong>Fork</strong><span>One path, two ways. Reads as a Y at any size.</span></div>
+</section>
+<section class="ai-cell">
+  <div class="ai-big"><svg class="ai-mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M18 70 H32 C58 70 42 30 68 30 H82"/><path class="ko" d="M18 30 H32 C58 30 42 70 68 70 H82"/><path d="M18 30 H32 C58 30 42 70 68 70 H82"/></svg></div>
+  <div class="ai-side">
+    <div class="ai-icon ai-icon-lg"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M18 70 H32 C58 70 42 30 68 30 H82"/><path class="ko" d="M18 30 H32 C58 30 42 70 68 70 H82"/><path d="M18 30 H32 C58 30 42 70 68 70 H82"/></svg></div>
+    <div class="ai-sizes">
+      <div class="ai-icon" style="width:60px;height:60px;border-radius:14px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M18 70 H32 C58 70 42 30 68 30 H82"/><path class="ko" d="M18 30 H32 C58 30 42 70 68 70 H82"/><path d="M18 30 H32 C58 30 42 70 68 70 H82"/></svg></div>
+      <div class="ai-icon" style="width:40px;height:40px;border-radius:9px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M18 70 H32 C58 70 42 30 68 30 H82"/><path class="ko" d="M18 30 H32 C58 30 42 70 68 70 H82"/><path d="M18 30 H32 C58 30 42 70 68 70 H82"/></svg></div>
+      <div class="ai-icon" style="width:29px;height:29px;border-radius:7px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M18 70 H32 C58 70 42 30 68 30 H82"/><path class="ko" d="M18 30 H32 C58 30 42 70 68 70 H82"/><path d="M18 30 H32 C58 30 42 70 68 70 H82"/></svg></div>
+    </div>
+  </div>
+  <div class="ai-cap"><span class="ai-num">03</span><strong>Swap</strong><span>Two lanes trade places. The literal mixed route.</span></div>
+</section>
+<section class="ai-cell">
+  <div class="ai-big"><svg class="ai-mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M26 78 V52 A26 26 0 0 1 52 26 H54"/><circle class="dot" cx="76" cy="26" r="11"/></svg></div>
+  <div class="ai-side">
+    <div class="ai-icon ai-icon-lg"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M26 78 V52 A26 26 0 0 1 52 26 H54"/><circle class="dot" cx="76" cy="26" r="11"/></svg></div>
+    <div class="ai-sizes">
+      <div class="ai-icon" style="width:60px;height:60px;border-radius:14px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M26 78 V52 A26 26 0 0 1 52 26 H54"/><circle class="dot" cx="76" cy="26" r="11"/></svg></div>
+      <div class="ai-icon" style="width:40px;height:40px;border-radius:9px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M26 78 V52 A26 26 0 0 1 52 26 H54"/><circle class="dot" cx="76" cy="26" r="11"/></svg></div>
+      <div class="ai-icon" style="width:29px;height:29px;border-radius:7px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M26 78 V52 A26 26 0 0 1 52 26 H54"/><circle class="dot" cx="76" cy="26" r="11"/></svg></div>
+    </div>
+  </div>
+  <div class="ai-cap"><span class="ai-num">04</span><strong>Trail</strong><span>A route that turns toward its destination.</span></div>
+</section>
+<section class="ai-cell">
+  <div class="ai-big"><svg class="ai-mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M24 28 H76 L24 72 H76"/></svg></div>
+  <div class="ai-side">
+    <div class="ai-icon ai-icon-lg"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M24 28 H76 L24 72 H76"/></svg></div>
+    <div class="ai-sizes">
+      <div class="ai-icon" style="width:60px;height:60px;border-radius:14px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M24 28 H76 L24 72 H76"/></svg></div>
+      <div class="ai-icon" style="width:40px;height:40px;border-radius:9px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M24 28 H76 L24 72 H76"/></svg></div>
+      <div class="ai-icon" style="width:29px;height:29px;border-radius:7px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M24 28 H76 L24 72 H76"/></svg></div>
+    </div>
+  </div>
+  <div class="ai-cap"><span class="ai-num">05</span><strong>Zig</strong><span>A bold switchback. Route as a single Z stroke.</span></div>
+</section>
+<section class="ai-cell">
+  <div class="ai-big"><svg class="ai-mark" viewBox="0 0 100 100" aria-hidden="true"><path d="M23 78 V50 A13 13 0 0 1 49 50 V78 M49 50 A13 13 0 0 1 75 50 V78"/></svg></div>
+  <div class="ai-side">
+    <div class="ai-icon ai-icon-lg"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M23 78 V50 A13 13 0 0 1 49 50 V78 M49 50 A13 13 0 0 1 75 50 V78"/></svg></div>
+    <div class="ai-sizes">
+      <div class="ai-icon" style="width:60px;height:60px;border-radius:14px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M23 78 V50 A13 13 0 0 1 49 50 V78 M49 50 A13 13 0 0 1 75 50 V78"/></svg></div>
+      <div class="ai-icon" style="width:40px;height:40px;border-radius:9px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M23 78 V50 A13 13 0 0 1 49 50 V78 M49 50 A13 13 0 0 1 75 50 V78"/></svg></div>
+      <div class="ai-icon" style="width:29px;height:29px;border-radius:7px"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M23 78 V50 A13 13 0 0 1 49 50 V78 M49 50 A13 13 0 0 1 75 50 V78"/></svg></div>
+    </div>
+  </div>
+  <div class="ai-cap"><span class="ai-num">06</span><strong>Arches</strong><span>Lowercase m from two rounded arches. Friendly, compact.</span></div>
+</section>
+</div>
+<div class="ai-dock-wrap">
+  <p class="ai-dock-label">Home screen test, 60 px icons side by side</p>
+  <div class="ai-dock"><div class="ai-icon ai-dock-icon"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M22 78 V28 L50 58 L78 28 V78"/></svg><span>Merge</span></div><div class="ai-icon ai-dock-icon"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 82 V54 M50 54 L27 26 M50 54 L73 26"/></svg><span>Fork</span></div><div class="ai-icon ai-dock-icon"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M18 70 H32 C58 70 42 30 68 30 H82"/><path class="ko" d="M18 30 H32 C58 30 42 70 68 70 H82"/><path d="M18 30 H32 C58 30 42 70 68 70 H82"/></svg><span>Swap</span></div><div class="ai-icon ai-dock-icon"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M26 78 V52 A26 26 0 0 1 52 26 H54"/><circle class="dot" cx="76" cy="26" r="11"/></svg><span>Trail</span></div><div class="ai-icon ai-dock-icon"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M24 28 H76 L24 72 H76"/></svg><span>Zig</span></div><div class="ai-icon ai-dock-icon"><svg class="ai-mark ai-inv" viewBox="0 0 100 100" aria-hidden="true"><path d="M23 78 V50 A13 13 0 0 1 49 50 V78 M49 50 A13 13 0 0 1 75 50 V78"/></svg><span>Arches</span></div></div>
+</div>
+</div>

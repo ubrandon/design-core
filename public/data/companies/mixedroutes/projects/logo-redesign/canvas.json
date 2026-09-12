@@ -16,52 +16,31 @@
     },
     {
       "file": "logo-05-monolith.html",
-      "x": 0,
-      "y": 545,
+      "x": 1063,
+      "y": 573,
       "width": 480,
       "name": "Option D"
     },
     {
       "file": "logo-07-modular.html",
-      "x": 528,
-      "y": 545,
+      "x": 1070,
+      "y": 0,
       "width": 480,
       "name": "Option E"
     },
     {
       "file": "fresh-selected-25.html",
-      "x": 1058,
-      "y": 0,
+      "x": 521,
+      "y": 573,
       "width": 480,
       "name": "Option C"
     },
     {
-      "file": "bold-twenty-1.html",
-      "x": 1720,
-      "y": 0,
-      "width": 1600,
-      "name": "Bold symbols \u00b7 01 to 05"
-    },
-    {
-      "file": "bold-twenty-2.html",
-      "x": 3360,
-      "y": 0,
-      "width": 1600,
-      "name": "Bold symbols \u00b7 06 to 10"
-    },
-    {
-      "file": "bold-twenty-3.html",
-      "x": 1720,
-      "y": 1240,
-      "width": 1600,
-      "name": "Bold symbols \u00b7 11 to 15"
-    },
-    {
-      "file": "bold-twenty-4.html",
-      "x": 3360,
-      "y": 1240,
-      "width": 1600,
-      "name": "Bold symbols \u00b7 16 to 20"
+      "file": "option-f-soft-split.html",
+      "x": -7,
+      "y": 573,
+      "width": 480,
+      "name": "Option F"
     }
   ]
 }
