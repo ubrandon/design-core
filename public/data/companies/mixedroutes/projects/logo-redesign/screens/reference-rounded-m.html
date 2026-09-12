@@ -7,15 +7,17 @@
   body { min-height: 0; }
 
 .mr-app-comparison { --bg-0:#fff; position:relative; height:480px; overflow:clip; background:var(--bg-0); }
-.mr-app-main { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transform:translateX(-30px) scale(.8); }
-.mr-app-tile { position:absolute; right:24px; bottom:105px; width:76px; height:76px; border-radius:19px; background:#005bff; overflow:hidden; isolation:isolate; }
+.mr-app-main { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transform:translate(-30px,-60px) scale(.8); }
+.mr-app-tile { position:absolute; right:24px; bottom:174px; width:76px; height:76px; border-radius:19px; background:#005bff; overflow:hidden; isolation:isolate; }
 .mr-app-mini { position:absolute; left:50%; top:50%; width:320px; height:280px; transform:translate(-50%,-50%) scale(0.16875); filter:brightness(0) invert(1);  }
 .mr-vote-letter { position:absolute; top:22px; left:24px; z-index:1; color:#000; font-size:24px; font-weight:700; line-height:1; }
+.mr-logo-reason { position:absolute; left:28px; right:28px; bottom:26px; min-height:128px; margin:0; padding-top:18px; border-top:1px solid #e5eaf1; color:#344054; font-size:26px; font-weight:500; line-height:34px; letter-spacing:-0.3px; text-wrap:pretty; }
 </style>
 <div class="mr-scope mr-app-comparison" style="background:#fff;">
-  <span class="mr-vote-letter" aria-label="Option B" style="display:flex; align-items:center; gap:12px;">B <span class="mr-logo-count mr-logo-count--high">4</span></span>
+  <span class="mr-vote-letter" aria-label="Option B" style="display:flex; align-items:center; gap:12px;">B <span class="mr-logo-count">4</span></span>
   <div class="mr-app-main"><img src="../assets/reference-rounded-m.svg" width="320" height="280" alt="MixedRoutes rounded M logo" style="display: block; width: 320px; height: 280px; max-width: 100%; object-fit: contain;" /></div>
   <div class="mr-app-tile" role="img" aria-label="White logo on a blue app icon">
     <div class="mr-app-mini" aria-hidden="true"><img src="../assets/reference-rounded-m.svg" width="320" height="280" alt="MixedRoutes rounded M logo" style="display: block; width: 320px; height: 280px; max-width: 100%; object-fit: contain;" /></div>
   </div>
+  <p class="mr-logo-reason">A soft, connected M makes MixedRoutes feel like a welcoming home for your people.</p>
 </div>

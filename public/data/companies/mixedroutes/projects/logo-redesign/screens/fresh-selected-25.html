@@ -5,18 +5,20 @@
 html, body { margin: 0; min-height: 0; background: #fff; }
 .mr-selected-logo { --bg-0: #fff; height: 480px; display: flex; align-items: center; justify-content: center; overflow: clip; }
 .mr-selected-logo-crop { position: relative; width: 368px; height: 304px; overflow: hidden; }
-.mr-selected-logo-crop img { position: absolute; width: 2006.4px; height: 2006.4px; max-width: none; left: -91.2px; top: -1096px; }
+.mr-selected-logo-crop img { display:block; width:368px; height:304px; object-fit:contain; }
 
 .mr-app-comparison { --bg-0:#fff; position:relative; height:480px; overflow:clip; background:var(--bg-0); }
-.mr-app-main { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transform:translateX(-30px) scale(.8); }
-.mr-app-tile { position:absolute; right:24px; bottom:105px; width:76px; height:76px; border-radius:19px; background:#005bff; overflow:hidden; isolation:isolate; }
-.mr-app-mini { position:absolute; left:50%; top:50%; width:368px; height:304px; transform:translate(-50%,-50%) scale(0.14673913043478262); filter:grayscale(1) invert(1) contrast(12); mix-blend-mode:screen; }
+.mr-app-main { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transform:translate(-30px,-60px) scale(.8); }
+.mr-app-tile { position:absolute; right:24px; bottom:174px; width:76px; height:76px; border-radius:19px; background:#005bff; overflow:hidden; isolation:isolate; }
+.mr-app-mini { position:absolute; left:50%; top:50%; width:368px; height:304px; transform:translate(-50%,-50%) scale(0.14673913043478262); filter:brightness(0) invert(1); }
 .mr-vote-letter { position:absolute; top:22px; left:24px; z-index:1; color:#000; font-size:24px; font-weight:700; line-height:1; }
+.mr-logo-reason { position:absolute; left:28px; right:28px; bottom:26px; min-height:128px; margin:0; padding-top:18px; border-top:1px solid #e5eaf1; color:#344054; font-size:26px; font-weight:500; line-height:34px; letter-spacing:-0.3px; text-wrap:pretty; }
 </style>
 <div class="mr-scope mr-app-comparison" style="background:#fff;">
-  <span class="mr-vote-letter" aria-label="Option C" style="display:flex; align-items:center; gap:12px;">C <span class="mr-logo-count mr-logo-count--low">1</span></span>
-  <div class="mr-app-main"><div class="mr-selected-logo-crop"><img src="../assets/selected-logo-explorations/fresh-concepts-17-32.png" width="1254" height="1254" alt="Concept 25: bold blue angular MR monogram" /></div></div>
+  <span class="mr-vote-letter" aria-label="Option C" style="display:flex; align-items:center; gap:12px;">C <span class="mr-logo-count">1</span></span>
+  <div class="mr-app-main"><div class="mr-selected-logo-crop"><img src="../assets/option-c-angular-mr.svg" width="368" height="304" alt="Concept 25: bold blue angular MR monogram" /></div></div>
   <div class="mr-app-tile" role="img" aria-label="White logo on a blue app icon">
-    <div class="mr-app-mini" aria-hidden="true"><div class="mr-selected-logo-crop"><img src="../assets/selected-logo-explorations/fresh-concepts-17-32.png" width="1254" height="1254" alt="Concept 25: bold blue angular MR monogram" /></div></div>
+    <div class="mr-app-mini" aria-hidden="true"><div class="mr-selected-logo-crop"><img src="../assets/option-c-angular-mr.svg" width="368" height="304" alt="Concept 25: bold blue angular MR monogram" /></div></div>
   </div>
+  <p class="mr-logo-reason">The directional MR captures the momentum of turning a discovered idea into a real plan.</p>
 </div>

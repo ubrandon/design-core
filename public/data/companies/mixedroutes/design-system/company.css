@@ -7105,7 +7105,4 @@
 @media(max-width:800px) { .mixedroutes-focus .mr-v2-wrap { padding-inline:24px; } .mixedroutes-focus .wp-hero,.mixedroutes-focus-chapter { grid-template-columns:1fr; gap:40px; padding-block:48px; } .mixedroutes-focus .wp-hero h1 { font-size:57px; letter-spacing:-3px; } .mixedroutes-focus .wp-hero-visual:before { width:320px; height:320px; left:50%; transform:translateX(-50%); } .mixedroutes-focus-route { flex-direction:column; align-items:flex-start; } .mixedroutes-focus-route>div { gap:10px; font-size:11px; } .mixedroutes-focus-copy h2 { font-size:44px; letter-spacing:-2px; } .mixedroutes-focus-chapter { min-height:0; } .mixedroutes-focus-end { padding:56px 24px; } .mixedroutes-focus-end h2 { font-size:60px; letter-spacing:-3px; } .mixedroutes-focus-footer { flex-wrap:wrap; gap:30px; } }
 
 /* Discreet logo comparison numbers. */
-.mr-scope .mr-logo-count { font-size:24px; font-weight:700; line-height:1; font-variant-numeric:tabular-nums; }
-.mr-scope .mr-logo-count--high { color:#047857; }
-.mr-scope .mr-logo-count--low { color:#63736d; }
-.mr-scope .mr-logo-count--none { color:#767b83; }
+.mr-scope .mr-logo-count { font-size:24px; font-weight:700; line-height:1; font-variant-numeric:tabular-nums; color:#767b83; }
