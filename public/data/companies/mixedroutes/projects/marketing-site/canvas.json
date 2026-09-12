@@ -142,21 +142,21 @@
     {
       "file": "brand-v2-about.html",
       "x": 21121,
-      "y": 6977,
+      "y": 8343,
       "width": 1280,
       "name": "About · Branding V2"
     },
     {
       "file": "brand-v2-faq.html",
       "x": 22497,
-      "y": 6977,
+      "y": 8343,
       "width": 1280,
       "name": "FAQ · Branding V2"
     },
     {
       "file": "brand-v2-get-the-app.html",
       "x": 23873,
-      "y": 6977,
+      "y": 8343,
       "width": 1280,
       "name": "Get the app · Branding V2"
     },
@@ -168,53 +168,39 @@
       "name": "Home · More life · V2 Base"
     },
     {
-      "file": "hero-v2-idea-to-plan.html",
-      "x": 22477,
-      "y": 0,
-      "width": 1280,
-      "name": "V2 Hero · 04 · Idea to plan"
-    },
-    {
-      "file": "header-stack-v2-art.html",
-      "x": 23873,
-      "y": 0,
-      "width": 640,
-      "name": "H1 · Art + coffee · Layered"
-    },
-    {
-      "file": "header-stack-v2-music.html",
-      "x": 24553,
-      "y": 0,
-      "width": 640,
-      "name": "H2 · Music + friends · Layered"
-    },
-    {
-      "file": "header-stack-v2-outdoors.html",
-      "x": 25233,
-      "y": 0,
-      "width": 640,
-      "name": "H3 · Outdoors + brunch · Layered"
-    },
-    {
       "file": "landing-v2-full.html",
-      "x": 29077,
+      "x": 22533,
       "y": 0,
       "width": 1280,
       "name": "Landing · V2 · Full page"
     },
     {
       "file": "website-v2-landing.html",
-      "x": 30397,
+      "x": 24045,
       "y": 0,
       "width": 1280,
       "name": "Website · V2 · Landing page"
     },
     {
       "file": "website-v2-landing-b.html",
-      "x": 31717,
+      "x": 26169,
       "y": 0,
       "width": 1280,
       "name": "Website · V2 · Landing page B · Feature rich"
+    },
+    {
+      "file": "website-v2-landing-c.html",
+      "x": 27558,
+      "y": 0,
+      "width": 1280,
+      "name": "Website · V2 · Landing page C · Simple and clear"
+    },
+    {
+      "file": "website-v2-landing-d.html",
+      "x": 28991,
+      "y": 0,
+      "width": 1280,
+      "name": "Website · V2 · Landing page D · One thing at a time"
     }
   ],
   "texts": [

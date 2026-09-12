@@ -1,0 +1,15 @@
+Generated using the built-in image_gen tool, with no reference images.
+
+Use case: logo-brand.
+Create one polished logo exploration contact sheet for MixedRoutes, an app for discovering local things to do, making plans, and bringing friends together. Six completely different recognizable pictorial symbols, NO letters, NO M or MR monograms, NO folded ribbons. White background, flat electric blue #005BFF, no gradients or shadows. Bold simple distinctive silhouette design, professional brand identity quality, generous negative space, optically balanced, minimal internal details that survive small app sizes.
+Landscape sheet 1536x1024, precise 3-column by 2-row grid. Each cell shows one large blue symbol and a much smaller white-on-blue rounded-square app icon of the same symbol beside it. Small clean black sans serif caption below each, exact captions listed.
+Top left "01  Campfire": a friendly chunky flame above two short crossed logs, gathering with friends, subtly two flame lobes leaning together, unmistakable fire.
+Top middle "02  High five": two simplified palms meeting in a celebratory high five, bold iconic hands with very few finger details, connection and shared experiences.
+Top right "03  Meeting point": a bold map pin whose interior negative space depicts two small people facing each other, meeting friends somewhere.
+Bottom left "04  Shared ticket": distinctive diagonal admission ticket with notched ends and a simple four-point sparkle cut out of its middle, experiences and events.
+Bottom middle "05  Go together": compact circular compass with a strong northeast pointing needle and two small round companions along the lower inner edge, discovery with friends.
+Bottom right "06  Our table": top-down round table with three bold rounded chair shapes around it, an open fourth place inviting someone in, recognizable social gathering.
+Keep six concepts visually very different. Clean confident logo geometry, not detailed illustrations, no wordmarks, no mockups, no surrounding UI. Each logo has equal visual weight. Captions only, no heading. Crisp on pure white.
+
+
+Correction with built-in image_gen: Preserve all six concepts, labels, layout and app icons. Replace dark background and glow with solid white; use flat blue large symbols, black captions and white-on-blue app icons. No gradients, shadows or texture. Final asset: recognizable-symbols-white.png.

@@ -36,18 +36,32 @@
       "name": "Option C"
     },
     {
-      "file": "folded-m-rounded-shoulders.html",
-      "x": 3440,
-      "y": 581,
+      "file": "bold-twenty-1.html",
+      "x": 1720,
+      "y": 0,
       "width": 1600,
-      "name": "Rounded M · Folded top shoulders"
+      "name": "Bold symbols \u00b7 01 to 05"
     },
     {
-      "file": "folded-m-crisp-corners.html",
-      "x": 5160,
-      "y": 581,
+      "file": "bold-twenty-2.html",
+      "x": 3360,
+      "y": 0,
       "width": 1600,
-      "name": "Folded M · Small radii, wider gaps"
+      "name": "Bold symbols \u00b7 06 to 10"
+    },
+    {
+      "file": "bold-twenty-3.html",
+      "x": 1720,
+      "y": 1240,
+      "width": 1600,
+      "name": "Bold symbols \u00b7 11 to 15"
+    },
+    {
+      "file": "bold-twenty-4.html",
+      "x": 3360,
+      "y": 1240,
+      "width": 1600,
+      "name": "Bold symbols \u00b7 16 to 20"
     }
   ]
 }
