@@ -1,0 +1,11 @@
+.mr-lb-collateral { padding:48px 64px 56px; background:#fff; border-top:1px solid var(--border); }
+.mr-lb-collateral-heading { display:flex; justify-content:space-between; align-items:end; gap:32px; margin-bottom:28px; }
+.mr-lb-collateral-heading .mr-v2-eyebrow { color:var(--neon-blue); margin-bottom:13px!important; }
+.mr-lb-collateral-heading h2 { font-size:42px; line-height:1.08; font-weight:620; letter-spacing:-1.8px; }
+.mr-lb-collateral-heading > span { color:var(--muted); font-size:13px; white-space:nowrap; }
+.mr-lb-collateral-photo { margin:0; }
+.mr-lb-collateral-photo > img { display:block; width:100%; height:auto; border-radius:26px; }
+.mr-lb-collateral-placeholder { min-height:760px; display:grid; place-items:center; border-radius:26px; background:var(--bg-1); color:var(--muted); font-size:18px; }
+.mr-lb-collateral-caption { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:32px; padding-top:24px; }
+.mr-lb-collateral-caption strong { display:block; font-size:20px; font-weight:600; letter-spacing:-.5px; }
+.mr-lb-collateral-caption p { margin:7px 0 0; color:var(--muted); font-size:15px; line-height:1.5; }

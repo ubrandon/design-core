@@ -41,6 +41,34 @@
       "y": 0,
       "width": 480,
       "name": "Option F"
+    },
+    {
+      "file": "logo-a-v2-application.html",
+      "x": 2200,
+      "y": 0,
+      "width": 1440,
+      "name": "Option A: V2 brand application"
+    },
+    {
+      "file": "logo-b-v2-application.html",
+      "x": 3720,
+      "y": 0,
+      "width": 1440,
+      "name": "Option B: V2 brand application"
+    },
+    {
+      "file": "logo-e-v2-application.html",
+      "x": 5240,
+      "y": 0,
+      "width": 1440,
+      "name": "Option E: V2 brand application"
+    },
+    {
+      "file": "logo-f-v2-application.html",
+      "x": 6738,
+      "y": 0,
+      "width": 1440,
+      "name": "Option F: V2 brand application"
     }
   ]
 }
