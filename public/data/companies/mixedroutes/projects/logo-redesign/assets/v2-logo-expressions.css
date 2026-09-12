@@ -97,6 +97,7 @@
 .mr-ex-e-ticket h3 { font-size:41px; line-height:1.02; letter-spacing:-1.8px; margin-top:33px; position:relative; z-index:1; }
 .mr-ex-e-ticket .mr-ex-e-pill { position:absolute; right:22px; top:70px; width:105px; height:233px; transform:rotate(15deg); }
 .mr-ex-e-ticket > p { font-size:13px; position:absolute; bottom:27px; left:30px; }
+.mr-ex-f .mr-lb-stage, .mr-ex-f .mr-lb-sample-dark { --mr-f-left:var(--mr-v2-lilac); --mr-f-right:var(--mr-v2-mint); }
 .mr-ex-f-banner { background:#DCEAFF; padding:42px 46px; }
 .mr-ex-f-banner h3 { font-size:77px; line-height:1.02; letter-spacing:-4px; margin-top:30px; }
 .mr-ex-f-banner > p { margin-top:21px; font-size:15px; }
