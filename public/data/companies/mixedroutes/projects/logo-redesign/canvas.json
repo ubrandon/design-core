@@ -58,7 +58,7 @@
     },
     {
       "file": "logo-e-v2-application.html",
-      "x": 3040,
+      "x": 3010,
       "y": 658,
       "width": 1440,
       "name": "Option C: V2 brand application"
@@ -69,6 +69,13 @@
       "y": 578,
       "width": 1440,
       "name": "Option D: V2 brand application"
+    },
+    {
+      "file": "option-c-brand-world.html",
+      "x": 0,
+      "y": 3256,
+      "width": 1440,
+      "name": "Option C: Brand in the world"
     }
   ],
   "texts": [
