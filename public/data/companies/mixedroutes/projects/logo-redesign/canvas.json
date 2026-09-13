@@ -16,59 +16,68 @@
     },
     {
       "file": "logo-05-monolith.html",
-      "x": 536,
-      "y": 1558,
+      "x": 9951,
+      "y": 0,
       "width": 480,
       "name": "Option D"
     },
     {
       "file": "logo-07-modular.html",
-      "x": 1556,
+      "x": 1028,
       "y": 0,
       "width": 480,
       "name": "Option E"
     },
     {
       "file": "fresh-selected-25.html",
-      "x": 0,
-      "y": 1558,
+      "x": 9415,
+      "y": 0,
       "width": 480,
       "name": "Option C"
     },
     {
       "file": "option-f-soft-split.html",
-      "x": 1031,
+      "x": 10475,
       "y": 0,
       "width": 480,
       "name": "Option F"
     },
     {
       "file": "logo-a-v2-application.html",
-      "x": 2200,
-      "y": 0,
+      "x": 0,
+      "y": 658,
       "width": 1440,
       "name": "Option A: V2 brand application"
     },
     {
       "file": "logo-b-v2-application.html",
-      "x": 3720,
-      "y": 0,
+      "x": 1520,
+      "y": 658,
       "width": 1440,
       "name": "Option B: V2 brand application"
     },
     {
       "file": "logo-e-v2-application.html",
-      "x": 5240,
-      "y": 0,
+      "x": 3040,
+      "y": 658,
       "width": 1440,
       "name": "Option C: V2 brand application"
     },
     {
       "file": "logo-f-v2-application.html",
-      "x": 6738,
-      "y": 0,
+      "x": 9415,
+      "y": 578,
       "width": 1440,
       "name": "Option D: V2 brand application"
+    }
+  ],
+  "texts": [
+    {
+      "text": "Archive",
+      "x": 9384,
+      "y": -250,
+      "size": 144,
+      "id": "text-mtzy8c8q-2"
     }
   ]
 }
