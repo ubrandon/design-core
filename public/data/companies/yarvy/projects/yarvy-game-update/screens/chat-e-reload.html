@@ -3,9 +3,18 @@
 <link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
 <link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
 <style>
-  /* Chat redesign D: variant C with the live Yarvy presence as the sender line and a page header. */
+  /* Chat redesign E: variant D on a fresh load. No exchange yet, so the greeting is the page. */
   .yv-shot { background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; overflow-x: clip; }
   .yv-shot #app { height: auto; min-height: 1040px; overflow: visible; }
+  .gf-hero { display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 56px; }
+  .gf-presence-big { width: 60px; height: 52px; margin-bottom: 18px; }
+  .gf-presence-big svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .gf-presence-big .eq-bar { fill: var(--accent); }
+  .gf-date { font-size: var(--fs-sm); font-weight: var(--fw-semibold); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--muted); }
+  .gf-greet { margin: 6px 0 0; font-size: var(--fs-display); font-weight: var(--fw-heavy); letter-spacing: var(--ls-tight); line-height: var(--lh-tight); }
+  .gf-grad { color: var(--accent-2); }
+  .gf-read { margin: 12px 0 0; font-size: 19px; color: var(--muted); max-width: 40ch; }
+  .gf-chips { justify-content: center; margin: 22px 0 0; }
   .gf-main { display: grid; grid-template-columns: minmax(0, 1fr) 372px; grid-template-rows: auto minmax(0, 1fr); min-width: 0; }
 
   /* Page header: where am I, what day is it. Spans both columns. */
@@ -113,31 +122,19 @@
       <div class="gf-head"><h1>Chat</h1><span>Monday, September 14</span></div>
 
       <div class="gf-chat">
-        <button class="gf-earlier" type="button"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i>Earlier messages<span class="gf-count">3 today</span></button>
+        <button class="gf-earlier" type="button"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i>Earlier messages<span class="gf-count">3 today, last at 8:14 AM</span></button>
 
-        <div class="gf-turns">
-          <div class="gf-prompt">Keep the run today, I'll go at lunch. And add a task to send Priya the notes before our 1:1.</div>
-          <div>
-            <div class="gf-from">
-              <span class="gf-presence" aria-hidden="true"><svg viewBox="0 0 42 36"><g class="signal-field"><rect class="eq-bar" x="3" y="12" width="4" height="12" rx="2"/><rect class="eq-bar" x="11" y="9" width="4" height="18" rx="2"/><rect class="eq-bar" x="19" y="6" width="4" height="24" rx="2"/><rect class="eq-bar" x="27" y="9" width="4" height="18" rx="2"/><rect class="eq-bar" x="35" y="12" width="4" height="12" rx="2"/></g></svg></span>
-              <b>Yarvy</b><span>8:14 AM</span>
-            </div>
-            <h2 class="gf-headline">Run is back on today at 12:30.</h2>
-            <p class="gf-lead">It sits between standup and the 1:1. <a class="gf-ref" href="#">Send Priya the release notes</a> is in Work, due 1:30 PM so it lands before you meet.</p>
-            <div class="gf-part">
-              <h2>Changed <span>2</span></h2>
-              <div class="gf-changes">
-                <div class="gf-change"><span class="gf-tick"><i class="ph-fill ph-check-circle" aria-hidden="true"></i></span><span class="gf-what"><b>Long run, 14 km</b> moved to today 12:30 PM</span><button class="gf-undo" type="button">Undo</button></div>
-                <div class="gf-change"><span class="gf-tick"><i class="ph-fill ph-check-circle" aria-hidden="true"></i></span><span class="gf-what">Added <b>Send Priya the release notes</b> to Work, today 1:30 PM</span><button class="gf-undo" type="button">Undo</button></div>
-              </div>
-            </div>
-            <div class="gf-chips">
-              <button class="gf-chip change" type="button"><i class="ph ph-arrow-bend-down-right" aria-hidden="true"></i>Make it a 10 km instead</button>
-              <button class="gf-chip" type="button"><i class="ph ph-question" aria-hidden="true"></i>What's still overdue?</button>
-            </div>
+        <div class="gf-hero">
+          <div class="gf-presence-big" aria-hidden="true"><svg viewBox="0 0 42 36"><g class="signal-field"><rect class="eq-bar" x="3" y="12" width="4" height="12" rx="2"/><rect class="eq-bar" x="11" y="9" width="4" height="18" rx="2"/><rect class="eq-bar" x="19" y="6" width="4" height="24" rx="2"/><rect class="eq-bar" x="27" y="9" width="4" height="18" rx="2"/><rect class="eq-bar" x="35" y="12" width="4" height="12" rx="2"/></g></svg></div>
+          <div class="gf-date">Monday, September 14</div>
+          <h2 class="gf-greet"><span class="gf-grad">Good afternoon,</span> Brandon</h2>
+          <p class="gf-read">2 of 8 done. The run is at 12:30, then Priya at 2.</p>
+          <div class="gf-chips">
+            <button class="gf-chip" type="button"><i class="ph ph-question" aria-hidden="true"></i>What's next?</button>
+            <button class="gf-chip" type="button"><i class="ph ph-question" aria-hidden="true"></i>What's overdue?</button>
+            <button class="gf-chip change" type="button"><i class="ph ph-arrow-bend-down-right" aria-hidden="true"></i>Plan my afternoon</button>
           </div>
         </div>
-
         <div class="gf-dock">
           <div class="gf-composer">
             <div class="gf-input">Add a task or ask anything</div>
@@ -160,8 +157,8 @@
           <div class="gf-list">
             <button class="gf-task done" type="button"><span class="gf-check"><i class="ph-fill ph-check-circle" aria-hidden="true"></i></span><span><span class="gf-title">Team standup</span><span class="gf-sub">9:30 AM</span></span></button>
             <button class="gf-task done" type="button"><span class="gf-check"><i class="ph-fill ph-check-circle" aria-hidden="true"></i></span><span><span class="gf-title">Ship v2 release notes</span><span class="gf-sub">11:00 AM</span></span></button>
-            <button class="gf-task changed" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">Long run, 14 km <span class="gf-tag">Moved</span></span><span class="gf-sub"><span class="gf-prio p2"></span>12:30 PM. Health</span></span></button>
-            <button class="gf-task changed" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">Send Priya the release notes <span class="gf-tag new">New</span></span><span class="gf-sub">1:30 PM. Work</span></span></button>
+            <button class="gf-task" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">Long run, 14 km</span><span class="gf-sub"><span class="gf-prio p2"></span>12:30 PM. Health</span></span></button>
+            <button class="gf-task" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">Send Priya the release notes</span><span class="gf-sub">1:30 PM. Work</span></span></button>
             <button class="gf-task" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">1:1 with Priya</span><span class="gf-sub">2:00 PM. Work</span></span></button>
             <button class="gf-task" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">Call the landlord about the leak</span><span class="gf-sub"><span class="gf-prio"></span>Home</span></span></button>
             <button class="gf-task" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">Pick up groceries</span><span class="gf-sub">6:30 PM. Home</span></span></button>

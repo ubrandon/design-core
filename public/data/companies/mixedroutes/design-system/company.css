@@ -7364,3 +7364,84 @@
 .mrf-journey-chat p { font-size:15px; margin-top:4px; }
 @media(max-width:1100px) and (min-width:701px) { .mrf .mrf-hero{gap:30px;grid-template-columns:.85fr 1.15fr}.mrf .mrf-hero h1{font-size:73px;letter-spacing:-4.5px}.mrf-journey-idea{grid-template-columns:135px 1fr}.mrf-journey-idea-copy{padding:22px 16px}.mrf-journey-idea-copy h3{font-size:25px}.mrf-journey-plan{margin-left:15px;padding:19px}.mrf-journey-chat{margin-left:35px}.mrf-journey-ask strong{font-size:17px} }
 @media(max-width:700px) { .mrf .mrf-hero{grid-template-columns:1fr;gap:65px;padding-block:60px}.mrf .mrf-hero h1{font-size:72px;letter-spacing:-4.5px}.mrf .mrf-hero-copy>p:not(.mr-v2-eyebrow){font-size:18px}.mrf-journey-ask{padding:19px 16px;gap:10px}.mrf-journey-ask strong{font-size:17px}.mrf-journey-idea{grid-template-columns:1fr}.mrf-journey-photo{height:190px}.mrf-journey-photo>img{height:190px;min-height:0}.mrf-journey-idea-copy{padding:23px}.mrf-journey-idea-copy h3{font-size:30px}.mrf-journey-idea-copy p br{display:none}.mrf-journey-match{font-size:12px;margin-top:16px}.mrf-journey-plan,.mrf-journey-chat{margin-left:0}.mrf-journey-plan{padding:20px}.mrf-journey-plan .mrf-row{gap:11px}.mrf-journey-plan h3{font-size:24px}.mrf-journey-plan .mrf-confirmed{padding:8px;font-size:11px}.mrf-journey-guests{gap:8px;font-size:11px} }
+
+/* F hero variations: consolidated right-hand graphic on brand texture with a lifted, shadowed object. */
+.mrfh-stage { position:relative; isolation:isolate; padding:26px 6px 54px 14px; }
+.mrfh-stage:before { content:""; position:absolute; z-index:-3; inset:74px -26px 30px 110px; background:radial-gradient(#c0afff 1.1px,transparent 1.1px) 0 0/14px 14px; border-radius:24px; }
+.mrfh-stage:after { content:""; position:absolute; z-index:-3; width:220px; height:220px; border:1px solid var(--mr-v2-lilac); border-radius:50%; top:-14px; left:-22px; }
+.mrfh-ground { position:absolute; z-index:-2; left:9%; right:5%; bottom:16px; height:44px; border-radius:50%; background:radial-gradient(closest-side,#10111448,#10111400); filter:blur(8px); }
+.mrfh-ring { position:absolute; z-index:-3; width:120px; height:120px; border:1px solid var(--mr-v2-lilac); border-radius:50%; right:-30px; bottom:-6px; }
+.mrfh-ask { display:flex; align-items:center; gap:14px; }
+.mrfh-ask>i { font-size:22px; color:var(--neon-blue); flex:none; }
+.mrfh-ask small { display:block; font-size:12px; }
+.mrfh-ask strong { display:block; font-size:19px; letter-spacing:-.4px; margin-top:4px; }
+.mrfh-idea { display:grid; grid-template-columns:172px 1fr; background:var(--mr-v2-citrus); border-radius:22px; overflow:hidden; }
+.mrfh-photo { position:relative; min-height:100%; }
+.mrfh-photo>img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.mrfh-photo>.ml-tag { position:absolute; left:11px; top:11px; font-size:11px; padding:7px 10px; gap:5px; }
+.mrfh-photo .ml-tag img { width:19px; height:19px; }
+.mrfh-idea-copy { padding:22px 22px 20px; }
+.mrfh-idea-copy>small { display:flex; gap:6px; align-items:center; color:var(--text); font-size:11px; font-weight:550; }
+.mrfh-idea-copy h3 { font-size:28px; letter-spacing:-1px; margin:12px 0 8px; line-height:1.08; }
+.mrfh-idea-copy p { font-size:14px; line-height:1.5; }
+.mrfh-match { display:flex; align-items:center; gap:7px; font-size:11px; margin-top:18px; border-top:1px solid #10111425; padding-top:12px; }
+.mrfh-plan { display:flex; align-items:center; gap:14px; }
+.mrfh-plan .hst-date { padding:9px 12px; font-size:10px; }.mrfh-plan .hst-date b { font-size:23px; }
+.mrfh-plan-copy { flex:1; min-width:0; }
+.mrfh-plan-copy small { font-size:12px; }
+.mrfh-plan-copy h3 { font-size:24px; margin:3px 0 4px; }
+.mrfh-plan-copy p { font-size:13px; color:var(--muted); }
+.mrfh-plan .mrf-confirmed { padding:9px 12px; font-size:12px; }
+.mrfh-chat { display:flex; align-items:center; gap:12px; }
+.mrfh-chat .hst-avatar { width:34px; height:34px; }
+.mrfh-chat strong { font-size:13px; }.mrfh-chat strong span { font-size:12px; color:var(--muted); font-weight:400; }
+.mrfh-chat p { font-size:15px; margin-top:3px; }
+
+/* Variation 1: one white panel holds the whole sequence, tilted slightly toward the copy. */
+.mrfh-panel { background:#fff; border:1px solid var(--border); border-radius:28px; padding:12px; display:grid; gap:10px; transform:perspective(1500px) rotateY(-7deg) rotateX(3deg); transform-origin:50% 60%; box-shadow:0 34px 60px -26px #1011143d,0 12px 26px -10px #10111420,0 1px 0 #fff inset; }
+.mrfh-panel>.mrfh-ask { padding:12px 14px 16px; border-bottom:1px solid var(--border); margin-bottom:2px; }
+.mrfh-panel>.mrfh-idea { border-radius:20px; }
+.mrfh-panel>.mrfh-idea .mrfh-photo { min-height:214px; }
+.mrfh-panel>.mrfh-plan { padding:10px 14px 4px; }
+.mrfh-panel>.mrfh-chat { padding:12px 14px 10px; border-top:1px solid var(--border); }
+
+/* Variation 2: layered deck, each step sits on its own depth plane in front of the last. */
+.mrfh-stage-deck { padding-bottom:62px; }
+.mrfh-deck { position:relative; min-height:552px; transform:perspective(1500px) rotateY(-8deg) rotateX(4deg); transform-style:preserve-3d; transform-origin:50% 55%; }
+.mrfh-deck>* { position:absolute; background:#fff; border:1px solid var(--border); border-radius:22px; }
+.mrfh-deck-ask { left:0; top:0; width:372px; padding:16px 20px; z-index:1; transform:translateZ(10px) rotate(-1.5deg); box-shadow:0 10px 24px -8px #10111426; }
+.mrfh-deck>.mrfh-idea { left:0; right:24px; top:88px; border:6px solid #fff; background:var(--mr-v2-citrus); border-radius:26px; z-index:2; transform:translateZ(30px); box-shadow:0 26px 48px -18px #10111440,0 8px 20px -8px #1011141a; }
+.mrfh-deck>.mrfh-idea .mrfh-photo { min-height:236px; }
+.mrfh-deck-plan { left:54px; right:0; top:352px; padding:18px 20px; z-index:3; transform:translateZ(56px) rotate(1deg); box-shadow:0 24px 44px -16px #1011143d; }
+.mrfh-deck-chat { left:130px; width:352px; top:470px; padding:14px 18px; z-index:4; transform:translateZ(82px) rotate(-1deg); box-shadow:0 22px 40px -14px #1011143a; }
+.mrfh-stage-deck .mrfh-ground { left:14%; right:2%; bottom:22px; }
+
+/* Variation 3: a tilted lilac board with the dot texture, the cards hover above it. */
+.mrfh-stage-board { padding:30px 8px 64px 10px; }
+.mrfh-stage-board:before { inset:auto; display:none; }
+.mrfh-board { position:relative; background:#f1edff radial-gradient(#c0afffcc 1.1px,transparent 1.1px) 0 0/14px 14px; border-radius:30px; padding:28px 26px 26px; display:grid; gap:16px; transform:perspective(1300px) rotateX(9deg) rotateY(-11deg); transform-style:preserve-3d; transform-origin:50% 60%; box-shadow:0 40px 70px -30px #1011143a,0 10px 24px -12px #10111420; }
+.mrfh-board>* { background:#fff; border:1px solid var(--border); border-radius:22px; }
+.mrfh-board-ask { padding:15px 18px; margin-right:120px; transform:translateZ(26px); box-shadow:0 14px 26px -10px #10111430; }
+.mrfh-board-idea { border:6px solid #fff; border-radius:26px; background:var(--mr-v2-citrus); overflow:hidden; transform:translateZ(58px); box-shadow:0 30px 50px -18px #10111445; }
+.mrfh-board-idea .mrfh-photo { min-height:222px; }
+.mrfh-board-plan { padding:16px 20px; margin-left:48px; transform:translateZ(40px); box-shadow:0 20px 40px -14px #10111438; }
+.mrfh-board-chat { padding:13px 18px; margin:0 40px 0 120px; transform:translateZ(70px); box-shadow:0 22px 40px -14px #10111440; }
+.mrfh-stage-board .mrfh-ground { left:6%; right:4%; bottom:22px; height:50px; }
+@media(max-width:1100px) and (min-width:701px) { .mrfh-idea{grid-template-columns:130px 1fr}.mrfh-idea-copy{padding:18px 16px}.mrfh-idea-copy h3{font-size:24px}.mrfh-deck-ask{width:300px}.mrfh-deck-chat{left:80px;width:300px}.mrfh-board-ask{margin-right:60px}.mrfh-board-plan{margin-left:20px}.mrfh-board-chat{margin:0 10px 0 60px} }
+@media(max-width:700px) { .mrfh-stage{padding:10px 0 40px}.mrfh-panel,.mrfh-deck,.mrfh-board{transform:none}.mrfh-deck{min-height:0;display:grid;gap:12px}.mrfh-deck>*{position:static;width:auto;transform:none}.mrfh-deck>.mrfh-idea{margin:0}.mrfh-idea{grid-template-columns:1fr}.mrfh-photo{min-height:190px}.mrfh-idea-copy p br{display:none}.mrfh-board{padding:16px}.mrfh-board>*{margin:0;transform:none}.mrfh-plan{flex-wrap:wrap}.mrfh-plan .mrf-confirmed{margin-left:auto} }
+
+/* F hero flip: the suggestion card turns over to show a different idea; the reply changes with it. */
+.mrf-flip { position:relative; height:245px; perspective:1400px; }
+.mrf-flip-face { position:absolute; inset:0; backface-visibility:hidden; transform-origin:50% 50%; animation:mrf-flip 12s cubic-bezier(.4,0,.2,1) infinite; }
+.mrf-flip-face:nth-child(2) { animation-delay:-8s; }
+.mrf-flip-face:nth-child(3) { animation-delay:-4s; }
+.mrf-flip .mrf-journey-photo { height:auto; }.mrf-flip .mrf-journey-photo>img { position:absolute; inset:0; height:100%; min-height:0; object-fit:cover; }
+@keyframes mrf-flip { 0%,29% { transform:rotateX(0); opacity:1; } 33.3% { transform:rotateX(-92deg); opacity:0; } 33.4%,95% { transform:rotateX(92deg); opacity:0; } 100% { transform:rotateX(0); opacity:1; } }
+.mrf-chat-flip { display:grid; min-height:74px; padding:0; }
+.mrf-chat-face { grid-area:1/1; display:flex; align-items:center; gap:12px; padding:18px 22px; animation:mrf-chat-fade 12s ease infinite; }
+.mrf-chat-face:nth-child(2) { animation-delay:-8s; }
+.mrf-chat-face:nth-child(3) { animation-delay:-4s; }
+@keyframes mrf-chat-fade { 0%,2% { opacity:0; transform:translateY(6px); } 6%,30% { opacity:1; transform:none; } 33.3%,100% { opacity:0; transform:translateY(-4px); } }
+.mrf-flip-journey:after { top:80px; bottom:30px; }
+@media(prefers-reduced-motion:reduce) { .mrf-flip-face,.mrf-chat-face { animation:none; } .mrf-flip-face:not(:first-child),.mrf-chat-face:not(:first-child) { display:none; } }
+@media(max-width:700px) { .mrf-flip{height:auto;min-height:420px}.mrf-flip-face{position:absolute} }

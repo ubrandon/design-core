@@ -28,3 +28,17 @@ Names, venues, dates, guest counts, and product states are illustrative. No inve
 ## Hero refinement
 
 Uses the supplied headline and supporting copy at a large, bold scale. Four cards adapt the supplied stacked graphic: a plain-language request, one suggestion with its reason (you and your friends like games), the resulting plan with three attendees and a Going state, then a chat reply. The citrus suggestion leads; white supporting cards step inward slightly. A faint connecting line and lilac circle carry the sequence without animation or extra panels. Mobile cards align to preserve readable text.
+
+## Hero variations (right-hand graphic only)
+
+Three hero-only screens sit to the right of F on the canvas: `website-v2-landing-f-hero-1.html`, `-2.html`, `-3.html`. Each keeps the same copy, nav, and route strip and changes only the right-hand object. All three consolidate the four steps (request, suggestion, plan, reply), enlarge the type, align edges, put the lilac dot texture and two light rings behind the object, and lift it with a perspective tilt plus a soft ground shadow beneath. Static CSS only, no motion.
+
+- Hero 1, one panel: a single white panel holds the whole sequence as one readable object. Strongest "one thing to look at" read.
+- Hero 2, layered deck: the citrus suggestion leads on its own plane; the plan and reply step forward in front of it, the request sits behind. Most depth.
+- Hero 3, tilted board: the texture becomes a lilac board tilted in perspective, and the cards hover above it at different heights. Most playful, and the texture is part of the object rather than behind it.
+
+Shared classes use the `mrfh-` prefix in company.css. The tilt is removed under 700px so cards stack flat and stay legible.
+
+## Flip variation
+
+`website-v2-landing-f-flip.html` sits to the right of the hero variations and leaves F itself unchanged. The plan row under the suggestion is removed because the suggestion already carries the same information; the request stays above and the reply stays below. The citrus suggestion card turns over on a 12 second CSS cycle through three ideas (a game night in, jazz night, a ridge walk), and the reply below changes with it so the name, event, and message always match. This is CSS keyframes only, no JavaScript. It departs from the "no automatic motion" rule in the review contract on purpose, as a study; reduced-motion users see the first idea and reply with no animation.
