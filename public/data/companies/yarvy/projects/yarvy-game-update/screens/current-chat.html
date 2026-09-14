@@ -1,0 +1,144 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+.yv-shot { background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+.yv-shot #app { height: auto; min-height: 0; overflow: visible; }
+.yv-shot #main, .yv-shot #tasks-view, .yv-shot #tasks-side, .yv-shot #tasks-main, .yv-shot #chat-content { overflow: visible; }
+.yv-shot #chat-content { padding: 8px 16px 16px; }
+.yv-shot #main::before, .yv-shot #main::after { content: none; }
+.yv-shot #main { padding-bottom: 24px; }
+.yv-shot #fab { position: absolute; }
+.yv-shot .app-toast { display: none; }
+</style>
+<div class="yv-shot chat-started " style="background: var(--shell);">
+<main id="app">
+      <nav id="rail" aria-label="Main navigation">
+        <div class="rail-brand">
+          <!-- Brand mark (bare bars, no tile) mirrors scripts/gen-icons.mjs, public/login.html, public/js/auth-screen.js and site/index.html; change all together. -->
+          <svg class="rail-mark" viewBox="4 17 92 66" aria-hidden="true"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"><line x1="10" y1="42" x2="10" y2="58" opacity="0.76"></line><line x1="30" y1="28" x2="30" y2="72" opacity="0.94"></line><line x1="50" y1="37" x2="50" y2="63" opacity="0.82"></line><line x1="70" y1="23" x2="70" y2="77" opacity="1.00"></line><line x1="90" y1="40" x2="90" y2="60" opacity="0.79"></line></g></svg>
+          <span class="rail-wordmark">yarvy</span>
+        </div>
+        <div class="rail-nav">
+          <button id="nav-home" class="nav-item active" type="button" aria-label="Chat" aria-current="page">
+            <i class="ph ph-chat-circle nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-chat-circle nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Chat</span>
+          </button>
+          <button id="nav-upcoming" class="nav-item" type="button" aria-label="Upcoming" title="Upcoming">
+            <i class="ph ph-calendar-blank nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-calendar-blank nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Upcoming</span>
+          </button>
+          <button id="nav-tasks" class="nav-item" type="button" aria-label="Tasks" title="Tasks">
+            <i class="ph ph-check-fat nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-check-fat nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Tasks</span>
+          </button>
+          <button id="nav-you" class="nav-item" type="button" aria-label="You" title="You">
+            <i class="ph ph-user nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-user nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">You</span>
+          </button>
+        </div>
+        <div class="rail-spacer"></div>
+        <div id="usermenu">
+          <button id="profile" type="button" aria-label="Account menu" title="Account menu" aria-haspopup="menu" aria-expanded="false">
+            <span class="nav-pill"><span id="avatar">DS</span></span>
+            <span id="rail-name">Design</span>
+            <i class="ph ph-caret-up-down profile-chevron" aria-hidden="true"></i>
+            <span class="nav-label">You</span>
+          </button>
+        </div>
+        <button id="nav-projects" class="nav-item" type="button" aria-label="Lists" title="Lists">
+          <i class="ph ph-list nav-ico" aria-hidden="true"></i>
+          <i class="ph-fill ph-list nav-ico-on" aria-hidden="true"></i>
+          <span class="nav-label">Lists</span>
+        </button>
+      </nav>
+
+      <section id="main">
+        <div id="hero">
+          <div id="chat-content">
+            <div id="greeting">
+              <div id="presence-wrap">
+                <div id="presence" class="happy" aria-hidden="true">
+                  <svg viewBox="0 0 42 36" id="presence-svg">
+                    <g class="signal-field">
+                      <rect class="eq-bar" x="3" y="12" width="4" height="12" rx="2"></rect>
+                      <rect class="eq-bar" x="11" y="9" width="4" height="18" rx="2"></rect>
+                      <rect class="eq-bar" x="19" y="6" width="4" height="24" rx="2"></rect>
+                      <rect class="eq-bar" x="27" y="9" width="4" height="18" rx="2"></rect>
+                      <rect class="eq-bar" x="35" y="12" width="4" height="12" rx="2"></rect>
+                      <g class="glyph-layer"></g>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <span id="datelabel">MONDAY, SEPTEMBER 14</span>
+              <h1 id="hello"><span class="grad">Good afternoon, </span><span id="username">Design</span></h1>
+              <div id="chat-tools">
+                <button id="chat-history" class="chat-tool" type="button" title="Hide earlier messages" aria-expanded="false" aria-controls="chat-history-inline"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i><span>Earlier messages</span></button>
+              </div>
+            </div>
+
+            <div id="chat-exchange">
+              <div id="chat-history-inline" hidden="">
+                <button id="chat-load-earlier" class="chat-tool" type="button" hidden="">Load earlier</button>
+                <p id="chat-history-status" role="status" hidden="">No earlier messages yet.</p>
+                <div id="chat-history-messages"><article class="chat-history-message user" data-history-index="0" aria-label="You"><p>Add a task to call the landlord about the leak, high priority</p></article><article class="chat-history-message yarvy" data-history-index="1" aria-label="Yarvy">Added <a class="task-link" data-task-id="836" role="button" tabindex="0">Call the landlord about the leak</a> to Home as high priority, due today. Want me to remind you before 5?</article><article class="chat-history-message user" data-history-index="2" aria-label="You"><p>What's on for the trip?</p></article><article class="chat-history-message yarvy" data-history-index="3" aria-label="Yarvy">Three open things in Lisbon trip: flights (due Saturday, high priority), a hotel near the start line, and travel insurance. Your packing list note is attached to the flights task.</article><article class="chat-history-message user" data-history-index="4" aria-label="You"><p>Remember that I do my best writing before 11</p></article><article class="chat-history-message yarvy" data-history-index="5" aria-label="Yarvy">Noted. I'll keep writing tasks in the morning when I plan your day.</article></div>
+              </div>
+              <div id="last-prompt">
+                <p><span id="last-prompt-text">Plan my day around the launch</span></p>
+              </div>
+              <div id="latest" aria-live="polite"><div class="msg yarvy long">Here's the day, built around the launch. Deep work first, people in the middle, and the run as a reset before the evening.
+
+I added <a class="task-link" data-task-id="831" role="button" tabindex="0">Draft launch announcement</a> to Launch prep and moved the long run to tomorrow morning so your legs get a day.<div class="reply-widgets"><div class="reply-plan"><div class="rp-block"><div class="rp-rail"><span class="rp-dot"></span><span class="rp-line"></span></div><div class="rp-body"><div class="rp-time">Morning</div><div class="reply-tasks"><div class="reply-task prio-1"><button type="button" class="check" title="Mark done" aria-label="Mark &quot;Ship v2 release notes&quot; done"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><button type="button" class="rt-main"><span class="rt-title">Ship v2 release notes</span><span class="rt-meta"><span class="rt-due">Today at 11:00 AM</span><span class="rt-priority">High priority</span></span></button></div><div class="reply-task"><button type="button" class="check" title="Mark done" aria-label="Mark &quot;Team standup&quot; done"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><button type="button" class="rt-main"><span class="rt-title">Team standup</span><span class="rt-meta"><span class="rt-due">Today at 9:30 AM</span></span></button></div></div></div></div><div class="rp-block"><div class="rp-rail"><span class="rp-dot"></span></div><div class="rp-body"><div class="rp-time">Afternoon</div><div class="reply-tasks"><div class="reply-task prio-2"><button type="button" class="check" title="Mark done" aria-label="Mark &quot;Review pricing page copy&quot; done"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><button type="button" class="rt-main"><span class="rt-title">Review pricing page copy</span><span class="rt-meta"><span class="rt-due late">Overdue · 2 days ago</span><span class="rt-priority">Medium priority</span></span></button></div><div class="reply-task"><button type="button" class="check" title="Mark done" aria-label="Mark &quot;1:1 with Priya&quot; done"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><button type="button" class="rt-main"><span class="rt-title">1:1 with Priya</span><span class="rt-meta"><span class="rt-due">Today at 2:00 PM</span></span></button></div><div class="reply-task prio-1"><button type="button" class="check" title="Mark done" aria-label="Mark &quot;Call the landlord about the leak&quot; done"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><button type="button" class="rt-main"><span class="rt-title">Call the landlord about the leak</span><span class="rt-meta"><span class="rt-due">Today</span><span class="rt-priority">High priority</span></span></button></div></div></div></div></div><div class="reply-goals"><button type="button" class="reply-goal"><span class="rg-emoji" aria-hidden="true"><i class="ph-fill ph-person-simple-run" aria-hidden="true"></i></span><div class="rg-info"><div class="rg-name">Run a half marathon</div><div class="rg-bar"><div class="rg-fill" style="width: 0%;"></div></div><div class="rg-sub">0 of 12 long runs</div></div></button></div><div class="reply-adds"><div class="ra-row"><span class="ra-box"></span><span class="ra-title">Draft the launch announcement</span><button type="button" class="ra-add" aria-label="Add &quot;Draft the launch announcement&quot; to your list">+ Add</button></div><div class="ra-row"><span class="ra-box"></span><span class="ra-title">Block Friday afternoon for the retro</span><button type="button" class="ra-add" aria-label="Add &quot;Block Friday afternoon for the retro&quot; to your list">+ Add</button></div></div></div><div class="reply-receipt"><span class="rr-tick"></span><span class="rr-text" title="Added &quot;Draft the launch announcement&quot;; Updated &quot;Long run, 14 km&quot;; Remembered you write best before 11">Added 1 task · Updated 1 · 1 memory update</span><button type="button" class="rr-undo" aria-label="Undo: Added &quot;Draft the launch announcement&quot;; Updated &quot;Long run, 14 km&quot;; Remembered you write best before 11">Undo</button></div><div class="reply-chips"><button type="button" class="chip"><span class="chip-label">Looks good</span></button><button type="button" class="chip"><span class="chip-label">Swap the 1:1 and pricing</span></button><button type="button" class="chip"><span class="chip-label">Skip the evening</span></button></div><div class="reply-actions"><button type="button" class="chat-tool reply-copy" aria-label="Copy reply" title="Copy reply"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"></path></svg><span>Copy</span></button></div></div></div>
+            </div>
+
+            <div id="banner" hidden=""></div>
+          </div>
+
+          <!-- The dock stays below the scrolling greeting and conversation during chat. -->
+          <div id="chat-dock">
+            <button id="chat-jump-latest" class="chat-tool" type="button" hidden="">Latest reply ↓</button>
+            <div id="suggestions" aria-label="Suggestions"><button type="button" class="chip" aria-label="What's overdue?"><span class="chip-ico" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="M12 8v4l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span class="chip-label">Review overdue</span></button><button type="button" class="chip" aria-label="What should I focus on?"><span class="chip-ico" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><path d="M6 5h10.5l-2 3.25L16.5 11.5H6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"></path></svg></span><span class="chip-label">Find focus</span></button><button type="button" class="chip" aria-label="Plan my day"><span class="chip-ico" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg></span><span class="chip-label">Plan today</span></button></div>
+            <form id="composer" autocomplete="off">
+              <textarea id="input" placeholder="Add a task or ask anything…" aria-label="Message Yarvy" rows="2" style=""></textarea>
+              <button id="send" type="submit" aria-label="Send" class="" title="Send">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5M12 5l-6 6M12 5l6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </button>
+            </form>
+
+          </div>
+        </div>
+      </section>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+    </main>
+
+    <button id="fab" type="button" aria-label="Add" title="Add a task, note, or ask Yarvy">
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path></svg>
+    </button>
+</div>

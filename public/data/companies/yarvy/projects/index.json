@@ -5,6 +5,13 @@
       "name": "Yarvy Home",
       "description": "",
       "createdAt": "2026-06-18T00:33:11.967Z"
+    },
+    {
+      "id": "yarvy-game-update",
+      "name": "Yarvy Game Update",
+      "description": "Current app look captured as desktop screens, plus the game update explorations.",
+      "createdBy": "Brandon Unglaub",
+      "createdAt": "2026-09-14T19:30:13.039Z"
     }
   ]
 }

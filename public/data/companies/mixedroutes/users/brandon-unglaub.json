@@ -1,7 +1,15 @@
 {
   "name": "Brandon Unglaub",
-  "favorites": [],
+  "favorites": [
+    "mixedroutes-phase-v2",
+    "logo-redesign",
+    "marketing-site"
+  ],
   "recents": [
+    {
+      "id": "marketing-site",
+      "ts": 1789414287945
+    },
     {
       "id": "mixedroutes-phase-v2",
       "ts": 1789314428085
@@ -9,10 +17,6 @@
     {
       "id": "logo-redesign",
       "ts": 1789314422682
-    },
-    {
-      "id": "marketing-site",
-      "ts": 1789081510087
     },
     {
       "id": "plan-parity",
@@ -29,5 +33,5 @@
     "status": ""
   },
   "navCollapsed": true,
-  "updatedAt": 1789314428107
+  "updatedAt": 1789414287945
 }

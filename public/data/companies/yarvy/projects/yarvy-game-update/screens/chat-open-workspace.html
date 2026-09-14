@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<style>
+@font-face { font-family: "Yarvy Sans"; src: url("../../../design-system/app/fonts/sans-latin.woff2") format("woff2"); font-weight: 200 900; font-display: swap; }
+html, body { margin: 0; min-height: 0; height: auto; background: var(--yv-card); }
+.yv-home { background: var(--yv-card); color: var(--yv-text); font: 16px/1.5 "Yarvy Sans", sans-serif; overflow-x: clip; }
+.yv-home button, .yv-home textarea { font: inherit; }
+.yv-home button { cursor: pointer; }
+.yv-home button:focus-visible { outline: 2px solid var(--yv-terra-text); outline-offset: 3px; }
+.yv-home button:hover { background: var(--yv-inset); }
+.yv-home-bar { display: flex; align-items: center; gap: 48px; height: 80px; padding: 0 32px; border-bottom: 1px solid var(--yv-border-soft); }
+.yv-home-brand { display: flex; align-items: center; gap: 9px; font-size: 29px; font-weight: 750; letter-spacing: -1.2px; }
+.yv-home-brand svg { width: 27px; height: 27px; color: var(--yv-terra-text); }
+.yv-home-nav { display: flex; align-self: stretch; gap: 8px; }
+.yv-home-nav button { border: 0; border-bottom: 2px solid transparent; background: transparent; padding: 0 16px; min-width: 76px; color: var(--yv-muted); font-size: 15px; }
+.yv-home-nav button[aria-current] { border-bottom-color: var(--yv-terra-text); color: var(--yv-text); font-weight: 650; }
+.yv-home-account { margin-left: auto; width: 44px; height: 44px; border: 1px solid var(--yv-border); border-radius: 50%; background: var(--yv-inset); color: var(--yv-text); font-size: 14px !important; font-weight: 600 !important; }
+.yv-home-main { min-height: 760px; padding: 145px 32px 100px; }
+.yv-home-conversation { width: 100%; max-width: 680px; margin: 0 auto; }
+.yv-home-welcome { text-align: center; margin-bottom: 30px; }
+.yv-home-welcome p { color: var(--yv-muted); font-size: 16px; margin-bottom: 9px; }
+.yv-home-welcome h1 { font-size: 38px; letter-spacing: -1px; font-weight: 550; line-height: 1.2; }
+.yv-home-composer { padding: 20px 20px 14px; background: white; border: 1px solid var(--yv-border-strong); border-radius: 18px; box-shadow: var(--yv-shadow-card); }
+.yv-home-composer:focus-within { outline: 2px solid var(--yv-terra-text); outline-offset: 3px; }
+.yv-home-composer textarea { display: block; width: 100%; height: 64px; border: 0; padding: 0; resize: none; background: transparent; color: var(--yv-text); font-size: 18px; line-height: 1.5; outline: none; }
+.yv-home-composer textarea::placeholder { color: var(--yv-muted); opacity: 1; }
+.yv-home-composer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.yv-home-composer-bottom span { font-size: 12px; color: var(--yv-muted); }
+.yv-home-send { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 14px; min-height: 44px; border: 0; border-radius: 10px; background: var(--yv-inset); color: var(--yv-muted); font-size: 14px !important; }
+.yv-home-send .ph { font-size: 19px; }
+.yv-home-starts { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 18px; }
+.yv-home-starts .ds-chip { min-height: 44px; border: 1px solid var(--yv-border); border-radius: 10px; padding: 9px 15px; gap: 8px; font-size: 14px; font-weight: 400; color: var(--yv-text); background: transparent; }
+.yv-home-starts .ph { font-size: 18px; color: var(--yv-muted); }
+.yv-home-history { display: flex; justify-content: center; margin-top: 36px; }
+.yv-home-history button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; min-height: 44px; border: 0; border-radius: 10px; background: transparent; color: var(--yv-muted); font-size: 14px; }
+.yv-home-history .ph { font-size: 18px; }
+@media(max-width: 700px) {
+  .yv-home-bar { height: auto; padding: 16px; gap: 12px; flex-wrap: wrap; }
+  .yv-home-nav { order: 3; width: 100%; }
+  .yv-home-nav button { min-height: 44px; min-width: 0; padding: 8px 12px; }
+  .yv-home-main { padding: 90px 20px 80px; min-height: 650px; }
+  .yv-home-welcome h1 { font-size: 30px; }
+  .yv-home-starts { gap: 8px; }
+  .yv-home-starts .ds-chip { padding: 9px 11px; }
+}
+</style>
+<div class="yv-home" style="background: var(--yv-card);">
+  <header class="yv-home-bar">
+    <div class="yv-home-brand"><svg viewBox="0 0 28 28" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 11v6M11 5v18M17 9v10M23 7v14"/></g></svg>yarvy</div>
+    <nav class="yv-home-nav ds-scroll-x" aria-label="Main navigation"><button type="button" aria-current="page">Chat</button><button type="button">Upcoming</button><button type="button">Tasks</button><button type="button">Lists</button><button type="button">You</button></nav>
+    <button type="button" class="yv-home-account" aria-label="Brandon's account">BU</button>
+  </header>
+  <main class="yv-home-main">
+    <div class="yv-home-conversation">
+      <div class="yv-home-welcome"><p>Good morning, Brandon.</p><h1>What's on your mind?</h1></div>
+      <div class="yv-home-composer">
+        <textarea rows="2" aria-label="Message Yarvy" placeholder="Add a task or ask anything…"></textarea>
+        <div class="yv-home-composer-bottom"><span>Shift + Enter for a new line</span><button type="button" class="yv-home-send" disabled aria-label="Send message">Send<i class="ph ph-arrow-up" aria-hidden="true"></i></button></div>
+      </div>
+      <div class="yv-home-starts" aria-label="Start a conversation"><button type="button" class="ds-chip"><i class="ph ph-calendar-blank" aria-hidden="true"></i>Plan my day</button><button type="button" class="ds-chip"><i class="ph ph-flag" aria-hidden="true"></i>Find my focus</button><button type="button" class="ds-chip"><i class="ph ph-clock" aria-hidden="true"></i>Review overdue</button></div>
+      <div class="yv-home-history"><button type="button"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i>Earlier messages</button></div>
+    </div>
+  </main>
+</div>

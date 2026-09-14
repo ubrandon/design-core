@@ -1,0 +1,194 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* Chat redesign D: variant C with the live Yarvy presence as the sender line and a page header. */
+  .yv-shot { background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+  .yv-shot #app { height: auto; min-height: 1120px; overflow: visible; }
+  .gf-main { display: grid; grid-template-columns: minmax(0, 1fr) 372px; grid-template-rows: auto minmax(0, 1fr); min-width: 0; }
+
+  /* Page header: where am I, what day is it. Spans both columns. */
+  .gf-head { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; padding: 22px 32px 18px 40px; border-bottom: 1px solid var(--line); }
+  .gf-head h1 { margin: 0; font-size: var(--fs-h1); font-weight: var(--fw-heavy); letter-spacing: var(--ls-snug); }
+  .gf-head span { font-size: var(--fs-body-sm); color: var(--muted); font-weight: var(--fw-semibold); }
+
+  .gf-chat { display: flex; flex-direction: column; padding: 24px 36px 28px 40px; min-width: 0; }
+  .gf-board { border-left: 1px solid var(--line); background: var(--page); padding: 24px 24px 28px; display: flex; flex-direction: column; gap: 14px; }
+
+  .gf-earlier { align-self: center; display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border-radius: var(--radius-pill); border: 0; background: transparent; color: var(--muted); font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .gf-earlier i { font-size: 18px; }
+
+  .gf-turns { display: flex; flex-direction: column; gap: 22px; margin-top: 12px; }
+  .gf-prompt { align-self: flex-end; max-width: 78%; padding: 12px 18px; border-radius: 18px; background: var(--user-bubble); color: var(--user-text); font-size: 19px; line-height: 1.45; }
+
+  /* Sender line: the same equalizer the app uses, kept alive beside the reply it belongs to. */
+  .gf-from { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .gf-from .gf-presence { width: 34px; height: 28px; }
+  .gf-from .gf-presence svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .gf-from .gf-presence .eq-bar { fill: var(--accent); }
+  .gf-from b { font-weight: var(--fw-bold); font-size: var(--fs-body-sm); }
+  .gf-from span { font-size: var(--fs-xs); color: var(--muted); font-weight: var(--fw-semibold); }
+  .gf-from.old .gf-presence .eq-bar { animation: none; opacity: 0.55; }
+  .gf-from.old .gf-presence .signal-field { filter: none; }
+
+  /* The answer leads: one headline, one supporting line. */
+  .gf-headline { margin: 0; font-size: 30px; line-height: 1.2; font-weight: var(--fw-heavy); letter-spacing: var(--ls-snug); max-width: 22ch; }
+  .gf-lead { margin: 8px 0 0; font-size: 19px; line-height: 1.45; color: var(--muted); max-width: 48ch; }
+  .gf-lead .gf-ref { color: var(--accent-2); font-weight: var(--fw-semibold); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .gf-said { max-width: 60ch; color: var(--muted); margin: 0; }
+
+  .gf-part { margin-top: 18px; }
+  .gf-part h2 { margin: 0 0 8px; display: flex; align-items: baseline; justify-content: space-between; font-size: var(--fs-body); font-weight: var(--fw-bold); }
+  .gf-part h2 span { font-size: var(--fs-sm); color: var(--muted); font-weight: var(--fw-semibold); }
+
+  .gf-changes { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: var(--radius-xl); background: var(--panel); overflow: hidden; max-width: 600px; }
+  .gf-changes.old { border-color: var(--line-soft); background: transparent; margin-top: 10px; }
+  .gf-change { display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; align-items: center; min-height: 50px; padding: 4px 8px 4px 10px; border-top: 1px solid var(--line-soft); }
+  .gf-change:first-child { border-top: 0; }
+  .gf-change .gf-tick { color: var(--success-text); font-size: 20px; display: grid; place-items: center; }
+  .gf-changes.old .gf-tick { color: var(--muted); }
+  .gf-change .gf-what { font-size: var(--fs-body-sm); }
+  .gf-change .gf-what b { font-weight: var(--fw-semibold); }
+  .gf-undo { min-height: 40px; padding: 0 12px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--accent-2); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-bold); cursor: pointer; }
+  .gf-undone { font-size: var(--fs-xs); color: var(--muted); padding: 0 12px; }
+
+  .gf-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .gf-chip { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px 0 10px; border-radius: var(--radius-pill); border: 1px solid var(--line); background: var(--panel); color: var(--text); font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .gf-chip i { font-size: 17px; color: var(--muted); }
+  .gf-chip.change i { color: var(--accent-2); }
+
+  .gf-dock { margin-top: auto; padding-top: 36px; }
+  .gf-composer { display: flex; align-items: flex-end; gap: 10px; padding: 14px 14px 12px 18px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-3xl); box-shadow: var(--shadow-float); }
+  .gf-composer .gf-input { flex: 1; min-height: 64px; padding: 6px 0; color: var(--muted); font-size: var(--fs-body); }
+  .gf-send { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--surface-hover); color: var(--muted); display: grid; place-items: center; }
+  .gf-send svg { width: 20px; height: 20px; }
+
+  /* The board: same task silhouette as the Tasks page; chat changes show in place. */
+  .gf-bhead { display: flex; align-items: baseline; justify-content: space-between; }
+  .gf-bhead h2 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-heavy); letter-spacing: var(--ls-snug); }
+  .gf-bhead span { font-size: var(--fs-sm); color: var(--muted); font-weight: var(--fw-semibold); }
+  .gf-bar { height: 6px; border-radius: var(--radius-pill); background: var(--line-soft); overflow: hidden; }
+  .gf-bar i { display: block; height: 100%; width: 25%; background: var(--accent-fill); border-radius: var(--radius-pill); }
+  .gf-group h3 { margin: 10px 0 6px; font-size: var(--fs-xs); font-weight: var(--fw-bold); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--muted); }
+  .gf-list { display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-xl); overflow: hidden; }
+  .gf-task { display: grid; grid-template-columns: 40px minmax(0, 1fr); align-items: center; min-height: 52px; padding: 6px 12px 6px 2px; border: 0; border-top: 1px solid var(--line-soft); background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+  .gf-task:first-child { border-top: 0; }
+  .gf-task .gf-check { width: 40px; height: 40px; display: grid; place-items: center; color: var(--ring); font-size: 21px; }
+  .gf-task .gf-title { font-weight: var(--fw-semibold); line-height: var(--lh-snug); font-size: var(--fs-body-sm); }
+  .gf-task .gf-sub { display: flex; gap: 8px; align-items: center; font-size: var(--fs-xs); color: var(--muted); margin-top: 1px; }
+  .gf-task.late .gf-sub, .gf-task.late .gf-check { color: var(--overdue); }
+  .gf-task.done { color: var(--muted); }
+  .gf-task.done .gf-check { color: var(--success-text); }
+  .gf-task.done .gf-title { text-decoration: line-through; font-weight: var(--fw-normal); }
+  .gf-task.changed { background: var(--celebrate-soft); }
+  .gf-task .gf-tag { font-size: var(--fs-2xs); font-weight: var(--fw-bold); color: var(--celebrate-text); background: var(--panel); padding: 1px 7px; border-radius: var(--radius-pill); }
+  .gf-task .gf-tag.new { color: var(--success-text); }
+  .gf-prio { width: 7px; height: 7px; border-radius: 50%; background: var(--prio-1); display: inline-block; }
+  .gf-prio.p2 { background: var(--prio-2); }
+  .gf-bfoot { margin-top: auto; font-size: var(--fs-xs); color: var(--muted); padding: 8px 2px 0; }
+  .gf-bfoot a { color: var(--accent-2); font-weight: var(--fw-semibold); text-decoration: none; }
+</style>
+<div class="yv-shot" style="background: var(--shell);">
+  <main id="app">
+    <nav id="rail" aria-label="Main navigation">
+      <div class="rail-brand">
+        <svg class="rail-mark" viewBox="4 17 92 66" aria-hidden="true"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"><line x1="10" y1="42" x2="10" y2="58" opacity="0.76"></line><line x1="30" y1="28" x2="30" y2="72" opacity="0.94"></line><line x1="50" y1="37" x2="50" y2="63" opacity="0.82"></line><line x1="70" y1="23" x2="70" y2="77" opacity="1.00"></line><line x1="90" y1="40" x2="90" y2="60" opacity="0.79"></line></g></svg>
+        <span class="rail-wordmark">yarvy</span>
+      </div>
+      <div class="rail-nav">
+        <button class="nav-item active" type="button"><i class="ph ph-chat-circle nav-ico" aria-hidden="true"></i><i class="ph-fill ph-chat-circle nav-ico-on" aria-hidden="true"></i><span class="nav-label">Chat</span></button>
+        <button class="nav-item" type="button"><i class="ph ph-calendar-blank nav-ico" aria-hidden="true"></i><i class="ph-fill ph-calendar-blank nav-ico-on" aria-hidden="true"></i><span class="nav-label">Upcoming</span></button>
+        <button class="nav-item" type="button"><i class="ph ph-check-fat nav-ico" aria-hidden="true"></i><i class="ph-fill ph-check-fat nav-ico-on" aria-hidden="true"></i><span class="nav-label">Tasks</span></button>
+        <button class="nav-item" type="button"><i class="ph ph-user nav-ico" aria-hidden="true"></i><i class="ph-fill ph-user nav-ico-on" aria-hidden="true"></i><span class="nav-label">You</span></button>
+      </div>
+      <div class="rail-spacer"></div>
+      <div id="usermenu">
+        <button id="profile" type="button"><span class="nav-pill"><span id="avatar">BU</span></span><span id="rail-name">Brandon</span><i class="ph ph-caret-up-down profile-chevron" aria-hidden="true"></i></button>
+      </div>
+    </nav>
+
+    <section class="gf-main">
+      <div class="gf-head"><h1>Chat</h1><span>Monday, September 14</span></div>
+
+      <div class="gf-chat">
+        <button class="gf-earlier" type="button"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i>Earlier messages</button>
+
+        <div class="gf-turns">
+          <div class="gf-prompt">Plan today around the launch. Add the announcement for Wednesday and move my long run to tomorrow.</div>
+          <div>
+            <div class="gf-from old">
+              <span class="gf-presence" aria-hidden="true"><svg viewBox="0 0 42 36"><g class="signal-field"><rect class="eq-bar" x="3" y="12" width="4" height="12" rx="2"/><rect class="eq-bar" x="11" y="9" width="4" height="18" rx="2"/><rect class="eq-bar" x="19" y="6" width="4" height="24" rx="2"/><rect class="eq-bar" x="27" y="9" width="4" height="18" rx="2"/><rect class="eq-bar" x="35" y="12" width="4" height="12" rx="2"/></g></svg></span>
+              <b>Yarvy</b><span>8:12 AM</span>
+            </div>
+            <p class="gf-said">Start with the release notes. Keep writing in the morning, then make room for people.</p>
+            <div class="gf-changes old">
+              <div class="gf-change"><span class="gf-tick"><i class="ph-fill ph-check-circle" aria-hidden="true"></i></span><span class="gf-what">Added <b>Draft the launch announcement</b> to Launch prep, due Wed</span><button class="gf-undo" type="button">Undo</button></div>
+              <div class="gf-change"><span class="gf-tick"><i class="ph-fill ph-check-circle" aria-hidden="true"></i></span><span class="gf-what"><b>Long run, 14 km</b> moved to Tue 7:00 AM</span><span class="gf-undone">Undone</span></div>
+            </div>
+          </div>
+
+          <div class="gf-prompt">Keep the run today, I'll go at lunch. And add a task to send Priya the notes before our 1:1.</div>
+          <div>
+            <div class="gf-from">
+              <span class="gf-presence" id="presence" aria-hidden="true"><svg viewBox="0 0 42 36"><g class="signal-field"><rect class="eq-bar" x="3" y="12" width="4" height="12" rx="2"/><rect class="eq-bar" x="11" y="9" width="4" height="18" rx="2"/><rect class="eq-bar" x="19" y="6" width="4" height="24" rx="2"/><rect class="eq-bar" x="27" y="9" width="4" height="18" rx="2"/><rect class="eq-bar" x="35" y="12" width="4" height="12" rx="2"/></g></svg></span>
+              <b>Yarvy</b><span>8:14 AM</span>
+            </div>
+            <h2 class="gf-headline">Run is back on today at 12:30.</h2>
+            <p class="gf-lead">It sits between standup and the 1:1. <a class="gf-ref" href="#">Send Priya the release notes</a> is in Work, due 1:30 PM so it lands before you meet.</p>
+            <div class="gf-part">
+              <h2>Changed <span>2</span></h2>
+              <div class="gf-changes">
+                <div class="gf-change"><span class="gf-tick"><i class="ph-fill ph-check-circle" aria-hidden="true"></i></span><span class="gf-what"><b>Long run, 14 km</b> moved to today 12:30 PM</span><button class="gf-undo" type="button">Undo</button></div>
+                <div class="gf-change"><span class="gf-tick"><i class="ph-fill ph-check-circle" aria-hidden="true"></i></span><span class="gf-what">Added <b>Send Priya the release notes</b> to Work, today 1:30 PM</span><button class="gf-undo" type="button">Undo</button></div>
+              </div>
+            </div>
+            <div class="gf-chips">
+              <button class="gf-chip change" type="button"><i class="ph ph-arrow-bend-down-right" aria-hidden="true"></i>Make it a 10 km instead</button>
+              <button class="gf-chip" type="button"><i class="ph ph-question" aria-hidden="true"></i>What's still overdue?</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="gf-dock">
+          <div class="gf-composer">
+            <div class="gf-input">Add a task or ask anything</div>
+            <button class="gf-send" type="button" aria-label="Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M12 5l-6 6M12 5l6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="gf-board" aria-label="Today">
+        <div class="gf-bhead"><h2>Today</h2><span>2 of 8 done</span></div>
+        <div class="gf-bar"><i></i></div>
+        <div class="gf-group">
+          <h3>Overdue</h3>
+          <div class="gf-list">
+            <button class="gf-task late" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">Review pricing page copy</span><span class="gf-sub"><span class="gf-prio p2"></span>Fri. Launch prep</span></span></button>
+          </div>
+        </div>
+        <div class="gf-group">
+          <h3>Today</h3>
+          <div class="gf-list">
+            <button class="gf-task done" type="button"><span class="gf-check"><i class="ph-fill ph-check-circle" aria-hidden="true"></i></span><span><span class="gf-title">Team standup</span><span class="gf-sub">9:30 AM</span></span></button>
+            <button class="gf-task done" type="button"><span class="gf-check"><i class="ph-fill ph-check-circle" aria-hidden="true"></i></span><span><span class="gf-title">Ship v2 release notes</span><span class="gf-sub">11:00 AM</span></span></button>
+            <button class="gf-task changed" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">Long run, 14 km <span class="gf-tag">Moved</span></span><span class="gf-sub"><span class="gf-prio p2"></span>12:30 PM. Health</span></span></button>
+            <button class="gf-task changed" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">Send Priya the release notes <span class="gf-tag new">New</span></span><span class="gf-sub">1:30 PM. Work</span></span></button>
+            <button class="gf-task" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">1:1 with Priya</span><span class="gf-sub">2:00 PM. Work</span></span></button>
+            <button class="gf-task" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">Call the landlord about the leak</span><span class="gf-sub"><span class="gf-prio"></span>Home</span></span></button>
+            <button class="gf-task" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">Pick up groceries</span><span class="gf-sub">6:30 PM. Home</span></span></button>
+            <button class="gf-task" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">Read 20 minutes</span><span class="gf-sub">9:00 PM. 4 of 5 this week</span></span></button>
+          </div>
+        </div>
+        <div class="gf-group">
+          <h3>Tomorrow</h3>
+          <div class="gf-list">
+            <button class="gf-task" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">Water the plants</span><span class="gf-sub">Every 3 days. Home</span></span></button>
+            <button class="gf-task" type="button"><span class="gf-check"><i class="ph ph-circle" aria-hidden="true"></i></span><span><span class="gf-title">Draft the launch announcement</span><span class="gf-sub">Wed. Launch prep</span></span></button>
+          </div>
+        </div>
+        <p class="gf-bfoot">Same rows as the Tasks page. Tap a row to open it. <a href="#">All tasks</a></p>
+      </aside>
+    </section>
+  </main>
+</div>

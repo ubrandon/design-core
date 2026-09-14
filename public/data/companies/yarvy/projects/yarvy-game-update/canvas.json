@@ -1,0 +1,96 @@
+{
+  "screens": [
+    {
+      "file": "current-chat.html",
+      "x": 0,
+      "y": 120,
+      "width": 1200
+    },
+    {
+      "file": "current-tasks.html",
+      "x": 1280,
+      "y": 120,
+      "width": 1200
+    },
+    {
+      "file": "current-task-modal.html",
+      "x": 2560,
+      "y": 120,
+      "width": 1200
+    },
+    {
+      "file": "chat-a-return.html",
+      "x": 0,
+      "y": 2004,
+      "width": 1200
+    },
+    {
+      "file": "chat-b-exchange.html",
+      "x": 1280,
+      "y": 2004,
+      "width": 1200
+    },
+    {
+      "file": "chat-c-board.html",
+      "x": 2560,
+      "y": 2004,
+      "width": 1200
+    },
+    {
+      "file": "chat-d-board-presence.html",
+      "x": 3840,
+      "y": 2500,
+      "width": 1200
+    }
+  ],
+  "texts": [
+    {
+      "text": "Current app: chat",
+      "x": 0,
+      "y": 0,
+      "size": 48,
+      "id": "text-legacy-mu1n661w-1"
+    },
+    {
+      "text": "Current app: tasks",
+      "x": 1280,
+      "y": 0,
+      "size": 48,
+      "id": "text-legacy-mu1n661w-2"
+    },
+    {
+      "text": "Current app: task editor",
+      "x": 2560,
+      "y": 0,
+      "size": 48,
+      "id": "text-legacy-mu1n661w-3"
+    },
+    {
+      "text": "Chat redesign A: return state",
+      "x": 0,
+      "y": 1914,
+      "size": 48,
+      "id": "text-legacy-mu1ngr0e-4"
+    },
+    {
+      "text": "Chat redesign B: answered, changed, proposed",
+      "x": 1280,
+      "y": 1914,
+      "size": 48,
+      "id": "text-legacy-mu1ngr0e-5"
+    },
+    {
+      "text": "Chat redesign C: conversation + today board",
+      "x": 2560,
+      "y": 1914,
+      "size": 48,
+      "id": "text-legacy-mu1ngr0e-6"
+    },
+    {
+      "text": "Chat redesign D: C with Yarvy presence",
+      "x": 3840,
+      "y": 2380,
+      "size": 48
+    }
+  ]
+}

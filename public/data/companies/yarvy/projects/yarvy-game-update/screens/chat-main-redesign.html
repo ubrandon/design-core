@@ -1,0 +1,178 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+/* Main chat: the answer leads, changes are inspectable, and optional work stays optional. */
+html, body { margin: 0; min-height: 0; height: auto; background: var(--shell); }
+.yv-main-chat { background: var(--shell); color: var(--text); font: var(--fs-body)/var(--lh-base) var(--font-sans); overflow-x: clip; -webkit-font-smoothing: antialiased; }
+.yv-main-chat .ph { font-family: "Phosphor" !important; }
+.yv-main-chat #app { height: auto; min-height: 1130px; overflow: visible; }
+.yv-main-chat #rail { border-right: 1px solid var(--line); padding: 28px 16px 20px; }
+.yv-main-chat .rail-brand { padding-bottom: 40px; }
+.yv-main-chat .nav-item { margin-bottom: 4px; height: 48px; }
+.yv-main-chat .nav-item.active { background: var(--user-bubble); }
+.yv-main-chat #profile { padding: 12px 8px; }
+.yv-chat-workspace { min-width: 0; display: flex; flex-direction: column; background: var(--panel); }
+.yv-chat-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 36px; border-bottom: 1px solid var(--line-soft); }
+.yv-chat-top h1 { font-size: var(--fs-body); font-weight: 600; }
+.yv-chat-top time { color: var(--muted); font-size: var(--fs-sm); }
+.yv-chat-column { width: calc(100% - 80px); max-width: 736px; margin: 0 auto; }
+.yv-chat-history { display: flex; justify-content: center; margin: 12px 0 8px; }
+.yv-chat-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 12px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--muted); font: 600 var(--fs-sm)/1.3 var(--font-sans); cursor: pointer; }
+.yv-chat-button .ph { font-size: 18px; }
+.yv-chat-question { max-width: 540px; margin: 0 0 24px auto; padding: 14px 18px; border-radius: 18px 18px 4px 18px; background: var(--user-bubble); color: var(--user-text); font-size: var(--fs-body); }
+.yv-chat-author { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; font-size: var(--fs-sm); font-weight: 600; }
+.yv-chat-author svg { width: 24px; height: 22px; color: var(--accent); }
+.yv-chat-author time { font-size: var(--fs-xs); color: var(--muted); font-weight: 400; margin-left: 2px; }
+.yv-chat-answer { font-size: var(--fs-h1); line-height: var(--lh-snug); letter-spacing: var(--ls-tight); font-weight: 600; margin: 0 0 8px; }
+.yv-chat-intro { margin: 0 0 20px; color: var(--muted); }
+.yv-chat-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 6px; }
+.yv-chat-section-heading h3 { font-size: var(--fs-body-sm); font-weight: 600; }
+.yv-chat-section-heading span { color: var(--muted); font-size: var(--fs-xs); }
+.yv-main-chat .reply-tasks { border: 1px solid var(--line); border-radius: var(--radius-xl); padding: 0 12px 0 6px; overflow: hidden; }
+.yv-main-chat .reply-task { align-items: center; gap: 4px; padding: 4px 0; min-height: 56px; }
+.yv-main-chat .check { flex: none; width: var(--task-touch-target); height: var(--task-touch-target); display: grid; place-items: center; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--ring); cursor: pointer; }
+.yv-main-chat .check i { font-size: 24px; }
+.yv-main-chat .rt-main { flex-direction: row; align-items: center; justify-content: space-between; gap: 16px; min-height: 48px; }
+.yv-main-chat .rt-title { font-size: var(--fs-body); font-weight: 600; }
+.yv-chat-task-info { min-width: 0; }
+.yv-main-chat .rt-meta { font-size: var(--fs-xs); color: var(--muted); gap: 8px; }
+.yv-chat-task-end { display: inline-flex; align-items: center; gap: 14px; flex-shrink: 0; color: var(--muted); font-size: var(--fs-sm); }
+.yv-chat-task-end i { font-size: 14px; }
+.yv-chat-late { color: var(--danger-text); }
+.yv-chat-saved { margin-top: 20px; border: 1px solid var(--line); border-radius: var(--radius-xl); overflow: hidden; }
+.yv-chat-saved-head { min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 12px 0 16px; background: var(--shell); border-bottom: 1px solid var(--line-soft); }
+.yv-chat-saved-head h3 { display: flex; align-items: center; gap: 7px; font-size: var(--fs-sm); font-weight: 600; }
+.yv-chat-saved-head h3 i { color: var(--success-text); font-size: 18px; }
+.yv-chat-saved-head .yv-chat-button { color: var(--accent-2); }
+.yv-chat-result { display: flex; align-items: center; min-height: 58px; padding: 4px 12px 4px 6px; gap: 4px; }
+.yv-chat-result + .yv-chat-result { border-top: 1px solid var(--line-soft); }
+.yv-chat-result .rt-title { font-size: var(--fs-body-sm); }
+.yv-chat-result .rt-meta { display: block; }
+.yv-chat-state { font-size: var(--fs-xs); color: var(--success-text); font-weight: 600; }
+.yv-chat-goal { display: flex; align-items: center; gap: 9px; width: 100%; padding: 10px 16px; min-height: 44px; border: 0; border-top: 1px solid var(--line-soft); background: var(--shell); font: var(--fs-xs)/1.4 var(--font-sans); color: var(--muted); text-align: left; cursor: pointer; }
+.yv-chat-goal > .ph:first-child { font-size: 18px; }
+.yv-chat-goal .ds-progress { width: 64px; height: 4px; margin-left: auto; background: var(--line); flex-shrink: 0; }
+.yv-chat-goal .ds-progress-fill { width: 0; background: var(--success-text); }
+.yv-chat-proposal { margin-top: 16px; border: 1px dashed var(--line-strong); border-radius: var(--radius-md); padding: 10px 12px 10px 16px; display: flex; align-items: center; gap: 16px; }
+.yv-chat-proposal-text { flex: 1; min-width: 0; }
+.yv-chat-proposal-label { font-size: var(--fs-xs); color: var(--muted); }
+.yv-chat-proposal-title { font-size: var(--fs-body-sm); font-weight: 600; }
+.yv-chat-add { min-height: 44px; border: 1px solid var(--line); background: var(--panel); border-radius: var(--radius-sm); color: var(--accent-2); font-size: var(--fs-sm); padding: 8px 14px; }
+.yv-chat-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 12px; margin: 4px 0 12px; }
+.yv-chat-footer .yv-chat-button { font-size: var(--fs-xs); font-weight: 400; padding-left: 0; }
+.yv-chat-footer .yv-chat-button:last-child { padding-right: 0; }
+.yv-chat-dock { margin-top: auto; padding-top: 6px; padding-bottom: 24px; }
+.yv-chat-prompts { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.yv-chat-prompts .ds-chip { min-height: 44px; color: var(--muted); background: var(--panel); border-color: var(--line); font-size: var(--fs-sm); font-weight: 400; padding: 8px 14px; }
+.yv-chat-composer { border: 1px solid var(--line-strong); border-radius: var(--radius-xl); background: var(--panel); padding: 14px 14px 12px 18px; box-shadow: var(--shadow-float); }
+.yv-chat-composer textarea { display: block; width: 100%; min-height: 40px; resize: none; border: 0; background: transparent; color: var(--text); font: var(--fs-body)/1.5 var(--font-sans); outline: none; }
+.yv-chat-composer textarea::placeholder { color: var(--muted); opacity: 1; }
+.yv-chat-composer:focus-within { outline: 2px solid var(--accent-2); outline-offset: 3px; }
+.yv-chat-composer-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.yv-chat-composer-foot span { color: var(--muted); font-size: var(--fs-xs); }
+.yv-chat-send { min-width: 44px; min-height: 44px; border: 0; border-radius: var(--radius-md); background: var(--surface-hover); color: var(--muted); display: grid; place-items: center; font-size: 20px; }
+.yv-main-chat button:hover { background-color: var(--surface-hover); }
+.yv-main-chat button:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+@media (max-width: 700px) {
+  .yv-main-chat #app { display: block; min-height: 0; }
+  .yv-main-chat #rail { display: none; }
+  .yv-chat-top { padding: 12px 20px; }
+  .yv-chat-column { width: calc(100% - 32px); }
+  .yv-chat-answer { font-size: var(--fs-h1-sm); }
+  .yv-chat-question { margin-left: 24px; }
+  .yv-main-chat .rt-main { align-items: flex-start; flex-direction: column; gap: 2px; padding: 5px 0; }
+  .yv-chat-task-end { font-size: var(--fs-xs); }
+  .yv-chat-task-end i { display: none; }
+  .yv-chat-goal { flex-wrap: wrap; }
+  .yv-chat-goal .ds-progress { display: none; }
+}
+</style>
+<div class="yv-shot yv-main-chat" style="background: var(--shell);">
+<main id="app">
+<nav id="rail" aria-label="Main navigation">
+        <div class="rail-brand">
+          <svg class="rail-mark" viewBox="4 17 92 66" aria-hidden="true"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"><line x1="10" y1="42" x2="10" y2="58" opacity="0.76"></line><line x1="30" y1="28" x2="30" y2="72" opacity="0.94"></line><line x1="50" y1="37" x2="50" y2="63" opacity="0.82"></line><line x1="70" y1="23" x2="70" y2="77" opacity="1.00"></line><line x1="90" y1="40" x2="90" y2="60" opacity="0.79"></line></g></svg>
+          <span class="rail-wordmark">yarvy</span>
+        </div>
+        <div class="rail-nav">
+          <button id="nav-home" class="nav-item active" type="button" aria-label="Chat" aria-current="page">
+            <i class="ph ph-chat-circle nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-chat-circle nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Chat</span>
+          </button>
+          <button id="nav-upcoming" class="nav-item" type="button" aria-label="Upcoming" title="Upcoming">
+            <i class="ph ph-calendar-blank nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-calendar-blank nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Upcoming</span>
+          </button>
+          <button id="nav-tasks" class="nav-item" type="button" aria-label="Tasks" title="Tasks">
+            <i class="ph ph-check-fat nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-check-fat nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Tasks</span>
+          </button>
+          <button id="nav-you" class="nav-item" type="button" aria-label="You" title="You">
+            <i class="ph ph-user nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-user nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">You</span>
+          </button>
+        </div>
+        <button class="nav-item" type="button" aria-label="Lists"><i class="ph ph-list" aria-hidden="true"></i><span class="nav-label">Lists</span></button><div class="rail-spacer"></div>
+        <div id="usermenu">
+          <button id="profile" type="button" aria-label="Account menu" title="Account menu" aria-haspopup="menu" aria-expanded="false">
+            <span class="nav-pill"><span id="avatar">BU</span></span>
+            <span id="rail-name">Brandon</span>
+            <i class="ph ph-caret-up-down profile-chevron" aria-hidden="true"></i>
+            <span class="nav-label">You</span>
+          </button>
+        </div>
+        
+      </nav>
+<section class="yv-chat-workspace" aria-label="Chat with Yarvy">
+  <header class="yv-chat-top"><h1>Chat</h1><time datetime="2026-09-14">Monday, September 14</time></header>
+  <div class="yv-chat-column">
+    <div class="yv-chat-history"><button type="button" class="yv-chat-button"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i>Earlier messages</button></div>
+    <article class="yv-chat-question" aria-label="Your message">Plan today around the launch. Add the announcement for Wednesday and move my long run to tomorrow.</article>
+    <article aria-label="Yarvy's reply">
+      <div class="yv-chat-author"><svg viewBox="4 17 92 66" aria-hidden="true"><g stroke="currentColor" stroke-width="12" stroke-linecap="round"><path d="M10 42v16M30 28v44M50 37v26M70 23v54M90 40v20"/></g></svg><span>Yarvy</span><time datetime="2026-09-14T08:12:00">8:12 AM</time></div>
+      <h2 class="yv-chat-answer">Start with the release notes.</h2>
+      <p class="yv-chat-intro">Keep writing in the morning, then make room for people.</p>
+      <section aria-label="Today's plan">
+        <div class="yv-chat-section-heading"><h3>Your day</h3><span>5 tasks</span></div>
+        <div class="reply-tasks">
+        <div class="reply-task prio-1"><button type="button" class="check" aria-label="Complete Ship v2 release notes"><i class="ph ph-circle" aria-hidden="true"></i></button><button type="button" class="rt-main" aria-label="Open Ship v2 release notes"><span class="yv-chat-task-info"><span class="rt-title">Ship v2 release notes</span><span class="rt-meta">Launch prep<span class="rt-priority">High priority</span></span></span><span class="yv-chat-task-end">Due 11:00 AM<i class="ph ph-caret-right" aria-hidden="true"></i></span></button></div>
+<div class="reply-task "><button type="button" class="check" aria-label="Complete Team standup"><i class="ph ph-circle" aria-hidden="true"></i></button><button type="button" class="rt-main" aria-label="Open Team standup"><span class="yv-chat-task-info"><span class="rt-title">Team standup</span><span class="rt-meta">Work</span></span><span class="yv-chat-task-end">9:30 AM<i class="ph ph-caret-right" aria-hidden="true"></i></span></button></div>
+<div class="reply-task prio-2"><button type="button" class="check" aria-label="Complete Review pricing page copy"><i class="ph ph-circle" aria-hidden="true"></i></button><button type="button" class="rt-main" aria-label="Open Review pricing page copy"><span class="yv-chat-task-info"><span class="rt-title">Review pricing page copy</span><span class="rt-meta">Launch prep<span class="rt-priority">Medium priority</span></span></span><span class="yv-chat-task-end yv-chat-late">Overdue · Sep 12<i class="ph ph-caret-right" aria-hidden="true"></i></span></button></div>
+<div class="reply-task "><button type="button" class="check" aria-label="Complete 1:1 with Priya"><i class="ph ph-circle" aria-hidden="true"></i></button><button type="button" class="rt-main" aria-label="Open 1:1 with Priya"><span class="yv-chat-task-info"><span class="rt-title">1:1 with Priya</span><span class="rt-meta">Work</span></span><span class="yv-chat-task-end">2:00 PM<i class="ph ph-caret-right" aria-hidden="true"></i></span></button></div>
+<div class="reply-task prio-1"><button type="button" class="check" aria-label="Complete Call the landlord about the leak"><i class="ph ph-circle" aria-hidden="true"></i></button><button type="button" class="rt-main" aria-label="Open Call the landlord about the leak"><span class="yv-chat-task-info"><span class="rt-title">Call the landlord about the leak</span><span class="rt-meta">Home<span class="rt-priority">High priority</span></span></span><span class="yv-chat-task-end">Today<i class="ph ph-caret-right" aria-hidden="true"></i></span></button></div>
+        </div>
+      </section>
+      <section class="yv-chat-saved" aria-label="Saved changes">
+        <div class="yv-chat-saved-head"><h3><i class="ph-fill ph-check-circle" aria-hidden="true"></i>2 changes saved</h3><button type="button" class="yv-chat-button" aria-label="Undo the added announcement and the moved long run"><i class="ph ph-arrow-counter-clockwise" aria-hidden="true"></i>Undo both</button></div>
+        <div class="yv-chat-result">
+          <button type="button" class="check" aria-label="Complete Draft the launch announcement"><i class="ph ph-circle" aria-hidden="true"></i></button>
+          <button type="button" class="rt-main" aria-label="Open Draft the launch announcement"><span class="yv-chat-task-info"><span class="rt-title">Draft the launch announcement</span><span class="rt-meta">Launch prep · Wed, Sep 16</span></span><span class="yv-chat-task-end"><span class="yv-chat-state">Added</span><i class="ph ph-caret-right" aria-hidden="true"></i></span></button>
+        </div>
+        <div class="yv-chat-result">
+          <button type="button" class="check" aria-label="Complete Long run, 14 km"><i class="ph ph-circle" aria-hidden="true"></i></button>
+          <button type="button" class="rt-main" aria-label="Open Long run, 14 km"><span class="yv-chat-task-info"><span class="rt-title">Long run, 14 km</span><span class="rt-meta">Today → Tue, Sep 15 at 7:00 AM</span></span><span class="yv-chat-task-end"><span class="yv-chat-state">Moved</span><i class="ph ph-caret-right" aria-hidden="true"></i></span></button>
+        </div>
+        <button type="button" class="yv-chat-goal" aria-label="Open Run a half marathon goal, 0 of 12 long runs complete"><i class="ph ph-person-simple-run" aria-hidden="true"></i><span>Run a half marathon</span><span class="ds-progress" aria-hidden="true"><span class="ds-progress-fill"></span></span><span>0 of 12 long runs</span><i class="ph ph-caret-right" aria-hidden="true"></i></button>
+      </section>
+      <section class="yv-chat-proposal" aria-label="Optional suggestion, not saved">
+        <div class="yv-chat-proposal-text"><div class="yv-chat-proposal-label">Suggested · Not added</div><div class="yv-chat-proposal-title">Block Friday at 2 PM for the retro</div></div>
+        <button type="button" class="btn yv-chat-add" aria-label="Add Block Friday at 2 PM for the retro"><i class="ph ph-plus" aria-hidden="true"></i>Add</button>
+      </section>
+      <footer class="yv-chat-footer"><button type="button" class="yv-chat-button" aria-label="View saved memory: You write best before 11 AM"><i class="ph ph-brain" aria-hidden="true"></i>Using your preference for writing before 11<i class="ph ph-caret-right" aria-hidden="true"></i></button><button type="button" class="yv-chat-button"><i class="ph ph-copy" aria-hidden="true"></i>Copy reply</button></footer>
+    </article>
+  </div>
+  <div class="yv-chat-column yv-chat-dock">
+    <div class="yv-chat-prompts"><button type="button" class="ds-chip">Make today lighter</button><button type="button" class="ds-chip">What can wait?</button></div>
+    <div class="yv-chat-composer"><textarea rows="1" aria-label="Message Yarvy" placeholder="Add a task or ask Yarvy…"></textarea><div class="yv-chat-composer-foot"><span>Enter to send · Shift + Enter for a new line</span><button type="button" class="yv-chat-send" disabled aria-label="Send message"><i class="ph ph-arrow-up" aria-hidden="true"></i></button></div></div>
+  </div>
+</section>
+</main>
+</div>

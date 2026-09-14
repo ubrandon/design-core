@@ -68,7 +68,8 @@ public/
         captures/             config.json, manifest.json, screenshots
         users/                Per-user preferences (managed by the tool)
 scripts/                      Node CLIs (doctor, capture, import-company, sync-public-url) and the dev-server API
-docs/                         design-system.md, captures.md, TROUBLESHOOTING.md
+docs/                         design-system.md, captures.md, TROUBLESHOOTING.md,
+                              game-feel-for-digital-products.md (UI design guide)
 ```
 
 Stylesheet links inside design files are relative: canvas screens use six `../` to reach `styles/`, prototypes use seven, and `company.css` is three or four levels up respectively. `npm run doctor` checks these.
