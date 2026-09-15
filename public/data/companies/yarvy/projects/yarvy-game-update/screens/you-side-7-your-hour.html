@@ -1,0 +1,145 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* You C5: C2 with the habit day dots back, and the big filled circle replaced by a labeled pill, Check in or Done today, the same size as the Moment button. */
+
+  /* You page variants, prefix yp-. Tokens from yarvy-app.css; the app's .you-* layout classes are not used. */
+  .yp { --yp-control: 44px; gap: 0; }
+  .yp .account-topbar { margin-bottom: 4px; }
+  .yp-head { display: flex; align-items: center; gap: 14px; min-height: 56px; margin: 14px 0 26px; }
+  .yp .account-topbar { margin: 4px 0 0; }
+  .yp-head .account-topbar-actions { display: none; }
+  .yp-head .account-avatar { width: 52px; height: 52px; font-size: var(--fs-body); flex: 0 0 auto; }
+  .yp-who { min-width: 0; flex: 1; line-height: 1.2; }
+  .yp-who h1 { margin: 0; font-size: var(--fs-h1); font-weight: var(--fw-heavy); letter-spacing: var(--ls-snug); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .yp-who > span { display: block; margin-top: 3px; font-size: var(--fs-sm); color: var(--muted); }
+  .yp-sub b { color: var(--text); font-weight: var(--fw-semibold); }
+  .yp-sub .yp-sep { margin: 0 6px; }
+  .yp-sub .yp-n { white-space: nowrap; }
+  .yp-head .account-topbar-actions { flex: 0 0 auto; }
+  .yp-id { display: flex; align-items: center; gap: 12px; min-height: 48px; margin-bottom: 18px; }
+  .yp-id .account-avatar { width: 40px; height: 40px; font-size: var(--fs-body-sm); }
+  .yp-id b { font-size: var(--fs-body); font-weight: var(--fw-bold); }
+  .yp-id span { color: var(--muted); font-size: var(--fs-sm); }
+  .yp-id span::before { content: "·"; margin: 0 6px; }
+  /* This week: one line of counts and a small seven day row. No headline, no fill. */
+  .yp-week { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; padding: 10px 16px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: var(--panel); margin-bottom: 26px; }
+  .yp-week-counts { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--fs-body-sm); color: var(--text); }
+  .yp-week-counts b { font-weight: var(--fw-bold); }
+  .yp-week-counts .yp-lab { color: var(--muted); font-weight: var(--fw-semibold); }
+  .yp-days { display: flex; gap: 6px; }
+  .yp-day { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 24px; font-size: var(--fs-2xs); color: var(--muted); }
+  .yp-day i { display: block; width: 100%; height: 22px; border-radius: 4px; background: var(--surface-hover); position: relative; overflow: hidden; }
+  .yp-day i::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: var(--h, 0); background: var(--accent-fill); }
+  .yp-day.today { color: var(--accent-2); font-weight: var(--fw-bold); }
+  .yp-day.future i { background: transparent; border-bottom: 2px solid var(--line); border-radius: 0; height: 22px; }
+  /* Sections. */
+  .yp-sec { margin-top: 30px; }
+  .yp-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .yp-sec-head h2 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); }
+  .yp-link { display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 0 10px; margin-right: -10px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--accent-2); font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .yp-link:hover { background: var(--surface-hover); }
+  .yp-link i { font-size: 16px; }
+  .yp-group { margin-top: 16px; }
+  .yp-group-head { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px 2px; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--muted); }
+  .yp-stack { display: flex; flex-direction: column; gap: 8px; }
+  /* Goal card: the whole card opens the goal; the habit check is its own target on top. */
+  .yp-goal { position: relative; display: grid; grid-template-columns: var(--yp-control) minmax(0, 1fr) auto; column-gap: 14px; align-items: center; padding: 14px 14px 14px 16px; background: var(--panel); border: 1px solid transparent; border-radius: var(--radius-xl); box-shadow: var(--shadow-soft); }
+  .yp-goal:hover { background: var(--card-hover); }
+  .yp-goal.cat-health { --yp-tone: var(--cat-health); --yp-wash: var(--cat-health-soft); }
+  .yp-goal.cat-money { --yp-tone: var(--cat-money); --yp-wash: var(--cat-money-soft); }
+  .yp-goal.cat-learn { --yp-tone: var(--cat-learn); --yp-wash: var(--cat-learn-soft); }
+  .yp-goal.cat-create { --yp-tone: var(--cat-create); --yp-wash: var(--cat-create-soft); }
+  .yp-goal.cat-default { --yp-tone: var(--accent); --yp-wash: var(--chip-active); }
+  .yp-face { display: grid; place-items: center; width: var(--yp-control); height: var(--yp-control); font-size: var(--fs-h2); border-radius: var(--radius-md); background: var(--yp-wash); }
+  .yp-open { display: block; min-width: 0; padding: 0; border: 0; background: none; color: var(--text); text-align: left; font: inherit; cursor: pointer; }
+  .yp-open::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius-xl); }
+  .yp-open:focus-visible { outline: none; }
+  .yp-open:focus-visible::after { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+  .yp-title { display: block; font-size: var(--fs-body); font-weight: var(--fw-semibold); line-height: var(--lh-snug); }
+  .yp-value { display: block; margin-top: 2px; font-size: var(--fs-sm); color: var(--muted); }
+  .yp-value b { color: var(--text); font-weight: var(--fw-semibold); }
+  .yp-bar { grid-column: 2 / -1; height: 6px; margin-top: 10px; border-radius: var(--radius-pill); background: var(--surface-hover); overflow: hidden; }
+  .yp-bar i { display: block; height: 100%; width: var(--w, 0); background: var(--yp-tone); border-radius: var(--radius-pill); }
+  .yp-remaining { grid-column: 2 / -1; margin-top: 8px; font-size: var(--fs-sm); color: var(--muted); }
+  .yp-next { grid-column: 2 / -1; display: flex; align-items: center; gap: 6px; margin-top: 10px; font-size: var(--fs-sm); color: var(--text); }
+  .yp-next i { color: var(--yp-tone); font-size: 15px; }
+  .yp-end { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; }
+  .yp-caret { color: var(--muted); font-size: 16px; }
+  .yp-check { flex: 0 0 auto; width: var(--yp-control); height: var(--yp-control); border-radius: 50%; display: grid; place-items: center; border: 0; background: var(--line-strong); color: var(--on-accent); cursor: pointer; }
+  .yp-check i { font-size: 20px; }
+  .yp-check.checked { background: var(--success-fill); }
+  .yp-check:hover:not(.checked) { background: var(--ring); }
+  .yp-dots { grid-column: 2 / -1; display: flex; gap: 6px; margin-top: 10px; }
+  .yp-dot { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 26px; font-size: var(--fs-2xs); color: var(--muted); }
+  .yp-dot i { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--field-surface); font-style: normal; font-size: 12px; }
+  .yp-dot.checked i { background: var(--success-soft); color: var(--success-text); font-size: 11px; }
+  .yp-dot.today i { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+  .yp-dot.future i { background: none; border: 1px solid var(--line); }
+  .yp-quote { grid-column: 2 / -1; margin: 8px 0 0; font-size: var(--fs-body-sm); color: var(--text); }
+  .yp-quote small { display: block; margin-top: 2px; color: var(--muted); font-size: var(--fs-xs); }
+  .yp-btn { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--panel); color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; white-space: nowrap; }
+  .yp-btn:hover { border-color: var(--accent); background: var(--chip-active); }
+  .yp-btn i { font-size: 16px; color: var(--muted); }
+  .yp-foot { margin-top: 10px; }
+  /* Wins: evidence, three rows, then the labeled route to the rest. */
+  .yp-win { display: grid; grid-template-columns: 10px minmax(0, 1fr); column-gap: 12px; align-items: baseline; min-height: 48px; padding: 6px 0; border-top: 1px solid var(--line-soft); }
+  .yp-win:first-child { border-top: 0; }
+  .yp-win i { width: 10px; height: 10px; border-radius: 50%; background: var(--yp-tone, var(--accent)); align-self: center; }
+  .yp-win.cat-health { --yp-tone: var(--cat-health); } .yp-win.cat-learn { --yp-tone: var(--cat-learn); } .yp-win.cat-money { --yp-tone: var(--cat-money); }
+  .yp-win small { display: block; font-size: var(--fs-xs); color: var(--muted); }
+  .yp-win b { display: block; font-weight: var(--fw-semibold); font-size: var(--fs-body-sm); }
+  /* Badges: last, quiet, no repeated Earned label. */
+  .yp-badges { display: flex; gap: 18px; }
+  .yp-badges .badge { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 92px; padding: 8px 0; border: 0; background: none; font: inherit; color: var(--text); cursor: pointer; border-radius: var(--radius-md); }
+  .yp-badges .badge:hover { background: var(--surface-hover); }
+  .yp-badges .badge-label { font-size: var(--fs-xs); font-weight: var(--fw-semibold); text-align: center; }
+
+  .yv-shot #profile-view .account-wrap { max-width: 1040px; }
+  .yp-c-grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 0 40px; align-items: start; }
+  .yp-c-side { position: sticky; top: 16px; }
+  .yp-c-side .yp-sec:first-child { margin-top: 0; }
+  .yp-c-side .yp-sec-head h2 { font-size: var(--fs-body); }
+  .yp-c-side .yp-week { flex-direction: column; align-items: stretch; gap: 10px; margin: 0; }
+  .yp-c-side .yp-days { justify-content: space-between; }
+  .yp-c-side .yp-day { width: 28px; }
+  .yp-c-side .yp-week-counts { flex-direction: column; gap: 2px; }
+  .yp-c-main .yp-sec:first-child { margin-top: 0; }
+  .yp-side-week { padding: 12px 16px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: var(--panel); display: flex; flex-direction: column; gap: 2px; font-size: var(--fs-body-sm); }
+  .yp-side-week b { font-weight: var(--fw-bold); }
+  .yp-two { padding: 12px 14px 12px 14px; }
+  .yp-two .yp-bar { margin-top: 8px; height: 5px; }
+  .yp-two .yp-value { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .yp-habit .yp-dots { margin-top: 10px; }
+  .yp-pill { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px 0 12px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--panel); color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; white-space: nowrap; }
+  .yp-pill i { font-size: 16px; color: var(--muted); }
+  .yp-pill:hover { border-color: var(--accent); background: var(--chip-active); }
+  .yp-pill.done { border-color: transparent; background: var(--success-soft); color: var(--success-text); }
+  .yp-pill.done i { color: var(--success-text); }
+
+  html, body { margin: 0; background: var(--panel); }
+  .ys { width: 300px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ys .yp-sec { margin-top: 0; }
+  .ys .yp-sec-head h2 { font-size: var(--fs-body); }
+  .ys-note { margin: 10px 0 0; font-size: var(--fs-xs); color: var(--muted); }
+  .ys-row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 12px; align-items: baseline; min-height: 44px; padding: 8px 0; border-top: 1px solid var(--line-soft); font-size: var(--fs-body-sm); }
+  .ys-row:first-child { border-top: 0; }
+  .ys-row small { display: block; font-size: var(--fs-xs); color: var(--muted); }
+  .ys-row b { font-weight: var(--fw-semibold); }
+  .ys-row .ys-r { color: var(--muted); white-space: nowrap; font-size: var(--fs-xs); }
+
+  .ys-hours { display: flex; align-items: flex-end; gap: 2px; height: 64px; margin-top: 4px; }
+  .ys-hours i { flex: 1; background: var(--field-surface); border-radius: 2px 2px 0 0; height: var(--h); }
+  .ys-hours i.hi { background: var(--accent-2); }
+  .ys-hours i.mid { background: #8fc4a5; }
+  .ys-axis { display: flex; justify-content: space-between; margin-top: 4px; font-size: var(--fs-2xs); color: var(--muted); }
+  .ys-lead { margin: 12px 0 0; font-size: var(--fs-body-sm); }
+  .ys-lead b { font-weight: var(--fw-semibold); }
+
+</style>
+<div class="ys"><section class="yp-sec"><div class="yp-sec-head"><h2>When you get things done</h2></div>
+<div class="ys-hours"><i class="" style="--h:3%"></i><i class="" style="--h:3%"></i><i class="" style="--h:3%"></i><i class="" style="--h:3%"></i><i class="" style="--h:3%"></i><i class="" style="--h:3%"></i><i class="" style="--h:7%"></i><i class="" style="--h:23%"></i><i class="" style="--h:53%"></i><i class="mid" style="--h:84%"></i><i class="hi" style="--h:100%"></i><i class="mid" style="--h:69%"></i><i class="" style="--h:30%"></i><i class="" style="--h:46%"></i><i class="mid" style="--h:61%"></i><i class="mid" style="--h:57%"></i><i class="" style="--h:38%"></i><i class="" style="--h:26%"></i><i class="" style="--h:15%"></i><i class="" style="--h:19%"></i><i class="" style="--h:23%"></i><i class="" style="--h:11%"></i><i class="" style="--h:4%"></i><i class="" style="--h:3%"></i></div><div class="ys-axis"><span>6am</span><span>noon</span><span>6pm</span><span>midnight</span></div>
+<p class="ys-lead"><b>10 to 11</b> is your hour. Two thirds of your tasks close before lunch.</p>
+<p class="ys-note">From 142 tasks since Aug.</p></section></div>

@@ -92,75 +92,57 @@
     },
     {
       "file": "current-you.html",
-      "x": 3840,
-      "y": 120,
-      "width": 1200
-    },
-    {
-      "file": "you-a-goals-first.html",
       "x": 0,
-      "y": 7128,
-      "width": 1200
-    },
-    {
-      "file": "you-b-today-first.html",
-      "x": 1246,
-      "y": 7128,
-      "width": 1200
-    },
-    {
-      "file": "you-c-two-columns.html",
-      "x": 2492,
-      "y": 7128,
-      "width": 1200
-    },
-    {
-      "file": "you-d-quiet-story.html",
-      "x": 3738,
-      "y": 7128,
-      "width": 1200
-    },
-    {
-      "file": "you-c2-one-list.html",
-      "x": 0,
-      "y": 9260,
-      "width": 1200
-    },
-    {
-      "file": "you-c3-count-only.html",
-      "x": 1246,
-      "y": 9260,
-      "width": 1200
-    },
-    {
-      "file": "you-c4-rows.html",
-      "x": 2492,
-      "y": 9260,
+      "y": 6997,
       "width": 1200
     },
     {
       "file": "you-c5-habit-pill.html",
-      "x": 3738,
-      "y": 9260,
-      "width": 1200
-    },
-    {
-      "file": "you-c6-today-dot.html",
-      "x": 4984,
-      "y": 9260,
+      "x": 1370,
+      "y": 7000,
       "width": 1200
     },
     {
       "file": "you-c5-mobile.html",
-      "x": 6230,
-      "y": 9260,
+      "x": 2633,
+      "y": 7000,
       "width": 390
     },
     {
-      "file": "you-c6-mobile.html",
-      "x": 6660,
-      "y": 9260,
+      "file": "lists-tab-mobile-copy.html",
+      "x": 0,
+      "y": 9877,
       "width": 390
+    },
+    {
+      "file": "lists-c-quiet-tree.html",
+      "x": 492,
+      "y": 9877,
+      "width": 390
+    },
+    {
+      "file": "lists-c2-count-tag.html",
+      "x": 926,
+      "y": 9877,
+      "width": 390
+    },
+    {
+      "file": "you-side-20-areas.html",
+      "x": 3083,
+      "y": 7000,
+      "width": 340
+    },
+    {
+      "file": "you-side-23-radar.html",
+      "x": 3458,
+      "y": 6997,
+      "width": 340
+    },
+    {
+      "file": "you-side-24-skill-tiles.html",
+      "x": 3843,
+      "y": 6997,
+      "width": 340
     }
   ],
   "texts": [
@@ -212,6 +194,20 @@
       "y": 9132,
       "size": 72,
       "id": "text-mu2-yousimple-8"
+    },
+    {
+      "text": "Mobile list",
+      "x": 0,
+      "y": 9749,
+      "size": 72,
+      "id": "text-mu2-mobilelist-9"
+    },
+    {
+      "text": "You",
+      "x": 0,
+      "y": 6871,
+      "size": 72,
+      "id": "text-mu2yni19-1"
     }
   ]
 }

@@ -3,14 +3,7 @@
 <link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
 <link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
 <style>
-  /* You C5 on a phone: one column, labeled Check in pill on habits, tab bar below. */
-  html, body, .yv-shot { scrollbar-gutter: auto; }
-  html, body { margin: 0; padding: 0; }
-  .yv-shot { position: relative; width: 390px; min-height: 844px; overflow: hidden; background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
-  .yv-shot #app { height: auto; min-height: 844px; overflow: visible; }
-  .yv-shot #rail { position: absolute; }
-  .yv-shot #profile-view { overflow: visible; }
-  .yv-shot #profile-view { padding: 24px var(--page-x) 96px; }
+  /* You C5: C2 with the habit day dots back, and the big filled circle replaced by a labeled pill, Check in or Done today, the same size as the Moment button. */
 
   /* You page variants, prefix yp-. Tokens from yarvy-app.css; the app's .you-* layout classes are not used. */
   .yp { --yp-control: 44px; gap: 0; }
@@ -104,6 +97,16 @@
   .yp-badges .badge:hover { background: var(--surface-hover); }
   .yp-badges .badge-label { font-size: var(--fs-xs); font-weight: var(--fw-semibold); text-align: center; }
 
+  .yv-shot #profile-view .account-wrap { max-width: 1040px; }
+  .yp-c-grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 0 40px; align-items: start; }
+  .yp-c-side { position: sticky; top: 16px; }
+  .yp-c-side .yp-sec:first-child { margin-top: 0; }
+  .yp-c-side .yp-sec-head h2 { font-size: var(--fs-body); }
+  .yp-c-side .yp-week { flex-direction: column; align-items: stretch; gap: 10px; margin: 0; }
+  .yp-c-side .yp-days { justify-content: space-between; }
+  .yp-c-side .yp-day { width: 28px; }
+  .yp-c-side .yp-week-counts { flex-direction: column; gap: 2px; }
+  .yp-c-main .yp-sec:first-child { margin-top: 0; }
   .yp-side-week { padding: 12px 16px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: var(--panel); display: flex; flex-direction: column; gap: 2px; font-size: var(--fs-body-sm); }
   .yp-side-week b { font-weight: var(--fw-bold); }
   .yp-two { padding: 12px 14px 12px 14px; }
@@ -115,6 +118,18 @@
   .yp-pill:hover { border-color: var(--accent); background: var(--chip-active); }
   .yp-pill.done { border-color: transparent; background: var(--success-soft); color: var(--success-text); }
   .yp-pill.done i { color: var(--success-text); }
+
+  html, body { margin: 0; background: var(--panel); }
+  .ys { width: 300px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ys .yp-sec { margin-top: 0; }
+  .ys .yp-sec-head h2 { font-size: var(--fs-body); }
+  .ys-note { margin: 10px 0 0; font-size: var(--fs-xs); color: var(--muted); }
+  .ys-row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 12px; align-items: baseline; min-height: 44px; padding: 8px 0; border-top: 1px solid var(--line-soft); font-size: var(--fs-body-sm); }
+  .ys-row:first-child { border-top: 0; }
+  .ys-row small { display: block; font-size: var(--fs-xs); color: var(--muted); }
+  .ys-row b { font-weight: var(--fw-semibold); }
+  .ys-row .ys-r { color: var(--muted); white-space: nowrap; font-size: var(--fs-xs); }
+
   .ys-pace { position: relative; height: 90px; margin-top: 6px; }
   .ys-pace svg { width: 100%; height: 100%; overflow: visible; }
   .ys-pace .usual { fill: none; stroke: var(--line); stroke-width: 2; stroke-dasharray: 4 4; }
@@ -127,54 +142,18 @@
   .ys-lead { margin: 10px 0 0; font-size: var(--fs-body-sm); }
   .ys-lead b { font-weight: var(--fw-semibold); }
 
-  .yp-pace-top { margin-top: 22px; }
-  .yp-pace-top + .yp-c-grid .yp-sec:first-child { margin-top: 30px; }  .yp-c-grid { display: block; }
-  .yp-c-side { position: static; margin-top: 30px; }
-  .yp-two .yp-value { white-space: normal; }
-  .yp .account-topbar { margin: 8px 0 0; }
-  .yp-id { margin-bottom: 14px; }
-  .yp-id span::before { content: none; }
-  .yp-id span { display: block; }
-  .yp-id > div { line-height: 1.25; }
-  .yp-two { padding: 12px 12px 12px 12px; column-gap: 12px; }
-  .yp-face { width: 40px; height: 40px; }
-  .yp-two { grid-template-columns: 40px minmax(0, 1fr) auto; }
-  /* Quick buttons on the phone: an icon in a circle, the label kept for screen readers. */
-  .yp-btn, .yp-pill { width: 36px; height: 36px; min-height: 0; padding: 0; border-radius: 50%; justify-content: center; font-size: 0; gap: 0; }
-  .yp-btn i, .yp-pill i { font-size: 18px; color: var(--text); }
-  .yp-pill.done { background: var(--success-fill); border-color: var(--success-fill); }
-  .yp-pill.done i { color: var(--on-accent); }
-  /* Quick buttons sit top right, on the title line, not centered on the card. */
-  .yp-two .yp-end { align-self: start; margin-top: 2px; }
-  .yp-btn::before, .yp-pill::before { content: ""; position: absolute; inset: -6px -4px; }
-  .yp-dots-big .yp-dot { width: 26px; }
-  .yp-dots-big .yp-dot i { width: 24px; height: 24px; font-size: 12px; }
-  .yp-dots-big button.yp-dot { min-width: 44px; }
-  .yp-dots-big button.yp-dot i { width: 28px; height: 28px; font-size: 14px; }
-  .yp-dots-big button.yp-dot::before { content: ""; position: absolute; inset: -4px 0; }
-  .yp-link { min-height: 36px; }
-  .yp-who h1 { font-size: var(--fs-h2); white-space: normal; }
-  .yp-head .account-avatar { width: 48px; height: 48px; }
-  .yp .account-title { font-size: var(--fs-h1-sm); }
-  .yp-head { margin: 12px 0 22px; min-height: 0; }
+
+  .ys-bars { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; align-items: end; height: 90px; margin-top: 6px; }
+  .ys-bars div { position: relative; height: 100%; }
+  .ys-bars i { position: absolute; left: 0; right: 0; bottom: 0; border-radius: 4px 4px 0 0; }
+  .ys-bars .u { height: var(--u); border: 1px dashed var(--line); border-bottom: 0; background: none; }
+  .ys-bars .n { height: var(--n); background: var(--accent-2); }
+  .ys-bars .future .u { border-color: var(--line-soft); }
+  .ys-bars span { position: absolute; left: 0; right: 0; bottom: calc(var(--n) + 3px); text-align: center; font-size: var(--fs-2xs); font-weight: var(--fw-semibold); }
 
 </style>
-<div class="yv-shot" style="background: var(--shell);">
-<main id="app" class="account-mode">
-<nav id="rail" aria-label="Main navigation">
-      <div class="rail-brand"><svg class="rail-mark" viewBox="4 17 92 66" aria-hidden="true"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"><line x1="10" y1="42" x2="10" y2="58" opacity="0.76"></line><line x1="30" y1="28" x2="30" y2="72" opacity="0.94"></line><line x1="50" y1="37" x2="50" y2="63" opacity="0.82"></line><line x1="70" y1="23" x2="70" y2="77" opacity="1.00"></line><line x1="90" y1="40" x2="90" y2="60" opacity="0.79"></line></g></svg><span class="rail-wordmark">yarvy</span></div>
-      <div class="rail-nav">
-        <button id="nav-home" class="nav-item" type="button"><i class="ph ph-chat-circle nav-ico" aria-hidden="true"></i><i class="ph-fill ph-chat-circle nav-ico-on" aria-hidden="true"></i><span class="nav-label">Chat</span></button>
-        <button id="nav-upcoming" class="nav-item" type="button"><i class="ph ph-calendar-blank nav-ico" aria-hidden="true"></i><i class="ph-fill ph-calendar-blank nav-ico-on" aria-hidden="true"></i><span class="nav-label">Today</span></button>
-        <button id="nav-you" class="nav-item active" aria-current="page" type="button"><i class="ph ph-user nav-ico" aria-hidden="true"></i><i class="ph-fill ph-user nav-ico-on" aria-hidden="true"></i><span class="nav-label">You</span></button>
-        <button id="nav-tasks" class="nav-item" type="button"><i class="ph ph-list nav-ico" aria-hidden="true"></i><i class="ph-fill ph-list nav-ico-on" aria-hidden="true"></i><span class="nav-label">Lists</span></button>
-      </div>
-      <div class="rail-spacer"></div>
-    </nav>
-<section id="main" hidden></section><section id="profile-view"><div class="account-wrap"><div id="profile-body" class="account-body yp"><div class="account-topbar"><h1 class="account-title">You</h1><div class="account-topbar-actions"><button type="button" class="account-topbar-btn" title="Edit profile" aria-label="Edit profile"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="account-topbar-btn" title="Settings" aria-label="Settings"><i class="ph ph-gear" aria-hidden="true"></i></button></div></div><header class="yp-head"><div class="account-avatar">BU</div><div class="yp-who"><h1>Brandon Unglaub</h1><span class="yp-sub"><span class="yp-n"><b>5</b> tasks done</span><span class="yp-sep">·</span> <span class="yp-n"><b>3</b> check-ins</span><span class="yp-sep">·</span> <span class="yp-n"><b>1</b> moment this week</span></span></div><div class="account-topbar-actions"><button type="button" class="account-topbar-btn" title="Edit profile" aria-label="Edit profile"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="account-topbar-btn" title="Settings" aria-label="Settings"><i class="ph ph-gear" aria-hidden="true"></i></button></div></header><section class="yp-sec yp-pace-top"><div class="yp-sec-head"><h2>This week's pace</h2></div>
-<div class="ys-pace"><svg viewBox="0 0 260 90" preserveAspectRatio="none"><polyline class="usual" points="19,77 56,64 93,51 130,39 167,19 204,13 241,6"/><polyline class="now" points="19,71 56,58"/><circle class="dot" cx="56" cy="58" r="4"/></svg></div>
+<div class="ys"><section class="yp-sec"><div class="yp-sec-head"><h2>This week's pace</h2></div>
+<div class="ys-bars"><div class="" style="--u:50%;--n:75%"><i class="u"></i><i class="n"></i><span>3</span></div><div class="" style="--u:50%;--n:50%"><i class="u"></i><i class="n"></i><span>2</span></div><div class="future" style="--u:50%;--n:0%"><i class="u"></i></div><div class="future" style="--u:50%;--n:0%"><i class="u"></i></div><div class="future" style="--u:75%;--n:0%"><i class="u"></i></div><div class="future" style="--u:25%;--n:0%"><i class="u"></i></div><div class="future" style="--u:25%;--n:0%"><i class="u"></i></div></div>
 <div class="ys-axis"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
-<div class="ys-key"><span><i></i>this week, 5 done</span><span><i class="u"></i>your usual, 13 by Sunday</span></div>
-<p class="ys-lead">A task ahead of your usual Tuesday.</p></section><div class="yp-c-grid"><div class="yp-c-main"><section class="yp-sec "><div class="yp-sec-head"><h2>Your goals</h2><button type="button" class="yp-link">Add goal</button></div><div class="yp-stack"><article class="yp-goal yp-two yp-habit cat-default" aria-label="Less takeout, more cooking"><span class="yp-face" aria-hidden="true">🍳</span><button type="button" class="yp-open" aria-label="Open Less takeout, more cooking"><span class="yp-title">Less takeout, more cooking</span><span class="yp-value"><b>1 of 5</b> days this week</span></button><span class="yp-end"><button type="button" class="yp-pill" aria-pressed="false" aria-label="Check in today"><i class="ph ph-check" aria-hidden="true"></i>Check in</button></span><div class="yp-dots"><span class="yp-dot checked"><i>✓</i>M</span><span class="yp-dot today"><i></i>T</span><span class="yp-dot future"><i></i>W</span><span class="yp-dot future"><i></i>T</span><span class="yp-dot future"><i></i>F</span><span class="yp-dot future"><i></i>S</span><span class="yp-dot future"><i></i>S</span></div></article><article class="yp-goal yp-two yp-habit cat-health" aria-label="Meditate every morning"><span class="yp-face" aria-hidden="true">🧘</span><button type="button" class="yp-open" aria-label="Open Meditate every morning"><span class="yp-title">Meditate every morning</span><span class="yp-value"><b>2 of 7</b> days this week</span></button><span class="yp-end"><button type="button" class="yp-pill done" aria-pressed="true" aria-label="Done today, press to undo"><i class="ph-bold ph-check" aria-hidden="true"></i>Done today</button></span><div class="yp-dots"><span class="yp-dot checked"><i>✓</i>M</span><span class="yp-dot checked today"><i>✓</i>T</span><span class="yp-dot future"><i></i>W</span><span class="yp-dot future"><i></i>T</span><span class="yp-dot future"><i></i>F</span><span class="yp-dot future"><i></i>S</span><span class="yp-dot future"><i></i>S</span></div></article><article class="yp-goal yp-two cat-health" aria-label="Run a half marathon"><span class="yp-face" aria-hidden="true">🏃</span><button type="button" class="yp-open" aria-label="Open Run a half marathon"><span class="yp-title">Run a half marathon</span><span class="yp-value">Next: <b>Run 10 km without stopping</b> · Nov 15</span></button><span class="yp-end"><i class="ph ph-caret-right yp-caret" aria-hidden="true"></i></span><div class="yp-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i style="--w:0%"></i></div></article><article class="yp-goal yp-two cat-learn" aria-label="Read 12 books this year"><span class="yp-face" aria-hidden="true">📚</span><button type="button" class="yp-open" aria-label="Open Read 12 books this year"><span class="yp-title">Read 12 books this year</span><span class="yp-value"><b>4 of 12</b> books · 8 to go by Dec 31</span></button><span class="yp-end"><i class="ph ph-caret-right yp-caret" aria-hidden="true"></i></span><div class="yp-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33"><i style="--w:33%"></i></div></article><article class="yp-goal yp-two cat-money" aria-label="Save $5,000"><span class="yp-face" aria-hidden="true">💰</span><button type="button" class="yp-open" aria-label="Open Save $5,000"><span class="yp-title">Save $5,000</span><span class="yp-value"><b>$1,800 of $5,000</b> · $3,200 to go</span></button><span class="yp-end"><i class="ph ph-caret-right yp-caret" aria-hidden="true"></i></span><div class="yp-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="36"><i style="--w:36%"></i></div></article><article class="yp-goal yp-two cat-default" aria-label="Be more patient"><span class="yp-face" aria-hidden="true">🎯</span><button type="button" class="yp-open" aria-label="Open Be more patient"><span class="yp-title">Be more patient</span><span class="yp-value">“Let the standup run over without jumping in.” · Today</span></button><span class="yp-end"><button type="button" class="yp-btn" aria-label="Log a moment for Be more patient"><i class="ph ph-note-pencil" aria-hidden="true"></i>Moment</button></span></article><article class="yp-goal yp-two cat-learn" aria-label="Write more clearly"><span class="yp-face" aria-hidden="true">✍️</span><button type="button" class="yp-open" aria-label="Open Write more clearly"><span class="yp-title">Write more clearly</span><span class="yp-value">“Cut the release notes to 280 words.” · Today</span></button><span class="yp-end"><button type="button" class="yp-btn" aria-label="Log a moment for Write more clearly"><i class="ph ph-note-pencil" aria-hidden="true"></i>Moment</button></span></article></div><div class="yp-foot"><button type="button" class="yp-link" style="margin-left:-10px">Paused and past</button></div></section></div><aside class="yp-c-side"><section class="yp-sec "><div class="yp-sec-head"><h2>Badges</h2><button type="button" class="yp-link">See all 2</button></div><div class="yp-badges"><button type="button" class="badge" aria-label="3 goals set, earned. See all badges"><span class="badge-coin t-create" aria-hidden="true"><span class="coin-face"><i class="ph-fill ph-target" aria-hidden="true"></i></span><span class="badge-earned-check">✓</span></span><span class="badge-label">3 goals set</span></button><button type="button" class="badge" aria-label="First list, earned. See all badges"><span class="badge-coin t-learn" aria-hidden="true"><span class="coin-face"><i class="ph-fill ph-folders" aria-hidden="true"></i></span><span class="badge-earned-check">✓</span></span><span class="badge-label">First list</span></button></div></section></aside></div></div></div></section>
-</main>
-</div>
+<div class="ys-key"><span><i></i>this week, 5 done</span><span><i class="u"></i>your usual day</span></div>
+<p class="ys-lead">A task ahead of your usual Tuesday.</p></section></div>
