@@ -1,0 +1,366 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+.yv-shot { background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+.yv-shot #app { height: auto; min-height: 0; overflow: visible; }
+.yv-shot #main, .yv-shot #tasks-view, .yv-shot #tasks-side, .yv-shot #tasks-main, .yv-shot #chat-content { overflow: visible; }
+.yv-shot #chat-content { padding: 8px 16px 16px; }
+.yv-shot #main::before, .yv-shot #main::after { content: none; }
+.yv-shot #main { padding-bottom: 24px; }
+.yv-shot #fab { position: absolute; }
+.yv-shot .app-toast { display: none; }
+</style>
+<div class="yv-shot  " style="background: var(--shell);">
+<main id="app" class="account-mode">
+      <nav id="rail" aria-label="Main navigation">
+        <div class="rail-brand">
+          <!-- Brand mark (bare bars, no tile) mirrors scripts/gen-icons.mjs, public/login.html, public/js/auth-screen.js and site/index.html; change all together. -->
+          <svg class="rail-mark" viewBox="4 17 92 66" aria-hidden="true"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"><line x1="10" y1="42" x2="10" y2="58" opacity="0.76"></line><line x1="30" y1="28" x2="30" y2="72" opacity="0.94"></line><line x1="50" y1="37" x2="50" y2="63" opacity="0.82"></line><line x1="70" y1="23" x2="70" y2="77" opacity="1.00"></line><line x1="90" y1="40" x2="90" y2="60" opacity="0.79"></line></g></svg>
+          <span class="rail-wordmark">yarvy</span>
+        </div>
+        <div class="rail-nav">
+          <button id="nav-home" class="nav-item" type="button" aria-label="Chat">
+            <i class="ph ph-chat-circle nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-chat-circle nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Chat</span>
+          </button>
+          <button id="nav-upcoming" class="nav-item" type="button" aria-label="Today" title="Today">
+            <i class="ph ph-calendar-blank nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-calendar-blank nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Today</span>
+          </button>
+          <button id="nav-tasks" class="nav-item" type="button" aria-label="Lists" title="Lists">
+            <i class="ph ph-list nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-list nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Lists</span>
+          </button>
+          <button id="nav-you" class="nav-item active" type="button" aria-label="You" title="You" aria-current="page">
+            <i class="ph ph-user nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-user nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">You</span>
+          </button>
+        </div>
+        <div class="rail-spacer"></div>
+        <div id="usermenu">
+          <button id="profile" type="button" aria-label="Account menu" title="Account menu" aria-haspopup="menu" aria-expanded="false">
+            <span class="nav-pill"><span id="avatar">DS</span></span>
+            <span id="rail-name">Design</span>
+            <i class="ph ph-caret-up-down profile-chevron" aria-hidden="true"></i>
+            <span class="nav-label">You</span>
+          </button>
+        </div>
+        <button id="nav-projects" class="nav-item" type="button" aria-label="Lists" title="Lists">
+          <i class="ph ph-list nav-ico" aria-hidden="true"></i>
+          <i class="ph-fill ph-list nav-ico-on" aria-hidden="true"></i>
+          <span class="nav-label">Lists</span>
+        </button>
+      </nav>
+
+      <section id="main">
+        <!-- Page header: where am I, what day is it. Spans the chat column and the Today board on desktop. -->
+        <div class="chat-head"><h1 class="chat-title">Chat</h1><span id="datelabel">Tuesday, September 15</span></div>
+        <div id="hero">
+          
+          <div id="chat-content">
+            <div id="greeting">
+              <div id="presence-wrap">
+                <div id="presence" class="" aria-hidden="true">
+                  <svg viewBox="0 0 42 36" id="presence-svg">
+                    <g class="signal-field">
+                      <rect class="eq-bar" x="3" y="12" width="4" height="12" rx="2"></rect>
+                      <rect class="eq-bar" x="11" y="9" width="4" height="18" rx="2"></rect>
+                      <rect class="eq-bar" x="19" y="6" width="4" height="24" rx="2"></rect>
+                      <rect class="eq-bar" x="27" y="9" width="4" height="18" rx="2"></rect>
+                      <rect class="eq-bar" x="35" y="12" width="4" height="12" rx="2"></rect>
+                      <g class="glyph-layer"></g>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <span id="hero-date">Tuesday, September 15</span>
+              <h1 id="hello"><span class="grad">Good afternoon, </span><span id="username">Design</span></h1>
+              <!-- One line on the day (today-board.js): done count, overdue, and what is next. -->
+              <p id="hero-read">You've checked off 5 tasks today. Want help picking what to work on next?</p>
+            </div>
+
+            <!-- Fallback for history while the live reply is hidden or still arriving. -->
+            <div id="chat-tools">
+              <button id="chat-history" class="action-button" type="button" title="History" aria-expanded="false" aria-controls="chat-history-inline" aria-label="History"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2.6 7.4M3 4v7h7M12 7v5l3 2"></path></svg><span class="action-label">History</span></button>
+            </div>
+            <div id="chat-exchange">
+              <div id="chat-history-inline" hidden="">
+                <button id="chat-load-earlier" class="action-button" type="button" hidden="" aria-label="Load earlier" title="Load earlier"><span class="action-label">Load earlier</span></button>
+                <p id="chat-history-status" role="status" hidden=""></p>
+                <div id="chat-history-messages"></div>
+              </div>
+              <div id="last-prompt" hidden="">
+                <p><span id="last-prompt-text"></span></p>
+              </div>
+              <!-- Sender line: the live presence moves in here beside the reply during a chat (conversation.js). -->
+              <div id="reply-from"><span id="reply-presence-slot"></span><b>Yarvy</b><span id="reply-time"></span></div>
+              <div id="latest" aria-live="polite"></div>
+            </div>
+
+            <!-- Quick actions stay below Yarvy's latest message in every state, welcome or mid-chat. -->
+            <div id="suggestions" aria-label="Suggestions"><button type="button" class="chip suggestion-chip change" aria-label="I'd like to capture a thought."><i class="ph ph-arrow-bend-down-right chip-ico" aria-hidden="true"></i><span class="chip-label">Capture</span></button><button type="button" class="chip suggestion-chip ask" aria-label="Find one task from my to-do list I can do in about 15 minutes. Ask if you need to know how long it takes."><i class="ph ph-question chip-ico" aria-hidden="true"></i><span class="chip-label">Quick task</span></button><button type="button" class="chip suggestion-chip change" aria-label="Plan the rest of my afternoon using my current tasks."><i class="ph ph-arrow-bend-down-right chip-ico" aria-hidden="true"></i><span class="chip-label">Plan today</span></button></div>
+
+            <div id="banner" hidden=""></div>
+          </div>
+
+          <!-- The dock stays below the scrolling conversation during chat. -->
+          <div id="chat-dock">
+            <button id="chat-jump-latest" class="action-button" type="button" hidden="" aria-label="Latest reply ↓" title="Latest reply ↓"><span class="action-label">Latest reply ↓</span></button>
+            <form id="composer" autocomplete="off">
+              <textarea id="input" placeholder="Add a task or ask anything" aria-label="Message Yarvy" rows="2" style=""></textarea>
+              <button id="send" type="submit" aria-label="Send">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5M12 5l-6 6M12 5l6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- The Today board: the same task rows as the Tasks page, so chat changes show in place (today-board.js). -->
+        <aside id="today-board" aria-label="Schedule"><div class="board-head"><h2>Schedule</h2><span class="board-count">5 of 7 done today</span></div><div class="board-bar"><i style="width: 71%;"></i></div><div class="board-group" data-date="2026-09-15"><div class="board-group-head"><h3>Today</h3></div><div class="project-tasks board-cards"><div class="task-card prio-1" data-task-id="1149" draggable="true" data-drag-wired="1"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark done" aria-label="Mark done: Ship v2 release notes"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Ship v2 release notes</div><div class="card-meta"><button type="button" class="meta-date" title="Change date" aria-label="Change due date" draggable="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>Today at 11:00 AM</span></button><button type="button" class="meta-loc" title="Open Launch prep" aria-label="Open list Launch prep" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Launch prep</span></button></div></div><div class="card-actions"><button type="button" class="card-action schedule" title="Schedule" aria-label="Schedule task" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-calendar-blank" aria-hidden="true"></i></button><button type="button" class="card-action edit" title="Edit" aria-label="Edit task" draggable="false"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card" data-task-id="1150" draggable="true" data-drag-wired="1"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark done" aria-label="Mark done: Get a review from Priya"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Get a review from Priya</div><div class="card-meta"><button type="button" class="meta-date" title="Change date" aria-label="Change due date" draggable="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>Today</span></button><button type="button" class="meta-loc" title="Open Launch prep" aria-label="Open list Launch prep" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Launch prep</span></button></div></div><div class="card-actions"><button type="button" class="card-action schedule" title="Schedule" aria-label="Schedule task" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-calendar-blank" aria-hidden="true"></i></button><button type="button" class="card-action edit" title="Edit" aria-label="Edit task" draggable="false"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card done completed" data-task-id="1148"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark as not done" aria-label="Mark as not done: Team standup"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Team standup</div><div class="card-meta"><button type="button" class="meta-loc" title="Open Work" aria-label="Open list Work" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Work</span></button></div></div><div class="card-actions"><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card done completed" data-task-id="1147"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark as not done" aria-label="Mark as not done: Move $300 to savings"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Move $300 to savings</div></div><div class="card-actions"><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card done completed" data-task-id="1146"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark as not done" aria-label="Mark as not done: Finish chapter 9 of Piranesi"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Finish chapter 9 of Piranesi</div><div class="card-meta"><button type="button" class="meta-loc" title="Open Home" aria-label="Open list Home" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Home</span></button></div></div><div class="card-actions"><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card done completed" data-task-id="1145"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark as not done" aria-label="Mark as not done: Long run, 12 km"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Long run, 12 km</div><div class="card-meta"><button type="button" class="meta-loc" title="Open Health" aria-label="Open list Health" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Health</span></button></div></div><div class="card-actions"><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card done completed" data-task-id="1144"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark as not done" aria-label="Mark as not done: Draft the highlights section"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Draft the highlights section</div><div class="card-meta"><button type="button" class="meta-loc" title="Open Launch prep" aria-label="Open list Launch prep" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Launch prep</span></button></div></div><div class="card-actions"><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div></div></div><div class="board-group" data-date="2026-09-16"><div class="board-group-head"><h3>Tomorrow</h3></div><div class="project-tasks board-cards"><div class="task-card" data-task-id="1151" draggable="true" data-drag-wired="1"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark done" aria-label="Mark done: Long run, 14 km"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Long run, 14 km</div><div class="card-meta"><button type="button" class="meta-date" title="Change date" aria-label="Change due date" draggable="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>Tomorrow</span></button><button type="button" class="meta-loc" title="Open Health" aria-label="Open list Health" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Health</span></button></div></div><div class="card-actions"><button type="button" class="card-action schedule" title="Schedule" aria-label="Schedule task" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-calendar-blank" aria-hidden="true"></i></button><button type="button" class="card-action edit" title="Edit" aria-label="Edit task" draggable="false"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div></div></div><details class="board-later"><summary>Later</summary><div class="board-group" data-date="2026-09-17"><div class="board-group-head"><h3>Thursday, Sep 17</h3></div><div class="board-empty">Nothing planned yet.</div></div><div class="board-group" data-date="2026-09-18"><div class="board-group-head"><h3>Friday, Sep 18</h3></div><div class="board-empty">Nothing planned yet.</div></div></details></aside>
+      </section>
+
+      <section id="usage-view" hidden="">
+        <div class="usage-wrap">
+          <h1 class="usage-title">Admin</h1>
+          <div id="usage-body" class="usage-body"></div>
+        </div>
+      </section>
+
+      <section id="upcoming-view" hidden="">
+        <div class="upcoming-wrap">
+          <div class="upcoming-head">
+            <h1 class="upcoming-title">Today</h1>
+            <div id="upcoming-tools">
+              <button class="search-trigger loading-control" type="button" aria-label="Search" disabled=""><i class="ph ph-magnifying-glass" aria-hidden="true"></i></button>
+              <button class="display-btn select-btn loading-control" type="button" aria-label="Select tasks" disabled=""><i class="ph ph-check-square" aria-hidden="true"></i></button>
+              <button class="display-btn loading-control" type="button" aria-label="Display options" disabled=""><i class="ph ph-sliders-horizontal" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div id="upcoming-body">
+            
+          </div>
+        </div>
+      </section>
+
+      <section id="tasks-view" hidden="">
+        <aside id="tasks-side">
+          <!-- Skeletons (base.css) fill the shells until state loads on a cold start or deep link; the first render replaces them. -->
+          <div id="tasks-nav">
+            <button class="tnav-add-task loading-control" type="button" disabled=""><i class="ph-fill ph-plus-circle" aria-hidden="true"></i><span>Add task or note</span></button>
+            <div class="tnav-row"><button class="tnav-item loading-control" type="button" disabled=""><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>All tasks</span></span></button></div>
+            <div class="tnav-row"><button class="tnav-item loading-control" type="button" disabled=""><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M15 4v4h4M8 13h8M8 17h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>All notes</span></span></button></div>
+            <div class="tnav-row"><button class="tnav-item loading-control" type="button" disabled=""><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l2.4-7h11.2L20 13v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zM4 13h4l1.5 2.5h5L16 13h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Inbox</span></span></button></div>
+            <div class="tnav-row"><button class="tnav-item loading-control" type="button" disabled=""><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><circle cx="12" cy="15" r="2.3" fill="currentColor"></circle></svg><span>Today</span></span></button></div>
+            <div class="tnav-row"><button class="tnav-item loading-control" type="button" disabled=""><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>Upcoming</span></span></button></div>
+            <div class="tnav-spaces-head"><h2 class="tnav-spaces-title">Lists</h2></div>
+            
+          </div>
+        </aside>
+        <div id="tasks-main">
+          <div id="tasks-head">
+            <div class="tasks-title-row">
+              <h1 class="tasks-title">All tasks</h1>
+            </div>
+              <div class="tasks-kind-switch">
+                <button class="tasks-kind-btn active loading-control" type="button" disabled=""><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="tasks-kind-label">Tasks</span><span class="tasks-kind-count" aria-hidden="true"><span class="sk-bar"></span></span></button>
+                <button class="tasks-kind-btn loading-control" type="button" disabled=""><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M15 4v4h4M8 13h8M8 17h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="tasks-kind-label">Notes</span><span class="tasks-kind-count" aria-hidden="true"><span class="sk-bar"></span></span></button>
+              </div>
+            <div class="tasks-tools">
+              <button class="search-trigger loading-control" type="button" aria-label="Search" disabled=""><i class="ph ph-magnifying-glass" aria-hidden="true"></i></button>
+              <button class="display-btn select-btn loading-control" type="button" aria-label="Select tasks" disabled=""><i class="ph ph-check-square" aria-hidden="true"></i></button>
+              <button class="display-btn loading-control" type="button" aria-label="Display options" disabled=""><i class="ph ph-sliders-horizontal" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div id="tasks-body">
+            
+          </div>
+        </div>
+      </section>
+
+      <section id="projects-view" hidden="">
+        <div class="projects-wrap">
+          <div class="projects-head">
+            <h1 class="projects-title">Lists</h1>
+          </div>
+          <div id="projects-nav"></div>
+        </div>
+      </section>
+
+      <section id="search-view" hidden="">
+        <div class="search-wrap">
+          <div class="search-bar">
+            <div class="search-field">
+              <i class="ph ph-magnifying-glass search-bar-ico" aria-hidden="true"></i>
+              <input id="search-input" class="search-input" type="search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search" placeholder="Search tasks, notes, lists, and goals" aria-label="Search your tasks, notes, lists, and goals" style="">
+              <button id="search-clear" class="search-clear" type="button" aria-label="Clear search" hidden="">
+                <i class="ph ph-x" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div id="search-results" class="search-results" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="profile-view">
+        <div class="account-wrap">
+          <style>
+  /* You B, today first: the checks and the next milestone that need the person today lead; the full goal list follows in compact rows. */
+
+  /* You page variants, prefix yp-. Tokens from yarvy-app.css; the app's .you-* layout classes are not used. */
+  .yp { --yp-control: 44px; gap: 0; }
+  .yp .account-topbar { margin-bottom: 4px; }
+  .yp-id { display: flex; align-items: center; gap: 12px; min-height: 48px; margin-bottom: 18px; }
+  .yp-id .account-avatar { width: 40px; height: 40px; font-size: var(--fs-body-sm); }
+  .yp-id b { font-size: var(--fs-body); font-weight: var(--fw-bold); }
+  .yp-id span { color: var(--muted); font-size: var(--fs-sm); }
+  .yp-id span::before { content: "·"; margin: 0 6px; }
+  /* This week: one line of counts and a small seven day row. No headline, no fill. */
+  .yp-week { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; padding: 10px 16px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: var(--panel); margin-bottom: 26px; }
+  .yp-week-counts { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--fs-body-sm); color: var(--text); }
+  .yp-week-counts b { font-weight: var(--fw-bold); }
+  .yp-week-counts .yp-lab { color: var(--muted); font-weight: var(--fw-semibold); }
+  .yp-days { display: flex; gap: 6px; }
+  .yp-day { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 24px; font-size: var(--fs-2xs); color: var(--muted); }
+  .yp-day i { display: block; width: 100%; height: 22px; border-radius: 4px; background: var(--surface-hover); position: relative; overflow: hidden; }
+  .yp-day i::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: var(--h, 0); background: var(--accent-fill); }
+  .yp-day.today { color: var(--accent-2); font-weight: var(--fw-bold); }
+  .yp-day.future i { background: transparent; border-bottom: 2px solid var(--line); border-radius: 0; height: 22px; }
+  /* Sections. */
+  .yp-sec { margin-top: 30px; }
+  .yp-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .yp-sec-head h2 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); }
+  .yp-link { display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 0 10px; margin-right: -10px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--accent-2); font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .yp-link:hover { background: var(--surface-hover); }
+  .yp-link i { font-size: 16px; }
+  .yp-group { margin-top: 16px; }
+  .yp-group-head { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px 2px; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--muted); }
+  .yp-stack { display: flex; flex-direction: column; gap: 8px; }
+  /* Goal card: the whole card opens the goal; the habit check is its own target on top. */
+  .yp-goal { position: relative; display: grid; grid-template-columns: var(--yp-control) minmax(0, 1fr) auto; column-gap: 14px; align-items: center; padding: 14px 14px 14px 16px; background: var(--panel); border: 1px solid transparent; border-radius: var(--radius-xl); box-shadow: var(--shadow-soft); }
+  .yp-goal:hover { background: var(--card-hover); }
+  .yp-goal.cat-health { --yp-tone: var(--cat-health); --yp-wash: var(--cat-health-soft); }
+  .yp-goal.cat-money { --yp-tone: var(--cat-money); --yp-wash: var(--cat-money-soft); }
+  .yp-goal.cat-learn { --yp-tone: var(--cat-learn); --yp-wash: var(--cat-learn-soft); }
+  .yp-goal.cat-create { --yp-tone: var(--cat-create); --yp-wash: var(--cat-create-soft); }
+  .yp-goal.cat-default { --yp-tone: var(--accent); --yp-wash: var(--chip-active); }
+  .yp-face { display: grid; place-items: center; width: var(--yp-control); height: var(--yp-control); font-size: var(--fs-h2); border-radius: var(--radius-md); background: var(--yp-wash); }
+  .yp-open { display: block; min-width: 0; padding: 0; border: 0; background: none; color: var(--text); text-align: left; font: inherit; cursor: pointer; }
+  .yp-open::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius-xl); }
+  .yp-open:focus-visible { outline: none; }
+  .yp-open:focus-visible::after { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+  .yp-title { display: block; font-size: var(--fs-body); font-weight: var(--fw-semibold); line-height: var(--lh-snug); }
+  .yp-value { display: block; margin-top: 2px; font-size: var(--fs-sm); color: var(--muted); }
+  .yp-value b { color: var(--text); font-weight: var(--fw-semibold); }
+  .yp-bar { grid-column: 2 / -1; height: 6px; margin-top: 10px; border-radius: var(--radius-pill); background: var(--surface-hover); overflow: hidden; }
+  .yp-bar i { display: block; height: 100%; width: var(--w, 0); background: var(--yp-tone); border-radius: var(--radius-pill); }
+  .yp-remaining { grid-column: 2 / -1; margin-top: 8px; font-size: var(--fs-sm); color: var(--muted); }
+  .yp-next { grid-column: 2 / -1; display: flex; align-items: center; gap: 6px; margin-top: 10px; font-size: var(--fs-sm); color: var(--text); }
+  .yp-next i { color: var(--yp-tone); font-size: 15px; }
+  .yp-end { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; }
+  .yp-caret { color: var(--muted); font-size: 16px; }
+  .yp-check { flex: 0 0 auto; width: var(--yp-control); height: var(--yp-control); border-radius: 50%; display: grid; place-items: center; border: 0; background: var(--line-strong); color: var(--on-accent); cursor: pointer; }
+  .yp-check i { font-size: 20px; }
+  .yp-check.checked { background: var(--success-fill); }
+  .yp-check:hover:not(.checked) { background: var(--ring); }
+  .yp-dots { grid-column: 2 / -1; display: flex; gap: 6px; margin-top: 10px; }
+  .yp-dot { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 26px; font-size: var(--fs-2xs); color: var(--muted); }
+  .yp-dot i { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--field-surface); font-style: normal; font-size: 12px; }
+  .yp-dot.checked i { background: var(--cat-health-soft); color: var(--success-text); }
+  .yp-dot.today i { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+  .yp-dot.future i { background: none; border: 1px solid var(--line); }
+  .yp-quote { grid-column: 2 / -1; margin: 8px 0 0; font-size: var(--fs-body-sm); color: var(--text); }
+  .yp-quote small { display: block; margin-top: 2px; color: var(--muted); font-size: var(--fs-xs); }
+  .yp-btn { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--panel); color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; white-space: nowrap; }
+  .yp-btn:hover { border-color: var(--accent); background: var(--chip-active); }
+  .yp-btn i { font-size: 16px; color: var(--muted); }
+  .yp-foot { margin-top: 10px; }
+  /* Wins: evidence, three rows, then the labeled route to the rest. */
+  .yp-win { display: grid; grid-template-columns: 10px minmax(0, 1fr); column-gap: 12px; align-items: baseline; min-height: 48px; padding: 6px 0; border-top: 1px solid var(--line-soft); }
+  .yp-win:first-child { border-top: 0; }
+  .yp-win i { width: 10px; height: 10px; border-radius: 50%; background: var(--yp-tone, var(--accent)); align-self: center; }
+  .yp-win.cat-health { --yp-tone: var(--cat-health); } .yp-win.cat-learn { --yp-tone: var(--cat-learn); } .yp-win.cat-money { --yp-tone: var(--cat-money); }
+  .yp-win small { display: block; font-size: var(--fs-xs); color: var(--muted); }
+  .yp-win b { display: block; font-weight: var(--fw-semibold); font-size: var(--fs-body-sm); }
+  /* Badges: last, quiet, no repeated Earned label. */
+  .yp-badges { display: flex; gap: 18px; }
+  .yp-badges .badge { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 92px; padding: 8px 0; border: 0; background: none; font: inherit; color: var(--text); cursor: pointer; border-radius: var(--radius-md); }
+  .yp-badges .badge:hover { background: var(--surface-hover); }
+  .yp-badges .badge-label { font-size: var(--fs-xs); font-weight: var(--fw-semibold); text-align: center; }
+
+  .yp-b .yp-compact .yp-goal { padding: 10px 14px 10px 12px; }
+  .yp-b .yp-compact .yp-bar, .yp-b .yp-compact .yp-remaining, .yp-b .yp-compact .yp-next, .yp-b .yp-compact .yp-dots, .yp-b .yp-compact .yp-quote { display: none; }
+  .yp-b .yp-compact .yp-face { width: 36px; height: 36px; font-size: var(--fs-body); }
+  .yp-b .yp-compact .yp-goal { grid-template-columns: 36px minmax(0,1fr) auto; }
+</style>
+<div id="profile-body" class="account-body yp"><div class="yp-b"><div class="account-topbar"><h1 class="account-title">You</h1><div class="account-topbar-actions"><button type="button" class="account-topbar-btn" title="Edit profile" aria-label="Edit profile"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="account-topbar-btn" title="Settings" aria-label="Settings"><i class="ph ph-gear" aria-hidden="true"></i></button></div></div><div class="yp-id"><div class="account-avatar">DS</div><div><b>Design Studio</b><span>With Yarvy since Sep 2026</span></div></div><section class="yp-sec "><div class="yp-sec-head"><h2>Today</h2></div><div class="yp-stack"><article class="yp-goal cat-default" aria-label="Less takeout, more cooking"><span class="yp-face" aria-hidden="true">🍳</span><button type="button" class="yp-open" aria-label="Open Less takeout, more cooking"><span class="yp-title">Less takeout, more cooking</span><span class="yp-value"><b>1 of 5</b> days this week</span></button><span class="yp-end"><button type="button" class="yp-check" aria-label="Check in today" aria-pressed="false"><i class="ph-bold ph-check" aria-hidden="true"></i></button></span><div class="yp-dots"><span class="yp-dot checked"><i>✓</i>M</span><span class="yp-dot today"><i></i>T</span><span class="yp-dot future"><i></i>W</span><span class="yp-dot future"><i></i>T</span><span class="yp-dot future"><i></i>F</span><span class="yp-dot future"><i></i>S</span><span class="yp-dot future"><i></i>S</span></div></article><article class="yp-goal cat-health" aria-label="Meditate every morning"><span class="yp-face" aria-hidden="true">🧘</span><button type="button" class="yp-open" aria-label="Open Meditate every morning"><span class="yp-title">Meditate every morning</span><span class="yp-value"><b>2 of 7</b> days this week · done today</span></button><span class="yp-end"><button type="button" class="yp-check checked" aria-label="Undo today's check" aria-pressed="true"><i class="ph-bold ph-check" aria-hidden="true"></i></button></span><div class="yp-dots"><span class="yp-dot checked"><i>✓</i>M</span><span class="yp-dot checked today"><i>✓</i>T</span><span class="yp-dot future"><i></i>W</span><span class="yp-dot future"><i></i>T</span><span class="yp-dot future"><i></i>F</span><span class="yp-dot future"><i></i>S</span><span class="yp-dot future"><i></i>S</span></div></article><article class="yp-goal cat-health" aria-label="Run a half marathon"><span class="yp-face" aria-hidden="true">🏃</span><button type="button" class="yp-open" aria-label="Open Run a half marathon"><span class="yp-title">Run 10 km without stopping</span><span class="yp-value">Next milestone · Run a half marathon</span></button><span class="yp-end"><button type="button" class="yp-btn" aria-label="Mark milestone done"><i class="ph ph-check" aria-hidden="true"></i>Done</button></span></article></div></section><div class="yp-week"><div class="yp-week-counts"><span class="yp-lab">This week</span><span><b>5</b> tasks done</span><span><b>3</b> habit check-ins</span><span><b>1</b> moment</span></div><div class="yp-days" role="img" aria-label="Tasks done: Mon 0, Tue 5, rest of the week upcoming"><span class="yp-day"><i></i>Mon</span><span class="yp-day today"><i style="--h:100%"></i>Tue</span><span class="yp-day future"><i></i>Wed</span><span class="yp-day future"><i></i>Thu</span><span class="yp-day future"><i></i>Fri</span><span class="yp-day future"><i></i>Sat</span><span class="yp-day future"><i></i>Sun</span></div></div><section class="yp-sec "><div class="yp-sec-head"><h2>All goals</h2><button type="button" class="yp-link">Add goal</button></div><div class="yp-compact"><div class="yp-group"><div class="yp-group-head">Targets <span>3</span></div><div class="yp-stack"><article class="yp-goal cat-learn" aria-label="Read 12 books this year"><span class="yp-face" aria-hidden="true">📚</span><button type="button" class="yp-open" aria-label="Open Read 12 books this year"><span class="yp-title">Read 12 books this year</span><span class="yp-value"><b>4 of 12</b> books</span></button><span class="yp-end"><i class="ph ph-caret-right yp-caret" aria-hidden="true"></i></span><div class="yp-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33"><i style="--w:33%"></i></div><div class="yp-remaining">8 to go by Dec 31</div></article><article class="yp-goal cat-health" aria-label="Run a half marathon"><span class="yp-face" aria-hidden="true">🏃</span><button type="button" class="yp-open" aria-label="Open Run a half marathon"><span class="yp-title">Run a half marathon</span><span class="yp-value"><b>0 of 1</b> milestones · Nov 15</span></button><span class="yp-end"><i class="ph ph-caret-right yp-caret" aria-hidden="true"></i></span><div class="yp-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i style="--w:0%"></i></div><div class="yp-next"><i class="ph-fill ph-flag" aria-hidden="true"></i><span>Next: Run 10 km without stopping</span></div></article><article class="yp-goal cat-money" aria-label="Save $5,000"><span class="yp-face" aria-hidden="true">💰</span><button type="button" class="yp-open" aria-label="Open Save $5,000"><span class="yp-title">Save $5,000</span><span class="yp-value"><b>$1,800 of $5,000</b></span></button><span class="yp-end"><i class="ph ph-caret-right yp-caret" aria-hidden="true"></i></span><div class="yp-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="36"><i style="--w:36%"></i></div><div class="yp-remaining">$3,200 to go</div></article></div></div><div class="yp-group"><div class="yp-group-head">Habits <span>2</span></div><div class="yp-stack"><article class="yp-goal cat-default" aria-label="Less takeout, more cooking"><span class="yp-face" aria-hidden="true">🍳</span><button type="button" class="yp-open" aria-label="Open Less takeout, more cooking"><span class="yp-title">Less takeout, more cooking</span><span class="yp-value"><b>1 of 5</b> days this week</span></button><span class="yp-end"><i class="ph ph-caret-right yp-caret" aria-hidden="true"></i><button hidden type="button" class="yp-check" aria-label="Check in today" aria-pressed="false"><i class="ph-bold ph-check" aria-hidden="true"></i></button></span><div class="yp-dots"><span class="yp-dot checked"><i>✓</i>M</span><span class="yp-dot today"><i></i>T</span><span class="yp-dot future"><i></i>W</span><span class="yp-dot future"><i></i>T</span><span class="yp-dot future"><i></i>F</span><span class="yp-dot future"><i></i>S</span><span class="yp-dot future"><i></i>S</span></div></article><article class="yp-goal cat-health" aria-label="Meditate every morning"><span class="yp-face" aria-hidden="true">🧘</span><button type="button" class="yp-open" aria-label="Open Meditate every morning"><span class="yp-title">Meditate every morning</span><span class="yp-value"><b>2 of 7</b> days this week · done today</span></button><span class="yp-end"><i class="ph ph-caret-right yp-caret" aria-hidden="true"></i><button hidden type="button" class="yp-check checked" aria-label="Undo today's check" aria-pressed="true"><i class="ph-bold ph-check" aria-hidden="true"></i></button></span><div class="yp-dots"><span class="yp-dot checked"><i>✓</i>M</span><span class="yp-dot checked today"><i>✓</i>T</span><span class="yp-dot future"><i></i>W</span><span class="yp-dot future"><i></i>T</span><span class="yp-dot future"><i></i>F</span><span class="yp-dot future"><i></i>S</span><span class="yp-dot future"><i></i>S</span></div></article></div></div><div class="yp-group"><div class="yp-group-head">Growing <span>2</span></div><div class="yp-stack"><article class="yp-goal cat-default" aria-label="Be more patient"><span class="yp-face" aria-hidden="true">🎯</span><button type="button" class="yp-open" aria-label="Open Be more patient"><span class="yp-title">Be more patient</span><span class="yp-value">1 moment this month</span></button><span class="yp-end"><i class="ph ph-caret-right yp-caret" aria-hidden="true"></i><button hidden type="button" class="yp-btn" aria-label="Log a moment for Be more patient"><i class="ph ph-plus" aria-hidden="true"></i>Moment</button></span><p class="yp-quote">“Let the standup run over without jumping in.”<small>Today</small></p></article><article class="yp-goal cat-learn" aria-label="Write more clearly"><span class="yp-face" aria-hidden="true">✍️</span><button type="button" class="yp-open" aria-label="Open Write more clearly"><span class="yp-title">Write more clearly</span><span class="yp-value">1 moment this month</span></button><span class="yp-end"><i class="ph ph-caret-right yp-caret" aria-hidden="true"></i><button hidden type="button" class="yp-btn" aria-label="Log a moment for Write more clearly"><i class="ph ph-plus" aria-hidden="true"></i>Moment</button></span><p class="yp-quote">“Cut the release notes to 280 words.”<small>Today</small></p></article></div></div></div><div class="yp-foot"><button type="button" class="yp-link" style="margin-left:-10px">Paused and past</button></div></section><section class="yp-sec "><div class="yp-sec-head"><h2>Recent wins</h2><button type="button" class="yp-link">All 14 wins</button></div><div class="yp-stack" style="gap:0"><div class="yp-win cat-health"><i></i><div><small>Today · Meditate every morning</small><b>Checked in</b></div></div><div class="yp-win"><i></i><div><small>Today · Be more patient</small><b>Let the standup run over without jumping in.</b></div></div><div class="yp-win cat-learn"><i></i><div><small>Today · Task done</small><b>Draft the highlights section</b></div></div></div></section><section class="yp-sec "><div class="yp-sec-head"><h2>Badges</h2><button type="button" class="yp-link">See all 2</button></div><div class="yp-badges"><button type="button" class="badge" aria-label="3 goals set, earned. See all badges"><span class="badge-coin t-create" aria-hidden="true"><span class="coin-face"><i class="ph-fill ph-target" aria-hidden="true"></i></span><span class="badge-earned-check">✓</span></span><span class="badge-label">3 goals set</span></button><button type="button" class="badge" aria-label="First list, earned. See all badges"><span class="badge-coin t-learn" aria-hidden="true"><span class="coin-face"><i class="ph-fill ph-folders" aria-hidden="true"></i></span><span class="badge-earned-check">✓</span></span><span class="badge-label">First list</span></button></div></section></div></div>
+        </div>
+      </section>
+
+      <section id="settings-view" hidden="">
+        <div class="account-wrap">
+          <div class="account-head">
+            <button id="settings-back" class="account-back" type="button" aria-label="Back to profile">
+              <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            </button>
+            <h1 class="account-title">Settings</h1>
+          </div>
+          <div id="settings-body" class="account-body"></div>
+        </div>
+      </section>
+
+      <section id="editprofile-view" hidden="">
+        <div class="account-wrap">
+          <div class="account-head">
+            <button class="account-back" data-you-back="profile" type="button" aria-label="Back to your page">
+              <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            </button>
+            <h1 class="account-title">Edit profile</h1>
+          </div>
+          <div id="editprofile-body" class="account-body"></div>
+        </div>
+      </section>
+
+      <section id="memory-view" hidden="">
+        <div class="account-wrap">
+          <div class="account-head">
+            <button class="account-back" data-you-back="settings" type="button" aria-label="Back to settings">
+              <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            </button>
+            <h1 class="account-title">Memory &amp; activity</h1>
+          </div>
+          <div id="memory-body" class="account-body"></div>
+        </div>
+      </section>
+
+      <section id="goaldetail-view" hidden="">
+        <div class="account-wrap">
+          <div class="account-head">
+            <button class="account-back" data-you-back="profile" type="button" aria-label="Back to your page">
+              <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            </button>
+            <h1 class="account-title">Goal</h1>
+            <div id="goaldetail-actions" class="account-head-actions"></div>
+          </div>
+          <div id="goaldetail-body" class="account-body"></div>
+        </div>
+      </section>
+
+      <section id="plan-view" hidden="">
+        <div class="account-wrap">
+          <div class="account-head">
+            <button class="account-back" data-you-back="settings" type="button" aria-label="Back to settings">
+              <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            </button>
+            <h1 class="account-title">Plan</h1>
+          </div>
+          <div id="plan-body" class="account-body"></div>
+        </div>
+      </section>
+    </main>
+</div>

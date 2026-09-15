@@ -95,6 +95,30 @@
       "x": 3840,
       "y": 120,
       "width": 1200
+    },
+    {
+      "file": "you-a-goals-first.html",
+      "x": 0,
+      "y": 7128,
+      "width": 1200
+    },
+    {
+      "file": "you-b-today-first.html",
+      "x": 1246,
+      "y": 7128,
+      "width": 1200
+    },
+    {
+      "file": "you-c-two-columns.html",
+      "x": 2492,
+      "y": 7128,
+      "width": 1200
+    },
+    {
+      "file": "you-d-quiet-story.html",
+      "x": 3738,
+      "y": 7128,
+      "width": 1200
     }
   ],
   "texts": [
@@ -132,6 +156,13 @@
       "y": 5528,
       "size": 72,
       "id": "text-mu2-taskmodal-6"
+    },
+    {
+      "text": "You page",
+      "x": 0,
+      "y": 7000,
+      "size": 72,
+      "id": "text-mu2-youpage-7"
     }
   ]
 }
