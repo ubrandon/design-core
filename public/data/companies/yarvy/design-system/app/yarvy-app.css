@@ -423,30 +423,49 @@ html { -webkit-tap-highlight-color: transparent; }
 
 /* ==== hero.css (copied from yarvy/public/css, 2026-09-14) ==== */
 /* ---- Main column ---- */
-/* The whole middle column scrolls as one: hero on top, dashboard below */
+/* Desktop: a page header across the top, the chat column on the left, the Today board on the right.
+   Each column scrolls on its own; responsive.css stacks this back into one page on phones. */
 #main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--board-w);
+  grid-template-rows: auto minmax(0, 1fr);
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  --board-w: 400px;
+}
+.chat-head {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 32px 18px 40px;
+  border-bottom: 1px solid var(--line);
+}
+.chat-title { margin: 0; font-size: var(--fs-h1); font-weight: var(--fw-heavy); letter-spacing: var(--ls-snug); }
+
+/* The chat column: history, greeting or conversation, then the composer docked at the bottom. */
+#hero {
   display: flex;
   flex-direction: column;
   min-width: 0;
   min-height: 0;
-  overflow-y: auto;
-  padding: 24px 40px var(--fab-clear);
+  padding: 24px 36px 28px 40px;
 }
-/* Float the chat a little above center (~40% from the top). The spacers collapse when
-   the content is taller than the column, so the top never clips and it scrolls normally. */
-#main::before { content: ""; flex: 2 1 0; }
-#main::after { content: ""; flex: 3 1 0; }
-
-/* Hero is the whole center column now: greeting, conversation, and the composer */
-#hero {
-  flex: 0 0 auto;
+#chat-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  text-align: center;
+  width: 100%;
+  min-width: 0;
+  padding: 0 4px 16px;
 }
-#chat-content { display: flex; flex-direction: column; align-items: center; gap: inherit; width: 100%; min-width: 0; flex: 0 0 auto; }
+#chat-content > * { flex: 0 0 auto; }
 
 /* Yarvy's presence: a small digital equalizer centered above the date, the app's abstract face. */
 #presence-wrap {
@@ -578,9 +597,21 @@ html { -webkit-tap-highlight-color: transparent; }
   .signal-field, .eq-bar, .glyph-layer, .glyph-layer .dot, .msg.yarvy.typing .caret, .tw-dots i { animation: none !important; }
 }
 
-#greeting { position: relative; flex: 0 0 auto; width: 100%; max-width: 640px; }
+/* The welcome hero on a fresh load: presence, date, greeting, one line on the day, starting prompts. */
+#greeting {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 640px;
+  margin-top: 40px;
+  text-align: center;
+}
+/* Once a conversation starts the welcome yields to the messages; the header keeps the date. */
+.yv-shot.chat-started #greeting { display: none; }
 /* Eyebrow label (large): slightly bigger uppercase headers (date line, side titles, settings sections). */
-#datelabel,
+#hero-date,
 .account-section-title {
   font-size: var(--fs-xs);
   font-weight: var(--fw-bold);
@@ -588,12 +619,13 @@ html { -webkit-tap-highlight-color: transparent; }
   letter-spacing: var(--ls-eyebrow);
   color: var(--muted);
 }
-/* The date sits quietly above the welcome heading. */
-#datelabel { display: block; margin-bottom: 6px; font-size: var(--fs-sm); font-weight: var(--fw-normal); text-transform: none; letter-spacing: normal; }
+#hero-date { display: block; font-size: var(--fs-sm); font-weight: var(--fw-semibold); }
+/* The header date reads as quiet supporting text next to the page title. */
+#datelabel { font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); color: var(--muted); }
 #hello {
-  margin: 0;
+  margin: 6px 0 0;
   font-size: var(--fs-display);
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-heavy);
   letter-spacing: var(--ls-tight);
   line-height: var(--lh-tight);
 }
@@ -603,19 +635,21 @@ html { -webkit-tap-highlight-color: transparent; }
   background-clip: text;
   color: transparent;
 }
-/* Homepage greeting reads as one solid color: drop the warm accent on its leading word. */
+/* The greeting's leading words take the darker accent ink; the name stays in text color. */
 #hello .grad {
   background: none;
   -webkit-background-clip: border-box;
   background-clip: border-box;
   -webkit-text-fill-color: currentColor;
-  color: inherit;
+  color: var(--accent-2);
 }
+/* One line on the day under the greeting: done count, overdue, and what is next. */
+#hero-read { margin: 12px 0 0; max-width: 40ch; font-size: var(--fs-body); color: var(--muted); }
+#hero-read:empty { display: none; }
 
 /* The latest ask stays as a compact bubble so the answer has visible conversational context. */
 #last-prompt {
   width: 100%;
-  max-width: 640px;
   margin-top: 8px;
   display: flex;
   flex-direction: column;
@@ -624,15 +658,16 @@ html { -webkit-tap-highlight-color: transparent; }
   text-align: right;
 }
 #last-prompt[hidden] { display: none; }
+/* The ask is a right-aligned bubble in reading size, so the answer below has its context. */
 #last-prompt p, .chat-history-message.user p {
   margin: 0;
-  max-width: 82%;
-  padding: 10px 14px;
+  max-width: 78%;
+  padding: 12px 18px;
   background: var(--user-bubble);
   color: var(--user-text);
-  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
-  border-radius: var(--radius-2xl) var(--radius-2xl) var(--radius-xs) var(--radius-2xl);
-  font-size: var(--fs-body-sm);
+  border: 0;
+  border-radius: var(--radius-2xl);
+  font-size: var(--fs-body);
   line-height: var(--lh-base);
   text-align: left;
   white-space: pre-wrap;
@@ -659,7 +694,6 @@ html { -webkit-tap-highlight-color: transparent; }
 /* Latest reply shares a readable column with its results. */
 #latest {
   width: 100%;
-  max-width: 640px;
   display: flex;
   justify-content: center;
 }
@@ -667,16 +701,28 @@ html { -webkit-tap-highlight-color: transparent; }
 #chat-exchange {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 16px;
   width: 100%;
-  max-width: 760px;
+  max-width: 720px;
   min-width: 0;
+  text-align: left;
 }
 #chat-exchange[hidden] { display: none; }
 #chat-exchange.history-covers-latest #last-prompt,
+#chat-exchange.history-covers-latest #reply-from,
 #chat-exchange.history-covers-latest #latest { display: none; }
-#chat-history-inline { width: 100%; max-width: 640px; }
+/* Sender line: the same equalizer the app uses, kept alive beside the reply it belongs to. */
+#reply-from { display: flex; align-items: center; gap: 10px; margin-bottom: -6px; }
+#reply-from b { font-weight: var(--fw-bold); font-size: var(--fs-body-sm); }
+#reply-time { font-size: var(--fs-xs); color: var(--muted); font-weight: var(--fw-semibold); }
+#reply-time:empty { display: none; }
+#reply-presence-slot { display: flex; }
+#reply-presence-slot #presence-wrap { width: 34px; height: 28px; margin: 0; }
+/* Only shown beside a reply: hidden on the welcome, and whenever there is no latest reply to sign. */
+.yv-shot:not(.chat-started) #reply-from,
+#chat-exchange:has(#latest:empty) #reply-from { display: none; }
+#chat-history-inline { width: 100%; }
 #chat-history-inline[hidden], #chat-load-earlier[hidden], #chat-history-status[hidden] { display: none; }
 #chat-load-earlier { margin: 0 auto 16px; display: flex; }
 #chat-history-status { color: var(--muted); font-size: var(--fs-sm); text-align: center; }
@@ -687,11 +733,15 @@ html { -webkit-tap-highlight-color: transparent; }
 .chat-history-message .task-link, .chat-history-message .note-link { color: var(--accent-2); cursor: pointer; }
 #chat-jump-latest { position: absolute; right: 0; bottom: calc(100% + 8px); background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-pill); z-index: 1; }
 #chat-jump-latest[hidden] { display: none; }
-/* History stays centered beneath the greeting in both welcome and active chat. */
-#chat-tools { display: flex; justify-content: center; margin-top: var(--task-space-sm); }
-#chat-history { min-height: 28px; padding: var(--task-space-xs) var(--task-space-sm); border-radius: var(--radius-pill); font-size: var(--fs-2xs); }
+/* History stays centered above the conversation in both welcome and active chat. */
+#chat-tools { display: flex; justify-content: center; width: 100%; }
+#chat-history { min-height: 40px; padding: 0 14px; border-radius: var(--radius-pill); font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); }
+#chat-history i { font-size: 18px; }
 #chat-history[aria-expanded="true"] { background: var(--line-soft); color: var(--text); }
 #chat-history span { white-space: nowrap; }
+/* "3 today" rides quietly after the label. */
+#chat-history-count { font-weight: var(--fw-normal); }
+#chat-history-count:empty { display: none; }
 .chat-tool {
   display: inline-flex;
   align-items: center;
@@ -821,24 +871,10 @@ ol.yarvy-list li::before {
   font-size: 0.82em;
   font-weight: var(--fw-bold);
 }
-/* "Start with" groups the next few tasks, drawn as the same task cards replies use. */
-.start-block {
-  margin-top: 18px;
-  display: flex;
-  flex-direction: column;
-}
-.start-block .start-eyebrow { margin-left: 2px; }
-.start-eyebrow {
-  font-size: var(--fs-2xs);
-  line-height: var(--lh-none);
-  font-weight: var(--fw-bold);
-  color: var(--muted);
-  margin-bottom: 5px;
-  letter-spacing: var(--ls-eyebrow);
-  text-transform: uppercase;
-}
-
-.start-clear { margin-top: 12px; color: var(--muted); font-size: var(--fs-body-sm); }
+/* A short opening line stands as the answer's headline; the rest reads as the lead beneath it.
+   The class is set only when the first line is short enough to stay one line (conversation.js). */
+.msg.yarvy.lead::first-line { font-size: var(--fs-h1-sm); font-weight: var(--fw-heavy); letter-spacing: var(--ls-snug); line-height: 1.2; color: var(--text); }
+@media (min-width: 981px) { .msg.yarvy.lead::first-line { font-size: var(--fs-stat); } }
 /* Blinking caret shown while a reply is still typing itself in */
 .msg.yarvy.typing .caret {
   display: inline-block;
@@ -874,15 +910,14 @@ ol.yarvy-list li::before {
 .tw-dots i:nth-child(3) { animation-delay: .3s; }
 @keyframes tw-dot { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
 
-/* Welcome quick actions sit above the composer and step aside during a conversation. */
+/* Starting prompts sit in the welcome hero under the day line; the greeting hides them during a chat. */
 #suggestions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
   width: 100%;
-  max-width: 640px;
-  margin-bottom: var(--list-group-gap);
+  margin-top: 22px;
 }
 #suggestions:empty { display: none; }
 .yv-shot.chat-started #suggestions { display: none; }
@@ -918,14 +953,40 @@ ol.yarvy-list li::before {
 }
 .chip-ico svg { width: 15px; height: 15px; }
 @media (hover: hover) and (pointer: fine) { .chip:hover .chip-ico { color: var(--accent-2); } }
-.reply-chips .chip { padding-left: 12px; background: var(--control-surface); color: var(--text); }
-
 /* Tap-able quick replies under a Yarvy reply: the answers it offered, click instead of type */
 .reply-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 14px;
+  margin-top: 16px;
+}
+/* Both chip rows share one look: a white pill with a typed icon. A question icon marks a chip that asks,
+   a bent arrow one that changes things. No resting border; the panel fill and a soft lift separate it. */
+#suggestions .chip, .reply-chips .chip {
+  min-height: 40px;
+  padding: 0 14px 0 10px;
+  gap: 8px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: var(--shadow-soft), 0 0 0 1px var(--line-soft);
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-base);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+}
+#suggestions .chip .chip-ico, .reply-chips .chip .chip-ico { width: auto; height: auto; background: none; border-radius: 0; color: var(--muted); font-size: 17px; line-height: 1; }
+:is(#suggestions, .reply-chips) .chip.change .chip-ico { color: var(--accent-2); }
+@media (hover: hover) and (pointer: fine) {
+  :is(#suggestions, .reply-chips) .chip:hover { transform: none; background: var(--card-hover); color: var(--accent-2); box-shadow: var(--shadow-soft), 0 0 0 1px var(--line); }
+  :is(#suggestions, .reply-chips) .chip:hover .chip-ico { color: var(--accent-2); }
+}
+:is(#suggestions, .reply-chips) .chip:active:not(:disabled) { transform: translateY(1px); }
+:is(#suggestions, .reply-chips) .chip:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  :is(#suggestions, .reply-chips) .chip { transition: none; }
+  :is(#suggestions, .reply-chips) .chip:active:not(:disabled) { transform: none; }
 }
 
 /* --- Reply visuals: the widgets a reply's hidden markers render (reply-widgets.js) --- */
@@ -1086,35 +1147,46 @@ ol.yarvy-list li::before {
 .ra-add:disabled { cursor: default; }
 .ra-row.added .ra-add { color: var(--success-text); }
 
-/* A quiet confirmation keeps the actual outcome and its Undo together. */
-.reply-receipt {
+/* "Changed": what this turn saved, one row per change with a tick, and one Undo for the batch. */
+.reply-receipt { margin-top: 18px; white-space: normal; }
+.rr-head {
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  justify-content: space-between;
   gap: 10px;
-  margin-top: 14px;
-  padding: 9px 0;
+  margin: 0 0 8px;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-bold);
+}
+.rr-count { margin-left: 8px; font-size: var(--fs-sm); color: var(--muted); font-weight: var(--fw-semibold); }
+.rr-list {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: var(--panel);
+  overflow: hidden;
+}
+.rr-row {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: center;
+  min-height: 50px;
+  padding: 4px 12px 4px 10px;
   border-top: 1px solid var(--line-soft);
-  background: none;
-  white-space: normal;
 }
-.rr-tick { flex: none; width: 18px; height: 18px; border-radius: 50%; background: var(--success-fill); position: relative; }
-.rr-tick::after {
-  content: "";
-  position: absolute;
-  left: 6px;
-  top: 3px;
-  width: 4px;
-  height: 8px;
-  border: solid var(--on-accent);
-  border-width: 0 2px 2px 0;
-  transform: rotate(40deg);
-}
-.rr-text { flex: 1; min-width: 0; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--text); }
+.rr-row:first-child { border-top: 0; }
+.rr-tick { display: grid; place-items: center; color: var(--success-text); font-size: 20px; }
+.rr-text { min-width: 0; font-size: var(--fs-body-sm); color: var(--text); }
+.rr-text b { font-weight: var(--fw-semibold); }
 .rr-undo {
   flex: none;
+  min-height: 40px;
   border: none;
   background: none;
-  padding: 2px 4px;
+  padding: 0 12px;
+  border-radius: var(--radius-sm);
   color: var(--accent-2);
   font-family: inherit;
   font-size: var(--fs-sm);
@@ -1125,28 +1197,28 @@ ol.yarvy-list li::before {
 .rr-undo:disabled { opacity: .5; cursor: default; }
 .rr-undo:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--radius-md); }
 
-/* Groups the composer and quick actions; responsive.css fixes the dock above mobile navigation. */
-#chat-dock { position: relative; display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; max-width: 760px; }
+/* The dock holds the composer at the bottom of the chat column; responsive.css fixes it above mobile navigation. */
+#chat-dock { position: relative; flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; padding-top: 24px; }
 
-/* The composer is slightly wider than the reply on desktop so the page's main action is unmistakable. */
+/* The composer floats as a card so the page's main action is unmistakable. */
 #composer {
   position: relative;
   display: flex;
   align-items: flex-end;
   gap: 10px;
   width: 100%;
-  max-width: 760px;
-  margin-top: 24px;
-  background: var(--surface-raised);
-  border: 1px solid var(--line-soft);
-  border-radius: var(--radius-xl);
-  padding: 10px 10px 10px 18px;
-  box-shadow: var(--shadow-soft);
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-3xl);
+  padding: 14px 14px 12px 18px;
+  box-shadow: var(--shadow-float);
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }
 #composer:focus-within {
   border-color: var(--accent-2);
-  box-shadow: var(--shadow-soft), 0 0 0 2px var(--chip-active);
+  box-shadow: var(--shadow-float), 0 0 0 2px var(--chip-active);
 }
 #input {
   flex: 1;
@@ -1157,14 +1229,14 @@ ol.yarvy-list li::before {
   font-family: inherit;
   resize: none;
   line-height: 1.5;
-  padding: 10px 0;
-  min-height: 82px;
+  padding: 6px 0;
+  min-height: 64px;
   max-height: 180px;
   overflow-y: auto;
   transition: min-height 0.2s ease;
 }
 #input:focus {
-  min-height: 120px;
+  min-height: 96px;
   outline: none;
 }
 #input::placeholder { color: var(--muted); }
@@ -1186,13 +1258,8 @@ ol.yarvy-list li::before {
 #input:placeholder-shown + #send.stopping { opacity: 1; }
 #send svg { width: 20px; height: 20px; }
 
-@media (min-width: 981px) {
-  .yv-shot.chat-started #main { overflow: hidden; padding-bottom: 24px; }
-  .yv-shot.chat-started #main::before, .yv-shot.chat-started #main::after { content: none; }
-  .yv-shot.chat-started #hero { flex: 1 1 auto; min-height: 0; }
-  .yv-shot.chat-started #chat-content { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 8px 16px 16px; }
-  .yv-shot.chat-started #chat-content > *, #chat-dock { flex: 0 0 auto; }
-}
+/* Once a chat starts the exchange takes the column; the conversation scrolls above the docked composer. */
+.yv-shot.chat-started #chat-exchange { margin-top: 2px; }
 
 @media (prefers-reduced-motion: reduce) {
   #input { transition: none; }
@@ -1238,49 +1305,70 @@ ol.yarvy-list li::before {
 #send.stopping { background: var(--text); color: var(--panel); }
 #presence:not(.thinking):not(.happy):not(.frustrated) .eq-bar,
 #presence:not(.thinking) .glyph-layer.on .dot { animation: none; }
-#latest .reply-chips .chip { background: var(--control-surface); color: var(--text); border: 0; }
-#latest .reply-chips .chip:hover { background: var(--control-hover); transform: none; }
 
-/* The welcome groups context above the input; active conversations keep a compact header. */
-#chat-dock { gap: 8px; }
-#chat-dock #composer { margin-top: 0; }
-/* Keep breathing room below the welcome header when there is no expanded conversation. */
-@media (min-width: 981px) {
-  .yv-shot:not(.chat-started) #chat-dock { margin-top: calc(var(--page-x) * 2); }
+/* ---- The Today board (today-board.js): the Tasks page's rows beside the chat, so changes show in place ---- */
+#today-board {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 24px 24px 28px;
+  border-left: 1px solid var(--line);
+  background: var(--page);
 }
-.yv-shot.chat-started #greeting { display: flex; flex-direction: column; text-align: center; align-items: center; }
-.yv-shot.chat-started #presence-wrap { width: 36px; height: 36px; margin: 0 auto 8px; }
-.yv-shot.chat-started #hello { font-size: var(--fs-body); letter-spacing: normal; }
-.yv-shot.chat-started #datelabel { margin-bottom: 2px; font-size: var(--fs-xs); }
-
-/* Optional starting points sit close to the composer and respond locally to a press. */
-#suggestions { margin-bottom: 0; gap: var(--task-space-sm); }
-#chat-dock { gap: var(--task-space-md); }
-#suggestions .chip {
-  background: var(--chip-active);
-  color: var(--accent-2);
+.board-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.board-head h2 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-heavy); letter-spacing: var(--ls-snug); }
+.board-count { font-size: var(--fs-sm); color: var(--muted); font-weight: var(--fw-semibold); font-variant-numeric: tabular-nums; }
+.board-bar { flex: none; height: 6px; border-radius: var(--radius-pill); background: var(--line-soft); overflow: hidden; }
+.board-bar i { display: block; height: 100%; background: var(--accent-fill); border-radius: var(--radius-pill); transition: width 0.3s ease; }
+.board-group h3 {
+  margin: 10px 0 6px;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+/* White cards on the board's page tone; the rows inside are the app's real task cards. */
+.board-cards {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  padding: 0 12px;
+}
+.board-cards .task-card { padding: 12px 0; }
+.board-cards .task-card.subtask { padding-left: var(--list-indent); }
+.board-cards .card-title { font-size: var(--fs-body-sm); }
+.board-cards .card-sub { font-size: var(--fs-xs); }
+.board-cards .check { font-size: 22px; }
+/* Multi-select never mounts here, so the selection ring stays out of the row. */
+.board-cards .card-select { display: none; }
+/* A row this turn touched: a peach wash and a pill that says what happened. */
+.board-cards .task-card.board-changed { background: var(--celebrate-soft); margin: 0 -12px; padding-left: 12px; padding-right: 12px; }
+.board-tag {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 7px;
   border-radius: var(--radius-pill);
-  padding: var(--task-space-sm) var(--list-group-gap);
-  gap: var(--task-space-sm);
-  min-height: var(--task-touch-target);
-  font-size: var(--fs-body-sm);
-  font-weight: var(--fw-normal);
-  line-height: var(--lh-base);
-  box-shadow: none;
-  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+  background: var(--panel);
+  color: var(--celebrate-text);
+  font-size: var(--fs-2xs);
+  font-weight: var(--fw-bold);
+  vertical-align: 2px;
 }
-#suggestions .chip-ico { width: 1.1em; height: 1.1em; background: none; color: inherit; border-radius: 0; }
-#suggestions .chip-ico svg { width: 100%; height: 100%; }
-@media (hover: hover) and (pointer: fine) {
-  #suggestions .chip:hover { transform: none; background: color-mix(in srgb, var(--accent) 12%, var(--chip-active)); color: var(--accent-2); }
-  #suggestions .chip:hover .chip-ico { color: inherit; }
+.board-tag.new { color: var(--success-text); }
+.board-empty {
+  padding: 14px 12px;
+  border: 1.5px dashed var(--line);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  color: var(--muted);
+  font-size: var(--fs-sm);
 }
-#suggestions .chip:active:not(:disabled) { transform: translateY(1px); background: color-mix(in srgb, var(--accent) 18%, var(--chip-active)); box-shadow: none; }
-#suggestions .chip:focus-visible { color: var(--accent-2); outline: 2px solid var(--accent-2); outline-offset: 2px; }
-@media (prefers-reduced-motion: reduce) {
-  #suggestions .chip { transition: none; }
-  #suggestions .chip:active:not(:disabled) { transform: none; }
-}
+.board-foot { margin-top: auto; padding: 8px 2px 0; font-size: var(--fs-xs); color: var(--muted); }
+.board-foot button { border: 0; background: none; padding: 0; font: inherit; font-weight: var(--fw-semibold); color: var(--accent-2); cursor: pointer; }
+.board-foot button:hover { text-decoration: underline; }
 
 /* ==== tasks.css (copied from yarvy/public/css, 2026-09-14) ==== */
 /* Eyebrow label (small): the little uppercase section + field labels across the app. */
@@ -5187,12 +5275,18 @@ button.goal-past-main:focus-visible { outline: 2px solid var(--accent-2); outlin
   /* Keep scrolling content clear of the fixed bar AND the floating add button above it (the +90 clears the FAB).
      Every view shares the same side gutter (--page-x) so the content width is consistent.
      Home clears the pinned chat dock instead of the FAB. */
+  /* One page on phones: the header, then the chat; the Today board lives on the Tasks tab here. */
   #main {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
     padding: 16px var(--page-x);
     padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom) + var(--dock-clear));
   }
-  /* The desktop "float mid-screen" spacers collapse here; #hero centers itself instead (below). */
-  #main::before, #main::after { content: none; }
+  #today-board { display: none; }
+  .chat-head { padding: 0 0 12px; }
+  #hero { padding: 0; }
+  #chat-content { flex: 0 0 auto; overflow: visible; padding: 0; }
   #usage-view, #upcoming-view, #projects-view, #profile-view, #settings-view, #search-view {
     padding: 16px var(--page-x);
     padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom) + 90px);
@@ -5205,8 +5299,9 @@ button.goal-past-main:focus-visible { outline: 2px solid var(--accent-2); outlin
     padding: 8px 0 16px;
     gap: 14px;
     justify-content: center;
-    min-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - var(--nav-h) - var(--dock-clear) - 16px);
+    min-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - var(--nav-h) - var(--dock-clear) - 16px - 3.5rem);
   }
+  #greeting { margin-top: 8px; }
   #hello { font-size: var(--fs-display-sm); }
   #last-prompt p, .chat-history-message.user p { max-width: 90%; }
 
@@ -5227,7 +5322,8 @@ button.goal-past-main:focus-visible { outline: 2px solid var(--accent-2); outlin
     max-width: none;
   }
   #chat-jump-latest { right: var(--page-x); }
-  #composer { margin-top: 0; padding: 6px 6px 6px 14px; }
+  #chat-dock { padding-top: 0; }
+  #composer { margin-top: 0; padding: 6px 6px 6px 14px; border-radius: var(--radius-xl); }
   /* Keep one line at rest, make room for two on focus, and grow with longer drafts. */
   #input { height: 46px; min-height: 46px; }
   #input:focus { height: 72px; min-height: 72px; }
@@ -5296,18 +5392,9 @@ button.goal-past-main:focus-visible { outline: 2px solid var(--accent-2); outlin
   .task-modal .modal-foot { flex-wrap: wrap; }
   #fab { right: 16px; width: 54px; height: 54px; }
 
-  /* Center quick actions when they fit; otherwise start at the first chip and allow scrolling. */
-  #suggestions {
-    align-self: stretch;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  #suggestions .chip { flex: 0 0 auto; white-space: nowrap; }
-  #suggestions .chip:first-child { margin-left: auto; }
-  #suggestions .chip:last-child { margin-right: auto; }
-  #suggestions::-webkit-scrollbar { display: none; }
+  /* Starting prompts wrap under the greeting on phones; each stays one line. */
+  #suggestions { gap: 8px; margin-top: 18px; }
+  #suggestions .chip { white-space: nowrap; }
 
   .usage-wrap { max-width: 100%; }
 

@@ -21,14 +21,26 @@
     {
       "file": "chat-d-board-presence.html",
       "x": 1246,
-      "y": 2055,
+      "y": 2094,
       "width": 1200
     },
     {
       "file": "chat-e-reload.html",
       "x": 0,
-      "y": 2055,
+      "y": 2094,
       "width": 1200
+    },
+    {
+      "file": "chat-d-mobile.html",
+      "x": 2560,
+      "y": 2094,
+      "width": 390
+    },
+    {
+      "file": "chat-e-mobile.html",
+      "x": 2994,
+      "y": 2094,
+      "width": 390
     }
   ],
   "texts": [
@@ -42,9 +54,23 @@
     {
       "text": "Redesigns",
       "x": 0,
-      "y": 1908,
-      "size": 72,
+      "y": 1747,
+      "size": 144,
       "id": "text-legacy-mu1q20r3-1"
+    },
+    {
+      "text": "Chat",
+      "x": 0,
+      "y": 1972,
+      "size": 72,
+      "id": "text-mu1rvg87-4"
+    },
+    {
+      "text": "Side bar",
+      "x": 0,
+      "y": 3450,
+      "size": 72,
+      "id": "text-mu1rvr7r-5"
     }
   ]
 }

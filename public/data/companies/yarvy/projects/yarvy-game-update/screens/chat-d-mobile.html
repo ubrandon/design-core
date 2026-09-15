@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  html, body { scrollbar-gutter: auto; }
+  /* One phone viewport of the real app shell: fixed bottom tabs, pinned composer, page content above. */
+  .yv-shot { position: relative; height: 844px; overflow: hidden; background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .yv-shot #app { height: 844px; min-height: 0; overflow: hidden; }
+  .yv-shot #rail, .yv-shot #chat-dock { position: absolute; }
+  .yv-shot #hero { min-height: 0; justify-content: flex-start; }
+  .yv-shot.centered #hero { min-height: calc(844px - 72px - 132px - 16px - 3.5rem); justify-content: center; }
+  /* The changed list, phone sized. */
+  .yv-shot .msg.yarvy .reply-chips { margin-top: 12px; }
+  .gf-changes { display: flex; flex-direction: column; margin-top: 12px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: var(--panel); overflow: hidden; text-align: left; }
+  .gf-change { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; align-items: center; min-height: 48px; padding: 4px 4px 4px 10px; border-top: 1px solid var(--line-soft); font-size: var(--fs-sm); }
+  .gf-change:first-child { border-top: 0; }
+  .gf-change .gf-tick { color: var(--success-text); font-size: 20px; display: grid; place-items: center; }
+  .gf-change b { font-weight: var(--fw-semibold); }
+  .gf-undo { min-height: 40px; padding: 0 12px; border: 0; background: transparent; color: var(--accent-2); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-bold); }
+  .gf-headline { margin: 0 0 6px; font-size: 24px; line-height: 1.2; font-weight: var(--fw-heavy); letter-spacing: var(--ls-snug); }
+  .gf-today { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; min-height: 48px; padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius-lg); font-size: var(--fs-sm); font-weight: var(--fw-semibold); text-decoration: none; color: var(--text); }
+  .gf-today span { color: var(--muted); font-weight: var(--fw-normal); display: inline-flex; align-items: center; gap: 4px; }
+</style>
+<div class="yv-shot chat-started" style="background: var(--shell);">
+  <main id="app">
+    <nav id="rail" aria-label="Main navigation">
+        <div class="rail-brand">
+          <!-- Brand mark (bare bars, no tile) mirrors scripts/gen-icons.mjs, public/login.html, public/js/auth-screen.js and site/index.html; change all together. -->
+          <svg class="rail-mark" viewBox="4 17 92 66" aria-hidden="true"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"><line x1="10" y1="42" x2="10" y2="58" opacity="0.76"></line><line x1="30" y1="28" x2="30" y2="72" opacity="0.94"></line><line x1="50" y1="37" x2="50" y2="63" opacity="0.82"></line><line x1="70" y1="23" x2="70" y2="77" opacity="1.00"></line><line x1="90" y1="40" x2="90" y2="60" opacity="0.79"></line></g></svg>
+          <span class="rail-wordmark">yarvy</span>
+        </div>
+        <div class="rail-nav">
+          <button id="nav-home" class="nav-item active" type="button" aria-label="Chat" aria-current="page">
+            <i class="ph ph-chat-circle nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-chat-circle nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Chat</span>
+          </button>
+          <button id="nav-upcoming" class="nav-item" type="button" aria-label="Upcoming" title="Upcoming">
+            <i class="ph ph-calendar-blank nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-calendar-blank nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Upcoming</span>
+          </button>
+          <button id="nav-tasks" class="nav-item" type="button" aria-label="Tasks" title="Tasks">
+            <i class="ph ph-check-fat nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-check-fat nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Tasks</span>
+          </button>
+          <button id="nav-you" class="nav-item" type="button" aria-label="You" title="You">
+            <i class="ph ph-user nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-user nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">You</span>
+          </button>
+        </div>
+        <div class="rail-spacer"></div>
+        <div id="usermenu">
+          <button id="profile" type="button" aria-label="Account menu" title="Account menu" aria-haspopup="menu" aria-expanded="false">
+            <span class="nav-pill"><span id="avatar">DS</span></span>
+            <span id="rail-name">Design</span>
+            <i class="ph ph-caret-up-down profile-chevron" aria-hidden="true"></i>
+            <span class="nav-label">You</span>
+          </button>
+        </div>
+        <button id="nav-projects" class="nav-item" type="button" aria-label="Lists" title="Lists">
+          <i class="ph ph-list nav-ico" aria-hidden="true"></i>
+          <i class="ph-fill ph-list nav-ico-on" aria-hidden="true"></i>
+          <span class="nav-label">Lists</span>
+        </button>
+      </nav>
+    <section id="main">
+      <div class="chat-head"><h1 class="chat-title">Chat</h1><span id="datelabel">Monday, September 14</span></div>
+      <div id="hero">
+        <div id="chat-content">
+          <div id="chat-tools"><button id="chat-history" class="chat-tool" type="button" aria-expanded="false"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i><span>Earlier messages</span><span id="chat-history-count">3 today</span></button></div>
+          <div id="chat-exchange">
+            <div id="last-prompt"><p><span id="last-prompt-text">Keep the run today, I'll go at lunch. And add a task to send Priya the notes before our 1:1.</span></p></div>
+            <div id="reply-from"><span id="reply-presence-slot"><div id="presence-wrap">
+                <div id="presence" class="" aria-hidden="true">
+                  <svg viewBox="0 0 42 36" id="presence-svg">
+                    <g class="signal-field">
+                      <rect class="eq-bar" x="3" y="12" width="4" height="12" rx="2"></rect>
+                      <rect class="eq-bar" x="11" y="9" width="4" height="18" rx="2"></rect>
+                      <rect class="eq-bar" x="19" y="6" width="4" height="24" rx="2"></rect>
+                      <rect class="eq-bar" x="27" y="9" width="4" height="18" rx="2"></rect>
+                      <rect class="eq-bar" x="35" y="12" width="4" height="12" rx="2"></rect>
+                      <g class="glyph-layer"></g>
+                    </g>
+                  </svg>
+                </div>
+              </div></span><b>Yarvy</b><span id="reply-time">8:14 AM</span></div>
+            <div id="latest"><div class="msg yarvy"><h2 class="gf-headline">Run is back on today at 12:30.</h2>It sits between standup and the 1:1. <strong>Send Priya the release notes</strong> is in Work, due 1:30 PM.
+              <div class="gf-changes"><div class="gf-change"><span class="gf-tick"><i class="ph-fill ph-check-circle" aria-hidden="true"></i></span><span><b>Long run, 14 km</b> moved to 12:30 PM</span><button class="gf-undo" type="button">Undo</button></div><div class="gf-change"><span class="gf-tick"><i class="ph-fill ph-check-circle" aria-hidden="true"></i></span><span>Added <b>Send Priya the release notes</b>, 1:30 PM</span><button class="gf-undo" type="button">Undo</button></div></div><a class="gf-today" href="#">Today<span>2 of 8 done <i class="ph ph-caret-right" aria-hidden="true"></i></span></a><div class="reply-chips"><button type="button" class="chip change"><i class="ph ph-arrow-bend-down-right chip-ico" aria-hidden="true"></i><span class="chip-label">Make it a 10 km instead</span></button><button type="button" class="chip ask"><i class="ph ph-question chip-ico" aria-hidden="true"></i><span class="chip-label">What's still overdue?</span></button></div></div></div></div>
+        </div>
+        <div id="chat-dock">
+            <button id="chat-jump-latest" class="chat-tool" type="button" hidden="">Latest reply ↓</button>
+            <form id="composer" autocomplete="off">
+              <textarea id="input" placeholder="Add a task or ask anything" aria-label="Message Yarvy" rows="2" ></textarea>
+              <button id="send" type="submit" aria-label="Send" class="" title="Send">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5M12 5l-6 6M12 5l6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </button>
+            </form>
+          </div>
+      </div>
+    </section>
+  </main>
+</div>

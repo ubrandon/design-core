@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
 <link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
 <style>
-  /* Chat redesign D: variant C with the live Yarvy presence as the sender line and a page header. */
+  /* Chat redesign F: variant D with the real task card in the board, so nothing the card carries is lost. */
   .yv-shot { background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; overflow-x: clip; }
   .yv-shot #app { height: auto; min-height: 1040px; overflow: visible; }
   .gf-cards { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-xl); padding: 0 12px; }
@@ -16,6 +16,9 @@
   .gf-cards .task-card:hover .card-actions { display: flex; }
   .gf-cards .card-select { display: none; }
   .gf-cards .task-card.done .check .check-full { color: var(--success-text); }
+  .gf-next { display: flex; align-items: center; justify-content: space-between; min-height: 44px; padding: 0 14px; margin-top: 4px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: transparent; color: var(--text); font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); text-decoration: none; }
+  .gf-next .gf-next-n { display: inline-flex; align-items: center; gap: 4px; color: var(--muted); font-weight: var(--fw-normal); }
+  .gf-next .gf-next-n i { font-size: 14px; }
   .gf-main { display: grid; grid-template-columns: minmax(0, 1fr) 400px; grid-template-rows: auto minmax(0, 1fr); min-width: 0; }
 
   /* Page header: where am I, what day is it. Spans both columns. */
@@ -178,6 +181,7 @@
             <div class="task-card"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark done"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0"><div class="card-title">Read 20 minutes</div><div class="card-meta"><button type="button" class="meta-date" title="Change date"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>9:00 PM</span></button><span class="meta-repeat"><i class="ph ph-repeat" aria-hidden="true"></i><span>Daily</span></span><button type="button" class="meta-loc" title="Open Health"><span class="cic emoji" aria-hidden="true">🏃</span><span class="meta-loc-name">Health</span></button></div></div><div class="card-actions"><button type="button" class="card-action schedule" title="Schedule"><i class="ph ph-calendar-blank" aria-hidden="true"></i></button><button type="button" class="card-action edit" title="Edit"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="card-action more" title="More actions"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div>
           </div>
         </div>
+        <a class="gf-next" href="#"><span>Tomorrow</span><span class="gf-next-n">2 tasks <i class="ph ph-caret-right" aria-hidden="true"></i></span></a>
       </aside>
     </section>
   </main>
