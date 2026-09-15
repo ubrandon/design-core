@@ -1,0 +1,277 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+.yv-shot { background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+.yv-shot #app { height: auto; min-height: 0; overflow: visible; }
+.yv-shot #main, .yv-shot #tasks-view, .yv-shot #tasks-side, .yv-shot #tasks-main, .yv-shot #chat-content { overflow: visible; }
+.yv-shot #chat-content { padding: 8px 16px 16px; }
+.yv-shot #main::before, .yv-shot #main::after { content: none; }
+.yv-shot #main { padding-bottom: 24px; }
+.yv-shot #fab { position: absolute; }
+.yv-shot .app-toast { display: none; }
+</style>
+<div class="yv-shot  " style="background: var(--shell);">
+<main id="app" class="account-mode">
+      <nav id="rail" aria-label="Main navigation">
+        <div class="rail-brand">
+          <!-- Brand mark (bare bars, no tile) mirrors scripts/gen-icons.mjs, public/login.html, public/js/auth-screen.js and site/index.html; change all together. -->
+          <svg class="rail-mark" viewBox="4 17 92 66" aria-hidden="true"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"><line x1="10" y1="42" x2="10" y2="58" opacity="0.76"></line><line x1="30" y1="28" x2="30" y2="72" opacity="0.94"></line><line x1="50" y1="37" x2="50" y2="63" opacity="0.82"></line><line x1="70" y1="23" x2="70" y2="77" opacity="1.00"></line><line x1="90" y1="40" x2="90" y2="60" opacity="0.79"></line></g></svg>
+          <span class="rail-wordmark">yarvy</span>
+        </div>
+        <div class="rail-nav">
+          <button id="nav-home" class="nav-item" type="button" aria-label="Chat">
+            <i class="ph ph-chat-circle nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-chat-circle nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Chat</span>
+          </button>
+          <button id="nav-upcoming" class="nav-item" type="button" aria-label="Today" title="Today">
+            <i class="ph ph-calendar-blank nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-calendar-blank nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Today</span>
+          </button>
+          <button id="nav-tasks" class="nav-item" type="button" aria-label="Lists" title="Lists">
+            <i class="ph ph-list nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-list nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Lists</span>
+          </button>
+          <button id="nav-you" class="nav-item active" type="button" aria-label="You" title="You" aria-current="page">
+            <i class="ph ph-user nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-user nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">You</span>
+          </button>
+        </div>
+        <div class="rail-spacer"></div>
+        <div id="usermenu">
+          <button id="profile" type="button" aria-label="Account menu" title="Account menu" aria-haspopup="menu" aria-expanded="false">
+            <span class="nav-pill"><span id="avatar">DS</span></span>
+            <span id="rail-name">Design</span>
+            <i class="ph ph-caret-up-down profile-chevron" aria-hidden="true"></i>
+            <span class="nav-label">You</span>
+          </button>
+        </div>
+        <button id="nav-projects" class="nav-item" type="button" aria-label="Lists" title="Lists">
+          <i class="ph ph-list nav-ico" aria-hidden="true"></i>
+          <i class="ph-fill ph-list nav-ico-on" aria-hidden="true"></i>
+          <span class="nav-label">Lists</span>
+        </button>
+      </nav>
+
+      <section id="main">
+        <!-- Page header: where am I, what day is it. Spans the chat column and the Today board on desktop. -->
+        <div class="chat-head"><h1 class="chat-title">Chat</h1><span id="datelabel">Tuesday, September 15</span></div>
+        <div id="hero">
+          
+          <div id="chat-content">
+            <div id="greeting">
+              <div id="presence-wrap">
+                <div id="presence" class="" aria-hidden="true">
+                  <svg viewBox="0 0 42 36" id="presence-svg">
+                    <g class="signal-field">
+                      <rect class="eq-bar" x="3" y="12" width="4" height="12" rx="2"></rect>
+                      <rect class="eq-bar" x="11" y="9" width="4" height="18" rx="2"></rect>
+                      <rect class="eq-bar" x="19" y="6" width="4" height="24" rx="2"></rect>
+                      <rect class="eq-bar" x="27" y="9" width="4" height="18" rx="2"></rect>
+                      <rect class="eq-bar" x="35" y="12" width="4" height="12" rx="2"></rect>
+                      <g class="glyph-layer"></g>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <span id="hero-date">Tuesday, September 15</span>
+              <h1 id="hello"><span class="grad">Good afternoon, </span><span id="username">Design</span></h1>
+              <!-- One line on the day (today-board.js): done count, overdue, and what is next. -->
+              <p id="hero-read">You've checked off 5 tasks today. Want help picking what to work on next?</p>
+            </div>
+
+            <!-- Fallback for history while the live reply is hidden or still arriving. -->
+            <div id="chat-tools">
+              <button id="chat-history" class="action-button" type="button" title="History" aria-expanded="false" aria-controls="chat-history-inline" aria-label="History"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2.6 7.4M3 4v7h7M12 7v5l3 2"></path></svg><span class="action-label">History</span></button>
+            </div>
+            <div id="chat-exchange">
+              <div id="chat-history-inline" hidden="">
+                <button id="chat-load-earlier" class="action-button" type="button" hidden="" aria-label="Load earlier" title="Load earlier"><span class="action-label">Load earlier</span></button>
+                <p id="chat-history-status" role="status" hidden=""></p>
+                <div id="chat-history-messages"></div>
+              </div>
+              <div id="last-prompt" hidden="">
+                <p><span id="last-prompt-text"></span></p>
+              </div>
+              <!-- Sender line: the live presence moves in here beside the reply during a chat (conversation.js). -->
+              <div id="reply-from"><span id="reply-presence-slot"></span><b>Yarvy</b><span id="reply-time"></span></div>
+              <div id="latest" aria-live="polite"></div>
+            </div>
+
+            <!-- Quick actions stay below Yarvy's latest message in every state, welcome or mid-chat. -->
+            <div id="suggestions" aria-label="Suggestions"><button type="button" class="chip suggestion-chip change" aria-label="I'd like to capture a thought."><i class="ph ph-arrow-bend-down-right chip-ico" aria-hidden="true"></i><span class="chip-label">Capture</span></button><button type="button" class="chip suggestion-chip ask" aria-label="Find one task from my to-do list I can do in about 15 minutes. Ask if you need to know how long it takes."><i class="ph ph-question chip-ico" aria-hidden="true"></i><span class="chip-label">Quick task</span></button><button type="button" class="chip suggestion-chip change" aria-label="Plan the rest of my afternoon using my current tasks."><i class="ph ph-arrow-bend-down-right chip-ico" aria-hidden="true"></i><span class="chip-label">Plan today</span></button></div>
+
+            <div id="banner" hidden=""></div>
+          </div>
+
+          <!-- The dock stays below the scrolling conversation during chat. -->
+          <div id="chat-dock">
+            <button id="chat-jump-latest" class="action-button" type="button" hidden="" aria-label="Latest reply ↓" title="Latest reply ↓"><span class="action-label">Latest reply ↓</span></button>
+            <form id="composer" autocomplete="off">
+              <textarea id="input" placeholder="Add a task or ask anything" aria-label="Message Yarvy" rows="2" style=""></textarea>
+              <button id="send" type="submit" aria-label="Send">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5M12 5l-6 6M12 5l6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- The Today board: the same task rows as the Tasks page, so chat changes show in place (today-board.js). -->
+        <aside id="today-board" aria-label="Schedule"><div class="board-head"><h2>Schedule</h2><span class="board-count">5 of 7 done today</span></div><div class="board-bar"><i style="width: 71%;"></i></div><div class="board-group" data-date="2026-09-15"><div class="board-group-head"><h3>Today</h3></div><div class="project-tasks board-cards"><div class="task-card prio-1" data-task-id="1149" draggable="true" data-drag-wired="1"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark done" aria-label="Mark done: Ship v2 release notes"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Ship v2 release notes</div><div class="card-meta"><button type="button" class="meta-date" title="Change date" aria-label="Change due date" draggable="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>Today at 11:00 AM</span></button><button type="button" class="meta-loc" title="Open Launch prep" aria-label="Open list Launch prep" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Launch prep</span></button></div></div><div class="card-actions"><button type="button" class="card-action schedule" title="Schedule" aria-label="Schedule task" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-calendar-blank" aria-hidden="true"></i></button><button type="button" class="card-action edit" title="Edit" aria-label="Edit task" draggable="false"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card" data-task-id="1150" draggable="true" data-drag-wired="1"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark done" aria-label="Mark done: Get a review from Priya"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Get a review from Priya</div><div class="card-meta"><button type="button" class="meta-date" title="Change date" aria-label="Change due date" draggable="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>Today</span></button><button type="button" class="meta-loc" title="Open Launch prep" aria-label="Open list Launch prep" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Launch prep</span></button></div></div><div class="card-actions"><button type="button" class="card-action schedule" title="Schedule" aria-label="Schedule task" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-calendar-blank" aria-hidden="true"></i></button><button type="button" class="card-action edit" title="Edit" aria-label="Edit task" draggable="false"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card done completed" data-task-id="1148"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark as not done" aria-label="Mark as not done: Team standup"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Team standup</div><div class="card-meta"><button type="button" class="meta-loc" title="Open Work" aria-label="Open list Work" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Work</span></button></div></div><div class="card-actions"><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card done completed" data-task-id="1147"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark as not done" aria-label="Mark as not done: Move $300 to savings"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Move $300 to savings</div></div><div class="card-actions"><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card done completed" data-task-id="1146"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark as not done" aria-label="Mark as not done: Finish chapter 9 of Piranesi"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Finish chapter 9 of Piranesi</div><div class="card-meta"><button type="button" class="meta-loc" title="Open Home" aria-label="Open list Home" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Home</span></button></div></div><div class="card-actions"><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card done completed" data-task-id="1145"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark as not done" aria-label="Mark as not done: Long run, 12 km"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Long run, 12 km</div><div class="card-meta"><button type="button" class="meta-loc" title="Open Health" aria-label="Open list Health" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Health</span></button></div></div><div class="card-actions"><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card done completed" data-task-id="1144"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark as not done" aria-label="Mark as not done: Draft the highlights section"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Draft the highlights section</div><div class="card-meta"><button type="button" class="meta-loc" title="Open Launch prep" aria-label="Open list Launch prep" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Launch prep</span></button></div></div><div class="card-actions"><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div></div></div><div class="board-group" data-date="2026-09-16"><div class="board-group-head"><h3>Tomorrow</h3></div><div class="project-tasks board-cards"><div class="task-card" data-task-id="1151" draggable="true" data-drag-wired="1"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark done" aria-label="Mark done: Long run, 14 km"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Long run, 14 km</div><div class="card-meta"><button type="button" class="meta-date" title="Change date" aria-label="Change due date" draggable="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>Tomorrow</span></button><button type="button" class="meta-loc" title="Open Health" aria-label="Open list Health" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Health</span></button></div></div><div class="card-actions"><button type="button" class="card-action schedule" title="Schedule" aria-label="Schedule task" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-calendar-blank" aria-hidden="true"></i></button><button type="button" class="card-action edit" title="Edit" aria-label="Edit task" draggable="false"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div></div></div><details class="board-later"><summary>Later</summary><div class="board-group" data-date="2026-09-17"><div class="board-group-head"><h3>Thursday, Sep 17</h3></div><div class="board-empty">Nothing planned yet.</div></div><div class="board-group" data-date="2026-09-18"><div class="board-group-head"><h3>Friday, Sep 18</h3></div><div class="board-empty">Nothing planned yet.</div></div></details></aside>
+      </section>
+
+      <section id="usage-view" hidden="">
+        <div class="usage-wrap">
+          <h1 class="usage-title">Admin</h1>
+          <div id="usage-body" class="usage-body"></div>
+        </div>
+      </section>
+
+      <section id="upcoming-view" hidden="">
+        <div class="upcoming-wrap">
+          <div class="upcoming-head">
+            <h1 class="upcoming-title">Today</h1>
+            <div id="upcoming-tools">
+              <button class="search-trigger loading-control" type="button" aria-label="Search" disabled=""><i class="ph ph-magnifying-glass" aria-hidden="true"></i></button>
+              <button class="display-btn select-btn loading-control" type="button" aria-label="Select tasks" disabled=""><i class="ph ph-check-square" aria-hidden="true"></i></button>
+              <button class="display-btn loading-control" type="button" aria-label="Display options" disabled=""><i class="ph ph-sliders-horizontal" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div id="upcoming-body">
+            
+          </div>
+        </div>
+      </section>
+
+      <section id="tasks-view" hidden="">
+        <aside id="tasks-side">
+          <!-- Skeletons (base.css) fill the shells until state loads on a cold start or deep link; the first render replaces them. -->
+          <div id="tasks-nav">
+            <button class="tnav-add-task loading-control" type="button" disabled=""><i class="ph-fill ph-plus-circle" aria-hidden="true"></i><span>Add task or note</span></button>
+            <div class="tnav-row"><button class="tnav-item loading-control" type="button" disabled=""><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>All tasks</span></span></button></div>
+            <div class="tnav-row"><button class="tnav-item loading-control" type="button" disabled=""><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M15 4v4h4M8 13h8M8 17h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>All notes</span></span></button></div>
+            <div class="tnav-row"><button class="tnav-item loading-control" type="button" disabled=""><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l2.4-7h11.2L20 13v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zM4 13h4l1.5 2.5h5L16 13h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Inbox</span></span></button></div>
+            <div class="tnav-row"><button class="tnav-item loading-control" type="button" disabled=""><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><circle cx="12" cy="15" r="2.3" fill="currentColor"></circle></svg><span>Today</span></span></button></div>
+            <div class="tnav-row"><button class="tnav-item loading-control" type="button" disabled=""><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>Upcoming</span></span></button></div>
+            <div class="tnav-spaces-head"><h2 class="tnav-spaces-title">Lists</h2></div>
+            
+          </div>
+        </aside>
+        <div id="tasks-main">
+          <div id="tasks-head">
+            <div class="tasks-title-row">
+              <h1 class="tasks-title">All tasks</h1>
+            </div>
+              <div class="tasks-kind-switch">
+                <button class="tasks-kind-btn active loading-control" type="button" disabled=""><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="tasks-kind-label">Tasks</span><span class="tasks-kind-count" aria-hidden="true"><span class="sk-bar"></span></span></button>
+                <button class="tasks-kind-btn loading-control" type="button" disabled=""><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M15 4v4h4M8 13h8M8 17h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="tasks-kind-label">Notes</span><span class="tasks-kind-count" aria-hidden="true"><span class="sk-bar"></span></span></button>
+              </div>
+            <div class="tasks-tools">
+              <button class="search-trigger loading-control" type="button" aria-label="Search" disabled=""><i class="ph ph-magnifying-glass" aria-hidden="true"></i></button>
+              <button class="display-btn select-btn loading-control" type="button" aria-label="Select tasks" disabled=""><i class="ph ph-check-square" aria-hidden="true"></i></button>
+              <button class="display-btn loading-control" type="button" aria-label="Display options" disabled=""><i class="ph ph-sliders-horizontal" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div id="tasks-body">
+            
+          </div>
+        </div>
+      </section>
+
+      <section id="projects-view" hidden="">
+        <div class="projects-wrap">
+          <div class="projects-head">
+            <h1 class="projects-title">Lists</h1>
+          </div>
+          <div id="projects-nav"></div>
+        </div>
+      </section>
+
+      <section id="search-view" hidden="">
+        <div class="search-wrap">
+          <div class="search-bar">
+            <div class="search-field">
+              <i class="ph ph-magnifying-glass search-bar-ico" aria-hidden="true"></i>
+              <input id="search-input" class="search-input" type="search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search" placeholder="Search tasks, notes, lists, and goals" aria-label="Search your tasks, notes, lists, and goals" style="">
+              <button id="search-clear" class="search-clear" type="button" aria-label="Clear search" hidden="">
+                <i class="ph ph-x" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div id="search-results" class="search-results" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="profile-view">
+        <div class="account-wrap">
+          <div id="profile-body" class="account-body you-story"><div class="account-topbar"><h1 class="account-title">You</h1><div class="account-topbar-actions"><button type="button" class="account-topbar-btn" title="Edit profile" aria-label="Edit profile"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="account-topbar-btn" title="Settings" aria-label="Settings"><i class="ph ph-gear" aria-hidden="true"></i></button></div></div><div class="account-hero"><div class="account-avatar lg">DS</div><div class="account-id"><h2 class="account-name">Design Studio</h2><div class="account-summary">With Yarvy since Sep 2026</div></div></div><section class="you-week" aria-labelledby="you-week-title"><div class="you-week-heading"><div><span class="you-eyebrow">Your week so far</span><h2 id="you-week-title">Look at what added up.</h2></div><span class="you-week-total"><strong>5</strong><span>tasks done</span></span></div><div class="you-chart" role="img" aria-label="Tasks completed: Mon 0, Tue 5, Wed upcoming, Thu upcoming, Fri upcoming, Sat upcoming, Sun upcoming"><div class="you-chart-day"><span>0</span><div class="you-chart-track"><span style="height:0%"></span></div><span>Mon</span></div><div class="you-chart-day today"><span>5</span><div class="you-chart-track"><span style="height:100%"></span></div><span>Tue</span></div><div class="you-chart-day future"><span></span><div class="you-chart-track"><span style="height:0%"></span></div><span>Wed</span></div><div class="you-chart-day future"><span></span><div class="you-chart-track"><span style="height:0%"></span></div><span>Thu</span></div><div class="you-chart-day future"><span></span><div class="you-chart-track"><span style="height:0%"></span></div><span>Fri</span></div><div class="you-chart-day future"><span></span><div class="you-chart-track"><span style="height:0%"></span></div><span>Sat</span></div><div class="you-chart-day future"><span></span><div class="you-chart-track"><span style="height:0%"></span></div><span>Sun</span></div></div><div class="you-week-activity"><span>3 habit check-ins</span><span>1 growth moment</span></div></section><section class="you-section you-goals-sections"><div class="you-section-head"><h2 class="you-section-title">Your goals</h2><button type="button" class="you-section-link"><span>Add goal</span><i class="ph ph-caret-right" aria-hidden="true"></i></button></div><div class="you-goal-groups" id="you-goal-groups"><section class="you-goal-group" aria-label="Achieve"><div class="you-group-head"><h3 class="you-section-title">Achieve</h3><span>3</span></div><div class="you-goal-stack"><article class="goal-card you-goal you-goal-achieve cat-learn" aria-label="Read 12 books this year" data-goal-id="485"><span class="you-goal-face" aria-hidden="true">📚</span><div class="you-goal-main"><button type="button" class="you-goal-open" aria-label="Open Read 12 books this year"><span class="you-goal-title">Read 12 books this year</span></button><span class="you-goal-count">4 books of 12 books</span><div class="goal-bar" role="progressbar" aria-label="Read 12 books this year progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="33"><span style="width: 33%;"></span></div></div><div class="you-goal-end"><strong>33%</strong><i class="ph ph-caret-right" aria-hidden="true"></i></div></article><article class="goal-card you-goal you-goal-achieve cat-health" aria-label="Run a half marathon" data-goal-id="486"><span class="you-goal-face" aria-hidden="true">🏃</span><div class="you-goal-main"><button type="button" class="you-goal-open" aria-label="Open Run a half marathon"><span class="you-goal-title">Run a half marathon</span></button><span class="you-goal-count">0 of 1 milestone</span><div class="goal-bar" role="progressbar" aria-label="Run a half marathon progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span style="width: 0%;"></span></div></div><div class="you-goal-end"><strong>0%</strong><i class="ph ph-caret-right" aria-hidden="true"></i></div><div class="goal-step you-goal-next" title="Next: Run 10 km without stopping"><i class="ph-fill ph-flag" aria-hidden="true"></i><span>Next: Run 10 km without stopping</span></div></article><article class="goal-card you-goal you-goal-achieve cat-money" aria-label="Save $5,000" data-goal-id="487"><span class="you-goal-face" aria-hidden="true">💰</span><div class="you-goal-main"><button type="button" class="you-goal-open" aria-label="Open Save $5,000"><span class="you-goal-title">Save $5,000</span></button><span class="you-goal-count">$1,800 of $5,000</span><div class="goal-bar" role="progressbar" aria-label="Save $5,000 progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="36"><span style="width: 36%;"></span></div></div><div class="you-goal-end"><strong>36%</strong><i class="ph ph-caret-right" aria-hidden="true"></i></div></article></div></section><section class="you-goal-group" aria-label="Habits"><div class="you-group-head"><h3 class="you-section-title">Habits</h3><span>2</span></div><div class="you-goal-stack"><article class="goal-card you-goal you-goal-habit cat-default" aria-label="Less takeout, more cooking" data-goal-id="489"><span class="you-goal-face" aria-hidden="true">🍳</span><div class="you-goal-main"><button type="button" class="you-goal-open" aria-label="Open Less takeout, more cooking"><span class="you-goal-title">Less takeout, more cooking</span></button><span class="you-goal-count">1 of 5 days this week</span></div><div class="you-habit-days" aria-label="1 of 5 days this week"><span class="you-habit-day checked" title="2026-09-14: done"><span>M</span><i>✓</i></span><span class="you-habit-day today" title="2026-09-15: not logged"><span>T</span><i></i></span><span class="you-habit-day future" title="2026-09-16: upcoming"><span>W</span><i></i></span><span class="you-habit-day future" title="2026-09-17: upcoming"><span>T</span><i></i></span><span class="you-habit-day future" title="2026-09-18: upcoming"><span>F</span><i></i></span><span class="you-habit-day future" title="2026-09-19: upcoming"><span>S</span><i></i></span><span class="you-habit-day future" title="2026-09-20: upcoming"><span>S</span><i></i></span></div><button class="habit-check" type="button" title="Check in: on plan today" aria-label="Check in: on plan today" aria-pressed="false" aria-busy="false"><i class="ph-bold ph-check" aria-hidden="true"></i></button><span class="you-habit-status" role="status"></span></article><article class="goal-card you-goal you-goal-habit cat-health" aria-label="Meditate every morning" data-goal-id="488"><span class="you-goal-face" aria-hidden="true">🧘</span><div class="you-goal-main"><button type="button" class="you-goal-open" aria-label="Open Meditate every morning"><span class="you-goal-title">Meditate every morning</span></button><span class="you-goal-count">2 of 7 days this week · 3-day streak</span></div><div class="you-habit-days" aria-label="2 of 7 days this week"><span class="you-habit-day checked" title="2026-09-14: done"><span>M</span><i>✓</i></span><span class="you-habit-day checked today" title="2026-09-15: done"><span>T</span><i>✓</i></span><span class="you-habit-day future" title="2026-09-16: upcoming"><span>W</span><i></i></span><span class="you-habit-day future" title="2026-09-17: upcoming"><span>T</span><i></i></span><span class="you-habit-day future" title="2026-09-18: upcoming"><span>F</span><i></i></span><span class="you-habit-day future" title="2026-09-19: upcoming"><span>S</span><i></i></span><span class="you-habit-day future" title="2026-09-20: upcoming"><span>S</span><i></i></span></div><button class="habit-check checked" type="button" title="Undo today's check" aria-label="Undo today's check" aria-pressed="true" aria-busy="false"><i class="ph-bold ph-check" aria-hidden="true"></i></button><span class="you-habit-status" role="status">Done today</span></article></div></section><section class="you-goal-group" aria-label="Grow"><div class="you-group-head"><h3 class="you-section-title">Grow</h3><span>2</span></div><div class="you-goal-stack"><article class="goal-card you-goal you-goal-become cat-default" aria-label="Be more patient" data-goal-id="490"><span class="you-goal-face" aria-hidden="true">🎯</span><div class="you-goal-main"><button type="button" class="you-goal-open" aria-label="Open Be more patient"><span class="you-goal-title">Be more patient</span></button><span class="you-goal-count">Growth · 1 moment this month</span></div><button type="button" class="you-story-link you-goal-action" aria-label="Log a moment for Be more patient">Log a moment</button><p class="you-growth-note">“Let the standup run over without jumping in.”</p></article><article class="goal-card you-goal you-goal-become cat-learn" aria-label="Write more clearly" data-goal-id="491"><span class="you-goal-face" aria-hidden="true">✍️</span><div class="you-goal-main"><button type="button" class="you-goal-open" aria-label="Open Write more clearly"><span class="you-goal-title">Write more clearly</span></button><span class="you-goal-count">Growth · 1 moment this month</span></div><button type="button" class="you-story-link you-goal-action" aria-label="Log a moment for Write more clearly">Log a moment</button><p class="you-growth-note">“Cut the release notes to 280 words.”</p></article></div></section></div><div class="you-goals-footer"><button type="button" class="you-story-link">Paused &amp; past</button></div></section><section class="you-section you-wins"><div class="you-section-head"><h2 class="you-section-title">Recent wins</h2></div><div class="you-timeline" id="you-win-events"><div class="you-event cat-health"><small><time datetime="2026-09-15">Today</time> · Habit</small><button type="button" class="you-event-link">Checked in: Meditate every morning</button></div><div class="you-event cat-default"><small><time datetime="2026-09-15">Today</time> · Be more patient</small><button type="button" class="you-event-link">Let the standup run over without jumping in.</button></div><div class="you-event cat-health"><small><time datetime="2026-09-15">Today</time> · Task completed</small><strong class="you-event-title">Draft the highlights section</strong></div></div><button type="button" class="you-expand" id="you-wins-toggle" aria-controls="you-win-events" aria-expanded="false"><span>See 11 more wins</span><i class="ph-bold ph-caret-down" aria-hidden="true"></i></button></section><section class="you-section"><div class="you-section-head"><h2 class="you-section-title">Your badges</h2><button type="button" class="you-section-link"><span>See all 2</span><i class="ph ph-caret-right" aria-hidden="true"></i></button></div><div class="you-badge-case"><div class="badge-shelf"><button type="button" class="badge" title="See all badges" aria-label="3 goals set, earned. See all badges"><span class="badge-coin t-create" aria-hidden="true"><span class="coin-face"><i class="ph-fill ph-target" aria-hidden="true"></i></span><span class="badge-earned-check">✓</span></span><span class="badge-label">3 goals set</span><span class="badge-earned-label">Earned</span></button><button type="button" class="badge" title="See all badges" aria-label="First list, earned. See all badges"><span class="badge-coin t-learn" aria-hidden="true"><span class="coin-face"><i class="ph-fill ph-folders" aria-hidden="true"></i></span><span class="badge-earned-check">✓</span></span><span class="badge-label">First list</span><span class="badge-earned-label">Earned</span></button></div></div></section></div>
+        </div>
+      </section>
+
+      <section id="settings-view" hidden="">
+        <div class="account-wrap">
+          <div class="account-head">
+            <button id="settings-back" class="account-back" type="button" aria-label="Back to profile">
+              <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            </button>
+            <h1 class="account-title">Settings</h1>
+          </div>
+          <div id="settings-body" class="account-body"></div>
+        </div>
+      </section>
+
+      <section id="editprofile-view" hidden="">
+        <div class="account-wrap">
+          <div class="account-head">
+            <button class="account-back" data-you-back="profile" type="button" aria-label="Back to your page">
+              <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            </button>
+            <h1 class="account-title">Edit profile</h1>
+          </div>
+          <div id="editprofile-body" class="account-body"></div>
+        </div>
+      </section>
+
+      <section id="memory-view" hidden="">
+        <div class="account-wrap">
+          <div class="account-head">
+            <button class="account-back" data-you-back="settings" type="button" aria-label="Back to settings">
+              <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            </button>
+            <h1 class="account-title">Memory &amp; activity</h1>
+          </div>
+          <div id="memory-body" class="account-body"></div>
+        </div>
+      </section>
+
+      <section id="goaldetail-view" hidden="">
+        <div class="account-wrap">
+          <div class="account-head">
+            <button class="account-back" data-you-back="profile" type="button" aria-label="Back to your page">
+              <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            </button>
+            <h1 class="account-title">Goal</h1>
+            <div id="goaldetail-actions" class="account-head-actions"></div>
+          </div>
+          <div id="goaldetail-body" class="account-body"></div>
+        </div>
+      </section>
+
+      <section id="plan-view" hidden="">
+        <div class="account-wrap">
+          <div class="account-head">
+            <button class="account-back" data-you-back="settings" type="button" aria-label="Back to settings">
+              <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            </button>
+            <h1 class="account-title">Plan</h1>
+          </div>
+          <div id="plan-body" class="account-body"></div>
+        </div>
+      </section>
+    </main>
+</div>

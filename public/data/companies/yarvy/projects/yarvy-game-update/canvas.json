@@ -77,6 +77,24 @@
       "x": 3800,
       "y": 3578,
       "width": 1200
+    },
+    {
+      "file": "task-modal-a-quiet-props.html",
+      "x": 1271,
+      "y": 5659,
+      "width": 1200
+    },
+    {
+      "file": "current-task-modal-copy.html",
+      "x": 0,
+      "y": 5659,
+      "width": 1200
+    },
+    {
+      "file": "current-you.html",
+      "x": 3840,
+      "y": 120,
+      "width": 1200
     }
   ],
   "texts": [
@@ -107,6 +125,13 @@
       "y": 3450,
       "size": 72,
       "id": "text-mu1rvr7r-5"
+    },
+    {
+      "text": "Task modal",
+      "x": 0,
+      "y": 5528,
+      "size": 72,
+      "id": "text-mu2-taskmodal-6"
     }
   ]
 }

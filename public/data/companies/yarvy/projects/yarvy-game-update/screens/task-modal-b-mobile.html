@@ -1,0 +1,104 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* Task modal B on a phone: the same one column as a full-screen sheet. Close on the left edge, More on the right, both finger sized. */
+  html, body { scrollbar-gutter: auto; }
+  .yv-shot { position: relative; width: 390px; height: 844px; overflow: hidden; background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+
+  /* Task modal variants, prefix tm-. Tokens come from yarvy-app.css; the app's .modal classes are not used so their grid rules do not leak in. */
+  .yv-shot .tm-dialog { position: relative; width: 100%; max-width: 720px; max-height: 852px; overflow: auto; background: var(--surface-raised); border: 1px solid var(--line); border-radius: var(--radius-3xl); box-shadow: var(--shadow); padding: 16px 22px 22px; display: flex; flex-direction: column; color: var(--text); }
+  .tm-head { display: flex; align-items: center; gap: 8px; margin: 0 -8px 10px; min-height: 36px; }
+  .tm-loc { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 10px 0 8px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--muted); font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .tm-loc:hover { background: var(--surface-hover); color: var(--text); }
+  .tm-loc .ph-caret-down { font-size: 14px; }
+  .tm-head-actions { margin-left: auto; display: flex; gap: 2px; }
+  .tm-icobtn { width: 36px; height: 36px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--muted); display: grid; place-items: center; cursor: pointer; }
+  .tm-icobtn:hover { background: var(--surface-hover); color: var(--text); }
+  .tm-icobtn i { font-size: 20px; line-height: 1; }
+  .tm-title { margin: 0; font-size: var(--fs-h1); font-weight: var(--fw-heavy); line-height: var(--lh-snug); letter-spacing: var(--ls-snug); }
+  .tm-desc { margin: 8px 0 0; color: var(--text-muted-2); font-size: var(--fs-body); line-height: var(--lh-base); max-width: 56ch; }
+
+  /* Big check beside the title: the same silhouette as the list row, priority ring included. */
+  .tm-title-row { display: flex; align-items: flex-start; gap: 4px; }
+  .tm-bigcheck { flex: 0 0 auto; width: 44px; height: 44px; margin: -5px 0 0 -10px; display: grid; place-items: center; border: 0; background: transparent; color: var(--prio-1); border-radius: 50%; cursor: pointer; }
+  .tm-bigcheck > i, .tm-bigcheck::before { grid-area: 1 / 1; }
+  .tm-bigcheck::before { content: ""; width: 18px; height: 18px; border-radius: 50%; background: currentColor; opacity: .3; }
+  .tm-bigcheck i { font-size: 28px; line-height: 1; }
+  .tm-bigcheck:hover { background: var(--surface-hover); }
+  .tm-bigcheck.done { color: var(--accent-2); }
+  .tm-bigcheck.done::before { display: none; }
+
+  /* Chips under the title mirror the card meta row: date, list, priority. */
+  .tm-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .tm-chip { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 12px 0 10px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--panel); color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .tm-chip:hover { border-color: var(--accent); background: var(--chip-active); }
+  .tm-chip i { font-size: 16px; line-height: 1; color: var(--muted); }
+  .tm-chip svg { width: 16px; height: 16px; color: var(--muted); }
+  .tm-chip.p1 i { color: var(--prio-1); }
+  .tm-chip.empty { color: var(--muted); font-weight: var(--fw-normal); border-style: dashed; background: transparent; }
+  .tm-chip .cic { width: 1.1em; height: 1.1em; }
+
+  /* Steps: two whole targets per row, the check and the title. */
+  .tm-steps-head { display: flex; align-items: baseline; gap: 8px; margin-top: 22px; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); }
+  .tm-steps-head span { color: var(--muted); font-weight: var(--fw-normal); }
+  .tm-bar { height: 4px; border-radius: var(--radius-pill); background: var(--surface-hover); overflow: hidden; margin: 8px 0 2px; }
+  .tm-bar i { display: block; height: 100%; width: 33.3%; background: var(--accent); border-radius: var(--radius-pill); }
+  .tm-step { display: flex; align-items: center; gap: 2px; min-height: 52px; border-top: 1px solid var(--line-soft); }
+  .tm-step:first-of-type { border-top: 0; }
+  .tm-check { flex: 0 0 auto; width: 44px; height: 44px; margin-left: -10px; display: grid; place-items: center; border: 0; background: transparent; color: var(--ring); cursor: pointer; border-radius: 50%; }
+  .tm-check i { font-size: 25px; line-height: 1; }
+  .tm-check:hover { color: var(--accent-2); background: var(--surface-hover); }
+  .tm-check.done { color: var(--accent-2); }
+  .tm-step-title { flex: 1; min-width: 0; min-height: 44px; display: flex; align-items: center; padding: 0 6px; border: 0; background: transparent; text-align: left; font: inherit; font-size: var(--fs-body); color: var(--text); border-radius: var(--radius-sm); cursor: pointer; }
+  .tm-step-title:hover { color: var(--accent-2); }
+  .tm-step.done .tm-step-title { color: var(--muted); text-decoration: line-through; }
+  .tm-step-more { flex: 0 0 auto; width: 40px; height: 40px; margin-right: -8px; display: grid; place-items: center; border: 0; background: transparent; color: var(--muted); border-radius: var(--radius-sm); cursor: pointer; }
+  .tm-step-more i { font-size: 20px; }
+  .tm-step-more:hover { background: var(--surface-hover); color: var(--text); }
+  .tm-add { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 8px; margin-left: -8px; margin-top: 4px; border: 0; background: transparent; color: var(--accent-2); font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); cursor: pointer; border-radius: var(--radius-sm); }
+  .tm-add:hover { background: var(--surface-hover); }
+  .tm-add i { font-size: 18px; }
+
+  /* Property rows: label and value are one target, no filled box. */
+  .tm-props { display: flex; flex-direction: column; }
+  .tm-prop { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; align-items: center; gap: 10px; min-height: 48px; padding: 0 8px; margin: 0 -8px; border: 0; background: transparent; text-align: left; font: inherit; color: var(--text); border-radius: var(--radius-md); cursor: pointer; }
+  .tm-prop:hover { background: var(--surface-hover); }
+  .tm-prop .tm-ico { color: var(--muted); display: grid; place-items: center; }
+  .tm-prop .tm-ico i { font-size: 18px; line-height: 1; }
+  .tm-prop .tm-ico svg { width: 18px; height: 18px; }
+  .tm-prop .tm-ico.p1 i { color: var(--prio-1); }
+  .tm-prop .tm-lab { display: block; font-size: var(--fs-xs); color: var(--muted); line-height: 1.2; }
+  .tm-prop .tm-val { display: block; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tm-prop .tm-val.empty { color: var(--muted); font-weight: var(--fw-normal); }
+  .tm-prop .tm-caret { color: var(--muted); font-size: 14px; }
+  .tm-meta { margin-top: 14px; font-size: var(--fs-xs); color: var(--muted); }
+  .tm-foot { display: flex; align-items: center; gap: 10px; margin: 18px -22px -22px; padding: 14px 22px 18px; border-top: 1px solid var(--line-soft); }
+  .tm-foot .tm-spacer { flex: 1; font-size: var(--fs-xs); color: var(--muted); }
+  .tm-btn { min-height: 44px; padding: 0 18px; border-radius: var(--radius-md); border: 1px solid transparent; font: inherit; font-weight: var(--fw-semibold); cursor: pointer; }
+  .tm-btn.primary { background: var(--accent-fill); color: var(--on-accent); }
+  .tm-btn.ghost { background: var(--panel); border-color: var(--line); color: var(--text); }
+
+  /* Settled state after Mark done: the changed object is the evidence, undo sits beside it. */
+  .tm-status { display: flex; align-items: center; gap: 8px; margin-top: 12px; min-height: 40px; padding: 0 4px 0 12px; border-radius: var(--radius-md); background: var(--success-soft); color: var(--success-text); font-size: var(--fs-sm); font-weight: var(--fw-semibold); }
+  .tm-status i { font-size: 18px; }
+  .tm-status .tm-undo { margin-left: auto; min-height: 36px; padding: 0 12px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--success-text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-bold); cursor: pointer; }
+  .tm-status .tm-undo:hover { background: rgba(33, 111, 66, 0.1); }
+  .yv-shot .tm-dialog.tm-m { max-width: none; height: 844px; max-height: none; border: 0; border-radius: 0; box-shadow: none; padding: 12px 16px 28px; }
+  .tm-m .tm-head { margin: 0 -8px 8px; }
+  .tm-m .tm-head .tm-icobtn { width: 44px; height: 44px; }
+  .tm-m .tm-head-actions { margin-left: auto; }
+  .tm-m .tm-title { font-size: var(--fs-h1-sm); }
+  .tm-m .tm-bigcheck { margin-top: -8px; }
+  .tm-m .tm-desc { font-size: var(--fs-body-sm); }
+  .tm-m .tm-depth { margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+</style>
+<div class="yv-shot" style="background: var(--shell);">
+<div class="tm-dialog tm-m" role="dialog" aria-modal="true" aria-label="Task details">
+<div class="tm-head"><button type="button" class="tm-icobtn" aria-label="Close"><i class="ph ph-x" aria-hidden="true"></i></button><button type="button" class="tm-loc" aria-label="List: Launch prep" aria-haspopup="menu"><span class="cic emoji" aria-hidden="true">🚀</span><span>Launch prep</span><i class="ph ph-caret-down" aria-hidden="true"></i></button><div class="tm-head-actions"><button type="button" class="tm-icobtn" aria-label="More task actions" aria-haspopup="menu"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div>
+<div class="tm-title-row"><button type="button" class="tm-bigcheck" aria-label="Mark done: Ship v2 release notes"><i class="ph ph-circle" aria-hidden="true"></i></button><div><h2 class="tm-title">Ship v2 release notes</h2></div></div>
+<div class="tm-chips"><button type="button" class="tm-chip" aria-label="Due: Today at 11:00 AM"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>Today at 11:00 AM</span></button><button type="button" class="tm-chip p1" aria-label="Priority: High"><i class="ph-fill ph-flag" aria-hidden="true"></i><span>High</span></button></div><p class="tm-desc">Cover the new planner, recurring tasks, and the calmer notification defaults. Link the changelog and keep it under 300 words.</p><div class="tm-steps-head">Steps <span>1 of 3 done</span></div><div class="tm-bar" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="3" aria-label="Steps done"><i></i></div><div class="tm-steps"><div class="tm-step done"><button type="button" class="tm-check done" aria-label="Mark as not done: Draft the highlights section"><i class="ph-fill ph-check-circle" aria-hidden="true"></i></button><button type="button" class="tm-step-title">Draft the highlights section</button><button type="button" class="tm-step-more" aria-label="More actions for Draft the highlights section" aria-haspopup="menu"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div><div class="tm-step"><button type="button" class="tm-check " aria-label="Mark done: Get a review from Priya"><i class="ph ph-circle" aria-hidden="true"></i></button><button type="button" class="tm-step-title">Get a review from Priya</button><button type="button" class="tm-step-more" aria-label="More actions for Get a review from Priya" aria-haspopup="menu"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div><div class="tm-step"><button type="button" class="tm-check " aria-label="Mark done: Post to the changelog"><i class="ph ph-circle" aria-hidden="true"></i></button><button type="button" class="tm-step-title">Post to the changelog</button><button type="button" class="tm-step-more" aria-label="More actions for Post to the changelog" aria-haspopup="menu"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div><button type="button" class="tm-add"><i class="ph ph-plus" aria-hidden="true"></i><span>Add step</span></button>
+<div class="tm-chips tm-depth"><button type="button" class="tm-chip" aria-label="Notes: Launch checklist"><i class="ph ph-note" aria-hidden="true"></i><span>Launch checklist</span></button><button type="button" class="tm-chip empty" aria-label="Add a goal"><i class="ph ph-plus" aria-hidden="true"></i><span>Goal</span></button></div><div class="tm-meta">Added Sep 14, 2026</div>
+</div>
+</div>
