@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* Bottom nav A, four tabs with the capsule: the shipped bar minus the Lists tab. */
+
+  html, body, .yv-shot { scrollbar-gutter: auto; }
+  .yv-shot #nav-you { order: 3; } .yv-shot #nav-tasks { order: 4; }
+  .yv-shot { position: relative; height: 844px; overflow: hidden; background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .yv-shot #app { height: 844px; min-height: 0; overflow: hidden; }
+  .yv-shot #rail, .yv-shot #chat-dock { position: absolute; }
+  .yv-shot #hero { min-height: 0; justify-content: flex-start; }
+  .yv-shot.centered #hero { min-height: calc(844px - var(--nav-h) - 132px - 16px - 3.5rem); justify-content: center; }
+
+  /* A. Four tabs. Lists move inside Tasks as a segment, so no two tabs overlap in meaning. Everything else is the shipped bar. */
+  .bn-a { --nav-h: 72px; }
+
+</style>
+<div class="yv-shot centered bn-a" style="background: var(--shell);">
+  <main id="app">
+    <nav id="rail" aria-label="Main navigation">
+      <div class="rail-brand"><svg class="rail-mark" viewBox="4 17 92 66" aria-hidden="true"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"><line x1="10" y1="42" x2="10" y2="58" opacity="0.76"></line><line x1="30" y1="28" x2="30" y2="72" opacity="0.94"></line><line x1="50" y1="37" x2="50" y2="63" opacity="0.82"></line><line x1="70" y1="23" x2="70" y2="77" opacity="1.00"></line><line x1="90" y1="40" x2="90" y2="60" opacity="0.79"></line></g></svg><span class="rail-wordmark">yarvy</span></div>
+      <div class="rail-nav">
+        <button id="nav-home" class="nav-item active" type="button" aria-current="page"><i class="ph ph-chat-circle nav-ico" aria-hidden="true"></i><i class="ph-fill ph-chat-circle nav-ico-on" aria-hidden="true"></i><span class="nav-label">Chat</span></button>
+        <button id="nav-upcoming" class="nav-item" type="button"><i class="ph ph-calendar-blank nav-ico" aria-hidden="true"></i><i class="ph-fill ph-calendar-blank nav-ico-on" aria-hidden="true"></i><span class="nav-label">Today</span></button>
+        <button id="nav-you" class="nav-item" type="button"><i class="ph ph-user nav-ico" aria-hidden="true"></i><i class="ph-fill ph-user nav-ico-on" aria-hidden="true"></i><span class="nav-label">You</span></button>
+        <button id="nav-tasks" class="nav-item" type="button"><i class="ph ph-list nav-ico" aria-hidden="true"></i><i class="ph-fill ph-list nav-ico-on" aria-hidden="true"></i><span class="nav-label">Lists</span></button>
+      </div>
+      <div class="rail-spacer"></div>
+    </nav>
+    <section id="main">
+      <div class="chat-head"><h1 class="chat-title">Chat</h1><span id="datelabel">Monday, September 14</span></div>
+      <div id="hero">
+        <div id="chat-content">
+          <div id="chat-tools"><button id="chat-history" class="chat-tool" type="button" aria-expanded="false"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i><span>Earlier messages</span><span id="chat-history-count">3 today</span></button></div>
+          <div id="greeting">
+            <div id="presence-wrap"><div id="presence" aria-hidden="true"><svg viewBox="0 0 42 36" id="presence-svg"><g class="signal-field"><rect class="eq-bar" x="3" y="12" width="4" height="12" rx="2"></rect><rect class="eq-bar" x="11" y="9" width="4" height="18" rx="2"></rect><rect class="eq-bar" x="19" y="6" width="4" height="24" rx="2"></rect><rect class="eq-bar" x="27" y="9" width="4" height="18" rx="2"></rect><rect class="eq-bar" x="35" y="12" width="4" height="12" rx="2"></rect><g class="glyph-layer"></g></g></svg></div></div>
+            <span id="hero-date">Monday, September 14</span>
+            <h1 id="hello"><span class="grad">Good afternoon, </span><span id="username">Brandon</span></h1>
+            <p id="hero-read">2 of 8 done. Run at 12:30, then Priya at 2 PM.</p>
+            <div id="suggestions" aria-label="Suggestions"><button type="button" class="chip ask"><i class="ph ph-question chip-ico" aria-hidden="true"></i><span class="chip-label">What's overdue?</span></button><button type="button" class="chip ask"><i class="ph ph-question chip-ico" aria-hidden="true"></i><span class="chip-label">What's next?</span></button><button type="button" class="chip change"><i class="ph ph-arrow-bend-down-right chip-ico" aria-hidden="true"></i><span class="chip-label">Plan my afternoon</span></button></div>
+          </div>
+        </div>
+        <div id="chat-dock">
+          <form id="composer" autocomplete="off">
+            <textarea id="input" placeholder="Add a task or ask anything" aria-label="Message Yarvy" rows="2"></textarea>
+            <button id="send" type="submit" aria-label="Send" title="Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M12 5l-6 6M12 5l6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

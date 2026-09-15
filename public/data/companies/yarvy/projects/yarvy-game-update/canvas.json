@@ -41,6 +41,42 @@
       "x": 2994,
       "y": 2094,
       "width": 390
+    },
+    {
+      "file": "sidebar-c-state.html",
+      "x": 0,
+      "y": 3578,
+      "width": 1200
+    },
+    {
+      "file": "bottomnav-a-four-tabs.html",
+      "x": 1246,
+      "y": 3578,
+      "width": 390
+    },
+    {
+      "file": "today-tab-mobile.html",
+      "x": 1676,
+      "y": 3578,
+      "width": 390
+    },
+    {
+      "file": "lists-tab-mobile.html",
+      "x": 2106,
+      "y": 3578,
+      "width": 390
+    },
+    {
+      "file": "today-page-desktop.html",
+      "x": 2560,
+      "y": 3578,
+      "width": 1200
+    },
+    {
+      "file": "lists-page-desktop.html",
+      "x": 3800,
+      "y": 3578,
+      "width": 1200
     }
   ],
   "texts": [
