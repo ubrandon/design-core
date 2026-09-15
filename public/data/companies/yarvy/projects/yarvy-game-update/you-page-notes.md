@@ -49,3 +49,28 @@ Built on `current-you.html`, the captured page with the seeded Design Studio acc
 - The whole card opens the goal. The check and Moment button sit above that target and stop propagation.
 
 The canvas is static HTML/CSS. Hover, press and focus states follow the rules already in `yarvy-app.css`.
+
+## Round two: simpler goals, on C
+
+Brandon kept C. These three cut the goal column further, using section 7's test that simplicity is less interpretation and that hiding controls does not count. What each removes:
+
+- **C2. One list.** The three group headers and their counts go; every goal is two lines and one control, in the app's existing attention order (needs you today first). Targets keep a thin bar plus one value line ("4 of 12 books · 8 to go by Dec 31"), habits keep the count and the 44px check and lose the day dots, growth goals keep the latest moment in quotes and lose the "1 moment this month" count. The kind of goal is carried by the silhouette: bar, check, or quote.
+- **C3. Count only.** C2 without the bars. One statement of progress per card. The remaining distance in words ("8 to go") is the section 18 evidence, so nothing honest is lost; what is lost is at-a-glance comparison across targets.
+- **C4. Rows.** C3 without the card boxes: hairline rows with a smaller face, the same vocabulary as the task list. All seven goals sit in 480px. Risk: the chevron is now the only clickability cue, and section 29 warns flat lists lose the cue.
+
+The side column drops the seven-day row in all three; with completions on one day it was one bar. The three counts stay.
+
+**Pick: C2.** C3 removes the one signal that lets a person compare targets without reading, and C4 makes the goal rows look like tasks when they are not tasks. C2 keeps one bar, one line, one control, and the whole card as the target. If the group headers turn out to matter for people with many goals, they return as quiet labels only past eight goals, which is the app's existing expansion point.
+
+## Round three: the habit check
+
+Feedback on C2: keep the day dots on habits (they are the insight), keep the other cards small, and the big filled circle on the right is confusing and too big. Two answers, both on C2:
+
+- **C5. Labeled pill.** The dots return under the habit. The circle becomes a pill the same size as Moment: "Check in" at rest, "Done today" in the success wash once checked. The label says what the control does (house rule 1), and the two habit states are now distinguishable by words, not by fill alone.
+- **C6. Today is the control.** No separate check. In the dot row, today's dot is the only button: larger, labeled Today, ringed in accent at rest and filled green when done. The card end shows the same chevron as every other goal. One row carries the week and the action, so nothing is said twice. Risk: a 32px dot is under the 44px target size, so the hit area is padded to 44px around it.
+
+**Pick: C6** if the target size holds up on a phone; it removes a control instead of relabeling one, and the thing you press is the day you are recording. C5 is the safer fallback when the dot cannot be made a comfortable target.
+
+**Phone check** (`you-c5-mobile`, `you-c6-mobile`, 390px with the four-tab bar). C5's pill costs the habit title its line: "Less takeout, more cooking" and "Meditate every morning" both wrap beside "Check in" and "Done today". C6 keeps every title on one line because the card end is only a chevron, and the seven dots spread across the card with today's dot at 32px plus padding, a comfortable target. The phone confirms C6: the control that needed the most room is the one it removed.
+
+**Phone controls, second pass.** The phone frames now show the whole page so nothing below the fold is missed. Quick buttons on the phone are an icon in a 36px circle with the label kept for screen readers and the hit area padded to 44px: a check for the habit check-in (C5), a note-and-pencil for Moment (all variants, desktop included, where it keeps its word). Today's dot in C6 drops to 28px visually with the same 44px hit area. The check-in is real app functionality: each habit has a daily check on the You page today, and growth goals have Log a moment, both of which write to the goal.
