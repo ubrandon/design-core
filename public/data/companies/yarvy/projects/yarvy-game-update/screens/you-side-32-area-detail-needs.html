@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* You, round six. Tap-through from a status chip: why the status, how this area levels, and what Yarvy suggests from your own data. Needs-work case. */
+  html, body { margin: 0; background: var(--panel); }
+  .ysd { width: 350px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ysd-back { display: inline-flex; align-items: center; gap: 4px; border: 0; background: none; padding: 0; font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--accent-2); cursor: pointer; margin-bottom: 14px; }
+  .ysd-back i { font-size: 15px; }
+  .ysd-head { display: grid; grid-template-columns: 44px minmax(0,1fr); gap: 12px; align-items: center; margin-bottom: 6px; }
+  .ysd-head .ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 22px; background: var(--tint); }
+  .ysd-head h1 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-heavy); letter-spacing: var(--ls-snug); }
+  .ysd-head .sub { display: flex; align-items: center; gap: 8px; margin-top: 3px; }
+  .ysd-head .sub em { font-style: normal; font-size: var(--fs-sm); font-weight: var(--fw-bold); color: var(--tone); }
+  .ys-chip { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: var(--fw-semibold); white-space: nowrap; background: var(--chip-bg); color: var(--chip-fg); }
+  .ys-chip.needs { --chip-bg: #fbe9e1; --chip-fg: #b8552e; }
+  .ysd h2 { margin: 22px 0 8px; font-size: var(--fs-sm); font-weight: var(--fw-bold); color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .ysd-why { display: flex; flex-direction: column; }
+  .ysd-why-row { display: grid; grid-template-columns: 20px minmax(0,1fr); gap: 8px; align-items: baseline; padding: 6px 0; font-size: var(--fs-body-sm); border-top: 1px solid var(--line-soft); }
+  .ysd-why-row:first-child { border-top: 0; }
+  .ysd-why-row i { font-size: 14px; color: var(--muted); position: relative; top: 1px; }
+  .ysd-why-row b { font-weight: var(--fw-semibold); }
+  .ysd-why-row small { color: var(--muted); font-size: var(--fs-xs); }
+  .ysd-ladder { padding: 14px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: var(--panel); }
+  .ysd-lv-row { display: flex; align-items: center; gap: 8px; }
+  .ysd-lv { flex: 1; height: 8px; border-radius: var(--radius-pill); background: var(--surface-hover); position: relative; overflow: hidden; }
+  .ysd-lv.full { background: var(--tone); opacity: 0.9; }
+  .ysd-lv.part::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: var(--w); background: var(--tone); border-radius: var(--radius-pill); }
+  .ysd-lv-labels { display: flex; justify-content: space-between; margin-top: 6px; font-size: var(--fs-2xs); color: var(--muted); }
+  .ysd-lv-labels b { color: var(--tone); font-weight: var(--fw-bold); }
+  .ysd-ladder p { margin: 10px 0 0; font-size: var(--fs-sm); }
+  .ysd-ladder p b { font-weight: var(--fw-semibold); }
+  .ysd-ladder small { display: block; margin-top: 4px; font-size: var(--fs-xs); color: var(--muted); }
+  .ysd-sug { display: grid; grid-template-columns: 24px minmax(0,1fr) auto; gap: 10px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line-soft); }
+  .ysd-sug:first-of-type { border-top: 0; }
+  .ysd-sug > i { font-size: 17px; color: var(--accent-2); }
+  .ysd-sug b { display: block; font-weight: var(--fw-semibold); font-size: var(--fs-body-sm); }
+  .ysd-sug small { display: block; color: var(--muted); font-size: var(--fs-xs); }
+  .ysd-add { display: inline-flex; align-items: center; min-height: 36px; padding: 0 13px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--panel); font: inherit; font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: var(--text); cursor: pointer; white-space: nowrap; }
+  .ysd-add:hover { border-color: var(--accent); background: var(--chip-active); }
+  .ysd-flag { margin-top: 22px; padding: 12px 14px; border-radius: var(--radius-xl); background: var(--chip-active); display: grid; grid-template-columns: 22px minmax(0,1fr) auto; gap: 10px; align-items: center; font-size: var(--fs-sm); }
+  .ysd-flag i { font-size: 16px; color: var(--accent-2); }
+  .ysd-flag b { font-weight: var(--fw-semibold); }
+  .ysd-flag small { display: block; color: var(--muted); font-size: var(--fs-xs); }
+  .ysd-flag button { border: 0; background: none; padding: 0; font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--accent-2); cursor: pointer; white-space: nowrap; }
+  .ysd-note { margin: 16px 0 0; font-size: var(--fs-xs); color: var(--muted); }
+  .ysd-note button { border: 0; background: none; padding: 0; font: inherit; color: var(--accent-2); cursor: pointer; }
+</style>
+<div class="ysd" style="--tint:#fbe9e1;--tone:#b8552e">
+<button type="button" class="ysd-back"><i class="ph ph-caret-left" aria-hidden="true"></i>You</button>
+
+<div class="ysd-head"><span class="ic">💛</span><span><h1>Relationships</h1><span class="sub"><em>Level 1</em><span class="ys-chip needs">Needs work</span></span></span></div>
+
+<h2>Why it says needs work</h2>
+<div class="ysd-why">
+  <div class="ysd-why-row"><i class="ph ph-clock" aria-hidden="true"></i><span><b>Nothing finished in 2 weeks</b><small> · last was "Call Mom", done Sep 2</small></span></div>
+  <div class="ysd-why-row"><i class="ph ph-list-checks" aria-hidden="true"></i><span><b>3 tasks since Aug 3</b><small> · your quietest area, Health has 61 check-ins in the same span</small></span></div>
+  <div class="ysd-why-row"><i class="ph ph-target" aria-hidden="true"></i><span><b>No goal or habit here</b><small> · every other area has at least one</small></span></div>
+</div>
+
+<h2>How this area levels</h2>
+<div class="ysd-ladder">
+  <div class="ysd-lv-row">
+    <span class="ysd-lv full"></span><span class="ysd-lv part" style="--w:60%"></span><span class="ysd-lv"></span><span class="ysd-lv"></span><span class="ysd-lv"></span>
+  </div>
+  <div class="ysd-lv-labels"><b>Lv 1</b><span>Lv 2</span><span>Lv 3</span><span>Lv 4</span><span>Lv 5</span></div>
+  <p><b>2 more finished things here reach level 2.</b> A level is 5 real things finished in this area: a task, a check-in week, a moment, or a milestone. Levels never go down.</p>
+  <small>You have 3 so far: Call Mom, Anniversary dinner booked, Sam's birthday gift.</small>
+</div>
+
+<h2>Yarvy suggests, from your own stuff</h2>
+<div>
+  <div class="ysd-sug"><i class="ph ph-repeat" aria-hidden="true"></i><span><b>Make "Call Mom" weekly</b><small>You did it once and starred it. A weekly check would count every week.</small></span><button type="button" class="ysd-add">Add habit</button></div>
+  <div class="ysd-sug"><i class="ph ph-target" aria-hidden="true"></i><span><b>One dinner with friends a month, through Dec</b><small>From your note "miss the old crew" in chat on Aug 28.</small></span><button type="button" class="ysd-add">Add goal</button></div>
+  <div class="ysd-sug"><i class="ph ph-check-square-offset" aria-hidden="true"></i><span><b>Reply to Sam</b><small>Open since Tuesday in your Inbox list. Small, and it counts here.</small></span><button type="button" class="ysd-add">Add task</button></div>
+</div>
+
+<div class="ysd-flag"><i class="ph-fill ph-flag" aria-hidden="true"></i><span><b>No flag here yet</b><small>Tell Yarvy where you want this to be, and by when.</small></span><button type="button">Set a flag</button></div>
+
+<p class="ysd-note">Suggestions come from your tasks, goals and chats, nothing else. Wrong bucket? <button type="button">Move items or rename this area</button></p>
+</div>

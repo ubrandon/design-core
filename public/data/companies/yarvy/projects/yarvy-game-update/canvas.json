@@ -127,14 +127,8 @@
       "width": 390
     },
     {
-      "file": "you-side-20-areas.html",
-      "x": 3083,
-      "y": 7000,
-      "width": 340
-    },
-    {
       "file": "you-side-23-radar.html",
-      "x": 3458,
+      "x": 3471,
       "y": 6997,
       "width": 340
     },
@@ -143,6 +137,42 @@
       "x": 3843,
       "y": 6997,
       "width": 340
+    },
+    {
+      "file": "you-side-30-status-chips.html",
+      "x": 4230,
+      "y": 7000,
+      "width": 340
+    },
+    {
+      "file": "you-side-31-status-groups.html",
+      "x": 4597,
+      "y": 6997,
+      "width": 340
+    },
+    {
+      "file": "you-side-37-condition-chips.html",
+      "x": 5048,
+      "y": 7000,
+      "width": 340
+    },
+    {
+      "file": "you-side-38-condition-detail.html",
+      "x": 5423,
+      "y": 7000,
+      "width": 390
+    },
+    {
+      "file": "you-side-39-life-overview.html",
+      "x": 5893,
+      "y": 7000,
+      "width": 390
+    },
+    {
+      "file": "you-side-42-good-for-you.html",
+      "x": 6314,
+      "y": 6997,
+      "width": 390
     }
   ],
   "texts": [

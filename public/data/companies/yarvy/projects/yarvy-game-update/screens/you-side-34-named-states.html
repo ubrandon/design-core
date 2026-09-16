@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* You, round seven. No levels: the AI names the state you have reached in words, and the next state it can see in your data. */
+  html, body { margin: 0; background: var(--panel); }
+  .ys { width: 300px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ys-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .ys-sec-head h2 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); }
+  .ys-link { border: 0; background: none; font: inherit; color: var(--accent-2); font-size: var(--fs-xs); font-weight: var(--fw-semibold); cursor: pointer; padding: 0; }
+
+  .ys-ns-row { display: grid; grid-template-columns: 30px minmax(0,1fr); gap: 10px; padding: 11px 0; border-top: 1px solid var(--line-soft); }
+  .ys-ns-row:first-child { border-top: 0; }
+  .ys-ns-row .ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font-size: 15px; background: var(--tint); margin-top: 1px; }
+  .ys-ns-area { font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: var(--muted); }
+  .ys-ns-state { font-size: var(--fs-body-sm); font-weight: var(--fw-bold); color: var(--text); margin-top: 1px; }
+  .ys-ns-next { display: flex; align-items: baseline; gap: 5px; margin-top: 3px; font-size: var(--fs-xs); color: var(--muted); }
+  .ys-ns-next i { font-size: 11px; color: var(--tone); position: relative; top: 1px; }
+  .ys-ns-next b { color: var(--tone); font-weight: var(--fw-semibold); }
+  .ys-note { margin: 12px 0 0; font-size: var(--fs-xs); color: var(--muted); }
+  .ys-note button { border: 0; background: none; padding: 0; font: inherit; color: var(--accent-2); cursor: pointer; }
+</style>
+<div class="ys">
+<div class="ys-sec-head"><h2>Where you are</h2><button type="button" class="ys-link">In your words</button></div>
+
+<div class="ys-ns-row" style="--tint:#e6f1ea;--tone:var(--cat-health)">
+  <span class="ic">🏃</span>
+  <span><span class="ys-ns-area">Health</span><span class="ys-ns-state" style="display:block">Runs twice a week, six weeks straight</span>
+  <span class="ys-ns-next"><i class="ph-fill ph-arrow-right" aria-hidden="true"></i><span>Next you could be: <b>a 10 km finisher</b>, it is your next milestone</span></span></span>
+</div>
+
+<div class="ys-ns-row" style="--tint:#e8ecf6;--tone:var(--cat-learn)">
+  <span class="ic">📚</span>
+  <span><span class="ys-ns-area">Learning</span><span class="ys-ns-state" style="display:block">Finishes a book a month</span>
+  <span class="ys-ns-next"><i class="ph-fill ph-arrow-right" aria-hidden="true"></i><span>Next: <b>a third of the 12-book year</b>, 1 book away</span></span></span>
+</div>
+
+<div class="ys-ns-row" style="--tint:#f3ecdc;--tone:var(--cat-money)">
+  <span class="ic">🏠</span>
+  <span><span class="ys-ns-area">Home</span><span class="ys-ns-state" style="display:block">Finished the kitchen, keeps the house running</span>
+  <span class="ys-ns-next"><i class="ph-fill ph-arrow-right" aria-hidden="true"></i><span>Next: nothing planned, <b>the garage list</b> is your only open pile</span></span></span>
+</div>
+
+<div class="ys-ns-row" style="--tint:#ececec;--tone:#6b6b6b">
+  <span class="ic">💼</span>
+  <span><span class="ys-ns-area">Work</span><span class="ys-ns-state" style="display:block">Keeps the inbox at zero most weeks</span>
+  <span class="ys-ns-next"><i class="ph-fill ph-arrow-right" aria-hidden="true"></i><span>No goal here, so no next state named</span></span></span>
+</div>
+
+<div class="ys-ns-row" style="--tint:#fbe9e1;--tone:#b8552e">
+  <span class="ic">💛</span>
+  <span><span class="ys-ns-area">Relationships</span><span class="ys-ns-state" style="display:block">Shows up for the big days</span>
+  <span class="ys-ns-next"><i class="ph-fill ph-arrow-right" aria-hidden="true"></i><span>Next you could be: <b>in touch weekly</b>, one habit would do it</span></span></span>
+</div>
+
+<p class="ys-note">Every word is traceable: tap a state to see the items that earned it. Wrong words? <button type="button">Say it your way</button></p>
+</div>

@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* You, round five. One list, one colored status chip per area, in the person's own words. */
+  html, body { margin: 0; background: var(--panel); }
+  .ys { width: 300px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ys-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .ys-sec-head h2 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); }
+  .ys-link { border: 0; background: none; font: inherit; color: var(--accent-2); font-size: var(--fs-xs); font-weight: var(--fw-semibold); cursor: pointer; padding: 0; }
+
+  .ys-sc-row { display: grid; grid-template-columns: 30px minmax(0,1fr) auto; gap: 10px; align-items: center; min-height: 56px; padding: 9px 0; border-top: 1px solid var(--line-soft); }
+  .ys-sc-row:first-child { border-top: 0; }
+  .ys-sc-row .ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font-size: 15px; background: var(--tint); }
+  .ys-sc-row b { display: block; font-weight: var(--fw-semibold); font-size: var(--fs-body-sm); }
+  .ys-sc-row b em { font-style: normal; font-weight: var(--fw-medium); color: var(--muted); font-size: var(--fs-xs); margin-left: 5px; }
+  .ys-sc-row small { display: block; color: var(--muted); font-size: var(--fs-xs); }
+  .ys-chip { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: var(--fw-semibold); white-space: nowrap; background: var(--chip-bg); color: var(--chip-fg); }
+  .ys-chip i { font-size: 12px; }
+  .ys-chip.leveled { --chip-bg: var(--success-soft); --chip-fg: var(--success-text); }
+  .ys-chip.room { --chip-bg: var(--chip-active); --chip-fg: var(--accent-2); }
+  .ys-chip.needs { --chip-bg: #fbe9e1; --chip-fg: #b8552e; }
+  .ys-chip.steady { --chip-bg: var(--surface-hover); --chip-fg: var(--muted); }
+  .ys-note { margin: 12px 0 0; font-size: var(--fs-xs); color: var(--muted); }
+</style>
+<div class="ys">
+<div class="ys-sec-head"><h2>Your areas</h2><button type="button" class="ys-link">How levels work</button></div>
+
+<div class="ys-sc-row" style="--tint:#fbe9e1"><span class="ic">💛</span><span><b>Relationships <em>Lv 1</em></b><small>3 tasks, nothing in 2 weeks</small></span><span class="ys-chip needs">Needs work</span></div>
+<div class="ys-sc-row" style="--tint:#e6f1ea"><span class="ic">🏃</span><span><b>Health <em>Lv 4</em></b><small>Ran 5 km on Mon, hit level 4</small></span><span class="ys-chip leveled"><i class="ph-fill ph-arrow-fat-up" aria-hidden="true"></i>Leveled up</span></div>
+<div class="ys-sc-row" style="--tint:#e8ecf6"><span class="ic">📚</span><span><b>Learning <em>Lv 3</em></b><small>1 book from level 4</small></span><span class="ys-chip room">Room to grow</span></div>
+<div class="ys-sc-row" style="--tint:#f3ecdc"><span class="ic">🏠</span><span><b>Home <em>Lv 5</em></b><small>Kitchen reno done, 41 tasks</small></span><span class="ys-chip steady">Steady</span></div>
+<div class="ys-sc-row" style="--tint:#ececec"><span class="ic">💼</span><span><b>Work <em>Lv 5</em></b><small>52 tasks, no goal here</small></span><span class="ys-chip steady">Steady</span></div>
+
+<p class="ys-note">One chip per area, and the line under the name says why the chip is what it is. Tap an area to see everything Yarvy sorted into it.</p>
+</div>

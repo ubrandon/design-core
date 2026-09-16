@@ -1,0 +1,88 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* You, round six. The same tap-through for an area that just leveled: the evidence, both routes to the next level, and the person's own flag as the higher end. */
+  html, body { margin: 0; background: var(--panel); }
+  .ysd { width: 350px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ysd-back { display: inline-flex; align-items: center; gap: 4px; border: 0; background: none; padding: 0; font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--accent-2); cursor: pointer; margin-bottom: 14px; }
+  .ysd-back i { font-size: 15px; }
+  .ysd-head { display: grid; grid-template-columns: 44px minmax(0,1fr); gap: 12px; align-items: center; margin-bottom: 6px; }
+  .ysd-head .ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 22px; background: var(--tint); }
+  .ysd-head h1 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-heavy); letter-spacing: var(--ls-snug); }
+  .ysd-head .sub { display: flex; align-items: center; gap: 8px; margin-top: 3px; }
+  .ysd-head .sub em { font-style: normal; font-size: var(--fs-sm); font-weight: var(--fw-bold); color: var(--tone); }
+  .ys-chip { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: var(--fw-semibold); white-space: nowrap; background: var(--chip-bg); color: var(--chip-fg); }
+  .ys-chip.leveled { --chip-bg: var(--success-soft); --chip-fg: var(--success-text); }
+  .ys-chip i { font-size: 12px; }
+  .ysd h2 { margin: 22px 0 8px; font-size: var(--fs-sm); font-weight: var(--fw-bold); color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .ysd-up { display: grid; grid-template-columns: 22px minmax(0,1fr); gap: 8px; align-items: start; padding: 12px 14px; border-radius: var(--radius-xl); background: var(--success-soft); color: var(--success-text); font-size: var(--fs-sm); }
+  .ysd-up i { font-size: 16px; }
+  .ysd-up b { font-weight: var(--fw-semibold); }
+  .ysd-why { display: flex; flex-direction: column; }
+  .ysd-why-row { display: grid; grid-template-columns: 20px minmax(0,1fr); gap: 8px; align-items: baseline; padding: 6px 0; font-size: var(--fs-body-sm); border-top: 1px solid var(--line-soft); }
+  .ysd-why-row:first-child { border-top: 0; }
+  .ysd-why-row i { font-size: 14px; color: var(--muted); position: relative; top: 1px; }
+  .ysd-why-row b { font-weight: var(--fw-semibold); }
+  .ysd-why-row small { color: var(--muted); font-size: var(--fs-xs); }
+  .ysd-ladder { padding: 14px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: var(--panel); }
+  .ysd-lv-row { display: flex; align-items: center; gap: 8px; position: relative; }
+  .ysd-lv { flex: 1; height: 8px; border-radius: var(--radius-pill); background: var(--surface-hover); position: relative; }
+  .ysd-lv.full { background: var(--tone); opacity: 0.9; }
+  .ysd-lv.part::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: var(--w); background: var(--tone); border-radius: var(--radius-pill); }
+  .ysd-lv.flagged::before { content: "🚩"; position: absolute; right: -4px; top: -18px; font-size: 13px; }
+  .ysd-lv-labels { display: flex; justify-content: space-between; margin-top: 6px; font-size: var(--fs-2xs); color: var(--muted); }
+  .ysd-lv-labels b { color: var(--tone); font-weight: var(--fw-bold); }
+  .ysd-ladder p { margin: 10px 0 0; font-size: var(--fs-sm); }
+  .ysd-ladder p b { font-weight: var(--fw-semibold); }
+  .ysd-route { display: grid; grid-template-columns: 24px minmax(0,1fr) auto; gap: 10px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line-soft); }
+  .ysd-route:first-of-type { border-top: 0; }
+  .ysd-route > i { font-size: 17px; color: var(--tone); }
+  .ysd-route b { display: block; font-weight: var(--fw-semibold); font-size: var(--fs-body-sm); }
+  .ysd-route small { display: block; color: var(--muted); font-size: var(--fs-xs); }
+  .ysd-route .st { font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: var(--muted); white-space: nowrap; }
+  .ysd-route .st.on { color: var(--success-text); }
+  .ysd-or { margin: 0; padding: 2px 0 2px 34px; font-size: var(--fs-2xs); font-weight: var(--fw-bold); color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .ysd-flag { margin-top: 22px; padding: 12px 14px; border-radius: var(--radius-xl); background: var(--chip-active); display: grid; grid-template-columns: 22px minmax(0,1fr) auto; gap: 10px; align-items: center; font-size: var(--fs-sm); }
+  .ysd-flag i { font-size: 16px; color: var(--accent-2); }
+  .ysd-flag b { font-weight: var(--fw-semibold); }
+  .ysd-flag small { display: block; color: var(--muted); font-size: var(--fs-xs); }
+  .ysd-flag button { border: 0; background: none; padding: 0; font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--accent-2); cursor: pointer; white-space: nowrap; }
+  .ysd-note { margin: 16px 0 0; font-size: var(--fs-xs); color: var(--muted); }
+  .ysd-note button { border: 0; background: none; padding: 0; font: inherit; color: var(--accent-2); cursor: pointer; }
+</style>
+<div class="ysd" style="--tint:#e6f1ea;--tone:var(--cat-health)">
+<button type="button" class="ysd-back"><i class="ph ph-caret-left" aria-hidden="true"></i>You</button>
+
+<div class="ysd-head"><span class="ic">🏃</span><span><h1>Health</h1><span class="sub"><em>Level 4</em><span class="ys-chip leveled"><i class="ph-fill ph-arrow-fat-up" aria-hidden="true"></i>Leveled up</span></span></span></div>
+
+<div class="ysd-up" style="margin-top:16px"><i class="ph-fill ph-arrow-fat-up" aria-hidden="true"></i><span><b>Level 4, reached Mon</b> when you ran 5 km. The 20th real thing finished here since Aug 3.</span></div>
+
+<h2>What filled it</h2>
+<div class="ysd-why">
+  <div class="ysd-why-row"><i class="ph ph-target" aria-hidden="true"></i><span><b>Half marathon goal</b><small> · 3 of 6 milestones, on pace for Dec</small></span></div>
+  <div class="ysd-why-row"><i class="ph ph-repeat" aria-hidden="true"></i><span><b>2 habits, 61 check-ins</b><small> · morning stretch and run days, 6 weeks on target</small></span></div>
+  <div class="ysd-why-row"><i class="ph ph-list-checks" aria-hidden="true"></i><span><b>9 tasks</b><small> · latest: new running shoes, Sep 10</small></span></div>
+</div>
+
+<h2>The ladder, and your flag</h2>
+<div class="ysd-ladder">
+  <div class="ysd-lv-row">
+    <span class="ysd-lv full"></span><span class="ysd-lv full"></span><span class="ysd-lv full"></span><span class="ysd-lv full"></span><span class="ysd-lv part" style="--w:40%"></span><span class="ysd-lv flagged"></span>
+  </div>
+  <div class="ysd-lv-labels"><span>1</span><span>2</span><span>3</span><b>4</b><span>5</span><span>6 🚩</span></div>
+  <p><b>Your flag is level 6 by Dec, and you are on pace.</b> A level is 5 real things finished here. Levels never go down.</p>
+</div>
+
+<h2>Two routes to level 5, from your data</h2>
+<div>
+  <div class="ysd-route"><i class="ph ph-medal" aria-hidden="true"></i><span><b>Reach the 10 km milestone</b><small>Your longest run so far is 5 km, on Mon.</small></span><span class="st">next milestone</span></div>
+  <p class="ysd-or">or</p>
+  <div class="ysd-route"><i class="ph ph-calendar-check" aria-hidden="true"></i><span><b>4 more weeks on target</b><small>You are 2 in a row now, your best streak of weeks.</small></span><span class="st on">on pace</span></div>
+</div>
+
+<div class="ysd-flag"><i class="ph-fill ph-flag" aria-hidden="true"></i><span><b>Level 6 by Dec</b><small>Set Sep 2. Yarvy plans backward from this.</small></span><button type="button">Edit flag</button></div>
+
+<p class="ysd-note">Every count links to the real items behind it. <button type="button">See all 20 things that filled this area</button></p>
+</div>

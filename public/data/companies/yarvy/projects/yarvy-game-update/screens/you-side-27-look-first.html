@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* You, sorted for feel, round four. One list, order carries the signal instead of a label. */
+  html, body { margin: 0; background: var(--panel); }
+  .ys { width: 300px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ys-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .ys-sec-head h2 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); }
+  .ys-link { border: 0; background: none; font: inherit; color: var(--accent-2); font-size: var(--fs-xs); font-weight: var(--fw-semibold); cursor: pointer; padding: 0; }
+
+  .ys-lf { display: flex; flex-direction: column; }
+  .ys-lf-row { display: grid; grid-template-columns: 30px minmax(0,1fr) auto; gap: 10px; align-items: center; min-height: 54px; padding: 8px 0; border-top: 1px solid var(--line-soft); font-size: var(--fs-body-sm); }
+  .ys-lf-row:first-child { border-top: 0; }
+  .ys-lf-row .ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font-size: 15px; background: var(--tint); }
+  .ys-lf-row b { display: block; font-weight: var(--fw-semibold); }
+  .ys-lf-row small { display: block; color: var(--muted); font-size: var(--fs-xs); }
+  .ys-lf-state { white-space: nowrap; font-size: var(--fs-xs); font-weight: var(--fw-semibold); text-align: right; }
+  .ys-lf-state.needs { color: var(--text); }
+  .ys-lf-state.leveled { color: var(--success-text); }
+  .ys-lf-state.moving { color: var(--accent-2); }
+  .ys-lf-state.steady { color: var(--muted); font-weight: var(--fw-medium); }
+  .ys-note { margin: 12px 0 0; font-size: var(--fs-xs); color: var(--muted); }
+</style>
+<div class="ys">
+<div class="ys-sec-head"><h2>Where to look first</h2><button type="button" class="ys-link">How levels work</button></div>
+<div class="ys-lf">
+  <div class="ys-lf-row" style="--tint:#fbe9e1"><span class="ic">💛</span><span><b>Relationships</b><small>3 tasks, no goal here</small></span><span class="ys-lf-state needs">needs a look</span></div>
+  <div class="ys-lf-row" style="--tint:#e6f1ea"><span class="ic">🏃</span><span><b>Health</b><small>Ran 5 km, reached level 4</small></span><span class="ys-lf-state leveled">leveled Mon</span></div>
+  <div class="ys-lf-row" style="--tint:#e8ecf6"><span class="ic">📚</span><span><b>Learning</b><small>1 book from level 4</small></span><span class="ys-lf-state moving">moving</span></div>
+  <div class="ys-lf-row" style="--tint:#f3ecdc"><span class="ic">🏠</span><span><b>Home</b><small>Kitchen reno list done, 41 tasks</small></span><span class="ys-lf-state steady">steady</span></div>
+  <div class="ys-lf-row" style="--tint:#ececec"><span class="ic">💼</span><span><b>Work</b><small>52 tasks, no goal here</small></span><span class="ys-lf-state steady">steady</span></div>
+</div>
+<p class="ys-note">Order, not color: the area with nothing new sinks, the one that just moved floats. Nothing is ranked against another person, only against its own last few weeks.</p>
+</div>

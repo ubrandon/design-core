@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* You, round eight. The condition tap-through: the dial with its receipts, the on-purpose question, and what one small thing would move. */
+  html, body { margin: 0; background: var(--panel); }
+  .ysd { width: 350px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ysd-back { display: inline-flex; align-items: center; gap: 4px; border: 0; background: none; padding: 0; font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--accent-2); cursor: pointer; margin-bottom: 14px; }
+  .ysd-back i { font-size: 15px; }
+  .ysd-head { display: grid; grid-template-columns: 44px minmax(0,1fr); gap: 12px; align-items: center; }
+  .ysd-head .ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 22px; background: var(--tint); }
+  .ysd-head h1 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-heavy); letter-spacing: var(--ls-snug); }
+  .ysd-head .sub { display: flex; align-items: center; gap: 8px; margin-top: 3px; }
+  .ys-chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: var(--fw-semibold); white-space: nowrap; }
+  .ys-chip.rest-un { background: #fbe9e1; color: #b8552e; }
+  .ysd h2 { margin: 22px 0 8px; font-size: var(--fs-sm); font-weight: var(--fw-bold); color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .ysd-dial { padding: 16px 14px 12px; border: 1px solid var(--line); border-radius: var(--radius-xl); margin-top: 16px; }
+  .ysd-dial .track { position: relative; height: 16px; }
+  .ysd-dial .track::before { content: ""; position: absolute; left: 0; right: 0; top: 6px; height: 4px; border-radius: 2px; background: linear-gradient(to right, var(--surface-hover), var(--tone)); opacity: 0.5; }
+  .ysd-dial .dot { position: absolute; top: 1px; left: var(--pos); width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--tone); border: 2px solid var(--panel); box-shadow: 0 0 0 1px var(--tone); box-sizing: border-box; }
+  .ysd-dial .ghost { position: absolute; top: 3px; left: var(--was); width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; border: 1.5px dashed var(--muted); box-sizing: border-box; opacity: 0.7; }
+  .ysd-dial .ends { display: flex; justify-content: space-between; margin-top: 4px; font-size: var(--fs-2xs); color: var(--muted); }
+  .ysd-dial p { margin: 10px 0 0; font-size: var(--fs-sm); }
+  .ysd-dial p b { font-weight: var(--fw-semibold); }
+  .ysd-dial small { display: block; margin-top: 4px; font-size: var(--fs-xs); color: var(--muted); }
+  .ysd-why-row { display: grid; grid-template-columns: 20px minmax(0,1fr); gap: 8px; align-items: baseline; padding: 6px 0; font-size: var(--fs-body-sm); border-top: 1px solid var(--line-soft); }
+  .ysd-why-row:first-child { border-top: 0; }
+  .ysd-why-row i { font-size: 14px; color: var(--muted); position: relative; top: 1px; }
+  .ysd-why-row b { font-weight: var(--fw-semibold); }
+  .ysd-why-row small { color: var(--muted); font-size: var(--fs-xs); }
+  .ysd-ask { margin-top: 16px; padding: 14px; border-radius: var(--radius-xl); background: var(--chip-active); }
+  .ysd-ask p { margin: 0; font-size: var(--fs-sm); font-weight: var(--fw-semibold); }
+  .ysd-ask .row { display: flex; gap: 8px; margin-top: 10px; }
+  .ysd-ask button { flex: 1; min-height: 40px; border-radius: var(--radius-pill); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .ysd-ask .quiet { border: 1px solid var(--line); background: var(--panel); color: var(--text); }
+  .ysd-ask .go { border: 0; background: var(--accent-fill); color: var(--on-accent); }
+  .ysd-ask small { display: block; margin-top: 8px; font-size: var(--fs-xs); color: var(--muted); font-weight: var(--fw-medium); }
+  .ysd-sug { display: grid; grid-template-columns: 24px minmax(0,1fr) auto; gap: 10px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line-soft); }
+  .ysd-sug:first-of-type { border-top: 0; }
+  .ysd-sug > i { font-size: 17px; color: var(--accent-2); }
+  .ysd-sug b { display: block; font-weight: var(--fw-semibold); font-size: var(--fs-body-sm); }
+  .ysd-sug small { display: block; color: var(--muted); font-size: var(--fs-xs); }
+  .ysd-add { display: inline-flex; align-items: center; min-height: 36px; padding: 0 13px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--panel); font: inherit; font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: var(--text); cursor: pointer; white-space: nowrap; }
+  .ysd-add:hover { border-color: var(--accent); background: var(--chip-active); }
+  .ysd-note { margin: 16px 0 0; font-size: var(--fs-xs); color: var(--muted); }
+  .ysd-note button { border: 0; background: none; padding: 0; font: inherit; color: var(--accent-2); cursor: pointer; }
+</style>
+<div class="ysd" style="--tint:#fbe9e1;--tone:#b8552e">
+<button type="button" class="ysd-back"><i class="ph ph-caret-left" aria-hidden="true"></i>You</button>
+
+<div class="ysd-head"><span class="ic">💛</span><span><h1>Relationships</h1><span class="sub"><span class="ys-chip rest-un">Resting, unplanned?</span></span></span></div>
+
+<div class="ysd-dial">
+  <div class="track"><span class="ghost" style="--was:30%"></span><span class="dot" style="--pos:8%"></span></div>
+  <div class="ends"><span>resting</span><span>in full swing</span></div>
+  <p><b>1 thing in 4 weeks.</b> A month ago this was rolling: 4 things, two of them with Sam.</p>
+  <small>Your own range: in full swing here was May, 9 things in a month. No one else's numbers are in this.</small>
+</div>
+
+<h2>The receipts</h2>
+<div>
+  <div class="ysd-why-row"><i class="ph ph-clock" aria-hidden="true"></i><span><b>Last finished: "Call Mom", Sep 2</b><small> · nothing since</small></span></div>
+  <div class="ysd-why-row"><i class="ph ph-target" aria-hidden="true"></i><span><b>No goal or habit here</b><small> · nothing keeps this area moving on its own</small></span></div>
+</div>
+
+<div class="ysd-ask">
+  <p>Is this a rest you meant to take?</p>
+  <div class="row"><button type="button" class="quiet">Yes, resting for now</button><button type="button" class="go">No, get it moving</button></div>
+  <small>"Resting for now" turns the chip grey and Yarvy stays quiet about this area until you say otherwise.</small>
+</div>
+
+<h2>One small thing would move the dot</h2>
+<div>
+  <div class="ysd-sug"><i class="ph ph-check-square-offset" aria-hidden="true"></i><span><b>Reply to Sam</b><small>Open since Tuesday. Five minutes, and this week stops being empty.</small></span><button type="button" class="ysd-add">Do today</button></div>
+  <div class="ysd-sug"><i class="ph ph-repeat" aria-hidden="true"></i><span><b>Make "Call Mom" weekly</b><small>You did it once and starred it. A weekly check keeps this rolling by itself.</small></span><button type="button" class="ysd-add">Add habit</button></div>
+  <div class="ysd-sug"><i class="ph ph-target" aria-hidden="true"></i><span><b>One dinner with friends a month</b><small>From your note "miss the old crew", Aug 28.</small></span><button type="button" class="ysd-add">Add goal</button></div>
+</div>
+
+<p class="ysd-note">Want a farther end to aim at? <button type="button">Describe your 100% for this area</button>, and the dial gets a second mark to grow toward.</p>
+</div>

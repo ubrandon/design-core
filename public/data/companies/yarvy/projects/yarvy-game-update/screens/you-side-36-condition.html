@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* You, round seven. No levels and no bad-good: a condition scale from resting to in full swing, last 4 weeks only, moves both ways. */
+  html, body { margin: 0; background: var(--panel); }
+  .ys { width: 300px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ys-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+  .ys-sec-head h2 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); }
+  .ys-link { border: 0; background: none; font: inherit; color: var(--accent-2); font-size: var(--fs-xs); font-weight: var(--fw-semibold); cursor: pointer; padding: 0; }
+  .ys-lede { margin: 0 0 12px; font-size: var(--fs-xs); color: var(--muted); }
+
+  .ys-cd-row { padding: 10px 0; border-top: 1px solid var(--line-soft); }
+  .ys-cd-row:first-of-type { border-top: 0; }
+  .ys-cd-top { display: grid; grid-template-columns: 26px minmax(0,1fr) auto; gap: 8px; align-items: center; }
+  .ys-cd-top .ic { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; font-size: 13px; background: var(--tint); }
+  .ys-cd-top b { font-weight: var(--fw-semibold); font-size: var(--fs-body-sm); }
+  .ys-cd-word { font-size: var(--fs-xs); font-weight: var(--fw-bold); color: var(--tone); white-space: nowrap; }
+  .ys-cd-word i { font-size: 11px; margin-left: 3px; color: var(--muted); font-style: normal; font-weight: var(--fw-medium); }
+  .ys-cd-track { position: relative; height: 14px; margin: 8px 0 0 34px; }
+  .ys-cd-track::before { content: ""; position: absolute; left: 0; right: 0; top: 5px; height: 4px; border-radius: 2px; background: linear-gradient(to right, var(--surface-hover), var(--tone)); opacity: 0.5; }
+  .ys-cd-dot { position: absolute; top: 1px; left: var(--pos); width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: var(--tone); border: 2px solid var(--panel); box-shadow: 0 0 0 1px var(--tone); box-sizing: border-box; }
+  .ys-cd-ghost { position: absolute; top: 3px; left: var(--was); width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: none; border: 1.5px dashed var(--muted); box-sizing: border-box; opacity: 0.7; }
+  .ys-cd-ends { display: flex; justify-content: space-between; margin: 3px 0 0 34px; font-size: var(--fs-2xs); color: var(--muted); }
+  .ys-cd-why { margin: 4px 0 0 34px; font-size: var(--fs-xs); color: var(--muted); }
+  .ys-cd-why b { color: var(--text); font-weight: var(--fw-semibold); }
+  .ys-note { margin: 12px 0 0; font-size: var(--fs-xs); color: var(--muted); }
+</style>
+<div class="ys">
+<div class="ys-sec-head"><h2>How each part of you is running</h2><button type="button" class="ys-link">Last 4 weeks</button></div>
+<p class="ys-lede">Not a grade: a pace. It moves both ways, resting is allowed, and there is no top, these can always grow. The hollow dot is where you were a month ago.</p>
+
+<div class="ys-cd-row" style="--tint:#e6f1ea;--tone:var(--cat-health)">
+  <div class="ys-cd-top"><span class="ic">🏃</span><b>Health</b><span class="ys-cd-word">In full swing <i>▲</i></span></div>
+  <div class="ys-cd-track"><span class="ys-cd-ghost" style="--was:62%"></span><span class="ys-cd-dot" style="--pos:88%"></span></div>
+  <div class="ys-cd-ends"><span>resting</span><span>in full swing</span></div>
+  <p class="ys-cd-why"><b>11 things in 4 weeks</b>, your busiest month here yet</p>
+</div>
+
+<div class="ys-cd-row" style="--tint:#e8ecf6;--tone:var(--cat-learn)">
+  <div class="ys-cd-top"><span class="ic">📚</span><b>Learning</b><span class="ys-cd-word">Rolling</span></div>
+  <div class="ys-cd-track"><span class="ys-cd-ghost" style="--was:58%"></span><span class="ys-cd-dot" style="--pos:60%"></span></div>
+  <div class="ys-cd-ends"><span>resting</span><span>in full swing</span></div>
+  <p class="ys-cd-why"><b>A book underway</b>, same steady pace as August</p>
+</div>
+
+<div class="ys-cd-row" style="--tint:#f3ecdc;--tone:var(--cat-money)">
+  <div class="ys-cd-top"><span class="ic">🏠</span><b>Home</b><span class="ys-cd-word">Winding down <i>▼</i></span></div>
+  <div class="ys-cd-track"><span class="ys-cd-ghost" style="--was:85%"></span><span class="ys-cd-dot" style="--pos:45%"></span></div>
+  <div class="ys-cd-ends"><span>resting</span><span>in full swing</span></div>
+  <p class="ys-cd-why"><b>The reno finished</b>, so the pace easing off is the plan working</p>
+</div>
+
+<div class="ys-cd-row" style="--tint:#ececec;--tone:#6b6b6b">
+  <div class="ys-cd-top"><span class="ic">💼</span><b>Work</b><span class="ys-cd-word">Rolling</span></div>
+  <div class="ys-cd-track"><span class="ys-cd-ghost" style="--was:66%"></span><span class="ys-cd-dot" style="--pos:64%"></span></div>
+  <div class="ys-cd-ends"><span>resting</span><span>in full swing</span></div>
+  <p class="ys-cd-why"><b>13 tasks in 4 weeks</b>, your usual</p>
+</div>
+
+<div class="ys-cd-row" style="--tint:#fbe9e1;--tone:#b8552e">
+  <div class="ys-cd-top"><span class="ic">💛</span><b>Relationships</b><span class="ys-cd-word">Resting <i>▼</i></span></div>
+  <div class="ys-cd-track"><span class="ys-cd-ghost" style="--was:30%"></span><span class="ys-cd-dot" style="--pos:8%"></span></div>
+  <div class="ys-cd-ends"><span>resting</span><span>in full swing</span></div>
+  <p class="ys-cd-why"><b>1 thing in 4 weeks</b>, was it a rest you meant to take?</p>
+</div>
+
+<p class="ys-note">The scale is your own range: "in full swing" is the busiest you have ever been in that area, not anyone else's number.</p>
+</div>

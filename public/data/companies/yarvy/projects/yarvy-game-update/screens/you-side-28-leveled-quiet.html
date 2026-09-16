@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* You, sorted for feel, round four. Two short lists, the middle "in progress" state is skipped: it is already the main areas list. */
+  html, body { margin: 0; background: var(--panel); }
+  .ys { width: 300px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ys-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+  .ys-sec-head h2 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); }
+  .ys-link { border: 0; background: none; font: inherit; color: var(--accent-2); font-size: var(--fs-xs); font-weight: var(--fw-semibold); cursor: pointer; padding: 0; }
+
+  .ys-lq-group { margin-top: 18px; }
+  .ys-lq-group:first-of-type { margin-top: 12px; }
+  .ys-lq-label { display: flex; align-items: center; gap: 6px; margin: 0 0 8px 2px; font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: var(--muted); text-transform: uppercase; letter-spacing: var(--ls-wide, 0.04em); }
+  .ys-lq-label.up { color: var(--success-text); }
+  .ys-lq-row { display: grid; grid-template-columns: 30px minmax(0,1fr) auto; gap: 10px; align-items: center; min-height: 52px; padding: 7px 0; border-top: 1px solid var(--line-soft); }
+  .ys-lq-row:first-child { border-top: 0; }
+  .ys-lq-row .ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font-size: 15px; background: var(--tint); }
+  .ys-lq-row b { display: block; font-weight: var(--fw-semibold); font-size: var(--fs-body-sm); }
+  .ys-lq-row small { display: block; color: var(--muted); font-size: var(--fs-xs); }
+  .ys-lq-lv { white-space: nowrap; font-size: var(--fs-sm); font-weight: var(--fw-bold); color: var(--tone); }
+  .ys-lq-quiet { display: grid; grid-template-columns: 30px minmax(0,1fr); gap: 10px; align-items: center; min-height: 44px; }
+  .ys-lq-quiet .ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font-size: 15px; background: var(--tint); }
+  .ys-lq-quiet small { display: block; color: var(--muted); font-size: var(--fs-xs); }
+  .ys-note { margin: 14px 0 0; font-size: var(--fs-xs); color: var(--muted); }
+</style>
+<div class="ys">
+<div class="ys-sec-head"><h2>This month</h2><button type="button" class="ys-link">All 5 areas</button></div>
+
+<div class="ys-lq-group">
+  <div class="ys-lq-label up"><i class="ph-fill ph-arrow-fat-up" aria-hidden="true"></i> Leveled up</div>
+  <div class="ys-lq-row" style="--tint:#e6f1ea;--tone:var(--cat-health)"><span class="ic">🏃</span><span><b>Health</b><small>Ran 5 km, reached level 4 on Mon</small></span><span class="ys-lq-lv">Lv 4</span></div>
+  <div class="ys-lq-row" style="--tint:#e8ecf6;--tone:var(--cat-learn)"><span class="ic">📚</span><span><b>Learning</b><small>Finished a book, reached level 3 on Sep 6</small></span><span class="ys-lq-lv">Lv 3</span></div>
+</div>
+
+<div class="ys-lq-group">
+  <div class="ys-lq-label">Quiet</div>
+  <div class="ys-lq-quiet"><span class="ic" style="background:#fbe9e1">💛</span><span><b>Relationships</b><small>3 tasks, no goal here, quiet lately</small></span></div>
+</div>
+
+<p class="ys-note">Home and Work moved this month too, just not into a new level or a quiet spell, so they stay off this list and live in the full areas view.</p>
+</div>

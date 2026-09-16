@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* You, round five. Areas grouped under plain status headers, so the buckets themselves are the first read. */
+  html, body { margin: 0; background: var(--panel); }
+  .ys { width: 300px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ys-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+  .ys-sec-head h2 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); }
+  .ys-link { border: 0; background: none; font: inherit; color: var(--accent-2); font-size: var(--fs-xs); font-weight: var(--fw-semibold); cursor: pointer; padding: 0; }
+
+  .ys-sg-group { margin-top: 16px; }
+  .ys-sg-group:first-of-type { margin-top: 0; }
+  .ys-sg-head { display: flex; align-items: center; gap: 7px; font-size: var(--fs-sm); font-weight: var(--fw-bold); color: var(--head); }
+  .ys-sg-head i { font-size: 14px; }
+  .ys-sg-head .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--head); }
+  .ys-sg-group.needs { --head: #b8552e; }
+  .ys-sg-group.leveled { --head: var(--success-text); }
+  .ys-sg-group.room { --head: var(--accent-2); }
+  .ys-sg-group.steady { --head: var(--muted); }
+  .ys-sg-row { display: grid; grid-template-columns: 30px minmax(0,1fr) auto; gap: 10px; align-items: center; min-height: 50px; padding: 7px 0 7px 2px; border-top: 1px solid var(--line-soft); }
+  .ys-sg-row:nth-of-type(2) { border-top: 0; }
+  .ys-sg-row .ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font-size: 15px; background: var(--tint); }
+  .ys-sg-row b { display: block; font-weight: var(--fw-semibold); font-size: var(--fs-body-sm); }
+  .ys-sg-row small { display: block; color: var(--muted); font-size: var(--fs-xs); }
+  .ys-sg-row .lv { font-size: var(--fs-sm); font-weight: var(--fw-bold); color: var(--tone); white-space: nowrap; }
+  .ys-note { margin: 14px 0 0; font-size: var(--fs-xs); color: var(--muted); }
+</style>
+<div class="ys">
+<div class="ys-sec-head"><h2>Your areas</h2><button type="button" class="ys-link">How levels work</button></div>
+
+<div class="ys-sg-group needs">
+  <div class="ys-sg-head"><span class="dot"></span>Needs work</div>
+  <div class="ys-sg-row" style="--tint:#fbe9e1;--tone:#b8552e"><span class="ic">💛</span><span><b>Relationships</b><small>3 tasks, nothing in 2 weeks</small></span><span class="lv">Lv 1</span></div>
+</div>
+
+<div class="ys-sg-group leveled">
+  <div class="ys-sg-head"><i class="ph-fill ph-arrow-fat-up" aria-hidden="true"></i>Leveled up</div>
+  <div class="ys-sg-row" style="--tint:#e6f1ea;--tone:var(--cat-health)"><span class="ic">🏃</span><span><b>Health</b><small>Ran 5 km on Mon, hit level 4</small></span><span class="lv">Lv 4</span></div>
+</div>
+
+<div class="ys-sg-group room">
+  <div class="ys-sg-head"><span class="dot"></span>Room to grow</div>
+  <div class="ys-sg-row" style="--tint:#e8ecf6;--tone:var(--cat-learn)"><span class="ic">📚</span><span><b>Learning</b><small>1 book from level 4</small></span><span class="lv">Lv 3</span></div>
+</div>
+
+<div class="ys-sg-group steady">
+  <div class="ys-sg-head"><span class="dot"></span>Steady</div>
+  <div class="ys-sg-row" style="--tint:#f3ecdc;--tone:var(--cat-money)"><span class="ic">🏠</span><span><b>Home</b><small>Kitchen reno done, 41 tasks</small></span><span class="lv">Lv 5</span></div>
+  <div class="ys-sg-row" style="--tint:#ececec;--tone:#6b6b6b"><span class="ic">💼</span><span><b>Work</b><small>52 tasks, no goal here</small></span><span class="lv">Lv 5</span></div>
+</div>
+
+<p class="ys-note">The four buckets are the first read; an empty bucket disappears rather than sitting there empty. On a good month "Needs work" is simply gone.</p>
+</div>

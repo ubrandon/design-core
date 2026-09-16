@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* You, sorted for feel, round four. A trail of real weekly counts per area, so quiet vs active reads before any word does. */
+  html, body { margin: 0; background: var(--panel); }
+  .ys { width: 300px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ys-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .ys-sec-head h2 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); }
+  .ys-link { border: 0; background: none; font: inherit; color: var(--accent-2); font-size: var(--fs-xs); font-weight: var(--fw-semibold); cursor: pointer; padding: 0; }
+
+  .ys-pu-row { padding: 10px 0; border-top: 1px solid var(--line-soft); }
+  .ys-pu-row:first-child { border-top: 0; padding-top: 0; }
+  .ys-pu-top { display: grid; grid-template-columns: 26px minmax(0,1fr) auto; gap: 8px; align-items: center; }
+  .ys-pu-top .ic { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; font-size: 13px; background: var(--tint); }
+  .ys-pu-top b { font-weight: var(--fw-semibold); font-size: var(--fs-body-sm); }
+  .ys-pu-lv { font-size: var(--fs-xs); font-weight: var(--fw-bold); color: var(--tone); white-space: nowrap; }
+  .ys-pu-trail { display: flex; align-items: flex-end; gap: 3px; height: 26px; margin: 8px 0 4px 34px; }
+  .ys-pu-trail i { display: block; flex: 1; height: var(--h, 0%); min-width: 4px; border-radius: 2px 2px 0 0; background: var(--tone); opacity: 0.85; }
+  .ys-pu-trail i:last-child { opacity: 1; outline: 2px solid var(--tone); outline-offset: 1px; }
+  .ys-pu-trail-track { position: relative; }
+  .ys-pu-cap { margin-left: 34px; font-size: var(--fs-2xs); color: var(--muted); }
+  .ys-note { margin: 12px 0 0; font-size: var(--fs-xs); color: var(--muted); }
+</style>
+<div class="ys">
+<div class="ys-sec-head"><h2>Your pulse</h2><button type="button" class="ys-link">8 weeks</button></div>
+
+<div class="ys-pu-row" style="--tint:#e6f1ea;--tone:var(--cat-health)">
+  <div class="ys-pu-top"><span class="ic">🏃</span><b>Health</b><span class="ys-pu-lv">Lv 4</span></div>
+  <div class="ys-pu-trail"><i style="--h:40%"></i><i style="--h:60%"></i><i style="--h:40%"></i><i style="--h:80%"></i><i style="--h:60%"></i><i style="--h:100%"></i><i style="--h:80%"></i><i style="--h:100%"></i></div>
+  <div class="ys-pu-cap">5 this week, still climbing</div>
+</div>
+
+<div class="ys-pu-row" style="--tint:#e8ecf6;--tone:var(--cat-learn)">
+  <div class="ys-pu-top"><span class="ic">📚</span><b>Learning</b><span class="ys-pu-lv">Lv 3</span></div>
+  <div class="ys-pu-trail"><i style="--h:50%"></i><i style="--h:100%"></i><i style="--h:50%"></i><i style="--h:100%"></i><i style="--h:100%"></i><i style="--h:50%"></i><i style="--h:100%"></i><i style="--h:100%"></i></div>
+  <div class="ys-pu-cap">2 this week</div>
+</div>
+
+<div class="ys-pu-row" style="--tint:#f3ecdc;--tone:var(--cat-money)">
+  <div class="ys-pu-top"><span class="ic">🏠</span><b>Home</b><span class="ys-pu-lv">Lv 5</span></div>
+  <div class="ys-pu-trail"><i style="--h:75%"></i><i style="--h:100%"></i><i style="--h:75%"></i><i style="--h:75%"></i><i style="--h:50%"></i><i style="--h:75%"></i><i style="--h:75%"></i><i style="--h:75%"></i></div>
+  <div class="ys-pu-cap">3 this week, an even keel</div>
+</div>
+
+<div class="ys-pu-row" style="--tint:#ececec;--tone:#6b6b6b">
+  <div class="ys-pu-top"><span class="ic">💼</span><b>Work</b><span class="ys-pu-lv">Lv 5</span></div>
+  <div class="ys-pu-trail"><i style="--h:100%"></i><i style="--h:75%"></i><i style="--h:100%"></i><i style="--h:100%"></i><i style="--h:75%"></i><i style="--h:100%"></i><i style="--h:75%"></i><i style="--h:100%"></i></div>
+  <div class="ys-pu-cap">4 this week, an even keel</div>
+</div>
+
+<div class="ys-pu-row" style="--tint:#fbe9e1;--tone:#b8552e">
+  <div class="ys-pu-top"><span class="ic">💛</span><b>Relationships</b><span class="ys-pu-lv">Lv 1</span></div>
+  <div class="ys-pu-trail"><i style="--h:100%"></i><i style="--h:50%"></i><i style="--h:50%"></i><i style="--h:0%"></i><i style="--h:50%"></i><i style="--h:0%"></i><i style="--h:0%"></i><i style="--h:50%"></i></div>
+  <div class="ys-pu-cap">1 this week, thinning out</div>
+</div>
+
+<p class="ys-note">No score, no percentage: each bar is a real week's count of check-ins, tasks and moments in that area. A thinning trail says "quiet" on its own; the caption gives the honest number so an empty week never reads as missing data.</p>
+</div>

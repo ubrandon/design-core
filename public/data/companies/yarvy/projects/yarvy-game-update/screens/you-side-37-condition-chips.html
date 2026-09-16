@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* You, round eight. Condition as the unit, chips as the read: four words, planned rest marked apart from unplanned, quietest first. */
+  html, body { margin: 0; background: var(--panel); }
+  .ys { width: 300px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ys-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .ys-sec-head h2 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); }
+  .ys-link { border: 0; background: none; font: inherit; color: var(--accent-2); font-size: var(--fs-xs); font-weight: var(--fw-semibold); cursor: pointer; padding: 0; }
+
+  .ys-cc-row { padding: 10px 0; border-top: 1px solid var(--line-soft); }
+  .ys-cc-row:first-of-type { border-top: 0; }
+  .ys-cc-top { display: grid; grid-template-columns: 26px minmax(0,1fr) auto; gap: 8px; align-items: center; }
+  .ys-cc-top .ic { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; font-size: 13px; background: var(--tint); }
+  .ys-cc-top b { font-weight: var(--fw-semibold); font-size: var(--fs-body-sm); }
+  .ys-chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: var(--fw-semibold); white-space: nowrap; background: var(--chip-bg); color: var(--chip-fg); }
+  .ys-chip i { font-size: 11px; }
+  .ys-chip.swing { --chip-bg: var(--success-soft); --chip-fg: var(--success-text); }
+  .ys-chip.rolling { --chip-bg: var(--chip-active); --chip-fg: var(--accent-2); }
+  .ys-chip.rest-un { --chip-bg: #fbe9e1; --chip-fg: #b8552e; }
+  .ys-chip.rest-pl { --chip-bg: var(--surface-hover); --chip-fg: var(--muted); }
+  .ys-cc-track { position: relative; height: 12px; margin: 7px 0 0 34px; }
+  .ys-cc-track::before { content: ""; position: absolute; left: 0; right: 0; top: 4px; height: 4px; border-radius: 2px; background: linear-gradient(to right, var(--surface-hover), var(--tone)); opacity: 0.5; }
+  .ys-cc-dot { position: absolute; top: 0; left: var(--pos); width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: var(--tone); border: 2px solid var(--panel); box-shadow: 0 0 0 1px var(--tone); box-sizing: border-box; }
+  .ys-cc-ghost { position: absolute; top: 2px; left: var(--was); width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; border: 1.5px dashed var(--muted); box-sizing: border-box; opacity: 0.7; }
+  .ys-cc-why { margin: 5px 0 0 34px; font-size: var(--fs-xs); color: var(--muted); }
+  .ys-cc-why b { color: var(--text); font-weight: var(--fw-semibold); }
+  .ys-note { margin: 12px 0 0; font-size: var(--fs-xs); color: var(--muted); }
+</style>
+<div class="ys">
+<div class="ys-sec-head"><h2>How each part of you is running</h2><button type="button" class="ys-link">Last 4 weeks</button></div>
+
+<div class="ys-cc-row" style="--tint:#fbe9e1;--tone:#b8552e">
+  <div class="ys-cc-top"><span class="ic">💛</span><b>Relationships</b><span class="ys-chip rest-un">Resting, unplanned?</span></div>
+  <div class="ys-cc-track"><span class="ys-cc-ghost" style="--was:30%"></span><span class="ys-cc-dot" style="--pos:8%"></span></div>
+  <p class="ys-cc-why"><b>1 thing in 4 weeks</b>, and no rest was set here</p>
+</div>
+
+<div class="ys-cc-row" style="--tint:#e6f1ea;--tone:var(--cat-health)">
+  <div class="ys-cc-top"><span class="ic">🏃</span><b>Health</b><span class="ys-chip swing"><i class="ph-fill ph-arrow-fat-up" aria-hidden="true"></i>In full swing</span></div>
+  <div class="ys-cc-track"><span class="ys-cc-ghost" style="--was:62%"></span><span class="ys-cc-dot" style="--pos:88%"></span></div>
+  <p class="ys-cc-why"><b>11 things in 4 weeks</b>, your busiest month here yet</p>
+</div>
+
+<div class="ys-cc-row" style="--tint:#e8ecf6;--tone:var(--cat-learn)">
+  <div class="ys-cc-top"><span class="ic">📚</span><b>Learning</b><span class="ys-chip rolling">Rolling</span></div>
+  <div class="ys-cc-track"><span class="ys-cc-ghost" style="--was:58%"></span><span class="ys-cc-dot" style="--pos:60%"></span></div>
+  <p class="ys-cc-why"><b>A book underway</b>, same steady pace as August</p>
+</div>
+
+<div class="ys-cc-row" style="--tint:#ececec;--tone:#6b6b6b">
+  <div class="ys-cc-top"><span class="ic">💼</span><b>Work</b><span class="ys-chip rolling">Rolling</span></div>
+  <div class="ys-cc-track"><span class="ys-cc-ghost" style="--was:66%"></span><span class="ys-cc-dot" style="--pos:64%"></span></div>
+  <p class="ys-cc-why"><b>13 tasks in 4 weeks</b>, your usual</p>
+</div>
+
+<div class="ys-cc-row" style="--tint:#f3ecdc;--tone:var(--cat-money)">
+  <div class="ys-cc-top"><span class="ic">🏠</span><b>Home</b><span class="ys-chip rest-pl"><i class="ph ph-check" aria-hidden="true"></i>Resting, planned</span></div>
+  <div class="ys-cc-track"><span class="ys-cc-ghost" style="--was:85%"></span><span class="ys-cc-dot" style="--pos:45%"></span></div>
+  <p class="ys-cc-why"><b>The reno finished</b>, easing off is the plan working</p>
+</div>
+
+<p class="ys-note">Four words, never bad or good: in full swing, rolling, winding down, resting. Rest you chose is grey and settled; rest you did not choose is the only warm chip on the page, and it is a question, not a verdict.</p>
+</div>

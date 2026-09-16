@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* You, round seven. No levels: 100% is the state the person described, distance to it is the measure, and hitting it invites a new 100%. */
+  html, body { margin: 0; background: var(--panel); }
+  .ys { width: 300px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ys-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+  .ys-sec-head h2 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); }
+  .ys-link { border: 0; background: none; font: inherit; color: var(--accent-2); font-size: var(--fs-xs); font-weight: var(--fw-semibold); cursor: pointer; padding: 0; }
+  .ys-lede { margin: 0 0 10px; font-size: var(--fs-xs); color: var(--muted); }
+
+  .ys-hp-row { padding: 11px 0; border-top: 1px solid var(--line-soft); }
+  .ys-hp-row:first-of-type { border-top: 0; }
+  .ys-hp-top { display: grid; grid-template-columns: 26px minmax(0,1fr) auto; gap: 8px; align-items: center; }
+  .ys-hp-top .ic { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; font-size: 13px; background: var(--tint); }
+  .ys-hp-top b { font-weight: var(--fw-semibold); font-size: var(--fs-body-sm); }
+  .ys-hp-pct { font-size: var(--fs-xs); font-weight: var(--fw-bold); color: var(--tone); white-space: nowrap; }
+  .ys-hp-ideal { margin: 5px 0 0 34px; font-size: var(--fs-xs); color: var(--muted); font-style: italic; }
+  .ys-hp-bar { height: 6px; margin: 7px 0 0 34px; border-radius: var(--radius-pill); background: var(--surface-hover); overflow: hidden; }
+  .ys-hp-bar i { display: block; height: 100%; width: var(--w, 0); background: var(--tone); border-radius: var(--radius-pill); }
+  .ys-hp-left { margin: 5px 0 0 34px; font-size: var(--fs-xs); color: var(--text); }
+  .ys-hp-left b { font-weight: var(--fw-semibold); }
+  .ys-hp-left.done { color: var(--success-text); }
+  .ys-hp-left button { border: 0; background: none; padding: 0; font: inherit; font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: var(--accent-2); cursor: pointer; }
+  .ys-hp-empty { margin: 5px 0 0 34px; font-size: var(--fs-xs); color: var(--muted); }
+  .ys-hp-empty button { border: 0; background: none; padding: 0; font: inherit; font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: var(--accent-2); cursor: pointer; }
+  .ys-note { margin: 12px 0 0; font-size: var(--fs-xs); color: var(--muted); }
+</style>
+<div class="ys">
+<div class="ys-sec-head"><h2>Your 100%</h2><button type="button" class="ys-link">Edit ideals</button></div>
+<p class="ys-lede">100% is the state you described, not perfection. Reach it and you get to describe a new one.</p>
+
+<div class="ys-hp-row" style="--tint:#f3ecdc;--tone:var(--cat-money)">
+  <div class="ys-hp-top"><span class="ic">🏠</span><b>Home</b><span class="ys-hp-pct">96%</span></div>
+  <p class="ys-hp-ideal">"A finished kitchen and a calm house."</p>
+  <div class="ys-hp-bar"><i style="--w:96%"></i></div>
+  <p class="ys-hp-left done">Nearly there: hang the two shelves. Then, <button type="button">describe your next 100%</button></p>
+</div>
+
+<div class="ys-hp-row" style="--tint:#e6f1ea;--tone:var(--cat-health)">
+  <div class="ys-hp-top"><span class="ic">🏃</span><b>Health</b><span class="ys-hp-pct">70%</span></div>
+  <p class="ys-hp-ideal">"Run a half marathon, keep both habits weekly."</p>
+  <div class="ys-hp-bar"><i style="--w:70%"></i></div>
+  <p class="ys-hp-left">Between you and it: <b>the 10 km run, then the race</b></p>
+</div>
+
+<div class="ys-hp-row" style="--tint:#e8ecf6;--tone:var(--cat-learn)">
+  <div class="ys-hp-top"><span class="ic">📚</span><b>Learning</b><span class="ys-hp-pct">33%</span></div>
+  <p class="ys-hp-ideal">"Twelve books this year."</p>
+  <div class="ys-hp-bar"><i style="--w:33%"></i></div>
+  <p class="ys-hp-left">Between you and it: <b>8 books by Dec 31</b></p>
+</div>
+
+<div class="ys-hp-row" style="--tint:#ececec;--tone:#6b6b6b">
+  <div class="ys-hp-top"><span class="ic">💼</span><b>Work</b></div>
+  <p class="ys-hp-empty">No ideal described. Yarvy's guess from your tasks: "work stays at work." <button type="button">Keep it</button> or <button type="button">say your own</button></p>
+</div>
+
+<div class="ys-hp-row" style="--tint:#fbe9e1;--tone:#b8552e">
+  <div class="ys-hp-top"><span class="ic">💛</span><b>Relationships</b></div>
+  <p class="ys-hp-empty">No ideal described, and nothing to guess from 3 tasks. <button type="button">Describe it</button></p>
+</div>
+
+<p class="ys-note">The percent only exists where you described the state it measures. No ideal, no number, no judgment.</p>
+</div>
