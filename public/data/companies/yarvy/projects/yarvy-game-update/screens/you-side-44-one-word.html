@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* You, round nine. One signal per row: the chip. Everything else, the dial, the receipts, the suggestions, lives behind the tap. */
+  html, body { margin: 0; background: var(--panel); }
+  .ys { width: 300px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ys-sec-head { margin-bottom: 8px; }
+  .ys-sec-head h2 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); }
+
+  .ys-ow-row { position: relative; display: grid; grid-template-columns: 30px minmax(0,1fr) auto 16px; gap: 10px; align-items: center; min-height: 52px; padding: 4px 0; border-top: 1px solid var(--line-soft); cursor: pointer; }
+  .ys-ow-row:first-of-type { border-top: 0; }
+  .ys-ow-row:hover { background: var(--surface-hover); }
+  .ys-ow-row .ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; font-size: 15px; background: var(--tint); }
+  .ys-ow-row b { font-weight: var(--fw-semibold); font-size: var(--fs-body-sm); }
+  .ys-ow-row .caret { color: var(--muted); font-size: 15px; }
+  .ys-chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: var(--radius-pill); font-size: var(--fs-xs); font-weight: var(--fw-semibold); white-space: nowrap; background: var(--chip-bg); color: var(--chip-fg); }
+  .ys-chip i { font-size: 11px; }
+  .ys-chip.swing { --chip-bg: var(--success-soft); --chip-fg: var(--success-text); }
+  .ys-chip.rolling { --chip-bg: var(--chip-active); --chip-fg: var(--accent-2); }
+  .ys-chip.rest-un { --chip-bg: #fbe9e1; --chip-fg: #b8552e; }
+  .ys-chip.rest-pl { --chip-bg: var(--surface-hover); --chip-fg: var(--muted); }
+  .ys-ow-act { grid-column: 2 / -1; margin: -2px 0 8px; font-size: var(--fs-xs); color: var(--muted); }
+  .ys-ow-act button { border: 0; background: none; padding: 0; font: inherit; font-weight: var(--fw-semibold); color: var(--accent-2); cursor: pointer; }
+</style>
+<div class="ys">
+<div class="ys-sec-head"><h2>How you are running</h2></div>
+
+<div class="ys-ow-row" style="--tint:#fbe9e1">
+  <span class="ic">💛</span><b>Relationships</b><span class="ys-chip rest-un">Resting, unplanned?</span><i class="ph ph-caret-right caret" aria-hidden="true"></i>
+  <span class="ys-ow-act"><button type="button">Reply to Sam</button> would get it moving</span>
+</div>
+
+<div class="ys-ow-row" style="--tint:#e6f1ea">
+  <span class="ic">🏃</span><b>Health</b><span class="ys-chip swing"><i class="ph-fill ph-arrow-fat-up" aria-hidden="true"></i>In full swing</span><i class="ph ph-caret-right caret" aria-hidden="true"></i>
+</div>
+
+<div class="ys-ow-row" style="--tint:#e8ecf6">
+  <span class="ic">📚</span><b>Learning</b><span class="ys-chip rolling">Rolling</span><i class="ph ph-caret-right caret" aria-hidden="true"></i>
+</div>
+
+<div class="ys-ow-row" style="--tint:#ececec">
+  <span class="ic">💼</span><b>Work</b><span class="ys-chip rolling">Rolling</span><i class="ph ph-caret-right caret" aria-hidden="true"></i>
+</div>
+
+<div class="ys-ow-row" style="--tint:#f3ecdc">
+  <span class="ic">🏠</span><b>Home</b><span class="ys-chip rest-pl"><i class="ph ph-check" aria-hidden="true"></i>Resting, planned</span><i class="ph ph-caret-right caret" aria-hidden="true"></i>
+</div>
+
+</div>

@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* You, round nine. The whole life on one line: five areas on one shared rail, resting to in full swing. One picture, one sentence. */
+  html, body { margin: 0; background: var(--panel); }
+  .ys { width: 300px; padding: 20px; background: var(--panel); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .ys-sec-head { margin-bottom: 6px; }
+  .ys-sec-head h2 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); }
+
+  .ys-or-rail { position: relative; height: 110px; margin-top: 42px; }
+  .ys-or-rail::before { content: ""; position: absolute; left: 0; right: 0; top: 54px; height: 4px; border-radius: 2px; background: linear-gradient(to right, var(--surface-hover), var(--success-soft), var(--success-fill)); opacity: 0.6; }
+  .ys-or-a { position: absolute; left: var(--pos); top: 0; width: 0; display: grid; justify-items: center; }
+  .ys-or-a .ic { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-size: 17px; background: var(--tint); border: 2px solid var(--panel); box-shadow: 0 0 0 1px var(--line); transform: translateY(38px); cursor: pointer; }
+  .ys-or-a small { position: absolute; top: 84px; font-size: var(--fs-2xs); font-weight: var(--fw-semibold); color: var(--muted); white-space: nowrap; }
+  .ys-or-a.up small { top: 18px; }
+  .ys-or-a.warm .ic { box-shadow: 0 0 0 2px #b8552e; }
+  .ys-or-a.warm small { color: #b8552e; }
+  .ys-or-ends { display: flex; justify-content: space-between; margin-top: 2px; font-size: var(--fs-2xs); color: var(--muted); }
+  .ys-or-line { margin: 16px 0 0; font-size: var(--fs-sm); }
+  .ys-or-line b { font-weight: var(--fw-semibold); }
+  .ys-or-line button { border: 0; background: none; padding: 0; font: inherit; font-weight: var(--fw-semibold); color: var(--accent-2); cursor: pointer; }
+</style>
+<div class="ys">
+<div class="ys-sec-head"><h2>Your month, on one line</h2></div>
+
+<div class="ys-or-rail">
+  <div class="ys-or-a warm" style="--pos:8%;--tint:#fbe9e1"><span class="ic">💛</span><small>Relationships</small></div>
+  <div class="ys-or-a up" style="--pos:42%;--tint:#f3ecdc"><span class="ic">🏠</span><small>Home</small></div>
+  <div class="ys-or-a" style="--pos:58%;--tint:#e8ecf6"><span class="ic">📚</span><small>Learning</small></div>
+  <div class="ys-or-a up" style="--pos:72%;--tint:#ececec"><span class="ic">💼</span><small>Work</small></div>
+  <div class="ys-or-a" style="--pos:90%;--tint:#e6f1ea"><span class="ic">🏃</span><small>Health</small></div>
+</div>
+<div class="ys-or-ends"><span>resting</span><span>in full swing</span></div>
+
+<p class="ys-or-line"><b>Relationships is resting, and no rest was set.</b> <button type="button">Reply to Sam</button> would get it moving.</p>
+</div>

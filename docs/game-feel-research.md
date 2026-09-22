@@ -1,10 +1,20 @@
+# Game Feel Research Companion
+
+Deep research, evidence, worked examples, and annotated sources behind the operational AI guide.
+
+**AI agents:** load [`game-feel-ai-guide.md`](./game-feel-ai-guide.md) for design work. Open this file only when debating a principle, checking evidence, or expanding the research.
+
+**Humans:** this is the full essay. The slim guide is distilled from it.
+
+---
+
 # Game Feel for Digital Products
 
 A useful digital product can borrow the qualities that make well-designed games feel clear, coherent, and satisfying: understandable situations, reliable controls, meaningful choices, visible consequences, and room to act. These qualities can live in a quiet, modern interface. They do not depend on a historical visual style, and they do not require points, badges, or streaks.
 
 The central design objective is to help a person understand what matters, act with confidence, recognize the outcome, and decide what to do next. Sometimes the best next step is to leave the product because the work is complete.
 
-This guide connects game design, player-experience research, interaction design, behavioral science, and human-computer interaction research. Sourced observations carry numbered references. Product patterns, examples, design tests, and recommendations are a synthesis proposed here; they should be evaluated in the actual product with the actual audience. They are not a validated formula for engagement. The guide is product-agnostic. It uses one running example, a personal planning assistant with tasks, goals, and habits, because it exercises conversation, persistence, and progress at once; the examples are hypotheses to test, not prescriptions.
+This research companion connects game design, player-experience research, interaction design, behavioral science, and human-computer interaction research. Sourced observations carry numbered references. Product patterns, examples, design tests, and recommendations are a synthesis proposed here; they should be evaluated in the actual product with the actual audience. They are not a validated formula for engagement. The guide is product-agnostic. It uses one running example, a personal planning assistant with tasks, goals, and habits, because it exercises conversation, persistence, and progress at once; the examples are hypotheses to test, not prescriptions.
 
 **Core rule: one purpose, ordered importance**
 
@@ -31,11 +41,11 @@ Four rules apply to every surface. The rest of the guide is the reasoning and th
 | B. Clarity | 5–10 | Readable situations, language, purpose and hierarchy, space, the laws of ease, learning that accumulates | Reviewing a screen |
 | C. Action and feedback | 11–16 | Actions as commitments, the action loop and state vocabulary, fluidity, agency, resilience, motion and sound | Specifying an interaction across states |
 | D. Motivation and rhythm | 17–20 | Motivation, progress psychology, the evidence on rewards, rhythm and closure | Improving the complete experience |
-| E. Craft | 21–26 | What strong interfaces share, typography, depth, navigation, game UI case studies, AI and uncertainty | Refining the visible and interactive layer |
+| E. Craft | 21–26 | What strong interfaces share, taste/styling north star, typography, color and depth, control craft, navigation, game UI case studies, AI and uncertainty | Refining the visible and interactive layer |
 | F. Applying it | 27–31 | Worked examples (including an assistant's chat), the pattern library, tradeoffs, process and the review kit, evaluation | Turning principles into decisions and testing them |
 | Sources | | Annotated references | Checking evidence or studying further |
 
-If you only have five minutes, read the house rules, the experience statement, section 7, section 12, and the review kit in section 30.
+If you only have five minutes, read the house rules, the experience statement, the Taste and styling north star in Part E, section 7, section 12, and the review kit in section 30.
 
 ## Part A. Foundations
 
@@ -70,6 +80,11 @@ Three layers of quality should be reviewed separately:
 | Expressive polish | Does the treatment reinforce the intended feeling? | Attractive effects distract or slow the action |
 
 A failure at the first two cannot be repaired by ornament. This ordering is a prioritization recommendation, not a quantitative model.
+
+Amplification clarifies importance; it is not decoration piled on every event. Pichlmair and Johansen treat amplification as emphasis that communicates events and their relative weight.[2] Hicks and colleagues' framework for juicy design, grounded in developer interviews, similarly asks whether feedback matches the significance of the game state change rather than maximizing audiovisual volume for its own sake.[76] Empirical work on visual embellishments finds improved visual appeal with only context-specific gains for competence, so juice is not a reliable substitute for clear control and honest state.[77]
+
+**Synthesis for products.** Prefer one unmistakable state change on the affected object over equal juice on unequal events. A routine save, a consequential delete, and a failed write must not share the same celebration budget; identical emphasis destroys hierarchy. When amplification and the object disagree, believe the object.
+
 
 **3. Why games are fun: the research, and what transfers**
 
@@ -256,6 +271,11 @@ Nielsen Norman Group describes proximity and whitespace as ways to establish gro
 
 A useful spatial model has three scales. Within a component, space connects a label, value, and local action. Between components, it organizes a group that serves one decision. Between groups, it marks a change in subject or task. Measurements follow the product's typography, density, and input mode, through the design system's spacing scale.
 
+Name the Gestalt cues that already do this work before adding chrome. Nielsen Norman Group's summaries of proximity, similarity, continuation, and common region are the practical vocabulary:[80][81][82] items near each other read as related; shared color, shape, or typeface implies membership; the eye follows alignment and smooth sequences; a boundary or container groups what sits inside it. Common region is strong enough to override weaker spacing, so borders and cards should be reserved for when proximity alone is insufficient.
+
+**Synthesis.** Ask which Gestalt cue already carries the relationship. If spacing and alignment suffice, a box or divider is ornament. If the cue is wrong (equal gaps between unequal groups, similar treatment for unrelated controls), fix the cue before decorating.
+
+
 Consider an export panel. File name, format, and destination belong to one preparation group. The export action clearly relates to that group. A completed file and its download control form a result group. A support link stays available at lower prominence. Identical spacing between every element obscures those relationships. In chat, spacing should distinguish the reply's central idea, any resulting objects, and the next available action; a recovery control belongs near the change it reverses; history belongs to the conversation without matching the weight of the current decision.
 
 Whitespace becomes counterproductive when it separates evidence that must be compared, forces scrolling between a label and its control, or pushes the primary action out of reach. A dense table can be clearer than widely spaced cards when the task is comparing rows. Density and clarity are separate variables.
@@ -299,6 +319,8 @@ Introduce complexity when it has a purpose. In an editor, basic formatting is di
 Mastery should reduce effort without invalidating the beginner's model. Keyboard shortcuts accelerate the same operations available through visible controls. Batch actions apply a familiar operation at a larger scope. A feature that behaves differently in an expert mode makes the mode change clear.
 
 The relevant challenge is the user's real task: composing a strong document, understanding a dataset, planning a day. Difficulty operating the interface is not a substitute for that challenge.
+
+People build mental models from repeated patterns: what a control means, where related things live, and what happens after a commitment. Consistency protects that model. Nielsen's consistency heuristic distinguishes staying consistent within the product (internal), with platform and industry conventions (external), and in visual language (aesthetic).[91] Break external consistency only when the clarity gain is large, the new pattern is taught once in context, and the old expectation would lead to a costly error. Aesthetic consistency without behavioral consistency is costume.
 
 ## Part C. Action and feedback
 
@@ -345,6 +367,10 @@ The unknown state matters in connected products. A request can reach the server 
 | Confirmation | A real outcome is established | Updated object and concise acknowledgment | Celebration without showing the result |
 | Failure | The intended result is incomplete | Specific explanation and recovery | Only changing color or shaking the screen |
 
+**Controls are small state machines.** Dan Saffer's microinteractions frame a control as trigger, rules, feedback, and loops or modes: what starts it, what it may do, how it shows status, and whether it repeats or changes the default behavior.[78] Material Design 3 lists interaction states such as enabled, disabled, hover, focus, pressed, and dragged as a coherent set rather than isolated styles.[79] Map those interaction states onto the operation vocabulary above (Ready, Accepted, Working, Completed, Failed, Unknown) so a pressed look never impersonates completion, and a disabled look never pretends the action is available. Modes need an obvious exit; a sticky mode without a clear way out breaks the loop.
+
+**Synthesis.** Name Idle, Armed, Working, Succeeded, Failed, and Disabled for each consequential control before inventing polish. If the team cannot say which state the person is in, motion and color will not repair the ambiguity.
+
 Where possible, make the changed object the primary evidence. A transient toast can supplement it but must not be the only way to discover what changed. Consider "Move my dentist task to Friday." A clear interaction acknowledges the request, keeps its context, then shows the confirmed task and resolved date with undo attached to that change. If saving fails, the interface says the update was not confirmed and preserves enough context to recover. A copy confirmation can be tiny; a rescheduled task needs enough detail to verify the date; several changes need a concise account of scope. An advisory answer needs a different ending: if the assistant only explained a possible plan, nothing may imply tasks were created.
 
 Sound and haptics, where supported, reinforce the same vocabulary. A brief tactile response can acknowledge a discrete event; its meaning must agree with the visible state and survive being disabled. Depth communicates relationship: a temporary overlay is visually separated because it sits above the current context; a selected row uses contrast without pretending to be a physical block; repeated shadows across unrelated elements obscure which layer is active.
@@ -360,6 +386,8 @@ Apple's Designing Fluid Interfaces connects responsiveness, interruptibility, an
 | Redirection | Can the person revise the action naturally? | A drag can return to its origin without committing |
 
 A resizable panel's edge follows the pointer predictably, content adapts without hiding the handle, and release leaves it where expected. Elastic effects are optional; continuous control is foundational. Test by changing direction halfway through, acting again before the transition ends, and releasing near a boundary. Interruption must not silently turn one intended action into several durable changes.
+Failure modes of continuous control include scroll hijacking that steals the person's motion, non-interruptible full-screen transitions that finish before input is accepted again, and modals that trap focus until an animation ends. Continuous control fails whenever the system finishes the motion for the person instead of reflecting their current intent.
+
 
 **14. Agency is the ability to direct and revise**
 
@@ -374,6 +402,8 @@ A person should also be able to decline a recommendation or stop a flow. A simpl
 **15. Resilience is part of the feeling**
 
 A product feels trustworthy when it handles interruptions without losing the person's place or work. Network errors, delayed responses, permission changes, and canceled operations are normal conditions. Their design determines whether the system feels dependable after the first impression.
+Norman and Nielsen Norman Group distinguish slips from mistakes: a slip is the right intention executed wrongly (typo, mis-tap); a mistake is the wrong goal, usually from a mismatched mental model.[87][88] Prevent slips with constraints, good defaults, formatting help, and easy forgiveness. Prevent mistakes with legible commitments (section 11) and a clear line between proposal and persisted change (section 4). Confirmations belong on irreversible or external actions, not on every reversible edit. Celeste's forgiveness (input buffering, generous collision) is the game analogue: absorb small execution errors so the person can keep aiming at the real challenge.[8]
+
 
 For every important operation, define how it behaves when repeated, interrupted, retried, or partially completed. Retry has a known scope; if some records were imported, it does not import them again. If saving is uncertain, the absence of an acknowledgment is not proof that nothing happened. Errors identify the affected object and the remaining action (section 6).
 
@@ -385,7 +415,7 @@ Accessibility belongs here. Microsoft documents how motion and blinking near tex
 
 **16. Use motion and sound to explain changes**
 
-Motion has a clear role when it indicates cause, direction, continuity, or a change in state. Assign each animation an informational job. The practitioner tradition of Juice It or Lose It amplifies feedback to make a game satisfying;[19] a product can borrow proportional emphasis in a quieter range. A routine save and a major completion do not need identical treatment.
+Motion has a clear role when it indicates cause, direction, continuity, or a change in state. Assign each animation an informational job. The practitioner tradition of Juice It or Lose It amplifies feedback to make a game satisfying;[19] a product can borrow proportional emphasis in a quieter range. A routine save, a consequential delete, and a failed write must not share the same celebration budget; equal juice on unequal events erases hierarchy (section 2).
 
 Nielsen Norman Group suggests roughly 100 milliseconds for simple feedback and 200–300 milliseconds for larger transitions, with repeated interactions brief and subtle.[20] Apple's motion guidance calls for purposeful, brief feedback consistent with expectations, and interruptible where possible.[26] Define acknowledgment latency separately from animation duration: a pressed state reacts promptly and an operation need not wait for its decorative transition. New content becomes usable as soon as it is safe to expose.
 
@@ -473,7 +503,73 @@ Apple's typography guidance treats type as a means of communicating hierarchy, m
 
 Define styles by their jobs: primary content, object title, supporting description, metadata, control label. A style has a reason to exist that survives a palette or font change. Do not create a new size for every layout adjustment.
 
-A screen becomes brittle when it depends on every title being short, every number having the same width, or every user keeping the default text size. Test long names early. Where information can be truncated, provide a way to inspect it. Cultured Code's account of adjustable text in Things scales icons and layout alongside text rather than treating enlargement as an isolated setting.[30] The test is whether the hierarchy survives at a different size. Smaller text is not the default repair for insufficient space.
+A screen becomes brittle when it depends on every title being short, every number having the same width, or every user keeping the default text size. Test long names early. Where information can be truncated, provide a way to inspect it. Cultured Code's account of adjustable text in Things scales icons and layout alongside text rather than treating enlargement as an isolated setting.[30] The test is whether the hierarchy survives at a different size. Smaller text is not the default repair for insufficient space. Use tabular or numeric figures where numbers must be compared in columns. Quiet metadata must not outrank primary content through weight, color, or size.
+
+**Color and depth carry meaning, not decoration**
+
+Assign semantic color meanings once (success, warning, destructive, accent, disabled) and keep them stable across the product. Apple's color guidance prefers system and semantic colors that adapt to appearance and contrast settings over hard-coded values, and treats color as one cue among others rather than the sole signal.[83] Materials and elevation should express temporary versus durable layers: a sheet or overlay sits above the current context; durable content stays on the content surface.[84] Linear's calmer chrome is a useful restraint check: reduce visual competition while keeping information density, rather than painting every control as a raised object.[28] Icons earn their place when they accelerate recognition; decorative icons that compete with labels dilute hierarchy.
+
+**Synthesis.** If removing color or shadow would erase the only cue that something is interactive, selected, or destructive, the design was relying on decoration as meaning. Restore a structural cue (label, weight, position, shape) first.
+
+
+**Taste and styling north star**
+
+This section turns a concrete reference set into enforceable visual craft for AI and humans designing screens. It does not replace the house rules or the research above. It says how those rules should *look* when the intended feeling is calm confidence with subtle game feel: simple, instantly recognizable, not boring, not busy, generous space, large targets, and clicks whose effect is obvious before you press.
+
+**Reference set (Sep 2026).** Screens that define this taste: Loona home (dark, illustrated sleep content), a map discovery sheet with photo pins and a photo detail card, Discord "Create Your Server" (light, large choice rows with playful icons), and Apple Games Library / Events / Friends (black canvas, cinematic cards, floating pill nav). The rules below are what these share. Brand colors and art style may change; the structural habits should not.
+
+**What they share (the distill)**
+
+| Habit | What you see | Why it feels good |
+| --- | --- | --- |
+| Quiet chrome, loud content | Backgrounds are near-black, soft gray, or calm dark purple; maps are desaturated; UI bars are translucent or flat. Photos, 3D art, app icons, or character icons carry color and emotion. | Interest without busyness. The screen feels alive because of the *content*, not because every control is decorated. |
+| One shape language | Large corner radii everywhere: cards, pills, chips, nav islands, icon wells. Circles for icon-only actions. Few sharp rectangles. | Soft, tactile, "pressable" without heavy skeuomorphism. Recognition of control type at a glance (house rule 2). |
+| Whole-object targets | Feature cards, list rows, filter chips, and Play/Start pills are large. The whole card is the hit area; secondary actions (bookmark, filter) get their own clear wells. | Matches house rule 3 and Fitts (section 9). Game menus teach this: you aim at a slab, not a text link. |
+| Predictable clicks | Cards with chevrons open. Pills filter or act. Play starts. Bottom destinations switch place. Active nav is a quiet pill/glow, not a new metaphor each screen. | Subtle game feel: you know what clicking will do before you click (sections 5 and 11). |
+| Hierarchy by weight and silence | One bold title; one quieter subtitle; metadata smaller and muted. Accents (one purple, one yellow status dot, one blue CTA) are rare and reserved. | Simple to scan. Not boring because art and one accent carry life; not busy because chrome stays quiet. |
+| Space as grouping | Generous padding inside cards and between sections. Equal gaps never between unequal groups (section 8). Lists breathe. | Good use of space without emptiness as a style pose. |
+| Depth as layering, not clutter | Floating search, glass nav, soft shadows, translucent badges on art. Elevation marks temporary vs durable (color/depth craft above). | Physicality without juice overload (section 2). |
+
+**Styling rules (do)**
+
+1. **Start from a calm field.** Prefer a near-black, soft light-gray, or gently tinted dark canvas. Let content provide saturation. Desaturate busy backgrounds (maps, photos behind chrome) so pins and cards win.
+2. **Round everything that is interactive.** Cards and primary buttons use a large, shared radius. Icon-only actions are circles or squircles. Keep the radius system small (two or three tokens), not a new curve per component.
+3. **Make the primary object huge.** Featured content is a tall card or a full-width banner with art. Supporting filters are a row of fat chips. Do not bury the main thing in a dense grid of equal tiles.
+4. **Put the verb on a pill.** Primary actions (Play, Start, Join, Set alarm, Add Friends) sit in tall pill buttons with clear labels. Secondary icon actions sit in circular wells. Never rely on bare text links for primary work.
+5. **Overlay text on art with a legibility plan.** Title and short description live on a gradient or frosted bar at the bottom of the image. Small translucent badges (duration, "Major Update", "Challenge") sit in a corner. Do not sprinkle labels across the art.
+6. **One accent, used sparingly.** Active tab, a single CTA, or a status dot may use the brand accent. Everything else is neutral. If accent appears on five unrelated things, hierarchy is broken (section 5).
+7. **Pair icon + label for destinations.** Bottom nav and choice rows show a simple glyph and a word. Playful or 3D icons are fine for *categories and features*; keep system nav glyphs simple and thick.
+8. **Show selection by scale and border, not by noise.** Selected map pin grows and gains a clear border. Selected nav item gets a quiet pill behind it. Do not pulse, shake, or confetti routine selection.
+9. **Separate search from destinations when search is frequent.** A circular search control beside a floating nav island (Apple Games pattern) beats burying search inside an overflow menu.
+10. **Let empty and waiting stay honest.** Prefer a clear next action on empty (Discord Join / Create) over decorative voids. Loading must not impersonate richer content than will arrive (section 23).
+
+**Styling rules (do not)**
+
+1. Do not decorate every row with unique illustration, gradient, and badge. Interest belongs on featured content; lists stay quieter.
+2. Do not use tiny text links or icon-only glyphs as the only way to do the main job.
+3. Do not mix sharp toolbars with soft cards on the same surface without a reason. One family of shapes.
+4. Do not put equal visual weight on nav, filters, featured art, and five CTAs. Rank them (section 7).
+5. Do not invent a new active-state language per screen.
+6. Do not fill negative space with dividers, strokes, and nested cards. If Gestalt proximity already groups it, skip the box (section 8).
+7. Do not confuse "game-like" with HUD clutter, XP bars, or badge walls. Game-like here means readable targets, clear feedback, and confident art, not gamification (section 19).
+8. Do not make calm by lowering contrast below readable levels. Black canvas still needs white primary text and visible focus (section 15, section 30).
+
+**AI screen brief (fill before drawing)**
+
+When generating or revising a screen for this taste, answer in one short pass:
+
+1. **Purpose** of the screen (section 7).
+2. **Hero object:** what gets the large card or primary column.
+3. **Chrome level:** how quiet is the background, nav, and chrome relative to content.
+4. **Shape tokens:** card radius, pill height, icon-well size.
+5. **Primary verb** and its pill placement.
+6. **Secondary actions** and their circular wells.
+7. **Accent budget:** where the single accent appears, and nowhere else.
+8. **Tap test:** with a thumb-sized target overlay, does every important control clear house rule 3?
+9. **Prediction test:** before interaction, can someone say what each major region does (section 5)?
+10. **Refuse list:** which decoration was considered and cut.
+
+**How this guides AI.** Prefer this section plus the house rules over generic "make it modern" prompts. When a proposed layout conflicts with these rules, restyle toward quiet chrome + large soft targets + content-led interest before inventing new components. When Brandon adds more reference screens, update the reference set line and only change a rule when the new screens clearly break a shared habit.
 
 **23. A small visible surface can support substantial depth**
 
@@ -483,11 +579,15 @@ A default view includes the information necessary for the common decision. Optio
 
 Direct manipulation needs an alternative. A drag may feel efficient to an experienced user and remain undiscovered by someone else. Preserve a conventional path to the same operation and verify it with keyboard, touch, and assistive technology. The pattern is a simple, complete starting point with accessible depth: a minimal surface that cannot support the real task is incomplete; a surface exposing all options at once is unnecessarily demanding.
 
+Empty states and loading states are part of craft, not afterthoughts. Nielsen Norman Group advises against a blank panel that could mean "nothing exists," "still loading," or "error," and recommends explaining what belongs there and how to populate it.[85] Skeleton screens help when they match the eventual hierarchy; they are the wrong tool for process work that needs a progress story, and unnecessary for sub-second loads.[86] Never promise a denser layout than the result will deliver.
+
 **24. Navigation should preserve a mental map**
 
 Apple's navigation session distinguishes movement through an information hierarchy from a modal, self-contained task, and emphasizes meaningful destinations, persistent context, and clear labels.[37] A person should be able to tell whether they are visiting a place, inspecting an object, or temporarily completing a task; those situations carry different expectations for Back, Close, Cancel, and Save.
 
 In a document product, opening a folder is movement through content; editing a sharing setting is a bounded operation on an object; comparing two documents needs a persistent workspace. Treating all three as identical modal dialogs makes navigation laborious. Stable location matters at several scales: primary destinations do not reorder, a selected item remains identifiable after refresh, returning from details restores a sensible place in the list. Simplifying navigation begins with naming the actual objects and tasks; a polished bar cannot repair categories that overlap. Review the labels without the visual treatment.
+Information scent is the estimate people make of whether a path will lead to what they need.[90] Weak scent is a vague label; false scent is a confident label that opens the wrong place. Review labels without icons. Modes, places, and inspections should smell different: visiting a destination, inspecting an object, and completing a temporary task must not share identical chrome and identical verbs.
+
 
 **25. Game interface case studies: craft includes constraint and repair**
 
@@ -502,6 +602,8 @@ In a document product, opening a folder is movement through content; editing a s
 Many game mechanics have deliberately consistent rules. AI-mediated products vary in output quality and interpretation, so the interface must communicate what is proposed, what is known, and what was actually done.
 
 Amershi and colleagues' human-AI interaction guidelines address initial expectations, ongoing use, mistakes, and change over time, with support for correction, dismissal, and understandable behavior. They were evaluated with practitioners across AI-infused products.[24] Their value is making tradeoffs explicit, not prescribing one interface.
+Google's People + AI Guidebook (PAIR) extends the same discipline into patterns for when AI helps, how to show uncertainty, and how to keep people in control.[89] Keep three separations visible: interpretation versus commitment, proposal versus completion, and confidence versus decoration. Fluent wrong answers carry an information-scent risk: polished language can smell like truth. Always-visible Stop, Undo, Edit, and Dismiss controls are part of the feel of an uncertain system, not optional chrome.
+
 
 Separate generating an answer from performing an operation. "Here is a draft" and "This was sent" must not share an ambiguous completion treatment. A polished visual result is not evidence the information is correct or the action succeeded. When the system is unsure, present the uncertainty that matters to the decision: the ambiguous recipient, the interpreted date. A conversational response can be natural while its action states remain consistent; variation in phrasing must not obscure whether an item exists, whether a change is pending, or whether a recommendation was applied. Give people efficient ways to redirect: edit, stop, dismiss, retry, without restarting the whole task.
 
@@ -558,6 +660,8 @@ Each pattern should solve an observed problem, and each has a failure condition.
 | Whole-target control | Makes acquisition easy | A card, row, or chip has one primary action | Nested targets fight, or the whole surface looks passive |
 | Endowed start | Shows progress already made | A multi-step goal has a real first step done | Artificial progress that the person can see through |
 | Honest progress | Shows distance to a real endpoint | A bounded goal with a known total | A bar that fills without the goal advancing |
+| Honest empty | Explains absence and the next useful step | A list, inbox, or panel has no items yet | Blank space that could mean loading or error |
+| Structured wait | Shows hierarchy while work continues | Content-shaped load longer than about a second | Skeleton denser than the result, or fake progress |
 
 **29. Tradeoffs and failure modes**
 
@@ -591,6 +695,15 @@ Each pattern should solve an observed problem, and each has a failure condition.
 4. **Hierarchy.** Can someone identify what the page, each section, and each component is for at first glance? Does the first thing they notice serve that purpose? Does every secondary element have a clear relationship to its parent? Are peers consistent without all competing for page-level attention?
 5. **Simplification.** Does simplifying this surface reduce interpretation and effort, or merely hide controls?
 6. **Conditions.** Do reading order, hierarchy, targets, and recovery survive phone widths, larger text, keyboard use, dark mode, and reduced motion?
+
+**Accessibility as feel.** Treat these as part of the experience statement, not a separate compliance pass:
+
+- **Focus order** matches the reading and action order someone would expect.
+- **Target size** meets the house rule and platform minima (section 9).
+- **Contrast** keeps text and controls readable without relying on color alone.
+- **Reduced motion** preserves state meaning through static cues (section 15).
+- **Name and role** expose what each control is to assistive technology, matching the visible label.
+
 
 **UI craft review.**
 
@@ -742,3 +855,20 @@ The historical game examples are illustrative, not a controlled comparison of cl
 73. Michael Sailer, Jan Ulrich Hense, Sarah Katharina Mayr, and Heinz Mandl. [How gamification motivates: An experimental study of the effects of specific game design elements on psychological need satisfaction](https://www.sciencedirect.com/science/article/pii/S074756321630855X), Computers in Human Behavior 69, 2017. Badges, leaderboards, and performance graphs raised competence and meaningfulness; avatars, story, and teammates raised relatedness; autonomy unaffected. Randomized online simulation; sample size not confirmed here.
 74. Jonna Koivisto and Juho Hamari. [The rise of motivational information systems: A review of gamification research](https://www.sciencedirect.com/science/article/pii/S0268401217305169), International Journal of Information Management 45, 2019. Review of 819 studies; results lean positive with a remarkable share of mixed findings. For effect sizes, newer meta-analyses (Sailer and Homner 2020) are better.
 75. Vero Vanden Abeele, Katta Spiel, Lennart Nacke, Daniel Johnson, and Kathrin Gerling. [Development and validation of the Player Experience Inventory](https://www.sciencedirect.com/science/article/pii/S1071581919301302), International Journal of Human-Computer Studies 135, 2020; Wijnand IJsselsteijn, Yvonne de Kort, and Karolien Poels. [The Game Experience Questionnaire](https://research.tue.nl/en/publications/the-game-experience-questionnaire), TU Eindhoven, 2013; Effie L.-C. Law, Florian Brühlmann, and Elisa D. Mekler. [Systematic review and validation of the Game Experience Questionnaire](https://dl.acm.org/doi/10.1145/3242671.3242683), CHI PLAY 2018; and Marc Hassenzahl, Michael Burmester, and Franz Koller. [AttrakDiff](https://link.springer.com/chapter/10.1007/978-3-322-80058-9_19), Mensch und Computer 2003. PXI (10 constructs, validated with 529 players) and AttrakDiff (pragmatic and hedonic quality) are usable instruments; the GEQ was never peer-reviewed and its 7-factor structure failed validation with 633 participants.
+
+76. Kieran Hicks, Patrick Dickinson, Jussi Holopainen, and Kathrin Gerling. [Good Game Feel: An Empirically Grounded Framework for Juicy Design](https://dl.digra.org/index.php/dl/article/view/936), DiGRA 2018, DOI 10.26503/dl.v2018i1.936. Developer-survey framework for analyzing juiciness against game state and feedback significance.
+77. Kieran Hicks, Kathrin Gerling, Patrick Dickinson, and Vero Vanden Abeele. [Juicy Game Design: Understanding the Impact of Visual Embellishments on Player Experience](https://dl.acm.org/doi/10.1145/3311350.3347171), CHI PLAY 2019, DOI 10.1145/3311350.3347171. Visual embellishments raised appeal; competence effects were context-specific across the tested games.
+78. Dan Saffer. [Microinteractions: Designing with Details](https://www.oreilly.com/library/view/microinteractions/9781449342760/), O'Reilly, 2013. Triggers, rules, feedback, loops, and modes for small interaction moments. Practitioner book.
+79. Google. [States](https://m3.material.io/foundations/interaction/states), Material Design 3. Interaction states (enabled, disabled, hover, focus, pressed, dragged) as a coherent set. Accessed September 21, 2026.
+80. Nielsen Norman Group. [Proximity Principle in Visual Design](https://www.nngroup.com/articles/gestalt-proximity/). Items near each other are perceived as related.
+81. Nielsen Norman Group. [Similarity Principle in Visual Design](https://www.nngroup.com/articles/gestalt-similarity/). Shared visual traits imply grouping.
+82. Nielsen Norman Group. [The Principle of Common Region](https://www.nngroup.com/articles/common-region/); and [Continuation: Gestalt Principle for User Interface Design](https://www.nngroup.com/videos/continuation-gestalt/). Boundaries group contents; the eye follows alignment and smooth paths.
+83. Apple. [Color](https://developer.apple.com/design/human-interface-guidelines/color), Human Interface Guidelines. Semantic system colors, adaptation to appearance and contrast, color not used alone. Accessed September 21, 2026.
+84. Apple. [Materials](https://developer.apple.com/design/human-interface-guidelines/materials), Human Interface Guidelines. Choose materials by semantic role and layer separation. Accessed September 21, 2026.
+85. Nielsen Norman Group. [Designing Empty States in Complex Applications](https://www.nngroup.com/articles/empty-state-interface-design/). Avoid blank panels that confuse loading, absence, and error; explain how to populate.
+86. Page Laubheimer, Nielsen Norman Group. [Skeleton Screens 101](https://www.nngroup.com/articles/skeleton-screens/). Content-shaped placeholders; unsuitable when they misrepresent hierarchy or when a spinner fits process work better.
+87. Nielsen Norman Group. [Preventing User Errors: Avoiding Unconscious Slips](https://www.nngroup.com/articles/slips/). Slips as execution errors; constraints, defaults, and forgiveness.
+88. Nielsen Norman Group. [Preventing User Errors: Avoiding Conscious Mistakes](https://www.nngroup.com/articles/user-mistakes/). Mistakes from mismatched mental models; clearer goals and feedback.
+89. Google People + AI Research. [People + AI Guidebook](https://pair.withgoogle.com/guidebook/). Patterns for human-centered AI products, including control, uncertainty, and trust. Accessed September 21, 2026.
+90. Nielsen Norman Group. [Information Scent: How Users Decide Where to Go Next](https://www.nngroup.com/articles/information-scent/). Labels and cues as estimates of path value; weak and false scent.
+91. Jakob Nielsen. [10 Usability Heuristics for User Interface Design](https://www.nngroup.com/articles/ten-usability-heuristics/); and [Maintain Consistency and Adhere to Standards](https://www.nngroup.com/articles/consistency-and-standards/). Consistency and standards heuristic; internal versus external consistency.

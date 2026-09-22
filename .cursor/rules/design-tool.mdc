@@ -344,6 +344,17 @@ When the designer specifies a target platform (iOS, Android, or desktop), adapt 
 3. **Always use the company's brand colors.** Native-looking doesn't mean default blue iOS or purple Material -- it means the platform's layout patterns and interaction idioms rendered in the company's color palette.
 4. **If no platform is specified**, default to a generic/neutral style using the design system's existing components.
 
+
+
+## Game feel / UI taste (required reading for product screens)
+
+When designing or revising product screens, prototypes, or company UI craft:
+
+1. Read `docs/game-feel-ai-guide.md` in full (house rules, taste/styling, patterns, review kit).
+2. Do not load `docs/game-feel-research.md` unless debating evidence or expanding a principle.
+3. Fill the AI screen brief in the taste section before drawing a new screen.
+4. Follow the guide's firm requirements. Treat visual styling as strong defaults, adapted to the user's brief, task, platform, and company design system. The guide does not authorize replacing company tokens or components with a different visual style.
+
 ## Design Tokens (quick reference)
 
 - Backgrounds: `var(--bg-0)` (#ffffff), `var(--bg-1)` (#f8f9fb)
