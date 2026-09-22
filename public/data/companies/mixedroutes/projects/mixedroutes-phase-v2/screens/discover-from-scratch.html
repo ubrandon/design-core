@@ -1,0 +1,301 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap");
+
+  .mrv2-dfs, .mrv2-dfs * { box-sizing: border-box; font-family: "Geist", sans-serif; margin: 0; }
+  .mrv2-dfs { background: #ffffff; color: #101724; position: relative; overflow-x: clip; }
+  .mrv2-dfs .page-content { padding: 4px 16px 90px; display: flex; flex-direction: column; gap: 24px; }
+
+  /* Toolbar: context first, actions second */
+  .mrv2-dfs .toolbar { min-height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 8px 16px 0; }
+  .mrv2-dfs .toolbar .context { display: flex; flex-direction: column; gap: 2px; }
+  .mrv2-dfs .toolbar .kicker { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #5c6b7d; display: inline-flex; align-items: center; gap: 5px; }
+  .mrv2-dfs .toolbar .kicker i { font-size: 13px; color: #0ca678; }
+  .mrv2-dfs .toolbar .page-title { font-size: 26px; font-weight: 800; letter-spacing: -0.3px; color: #1a2332; line-height: 1.1; }
+  .mrv2-dfs .toolbar .actions { display: flex; align-items: center; gap: 16px; }
+  .mrv2-dfs .toolbar .tbtn { position: relative; color: #1a2332; font-size: 24px; line-height: 1; }
+  .mrv2-dfs .toolbar .badge-dot { position: absolute; top: -8px; right: -8px; min-width: 22px; height: 22px; border-radius: 999px; background: #0ca678; color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center; border: 2px solid #ffffff; padding: 0 4px; }
+
+  /* Intent hero: the ask bar is the main object on the page */
+  .mrv2-dfs .intent { display: flex; flex-direction: column; gap: 12px; }
+  .mrv2-dfs .ask-bar { display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 0 8px 0 18px; border-radius: 22px; border: 1.5px solid transparent; background: linear-gradient(#ffffff, #ffffff) padding-box, linear-gradient(135deg, rgba(20, 184, 166, 0.55), rgba(59, 130, 246, 0.55)) border-box; box-shadow: 0 2px 10px rgba(16, 23, 36, 0.07); }
+  .mrv2-dfs .ask-bar > i { font-size: 20px; flex-shrink: 0; background-image: linear-gradient(135deg, #14b8a6, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .mrv2-dfs .ask-bar .placeholder { flex: 1; font-size: 17px; font-weight: 500; color: #8b98a8; }
+  .mrv2-dfs .ask-bar .send { width: 44px; height: 44px; flex-shrink: 0; border: 0; border-radius: 16px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #fff; font-size: 18px; display: grid; place-items: center; }
+  .mrv2-dfs .mood-row { display: flex; gap: 8px; overflow-x: auto; margin: 0 -16px; padding: 0 16px 2px; scrollbar-width: none; -ms-overflow-style: none; }
+  .mrv2-dfs .mood-row::-webkit-scrollbar { display: none; }
+  .mrv2-dfs .mood-chip { height: 38px; padding: 0 15px; border-radius: 999px; background: #f1f4f7; color: #3b4551; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; flex-shrink: 0; }
+  .mrv2-dfs .mood-chip i { font-size: 15px; color: #5c6b7d; }
+
+  /* Section header */
+  .mrv2-dfs section { display: flex; flex-direction: column; gap: 12px; }
+  .mrv2-dfs .sec-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .mrv2-dfs .sec-head .h-wrap { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .mrv2-dfs .sec-head h2 { font-size: 21px; font-weight: 700; line-height: 1.2; color: #1a2332; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-dfs .sec-head .ai-mark i { font-size: 17px; background: linear-gradient(145deg, #14b8a6, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .mrv2-dfs .sec-head .action { display: inline-flex; align-items: center; gap: 3px; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #5c6b7d; white-space: nowrap; }
+  .mrv2-dfs .sec-head .action i { font-size: 14px; }
+
+  /* Hero pick: one full-width card with a reason line */
+  .mrv2-dfs .hero-card { position: relative; border-radius: 26px; overflow: hidden; aspect-ratio: 4 / 3.4; display: flex; flex-direction: column; justify-content: flex-end; background-size: cover; background-position: center; color: #ffffff; isolation: isolate; }
+  .mrv2-dfs .hero-card::after { content: ""; position: absolute; inset: 0; z-index: 0; background: linear-gradient(to top, rgba(8, 12, 20, 0.85) 0%, rgba(8, 12, 20, 0.35) 45%, rgba(8, 12, 20, 0) 70%); }
+  .mrv2-dfs .hero-card .save { position: absolute; z-index: 2; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: grid; place-items: center; color: #fff; font-size: 20px; }
+  .mrv2-dfs .hero-card .why { position: absolute; z-index: 2; top: 14px; left: 14px; height: 30px; padding: 0 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.92); color: #1a2332; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+  .mrv2-dfs .hero-card .why i { font-size: 14px; background: linear-gradient(145deg, #14b8a6, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .mrv2-dfs .hero-card .info { position: relative; z-index: 1; padding: 18px; display: flex; flex-direction: column; gap: 5px; }
+  .mrv2-dfs .hero-card .date { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: rgba(255, 255, 255, 0.82); }
+  .mrv2-dfs .hero-card .title { font-size: 25px; font-weight: 800; line-height: 1.15; letter-spacing: -0.3px; }
+  .mrv2-dfs .hero-card .sub { font-size: 15px; font-weight: 500; color: rgba(255, 255, 255, 0.85); }
+  .mrv2-dfs .hero-card .cta-row { display: flex; align-items: center; gap: 10px; padding-top: 10px; }
+  .mrv2-dfs .hero-card .cta { height: 40px; padding: 0 18px; border: 0; border-radius: 999px; background: #ffffff; color: #101724; font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; gap: 7px; }
+  .mrv2-dfs .hero-card .cta.ghost { background: rgba(255, 255, 255, 0.18); color: #ffffff; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+
+  /* Friend plans: list rows, faces first */
+  .mrv2-dfs .plan-row { display: flex; align-items: center; gap: 13px; padding: 6px 0; }
+  .mrv2-dfs .plan-row + .plan-row { border-top: 1px solid #eef1f5; }
+  .mrv2-dfs .plan-row .thumb { position: relative; width: 64px; height: 64px; border-radius: 18px; background-size: cover; background-position: center; flex-shrink: 0; }
+  .mrv2-dfs .plan-row .thumb .host { position: absolute; right: -6px; bottom: -6px; width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 2.5px solid #ffffff; }
+  .mrv2-dfs .plan-row .txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .mrv2-dfs .plan-row .date { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: #0ca678; }
+  .mrv2-dfs .plan-row .title { font-size: 16px; font-weight: 700; color: #1a2332; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-dfs .plan-row .who { font-size: 14px; font-weight: 500; color: #5c6b7d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-dfs .plan-row .join { height: 36px; padding: 0 16px; border: 0; border-radius: 999px; background: #1a2332; color: #ffffff; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+
+  /* Weekend grid: 2-up tiles */
+  .mrv2-dfs .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 12px; }
+  .mrv2-dfs .g-card { display: flex; flex-direction: column; }
+  .mrv2-dfs .g-card .img { position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 18px; overflow: hidden; background-size: cover; background-position: center; }
+  .mrv2-dfs .g-card .save { position: absolute; top: 9px; right: 9px; width: 32px; height: 32px; border-radius: 50%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: grid; place-items: center; color: #fff; font-size: 17px; }
+  .mrv2-dfs .g-card .save.saved { color: #06b6d4; }
+  .mrv2-dfs .g-card .pill { position: absolute; left: 9px; bottom: 9px; height: 26px; padding: 0 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: #fff; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; }
+  .mrv2-dfs .g-card .pill i { font-size: 13px; }
+  .mrv2-dfs .g-card .body { padding: 9px 2px 0; display: flex; flex-direction: column; gap: 2px; }
+  .mrv2-dfs .g-card .date { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; color: #5c6b7d; }
+  .mrv2-dfs .g-card .title { font-size: 15px; font-weight: 700; line-height: 1.25; color: #1a2332; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .mrv2-dfs .g-card .meta { display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 600; color: #5c6b7d; }
+  .mrv2-dfs .g-card .meta i { font-size: 13px; flex-shrink: 0; }
+  .mrv2-dfs .g-card .meta span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* Friends loved: compact proof rows */
+  .mrv2-dfs .loved-row { display: flex; align-items: center; gap: 13px; padding: 6px 0; }
+  .mrv2-dfs .loved-row + .loved-row { border-top: 1px solid #eef1f5; }
+  .mrv2-dfs .loved-row .thumb { width: 52px; height: 52px; border-radius: 15px; background-size: cover; background-position: center; flex-shrink: 0; }
+  .mrv2-dfs .loved-row .txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .mrv2-dfs .loved-row .title { font-size: 16px; font-weight: 700; color: #1a2332; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-dfs .loved-row .proof { display: flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 500; color: #5c6b7d; }
+  .mrv2-dfs .loved-row .stack { display: flex; align-items: center; flex-shrink: 0; }
+  .mrv2-dfs .loved-row .stack img { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; margin-left: -6px; border: 1.5px solid #ffffff; }
+  .mrv2-dfs .loved-row .stack img:first-child { margin-left: 0; }
+  .mrv2-dfs .loved-row .go { width: 36px; height: 36px; border-radius: 50%; background: #f1f4f7; color: #1a2332; font-size: 17px; display: grid; place-items: center; flex-shrink: 0; }
+
+  /* Tab bar, same as siblings for family consistency */
+  .mrv2-dfs .tab-bar { position: relative; z-index: 5; height: 67px; background: #ffffff; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12); display: flex; align-items: flex-start; padding-top: 9px; }
+  .mrv2-dfs .tab { flex: 1; display: flex; align-items: center; justify-content: center; color: #3b4551; }
+  .mrv2-dfs .tab i { font-size: 24px; }
+  .mrv2-dfs .tab.discover i { font-size: 26px; }
+  .mrv2-dfs .tab.selected { color: #1a2332; }
+  .mrv2-dfs .you { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+  .mrv2-dfs .chat-wrap { position: relative; display: inline-flex; }
+  .mrv2-dfs .unread { position: absolute; top: -8px; right: -14px; min-width: 22px; height: 22px; display: grid; place-items: center; padding: 0 4px; border: 2px solid #ffffff; border-radius: 999px; background: #0ca678; color: #ffffff; font-size: 12px; font-weight: 700; }
+</style>
+
+<div class="mrv2-dfs ds-no-scrollbar" style="background: #ffffff;">
+  <div class="toolbar">
+    <div class="context">
+      <span class="kicker"><i class="ph-fill ph-map-pin"></i>Asheville · Friday evening</span>
+      <span class="page-title">Discover</span>
+    </div>
+    <div class="actions">
+      <span class="tbtn"><i class="ph-fill ph-user-plus"></i></span>
+      <span class="tbtn"><i class="ph-fill ph-bell"></i><span class="badge-dot">2</span></span>
+    </div>
+  </div>
+
+  <main class="page-content">
+    <div class="intent">
+      <div class="ask-bar">
+        <i class="ph-fill ph-sparkle"></i>
+        <span class="placeholder">What do you feel like doing?</span>
+        <button class="send"><i class="ph-fill ph-paper-plane-tilt"></i></button>
+      </div>
+      <div class="mood-row">
+        <span class="mood-chip"><i class="ph-fill ph-moon-stars"></i>Something chill tonight</span>
+        <span class="mood-chip"><i class="ph-fill ph-music-notes"></i>Live music</span>
+        <span class="mood-chip"><i class="ph-fill ph-users-three"></i>Good for a group</span>
+        <span class="mood-chip"><i class="ph-fill ph-fork-knife"></i>Somewhere new to eat</span>
+      </div>
+    </div>
+
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>Tonight's pick</h2><span class="ai-mark"><i class="ph-fill ph-sparkle"></i></span></div>
+      </div>
+      <div class="hero-card" style="background-image: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=760&h=640&q=80');">
+        <span class="why"><i class="ph-fill ph-sparkle"></i>You loved The Orange Peel</span>
+        <span class="save"><i class="ph ph-bookmark-simple"></i></span>
+        <div class="info">
+          <div class="date">Tonight · 9:00 PM · 1.4 mi</div>
+          <div class="title">The Wood Brothers</div>
+          <div class="sub">The Orange Peel · from $32</div>
+          <div class="cta-row">
+            <button class="cta"><i class="ph-fill ph-plus"></i>Start a plan</button>
+            <button class="cta ghost">Details</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>Your friends are in</h2></div>
+        <span class="action">More <i class="ph-fill ph-caret-right"></i></span>
+      </div>
+      <div>
+        <div class="plan-row">
+          <div class="thumb" style="background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=200&h=200&q=80');">
+            <img class="host" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+          </div>
+          <div class="txt">
+            <span class="date">Sun · 4pm · 2 mi</span>
+            <span class="title">Pickup soccer at the park</span>
+            <span class="who">Jordan + 4 going</span>
+          </div>
+          <button class="join">Join</button>
+        </div>
+        <div class="plan-row">
+          <div class="thumb" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=200&h=200&q=80');">
+            <img class="host" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+          </div>
+          <div class="txt">
+            <span class="date">Sat · 10am · 1 mi</span>
+            <span class="title">Coffee walk downtown</span>
+            <span class="who">Priya + 2 going</span>
+          </div>
+          <button class="join">Join</button>
+        </div>
+        <div class="plan-row">
+          <div class="thumb" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=200&h=200&q=80');">
+            <img class="host" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+          </div>
+          <div class="txt">
+            <span class="date">Fri · 7pm · downtown</span>
+            <span class="title">Dinner at Little Jumbo</span>
+            <span class="who">Maya + 3 going</span>
+          </div>
+          <button class="join">Join</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>This weekend</h2></div>
+        <span class="action">All events <i class="ph-fill ph-caret-right"></i></span>
+      </div>
+      <div class="grid-2">
+        <div class="g-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1527224857830-43a7acc85260?auto=format&fit=crop&w=400&h=400&q=80');">
+            <span class="save"><i class="ph ph-bookmark-simple"></i></span>
+          </div>
+          <div class="body">
+            <span class="date">Fri · 8:00 PM</span>
+            <span class="title">Asheville Comedy Festival</span>
+            <span class="meta"><i class="ph-fill ph-map-pin"></i><span>Diana Wortham</span></span>
+          </div>
+        </div>
+        <div class="g-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&h=400&q=80');">
+            <span class="save saved"><i class="ph-fill ph-bookmark-simple"></i></span>
+          </div>
+          <div class="body">
+            <span class="date">Sat · 11:00 AM</span>
+            <span class="title">Drag brunch downtown</span>
+            <span class="meta"><i class="ph-fill ph-map-pin"></i><span>Banks Ave</span></span>
+          </div>
+        </div>
+        <div class="g-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=400&h=400&q=80');">
+            <span class="save"><i class="ph ph-bookmark-simple"></i></span>
+            <span class="pill"><i class="ph-fill ph-ticket"></i>Tickets</span>
+          </div>
+          <div class="body">
+            <span class="date">Sat · 5:00 PM</span>
+            <span class="title">Shindig on the Green</span>
+            <span class="meta"><i class="ph-fill ph-map-pin"></i><span>Pack Square Park</span></span>
+          </div>
+        </div>
+        <div class="g-card">
+          <div class="img" style="background-image: url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=400&h=400&q=80');">
+            <span class="save"><i class="ph ph-bookmark-simple"></i></span>
+          </div>
+          <div class="body">
+            <span class="date">Sat · 8:30 PM</span>
+            <span class="title">Outdoor movie night</span>
+            <span class="meta"><i class="ph-fill ph-map-pin"></i><span>Highland Brewing</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>Loved by your friends</h2></div>
+        <span class="action">All places <i class="ph-fill ph-caret-right"></i></span>
+      </div>
+      <div>
+        <div class="loved-row">
+          <div class="thumb" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=160&h=160&q=80');"></div>
+          <div class="txt">
+            <span class="title">Well Played Board Game Café</span>
+            <span class="proof">
+              <span class="stack">
+                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+              </span>
+              <span>4 friends rated 5★</span>
+            </span>
+          </div>
+          <span class="go"><i class="ph-fill ph-caret-right"></i></span>
+        </div>
+        <div class="loved-row">
+          <div class="thumb" style="background-image: url('https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=160&h=160&q=80');"></div>
+          <div class="txt">
+            <span class="title">Salt &amp; Straw</span>
+            <span class="proof">
+              <span class="stack">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+              </span>
+              <span>Devon + 2 saved it</span>
+            </span>
+          </div>
+          <span class="go"><i class="ph-fill ph-caret-right"></i></span>
+        </div>
+        <div class="loved-row">
+          <div class="thumb" style="background-image: url('https://images.unsplash.com/photo-1544413660-299165566b1d?auto=format&fit=crop&w=160&h=160&q=80');"></div>
+          <div class="txt">
+            <span class="title">Cindy's Rooftop</span>
+            <span class="proof">
+              <span class="stack">
+                <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+              </span>
+              <span>Sam rated 5★ last week</span>
+            </span>
+          </div>
+          <span class="go"><i class="ph-fill ph-caret-right"></i></span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tab-bar">
+    <span class="tab"><i class="ph-fill ph-house"></i></span>
+    <span class="tab discover selected"><i class="ph-fill ph-compass"></i></span>
+    <span class="tab"><img class="you" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /></span>
+    <span class="tab"><i class="ph-fill ph-calendar-blank"></i></span>
+    <span class="tab"><span class="chat-wrap"><i class="ph-fill ph-chat"></i><span class="unread">4</span></span></span>
+  </nav>
+</div>

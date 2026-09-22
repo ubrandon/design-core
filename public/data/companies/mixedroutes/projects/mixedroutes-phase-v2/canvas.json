@@ -168,6 +168,30 @@
       "y": 694,
       "width": 390,
       "name": "chat-ai-collapsed"
+    },
+    {
+      "file": "discover-v2-real-cards-copy.html",
+      "x": -5777,
+      "y": -1297,
+      "width": 390
+    },
+    {
+      "file": "discover-from-scratch.html",
+      "x": -5347,
+      "y": -1297,
+      "width": 390
+    },
+    {
+      "file": "card-variations-audit-copy.html",
+      "x": -4464,
+      "y": -1297,
+      "width": 1440
+    },
+    {
+      "file": "card-system-from-scratch.html",
+      "x": -2964,
+      "y": -1297,
+      "width": 1440
     }
   ],
   "texts": [
@@ -175,103 +199,120 @@
       "text": "Current designs",
       "x": -16,
       "y": 3484,
-      "size": 72
+      "size": 72,
+      "id": "text-legacy-muc2kpol-1"
     },
     {
       "text": "Home",
       "x": -16,
       "y": 3598,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-muc2kpol-2"
     },
     {
       "text": "Discover",
       "x": 414,
       "y": 3598,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-muc2kpol-3"
     },
     {
       "text": "MixedRoutes 2.0",
       "x": -16,
       "y": -1496,
-      "size": 72
+      "size": 72,
+      "id": "text-legacy-muc2kpol-4"
     },
     {
       "text": "Home",
       "x": 475,
       "y": -1382,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-muc2kpol-5"
     },
     {
       "text": "Status ideas",
       "x": 970,
       "y": -1382,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-muc2kpol-6"
     },
     {
       "text": "Discover",
       "x": -16,
       "y": -1382,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-muc2kpol-7"
     },
     {
       "text": "Archive",
       "x": 1020,
       "y": 3484,
-      "size": 72
+      "size": 72,
+      "id": "text-legacy-muc2kpol-8"
     },
     {
       "text": "Current nav",
       "x": 3392,
       "y": 3598,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-muc2kpol-9"
     },
     {
       "text": "Card variations",
       "x": 1591,
       "y": -1382,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-muc2kpol-10"
     },
     {
       "text": "Updated nav",
       "x": 3938,
       "y": 3598,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-muc2kpol-11"
     },
     {
       "text": "Plus on left, centered title",
       "x": 4494,
       "y": 3598,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-muc2kpol-12"
     },
     {
       "text": "Cold start + first visit",
       "x": 3283,
       "y": -1382,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-muc2kpol-13"
     },
     {
       "text": "AI layer",
       "x": 4263,
       "y": -1382,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-muc2kpol-14"
     },
     {
       "text": "Later phases",
       "x": 1591,
       "y": 609,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-muc2kpol-15"
     },
     {
       "text": "Prompt governance",
       "x": 2451,
       "y": 609,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-muc2kpol-16"
     },
     {
       "text": "AI in chat",
       "x": 3371,
       "y": 609,
-      "size": 48
+      "size": 48,
+      "id": "text-legacy-muc2kpol-17"
     }
   ]
 }
