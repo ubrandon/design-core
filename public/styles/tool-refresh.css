@@ -1902,3 +1902,24 @@ a.tile-card:hover {
     transition: none;
   }
 }
+
+/* Required company / user picker: centered, above the rail and nav, no close button. */
+.dc-identity {
+  align-items: center;
+  z-index: 1000;
+}
+
+.dc-identity .tool-modal {
+  max-width: 400px;
+  padding: 22px 20px 20px;
+}
+
+.dc-identity .tool-modal__lede {
+  margin: 6px 0 14px;
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.dc-identity .user-menu__list {
+  max-height: 320px;
+}

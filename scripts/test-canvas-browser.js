@@ -17,6 +17,8 @@ const companyARoot = resolve(companiesRoot, companyA);
 const companyBRoot = resolve(companiesRoot, companyB);
 const canvasAPath = resolve(companyARoot, "projects", projectId, "canvas.json");
 const canvasBPath = resolve(companyBRoot, "projects", projectId, "canvas.json");
+const companiesIndexPath = resolve(companiesRoot, "index.json");
+let companiesIndexOriginal = null;
 let server;
 let browser;
 
@@ -61,6 +63,11 @@ async function waitFor(check, message, timeout = 8000) {
 }
 
 try {
+  // The tool only opens listed companies, so list the fixtures for the run and restore the file afterwards.
+  companiesIndexOriginal = await readFile(companiesIndexPath, "utf8");
+  const companiesIndex = JSON.parse(companiesIndexOriginal);
+  companiesIndex.companies.push({ slug: companyA, name: "Canvas test A" }, { slug: companyB, name: "Canvas test B" });
+  await writeJson(companiesIndexPath, companiesIndex);
   await createCompanyFixture(companyARoot, 0);
   await createCompanyFixture(companyBRoot, 800);
   await writeFile(
@@ -84,6 +91,15 @@ try {
   const port = typeof address === "object" && address ? address.port : 3000;
 
   browser = await chromium.launch({ headless: true });
+  // Locally the tool asks who you are before anything else; answer it up front for every test page.
+  const newPage = browser.newPage.bind(browser);
+  browser.newPage = async (options) => {
+    const page = await newPage(options);
+    await page.addInitScript((companies) => {
+      for (const slug of companies) localStorage.setItem("design-core:current-user:" + slug, "Canvas Test");
+    }, [companyA, companyB]);
+    return page;
+  };
   await testCanvasFocus({ browser, url: `http://127.0.0.1:${port}/canvas.html?project=${projectId}&company=${companyB}` });
   const page = await browser.newPage({ viewport: { width: 1400, height: 900 } });
   const errors = [];
@@ -200,6 +216,7 @@ try {
 
   console.log("Canvas browser regression checks passed.");
 } finally {
+  if (companiesIndexOriginal !== null) await writeFile(companiesIndexPath, companiesIndexOriginal, "utf8");
   if (browser) await browser.close();
   if (server) await server.close();
   await rm(companyARoot, { recursive: true, force: true });

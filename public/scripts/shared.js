@@ -98,12 +98,11 @@ function switchCompany(slug) {
   window.location.href = "index.html?company=" + encodeURIComponent(slug);
 }
 
-/** Makes sure a valid company is active. Resolves to the slug, or "" when the user still has to pick one. */
+/** Makes sure a valid company is active. Resolves to the slug, or "" when the user still has to pick one (never auto-picked). */
 function ensureCompany() {
   return fetchCompanies().then((list) => {
     const current = activeCompany();
     if (current && (!list.length || list.some((c) => c.slug === current))) return current;
-    if (list.length === 1) { rememberCompany(list[0].slug); return list[0].slug; }
     if (current) rememberCompany("");
     return "";
   });
@@ -679,7 +678,10 @@ function projectHue(id) {
    is remembered per browser (localStorage); their prefs live in a committed
    file (public/data/companies/<company>/users/<slug>.json) when the dev server is running, with a
    localStorage mirror for instant, offline reads. */
-const CURRENT_USER_KEY = "design-core:current-user";
+// The selected user is remembered per company, since each company has its own users.
+function currentUserKey() {
+  return "design-core:current-user:" + activeCompany();
+}
 const PREFS_MIRROR_PREFIX = "design-core:prefs:v2:";
 const LEGACY_FAVORITES_KEY = "design-core:favorites";
 const LEGACY_RECENTS_KEY = "design-core:recents";
@@ -710,7 +712,7 @@ function writeLs(key, value) {
 /** Display name of the selected user ("" = nobody picked yet). */
 function getCurrentUserName() {
   try {
-    return (localStorage.getItem(CURRENT_USER_KEY) || "").trim();
+    return (localStorage.getItem(currentUserKey()) || "").trim();
   } catch {
     return "";
   }
@@ -901,8 +903,8 @@ function setCurrentUser(name) {
   flushPendingPrefsSave();
   const n = String(name || "").trim();
   try {
-    if (n) localStorage.setItem(CURRENT_USER_KEY, n);
-    else localStorage.removeItem(CURRENT_USER_KEY);
+    if (n) localStorage.setItem(currentUserKey(), n);
+    else localStorage.removeItem(currentUserKey());
   } catch {}
   hydrateUserState();
   applyUserTheme();

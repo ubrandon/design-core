@@ -270,7 +270,7 @@
     if (companyBtnEl) companyBtnEl.setAttribute("aria-expanded", "false");
   }
 
-  function renderCompanyMenu(list) {
+  function renderCompanyMenu(list, local) {
     const current = typeof activeCompany === "function" ? activeCompany() : "";
     const rows = (list || [])
       .map((c) => {
@@ -287,11 +287,14 @@
       .join("");
     companyMenuEl.innerHTML =
       '<div class="user-menu__title">Switch company</div>' +
-      '<div class="user-menu__list">' + (rows || '<p class="user-menu__empty">No companies yet. Add one below.</p>') + "</div>" +
-      '<div class="user-menu__add">' +
-      '<input type="text" class="user-menu__input" placeholder="New company name…" aria-label="New company name">' +
-      '<button type="button" class="user-menu__add-btn">Add</button>' +
-      "</div>";
+      '<div class="user-menu__list">' + (rows || '<p class="user-menu__empty">No companies yet.</p>') + "</div>" +
+      // New company folders can only be created by the local dev server.
+      (local
+        ? '<div class="user-menu__add">' +
+          '<input type="text" class="user-menu__input" placeholder="New company name…" aria-label="New company name">' +
+          '<button type="button" class="user-menu__add-btn">Add</button>' +
+          "</div>"
+        : "");
     companyMenuEl.querySelectorAll("[data-company-slug]").forEach((b) => {
       b.addEventListener("click", () => {
         closeCompanyMenu();
@@ -300,6 +303,7 @@
     });
     const input = companyMenuEl.querySelector(".user-menu__input");
     const addBtn = companyMenuEl.querySelector(".user-menu__add-btn");
+    if (!input || !addBtn) return;
     function commitAdd() {
       const v = (input.value || "").trim();
       if (!v) { input.focus(); return; }
@@ -324,7 +328,10 @@
     companyBtnEl.setAttribute("aria-expanded", "true");
     companyMenuEl.innerHTML = '<div class="user-menu__title">Loading…</div>';
     const load = typeof fetchCompanies === "function" ? fetchCompanies() : Promise.resolve([]);
-    load.then((l) => renderCompanyMenu(l || [])).catch(() => renderCompanyMenu([]));
+    const local = typeof isLocalToolServer === "function" ? isLocalToolServer() : Promise.resolve(false);
+    Promise.all([load, local])
+      .then(([l, isLocal]) => renderCompanyMenu(l || [], isLocal))
+      .catch(() => renderCompanyMenu([], false));
   }
 
   function setupCompanySection() {
@@ -357,6 +364,123 @@
       }
       openCompanyMenu();
     };
+  }
+
+  /* ── Required identity: pick a company (everywhere), then a user (local only) ──
+     Blocks the page until the browser knows both, so edits and favorites always
+     land in the right company and under the right person. */
+  let identityEl = null;
+
+  function closeIdentity() {
+    if (identityEl) identityEl.remove();
+    identityEl = null;
+  }
+
+  function showIdentity(title, lede, rowsHtml, emptyText, addPlaceholder, onPick, onAdd) {
+    closeIdentity();
+    closeUserMenu();
+    closeCompanyMenu();
+    identityEl = document.createElement("div");
+    identityEl.className = "tool-modal-overlay dc-identity";
+    identityEl.innerHTML =
+      '<div class="tool-modal" role="dialog" aria-modal="true" aria-labelledby="dc-identity-title">' +
+      '<h2 class="tool-modal__title" id="dc-identity-title">' + esc(title) + "</h2>" +
+      '<p class="tool-modal__lede">' + esc(lede) + "</p>" +
+      '<div class="user-menu__list">' + (rowsHtml || '<p class="user-menu__empty">' + esc(emptyText) + "</p>") + "</div>" +
+      (onAdd
+        ? '<div class="user-menu__add">' +
+          '<input type="text" class="user-menu__input" placeholder="' + esc(addPlaceholder) + '" aria-label="' + esc(addPlaceholder) + '">' +
+          '<button type="button" class="user-menu__add-btn">Add</button>' +
+          "</div>"
+        : "") +
+      "</div>";
+    document.body.appendChild(identityEl);
+    identityEl.querySelectorAll("[data-pick]").forEach((b) => {
+      b.addEventListener("click", () => onPick(b.getAttribute("data-pick")));
+    });
+    const input = identityEl.querySelector(".user-menu__input");
+    const addBtn = identityEl.querySelector(".user-menu__add-btn");
+    if (input && addBtn) {
+      const commit = () => {
+        const v = (input.value || "").trim();
+        if (!v) { input.focus(); return; }
+        addBtn.disabled = true;
+        Promise.resolve(onAdd(v)).catch((e) => {
+          addBtn.disabled = false;
+          if (typeof showToast === "function") showToast(e && e.message ? e.message : "Could not add");
+        });
+      };
+      addBtn.addEventListener("click", commit);
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") { e.preventDefault(); commit(); }
+      });
+    }
+    const first = identityEl.querySelector("[data-pick]") || input;
+    if (first) first.focus();
+  }
+
+  function identityRow(value, label) {
+    return (
+      '<button type="button" class="user-menu__item" data-pick="' + esc(value) + '">' +
+      '<span class="user-menu__avatar">' + esc(initialsOf(label)) + "</span>" +
+      '<span class="user-menu__label">' + esc(label) + "</span>" +
+      "</button>"
+    );
+  }
+
+  // Reloads the current page in the chosen company so every data path resolves there.
+  function enterCompany(slug) {
+    if (typeof rememberCompany === "function") rememberCompany(slug);
+    const url = new URL(window.location.href);
+    url.searchParams.set("company", slug);
+    window.location.replace(url.href);
+  }
+
+  function requireCompany(list, local) {
+    showIdentity(
+      "Choose a company",
+      "Projects, design systems, and users are kept separately for each company.",
+      list.map((c) => identityRow(c.slug, c.name)).join(""),
+      local ? "No companies yet. Add one below." : "No companies yet.",
+      "New company name",
+      enterCompany,
+      local && typeof createCompany === "function" ? (name) => createCompany(name).then((c) => enterCompany(c.slug)) : null,
+    );
+  }
+
+  function requireUser() {
+    const load = typeof fetchSelectableUsers === "function" ? fetchSelectableUsers() : Promise.resolve([]);
+    return load.catch(() => []).then((users) => {
+      const pick = (name) => {
+        if (typeof setCurrentUser === "function") setCurrentUser(name);
+        closeIdentity();
+        paintUser();
+      };
+      showIdentity(
+        "Who are you?",
+        "Your favorites, recents, and edits are saved under your name for this company.",
+        (users || []).map((n) => identityRow(n, n)).join(""),
+        "No users yet. Add yourself below.",
+        "Your name",
+        pick,
+        (name) => {
+          if (typeof addDesignerTeamMember === "function") addDesignerTeamMember(name);
+          pick(name);
+        },
+      );
+    });
+  }
+
+  function ensureIdentity() {
+    const companiesReady = typeof fetchCompanies === "function" ? fetchCompanies() : Promise.resolve([]);
+    const localReady = typeof isLocalToolServer === "function" ? isLocalToolServer() : Promise.resolve(false);
+    return Promise.all([companiesReady, localReady, typeof ensureCompany === "function" ? ensureCompany() : Promise.resolve("")])
+      .then(([list, local, slug]) => {
+        if (!slug) { requireCompany(list || [], local); return slug; }
+        if (local && !curName()) requireUser();
+        return slug;
+      })
+      .catch(() => "");
   }
 
   function build(flags) {
@@ -450,8 +574,7 @@
     const flags = pageFlags();
     if (flags.isEmbed) return;
     build(flags);
-    const ready = typeof ensureCompany === "function" ? ensureCompany().catch(() => "") : Promise.resolve("");
-    ready.then(() => { if (typeof activeCompany !== "function" || activeCompany()) return loadProjectNames(); projectNamesLoaded = true; }).then(renderFavorites);
+    ensureIdentity().then(() => { if (typeof activeCompany !== "function" || activeCompany()) return loadProjectNames(); projectNamesLoaded = true; }).then(renderFavorites);
   }
 
   if (document.readyState === "loading") {

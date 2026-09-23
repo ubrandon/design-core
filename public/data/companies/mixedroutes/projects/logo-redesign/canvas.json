@@ -3,14 +3,14 @@
     {
       "file": "current-logo.html",
       "x": -1535,
-      "y": -8,
+      "y": 54,
       "width": 480,
       "name": "Option A"
     },
     {
       "file": "reference-rounded-m.html",
-      "x": -15,
-      "y": -8,
+      "x": 1896,
+      "y": 54,
       "width": 480,
       "name": "Option B"
     },
@@ -23,8 +23,8 @@
     },
     {
       "file": "logo-07-modular.html",
-      "x": 1692,
-      "y": -8,
+      "x": 184,
+      "y": 54,
       "width": 480,
       "name": "Option E"
     },
@@ -43,39 +43,11 @@
       "name": "Option F"
     },
     {
-      "file": "logo-a-v2-application.html",
-      "x": -1535,
-      "y": 538,
-      "width": 1440,
-      "name": "Option A: V2 brand application"
-    },
-    {
-      "file": "logo-b-v2-application.html",
-      "x": -15,
-      "y": 538,
-      "width": 1440,
-      "name": "Option B: V2 brand application"
-    },
-    {
-      "file": "logo-e-v2-application.html",
-      "x": 1692,
-      "y": 538,
-      "width": 1440,
-      "name": "Option C: V2 brand application"
-    },
-    {
       "file": "logo-f-v2-application.html",
       "x": 31,
       "y": 12450,
       "width": 1440,
       "name": "Option D: V2 brand application"
-    },
-    {
-      "file": "option-c-brand-world.html",
-      "x": 3186,
-      "y": 538,
-      "width": 1440,
-      "name": "Option C: Brand in the world"
     },
     {
       "file": "logo-b2-bounce.html",
@@ -104,6 +76,27 @@
       "y": 12450,
       "width": 1440,
       "name": "Option G: V2 brand application"
+    },
+    {
+      "file": "logo-a-unified.html",
+      "x": -1535,
+      "y": 636,
+      "width": 1440,
+      "name": "Option A: Unified application"
+    },
+    {
+      "file": "logo-b-unified.html",
+      "x": 1896,
+      "y": 636,
+      "width": 1440,
+      "name": "Option B: Unified application"
+    },
+    {
+      "file": "logo-c-unified.html",
+      "x": 184,
+      "y": 636,
+      "width": 1440,
+      "name": "Option C: Unified application"
     }
   ],
   "texts": [
