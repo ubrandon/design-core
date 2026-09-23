@@ -2,15 +2,15 @@
   "screens": [
     {
       "file": "current-logo.html",
-      "x": 0,
-      "y": 0,
+      "x": -1535,
+      "y": -8,
       "width": 480,
       "name": "Option A"
     },
     {
       "file": "reference-rounded-m.html",
-      "x": 513,
-      "y": 0,
+      "x": -15,
+      "y": -8,
       "width": 480,
       "name": "Option B"
     },
@@ -23,8 +23,8 @@
     },
     {
       "file": "logo-07-modular.html",
-      "x": 1028,
-      "y": 0,
+      "x": 1692,
+      "y": -8,
       "width": 480,
       "name": "Option E"
     },
@@ -44,22 +44,22 @@
     },
     {
       "file": "logo-a-v2-application.html",
-      "x": 0,
-      "y": 658,
+      "x": -1535,
+      "y": 538,
       "width": 1440,
       "name": "Option A: V2 brand application"
     },
     {
       "file": "logo-b-v2-application.html",
-      "x": 1520,
-      "y": 658,
+      "x": -15,
+      "y": 538,
       "width": 1440,
       "name": "Option B: V2 brand application"
     },
     {
       "file": "logo-e-v2-application.html",
-      "x": 3010,
-      "y": 658,
+      "x": 1692,
+      "y": 538,
       "width": 1440,
       "name": "Option C: V2 brand application"
     },
@@ -72,31 +72,24 @@
     },
     {
       "file": "option-c-brand-world.html",
-      "x": 0,
-      "y": 3256,
+      "x": 3186,
+      "y": 538,
       "width": 1440,
       "name": "Option C: Brand in the world"
     },
     {
       "file": "logo-b2-bounce.html",
-      "x": 1543,
-      "y": 0,
+      "x": 2143,
+      "y": 11872,
       "width": 480,
       "name": "Option B2: Bounce"
     },
     {
       "file": "logo-b2-v2-application.html",
-      "x": 4505,
-      "y": 658,
+      "x": 3040,
+      "y": 12450,
       "width": 1440,
       "name": "Option D: V2 brand application"
-    },
-    {
-      "file": "logo-b2-brand-world.html",
-      "x": 1543,
-      "y": 3256,
-      "width": 1440,
-      "name": "Option B2: Brand in the world"
     },
     {
       "file": "logo-g-meet.html",

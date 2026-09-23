@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <!-- Brand-meaning logo ideas. Uses currentColor plus a (accent), c1 to c3 (interest colors), pl-hi (highlight) and ko (knockout) custom properties. -->
+  <symbol id="pl-meet" viewBox="0 0 100 100">
+    <path d="M15 80V42A14 14 0 0 1 43 42V54" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:currentColor" /><path d="M85 80V42A14 14 0 0 0 57 42V54" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:currentColor" /><circle cx="50" cy="74" r="9.5" style="fill:var(--a,currentColor)"/>
+  </symbol>
+  <symbol id="pl-mixed" viewBox="0 0 100 100">
+    <path d="M17 80L27 22" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:var(--c1,#C0AFFF)" /><path d="M27 22L50 62" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:var(--c2,#A1E7CE)" /><path d="M50 62L73 22" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:var(--c3,#FFAC79)" /><path d="M73 22L83 80" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:var(--a,currentColor)" />
+  </symbol>
+  <symbol id="pl-longway" viewBox="0 0 100 100">
+    <path d="M22 82C22 62 52 68 52 50C52 38 58 32 78 22" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:currentColor" /><path d="M58 20H80V42" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:currentColor" />
+  </symbol>
+  <symbol id="pl-smile" viewBox="0 0 100 100">
+    <circle cx="31" cy="34" r="10" style="fill:var(--c1,var(--a,currentColor))"/><circle cx="69" cy="34" r="10" style="fill:var(--c2,var(--a,currentColor))"/><path d="M20 58C26 82 74 82 80 58" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:currentColor" />
+  </symbol>
+  <symbol id="pl-heart" viewBox="0 0 100 100">
+    <path d="M42 78C22 64 12 50 16 34C20 18 42 16 50 32C58 16 80 18 84 34C88 50 78 64 58 78" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:currentColor" /><circle cx="50" cy="84" r="9.5" style="fill:var(--a,currentColor)"/>
+  </symbol>
+  <symbol id="pl-gather" viewBox="0 0 100 100">
+    <path d="M14 20C14 40 26 46 38 50" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:var(--c1,#C0AFFF)" /><path d="M86 20C86 40 74 46 62 50" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:var(--c2,#A1E7CE)" /><path d="M50 90V70" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:var(--c3,#FFAC79)" /><circle cx="50" cy="52" r="11" style="fill:currentColor"/>
+  </symbol>
+  <symbol id="pl-cross" viewBox="0 0 100 100">
+    <path d="M22 16C22 40 78 60 78 84" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:currentColor" /><path d="M78 16C78 40 22 60 22 84" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="22" style="stroke:var(--ko,#fff)" /><path d="M78 16C78 40 22 60 22 84" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:var(--a,currentColor)" />
+  </symbol>
+  <symbol id="pl-pin" viewBox="0 0 100 100">
+    <path d="M16 24V52C16 72 30 82 48 82H56" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="15" style="stroke:currentColor" /><path d="M66 70C58 60 46 50 46 36A20 20 0 0 1 86 36C86 50 74 60 66 70Z" style="fill:var(--a,currentColor)"/><circle cx="66" cy="36" r="7" style="fill:var(--ko,#fff)"/>
+  </symbol>
+  <symbol id="pl-sun" viewBox="0 0 100 100">
+    <path d="M22 50A28 28 0 0 1 78 50Z" style="fill:var(--a,currentColor)"/><path d="M46 58H54L76 88H24Z" style="fill:currentColor" stroke-linejoin="round" stroke-width="6" stroke="currentColor"/><path d="M50 66V70M50 79V86" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" style="stroke:var(--ko,#fff)" />
+  </symbol>
+  <symbol id="pl-chat" viewBox="0 0 100 100">
+    <path d="M36 18H64A22 22 0 0 1 64 62H40L26 76V60A22 22 0 0 1 36 18Z" style="fill:currentColor" stroke-linejoin="round" stroke-width="6" stroke="currentColor"/><circle cx="34" cy="40" r="6.5" style="fill:var(--ko,#fff)"/><circle cx="50" cy="40" r="6.5" style="fill:var(--ko,#fff)"/><circle cx="66" cy="40" r="6.5" style="fill:var(--pl-hi,var(--ko,#fff))"/>
+  </symbol>
+  <symbol id="pl-table" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="17" style="fill:currentColor"/><circle cx="50" cy="16" r="9.5" style="fill:var(--c1,var(--a,currentColor))"/><circle cx="84" cy="50" r="9.5" style="fill:var(--c2,var(--a,currentColor))"/><circle cx="16" cy="50" r="9.5" style="fill:var(--c3,var(--a,currentColor))"/><circle cx="50" cy="84" r="7.5" fill="none" stroke-width="4.5" style="stroke:var(--a,currentColor)"/>
+  </symbol>
+  <symbol id="pl-tape" viewBox="0 0 100 100">
+    <rect x="12" y="22" width="76" height="56" rx="13" style="fill:currentColor"/><circle cx="35" cy="46" r="7" fill="none" stroke-width="6" style="stroke:var(--ko,#fff)"/><circle cx="65" cy="46" r="7" fill="none" stroke-width="6" style="stroke:var(--ko,#fff)"/><path d="M34 78L39 66H61L66 78Z" style="fill:var(--ko,#fff)"/><circle cx="35" cy="46" r="4.5" style="fill:var(--c1,var(--a,currentColor))"/><circle cx="65" cy="46" r="4.5" style="fill:var(--c2,var(--a,currentColor))"/>
+  </symbol>
+</svg>

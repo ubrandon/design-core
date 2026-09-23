@@ -1,0 +1,144 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link rel="stylesheet" href="../assets/new-marks.css" />
+<style>
+.ll-board .nm-tile svg { width: 78%; height: 78%; }
+.ll-board .nm-bare svg { width: 100%; height: 100%; }
+.ll-learn { display: grid; grid-template-columns: 300px repeat(4, minmax(0, 1fr)); gap: 20px; margin: 0 56px 32px; padding: 26px 28px; border-radius: 26px; background: var(--stage); }
+.ll-learn h2 { margin: 0; font-size: 20px; font-weight: 650; letter-spacing: -.02em; line-height: 1.25; }
+.ll-learn h2 small { display: block; margin-top: 6px; font-size: 13px; font-weight: 450; color: var(--muted); letter-spacing: 0; }
+.ll-learn p { margin: 0; font-size: 14px; line-height: 1.45; color: var(--muted); }
+.ll-learn p b { display: block; margin-bottom: 4px; font-size: 15px; font-weight: 650; color: var(--ink); }
+.ll-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding: 0 56px; }
+.ll-card { border: 1px solid var(--line); border-radius: 28px; overflow: hidden; background: #fff; display: flex; flex-direction: column; }
+.ll-stage { position: relative; display: grid; place-items: center; height: 290px; background: var(--stage); }
+.ll-rank { position: absolute; top: 16px; left: 16px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 14px; font-weight: 650; }
+.ll-score { position: absolute; top: 18px; right: 16px; padding: 4px 10px; border-radius: 99px; background: #fff; font-size: 12px; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ll-body { display: flex; flex-direction: column; flex: 1; padding: 20px 22px 22px; }
+.ll-name { margin: 0; font-size: 22px; font-weight: 650; letter-spacing: -.02em; }
+.ll-tag { margin: 4px 0 0; font-size: 15px; font-weight: 550; color: var(--blue); }
+.ll-desc { margin: 8px 0 0; font-size: 14px; line-height: 1.45; color: var(--muted); }
+.ll-watch { display: flex; gap: 6px; align-items: flex-start; margin: 10px 0 0; font-size: 13px; line-height: 1.4; color: #93590A; }
+.ll-watch .ph { font-size: 16px; flex: none; margin-top: 1px; }
+.ll-row { display: flex; align-items: flex-end; gap: 10px; margin-top: auto; padding-top: 18px; }
+.ll-row figure { margin: 0; display: flex; flex-direction: column; align-items: center; }
+.ll-sep { width: 1px; align-self: stretch; margin: 0 4px 18px; background: var(--line); }
+.ll-section { display: flex; align-items: baseline; gap: 14px; padding: 48px 56px 18px; }
+.ll-section h2 { margin: 0; font-size: 26px; font-weight: 650; letter-spacing: -.02em; }
+.ll-section p { margin: 0; font-size: 15px; color: var(--muted); }
+.ll-also { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 18px; padding: 0 56px; }
+.ll-also-item { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 8px 14px; border-radius: 22px; background: var(--stage); }
+.ll-also-item figcaption { text-align: center; font-size: 13px; line-height: 1.3; }
+.ll-also-item b { display: block; font-weight: 600; }
+.ll-also-item span { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.ll-homes { display: grid; gap: 16px; padding: 0 56px; }
+.ll-home { display: flex; justify-content: space-between; padding: 36px 64px 30px; border-radius: 28px; }
+.ll-home figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.ll-home figcaption { font-size: 12px; font-weight: 500; }
+.ll-home-dark { background: radial-gradient(120% 140% at 20% 0%, #2B3A8C 0%, #141A3A 45%, #07080C 100%); color: #fff; }
+.ll-home-light { background: radial-gradient(120% 140% at 80% 0%, #FFE3D1 0%, #EDE7FF 50%, #DDE7FF 100%); color: #0E0F13; }
+.ll-home .nm-tile { box-shadow: 0 6px 14px -6px rgba(0,0,0,.35); }
+</style>
+<div class="nm-board ll-board">
+  <header class="nm-head">
+    <div><p class="nm-eyebrow">Logo redesign · Logo lab</p><h1 class="nm-title">Completely new directions</h1><p class="nm-sub">Seven designers, each from a different angle, drew 21 new marks. Three judges scored them on app icon craft, brand fit and originality. The top eight were polished and checked for lookalikes.</p></div>
+    <div class="nm-legend"><span><i class="nm-k"></i>Scores out of 30, three judges</span></div>
+  </header>
+  <section class="ll-learn" aria-label="What makes Discord work">
+    <h2>What we took from Discord<small>Measured from real App Store icons.</small></h2>
+    <p><b>One shape, no container</b>Clyde dropped the speech bubble in 2021. One flat glyph on one saturated tile.</p>
+    <p><b>Big on the tile</b>Great character marks fill about 72 percent of the tile width.</p>
+    <p><b>Personality in the outline</b>Two or three signature bumps. Only the eyes are cut out, set low and slightly tall.</p>
+    <p><b>Test it tiny first</b>If it reads as a solid silhouette at 16 px, it will work everywhere.</p>
+  </section>
+  <section class="ll-grid">
+    <article class="ll-card">
+      <div class="ll-stage"><span class="ll-rank">1</span><span class="ll-score">16.5 / 30</span><div class="nm-tile nm-hero" style="--bg:#1749E5;--fg:#FFFFFF;--a:#A1E7CE;--s:200px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-meeple"/></svg></div></div>
+      <div class="ll-body">
+        <h2 class="ll-name">My People</h2>
+        <p class="ll-tag">Two friends. Their shoulders make the m.</p>
+        <p class="ll-desc">Two heads over one continuous shoulder line that draws the brand m. Your people and our initial in a single shape.</p>
+        
+        <div class="ll-row"><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#A1E7CE;--s:56px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-meeple"/></svg></div><figcaption class="nm-cap">56</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#A1E7CE;--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-meeple"/></svg></div><figcaption class="nm-cap">36</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#A1E7CE;--s:20px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-meeple"/></svg></div><figcaption class="nm-cap">20</figcaption></figure><span class="ll-sep"></span><figure><div class="nm-tile nm-mono" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-meeple"/></svg></div><figcaption class="nm-cap">Mono</figcaption></figure><figure><div class="nm-tile nm-bare" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-meeple"/></svg></div><figcaption class="nm-cap">Glyph</figcaption></figure></div>
+      </div>
+    </article>
+    <article class="ll-card">
+      <div class="ll-stage"><span class="ll-rank">2</span><span class="ll-score">16 / 30</span><div class="nm-tile nm-hero" style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:200px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-heads-out"/></svg></div></div>
+      <div class="ll-body">
+        <h2 class="ll-name">Heads Out</h2>
+        <p class="ll-tag">Cap on, always heading out.</p>
+        <p class="ll-desc">A chunky buddy mid-stride, brim pointing out the door. The cap can wear each crew’s color.</p>
+        
+        <div class="ll-row"><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:56px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-heads-out"/></svg></div><figcaption class="nm-cap">56</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-heads-out"/></svg></div><figcaption class="nm-cap">36</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:20px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-heads-out"/></svg></div><figcaption class="nm-cap">20</figcaption></figure><span class="ll-sep"></span><figure><div class="nm-tile nm-mono" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-heads-out"/></svg></div><figcaption class="nm-cap">Mono</figcaption></figure><figure><div class="nm-tile nm-bare" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-heads-out"/></svg></div><figcaption class="nm-cap">Glyph</figcaption></figure></div>
+      </div>
+    </article>
+    <article class="ll-card">
+      <div class="ll-stage"><span class="ll-rank">3</span><span class="ll-score">15.5 / 30</span><div class="nm-tile nm-hero" style="--bg:#1749E5;--fg:#E7EF8C;--a:#E7EF8C;--s:200px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d7-roll"/></svg></div></div>
+      <div class="ll-body">
+        <h2 class="ll-name">Let’s roll</h2>
+        <p class="ll-tag">Already rolling out the door.</p>
+        <p class="ll-desc">One fat skate leaning forward, like it already pushed off toward the plan.</p>
+        
+        <div class="ll-row"><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#E7EF8C;--a:#E7EF8C;--s:56px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d7-roll"/></svg></div><figcaption class="nm-cap">56</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#E7EF8C;--a:#E7EF8C;--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d7-roll"/></svg></div><figcaption class="nm-cap">36</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#E7EF8C;--a:#E7EF8C;--s:20px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d7-roll"/></svg></div><figcaption class="nm-cap">20</figcaption></figure><span class="ll-sep"></span><figure><div class="nm-tile nm-mono" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d7-roll"/></svg></div><figcaption class="nm-cap">Mono</figcaption></figure><figure><div class="nm-tile nm-bare" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d7-roll"/></svg></div><figcaption class="nm-cap">Glyph</figcaption></figure></div>
+      </div>
+    </article>
+    <article class="ll-card">
+      <div class="ll-stage"><span class="ll-rank">4</span><span class="ll-score">15 / 30</span><div class="nm-tile nm-hero" style="--bg:#1749E5;--fg:#FFFFFF;--a:#A1E7CE;--s:200px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-pull-up"/></svg></div></div>
+      <div class="ll-body">
+        <h2 class="ll-name">Pull Up</h2>
+        <p class="ll-tag">Your friend just pulled up.</p>
+        <p class="ll-desc">A friend rising into the tile, cap sideways, eyes up at the plan. Showing up is the whole point.</p>
+        <p class="ll-watch"><i class="ph ph-warning-circle"></i>One judge saw a hint of Discord and Among Us.</p>
+        <div class="ll-row"><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#A1E7CE;--s:56px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-pull-up"/></svg></div><figcaption class="nm-cap">56</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#A1E7CE;--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-pull-up"/></svg></div><figcaption class="nm-cap">36</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#A1E7CE;--s:20px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-pull-up"/></svg></div><figcaption class="nm-cap">20</figcaption></figure><span class="ll-sep"></span><figure><div class="nm-tile nm-mono" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-pull-up"/></svg></div><figcaption class="nm-cap">Mono</figcaption></figure><figure><div class="nm-tile nm-bare" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-pull-up"/></svg></div><figcaption class="nm-cap">Glyph</figcaption></figure></div>
+      </div>
+    </article>
+    <article class="ll-card">
+      <div class="ll-stage"><span class="ll-rank">5</span><span class="ll-score">15 / 30</span><div class="nm-tile nm-hero" style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:200px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-shades"/></svg></div></div>
+      <div class="ll-body">
+        <h2 class="ll-name">Shades On</h2>
+        <p class="ll-tag">One color crosses the bridge.</p>
+        <p class="ll-desc">Two-tone shades: apricot starts as one lens and crosses the bridge to become the other frame.</p>
+        <p class="ll-watch"><i class="ph ph-warning-circle"></i>Reworked after the check found it too close to Snapchat’s 2026 Specs icon.</p>
+        <div class="ll-row"><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:56px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-shades"/></svg></div><figcaption class="nm-cap">56</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-shades"/></svg></div><figcaption class="nm-cap">36</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:20px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-shades"/></svg></div><figcaption class="nm-cap">20</figcaption></figure><span class="ll-sep"></span><figure><div class="nm-tile nm-mono" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-shades"/></svg></div><figcaption class="nm-cap">Mono</figcaption></figure><figure><div class="nm-tile nm-bare" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-shades"/></svg></div><figcaption class="nm-cap">Glyph</figcaption></figure></div>
+      </div>
+    </article>
+    <article class="ll-card">
+      <div class="ll-stage"><span class="ll-rank">6</span><span class="ll-score">14 / 30</span><div class="nm-tile nm-hero" style="--bg:#1749E5;--fg:#FFAC79;--a:#0E0F13;--s:200px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-caravan"/></svg></div></div>
+      <div class="ll-body">
+        <h2 class="ll-name">Caravan</h2>
+        <p class="ll-tag">Our m, out on the road.</p>
+        <p class="ll-desc">A camel whose humps and legs make an m and whose neck makes an r. A group taking the long way together.</p>
+        <p class="ll-watch"><i class="ph ph-warning-circle"></i>Judges flagged a Camel cigarettes association.</p>
+        <div class="ll-row"><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFAC79;--a:#0E0F13;--s:56px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-caravan"/></svg></div><figcaption class="nm-cap">56</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFAC79;--a:#0E0F13;--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-caravan"/></svg></div><figcaption class="nm-cap">36</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFAC79;--a:#0E0F13;--s:20px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-caravan"/></svg></div><figcaption class="nm-cap">20</figcaption></figure><span class="ll-sep"></span><figure><div class="nm-tile nm-mono" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-caravan"/></svg></div><figcaption class="nm-cap">Mono</figcaption></figure><figure><div class="nm-tile nm-bare" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-caravan"/></svg></div><figcaption class="nm-cap">Glyph</figcaption></figure></div>
+      </div>
+    </article>
+    <article class="ll-card">
+      <div class="ll-stage"><span class="ll-rank">7</span><span class="ll-score">14 / 30</span><div class="nm-tile nm-hero" style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:200px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-out-the-door"/></svg></div></div>
+      <div class="ll-body">
+        <h2 class="ll-name">Out the door</h2>
+        <p class="ll-tag">Already halfway out the door.</p>
+        <p class="ll-desc">The M strides out in chunky sneakers. Put the phone down and go meet your people.</p>
+        <p class="ll-watch"><i class="ph ph-warning-circle"></i>Closest relative is the M&M’s characters.</p>
+        <div class="ll-row"><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:56px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-out-the-door"/></svg></div><figcaption class="nm-cap">56</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-out-the-door"/></svg></div><figcaption class="nm-cap">36</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:20px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-out-the-door"/></svg></div><figcaption class="nm-cap">20</figcaption></figure><span class="ll-sep"></span><figure><div class="nm-tile nm-mono" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-out-the-door"/></svg></div><figcaption class="nm-cap">Mono</figcaption></figure><figure><div class="nm-tile nm-bare" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-out-the-door"/></svg></div><figcaption class="nm-cap">Glyph</figcaption></figure></div>
+      </div>
+    </article>
+    <article class="ll-card">
+      <div class="ll-stage"><span class="ll-rank">8</span><span class="ll-score">13.5 / 30</span><div class="nm-tile nm-hero" style="--bg:#1749E5;--fg:#FFAC79;--a:#0E0F13;--s:200px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d5-shades"/></svg></div></div>
+      <div class="ll-body">
+        <h2 class="ll-name">Wayfarers</h2>
+        <p class="ll-tag">Sunny, social, a day out.</p>
+        <p class="ll-desc">Chunky tilted wayfarers in apricot with the tile showing through the lenses.</p>
+        <p class="ll-watch"><i class="ph ph-warning-circle"></i>Reworked after the check found it too close to Apple Vision Pro in one color.</p>
+        <div class="ll-row"><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFAC79;--a:#0E0F13;--s:56px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d5-shades"/></svg></div><figcaption class="nm-cap">56</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFAC79;--a:#0E0F13;--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d5-shades"/></svg></div><figcaption class="nm-cap">36</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFAC79;--a:#0E0F13;--s:20px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d5-shades"/></svg></div><figcaption class="nm-cap">20</figcaption></figure><span class="ll-sep"></span><figure><div class="nm-tile nm-mono" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d5-shades"/></svg></div><figcaption class="nm-cap">Mono</figcaption></figure><figure><div class="nm-tile nm-bare" style="--s:36px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d5-shades"/></svg></div><figcaption class="nm-cap">Glyph</figcaption></figure></div>
+      </div>
+    </article>
+  </section>
+  <div class="ll-section"><h2>On a home screen</h2><p>The eight finalists at real size.</p></div>
+  <section class="ll-homes">
+    <div class="ll-home ll-home-dark"><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#A1E7CE;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-meeple"/></svg></div><figcaption>MixedRoutes</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-heads-out"/></svg></div><figcaption>MixedRoutes</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#E7EF8C;--a:#E7EF8C;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d7-roll"/></svg></div><figcaption>MixedRoutes</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#A1E7CE;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-pull-up"/></svg></div><figcaption>MixedRoutes</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-shades"/></svg></div><figcaption>MixedRoutes</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFAC79;--a:#0E0F13;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-caravan"/></svg></div><figcaption>MixedRoutes</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-out-the-door"/></svg></div><figcaption>MixedRoutes</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFAC79;--a:#0E0F13;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d5-shades"/></svg></div><figcaption>MixedRoutes</figcaption></figure></div>
+    <div class="ll-home ll-home-light"><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#A1E7CE;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-meeple"/></svg></div><figcaption>MixedRoutes</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-heads-out"/></svg></div><figcaption>MixedRoutes</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#E7EF8C;--a:#E7EF8C;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d7-roll"/></svg></div><figcaption>MixedRoutes</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#A1E7CE;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-pull-up"/></svg></div><figcaption>MixedRoutes</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-shades"/></svg></div><figcaption>MixedRoutes</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFAC79;--a:#0E0F13;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-caravan"/></svg></div><figcaption>MixedRoutes</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-out-the-door"/></svg></div><figcaption>MixedRoutes</figcaption></figure><figure><div class="nm-tile " style="--bg:#1749E5;--fg:#FFAC79;--a:#0E0F13;--s:64px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d5-shades"/></svg></div><figcaption>MixedRoutes</figcaption></figure></div>
+  </section>
+  <div class="ll-section"><h2>Did not make the cut</h2><p>The other 13 concepts, by score.</p></div>
+  <section class="ll-also"><figure class="ll-also-item"><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#E7EF8C;--s:88px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d1-suns-out"/></svg></div><figcaption><b>Sun’s Out</b><span>15 / 30</span></figcaption></figure><figure class="ll-also-item"><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:88px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d2-everyone-in"/></svg></div><figcaption><b>Everyone in</b><span>13 / 30</span></figcaption></figure><figure class="ll-also-item"><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#E7EF8C;--s:88px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d4-pop"/></svg></div><figcaption><b>It melts</b><span>13 / 30</span></figcaption></figure><figure class="ll-also-item"><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:88px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d6-roll"/></svg></div><figcaption><b>Let’s Roll</b><span>12.5 / 30</span></figcaption></figure><figure class="ll-also-item"><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFB3CD;--s:88px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d5-skate"/></svg></div><figcaption><b>Let’s Roll</b><span>12 / 30</span></figcaption></figure><figure class="ll-also-item"><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:88px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d5-van"/></svg></div><figcaption><b>Everyone In</b><span>12 / 30</span></figcaption></figure><figure class="ll-also-item"><div class="nm-tile " style="--bg:#1749E5;--fg:#FFAC79;--a:#FFAC79;--s:88px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d7-kicks"/></svg></div><figcaption><b>Kicks</b><span>12 / 30</span></figcaption></figure><figure class="ll-also-item"><div class="nm-tile " style="--bg:#1749E5;--fg:#FFAC79;--a:#FFFFFF;--s:88px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d2-it-takes-two"/></svg></div><figcaption><b>It takes two</b><span>11 / 30</span></figcaption></figure><figure class="ll-also-item"><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:88px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d2-set-sail"/></svg></div><figcaption><b>Set sail</b><span>11 / 30</span></figcaption></figure><figure class="ll-also-item"><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:88px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d4-same-boat"/></svg></div><figcaption><b>Same boat</b><span>11 / 30</span></figcaption></figure><figure class="ll-also-item"><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:88px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d3-shades"/></svg></div><figcaption><b>Shades</b><span>10 / 30</span></figcaption></figure><figure class="ll-also-item"><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFAC79;--s:88px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d4-seesaw"/></svg></div><figcaption><b>Better with two</b><span>10 / 30</span></figcaption></figure><figure class="ll-also-item"><div class="nm-tile " style="--bg:#1749E5;--fg:#FFFFFF;--a:#FFFFFF;--s:88px"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/lab-marks.svg#d7-shades"/></svg></div><figcaption><b>Shades</b><span>9.5 / 30</span></figcaption></figure></section>
+</div>

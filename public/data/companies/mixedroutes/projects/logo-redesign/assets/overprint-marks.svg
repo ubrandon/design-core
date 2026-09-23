@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <!-- Overprint M app icon marks. Uses c1 to c4 ink colors and a blend custom property (multiply on light, screen on dark). -->
+  <symbol id="op-thicc" viewBox="0 0 100 100">
+    <path d="M22 76L30 26" fill="none" stroke-linecap="round" stroke-width="26" style="stroke:var(--c1,#1749E5);mix-blend-mode:var(--blend,multiply)"/><path d="M30 26L50 58" fill="none" stroke-linecap="round" stroke-width="26" style="stroke:var(--c2,#FF8FB8);mix-blend-mode:var(--blend,multiply)"/><path d="M50 58L70 26" fill="none" stroke-linecap="round" stroke-width="26" style="stroke:var(--c3,#FFAC79);mix-blend-mode:var(--blend,multiply)"/><path d="M70 26L78 76" fill="none" stroke-linecap="round" stroke-width="26" style="stroke:var(--c4,#1749E5);mix-blend-mode:var(--blend,multiply)"/>
+  </symbol>
+  <symbol id="op-chonk" viewBox="0 0 100 100">
+    <path d="M25 73L31 29" fill="none" stroke-linecap="round" stroke-width="32" style="stroke:var(--c1,#1749E5);mix-blend-mode:var(--blend,multiply)"/><path d="M31 29L50 56" fill="none" stroke-linecap="round" stroke-width="32" style="stroke:var(--c2,#FF8FB8);mix-blend-mode:var(--blend,multiply)"/><path d="M50 56L69 29" fill="none" stroke-linecap="round" stroke-width="32" style="stroke:var(--c3,#FFAC79);mix-blend-mode:var(--blend,multiply)"/><path d="M69 29L75 73" fill="none" stroke-linecap="round" stroke-width="32" style="stroke:var(--c4,#1749E5);mix-blend-mode:var(--blend,multiply)"/>
+  </symbol>
+  <symbol id="op-two" viewBox="0 0 100 100">
+    <path d="M22 76L30 26" fill="none" stroke-linecap="round" stroke-width="26" style="stroke:var(--c1,#1749E5);mix-blend-mode:var(--blend,multiply)"/><path d="M30 26L50 58" fill="none" stroke-linecap="round" stroke-width="26" style="stroke:var(--c2,#FFB3CD);mix-blend-mode:var(--blend,multiply)"/><path d="M50 58L70 26" fill="none" stroke-linecap="round" stroke-width="26" style="stroke:var(--c2,#FFB3CD);mix-blend-mode:var(--blend,multiply)"/><path d="M70 26L78 76" fill="none" stroke-linecap="round" stroke-width="26" style="stroke:var(--c1,#1749E5);mix-blend-mode:var(--blend,multiply)"/>
+  </symbol>
+  <symbol id="op-bleed" viewBox="0 0 100 100">
+    <path d="M20 140L31 30" fill="none" stroke-linecap="round" stroke-width="28" style="stroke:var(--c1,#1749E5);mix-blend-mode:var(--blend,multiply)"/><path d="M31 30L50 62" fill="none" stroke-linecap="round" stroke-width="28" style="stroke:var(--c2,#FF8FB8);mix-blend-mode:var(--blend,multiply)"/><path d="M50 62L69 30" fill="none" stroke-linecap="round" stroke-width="28" style="stroke:var(--c3,#FFAC79);mix-blend-mode:var(--blend,multiply)"/><path d="M69 30L80 140" fill="none" stroke-linecap="round" stroke-width="28" style="stroke:var(--c4,#1749E5);mix-blend-mode:var(--blend,multiply)"/>
+  </symbol>
+  <symbol id="op-arches" viewBox="0 0 100 100">
+    <path d="M15 84V44A17.5 17.5 0 0 1 50 44V84" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="25" style="stroke:var(--c1,#1749E5);mix-blend-mode:var(--blend,multiply)"/><path d="M50 84V44A17.5 17.5 0 0 1 85 44V84" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="25" style="stroke:var(--c2,#FFB3CD);mix-blend-mode:var(--blend,multiply)"/>
+  </symbol>
+</svg>
