@@ -1,0 +1,37 @@
+/* Shared styles for the new-* logo concept boards (prefix nm-) */
+html, body { margin: 0; min-height: 0; background: #fff; }
+.nm-board { --ink: #0E0F13; --muted: #5B6170; --line: #E4E7EE; --stage: #F2F4F8; --blue: #1749E5; background: #fff; color: var(--ink); font-family: "MR Marketing Geist", Geist, system-ui, sans-serif; overflow-x: clip; padding: 0 0 64px; }
+
+.nm-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; padding: 56px 56px 32px; }
+.nm-eyebrow { margin: 0 0 10px; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); }
+.nm-title { margin: 0; font-size: 56px; line-height: 1; font-weight: 700; letter-spacing: -.035em; }
+.nm-sub { margin: 14px 0 0; max-width: 620px; font-size: 18px; line-height: 1.45; color: var(--muted); }
+.nm-legend { display: flex; gap: 20px; font-size: 13px; color: var(--muted); white-space: nowrap; }
+.nm-legend span { display: flex; align-items: center; gap: 8px; }
+.nm-legend i { width: 14px; height: 14px; border-radius: 4px; background: var(--stage); border: 1px solid var(--line); }
+.nm-legend i.nm-k { background: var(--ink); border-color: var(--ink); }
+
+.nm-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding: 0 56px; }
+.nm-card { border: 1px solid var(--line); border-radius: 28px; overflow: hidden; background: #fff; }
+.nm-stage { display: flex; align-items: center; justify-content: center; height: 260px; background: var(--stage); }
+.nm-meta { padding: 20px 22px 0; }
+.nm-name { display: flex; align-items: baseline; gap: 10px; margin: 0; font-size: 20px; font-weight: 650; letter-spacing: -.02em; }
+.nm-num { font-size: 13px; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+.nm-desc { margin: 6px 0 0; font-size: 14px; line-height: 1.45; color: var(--muted); min-height: 41px; }
+.nm-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; padding: 18px 22px 22px; }
+.nm-alts, .nm-sizes { display: flex; align-items: flex-end; gap: 10px; }
+.nm-sizes { gap: 8px; }
+
+/* App icon tile: set --bg/--fg/--a on the card, override per variant */
+.nm-tile { --ko: var(--bg); position: relative; flex: none; width: var(--s, 64px); height: var(--s, 64px); border-radius: calc(var(--s, 64px) * .2237); background: var(--bgimg, var(--bg)); color: var(--fg); display: grid; place-items: center; isolation: isolate; }
+.nm-tile::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(165deg, rgba(255,255,255,.14), rgba(255,255,255,0) 42%, rgba(0,0,0,.06)); pointer-events: none; }
+.nm-tile svg { width: 80%; height: 80%; display: block; overflow: visible; }
+.nm-hero { --s: 172px; box-shadow: 0 1px 1px rgba(14,15,19,.06), 0 14px 32px -12px rgba(14,15,19,.35); }
+
+.nm-light { --bg: #fff; --bgimg: #fff; --fg: #0E0F13; --a: #1749E5; --a2: #C0AFFF; --blend: multiply; box-shadow: inset 0 0 0 1px var(--line); }
+.nm-mono { --bg: #0E0F13; --bgimg: #0E0F13; --fg: #fff; --a: #fff; --a2: #fff; --c1: #fff; --c2: #fff; --c3: #fff; --kw: 5; --dimo: .2; }
+.nm-bare { --bg: #fff; --bgimg: transparent; --fg: #0E0F13; --a: #0E0F13; --a2: #0E0F13; --c1: #0E0F13; --c2: #0E0F13; --c3: #0E0F13; --kw: 5; --dim: #0E0F13; --dimo: .14; }
+.nm-bare::after { display: none; }
+.nm-bare svg { width: 100%; height: 100%; }
+.nm-cap { display: block; margin-top: 6px; font-size: 11px; color: var(--muted); text-align: center; }
+.nm-alts figure, .nm-sizes figure { margin: 0; display: flex; flex-direction: column; align-items: center; }

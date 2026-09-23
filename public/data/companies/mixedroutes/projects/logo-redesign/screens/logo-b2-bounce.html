@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<style>
+  :root { --bg-0: #ffffff; }
+  html, body { background: #ffffff; margin: 0; }
+  body { min-height: 0; }
+
+.mr-app-comparison { --bg-0:#fff; position:relative; height:480px; overflow:clip; background:var(--bg-0); }
+.mr-app-main { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transform:translate(-30px,-60px) scale(.8); }
+.mr-app-main svg { display:block; width:320px; height:280px; color:#1a63f9; }
+.mr-app-tile { position:absolute; right:24px; bottom:174px; width:76px; height:76px; border-radius:19px; background:#005bff; overflow:hidden; isolation:isolate; display:grid; place-items:center; }
+.mr-app-tile svg { display:block; width:54px; height:48px; color:#fff; }
+.mr-vote-letter { position:absolute; top:22px; left:24px; z-index:1; color:#000; font-size:24px; font-weight:700; line-height:1; }
+.mr-logo-reason { position:absolute; left:28px; right:28px; bottom:26px; min-height:128px; margin:0; padding-top:18px; border-top:1px solid #e5eaf1; color:#344054; font-size:26px; font-weight:500; line-height:34px; letter-spacing:-0.3px; text-wrap:pretty; }
+</style>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute;"><defs><path id="b2-bounce" d="M8 150 C8 120 16 100 20 78 C24 50 38 34 58 34 C76 34 84 48 88 64 C92 78 95 94 100 94 C105 94 108 72 112 54 C116 34 126 18 144 18 C164 18 178 38 181 68 C184 96 192 118 192 150 C192 168 178 180 158 180 C140 180 128 172 125 160 C122 148 112 140 100 140 C88 140 78 148 75 160 C72 172 60 180 42 180 C22 180 8 168 8 150 Z" fill="currentColor"/></defs></svg>
+<div class="mr-scope mr-app-comparison" style="background:#fff;">
+  <span class="mr-vote-letter" aria-label="Option B2" style="display:flex; align-items:center; gap:12px;">B2</span>
+  <div class="mr-app-main"><svg viewBox="8 18 184 162" role="img" aria-label="MixedRoutes bounce M logo"><use href="#b2-bounce"/></svg></div>
+  <div class="mr-app-tile" role="img" aria-label="White logo on a blue app icon"><svg viewBox="8 18 184 162" aria-hidden="true"><use href="#b2-bounce"/></svg></div>
+  <p class="mr-logo-reason">One hump sits higher, like a step mid-stride, so the M feels in motion and all our own.</p>
+</div>

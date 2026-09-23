@@ -1,0 +1,235 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link rel="stylesheet" href="../assets/new-marks.css" />
+<style>
+.ms { --lilac: #C0AFFF; --lilac-2: #E9E3FF; --ink: #0E0F13; --blue: #1749E5; }
+.ms-mark { display: block; width: 100%; height: 100%; color: inherit; }
+.ms-sec { padding: 56px 56px 0; }
+.ms-h2 { margin: 0 0 6px; font-size: 30px; font-weight: 700; letter-spacing: -.03em; }
+.ms-lede { margin: 0 0 24px; font-size: 16px; color: var(--muted); max-width: 640px; line-height: 1.5; }
+.ms-word { font-weight: 700; letter-spacing: -.045em; line-height: 1; }
+.ms-lock { display: flex; align-items: center; gap: .32em; font-size: 40px; }
+.ms-lock .ms-mark { width: 1.28em; height: 1.28em; flex: none; }
+.ms-lock--stack { flex-direction: column; gap: .3em; }
+.ms-lock--stack .ms-mark { width: 2em; height: 2em; }
+
+.ms-hero { position: relative; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 48px; padding: 72px 72px 64px; background: var(--lilac); color: var(--ink); overflow: hidden; }
+.ms-hero .ms-lock { font-size: 92px; }
+.ms-hero-eyebrow { margin: 0 0 36px; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; opacity: .7; }
+.ms-hero-tag { margin: 28px 0 0; font-size: 24px; font-weight: 500; letter-spacing: -.01em; opacity: .8; }
+.ms-hero .nm-tile { box-shadow: 0 30px 60px -24px rgba(14,15,19,.45); }
+.ms-hero .nm-tile { --bg: #0E0F13 !important; --fg: #C0AFFF !important; }
+
+.ms-story { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.ms-frame { border-radius: 24px; background: var(--stage); padding: 22px 22px 20px; }
+.ms-frame svg { display: block; width: 100%; height: 150px; color: var(--ink); }
+.ms-frame:last-child { background: var(--lilac); }
+.ms-frame h3 { margin: 14px 0 2px; font-size: 16px; font-weight: 650; }
+.ms-frame p { margin: 0; font-size: 14px; color: var(--muted); }
+.ms-frame:last-child p { color: rgba(14,15,19,.7); }
+
+.ms-locks { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 16px; }
+.ms-lockcard { display: flex; align-items: center; justify-content: center; min-height: 220px; border-radius: 24px; position: relative; }
+.ms-lockcard small { position: absolute; left: 20px; bottom: 16px; font-size: 12px; font-weight: 500; opacity: .6; }
+.ms-lc-white { background: #fff; box-shadow: inset 0 0 0 1px var(--line); color: var(--ink); }
+.ms-lc-ink { background: var(--ink); color: #fff; }
+.ms-lc-ink .ms-mark { color: var(--lilac); }
+.ms-lc-lilac { background: var(--lilac); color: var(--ink); }
+.ms-lc-blue { background: var(--blue); color: #fff; }
+.ms-lc-stage { background: var(--stage); color: var(--ink); gap: 20px; }
+
+.ms-rules { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+.ms-rule { display: flex; align-items: center; gap: 28px; padding: 24px 28px; border-radius: 24px; background: var(--stage); }
+.ms-rule h3 { margin: 0 0 4px; font-size: 16px; font-weight: 650; }
+.ms-rule p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.45; }
+.ms-clear { position: relative; flex: none; width: 150px; height: 150px; display: grid; place-items: center; background: repeating-linear-gradient(45deg, rgba(23,73,229,.08) 0 6px, transparent 6px 12px); outline: 1px dashed rgba(23,73,229,.5); border-radius: 12px; }
+.ms-clear > div { width: 90px; height: 90px; background: #fff; outline: 1px solid rgba(23,73,229,.35); }
+.ms-mins { display: flex; align-items: flex-end; gap: 18px; flex: none; }
+.ms-mins figure > div { color: var(--ink); }
+.ms-mins figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
+
+.ms-colors { display: grid; grid-template-columns: 2fr 2fr 2fr 1fr 1fr 1fr 1fr; gap: 12px; }
+.ms-sw { border-radius: 20px; padding: 18px; min-height: 150px; display: flex; flex-direction: column; justify-content: flex-end; box-shadow: inset 0 0 0 1px rgba(14,15,19,.06); }
+.ms-sw b { font-size: 16px; font-weight: 650; }
+.ms-sw span { font-size: 13px; opacity: .75; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.ms-sw em { font-style: normal; font-size: 13px; opacity: .75; margin-top: 8px; line-height: 1.4; }
+.ms-type { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; margin-top: 16px; }
+.ms-typecard { border-radius: 24px; background: var(--stage); padding: 28px 32px; }
+.ms-typecard .big { font-size: 64px; font-weight: 700; letter-spacing: -.045em; line-height: 1; margin: 0; }
+.ms-typecard .mid { font-size: 22px; font-weight: 500; letter-spacing: -.01em; margin: 14px 0 0; color: var(--muted); }
+.ms-typecard .meta { font-size: 13px; color: var(--muted); margin: 18px 0 0; }
+
+.ms-use { display: grid; grid-template-columns: 290px 290px 1fr; gap: 16px; }
+.ms-phone { border-radius: 46px; padding: 10px; background: var(--ink); box-shadow: 0 20px 40px -24px rgba(14,15,19,.6); }
+.ms-screen { position: relative; height: 580px; border-radius: 37px; overflow: hidden; }
+.ms-splash { background: var(--lilac); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--ink); }
+.ms-splash .ms-lock { font-size: 30px; }
+.ms-splash-foot { position: absolute; bottom: 34px; left: 0; right: 0; text-align: center; font-size: 13px; font-weight: 500; opacity: .6; }
+.ms-lockscreen { background: linear-gradient(170deg, #3B2F7A 0%, #1B1E3C 55%, #0E0F13 100%); color: #fff; text-align: center; padding: 56px 12px 0; }
+.ms-lockscreen .date { margin: 0; font-size: 15px; font-weight: 500; opacity: .8; }
+.ms-lockscreen .time { margin: 0; font-size: 76px; font-weight: 600; letter-spacing: -.03em; line-height: 1; }
+.ms-notif { display: flex; gap: 11px; text-align: left; margin-top: 210px; padding: 12px; border-radius: 22px; background: rgba(255,255,255,.18); backdrop-filter: blur(20px); }
+.ms-notif .nm-tile::after { display: none; }
+.ms-notif-top { display: flex; justify-content: space-between; font-size: 12px; opacity: .7; margin-bottom: 2px; }
+.ms-notif b { display: block; font-size: 14px; font-weight: 600; }
+.ms-notif p { margin: 1px 0 0; font-size: 13px; line-height: 1.35; opacity: .9; }
+.ms-notif-body { flex: 1; min-width: 0; }
+.ms-map { position: relative; border-radius: 28px; overflow: hidden; background: #EEF0F5; min-height: 600px; }
+.ms-map svg.ms-streets { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ms-pin { position: absolute; left: 50.5%; top: 45%; transform: translate(-50%, -50%); width: 76px; height: 76px; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: 0 10px 24px -8px rgba(14,15,19,.45), 0 0 0 10px rgba(192,175,255,.35); color: var(--ink); }
+.ms-pin svg { width: 46px; height: 46px; }
+.ms-mapcard { position: absolute; left: 20px; right: 20px; bottom: 20px; display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 22px; background: #fff; box-shadow: 0 12px 30px -16px rgba(14,15,19,.4); }
+.ms-mapcard b { display: block; font-size: 16px; font-weight: 650; }
+.ms-mapcard span { font-size: 13px; color: var(--muted); }
+.ms-mapcard .go { margin-left: auto; padding: 10px 16px; border-radius: 999px; background: var(--blue); color: #fff; font-size: 14px; font-weight: 600; }
+.ms-av { position: absolute; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 650; box-shadow: 0 0 0 3px #fff; }
+.ms-maptag { position: absolute; left: 20px; top: 20px; padding: 8px 14px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.ms-maptag svg { width: 18px; height: 18px; color: var(--lilac); }
+
+.ms-use2 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 16px; }
+.ms-post { position: relative; aspect-ratio: 4 / 5; border-radius: 28px; overflow: hidden; background: var(--ink); color: #fff; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; }
+.ms-post-mark { position: absolute; right: -90px; top: -40px; width: 360px; height: 360px; color: var(--lilac); }
+.ms-post h3 { position: relative; margin: 0; margin-top: auto; font-size: 50px; line-height: .98; font-weight: 700; letter-spacing: -.045em; }
+.ms-post p { position: relative; margin: 14px 0 26px; font-size: 16px; opacity: .7; }
+.ms-post .ms-lock { position: relative; font-size: 20px; }
+.ms-post .ms-lock .ms-mark { color: var(--lilac); }
+.ms-stickers { position: relative; aspect-ratio: 4 / 5; border-radius: 28px; background: #F4F1EA; overflow: hidden; }
+.ms-stk { position: absolute; display: grid; place-items: center; filter: drop-shadow(0 6px 10px rgba(14,15,19,.18)); }
+.ms-stk-a { left: 36px; top: 40px; width: 170px; height: 170px; transform: rotate(-8deg); }
+.ms-stk-a svg { width: 100%; height: 100%; }
+.ms-stk-pill { left: 150px; top: 230px; padding: 16px 26px 16px 18px; border-radius: 999px; background: var(--ink); color: #fff; display: flex; gap: 12px; align-items: center; font-size: 30px; font-weight: 700; letter-spacing: -.03em; transform: rotate(6deg); box-shadow: 0 0 0 6px #fff; }
+.ms-stk-pill svg { width: 40px; height: 40px; color: var(--lilac); }
+.ms-stk-c { right: 34px; top: 56px; width: 116px; height: 116px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 6px #fff; transform: rotate(12deg); color: #fff; }
+.ms-stk-c svg { width: 62%; height: 62%; }
+.ms-stk-d { left: 44px; bottom: 44px; padding: 22px; border-radius: 28px; background: #A1E7CE; box-shadow: 0 0 0 6px #fff; transform: rotate(-5deg); color: var(--ink); }
+.ms-stk-d .ms-lock { font-size: 24px; }
+.ms-stk-e { right: 40px; bottom: 70px; width: 96px; height: 96px; border-radius: 26px; background: #FFAC79; box-shadow: 0 0 0 6px #fff; transform: rotate(10deg); color: var(--ink); }
+.ms-stk-e svg { width: 70%; height: 70%; }
+.ms-pattern { position: relative; aspect-ratio: 4 / 5; border-radius: 28px; overflow: hidden; background: var(--blue); }
+.ms-pattern-grid { position: absolute; inset: -40px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; transform: rotate(-12deg); }
+.ms-pattern-grid svg { width: 100%; aspect-ratio: 1; color: rgba(255,255,255,.14); }
+.ms-pattern-grid svg:nth-child(7n+3) { color: var(--lilac); }
+.ms-pattern-cap { position: absolute; left: 24px; right: 24px; bottom: 24px; padding: 18px 20px; border-radius: 20px; background: #fff; }
+.ms-pattern-cap b { display: block; font-size: 16px; font-weight: 650; }
+.ms-pattern-cap span { font-size: 13px; color: var(--muted); }
+.ms-caps { display: grid; grid-template-columns: 290px 290px 1fr; gap: 16px; margin-top: 10px; font-size: 13px; color: var(--muted); }
+.ms-caps3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 10px; font-size: 13px; color: var(--muted); }
+.ms-dont { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.ms-dont figure { margin: 0; }
+.ms-dont .box { position: relative; height: 150px; border-radius: 20px; background: var(--stage); display: grid; place-items: center; }
+.ms-dont .box svg.ms-mark { width: 84px; height: 84px; }
+.ms-dont .box .x { position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; border-radius: 50%; background: #E5484D; color: #fff; display: grid; place-items: center; font-size: 14px; }
+.ms-dont figcaption { margin-top: 10px; font-size: 14px; color: var(--muted); }
+</style>
+<div class="nm-board ms">
+  <section class="ms-hero">
+    <div>
+      <p class="ms-hero-eyebrow">Logo redesign · Meet brand sheet</p>
+      <div class="ms-lock "><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><span class="ms-word">MixedRoutes</span></div>
+      <p class="ms-hero-tag">Social media for real life.</p>
+    </div>
+    <div class="nm-tile" style="--s:220px;--bg:#C0AFFF;--fg:#0E0F13;"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div>
+  </section>
+
+  <section class="ms-sec">
+    <h2 class="ms-h2">The idea</h2>
+    <p class="ms-lede">Two circles, two people. The mark is the moment their routes meet. It also animates well: two dots drift together and fuse.</p>
+    <div class="ms-story">
+      <div class="ms-frame"><svg viewBox="0 0 130 110" aria-hidden="true"><g fill="currentColor"><circle cx="34" cy="74" r="22"/><circle cx="105.48" cy="15.95" r="17"/></g></svg><h3>Two people</h3><p>Different routes, different days.</p></div>
+      <div class="ms-frame"><svg viewBox="0 0 130 110" aria-hidden="true"><g fill="currentColor"><circle cx="34" cy="74" r="22"/><circle cx="79.07" cy="37.4" r="17"/></g></svg><h3>A plan starts</h3><p>Someone suggests Friday.</p></div>
+      <div class="ms-frame"><svg viewBox="0 0 130 110" aria-hidden="true"><g fill="currentColor"><circle cx="34" cy="74" r="22"/><circle cx="68.19" cy="46.24" r="17"/><path d="M55.98 75.02C56.41 65.77 60.25 62.89 67.4 63.22L51.41 43.53C50.27 50.59 46.66 53.76 37.51 52.28Z"/></g></svg><h3>Getting closer</h3><p>The other says maybe.</p></div>
+      <div class="ms-frame"><svg viewBox="0 0 130 110" aria-hidden="true"><g fill="currentColor"><circle cx="34" cy="74" r="22"/><circle cx="66.01" cy="48" r="17"/><path d="M55.85 76.52C56.88 67.64 59.82 65.28 66.73 64.98L49.53 43.82C47.83 50.51 44.92 52.91 36.01 52.09Z"/></g></svg><h3>Meet</h3><p>Two routes become one plan.</p></div>
+    </div>
+  </section>
+
+  <section class="ms-sec">
+    <h2 class="ms-h2">Lockups</h2>
+    <p class="ms-lede">The mark sits to the left of the wordmark, about 1.3 times the cap height. Use the stacked version when space is square.</p>
+    <div class="ms-locks">
+      <div class="ms-lockcard ms-lc-white"><div class="ms-lock "><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><span class="ms-word">MixedRoutes</span></div><small>Primary</small></div>
+      <div class="ms-lockcard ms-lc-ink"><div class="ms-lock "><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><span class="ms-word">MixedRoutes</span></div><small>Reversed</small></div>
+      <div class="ms-lockcard ms-lc-lilac"><div class="ms-lock ms-lock--stack"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><span class="ms-word">MixedRoutes</span></div><small>Stacked</small></div>
+      <div class="ms-lockcard ms-lc-blue" style="font-size:40px"><span class="ms-word">MixedRoutes</span><small>Wordmark only</small></div>
+      <div class="ms-lockcard ms-lc-stage"><div class="nm-tile" style="--s:96px;--bg:#C0AFFF;--fg:#0E0F13;"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div><div class="nm-tile" style="--s:64px;--bg:#C0AFFF;--fg:#0E0F13;--bg:#0E0F13;--fg:#C0AFFF"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div><div class="nm-tile" style="--s:64px;--bg:#C0AFFF;--fg:#0E0F13;--bg:#1749E5;--fg:#fff"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div><small>App icon</small></div>
+      <div class="ms-lockcard ms-lc-white" style="gap:28px"><div style="width:84px;height:84px;color:#0E0F13"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div><div style="width:84px;height:84px;color:#1749E5"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div><div style="width:84px;height:84px;border-radius:50%;background:#0E0F13;color:#C0AFFF;display:grid;place-items:center"><div style="width:56px;height:56px"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div></div><small>Mark only</small></div>
+    </div>
+    <div class="ms-rules">
+      <div class="ms-rule"><div class="ms-clear"><div style="width:90px;height:90px;background:transparent;outline:none"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div></div><div><h3>Clear space</h3><p>Keep empty space around the mark equal to the small circle's diameter. Nothing else goes in the shaded zone.</p></div></div>
+      <div class="ms-rule"><div class="ms-mins"><figure><div style="width:32px;height:32px"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div>32</figure><figure><div style="width:20px;height:20px"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div>20</figure><figure><div style="width:14px;height:14px"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div>14</figure></div><div><h3>Minimum size</h3><p>The mark holds its shape down to 14 px. Below 24 px, use the mark without the wordmark.</p></div></div>
+    </div>
+  </section>
+
+  <section class="ms-sec">
+    <h2 class="ms-h2">Color and type</h2>
+    <p class="ms-lede">Lilac becomes the signature. Ink carries the mark. Neon blue stays for actions so the product does not need to change.</p>
+    <div class="ms-colors">
+      <div class="ms-sw" style="background:#C0AFFF;color:#0E0F13"><b>Lilac</b><span>#C0AFFF</span><em>Primary. App icon, splash, big moments.</em></div>
+      <div class="ms-sw" style="background:#0E0F13;color:#fff"><b>Ink</b><span>#0E0F13</span><em>The mark, type, dark surfaces.</em></div>
+      <div class="ms-sw" style="background:#1749E5;color:#fff"><b>Neon blue</b><span>#1749E5</span><em>Actions and links. Carries over from today.</em></div>
+      <div class="ms-sw" style="background:#A1E7CE;color:#0E0F13"><b>Mint</b><span>#A1E7CE</span></div>
+      <div class="ms-sw" style="background:#FFAC79;color:#0E0F13"><b>Apricot</b><span>#FFAC79</span></div>
+      <div class="ms-sw" style="background:#E7EF8C;color:#0E0F13"><b>Citrus</b><span>#E7EF8C</span></div>
+      <div class="ms-sw" style="background:#FFB3CD;color:#0E0F13"><b>Pink</b><span>#FFB3CD</span></div>
+    </div>
+    <div class="ms-type">
+      <div class="ms-typecard"><p class="big">Friday? I'm in.</p><p class="mid">Tacos at La Palma, 7:30. Maya, Sam, and 2 others are going.</p><p class="meta">Geist Bold for headlines, tight tracking. Geist Regular and Medium for everything else.</p></div>
+      <div class="ms-typecard" style="background:#0E0F13;color:#fff"><p class="big" style="font-size:44px">Aa Bb Cc<br>0123456789</p><p class="meta" style="color:rgba(255,255,255,.6)">The wordmark is set in Geist Bold at -4.5% tracking. Same family as the app, so the brand and product feel like one thing.</p></div>
+    </div>
+  </section>
+
+  <section class="ms-sec">
+    <h2 class="ms-h2">In use</h2>
+    <p class="ms-lede">The mark does more than sign things. On the map it marks where people meet, which is the whole product in one symbol.</p>
+    <div class="ms-use">
+      <div class="ms-phone"><div class="ms-screen ms-splash"><div class="ms-lock ms-lock--stack"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><span class="ms-word">MixedRoutes</span></div><div class="ms-splash-foot">Social media for real life</div></div></div>
+      <div class="ms-phone"><div class="ms-screen ms-lockscreen">
+        <p class="date">Thursday, September 24</p><p class="time">9:41</p>
+        <div class="ms-notif"><div class="nm-tile" style="--s:38px;--bg:#C0AFFF;--fg:#0E0F13;"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div><div class="ms-notif-body"><div class="ms-notif-top"><span>MIXEDROUTES</span><span>now</span></div><b>Maya is in for Friday</b><p>Tacos at La Palma, 7:30. 4 people are going.</p></div></div>
+      </div></div>
+      <div class="ms-map">
+        <svg class="ms-streets" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path d="M-20 420 C120 380 200 300 360 330 S560 250 640 270" fill="none" stroke="#fff" stroke-width="26"/>
+          <path d="M180 -20 L250 640" fill="none" stroke="#fff" stroke-width="18"/>
+          <path d="M-20 140 L640 210" fill="none" stroke="#fff" stroke-width="14"/>
+          <path d="M430 -20 L380 640" fill="none" stroke="#fff" stroke-width="14"/>
+          <path d="M-20 560 L640 500" fill="none" stroke="#fff" stroke-width="12"/>
+          <path d="M40 40 C120 20 160 80 140 110 C110 150 30 130 40 40Z" fill="#CFEFE2"/>
+          <path d="M470 380 C560 360 620 420 600 470 C570 520 470 500 470 380Z" fill="#CFEFE2"/>
+          <path d="M70 520 C110 420 190 350 262 300 C290 282 295 275 303 270" fill="none" stroke="#1749E5" stroke-width="7" stroke-linecap="round" stroke-dasharray="1 13"/>
+          <path d="M70 520 C110 420 190 350 262 300 C290 282 295 275 303 270" fill="none" stroke="#1749E5" stroke-width="5" stroke-linecap="round"/>
+          <path d="M540 90 C500 150 450 170 400 200 C360 225 330 250 303 270" fill="none" stroke="#0E0F13" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+        <div class="ms-maptag"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg>Meet point</div>
+        <div class="ms-av" style="left:8%;top:84%;background:#1749E5;color:#fff">M</div>
+        <div class="ms-av" style="left:87%;top:12%;background:#0E0F13;color:#fff">S</div>
+        <div class="ms-pin"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div>
+        <div class="ms-mapcard"><div class="nm-tile" style="--s:46px;--bg:#C0AFFF;--fg:#0E0F13;"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div><div><b>La Palma</b><span>Friday, 7:30 · 12 min for both of you</span></div><span class="go">Directions</span></div>
+      </div>
+    </div>
+    <div class="ms-caps"><span>Splash screen</span><span>Notification</span><span>Map: the mark shows where two routes meet</span></div>
+    <div class="ms-use2">
+      <div class="ms-post"><div class="ms-post-mark"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div><h3>Friday.<br>Tacos.<br>You in?</h3><p>Plans with your people, not your feed.</p><div class="ms-lock "><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><span class="ms-word">MixedRoutes</span></div></div>
+      <div class="ms-stickers">
+        <div class="ms-stk ms-stk-a"><svg viewBox="-8 -8 116 116" aria-hidden="true"><g style="color:#fff" transform="translate(0 0)"><use href="../assets/pick-marks.svg#pk-meet" width="100" height="100" style="stroke:#fff;stroke-width:14;stroke-linejoin:round"/></g><use href="../assets/pick-marks.svg#pk-meet" width="100" height="100" style="color:#C0AFFF"/></svg></div>
+        <div class="ms-stk ms-stk-pill"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg>I'm in</div>
+        <div class="ms-stk ms-stk-c"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div>
+        <div class="ms-stk ms-stk-d"><div class="ms-lock "><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><span class="ms-word">MixedRoutes</span></div></div>
+        <div class="ms-stk ms-stk-e"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div>
+      </div>
+      <div class="ms-pattern"><div class="ms-pattern-grid"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div><div class="ms-pattern-cap"><b>Pattern</b><span>Repeat the mark on a tilt for event pages, merch, and packaging.</span></div></div>
+    </div>
+    <div class="ms-caps3"><span>Social post</span><span>Stickers</span><span>Brand pattern</span></div>
+  </section>
+
+  <section class="ms-sec">
+    <h2 class="ms-h2">Keep it whole</h2>
+    <p class="ms-lede">The shape only works when the two circles stay fused and the angle stays the same.</p>
+    <div class="ms-dont">
+      <figure><div class="box"><div style="width:84px;height:84px;transform:rotate(-45deg)"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div><span class="x"><i class="ph ph-x"></i></span></div><figcaption>Do not rotate it upright. It turns into a person icon.</figcaption></figure>
+      <figure><div class="box"><svg viewBox="0 0 100 100" style="width:84px;height:84px"><circle cx="34" cy="64" r="20" fill="#0E0F13"/><circle cx="72" cy="32" r="15" fill="#0E0F13"/></svg><span class="x"><i class="ph ph-x"></i></span></div><figcaption>Do not pull the circles apart.</figcaption></figure>
+      <figure><div class="box"><div style="width:84px;height:84px;transform:scaleX(-1)"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div><span class="x"><i class="ph ph-x"></i></span></div><figcaption>Do not flip it. It always rises to the right.</figcaption></figure>
+      <figure><div class="box" style="background:linear-gradient(135deg,#FFAC79,#FFB3CD,#A1E7CE)"><div style="width:84px;height:84px;color:#C0AFFF"><svg class="ms-mark " viewBox="0 0 100 100" aria-hidden="true"><use href="../assets/pick-marks.svg#pk-meet"/></svg></div><span class="x"><i class="ph ph-x"></i></span></div><figcaption>Do not put lilac on busy or low contrast color.</figcaption></figure>
+    </div>
+  </section>
+</div>

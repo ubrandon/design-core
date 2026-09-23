@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<style>
+  :root { --bg-0: #ffffff; }
+  html, body { background: #ffffff; margin: 0; }
+  body { min-height: 0; }
+
+.mr-app-comparison { --bg-0:#fff; position:relative; height:480px; overflow:clip; background:var(--bg-0); }
+.mr-app-main { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transform:translate(-30px,-60px) scale(.8); }
+.mr-app-main svg { display:block; width:320px; height:280px; color:#1a63f9; }
+.mr-app-tile { position:absolute; right:24px; bottom:174px; width:76px; height:76px; border-radius:19px; background:#005bff; overflow:hidden; isolation:isolate; display:grid; place-items:center; }
+.mr-app-tile svg { display:block; width:54px; height:48px; color:#fff; }
+.mr-vote-letter { position:absolute; top:22px; left:24px; z-index:1; color:#000; font-size:24px; font-weight:700; line-height:1; }
+.mr-logo-reason { position:absolute; left:28px; right:28px; bottom:26px; min-height:128px; margin:0; padding-top:18px; border-top:1px solid #e5eaf1; color:#344054; font-size:26px; font-weight:500; line-height:34px; letter-spacing:-0.3px; text-wrap:pretty; }
+</style>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute;"><defs><g id="g-meet" fill="currentColor"><circle cx="36" cy="62" r="22"/><circle cx="68" cy="36" r="17"/><path d="M57.86 64.52C58.88 55.64 61.82 53.28 68.72 52.98L51.52 31.82C49.82 38.51 46.91 40.91 38.01 40.09Z"/></g></defs></svg>
+<div class="mr-scope mr-app-comparison" style="background:#fff;">
+  <span class="mr-vote-letter" aria-label="Option G" style="display:flex; align-items:center; gap:12px;">G</span>
+  <div class="mr-app-main"><svg viewBox="13 18 73 67" role="img" aria-label="MixedRoutes Meet logo"><use href="#g-meet"/></svg></div>
+  <div class="mr-app-tile" role="img" aria-label="White logo on a blue app icon"><svg viewBox="13 18 73 67" aria-hidden="true"><use href="#g-meet"/></svg></div>
+  <p class="mr-logo-reason">Two circles pulled together into one shape: the moment two people turn a maybe into a plan.</p>
+</div>

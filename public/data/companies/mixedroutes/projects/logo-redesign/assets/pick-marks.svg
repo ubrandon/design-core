@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <!-- Variations of the picked marks: Meet, Arrival, Loop. Same var contract as new-marks.svg. -->
+  <symbol id="pk-meet" viewBox="0 0 100 100">
+    <g fill="currentColor"><circle cx="36" cy="62" r="22"/><circle cx="68" cy="36" r="17"/><path d="M57.86 64.52C58.88 55.64 61.82 53.28 68.72 52.98L51.52 31.82C49.82 38.51 46.91 40.91 38.01 40.09Z"/></g>
+  </symbol>
+  <symbol id="pk-meet-duo" viewBox="0 0 100 100">
+    <clipPath id="pk-meet-duo-h"><path d="M16 0.8L91.8 94L170 31L94 -62Z"/></clipPath><g fill="currentColor"><circle cx="36" cy="62" r="22"/><circle cx="68" cy="36" r="17"/><path d="M57.86 64.52C58.88 55.64 61.82 53.28 68.72 52.98L51.52 31.82C49.82 38.51 46.91 40.91 38.01 40.09Z"/></g><g clip-path="url(#pk-meet-duo-h)" style="fill:var(--a,currentColor)"><circle cx="36" cy="62" r="22"/><circle cx="68" cy="36" r="17"/><path d="M57.86 64.52C58.88 55.64 61.82 53.28 68.72 52.98L51.52 31.82C49.82 38.51 46.91 40.91 38.01 40.09Z"/></g>
+  </symbol>
+  <symbol id="pk-meet-join" viewBox="0 0 100 100">
+    <g transform="translate(-3 -2)"><g fill="currentColor"><circle cx="36" cy="62" r="22"/><circle cx="68" cy="36" r="17"/><path d="M57.86 64.52C58.88 55.64 61.82 53.28 68.72 52.98L51.52 31.82C49.82 38.51 46.91 40.91 38.01 40.09Z"/></g><circle cx="80" cy="77" r="8" style="fill:var(--a,currentColor)"/></g>
+  </symbol>
+  <symbol id="pk-meet-m" viewBox="0 0 100 100">
+    <g fill="currentColor"><circle cx="26" cy="40" r="14"/><circle cx="50" cy="55" r="10"/><circle cx="74" cy="40" r="14"/><path d="M28.16 53.83C36.3 52.56 38.42 54.27 41.08 59.52L50.15 45C44.27 44.91 41.8 43.75 39.38 35.88Z"/><path d="M58.92 59.52C61.58 54.27 63.7 52.56 71.84 53.83L60.62 35.88C58.2 43.75 55.73 44.91 49.85 45Z"/><rect x="12" y="26" width="28" height="58" rx="14"/><rect x="60" y="26" width="28" height="58" rx="14"/></g>
+  </symbol>
+  <symbol id="pk-meet-lower" viewBox="0 0 100 100">
+    <g fill="currentColor"><circle cx="26" cy="32" r="14"/><circle cx="50" cy="60" r="9.5"/><circle cx="74" cy="32" r="14"/><path d="M23.76 45.82C37.28 48.01 39.19 52.27 40.61 61.45L52.87 50.94C44.02 48.13 40.09 45.6 40 31.9Z"/><path d="M59.39 61.45C60.81 52.27 62.72 48.01 76.24 45.82L60 31.9C59.91 45.6 55.98 48.13 47.13 50.94Z"/><rect x="12" y="18" width="28" height="66" rx="14"/><rect x="60" y="18" width="28" height="66" rx="14"/></g>
+  </symbol>
+  <symbol id="pk-meet-trio" viewBox="0 0 100 100">
+    <g fill="currentColor"><circle cx="32" cy="64" r="20"/><circle cx="60" cy="43" r="13.5"/><circle cx="79" cy="25" r="8.5"/><path d="M51.86 66.35C52.78 58.56 55.24 56.7 60.53 56.49L47.2 38.71C45.52 43.73 43.04 45.57 35.31 44.28Z"/><path d="M73.5 43C73.5 35.77 75.83 34.11 80.33 33.4L70.69 23.22C69.73 27.67 67.95 29.91 60.73 29.52Z"/></g>
+  </symbol>
+  <symbol id="pk-meet-buddies" viewBox="0 0 100 100">
+    <g fill="currentColor"><circle cx="36" cy="62" r="22"/><circle cx="68" cy="36" r="17"/><path d="M57.86 64.52C58.88 55.64 61.82 53.28 68.72 52.98L51.52 31.82C49.82 38.51 46.91 40.91 38.01 40.09Z"/></g><g style="fill:var(--ko,#fff)"><ellipse cx="39" cy="59" rx="3.6" ry="5.2"/><ellipse cx="50" cy="59" rx="3.6" ry="5.2"/><ellipse cx="66" cy="36" rx="3" ry="4.4"/><ellipse cx="75" cy="36" rx="3" ry="4.4"/></g>
+  </symbol>
+  <symbol id="pk-meet-outline" viewBox="0 0 100 100">
+    <g fill="currentColor" stroke="currentColor" stroke-width="18" stroke-linejoin="round"><circle cx="36" cy="62" r="22"/><circle cx="68" cy="36" r="17"/><path d="M57.86 64.52C58.88 55.64 61.82 53.28 68.72 52.98L51.52 31.82C49.82 38.51 46.91 40.91 38.01 40.09Z"/></g><g style="fill:var(--ko,#fff)"><circle cx="36" cy="62" r="22"/><circle cx="68" cy="36" r="17"/><path d="M57.86 64.52C58.88 55.64 61.82 53.28 68.72 52.98L51.52 31.82C49.82 38.51 46.91 40.91 38.01 40.09Z"/></g>
+  </symbol>
+  <symbol id="pk-arr" viewBox="0 0 100 100">
+    <path d="M18 80V22L50 56L82 22V56" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle cx="82" cy="80" r="10" style="fill:var(--a,currentColor)"/>
+  </symbol>
+  <symbol id="pk-arr-heavy" viewBox="0 0 100 100">
+    <path d="M20 78V24L50 56L80 24V52" fill="none" stroke="currentColor" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="78" r="12" style="fill:var(--a,currentColor)"/>
+  </symbol>
+  <symbol id="pk-arr-block" viewBox="0 0 100 100">
+    <path d="M14 86V16H30L50 42L70 16H86V58H70V40L50 66L30 40V86Z" fill="currentColor"/><rect x="70" y="70" width="16" height="16" style="fill:var(--a,currentColor)"/>
+  </symbol>
+  <symbol id="pk-arr-depart" viewBox="0 0 100 100">
+    <path d="M18 56V22L50 56L82 22V80" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle cx="18" cy="80" r="10" style="fill:var(--a,currentColor)"/>
+  </symbol>
+  <symbol id="pk-arr-ring" viewBox="0 0 100 100">
+    <path d="M18 80V22L50 56L82 22V52" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle cx="82" cy="78" r="9" fill="none" stroke-width="6.5" style="stroke:var(--a,currentColor)"/>
+  </symbol>
+  <symbol id="pk-arr-lower" viewBox="0 0 100 100">
+    <path d="M24 74V40A13 13 0 0 1 50 40V74M50 40A13 13 0 0 1 76 40V50" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><circle cx="76" cy="73" r="9.5" style="fill:var(--a,currentColor)"/>
+  </symbol>
+  <symbol id="pk-arr-here" viewBox="0 0 100 100">
+    <path d="M18 82V24L50 58L82 24V82" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle cx="50" cy="22" r="10" style="fill:var(--a,currentColor)"/>
+  </symbol>
+  <symbol id="pk-arr-trail" viewBox="0 0 100 100">
+    <path d="M18 80V22L50 56L82 22V46" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle cx="82" cy="63" r="4" style="fill:var(--a,currentColor)"/><circle cx="82" cy="80" r="9" style="fill:var(--a,currentColor)"/>
+  </symbol>
+  <symbol id="pk-loop" viewBox="0 0 100 100">
+    <g fill="none" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><path d="M38 62L82 18V74" stroke="currentColor"/><path d="M40 38L58 56" fill="none" stroke-width="26" stroke-linecap="butt" style="stroke:var(--ko,#fff)"/><path d="M18 74V18L62 62C70 70 66 86 50 86C34 86 30 70 38 62" stroke="currentColor"/></g>
+  </symbol>
+  <symbol id="pk-loop-round" viewBox="0 0 100 100">
+    <g fill="none" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><path d="M38 62L73.5 26.5Q82 18 82 30V74" stroke="currentColor"/><path d="M40 38L58 56" fill="none" stroke-width="26" stroke-linecap="butt" style="stroke:var(--ko,#fff)"/><path d="M18 74V30Q18 18 26.5 26.5L62 62C70 70 66 86 50 86C34 86 30 70 38 62" stroke="currentColor"/></g>
+  </symbol>
+  <symbol id="pk-loop-big" viewBox="0 0 100 100">
+    <g fill="none" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"><path d="M36 60L82 14V68" stroke="currentColor"/><path d="M41 37L59 55" fill="none" stroke-width="25" stroke-linecap="butt" style="stroke:var(--ko,#fff)"/><path d="M18 68V14L64 60C73 69 68 86 50 86C32 86 27 69 36 60" stroke="currentColor"/></g>
+  </symbol>
+  <symbol id="pk-loop-contained" viewBox="0 0 100 100">
+    <g fill="none" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"><path d="M40 56L82 18V84" stroke="currentColor"/><path d="M41.5 39.5L58.5 54.5" fill="none" stroke-width="25" stroke-linecap="butt" style="stroke:var(--ko,#fff)"/><path d="M18 84V18L60 56C66 62 64 76 50 76C36 76 34 62 40 56" stroke="currentColor"/></g>
+  </symbol>
+  <symbol id="pk-loop-nogap" viewBox="0 0 100 100">
+    <g fill="none" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><path d="M38 62L82 18V74" stroke="currentColor"/><path d="M18 74V18L62 62C70 70 66 86 50 86C34 86 30 70 38 62" stroke="currentColor"/></g>
+  </symbol>
+  <symbol id="pk-loop-duo" viewBox="0 0 100 100">
+    <g fill="none" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><path d="M38 62L82 18V74" style="stroke:var(--a,currentColor)"/><path d="M40 38L58 56" fill="none" stroke-width="26" stroke-linecap="butt" style="stroke:var(--ko,#fff)"/><path d="M18 74V18L62 62C70 70 66 86 50 86C34 86 30 70 38 62" stroke="currentColor"/></g>
+  </symbol>
+  <symbol id="pk-loop-heavy" viewBox="0 0 100 100">
+    <g fill="none" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"><path d="M38 62L82 18V72" stroke="currentColor"/><path d="M40 38L58 56" fill="none" stroke-width="30" stroke-linecap="butt" style="stroke:var(--ko,#fff)"/><path d="M18 72V18L62 62C71 71 67 88 50 88C33 88 29 71 38 62" stroke="currentColor"/></g>
+  </symbol>
+  <symbol id="pk-loop-dot" viewBox="0 0 100 100">
+    <g fill="none" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><path d="M38 62L82 18V46" stroke="currentColor"/><path d="M40 38L58 56" fill="none" stroke-width="26" stroke-linecap="butt" style="stroke:var(--ko,#fff)"/><path d="M18 74V18L62 62C70 70 66 86 50 86C34 86 30 70 38 62" stroke="currentColor"/></g><circle cx="82" cy="70" r="10" style="fill:var(--a,currentColor)"/>
+  </symbol>
+</svg>

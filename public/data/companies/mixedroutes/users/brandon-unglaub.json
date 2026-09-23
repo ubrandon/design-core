@@ -7,16 +7,16 @@
   ],
   "recents": [
     {
+      "id": "logo-redesign",
+      "ts": 1790140757668
+    },
+    {
       "id": "mixedroutes-phase-v2",
       "ts": 1790135341180
     },
     {
       "id": "marketing-site",
       "ts": 1790135330584
-    },
-    {
-      "id": "logo-redesign",
-      "ts": 1790135127802
     },
     {
       "id": "plan-parity",
@@ -32,6 +32,6 @@
     "sort": "",
     "status": ""
   },
-  "navCollapsed": false,
-  "updatedAt": 1790135341181
+  "navCollapsed": true,
+  "updatedAt": 1790141149552
 }

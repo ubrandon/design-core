@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<link rel="stylesheet" href="../assets/v2-logo-applications.css" />
+<link rel="stylesheet" href="../assets/v2-logo-expressions.css" />
+<link rel="stylesheet" href="../assets/v2-logo-collateral.css" />
+<style>
+.mr-lb-test-header .g-letter { font-size:40px; letter-spacing:-1.5px; }
+/* Illustrated collateral scene, prefix gc- */
+.gc-scene { position:relative; height:760px; border-radius:26px; overflow:hidden; background:linear-gradient(180deg,#EFE8DE 0%,#E7DDCF 58%,#E0D3C2 58.2%); }
+.gc-scene::before { content:""; position:absolute; left:0; right:0; top:58%; bottom:0; background:linear-gradient(180deg,#C79A6E,#B5845A); }
+.gc-scene::after { content:""; position:absolute; left:0; right:0; top:58%; bottom:0; background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 3px,transparent 3px 41px),repeating-linear-gradient(90deg,rgba(80,40,10,.06) 0 2px,transparent 2px 67px); }
+.gc-light { position:absolute; inset:0; background:radial-gradient(60% 50% at 20% 10%,rgba(255,255,255,.55),transparent 70%); z-index:1; pointer-events:none; }
+.gc-shadow { position:absolute; border-radius:50%; background:rgba(70,40,15,.32); filter:blur(14px); z-index:2; }
+.gc-obj { position:absolute; z-index:3; }
+.gc-mug { left:120px; top:250px; width:300px; height:300px; }
+.gc-mug-body { position:absolute; inset:0; border-radius:14px 14px 70px 70px / 14px 14px 40px 40px; background:linear-gradient(90deg,#A996EE 0%,#C8B9FF 30%,#D3C7FF 45%,#B9A7FA 75%,#9C88E6 100%); display:grid; place-items:center; }
+.gc-mug-body .mr-lb-mark { width:150px; height:138px; color:#1749E5; margin-top:24px; opacity:.94; }
+.gc-mug-rim { position:absolute; left:0; right:0; top:-22px; height:44px; border-radius:50%; background:#B8A6F7; }
+.gc-mug-coffee { position:absolute; left:14px; right:14px; top:-14px; height:30px; border-radius:50%; background:radial-gradient(60% 60% at 50% 50%,#D9B48A,#8A5A34 70%,#5E3A1F); }
+.gc-mug-handle { position:absolute; left:-96px; top:56px; width:150px; height:160px; border-radius:50%; border:34px solid #AE9BF2; border-right-color:transparent; z-index:-1; }
+.gc-card { left:500px; top:130px; width:340px; height:460px; background:#F8F5EE; border-radius:6px; transform:rotate(-4deg); box-shadow:0 30px 40px -24px rgba(60,35,15,.55), 0 2px 0 rgba(0,0,0,.04); padding:34px 30px; box-sizing:border-box; color:#101114; }
+.gc-card h3 { margin:0; font-size:40px; line-height:1.02; letter-spacing:-1.8px; font-weight:700; }
+.gc-card svg.gc-window { display:block; width:236px; height:216px; margin:22px auto 0; }
+.gc-card .mr-ex-brand { position:absolute; left:30px; bottom:28px; font-size:19px; }
+.gc-card .mr-ex-brand .mr-lb-mark { color:#1749E5; width:30px; height:28px; }
+.gc-cup { left:900px; top:190px; width:260px; height:400px; }
+.gc-cup-body { position:absolute; left:14px; right:14px; top:48px; bottom:0; clip-path:polygon(0 0,100% 0,90% 100%,10% 100%); background:linear-gradient(90deg,#DCD8D2,#FFFFFF 35%,#F2EFEA 60%,#CFCAC2); }
+.gc-cup-lid { position:absolute; left:0; right:0; top:10px; height:48px; border-radius:14px 14px 8px 8px; background:linear-gradient(90deg,#E4E1DC,#FFFFFF 40%,#EDEAE5 70%,#D6D2CC); box-shadow:0 4px 0 rgba(0,0,0,.05); }
+.gc-cup-lid::before { content:""; position:absolute; left:26px; right:26px; top:-14px; height:24px; border-radius:12px 12px 4px 4px; background:linear-gradient(90deg,#E9E6E1,#FFFFFF 45%,#DDD9D3); }
+.gc-sleeve { position:absolute; left:26px; right:26px; top:150px; height:160px; clip-path:polygon(0 0,100% 0,96% 100%,4% 100%); background:linear-gradient(90deg,#E48E5C,#FFAC79 35%,#FFB788 55%,#E8925F); display:grid; place-items:center; }
+.gc-sleeve .mr-lb-mark { width:100px; height:92px; color:#101114; opacity:.88; }
+.gc-tag { position:absolute; right:22px; top:20px; z-index:4; padding:8px 14px; border-radius:99px; background:rgba(255,255,255,.75); font-size:12px; color:#5b5249; }
+</style>
+<div class="mr-v2 mr-logo-board mr-lb-test-page mr-ex-b" style="background:var(--bg-0);">
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute;"><defs><g id="g-meet" fill="currentColor"><circle cx="36" cy="62" r="22"/><circle cx="68" cy="36" r="17"/><path d="M57.86 64.52C58.88 55.64 61.82 53.28 68.72 52.98L51.52 31.82C49.82 38.51 46.91 40.91 38.01 40.09Z"/></g><clipPath id="g-window"><circle cx="36" cy="62" r="22"/><circle cx="68" cy="36" r="17"/><path d="M57.86 64.52C58.88 55.64 61.82 53.28 68.72 52.98L51.52 31.82C49.82 38.51 46.91 40.91 38.01 40.09Z"/></clipPath></defs></svg>
+  <header class="mr-lb-header mr-lb-test-header"><div class="mr-lb-test-heading"><span class="mr-lb-test-letter g-letter" aria-label="Option G">G</span><div><strong>MixedRoutes</strong><p>Logo concept</p></div></div><span>Meet · Two fused circles</span></header>
+  <section class="mr-lb-overview" aria-label="Option G logo and symbolism">
+    <div class="mr-lb-stage"><span class="mr-lb-letter">G</span><svg class="mr-lb-mark" viewBox="13 18 73 67" aria-hidden="true" role="img" aria-label="MixedRoutes option G logo"><use href="#g-meet"/></svg><span class="mr-lb-stage-label">Primary mark · V2 blue</span></div>
+    <div class="mr-lb-copy">
+      <p class="mr-v2-eyebrow">Option G / The symbolism</p>
+      <h1>better together.</h1>
+      <p class="mr-lb-symbolism">Two circles, one big and one small, pulled close enough to become one shape. Two people and their routes, at the moment they turn into a plan.</p>
+      <div class="mr-lb-samples" aria-label="App icon color applications">
+        <div class="mr-lb-app-icon" role="img" aria-label="White logo on blue app icon"><svg class="mr-lb-mark" viewBox="13 18 73 67" aria-hidden="true"><use href="#g-meet"/></svg></div>
+        <div class="mr-lb-app-icon mr-lb-sample-dark" role="img" aria-label="Lilac logo on ink app icon"><svg class="mr-lb-mark" viewBox="13 18 73 67" aria-hidden="true"><use href="#g-meet"/></svg></div>
+        <div class="mr-lb-app-icon mr-lb-sample-mint" role="img" aria-label="Ink logo on mint app icon"><svg class="mr-lb-mark" viewBox="13 18 73 67" aria-hidden="true"><use href="#g-meet"/></svg></div>
+        <span class="mr-lb-sample-note">Two dots.<br>One plan.</span>
+      </div>
+    </div>
+  </section>
+<section class="mr-lb-collateral" aria-label="Option G physical collateral">
+<header class="mr-lb-collateral-heading"><div><p class="mr-v2-eyebrow">Physical collateral</p><h2>At your usual spot.</h2></div><span>Illustrated concept mockups</span></header>
+<figure class="mr-lb-collateral-photo">
+  <div class="gc-scene" role="img" aria-label="Illustration of a lilac mug, a photo postcard, and a coffee cup with an apricot sleeve using option G.">
+    <div class="gc-light"></div>
+    <div class="gc-shadow" style="left:110px;top:520px;width:340px;height:56px"></div>
+    <div class="gc-shadow" style="left:520px;top:560px;width:330px;height:40px"></div>
+    <div class="gc-shadow" style="left:920px;top:570px;width:240px;height:44px"></div>
+    <div class="gc-obj gc-mug"><div class="gc-mug-handle"></div><div class="gc-mug-body"><svg class="mr-lb-mark" viewBox="13 18 73 67" aria-hidden="true"><use href="#g-meet"/></svg></div><div class="gc-mug-rim"></div><div class="gc-mug-coffee"></div></div>
+    <div class="gc-obj gc-card"><h3>a little<br>more outside.</h3><svg class="gc-window" viewBox="13 18 73 67" aria-hidden="true"><image href="../../../design-system/marketing-v2-assets/outdoors.jpg" x="13" y="18" width="73" height="67" preserveAspectRatio="xMidYMid slice" clip-path="url(#g-window)"/></svg><div class="mr-ex-brand"><svg class="mr-lb-mark" viewBox="13 18 73 67" aria-hidden="true"><use href="#g-meet"/></svg><span>MixedRoutes</span></div></div>
+    <div class="gc-obj gc-cup"><div class="gc-cup-body"></div><div class="gc-sleeve"><svg class="mr-lb-mark" viewBox="13 18 73 67" aria-hidden="true"><use href="#g-meet"/></svg></div><div class="gc-cup-lid"></div></div>
+  </div>
+  <figcaption class="mr-lb-collateral-caption"><div><strong>Ceramic mug</strong><p>The two circles still read clearly when wrapped around a curved, everyday object.</p></div><div><strong>Photo postcard</strong><p>The mark becomes a window. Two circles, two views of the same day out.</p></div><div><strong>Coffee sleeve</strong><p>One solid silhouette, printed flat in a single color.</p></div></figcaption>
+</figure>
+</section>
+  <footer class="mr-lb-footer"><span>MixedRoutes · Logo application study</span><span>Option G / Meet</span></footer>
+</div>
