@@ -233,6 +233,48 @@
       "x": 12885,
       "y": 7000,
       "width": 960
+    },
+    {
+      "file": "you-life-5b-clearer.html",
+      "x": 13885,
+      "y": 7000,
+      "width": 960
+    },
+    {
+      "file": "you-life-5c-health-open.html",
+      "x": 14885,
+      "y": 7000,
+      "width": 960
+    },
+    {
+      "file": "you-life-5d-quiet-open.html",
+      "x": 15885,
+      "y": 7000,
+      "width": 960
+    },
+    {
+      "file": "you-life-5e-mobile.html",
+      "x": 16885,
+      "y": 7000,
+      "width": 390
+    },
+    {
+      "file": "you-life-5f-modal-health.html",
+      "x": 17355,
+      "y": 7000,
+      "width": 1200
+    },
+    {
+      "file": "you-life-5g-modal-quiet.html",
+      "x": 18595,
+      "y": 7000,
+      "width": 1200
+    },
+    {
+      "file": "you-life-5h-mobile-page.html",
+      "x": 19835,
+      "y": 7000,
+      "width": 390
     }
   ],
   "texts": [

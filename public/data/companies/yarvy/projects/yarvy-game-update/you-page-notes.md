@@ -250,3 +250,16 @@ Feedback on F: the full row of six tiles is confusing. It reads like navigation,
 5. **Sentence.** "Most of it went to Health and Work." as the headline, area chips with counts as the proof.
 
 **Pick: 3.** Seeing the items is what makes "area" make sense: you read "Health, 4 done: long run, meditated twice, cooked once" and the idea explains itself. 2 is the most compact and the best glance; 4 is the clearest comparison but the heaviest.
+
+## Round thirteen: 5, and what a chip does
+
+Brandon liked 5 best and asked for it to make a little more sense, and for what happens when a chip is tapped. Four screens to the right of 5:
+
+- **5b. Clearer.** The heading names the unit ("Where your week went" / "What you finished, sorted into the parts of your life it helps"). Every chip carries its unit ("4 done", "quiet 2 weeks", "paused") and a caret, so it reads as something that opens. Home joins the row as a quiet chip.
+- **5c. Health tapped.** The same card grows under the chips: "Health, 4 things this week", a comparison with last week, then each thing done with the goal it counted toward and when, then Still planned. "Open Health" goes to the full area page. This is where tasks visibly feed goals and goals feed the area.
+- **5d. Relationships tapped.** Nothing went in, so the card says when the last thing was, offers two small steps from the person's own items (Reply to Sam, Call Mom again), and a chosen-rest way out.
+- **5e. Phone, Health tapped.** Chips become a two-column grid with the unit under the name; the open list keeps the day at the row's end.
+
+Only one chip is open at a time; tapping it again closes the card back to 5b.
+
+**Chip opens a modal, not inline** (feedback: do not grow the card below). `you-life-5f-modal-health` and `5g-modal-quiet` stage the app's own modal (`.modal-backdrop` / `.modal`) over the You page, which now carries 5b's section in place of the tile row. `5h-mobile-page` is the phone version as a pushed page with a back link to You, since a long modal on a phone is a page anyway. The area modal has four parts: the name with this week's count against last week; four weeks as small columns, this week darkest; This week and Still planned, each item with the goal it counted toward; Goals in this area, each opening its goal. The quiet version swaps the lists for "One small thing would count" (two steps from the person's own items), an empty goals row with Add goal, and Resting for now in the footer. 5c to 5e (the inline versions) are superseded.

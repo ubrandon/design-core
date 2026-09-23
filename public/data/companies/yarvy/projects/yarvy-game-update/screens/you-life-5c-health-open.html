@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* Life option 5c: Health tapped. The card grows to show the 4 things that went in, each tied to its goal, and what is still planned. */
+  html, body { margin: 0; }
+  .yl { padding: 28px 32px 32px; background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .yl-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+  .yl-head h2 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); line-height: var(--lh-snug); }
+  .yl-head p { margin: 2px 0 0; font-size: var(--fs-sm); color: var(--muted); }
+  .yl-link { display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 0 10px; margin-right: -10px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--accent-2); font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); cursor: pointer; white-space: nowrap; }
+  .yl-link:hover { background: var(--surface-hover); }
+  .t-health { --tone: var(--cat-health); --wash: var(--cat-health-soft); }
+  .t-work { --tone: var(--cat-create); --wash: var(--cat-create-soft); }
+  .t-learn { --tone: var(--cat-learn); --wash: var(--cat-learn-soft); }
+  .t-money { --tone: var(--cat-money); --wash: var(--cat-money-soft); }
+  .t-rel { --tone: var(--accent); --wash: var(--chip-active); }
+  .t-home { --tone: var(--muted); --wash: var(--surface-hover); }
+  .yl-well { display: grid; place-items: center; flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; background: var(--wash); color: var(--tone); font-size: 20px; }
+  .yl-quiet { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; margin-top: 12px; font-size: var(--fs-sm); color: var(--muted); }
+  .yl-quiet button { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 10px; margin-left: -10px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--muted); font: inherit; cursor: pointer; }
+  .yl-quiet button:hover { background: var(--surface-hover); }
+  .yl-quiet i { font-size: 16px; color: var(--tone); }
+  .yl-quiet b { color: var(--text); font-weight: var(--fw-semibold); }
+  .yl-quiet .warm b { color: var(--accent-2); }
+  .s-card { border-radius: var(--radius-xl); background: var(--panel); box-shadow: var(--shadow-soft); }
+  .s-top { padding: 22px 24px 20px; }
+  .s-top h3 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-bold); line-height: var(--lh-snug); letter-spacing: var(--ls-snug); }
+  .s-top h3 span { color: var(--tone); }
+  .s-top p { margin: 4px 0 0; font-size: var(--fs-body-sm); color: var(--muted); }
+  .s-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .s-chip { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px 0 6px; border: 0; border-radius: var(--radius-pill); background: var(--wash); color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .s-chip .yl-well { width: 32px; height: 32px; font-size: 16px; background: var(--panel); }
+  .s-chip em { font-style: normal; color: var(--muted); font-weight: var(--fw-normal); }
+  .s-chip > .ph-caret-down, .s-chip > .ph-caret-up { font-size: 14px; color: var(--muted); }
+  .s-chip.quiet { background: transparent; box-shadow: inset 0 0 0 1px var(--line); }
+  .s-chip.quiet .yl-well { background: var(--wash); }
+  .s-chip.quiet.warm em { color: var(--accent-2); font-weight: var(--fw-semibold); }
+  .s-chip.on { box-shadow: inset 0 0 0 2px var(--tone); }
+  .s-chip.on > i { color: var(--text); }
+  /* The open area: the same card grows, so the chip and what it holds stay together. */
+  .s-open { padding: 18px 24px 16px; border-top: 1px solid var(--line-soft); }
+  .s-open-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .s-open-head h4 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); }
+  .s-open-head p { margin: 2px 0 0; font-size: var(--fs-sm); color: var(--muted); }
+  .s-open-head p b { color: var(--success-text); font-weight: var(--fw-semibold); }
+  .s-items { display: flex; flex-direction: column; margin-top: 8px; }
+  .s-item { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; align-items: center; gap: 12px; min-height: 52px; padding: 6px 10px; margin: 0 -10px; border: 0; border-radius: var(--radius-md); background: transparent; color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+  .s-item:hover { background: var(--surface-hover); }
+  .s-item > i { font-size: 20px; }
+  .s-item.done > i { color: var(--success-text); }
+  .s-item.plan > i { color: var(--tone); }
+  .s-item b { display: block; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); line-height: var(--lh-snug); }
+  .s-item small { display: block; font-size: var(--fs-sm); color: var(--muted); }
+  .s-item .s-when { font-size: var(--fs-sm); color: var(--muted); white-space: nowrap; }
+  .s-item.plan b { font-weight: var(--fw-normal); }
+  .s-sub { margin: 10px 0 2px; font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: var(--muted); }
+  .s-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 16px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--panel); color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; white-space: nowrap; }
+  .s-btn.primary { border-color: transparent; background: var(--accent-fill); color: var(--on-accent); }
+  .s-rest { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--line-soft); font-size: var(--fs-sm); color: var(--muted); }
+</style>
+<div class="yl" style="background: var(--shell);">
+<div class="yl-head"><div><h2>Where your week went</h2><p>What you finished, sorted into the parts of your life it helps.</p></div><button type="button" class="yl-link">Edit areas</button></div><div class="s-card"><div class="s-top"><h3>Most of it went to <span class="t-health">Health</span> and <span class="t-work">Work</span>.</h3><p>8 of the 10 things you finished this week.</p><div class="s-chips"><button type="button" class="s-chip t-health on" aria-expanded="true"><span class="yl-well" aria-hidden="true"><i class="ph ph-person-simple-run"></i></span><span class="s-nm">Health</span> <em>4 done</em><i class="ph ph-caret-up" aria-hidden="true"></i></button><button type="button" class="s-chip t-work" aria-expanded="false"><span class="yl-well" aria-hidden="true"><i class="ph ph-briefcase"></i></span><span class="s-nm">Work</span> <em>4 done</em><i class="ph ph-caret-down" aria-hidden="true"></i></button><button type="button" class="s-chip t-learn" aria-expanded="false"><span class="yl-well" aria-hidden="true"><i class="ph ph-book-open"></i></span><span class="s-nm">Learning</span> <em>1 done</em><i class="ph ph-caret-down" aria-hidden="true"></i></button><button type="button" class="s-chip t-money" aria-expanded="false"><span class="yl-well" aria-hidden="true"><i class="ph ph-wallet"></i></span><span class="s-nm">Money</span> <em>1 done</em><i class="ph ph-caret-down" aria-hidden="true"></i></button><button type="button" class="s-chip t-rel quiet warm" aria-expanded="false"><span class="yl-well" aria-hidden="true"><i class="ph ph-heart"></i></span><span class="s-nm">Relationships</span> <em>quiet 2 weeks</em><i class="ph ph-caret-down" aria-hidden="true"></i></button><button type="button" class="s-chip t-home quiet" aria-expanded="false"><span class="yl-well" aria-hidden="true"><i class="ph ph-house"></i></span><span class="s-nm">Home</span> <em>paused</em><i class="ph ph-caret-down" aria-hidden="true"></i></button></div></div><div class="s-open t-health"><div class="s-open-head"><div><h4>Health, 4 things this week</h4><p><b>Up from 3</b> last week</p></div><button type="button" class="yl-link">Open Health</button></div><div class="s-items"><button type="button" class="s-item done"><i class="ph-fill ph-check-circle" aria-hidden="true"></i><span><b>Long run, 12 km</b><small>Run a half marathon</small></span><span class="s-when">Today</span></button><button type="button" class="s-item done"><i class="ph-fill ph-check-circle" aria-hidden="true"></i><span><b>Meditated, twice</b><small>Meditate every morning</small></span><span class="s-when">Mon, Today</span></button><button type="button" class="s-item done"><i class="ph-fill ph-check-circle" aria-hidden="true"></i><span><b>Cooked at home</b><small>Less takeout, more cooking</small></span><span class="s-when">Mon</span></button></div><div class="s-sub">Still planned</div><div class="s-items"><button type="button" class="s-item plan"><i class="ph ph-circle" aria-hidden="true"></i><span><b>Long run, 14 km</b><small>Run a half marathon</small></span><span class="s-when">Tomorrow</span></button><button type="button" class="s-item plan"><i class="ph ph-circle" aria-hidden="true"></i><span><b>Cook at home</b><small>Less takeout, more cooking</small></span><span class="s-when">Today</span></button></div></div></div>
+</div>

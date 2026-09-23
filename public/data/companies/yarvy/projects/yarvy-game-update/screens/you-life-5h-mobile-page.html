@@ -1,0 +1,291 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  html, body, .yv-shot { scrollbar-gutter: auto; }
+  html, body { margin: 0; padding: 0; }
+  .yv-shot { position: relative; width: 390px; min-height: 844px; overflow: hidden; background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .yv-shot #app { height: auto; min-height: 844px; overflow: visible; }
+  .yv-shot #rail { position: absolute; }
+  .yv-shot #profile-view { overflow: visible; }
+  .yv-shot #profile-view { padding: 24px var(--page-x) 96px; }
+
+  /* You page variants, prefix yp-. Tokens from yarvy-app.css; the app's .you-* layout classes are not used. */
+  .yp { --yp-control: 44px; gap: 0; }
+  .yp .account-topbar { margin-bottom: 4px; }
+  .yp-head { display: flex; align-items: center; gap: 14px; min-height: 56px; margin: 14px 0 26px; }
+  .yp .account-topbar { margin: 4px 0 0; }
+  .yp-head .account-topbar-actions { display: none; }
+  .yp-head .account-avatar { width: 52px; height: 52px; font-size: var(--fs-body); flex: 0 0 auto; }
+  .yp-who { min-width: 0; flex: 1; line-height: 1.2; }
+  .yp-who h1 { margin: 0; font-size: var(--fs-h1); font-weight: var(--fw-heavy); letter-spacing: var(--ls-snug); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .yp-who > span { display: block; margin-top: 3px; font-size: var(--fs-sm); color: var(--muted); }
+  .yp-sub b { color: var(--text); font-weight: var(--fw-semibold); }
+  .yp-sub .yp-sep { margin: 0 6px; }
+  .yp-sub .yp-n { white-space: nowrap; }
+  .yp-head .account-topbar-actions { flex: 0 0 auto; }
+  .yp-id { display: flex; align-items: center; gap: 12px; min-height: 48px; margin-bottom: 18px; }
+  .yp-id .account-avatar { width: 40px; height: 40px; font-size: var(--fs-body-sm); }
+  .yp-id b { font-size: var(--fs-body); font-weight: var(--fw-bold); }
+  .yp-id span { color: var(--muted); font-size: var(--fs-sm); }
+  .yp-id span::before { content: "·"; margin: 0 6px; }
+  /* This week: one line of counts and a small seven day row. No headline, no fill. */
+  .yp-week { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; padding: 10px 16px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: var(--panel); margin-bottom: 26px; }
+  .yp-week-counts { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--fs-body-sm); color: var(--text); }
+  .yp-week-counts b { font-weight: var(--fw-bold); }
+  .yp-week-counts .yp-lab { color: var(--muted); font-weight: var(--fw-semibold); }
+  .yp-days { display: flex; gap: 6px; }
+  .yp-day { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 24px; font-size: var(--fs-2xs); color: var(--muted); }
+  .yp-day i { display: block; width: 100%; height: 22px; border-radius: 4px; background: var(--surface-hover); position: relative; overflow: hidden; }
+  .yp-day i::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: var(--h, 0); background: var(--accent-fill); }
+  .yp-day.today { color: var(--accent-2); font-weight: var(--fw-bold); }
+  .yp-day.future i { background: transparent; border-bottom: 2px solid var(--line); border-radius: 0; height: 22px; }
+  /* Sections. */
+  .yp-sec { margin-top: 30px; }
+  .yp-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .yp-sec-head h2 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); }
+  .yp-link { display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 0 10px; margin-right: -10px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--accent-2); font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .yp-link:hover { background: var(--surface-hover); }
+  .yp-link i { font-size: 16px; }
+  .yp-group { margin-top: 16px; }
+  .yp-group-head { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px 2px; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--muted); }
+  .yp-stack { display: flex; flex-direction: column; gap: 8px; }
+  /* Goal card: the whole card opens the goal; the habit check is its own target on top. */
+  .yp-goal { position: relative; display: grid; grid-template-columns: var(--yp-control) minmax(0, 1fr) auto; column-gap: 14px; align-items: center; padding: 14px 14px 14px 16px; background: var(--panel); border: 1px solid transparent; border-radius: var(--radius-xl); box-shadow: var(--shadow-soft); }
+  .yp-goal:hover { background: var(--card-hover); }
+  .yp-goal.cat-health { --yp-tone: var(--cat-health); --yp-wash: var(--cat-health-soft); }
+  .yp-goal.cat-money { --yp-tone: var(--cat-money); --yp-wash: var(--cat-money-soft); }
+  .yp-goal.cat-learn { --yp-tone: var(--cat-learn); --yp-wash: var(--cat-learn-soft); }
+  .yp-goal.cat-create { --yp-tone: var(--cat-create); --yp-wash: var(--cat-create-soft); }
+  .yp-goal.cat-default { --yp-tone: var(--accent); --yp-wash: var(--chip-active); }
+  .yp-face { display: grid; place-items: center; width: var(--yp-control); height: var(--yp-control); font-size: var(--fs-h2); border-radius: var(--radius-md); background: var(--yp-wash); }
+  .yp-open { display: block; min-width: 0; padding: 0; border: 0; background: none; color: var(--text); text-align: left; font: inherit; cursor: pointer; }
+  .yp-open::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius-xl); }
+  .yp-open:focus-visible { outline: none; }
+  .yp-open:focus-visible::after { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+  .yp-title { display: block; font-size: var(--fs-body); font-weight: var(--fw-semibold); line-height: var(--lh-snug); }
+  .yp-value { display: block; margin-top: 2px; font-size: var(--fs-sm); color: var(--muted); }
+  .yp-value b { color: var(--text); font-weight: var(--fw-semibold); }
+  .yp-bar { grid-column: 2 / -1; height: 6px; margin-top: 10px; border-radius: var(--radius-pill); background: var(--surface-hover); overflow: hidden; }
+  .yp-bar i { display: block; height: 100%; width: var(--w, 0); background: var(--yp-tone); border-radius: var(--radius-pill); }
+  .yp-remaining { grid-column: 2 / -1; margin-top: 8px; font-size: var(--fs-sm); color: var(--muted); }
+  .yp-next { grid-column: 2 / -1; display: flex; align-items: center; gap: 6px; margin-top: 10px; font-size: var(--fs-sm); color: var(--text); }
+  .yp-next i { color: var(--yp-tone); font-size: 15px; }
+  .yp-end { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; }
+  .yp-caret { color: var(--muted); font-size: 16px; }
+  .yp-check { flex: 0 0 auto; width: var(--yp-control); height: var(--yp-control); border-radius: 50%; display: grid; place-items: center; border: 0; background: var(--line-strong); color: var(--on-accent); cursor: pointer; }
+  .yp-check i { font-size: 20px; }
+  .yp-check.checked { background: var(--success-fill); }
+  .yp-check:hover:not(.checked) { background: var(--ring); }
+  .yp-dots { grid-column: 2 / -1; display: flex; gap: 6px; margin-top: 10px; }
+  .yp-dot { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 26px; font-size: var(--fs-2xs); color: var(--muted); }
+  .yp-dot i { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--field-surface); font-style: normal; font-size: 12px; }
+  .yp-dot.checked i { background: var(--success-soft); color: var(--success-text); font-size: 11px; }
+  .yp-dot.today i { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+  .yp-dot.future i { background: none; border: 1px solid var(--line); }
+  .yp-quote { grid-column: 2 / -1; margin: 8px 0 0; font-size: var(--fs-body-sm); color: var(--text); }
+  .yp-quote small { display: block; margin-top: 2px; color: var(--muted); font-size: var(--fs-xs); }
+  .yp-btn { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--panel); color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; white-space: nowrap; }
+  .yp-btn:hover { border-color: var(--accent); background: var(--chip-active); }
+  .yp-btn i { font-size: 16px; color: var(--muted); }
+  .yp-foot { margin-top: 10px; }
+  /* Wins: evidence, three rows, then the labeled route to the rest. */
+  .yp-win { display: grid; grid-template-columns: 10px minmax(0, 1fr); column-gap: 12px; align-items: baseline; min-height: 48px; padding: 6px 0; border-top: 1px solid var(--line-soft); }
+  .yp-win:first-child { border-top: 0; }
+  .yp-win i { width: 10px; height: 10px; border-radius: 50%; background: var(--yp-tone, var(--accent)); align-self: center; }
+  .yp-win.cat-health { --yp-tone: var(--cat-health); } .yp-win.cat-learn { --yp-tone: var(--cat-learn); } .yp-win.cat-money { --yp-tone: var(--cat-money); }
+  .yp-win small { display: block; font-size: var(--fs-xs); color: var(--muted); }
+  .yp-win b { display: block; font-weight: var(--fw-semibold); font-size: var(--fs-body-sm); }
+  /* Badges: last, quiet, no repeated Earned label. */
+  .yp-badges { display: flex; gap: 18px; }
+  .yp-badges .badge { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 92px; padding: 8px 0; border: 0; background: none; font: inherit; color: var(--text); cursor: pointer; border-radius: var(--radius-md); }
+  .yp-badges .badge:hover { background: var(--surface-hover); }
+  .yp-badges .badge-label { font-size: var(--fs-xs); font-weight: var(--fw-semibold); text-align: center; }
+
+  .yp-side-week { padding: 12px 16px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: var(--panel); display: flex; flex-direction: column; gap: 2px; font-size: var(--fs-body-sm); }
+  .yp-side-week b { font-weight: var(--fw-bold); }
+  .yp-two { padding: 12px 14px 12px 14px; }
+  .yp-two .yp-bar { margin-top: 8px; height: 5px; }
+  .yp-two .yp-value { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .yp-habit .yp-dots { margin-top: 10px; }
+  .yp-pill { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px 0 12px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--panel); color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; white-space: nowrap; }
+  .yp-pill i { font-size: 16px; color: var(--muted); }
+  .yp-pill:hover { border-color: var(--accent); background: var(--chip-active); }
+  .yp-pill.done { border-color: transparent; background: var(--success-soft); color: var(--success-text); }
+  .yp-pill.done i { color: var(--success-text); }
+  .ys-pace { position: relative; height: 90px; margin-top: 6px; }
+  .ys-pace svg { width: 100%; height: 100%; overflow: visible; }
+  .ys-pace .usual { fill: none; stroke: var(--line); stroke-width: 2; stroke-dasharray: 4 4; }
+  .ys-pace .now { fill: none; stroke: var(--accent-2); stroke-width: 2.5; stroke-linecap: round; }
+  .ys-pace .dot { fill: var(--accent-2); }
+  .ys-axis { display: grid; grid-template-columns: repeat(7, 1fr); margin-top: 6px; font-size: var(--fs-2xs); color: var(--muted); text-align: center; }
+  .ys-key { display: flex; gap: 14px; margin-top: 8px; font-size: var(--fs-xs); color: var(--muted); }
+  .ys-key i { display: inline-block; width: 14px; height: 0; border-top: 2px solid var(--accent-2); vertical-align: middle; margin-right: 5px; }
+  .ys-key i.u { border-top: 2px dashed var(--line); }
+  .ys-lead { margin: 10px 0 0; font-size: var(--fs-body-sm); }
+  .ys-lead b { font-weight: var(--fw-semibold); }
+
+  .yp-pace-top { margin-top: 22px; }
+  .yp-pace-top + .yp-c-grid .yp-sec:first-child { margin-top: 30px; }  .yp-c-grid { display: block; }
+  .yp-c-side { position: static; margin-top: 30px; }
+  .yp-two .yp-value { white-space: normal; }
+  .yp .account-topbar { margin: 8px 0 0; }
+  .yp-id { margin-bottom: 14px; }
+  .yp-id span::before { content: none; }
+  .yp-id span { display: block; }
+  .yp-id > div { line-height: 1.25; }
+  .yp-two { padding: 12px 12px 12px 12px; column-gap: 12px; }
+  .yp-face { width: 40px; height: 40px; }
+  .yp-two { grid-template-columns: 40px minmax(0, 1fr) auto; }
+  /* Quick buttons on the phone: an icon in a circle, the label kept for screen readers. */
+  .yp-btn, .yp-pill { width: 36px; height: 36px; min-height: 0; padding: 0; border-radius: 50%; justify-content: center; font-size: 0; gap: 0; }
+  .yp-btn i, .yp-pill i { font-size: 18px; color: var(--text); }
+  .yp-pill.done { background: var(--success-fill); border-color: var(--success-fill); }
+  .yp-pill.done i { color: var(--on-accent); }
+  /* Quick buttons sit top right, on the title line, not centered on the card. */
+  .yp-two .yp-end { align-self: start; margin-top: 2px; }
+  .yp-btn::before, .yp-pill::before { content: ""; position: absolute; inset: -6px -4px; }
+  .yp-dots-big .yp-dot { width: 26px; }
+  .yp-dots-big .yp-dot i { width: 24px; height: 24px; font-size: 12px; }
+  .yp-dots-big button.yp-dot { min-width: 44px; }
+  .yp-dots-big button.yp-dot i { width: 28px; height: 28px; font-size: 14px; }
+  .yp-dots-big button.yp-dot::before { content: ""; position: absolute; inset: -4px 0; }
+  .yp-link { min-height: 36px; }
+  .yp-who h1 { font-size: var(--fs-h2); white-space: normal; }
+  .yp-head .account-avatar { width: 48px; height: 48px; }
+  .yp .account-title { font-size: var(--fs-h1-sm); }
+  .yp-head { margin: 12px 0 22px; min-height: 0; }
+
+
+  /* You F: E cut to one signal per area, one line per goal, one card beside them. Prefix yf-. */
+  .yf-sub b { color: var(--text); font-weight: var(--fw-semibold); }
+  .yf-cap { font-size: var(--fs-xs); color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+  .yf-cap .yf-pip { --tone: var(--ring); }
+  .yf-areas { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+  .yf-area { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 8px 14px; border: 1px solid transparent; border-radius: var(--radius-xl); background: var(--panel); box-shadow: var(--shadow-soft); color: var(--text); font: inherit; cursor: pointer; }
+  .yf-area:hover { background: var(--card-hover); }
+  .yf-area.quiet { background: transparent; box-shadow: none; border-color: var(--line-soft); }
+  .yf-well { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--wash); color: var(--tone); font-size: 24px; }
+  .yf-name { font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); line-height: var(--lh-snug); }
+  .yf-pips { display: flex; gap: 3px; height: 16px; align-items: center; }
+  .yf-pip { display: inline-block; width: 8px; height: 16px; border-radius: 3px; background: var(--tone); }
+  .yf-note { font-size: var(--fs-xs); line-height: 16px; color: var(--muted); }
+  .yf-note.warm { color: var(--accent-2); font-weight: var(--fw-semibold); }
+  .t-health { --tone: var(--cat-health); --wash: var(--cat-health-soft); }
+  .t-work { --tone: var(--cat-create); --wash: var(--cat-create-soft); }
+  .t-learn { --tone: var(--cat-learn); --wash: var(--cat-learn-soft); }
+  .t-money { --tone: var(--cat-money); --wash: var(--cat-money-soft); }
+  .t-rel { --tone: var(--accent); --wash: var(--chip-active); }
+  .t-home { --tone: var(--muted); --wash: var(--surface-hover); }
+  .yf-steps { grid-column: 2 / -1; display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin-top: 10px; }
+  .yf-steps i { height: 6px; border-radius: var(--radius-pill); background: var(--surface-hover); }
+  .yf-steps i.d { background: var(--yp-tone); }
+  .yp-goal.t-work { --yp-tone: var(--cat-create); --yp-wash: var(--cat-create-soft); }
+  .yf-proud { padding: 18px 18px 8px; border-radius: var(--radius-xl); background: var(--success-soft); }
+  .yf-proud h3 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); line-height: var(--lh-snug); }
+  .yf-proud p { margin: 6px 0 0; font-size: var(--fs-body-sm); }
+  .yf-from { display: flex; align-items: center; justify-content: space-between; width: calc(100% + 16px); min-height: 44px; margin: 8px -8px 0; padding: 0 8px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--success-text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .yf-from:hover { background: color-mix(in srgb, var(--cat-health) 12%, transparent); }
+  .yf-foot { display: flex; gap: 8px; margin: 10px 0 0 -10px; }
+  /* Phone: areas three across, the improving card closes the page. */
+  .yf-areas { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .yf-area { padding: 14px 4px 12px; }
+  .yf-well { width: 44px; height: 44px; font-size: 22px; }
+  .yf-name { font-size: var(--fs-sm); }
+  .yf-life .yp-sec-head { flex-wrap: wrap; row-gap: 2px; }
+  .yp-sec { margin-top: 28px; }
+  .yf-life { margin-top: 0; }
+  .s-card { border-radius: var(--radius-xl); background: var(--panel); box-shadow: var(--shadow-soft); }
+  .s-top { padding: 22px 24px 20px; }
+  .s-top h3 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-bold); line-height: var(--lh-snug); letter-spacing: var(--ls-snug); }
+  .s-top h3 span { color: var(--tone); }
+  .s-top p { margin: 4px 0 0; font-size: var(--fs-body-sm); color: var(--muted); }
+  .s-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .s-chip { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px 0 6px; border: 0; border-radius: var(--radius-pill); background: var(--wash); color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .s-chip .yl-well { width: 32px; height: 32px; font-size: 16px; background: var(--panel); }
+  .s-chip em { font-style: normal; color: var(--muted); font-weight: var(--fw-normal); }
+  .s-chip > .ph-caret-down, .s-chip > .ph-caret-up { font-size: 14px; color: var(--muted); }
+  .s-chip.quiet { background: transparent; box-shadow: inset 0 0 0 1px var(--line); }
+  .s-chip.quiet .yl-well { background: var(--wash); }
+  .s-chip.quiet.warm em { color: var(--accent-2); font-weight: var(--fw-semibold); }
+  .s-chip.on { box-shadow: inset 0 0 0 2px var(--tone); }
+  .s-chip.on > i { color: var(--text); }
+  /* The open area: the same card grows, so the chip and what it holds stay together. */
+  .s-open { padding: 18px 24px 16px; border-top: 1px solid var(--line-soft); }
+  .s-open-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .s-open-head h4 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); }
+  .s-open-head p { margin: 2px 0 0; font-size: var(--fs-sm); color: var(--muted); }
+  .s-open-head p b { color: var(--success-text); font-weight: var(--fw-semibold); }
+  .s-items { display: flex; flex-direction: column; margin-top: 8px; }
+  .s-item { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; align-items: center; gap: 12px; min-height: 52px; padding: 6px 10px; margin: 0 -10px; border: 0; border-radius: var(--radius-md); background: transparent; color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+  .s-item:hover { background: var(--surface-hover); }
+  .s-item > i { font-size: 20px; }
+  .s-item.done > i { color: var(--success-text); }
+  .s-item.plan > i { color: var(--tone); }
+  .s-item b { display: block; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); line-height: var(--lh-snug); }
+  .s-item small { display: block; font-size: var(--fs-sm); color: var(--muted); }
+  .s-item .s-when { font-size: var(--fs-sm); color: var(--muted); white-space: nowrap; }
+  .s-item.plan b { font-weight: var(--fw-normal); }
+  .s-sub { margin: 10px 0 2px; font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: var(--muted); }
+  .s-btn { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 16px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--panel); color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; white-space: nowrap; }
+  .s-btn.primary { border-color: transparent; background: var(--accent-fill); color: var(--on-accent); }
+  .s-rest { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--line-soft); font-size: var(--fs-sm); color: var(--muted); }
+
+  /* Areas section from 5b: a sentence, then chips that open the area. */
+  .yl-well { display: grid; place-items: center; flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; background: var(--wash); color: var(--tone); font-size: 20px; }
+  .yv-shot { position: relative; }
+  .ym-sec .s-chip { cursor: pointer; }
+  /* Area modal: the app's modal shell, staged open over the page. */
+  .yv-shot .ym-back { position: absolute; place-items: start center; padding-top: 64px; }
+  .yv-shot .ym { max-width: 600px; max-height: none; overflow: visible; padding: 22px 24px 20px; }
+  .ym-head { display: flex; align-items: center; gap: 14px; }
+  .ym-head .yl-well { width: 52px; height: 52px; font-size: 26px; }
+  .ym-head div { flex: 1; min-width: 0; }
+  .ym-head h2 { margin: 0; font-size: var(--fs-h1); font-weight: var(--fw-heavy); letter-spacing: var(--ls-snug); line-height: var(--lh-tight); }
+  .ym-head p { margin: 4px 0 0; font-size: var(--fs-body-sm); color: var(--muted); }
+  .ym-head p b { color: var(--success-text); font-weight: var(--fw-semibold); }
+  .ym-head p b.warm { color: var(--accent-2); }
+  .ym-head .modal-close { align-self: flex-start; width: 40px; height: 40px; }
+  .ym-head .modal-close i { font-size: 18px; }
+  /* Four weeks as small columns: the count over each, this week darkest. */
+  .ym-weeks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items: end; height: 112px; margin: 20px 0 4px; padding: 12px 14px 14px; box-sizing: border-box; border-radius: var(--radius-lg); background: var(--field-surface); }
+  .ym-wk { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px; height: 100%; font-size: var(--fs-2xs); color: var(--muted); }
+  .ym-wk b { font-size: var(--fs-sm); color: var(--text); font-weight: var(--fw-semibold); font-variant-numeric: tabular-nums; }
+  .ym-wk i { display: block; width: 100%; max-width: 56px; height: calc(var(--n) * 11px); min-height: 3px; border-radius: 6px 6px 3px 3px; background: color-mix(in srgb, var(--tone) 35%, transparent); }
+  .ym-wk.now i { background: var(--tone); }
+  .ym-wk.now { color: var(--text); font-weight: var(--fw-semibold); }
+  .ym h3 { margin: 20px 0 4px; font-size: var(--fs-sm); font-weight: var(--fw-bold); color: var(--muted); }
+  .ym-goal { display: grid; grid-template-columns: 40px minmax(0, 1fr) 16px; align-items: center; gap: 12px; width: calc(100% + 20px); min-height: 56px; padding: 6px 10px; margin: 0 -10px; border: 0; border-radius: var(--radius-md); background: transparent; color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+  .ym-goal:hover { background: var(--surface-hover); }
+  .ym-goal .yp-face { width: 40px; height: 40px; font-size: 19px; border-radius: var(--radius-md); background: var(--wash); display: grid; place-items: center; }
+  .ym-goal b { display: block; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); line-height: var(--lh-snug); }
+  .ym-goal small { display: block; font-size: var(--fs-sm); color: var(--muted); }
+  .ym-goal > i { color: var(--muted); font-size: 16px; }
+  .ym .s-items { margin-top: 0; }
+  .ym-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line-soft); font-size: var(--fs-sm); color: var(--muted); }
+  .ym-empty { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; font-size: var(--fs-body-sm); color: var(--muted); }
+  /* Phone: the area is its own page; back returns to You. */
+  .ym-page { padding: 0; }
+  .ym-back-btn { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 0 12px 0 6px; margin: 0 0 8px -6px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--accent-2); font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .ym-back-btn i { font-size: 18px; }
+  .ym-head h2 { font-size: var(--fs-h1-sm); }
+  .ym-head p { font-size: var(--fs-sm); }
+  .ym-weeks { gap: 8px; padding: 10px 12px 12px; }
+  .s-item .s-when { font-size: var(--fs-xs); }
+</style>
+<div class="yv-shot" style="background: var(--shell);">
+<main id="app" class="account-mode">
+<nav id="rail" aria-label="Main navigation">
+      <div class="rail-brand"><svg class="rail-mark" viewBox="4 17 92 66" aria-hidden="true"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"><line x1="10" y1="42" x2="10" y2="58" opacity="0.76"></line><line x1="30" y1="28" x2="30" y2="72" opacity="0.94"></line><line x1="50" y1="37" x2="50" y2="63" opacity="0.82"></line><line x1="70" y1="23" x2="70" y2="77" opacity="1.00"></line><line x1="90" y1="40" x2="90" y2="60" opacity="0.79"></line></g></svg><span class="rail-wordmark">yarvy</span></div>
+      <div class="rail-nav">
+        <button id="nav-home" class="nav-item" type="button"><i class="ph ph-chat-circle nav-ico" aria-hidden="true"></i><i class="ph-fill ph-chat-circle nav-ico-on" aria-hidden="true"></i><span class="nav-label">Chat</span></button>
+        <button id="nav-upcoming" class="nav-item" type="button"><i class="ph ph-calendar-blank nav-ico" aria-hidden="true"></i><i class="ph-fill ph-calendar-blank nav-ico-on" aria-hidden="true"></i><span class="nav-label">Today</span></button>
+        <button id="nav-you" class="nav-item active" aria-current="page" type="button"><i class="ph ph-user nav-ico" aria-hidden="true"></i><i class="ph-fill ph-user nav-ico-on" aria-hidden="true"></i><span class="nav-label">You</span></button>
+        <button id="nav-tasks" class="nav-item" type="button"><i class="ph ph-list nav-ico" aria-hidden="true"></i><i class="ph-fill ph-list nav-ico-on" aria-hidden="true"></i><span class="nav-label">Lists</span></button>
+      </div>
+      <div class="rail-spacer"></div>
+    </nav>
+<section id="main" hidden></section><section id="profile-view"><div class="account-wrap"><div id="profile-body" class="account-body yp ym ym-page t-health"><button type="button" class="ym-back-btn"><i class="ph ph-caret-left" aria-hidden="true"></i>You</button><div class="ym-head"><span class="yl-well" aria-hidden="true"><i class="ph ph-person-simple-run"></i></span><div><h2 id="ym-title">Health</h2><p>4 things done this week, <b>up from 3</b></p></div></div><div class="ym-weeks" aria-label="Things done, last 4 weeks"><span class="ym-wk"><b>2</b><i style="--n:2"></i>Aug 24</span><span class="ym-wk"><b>3</b><i style="--n:3"></i>Aug 31</span><span class="ym-wk"><b>3</b><i style="--n:3"></i>Sep 7</span><span class="ym-wk now"><b>4</b><i style="--n:4"></i>This week</span></div><h3>This week</h3><div class="s-items"><button type="button" class="s-item done"><i class="ph-fill ph-check-circle" aria-hidden="true"></i><span><b>Long run, 12 km</b><small>Run a half marathon</small></span><span class="s-when">Today</span></button><button type="button" class="s-item done"><i class="ph-fill ph-check-circle" aria-hidden="true"></i><span><b>Meditated, twice</b><small>Meditate every morning</small></span><span class="s-when">Mon, Today</span></button><button type="button" class="s-item done"><i class="ph-fill ph-check-circle" aria-hidden="true"></i><span><b>Cooked at home</b><small>Less takeout, more cooking</small></span><span class="s-when">Mon</span></button></div><h3>Still planned</h3><div class="s-items"><button type="button" class="s-item plan"><i class="ph ph-circle" aria-hidden="true"></i><span><b>Long run, 14 km</b><small>Run a half marathon</small></span><span class="s-when">Tomorrow</span></button><button type="button" class="s-item plan"><i class="ph ph-circle" aria-hidden="true"></i><span><b>Cook at home</b><small>Less takeout, more cooking</small></span><span class="s-when">Today</span></button></div><h3>Goals in Health</h3><button type="button" class="ym-goal"><span class="yp-face" aria-hidden="true">🏃</span><span><b>Run a half marathon</b><small>2 of 5 milestones</small></span><i class="ph ph-caret-right" aria-hidden="true"></i></button><button type="button" class="ym-goal"><span class="yp-face" aria-hidden="true">🧘</span><span><b>Meditate every morning</b><small>2 of 7 days this week</small></span><i class="ph ph-caret-right" aria-hidden="true"></i></button><button type="button" class="ym-goal"><span class="yp-face" aria-hidden="true">🍳</span><span><b>Less takeout, more cooking</b><small>1 of 5 days this week</small></span><i class="ph ph-caret-right" aria-hidden="true"></i></button></div></div></section>
+</main>
+</div>
