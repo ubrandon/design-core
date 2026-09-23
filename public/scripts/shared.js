@@ -306,8 +306,13 @@ function fetchProjectListDetails(projectId) {
   return Promise.all([
     fetchJSON(b + "project.json").catch(() => ({})),
     fetchJSON(b + "canvas.json")
-      .then((c) => ({ ok: true, count: (c.screens || []).length }))
-      .catch(() => ({ ok: false, count: 0 })),
+      .then((c) => {
+        const list = (c.screens || []).filter((sc) => sc && typeof sc.file === "string");
+        // No file times on static hosting, so the newest canvas entries stand in for "recent".
+        const previews = list.slice(-6).reverse().map((sc) => ({ file: sc.file, width: Number(sc.width) || 390 }));
+        return { ok: true, count: list.length, previews };
+      })
+      .catch(() => ({ ok: false, count: 0, previews: [] })),
     fetchJSON(b + "prototypes/index.json")
       .then((d) => {
         const list = d.prototypes || [];
@@ -323,6 +328,7 @@ function fetchProjectListDetails(projectId) {
       updatedAt: proj.updatedAt || null,
       createdAt: proj.createdAt || null,
       screenCount: canvas.ok ? canvas.count : null,
+      previews: canvas.previews,
       protoCount: protoIndex.ok ? protoIndex.count : null,
       testedProtoCount: null,
     };

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project — Design Core</title>
+    <title>Project · Design Core</title>
     <script>(function(){try{var t=localStorage.getItem('dc-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){}})();</script>
     <link rel="stylesheet" href="styles/shared.css" />
     <link rel="stylesheet" href="styles/app.css" />
@@ -44,7 +44,7 @@
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2.5"
+                    stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
@@ -55,28 +55,16 @@
                       d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"
                     />
                   </svg>
-                  Edit details
+                  Edit
                 </button>
                 <button
                   type="button"
-                  class="btn-tool btn-tool--danger"
+                  class="btn-tool btn-tool--icon btn-tool--danger-quiet"
                   id="btn-delete-project"
+                  aria-label="Delete project"
+                  title="Delete project"
                 >
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
-                    />
-                  </svg>
-                  Delete project…
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                 </button>
               </div>
             </div>
@@ -88,40 +76,14 @@
             hidden
           >
             <div class="section-header section-header--lg">
-              <div>
-                <h2>Ideation space</h2>
-                <p id="ideation-subtitle" class="section-header__subtitle">
-                  Canvas screens for static layouts
-                </p>
-              </div>
+              <h2>Canvas <span id="ideation-subtitle" class="section-header__count"></span></h2>
+              <a id="canvas-link" href="#" class="btn-tool">
+                Open canvas
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
             </div>
             <div class="canvas-block">
               <div id="canvas-preview-host"></div>
-              <a id="canvas-link" href="#" class="canvas-cta">
-                <span class="canvas-cta__icon" aria-hidden="true">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <rect x="3" y="3" width="18" height="18" rx="2" />
-                    <path d="M3 9h18M9 21V9" />
-                  </svg>
-                </span>
-                <div class="canvas-cta__text">
-                  <span class="canvas-cta__label">Open canvas</span>
-                  <span class="canvas-cta__desc"
-                    >Arrange screens, pan and zoom, and iterate before you build
-                    interactive prototypes.</span
-                  >
-                </div>
-                <span class="canvas-cta__arrow" aria-hidden="true">&rarr;</span>
-              </a>
             </div>
           </section>
 
@@ -131,15 +93,10 @@
             hidden
           >
             <div class="section-header section-header--lg">
-              <div>
-                <h2>Prototypes</h2>
-                <p id="prototypes-subtitle" class="section-header__subtitle">
-                  Interactive flows you can share
-                </p>
-              </div>
+              <h2>Prototypes <span id="prototypes-subtitle" class="section-header__count"></span></h2>
               <button
                 type="button"
-                class="btn-tool btn-tool--primary"
+                class="btn-tool"
                 id="btn-new-prototype"
                 hidden
               >
@@ -149,7 +106,7 @@
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2.5"
+                  stroke-width="2"
                   stroke-linecap="round"
                 >
                   <path d="M12 5v14M5 12h14" />
@@ -157,10 +114,6 @@
                 New prototype
               </button>
             </div>
-            <p class="project-section__intro">
-              Click a card to preview in the tool. Copy link works great for
-              GitHub Pages.
-            </p>
             <div id="prototypes" class="card-grid card-grid--prototypes">
               <div class="empty-state">Loading prototypes…</div>
             </div>
@@ -743,10 +696,10 @@
           el.canvasHost.innerHTML = `
           <div class="canvas-preview-empty canvas-preview-empty--warn">
             <p class="canvas-preview-empty__title">Couldn’t load the screen list</p>
-            <p class="canvas-preview-empty__hint">You can still open the canvas — if the problem continues, check that <code>canvas.json</code> exists for this project.</p>
+            <p class="canvas-preview-empty__hint">You can still open the canvas. If the problem continues, check that <code>canvas.json</code> exists for this project.</p>
             <p style="margin-top:14px;"><a class="btn-tool btn-tool--primary" href="${escapeHtml(canvasHref)}">Open canvas</a></p>
           </div>`;
-          el.ideationSub.textContent = "Screen list unavailable";
+          el.ideationSub.textContent = "";
           return;
         }
         if (!screens.length) {
@@ -755,15 +708,14 @@
             <p class="canvas-preview-empty__title">No screens on the canvas yet</p>
             <p class="canvas-preview-empty__hint">Add screen designs from the canvas, or ask the AI to create screens for this project.</p>
           </div>`;
-          el.ideationSub.textContent = "No canvas screens yet";
+          el.ideationSub.textContent = "";
           return;
         }
 
         const n = screens.length;
         const shown = screens.slice(0, MAX_CANVAS_PREVIEWS);
         const more = n - shown.length;
-        el.ideationSub.textContent =
-          n === 1 ? "1 screen on the canvas" : `${n} screens on the canvas`;
+        el.ideationSub.textContent = String(n);
 
         const bust = "?t=" + Date.now();
         const cards = shown
@@ -771,7 +723,7 @@
             const src = dataPath(`projects/${encodeURIComponent(projectId)}/screens/${encodeURIComponent(s.file)}`) + bust;
             const label = escapeHtml(screenLabel(s.file));
             const cardHref = canvasHref + (canvasHref.includes("?") ? "&" : "?") + "screen=" + encodeURIComponent(s.file);
-            return `<a class="canvas-preview-card" href="${escapeHtml(cardHref)}" title="Open canvas — ${label}">
+            return `<a class="canvas-preview-card" href="${escapeHtml(cardHref)}" title="Open ${label} on the canvas">
           <div class="canvas-preview-card__frame canvas-preview-card__frame--lazy">
             <iframe data-src="${escapeHtml(src)}" title="${label}" tabindex="-1"></iframe>
           </div>
@@ -782,7 +734,7 @@
 
         const moreLink =
           more > 0
-            ? `<a class="canvas-preview-more" href="${escapeHtml(canvasHref)}">+${more} more on canvas →</a>`
+            ? `<a class="canvas-preview-more" href="${escapeHtml(canvasHref)}">+${more} more</a>`
             : "";
 
         el.canvasHost.innerHTML = `<div class="canvas-preview-strip" role="list">${cards}${moreLink}</div>`;
@@ -809,26 +761,23 @@
             <p class="empty-state__title">Couldn’t load prototypes</p>
             <p class="empty-state__hint">Check that <code>prototypes/index.json</code> exists. Refresh the page after fixing the file.</p>
           </div>`;
-          el.prototypesSub.textContent = "Prototype list failed to load";
+          el.prototypesSub.textContent = "";
           return;
         }
         if (!protoList.length) {
           const hint = localEdit
             ? "Use <strong>New prototype</strong> above, or ask the AI to build a flow."
-            : "Ask the AI to build an interactive prototype — describe the flow or feature you want to try.";
+            : "Ask the AI to build an interactive prototype. Describe the flow or feature you want to try.";
           grid.innerHTML = `
           <div class="empty-state empty-state--in-grid">
             <p class="empty-state__title">No prototypes yet</p>
             <p class="empty-state__hint">${hint}</p>
           </div>`;
-          el.prototypesSub.textContent = "No prototypes yet";
+          el.prototypesSub.textContent = "";
           return;
         }
 
-        el.prototypesSub.textContent =
-          protoList.length === 1
-            ? "1 prototype"
-            : `${protoList.length} prototypes`;
+        el.prototypesSub.textContent = String(protoList.length);
 
         Promise.all(
           protoList.map((p) =>
@@ -846,13 +795,14 @@
               );
               const deviceMeta = getPrototypeDeviceMeta(p.device);
               const name = escapeHtml(p.name);
-              const desc = escapeHtml(p.description || "Interactive prototype");
+              const desc = (p.description || "").trim();
+              const descHtml = desc ? `<p class="tile-desc">${escapeHtml(desc)}</p>` : "";
               const testUrl = prototypeExternalTestUrl(meta);
               const testUrlEsc = escapeHtml(testUrl);
               const testedBadge = testUrl
                 ? `<span class="tile-card__tested-badge" title="External usability test linked">Tested</span>`
                 : "";
-              let thumbContent;
+              let thumbInner = "";
               if (meta.thumbnail && typeof meta.thumbnail === "string") {
                 const thumbPath = meta.thumbnail
                   .split("/")
@@ -867,35 +817,29 @@
                     "/" +
                     thumbPath,
                 );
-                thumbContent = `<img src="${escapeHtml(thumbSrc)}" alt="" loading="lazy" />`;
-              } else {
-                const initial = escapeHtml(
-                  (p.name || "?").trim().slice(0, 1).toUpperCase(),
-                );
-                thumbContent = `<span class="tile-card__thumb-placeholder">${initial}</span>`;
+                thumbInner = `<div class="tile-card__thumb"><img src="${escapeHtml(thumbSrc)}" alt="" loading="lazy" /></div>`;
               }
-              const thumbInner = `<div class="tile-card__thumb">${testedBadge}${thumbContent}</div>`;
               const urlAttr = escapeHtml(url);
               const previewEsc = escapeHtml(previewHref);
               const ariaOpen = escapeHtml(
                 `Open ${p.name || "prototype"} in preview`,
               );
               const testResultsBtn = testUrl
-                ? `<a class="btn-tool btn-tool--primary" href="${testUrlEsc}" target="_blank" rel="noopener noreferrer">Test results</a>`
+                ? `<a class="btn-tool btn-tool--sm" href="${testUrlEsc}" target="_blank" rel="noopener noreferrer">Test results</a>`
                 : "";
               return `
             <article class="tile-card tile-card--prototype">
               <a class="tile-card__link-body" href="${previewEsc}" aria-label="${ariaOpen}">
                 ${thumbInner}
-                <div style="display:flex;align-items:center;gap:10px;">
-                  <span class="tile-card__icon" aria-hidden="true">${deviceMeta.icon}</span>
-                  <span class="tile-meta">${escapeHtml(deviceMeta.label)}</span>
+                <div class="tile-card__head">
+                  <span class="tile-title">${name}</span>
+                  ${testedBadge}
                 </div>
-                <span class="tile-title">${name}</span>
-                <p class="tile-desc">${desc}</p>
+                ${descHtml}
+                <span class="tile-card__device"><span class="tile-card__icon" aria-hidden="true">${deviceMeta.icon}</span>${escapeHtml(deviceMeta.label)}</span>
               </a>
               <div class="tile-actions">
-                <button type="button" class="btn-tool" data-copy-proto-url="${urlAttr}">Copy link</button>
+                <button type="button" class="btn-tool btn-tool--sm" data-copy-proto-url="${urlAttr}">Copy link</button>
                 ${testResultsBtn}
               </div>
             </article>`;
@@ -1079,7 +1023,7 @@
 
             el.name.textContent = data.name;
             document.getElementById("nav-title").textContent = data.name;
-            document.title = data.name + " — Design Core";
+            document.title = data.name + " · Design Core";
 
             if (data.description && String(data.description).trim()) {
               el.desc.textContent = data.description;
@@ -1126,21 +1070,11 @@
             el.error.hidden = false;
             el.main.hidden = true;
             document.getElementById("nav-title").textContent = "Project";
-            document.title = "Project — Design Core";
+            document.title = "Project · Design Core";
           });
       }
 
       loadProjectHub();
-
-      document.addEventListener("mousemove", (e) => {
-        for (const node of document.querySelectorAll(
-          ".canvas-cta, .tile-card--prototype",
-        )) {
-          const rect = node.getBoundingClientRect();
-          node.style.setProperty("--mouse-x", e.clientX - rect.left + "px");
-          node.style.setProperty("--mouse-y", e.clientY - rect.top + "px");
-        }
-      });
 
       /* ── Live reload ── */
       window.__onDataChanged = function(paths) {

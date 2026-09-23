@@ -8,16 +8,14 @@
  */
 (function () {
   const RAIL_ICONS = {
-    chevron:
-      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>',
+    sidebar:
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9.5 4v16"/></svg>',
     projects:
       '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
     captures:
       '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>',
     designSystem:
       '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>',
-    star:
-      '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 3.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.77 6.99 19.5l.99-5.8-4.21-4.1 5.82-.85z"/></svg>',
     grip:
       '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></svg>',
     user:
@@ -260,7 +258,10 @@
     const slug = typeof activeCompany === "function" ? activeCompany() : "";
     const match = (list || []).find((c) => c.slug === slug);
     const nameEl = companyBtnEl.querySelector(".dc-rail__company-name");
-    nameEl.textContent = match ? match.name : slug || "Pick a company";
+    const markEl = companyBtnEl.querySelector(".dc-rail__company-mark");
+    const label = match ? match.name : slug || "Pick a company";
+    nameEl.textContent = label;
+    if (markEl) markEl.textContent = (match ? match.name : slug || "?").trim().charAt(0).toUpperCase();
     companyBtnEl.title = "Switch company";
   }
 
@@ -372,12 +373,13 @@
       '<div class="dc-rail__head">' +
       '<div class="dc-rail__company-wrap">' +
       '<button type="button" class="dc-rail__brand dc-rail__company" aria-haspopup="true" aria-expanded="false" title="Switch company">' +
+      '<span class="dc-rail__company-mark" aria-hidden="true"></span>' +
       '<span class="dc-rail__company-name">Design Core</span>' +
       '<span class="dc-rail__user-caret">' + RAIL_ICONS.caret + "</span>" +
       "</button>" +
       '<div class="user-menu dc-rail__company-menu" hidden></div>' +
       "</div>" +
-      '<button type="button" class="dc-rail__toggle" aria-controls="dc-rail" title="Collapse sidebar">' + RAIL_ICONS.chevron + "</button>" +
+      '<button type="button" class="dc-rail__toggle" aria-controls="dc-rail" title="Collapse sidebar">' + RAIL_ICONS.sidebar + "</button>" +
       "</div>" +
       '<nav class="dc-rail__links">' +
       railLink("index.html", "Projects", RAIL_ICONS.projects, flags.isHome) +
@@ -385,11 +387,11 @@
       railLink("design-system.html", "Design System", RAIL_ICONS.designSystem, flags.isDesignSystem) +
       "</nav>" +
       '<div class="dc-rail__favs">' +
-      '<div class="dc-rail__favs-head"><span class="dc-rail__favs-icon">' + RAIL_ICONS.star + "</span>" +
-      '<span class="dc-rail__favs-title">Favorites</span></div>' +
+      '<div class="dc-rail__favs-head"><span class="dc-rail__favs-title">Favorites</span></div>' +
       '<ul class="dc-rail__list" role="list"></ul>' +
       '<p class="dc-rail__empty" hidden>Star a project to pin it here.</p>' +
       "</div>" +
+      '<div class="dc-rail__foot">' +
       '<div class="dc-rail__user-wrap">' +
       '<button type="button" class="dc-rail__user" aria-haspopup="true" aria-expanded="false">' +
       '<span class="dc-rail__user-avatar"></span>' +
@@ -397,7 +399,12 @@
       '<span class="dc-rail__user-caret">' + RAIL_ICONS.caret + "</span>" +
       "</button>" +
       '<div class="user-menu dc-rail__user-menu" hidden></div>' +
+      "</div>" +
       "</div>";
+
+    if (typeof makeThemeToggle === "function") {
+      rail.querySelector(".dc-rail__foot").appendChild(makeThemeToggle("dc-rail__theme"));
+    }
 
     document.body.appendChild(rail);
     railEl = rail;

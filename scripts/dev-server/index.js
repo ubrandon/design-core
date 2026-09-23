@@ -4,7 +4,7 @@
 // bridge. They run only under `vite` (dev); on the built static site none of
 // this exists and the frontend degrades to read-only.
 import { resolve, dirname, sep, relative } from "path";
-import { writeFileSync, readFileSync, unlinkSync, existsSync, mkdirSync, rmSync, copyFileSync } from "fs";
+import { writeFileSync, readFileSync, unlinkSync, existsSync, mkdirSync, rmSync, copyFileSync, statSync } from "fs";
 import { spawn } from "child_process";
 import { createHash } from "crypto";
 import {
@@ -343,6 +343,20 @@ function localDevDataApiPlugin() {
   }
 
   // Computes screen/prototype/tested counts + dates for one project (server-side).
+  // Most recently edited canvas screens, for the home page card covers.
+  function recentScreenPreviews(dir, canvas) {
+    const screens = canvas && Array.isArray(canvas.screens) ? canvas.screens : [];
+    const rows = [];
+    for (const sc of screens) {
+      if (!sc || typeof sc.file !== "string") continue;
+      let t = 0;
+      try { t = statSync(resolve(dir, "screens", sc.file)).mtimeMs; } catch { continue; }
+      rows.push({ file: sc.file, width: Number(sc.width) || 390, v: Math.round(t) });
+    }
+    rows.sort((a, b) => b.v - a.v);
+    return rows.slice(0, 6);
+  }
+
   function summarizeProject(dataRoot, id) {
     const dir = resolve(dataRoot, "projects", String(id || ""));
     const out = { id, createdAt: null, updatedAt: null, screenCount: null, protoCount: null, testedProtoCount: null };
@@ -353,6 +367,7 @@ function localDevDataApiPlugin() {
     }
     const canvas = readJsonFileSafe(resolve(dir, "canvas.json"));
     if (canvas) out.screenCount = Array.isArray(canvas.screens) ? canvas.screens.length : 0;
+    out.previews = recentScreenPreviews(dir, canvas);
     const protoIndex = readJsonFileSafe(resolve(dir, "prototypes/index.json"));
     if (protoIndex) {
       const protos = Array.isArray(protoIndex.prototypes) ? protoIndex.prototypes : [];

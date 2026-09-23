@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects — Design Core</title>
+  <title>Projects · Design Core</title>
   <script>(function(){try{var t=localStorage.getItem('dc-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){}})();</script>
   <link rel="stylesheet" href="styles/shared.css">
   <link rel="stylesheet" href="styles/app.css">
   <link rel="stylesheet" href="styles/tool-refresh.css">
 </head>
-<body>
+<body class="page-home">
   <div class="page-shell">
     <div class="home-hero">
       <div class="home-hero__head">
         <div class="home-hero__intro">
           <h1 class="home-hero__title">Projects</h1>
-          <p class="home-hero__subtitle">Your design projects — screens, prototypes, and explorations.</p>
+          <span class="home-count-hint" id="project-count-hint" hidden></span>
         </div>
         <button type="button" class="btn-tool btn-tool--primary home-hero__cta" id="btn-new-project" hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg> New project</button>
       </div>
@@ -25,7 +25,8 @@
       <div class="home-toolbar__row">
         <div class="home-search-wrap">
           <label class="visually-hidden" for="project-filter">Filter projects by name</label>
-          <input type="search" id="project-filter" class="home-search" placeholder="Search by name, description, or tag…" autocomplete="off">
+          <svg class="home-search__icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input type="search" id="project-filter" class="home-search" placeholder="Search projects" autocomplete="off">
         </div>
         <div class="home-filter" id="home-filter">
           <button type="button" class="home-filter__btn" id="home-filter-btn" aria-haspopup="true" aria-expanded="false">
@@ -64,7 +65,6 @@
           </div>
         </div>
       </div>
-      <p class="home-count-hint" id="project-count-hint" hidden></p>
     </div>
 
     <p id="home-local-hint" class="project-local-hint" style="max-width:1100px;margin:0 auto;padding:0 28px 12px;" hidden>
@@ -73,9 +73,6 @@
 
     <div id="projects" class="home-sections" aria-busy="true">
       <div class="home-grid">
-        <div class="project-card-skeleton" aria-hidden="true"></div>
-        <div class="project-card-skeleton" aria-hidden="true"></div>
-        <div class="project-card-skeleton" aria-hidden="true"></div>
         <div class="project-card-skeleton" aria-hidden="true"></div>
         <div class="project-card-skeleton" aria-hidden="true"></div>
         <div class="project-card-skeleton" aria-hidden="true"></div>
@@ -241,30 +238,42 @@
       return "";
     }
 
-    const STAR_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.77 6.99 19.5l.99-5.8-4.21-4.1 5.82-.85z"/></svg>';
+    const STAR_SVG = '<svg width="15" height="15" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.77 6.99 19.5l.99-5.8-4.21-4.1 5.82-.85z"/></svg>';
 
-    // Color follows the person (createdBy), so the same author is always one color.
-    function personHue(p) {
-      const key = String(p.createdBy || "").trim().toLowerCase();
-      return projectHue(key || p.id);
+    const PHONE_SHOT_W = 104;
+    const DESKTOP_SHOT_W = 300;
+    const COVER_H = 150;
+
+    function shotHtml(projectId, sc, shotW) {
+      const scale = shotW / sc.width;
+      const src = dataPath(`projects/${encodeURIComponent(projectId)}/screens/${encodeURIComponent(sc.file)}`) + (sc.v ? `?v=${sc.v}` : "");
+      return `<div class="project-cover__shot" style="width:${shotW}px">
+          <iframe src="${escapeHtml(src)}" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"
+            style="width:${sc.width}px;height:${Math.ceil(COVER_H / scale)}px;transform:scale(${scale.toFixed(4)})"></iframe>
+        </div>`;
+    }
+
+    // Wide first screen: show it alone. Otherwise up to three phones side by side.
+    function coverHtml(p) {
+      const list = p._previews || [];
+      if (!list.length) {
+        return `<div class="project-cover project-cover--empty" aria-hidden="true"><span>No screens yet</span></div>`;
+      }
+      if (list[0].width >= 700) {
+        return `<div class="project-cover project-cover--desktop" aria-hidden="true">${shotHtml(p.id, list[0], DESKTOP_SHOT_W)}</div>`;
+      }
+      const phones = list.filter((sc) => sc.width < 700).slice(0, 3);
+      return `<div class="project-cover project-cover--phones" aria-hidden="true">${phones.map((sc) => shotHtml(p.id, sc, PHONE_SHOT_W)).join("")}</div>`;
     }
 
     function cardHtml(p) {
       const id = encodeURIComponent(p.id);
       const name = escapeHtml(p.name);
       const descRaw = (p.description || "").trim();
-      const desc = descRaw ? escapeHtml(descRaw) : "No description yet";
-      const descClass = descRaw ? "project-card__desc" : "project-card__desc project-card__desc--empty";
-      const by = escapeHtml(p.createdBy || "");
-      const createdShort = p.createdAt ? escapeHtml(formatDate(p.createdAt)) : "";
-      const metaBits = [];
-      if (by) metaBits.push(by);
-      if (createdShort) metaBits.push(createdShort);
-      const metaLine = metaBits.join(" · ");
+      const descHtml = descRaw ? `<div class="project-card__desc">${escapeHtml(descRaw)}</div>` : "";
       const statsLine = escapeHtml(formatStats(p));
       const updatedLine = formatUpdatedLine(p);
       const updatedHtml = updatedLine ? `<span class="project-card__updated">${escapeHtml(updatedLine)}</span>` : "";
-      const hue = personHue(p);
       const fav = isFavoriteProject(p.id);
 
       const status = normalizeProjectStatus(p.status);
@@ -280,20 +289,18 @@
       const favTitle = fav ? "Remove from favorites" : "Add to favorites";
 
       return `
-        <div class="project-card-wrap" style="--card-hue:${hue}">
+        <div class="project-card-wrap">
           <a href="${withCompany("project.html?id=" + id)}" class="project-card" aria-label="Open ${name}">
+            ${coverHtml(p)}
             <div class="project-card__head">
               <div class="project-card__name">${name}</div>
               ${statusHtml}
             </div>
-            <div class="${descClass}">${desc}</div>
+            ${descHtml}
             ${tagsHtml}
-            <div class="project-card__stats">${statsLine}</div>
-            ${updatedHtml}
-            <div class="project-card__footer">
-              <div class="project-card__avatar">${escapeHtml(initials(p.createdBy))}</div>
-              <span class="project-card__meta">${metaLine}</span>
-              <span class="project-card__arrow" aria-hidden="true">&rarr;</span>
+            <div class="project-card__foot">
+              <span class="project-card__stats">${statsLine}</span>
+              ${updatedHtml}
             </div>
           </a>
           <button type="button" class="project-card__fav${fav ? " is-on" : ""}" data-fav-id="${escapeHtml(p.id)}" aria-pressed="${fav ? "true" : "false"}" aria-label="${favTitle}" title="${favTitle}">${STAR_SVG}</button>
@@ -307,7 +314,7 @@
     function renderEmptyNoProjects() {
       const emptyHint = homeLocalEdit
         ? "Use <strong>New project</strong> at the top of the page, or ask the AI to create one."
-        : "Ask the AI to create your first project — just describe what you want to design.";
+        : "Ask the AI to create your first project. Describe what you want to design.";
       grid.innerHTML = `
         <div class="empty-state empty-state--in-grid">
           <p class="empty-state__title">No projects yet</p>
@@ -359,7 +366,7 @@
         rows = sortRows(rows, sortSelect.value);
 
         countHint.hidden = false;
-        countHint.textContent = rows.length === 1 ? "1 project" : `${rows.length} projects`;
+        countHint.textContent = `${rows.length} of ${allRows.filter((r) => !isArchived(r)).length}`;
 
         if (!rows.length) { renderEmptyNoMatches(); return; }
         grid.innerHTML = gridHtml(rows);
@@ -375,9 +382,7 @@
       const archivedCount = allRows.length - active.length;
 
       countHint.hidden = false;
-      countHint.textContent =
-        `${active.length} ${active.length === 1 ? "project" : "projects"}` +
-        (archivedCount ? ` · ${archivedCount} archived` : "");
+      countHint.textContent = `${active.length}` + (archivedCount ? ` · ${archivedCount} archived` : "");
 
       const sortKey = sortSelect.value;
       const favs = sortRows(active.filter((r) => isFavoriteProject(r.id)), sortKey);
@@ -436,22 +441,6 @@
       } catch (_) {}
     }
 
-    function wireMouseGlow() {
-      let raf = 0, el = null, x = 0, y = 0;
-      document.addEventListener("mousemove", (e) => {
-        el = e.target.closest ? e.target.closest(".project-card") : null;
-        x = e.clientX; y = e.clientY;
-        if (raf || !el) return;
-        raf = requestAnimationFrame(() => {
-          raf = 0;
-          if (!el) return;
-          const rect = el.getBoundingClientRect();
-          el.style.setProperty("--mouse-x", (x - rect.left) + "px");
-          el.style.setProperty("--mouse-y", (y - rect.top) + "px");
-        });
-      }, { passive: true });
-    }
-
     function showLoadError() {
       grid.innerHTML = `
         <div class="empty-state empty-state--in-grid empty-state--error">
@@ -472,6 +461,7 @@
         _screenCount: d.screenCount == null ? null : d.screenCount,
         _protoCount: d.protoCount == null ? null : d.protoCount,
         _testedProtoCount: d.testedProtoCount == null ? null : d.testedProtoCount,
+        _previews: Array.isArray(d.previews) ? d.previews : [],
       };
     }
 
@@ -628,7 +618,6 @@
     });
 
     restoreViewPrefs();
-    wireMouseGlow();
 
     // "Your projects" follows the selected user; falls back to the designer profile owner.
     function refreshProfileName() {
@@ -691,38 +680,11 @@
       }
     } catch (_) {}
 
-    /* ── Live reload — refetch only what changed ── */
-    function changedProjectIds(paths) {
-      const ids = new Set();
-      for (const p of paths) {
-        const prefix = dataPath("projects/");
-        if (!p.startsWith(prefix)) continue;
-        const id = p.slice(prefix.length).split("/")[0];
-        if (id && id !== "index.json") ids.add(decodeURIComponent(id));
-      }
-      return [...ids];
-    }
-
+    /* ── Live reload: one summary call refreshes counts, dates, and cover previews ── */
     window.__onDataChanged = function (paths) {
-      if (!paths || !paths.length) { softReloadProjects(); return; }
-      // Adds/removes/renames touch the index itself — reload the whole list.
-      if (paths.some((p) => p === dataPath("projects/index.json"))) { softReloadProjects(); return; }
-      const ids = changedProjectIds(paths).filter((id) => allRows.some((r) => r.id === id));
-      if (!ids.length) return;
-      Promise.all(
-        ids.map((id) => {
-          const base = allRows.find((r) => r.id === id);
-          return fetchProjectListDetails(id).then((d) => mergeRow(base, d));
-        }),
-      )
-        .then((updated) => {
-          const map = {};
-          updated.forEach((r) => { map[r.id] = r; });
-          allRows = allRows.map((r) => map[r.id] || r);
-          rebuildTagFilterOptions();
-          render();
-        })
-        .catch(() => {});
+      const prefix = dataPath("projects/");
+      if (paths && paths.length && !paths.some((p) => p.startsWith(prefix))) return;
+      softReloadProjects();
     };
   </script>
 </body>

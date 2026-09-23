@@ -29,11 +29,10 @@ function currentTheme() {
 }
 
 // Light/dark toggle. Persists choice in localStorage (key dc-theme) so it sticks across pages.
-function makeThemeToggle() {
+function makeThemeToggle(className) {
   const btn = document.createElement("button");
   btn.type = "button";
-  btn.id = "theme-toggle";
-  btn.className = "site-nav__theme";
+  btn.className = className || "site-nav__theme";
 
   function paint() {
     const isLight = currentTheme() === "light";
@@ -50,11 +49,12 @@ function makeThemeToggle() {
       localStorage.setItem("dc-theme", next);
     } catch (e) {}
     if (typeof setUserTheme === "function") setUserTheme(next);
-    paint();
+    window.dispatchEvent(new CustomEvent("dc:theme-changed"));
   });
 
-  // Switching user can change the theme; keep the icon/label in sync.
+  // Switching user can change the theme; keep every toggle's icon/label in sync.
   window.addEventListener("dc:user-changed", paint);
+  window.addEventListener("dc:theme-changed", paint);
 
   paint();
   return btn;

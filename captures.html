@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Captures — Design Core</title>
+  <title>Captures · Design Core</title>
   <script>(function(){try{var t=localStorage.getItem('dc-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){}})();</script>
   <link rel="stylesheet" href="styles/shared.css">
   <link rel="stylesheet" href="styles/canvas-space.css">
@@ -635,7 +635,7 @@
   </div>
 
   <div class="zoom-controls">
-    <button class="zoom-btn zoom-btn--tidy" onclick="openCaptureModal()" title="New capture">New Capture</button>
+    <button class="zoom-btn zoom-btn--tidy" onclick="openCaptureModal()" title="New capture">New capture</button>
     <button class="zoom-btn zoom-btn--tidy" onclick="refreshCaptures()" title="Reload captures">Refresh</button>
     <div class="zoom-controls__zoom-group">
       <button class="zoom-btn" onclick="pz.zoomBy(-0.04)" title="Zoom out">&minus;</button>
@@ -653,7 +653,7 @@
       <button class="cap-modal-close" onclick="closeCaptureModal()" title="Close">&times;</button>
 
       <div id="modal-step-url">
-        <div class="cap-modal-title">New Capture</div>
+        <div class="cap-modal-title">New capture</div>
         <div class="cap-modal-desc">Opens a browser where you can navigate, log in, and capture screens manually. Press <kbd style="background:rgba(0,0,0,0.08);padding:1px 6px;border-radius:4px;font-size:0.85em;font-weight:700;">C</kbd> in the browser to capture any screen.</div>
         <form class="cap-form" onsubmit="launchCaptureBrowser(event)">
           <div class="cap-form-row">
@@ -1330,9 +1330,9 @@
           'Enter your app\'s URL to open the capture browser and save screens to this canvas.' +
         '</div>' +
         '<ol class="cap-empty-steps">' +
-          '<li><span class="cap-empty-steps-body"><strong>Start</strong> — Enter the URL below and click Capture, or use <strong>New Capture</strong> in the toolbar anytime.</span></li>' +
-          '<li><span class="cap-empty-steps-body"><strong>Browser</strong> — Log in if needed. Press <strong>C</strong> to save the current screen, <strong>F</strong> to auto-fill forms, <strong>Done</strong> when finished.</span></li>' +
-          '<li><span class="cap-empty-steps-body"><strong>Canvas</strong> — Drag cards to arrange; <strong>Refresh</strong> loads new screenshots from disk.</span></li>' +
+          '<li><span class="cap-empty-steps-body"><strong>Start:</strong> enter the URL below and click Capture, or use <strong>New capture</strong> in the toolbar anytime.</span></li>' +
+          '<li><span class="cap-empty-steps-body"><strong>Browser:</strong> log in if needed. Press <strong>C</strong> to save the current screen, <strong>F</strong> to auto-fill forms, <strong>Done</strong> when finished.</span></li>' +
+          '<li><span class="cap-empty-steps-body"><strong>Canvas:</strong> drag cards to arrange. <strong>Refresh</strong> loads new screenshots from disk.</span></li>' +
         '</ol>' +
         '<form class="cap-form" onsubmit="startCapture(event)">' +
           '<div class="cap-form-row">' +
@@ -1483,7 +1483,7 @@
         },
         status: function(d) { status.textContent = d.message; },
         manual: function(d) {
-          status.textContent = "Browser open — " + (d.captured || 0) + " captured. Use the toolbar in the browser.";
+          status.textContent = "Browser open: " + (d.captured || 0) + " captured. Use the toolbar in the browser.";
           status.style.color = "rgba(34, 197, 94, 0.9)";
           btn.textContent = "Browser Open";
         },
