@@ -171,27 +171,15 @@
     },
     {
       "file": "discover-v2-real-cards-copy.html",
-      "x": -5777,
+      "x": -2021,
       "y": -1297,
       "width": 390
     },
     {
       "file": "discover-from-scratch.html",
-      "x": -5347,
+      "x": -1591,
       "y": -1297,
       "width": 390
-    },
-    {
-      "file": "card-variations-audit-copy.html",
-      "x": -4464,
-      "y": -1297,
-      "width": 1440
-    },
-    {
-      "file": "card-system-from-scratch.html",
-      "x": -2964,
-      "y": -1297,
-      "width": 1440
     }
   ],
   "texts": [
