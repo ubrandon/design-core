@@ -6,7 +6,6 @@ Design Core is a personal, file-based design tool: one repo, one owner, many com
 
 Restated:
 
-- Before designing or revising screens, prototypes, or company UI, read [Game Feel AI Guide](docs/game-feel-ai-guide.md) in full. Follow its firm requirements and apply its style preferences in context with the company's design system.
 - All design data lives under `public/data/companies/<company-slug>/` (projects, design-system, captures, users). Everything else is the tool itself. Both kinds of work are allowed; say which one you are doing.
 - Pick the company from context; if there are several and it is unclear, ask.
 - Run `npm run doctor` whenever something seems broken and follow its fixes.

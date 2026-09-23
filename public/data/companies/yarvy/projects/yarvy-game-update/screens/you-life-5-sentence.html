@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* Life option 5: the takeaway as a sentence; the area chips with counts are the proof under it. */
+  html, body { margin: 0; }
+  .yl { padding: 28px 32px 32px; background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .yl-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+  .yl-head h2 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); line-height: var(--lh-snug); }
+  .yl-head p { margin: 2px 0 0; font-size: var(--fs-sm); color: var(--muted); }
+  .yl-link { display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 0 10px; margin-right: -10px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--accent-2); font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); cursor: pointer; white-space: nowrap; }
+  .yl-link:hover { background: var(--surface-hover); }
+  .t-health { --tone: var(--cat-health); --wash: var(--cat-health-soft); }
+  .t-work { --tone: var(--cat-create); --wash: var(--cat-create-soft); }
+  .t-learn { --tone: var(--cat-learn); --wash: var(--cat-learn-soft); }
+  .t-money { --tone: var(--cat-money); --wash: var(--cat-money-soft); }
+  .t-rel { --tone: var(--accent); --wash: var(--chip-active); }
+  .t-home { --tone: var(--muted); --wash: var(--surface-hover); }
+  .yl-well { display: grid; place-items: center; flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; background: var(--wash); color: var(--tone); font-size: 20px; }
+  .yl-quiet { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; margin-top: 12px; font-size: var(--fs-sm); color: var(--muted); }
+  .yl-quiet button { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 10px; margin-left: -10px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--muted); font: inherit; cursor: pointer; }
+  .yl-quiet button:hover { background: var(--surface-hover); }
+  .yl-quiet i { font-size: 16px; color: var(--tone); }
+  .yl-quiet b { color: var(--text); font-weight: var(--fw-semibold); }
+  .yl-quiet .warm b { color: var(--accent-2); }
+  .s-card { padding: 22px 24px 18px; border-radius: var(--radius-xl); background: var(--panel); box-shadow: var(--shadow-soft); }
+  .s-card h3 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-bold); line-height: var(--lh-snug); letter-spacing: var(--ls-snug); }
+  .s-card h3 span { color: var(--tone); }
+  .s-card p { margin: 6px 0 0; font-size: var(--fs-body-sm); color: var(--muted); }
+  .s-card p b { color: var(--accent-2); font-weight: var(--fw-semibold); }
+  .s-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .s-chip { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px 0 6px; border: 0; border-radius: var(--radius-pill); background: var(--wash); color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .s-chip .yl-well { width: 28px; height: 28px; font-size: 15px; background: var(--panel); }
+  .s-chip em { font-style: normal; color: var(--muted); font-weight: var(--fw-normal); }
+  .s-chip.quiet { background: transparent; box-shadow: inset 0 0 0 1px var(--line); }
+  .s-chip.quiet .yl-well { background: var(--wash); }
+</style>
+<div class="yl" style="background: var(--shell);">
+<div class="yl-head"><div><h2>Your week</h2></div><button type="button" class="yl-link">Edit areas</button></div><div class="s-card"><h3>Most of it went to <span class="t-health">Health</span> and <span class="t-work">Work</span>.</h3><p>8 of your 10 things. <b>Relationships</b> has been quiet for 2 weeks. Home is paused.</p><div class="s-chips"><button type="button" class="s-chip t-health"><span class="yl-well" aria-hidden="true"><i class="ph ph-person-simple-run"></i></span>Health <em>4</em></button><button type="button" class="s-chip t-work"><span class="yl-well" aria-hidden="true"><i class="ph ph-briefcase"></i></span>Work <em>4</em></button><button type="button" class="s-chip t-learn"><span class="yl-well" aria-hidden="true"><i class="ph ph-book-open"></i></span>Learning <em>1</em></button><button type="button" class="s-chip t-money"><span class="yl-well" aria-hidden="true"><i class="ph ph-wallet"></i></span>Money <em>1</em></button><button type="button" class="s-chip quiet t-rel"><span class="yl-well" aria-hidden="true"><i class="ph ph-heart"></i></span>Relationships <em>0</em></button></div></div>
+</div>

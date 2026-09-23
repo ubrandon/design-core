@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* Life option 4: a plain bar chart, one row per area; the empty rows say why they are empty. */
+  html, body { margin: 0; }
+  .yl { padding: 28px 32px 32px; background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .yl-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+  .yl-head h2 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); line-height: var(--lh-snug); }
+  .yl-head p { margin: 2px 0 0; font-size: var(--fs-sm); color: var(--muted); }
+  .yl-link { display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 0 10px; margin-right: -10px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--accent-2); font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); cursor: pointer; white-space: nowrap; }
+  .yl-link:hover { background: var(--surface-hover); }
+  .t-health { --tone: var(--cat-health); --wash: var(--cat-health-soft); }
+  .t-work { --tone: var(--cat-create); --wash: var(--cat-create-soft); }
+  .t-learn { --tone: var(--cat-learn); --wash: var(--cat-learn-soft); }
+  .t-money { --tone: var(--cat-money); --wash: var(--cat-money-soft); }
+  .t-rel { --tone: var(--accent); --wash: var(--chip-active); }
+  .t-home { --tone: var(--muted); --wash: var(--surface-hover); }
+  .yl-well { display: grid; place-items: center; flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; background: var(--wash); color: var(--tone); font-size: 20px; }
+  .yl-quiet { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; margin-top: 12px; font-size: var(--fs-sm); color: var(--muted); }
+  .yl-quiet button { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 10px; margin-left: -10px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--muted); font: inherit; cursor: pointer; }
+  .yl-quiet button:hover { background: var(--surface-hover); }
+  .yl-quiet i { font-size: 16px; color: var(--tone); }
+  .yl-quiet b { color: var(--text); font-weight: var(--fw-semibold); }
+  .yl-quiet .warm b { color: var(--accent-2); }
+  .c-list { display: flex; flex-direction: column; padding: 6px 8px; border-radius: var(--radius-xl); background: var(--panel); box-shadow: var(--shadow-soft); }
+  .c-row { display: grid; grid-template-columns: 170px minmax(0, 1fr) 72px; align-items: center; gap: 16px; min-height: 48px; padding: 0 10px; border: 0; border-radius: var(--radius-md); background: transparent; color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+  .c-row:hover { background: var(--surface-hover); }
+  .c-name { display: flex; align-items: center; gap: 10px; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); }
+  .c-name .yl-well { width: 32px; height: 32px; font-size: 17px; }
+  .c-track { height: 12px; }
+  .c-track i { display: block; height: 100%; width: calc(var(--n) / 4 * 100%); border-radius: var(--radius-pill); background: var(--tone); }
+  .c-num { text-align: right; font-size: var(--fs-sm); color: var(--muted); font-variant-numeric: tabular-nums; }
+  .c-num b { color: var(--text); font-weight: var(--fw-semibold); }
+  .c-note { font-size: var(--fs-sm); color: var(--muted); }
+  .c-note.warm { color: var(--accent-2); font-weight: var(--fw-semibold); }
+</style>
+<div class="yl" style="background: var(--shell);">
+<div class="yl-head"><div><h2>This week, by area</h2><p>Things you finished, counted by the part of your life they helped.</p></div><button type="button" class="yl-link">Edit areas</button></div><div class="c-list"><button type="button" class="c-row t-health"><span class="c-name"><span class="yl-well" aria-hidden="true"><i class="ph ph-person-simple-run"></i></span>Health</span><span class="c-track" aria-hidden="true"><i style="--n:4"></i></span><span class="c-num"><b>4</b> done</span></button><button type="button" class="c-row t-work"><span class="c-name"><span class="yl-well" aria-hidden="true"><i class="ph ph-briefcase"></i></span>Work</span><span class="c-track" aria-hidden="true"><i style="--n:4"></i></span><span class="c-num"><b>4</b> done</span></button><button type="button" class="c-row t-learn"><span class="c-name"><span class="yl-well" aria-hidden="true"><i class="ph ph-book-open"></i></span>Learning</span><span class="c-track" aria-hidden="true"><i style="--n:1"></i></span><span class="c-num"><b>1</b> done</span></button><button type="button" class="c-row t-money"><span class="c-name"><span class="yl-well" aria-hidden="true"><i class="ph ph-wallet"></i></span>Money</span><span class="c-track" aria-hidden="true"><i style="--n:1"></i></span><span class="c-num"><b>1</b> done</span></button><button type="button" class="c-row t-rel"><span class="c-name"><span class="yl-well" aria-hidden="true"><i class="ph ph-heart"></i></span>Relationships</span><span class="c-note warm">Quiet for 2 weeks</span><span class="c-num"><b>0</b> done</span></button><button type="button" class="c-row t-home"><span class="c-name"><span class="yl-well" aria-hidden="true"><i class="ph ph-house"></i></span>Home</span><span class="c-note">Paused, reno finished</span><span class="c-num">Paused</span></button></div>
+</div>

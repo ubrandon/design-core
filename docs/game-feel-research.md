@@ -2,7 +2,7 @@
 
 Deep research, evidence, worked examples, and annotated sources behind the operational AI guide.
 
-**AI agents:** load [`game-feel-ai-guide.md`](./game-feel-ai-guide.md) for design work. Open this file only when debating a principle, checking evidence, or expanding the research.
+**Reference only.** This essay is not an AI rule set and is not required reading for design work.
 
 **Humans:** this is the full essay. The slim guide is distilled from it.
 

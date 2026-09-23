@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* Lists, variant C3, clean edge: C2's review applied. Counts move to one right aligned column, the per row More menu leaves (long press or the list page's More opens actions), the only disclosure controls share a trailing column, and Add list lives once, on the Your lists line. */
+  html, body, .yv-shot { scrollbar-gutter: auto; }
+  .yv-shot #nav-you { order: 3; } .yv-shot #nav-tasks { order: 4; }
+  .yv-shot { position: relative; height: 844px; overflow: hidden; background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .yv-shot #app { height: 844px; min-height: 0; overflow: hidden; }
+  .yv-shot #rail, .yv-shot #fab { position: absolute; }
+  .yv-shot #projects-view { overflow: hidden; }
+  .yv-shot .app-toast { display: none; }
+  /* Title stands alone: the header list-plus was a third add control on one screen. */
+  .yv-shot .projects-head { align-items: center; min-height: var(--task-touch-target); }
+  /* One row height for views and lists, at the 44px minimum, so the whole page clears the FAB at rest. */
+  .yv-shot #projects-nav .tnav-item { min-height: var(--task-touch-target); padding-block: 8px; align-items: center; }
+  .yv-shot #projects-nav .tnav-name { align-items: center; }
+  /* Sublist indent is the parent's icon plus gap, so the child icon sits under the parent's name. */
+  .yv-shot #projects-nav .tnav-tree-row { padding-left: calc(var(--list-depth, 0) * 34px); }
+  /* Count column: bare tabular numbers flush right, so they scan as one column down the page. */
+  .yv-shot #projects-nav .lm-c3-count { flex: 0 0 auto; margin-left: auto; min-width: 24px; padding: 0; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+  /* Inbox is the one count that asks for action (items to sort), so it alone carries the accent; the pill hangs right so its digit stays in the column. */
+  .yv-shot #projects-nav .lm-c3-count.is-due { min-width: 22px; padding: 2px 7px; border-radius: var(--radius-pill); background: var(--chip-active); color: var(--accent-2); font-size: var(--fs-xs); font-weight: var(--fw-bold); line-height: 1.2; text-align: center; margin-right: -7px; }
+  /* Disclosure column: every row reserves the same trailing slot, only parents fill it, so counts never shift. */
+  .yv-shot #projects-nav .tnav-actions { flex: 0 0 var(--task-touch-target); width: var(--task-touch-target); justify-content: center; }
+  .yv-shot #projects-nav .tnav-caret, .yv-shot #projects-nav .tnav-caret-space { flex-basis: var(--task-touch-target); width: var(--task-touch-target); height: var(--task-touch-target); }
+  /* A favorite keeps its place in Your lists and wears a small star, so the second row reads as the same list. */
+  .yv-shot .lm-c3-star { flex: 0 0 auto; font-size: 13px; color: var(--accent-2); }
+  /* Section heads share one height whether or not they carry a control. */
+  .yv-shot #projects-nav .tnav-spaces-head { min-height: var(--task-touch-target); margin: 8px 0 0; padding-top: 8px; border-top: 1px solid var(--line-soft); }
+  /* Add list: the one add-list control, a quiet control-surface disc on a 44px target. */
+  .yv-shot #projects-nav .tnav-spaces-head .add-space-btn { position: relative; width: var(--task-touch-target); padding: 0; background: none; color: var(--text); margin-right: 0; }
+  .yv-shot #projects-nav .tnav-spaces-head .add-space-btn::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: var(--control-surface); }
+  .yv-shot #projects-nav .tnav-spaces-head .add-space-btn i { position: relative; font-size: 18px; }
+  /* Archived uses the same count and disclosure columns as the rows above it. */
+  .yv-shot #projects-nav .lm-c3-archived { display: flex; align-items: center; margin-top: 4px; border-radius: var(--radius-md); }
+  .yv-shot #projects-nav .lm-c3-archived .tnav-archived-head { flex: 1 1 auto; min-height: var(--task-touch-target); margin: 0; padding: 8px var(--task-space-sm); gap: 9px; }
+  .yv-shot #projects-nav .lm-c3-archived .tnav-archived-head i { width: 22px; font-size: 20px; color: var(--muted); }
+  .yv-shot #projects-nav .lm-c3-archived .lm-c3-count { font-weight: var(--fw-semibold); }
+</style>
+<div class="yv-shot lm-c3" style="background: var(--shell);">
+  <main id="app" class="projects-mode">
+    <nav id="rail" aria-label="Main navigation">
+      <div class="rail-brand"><svg class="rail-mark" viewBox="4 17 92 66" aria-hidden="true"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"><line x1="10" y1="42" x2="10" y2="58" opacity="0.76"></line><line x1="30" y1="28" x2="30" y2="72" opacity="0.94"></line><line x1="50" y1="37" x2="50" y2="63" opacity="0.82"></line><line x1="70" y1="23" x2="70" y2="77" opacity="1.00"></line><line x1="90" y1="40" x2="90" y2="60" opacity="0.79"></line></g></svg><span class="rail-wordmark">yarvy</span></div>
+      <div class="rail-nav">
+        <button id="nav-home" class="nav-item" type="button" aria-label="Chat"><i class="ph ph-chat-circle nav-ico" aria-hidden="true"></i><i class="ph-fill ph-chat-circle nav-ico-on" aria-hidden="true"></i><span class="nav-label">Chat</span></button>
+        <button id="nav-upcoming" class="nav-item" type="button" aria-label="Today"><i class="ph ph-calendar-blank nav-ico" aria-hidden="true"></i><i class="ph-fill ph-calendar-blank nav-ico-on" aria-hidden="true"></i><span class="nav-label">Today</span></button>
+        <button id="nav-you" class="nav-item" type="button" aria-label="You"><i class="ph ph-user nav-ico" aria-hidden="true"></i><i class="ph-fill ph-user nav-ico-on" aria-hidden="true"></i><span class="nav-label">You</span></button>
+        <button id="nav-tasks" class="nav-item active" type="button" aria-label="Lists" aria-current="page"><i class="ph ph-list nav-ico" aria-hidden="true"></i><i class="ph-fill ph-list nav-ico-on" aria-hidden="true"></i><span class="nav-label">Lists</span></button>
+      </div>
+      <div class="rail-spacer"></div>
+    </nav>
+    <section id="projects-view">
+      <div class="projects-wrap">
+        <div class="projects-head"><h1 class="projects-title">Lists</h1></div>
+        <div id="projects-nav">
+          <div class="tnav-row" data-nav-key="all:"><button type="button" class="tnav-item" title="All tasks"><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>All tasks</span></span><span class="lm-c3-count" aria-label="19 tasks">19</span></button><div class="tnav-actions"><span class="tnav-caret-space" aria-hidden="true"></span></div></div>
+          <div class="tnav-row" data-nav-key="allnotes:"><button type="button" class="tnav-item" title="All notes"><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M15 4v4h4M8 13h8M8 17h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>All notes</span></span><span class="lm-c3-count" aria-label="3 notes">3</span></button><div class="tnav-actions"><span class="tnav-caret-space" aria-hidden="true"></span></div></div>
+          <div class="tnav-row" data-nav-key="inbox:"><button type="button" class="tnav-item" title="Inbox"><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l2.4-7h11.2L20 13v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zM4 13h4l1.5 2.5h5L16 13h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Inbox</span></span><span class="lm-c3-count is-due" aria-label="2 to sort">2</span></button><div class="tnav-actions"><span class="tnav-caret-space" aria-hidden="true"></span></div></div>
+
+          <div class="tnav-spaces-head"><h2 class="tnav-spaces-title">Favorites</h2></div>
+          <div class="tnav-row tnav-tree-row" style="--list-depth: 0;"><button type="button" class="tnav-item" title="Lisbon trip"><span class="tnav-name"><span class="cic emoji" aria-hidden="true">✈️</span><span>Lisbon trip</span></span><span class="lm-c3-count" aria-label="3 tasks">3</span></button><div class="tnav-actions"><span class="tnav-caret-space" aria-hidden="true"></span></div></div>
+
+          <div class="tnav-spaces-head"><h2 class="tnav-spaces-title">Your lists</h2><button type="button" class="add-space-btn" title="Add list" aria-label="Add list"><i class="ph ph-plus" aria-hidden="true"></i></button></div>
+          <div class="tnav-row tnav-tree-row" style="--list-depth: 0;"><button type="button" class="tnav-item" title="Home"><span class="tnav-name"><span class="cic emoji" aria-hidden="true">🏡</span><span>Home</span></span><span class="lm-c3-count" aria-label="4 tasks">4</span></button><div class="tnav-actions"><span class="tnav-caret-space" aria-hidden="true"></span></div></div>
+          <div class="tnav-row tnav-tree-row" style="--list-depth: 0;"><button type="button" class="tnav-item" title="Work"><span class="tnav-name"><span class="cic emoji" aria-hidden="true">💼</span><span>Work</span></span><span class="lm-c3-count" aria-label="7 tasks in Work">7</span></button><div class="tnav-actions"><button type="button" class="tnav-caret" title="Hide sublists" aria-label="Hide sublists of Work" aria-expanded="true"><i class="ph ph-caret-down" aria-hidden="true"></i></button></div></div>
+          <div class="tnav-row tnav-tree-row" style="--list-depth: 1;"><button type="button" class="tnav-item" title="Launch prep"><span class="tnav-name"><span class="cic emoji" aria-hidden="true">🚀</span><span>Launch prep</span></span><span class="lm-c3-count" aria-label="3 tasks">3</span></button><div class="tnav-actions"><span class="tnav-caret-space" aria-hidden="true"></span></div></div>
+          <div class="tnav-row tnav-tree-row" style="--list-depth: 0;"><button type="button" class="tnav-item" title="Health"><span class="tnav-name"><span class="cic emoji" aria-hidden="true">🏃</span><span>Health</span></span><span class="lm-c3-count" aria-label="3 tasks">3</span></button><div class="tnav-actions"><span class="tnav-caret-space" aria-hidden="true"></span></div></div>
+          <div class="tnav-row tnav-tree-row" style="--list-depth: 0;"><button type="button" class="tnav-item" title="Lisbon trip"><span class="tnav-name"><span class="cic emoji" aria-hidden="true">✈️</span><span>Lisbon trip</span><i class="ph-fill ph-star lm-c3-star" aria-label="Favorite"></i></span><span class="lm-c3-count" aria-label="3 tasks">3</span></button><div class="tnav-actions"><span class="tnav-caret-space" aria-hidden="true"></span></div></div>
+
+          <div class="lm-c3-archived"><button type="button" class="tnav-archived-head collapsed" aria-expanded="false"><i class="ph ph-archive" aria-hidden="true"></i><span>Archived</span><span class="lm-c3-count" aria-label="1 list">1</span></button><div class="tnav-actions"><button type="button" class="tnav-caret" title="Show archived" aria-label="Show archived lists" aria-expanded="false"><i class="ph ph-caret-right" aria-hidden="true"></i></button></div></div>
+        </div>
+      </div>
+    </section>
+    <button id="fab" type="button" aria-label="Add task or note"><i class="ph ph-plus" aria-hidden="true"></i></button>
+  </main>
+</div>

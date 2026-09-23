@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  /* Life option 1: counts in place of marks; only areas that moved get a tile, the rest are one quiet line. */
+  html, body { margin: 0; }
+  .yl { padding: 28px 32px 32px; background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .yl-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+  .yl-head h2 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); line-height: var(--lh-snug); }
+  .yl-head p { margin: 2px 0 0; font-size: var(--fs-sm); color: var(--muted); }
+  .yl-link { display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 0 10px; margin-right: -10px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--accent-2); font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); cursor: pointer; white-space: nowrap; }
+  .yl-link:hover { background: var(--surface-hover); }
+  .t-health { --tone: var(--cat-health); --wash: var(--cat-health-soft); }
+  .t-work { --tone: var(--cat-create); --wash: var(--cat-create-soft); }
+  .t-learn { --tone: var(--cat-learn); --wash: var(--cat-learn-soft); }
+  .t-money { --tone: var(--cat-money); --wash: var(--cat-money-soft); }
+  .t-rel { --tone: var(--accent); --wash: var(--chip-active); }
+  .t-home { --tone: var(--muted); --wash: var(--surface-hover); }
+  .yl-well { display: grid; place-items: center; flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; background: var(--wash); color: var(--tone); font-size: 20px; }
+  .yl-quiet { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; margin-top: 12px; font-size: var(--fs-sm); color: var(--muted); }
+  .yl-quiet button { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 10px; margin-left: -10px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--muted); font: inherit; cursor: pointer; }
+  .yl-quiet button:hover { background: var(--surface-hover); }
+  .yl-quiet i { font-size: 16px; color: var(--tone); }
+  .yl-quiet b { color: var(--text); font-weight: var(--fw-semibold); }
+  .yl-quiet .warm b { color: var(--accent-2); }
+  .n-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .n-tile { display: flex; align-items: center; gap: 14px; padding: 16px; border: 0; border-radius: var(--radius-xl); background: var(--panel); box-shadow: var(--shadow-soft); color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+  .n-tile:hover { background: var(--card-hover); }
+  .n-txt { display: block; }
+  .n-tile b { display: block; font-size: var(--fs-stat); font-weight: var(--fw-heavy); line-height: 1; font-variant-numeric: tabular-nums; }
+  .n-txt span { display: block; margin-top: 4px; font-size: var(--fs-sm); color: var(--muted); }
+</style>
+<div class="yl" style="background: var(--shell);">
+<div class="yl-head"><div><h2>This week, by area</h2><p>10 things you finished, sorted into the parts of your life they helped.</p></div><button type="button" class="yl-link">Edit areas</button></div><div class="n-row"><button type="button" class="n-tile t-health" aria-label="4 Health things done this week"><span class="yl-well" aria-hidden="true"><i class="ph ph-person-simple-run"></i></span><span class="n-txt"><b>4</b><span>Health</span></span></button><button type="button" class="n-tile t-work" aria-label="4 Work things done this week"><span class="yl-well" aria-hidden="true"><i class="ph ph-briefcase"></i></span><span class="n-txt"><b>4</b><span>Work</span></span></button><button type="button" class="n-tile t-learn" aria-label="1 Learning things done this week"><span class="yl-well" aria-hidden="true"><i class="ph ph-book-open"></i></span><span class="n-txt"><b>1</b><span>Learning</span></span></button><button type="button" class="n-tile t-money" aria-label="1 Money things done this week"><span class="yl-well" aria-hidden="true"><i class="ph ph-wallet"></i></span><span class="n-txt"><b>1</b><span>Money</span></span></button></div><div class="yl-quiet"><button type="button" class="t-rel warm"><i class="ph ph-heart" aria-hidden="true"></i><b>Relationships</b> quiet for 2 weeks</button><button type="button" class="t-home"><i class="ph ph-house" aria-hidden="true"></i><b>Home</b> paused</button></div>
+</div>

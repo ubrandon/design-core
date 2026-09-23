@@ -4,7 +4,7 @@
   "recents": [
     {
       "id": "yarvy-game-update",
-      "ts": 1789572871596
+      "ts": 1790137434855
     },
     {
       "id": "yarvy-home",
@@ -16,6 +16,6 @@
     "sort": "",
     "status": ""
   },
-  "navCollapsed": true,
-  "updatedAt": 1789572871596
+  "navCollapsed": false,
+  "updatedAt": 1790137434867
 }

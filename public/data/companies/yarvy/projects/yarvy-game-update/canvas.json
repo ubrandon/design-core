@@ -85,6 +85,18 @@
       "width": 1200
     },
     {
+      "file": "task-modal-a2-refined.html",
+      "x": 2511,
+      "y": 5659,
+      "width": 1200
+    },
+    {
+      "file": "task-modal-a3-plain-side.html",
+      "x": 3751,
+      "y": 5659,
+      "width": 1200
+    },
+    {
       "file": "current-task-modal-copy.html",
       "x": 0,
       "y": 5659,
@@ -115,64 +127,112 @@
       "width": 390
     },
     {
-      "file": "lists-c-quiet-tree.html",
-      "x": 492,
-      "y": 9877,
-      "width": 390
-    },
-    {
-      "file": "lists-c2-count-tag.html",
-      "x": 926,
+      "file": "lists-c3-clean-edge.html",
+      "x": 439,
       "y": 9877,
       "width": 390
     },
     {
       "file": "you-side-23-radar.html",
-      "x": 3471,
-      "y": 6997,
+      "x": 3366,
+      "y": 7477,
       "width": 340
     },
     {
       "file": "you-side-24-skill-tiles.html",
-      "x": 3843,
-      "y": 6997,
-      "width": 340
-    },
-    {
-      "file": "you-side-30-status-chips.html",
-      "x": 4230,
+      "x": 3366,
       "y": 7000,
-      "width": 340
-    },
-    {
-      "file": "you-side-31-status-groups.html",
-      "x": 4597,
-      "y": 6997,
       "width": 340
     },
     {
       "file": "you-side-37-condition-chips.html",
-      "x": 5048,
-      "y": 7000,
+      "x": 3739,
+      "y": 7003,
       "width": 340
     },
     {
-      "file": "you-side-38-condition-detail.html",
-      "x": 5423,
-      "y": 7000,
-      "width": 390
-    },
-    {
       "file": "you-side-39-life-overview.html",
-      "x": 5893,
+      "x": 4121,
+      "y": 7003,
+      "width": 390
+    },
+    {
+      "file": "chat-g-desk-fresh.html",
+      "x": 3464,
+      "y": 2094,
+      "width": 1200
+    },
+    {
+      "file": "chat-g-desk-reply.html",
+      "x": 4710,
+      "y": 2094,
+      "width": 1200
+    },
+    {
+      "file": "chat-g-mobile-fresh.html",
+      "x": 5956,
+      "y": 2094,
+      "width": 390
+    },
+    {
+      "file": "chat-g-mobile-reply.html",
+      "x": 6390,
+      "y": 2094,
+      "width": 390
+    },
+    {
+      "file": "you-e-life-board.html",
+      "x": 5465,
+      "y": 7000,
+      "width": 1200
+    },
+    {
+      "file": "you-e-mobile.html",
+      "x": 6705,
       "y": 7000,
       "width": 390
     },
     {
-      "file": "you-side-42-good-for-you.html",
-      "x": 6314,
-      "y": 6997,
+      "file": "you-f-simple.html",
+      "x": 7175,
+      "y": 7000,
+      "width": 1200
+    },
+    {
+      "file": "you-f-mobile.html",
+      "x": 8415,
+      "y": 7000,
       "width": 390
+    },
+    {
+      "file": "you-life-1-numbers.html",
+      "x": 8885,
+      "y": 7000,
+      "width": 960
+    },
+    {
+      "file": "you-life-2-one-bar.html",
+      "x": 9885,
+      "y": 7000,
+      "width": 960
+    },
+    {
+      "file": "you-life-3-rows.html",
+      "x": 10885,
+      "y": 7000,
+      "width": 960
+    },
+    {
+      "file": "you-life-4-bars.html",
+      "x": 11885,
+      "y": 7000,
+      "width": 960
+    },
+    {
+      "file": "you-life-5-sentence.html",
+      "x": 12885,
+      "y": 7000,
+      "width": 960
     }
   ],
   "texts": [
@@ -217,13 +277,6 @@
       "y": 7000,
       "size": 72,
       "id": "text-mu2-youpage-7"
-    },
-    {
-      "text": "You page, simpler goals",
-      "x": 0,
-      "y": 9132,
-      "size": 72,
-      "id": "text-mu2-yousimple-8"
     },
     {
       "text": "Mobile list",

@@ -1,0 +1,133 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+  html, body { scrollbar-gutter: auto; }
+  /* Chat redesign G, phone fresh load: greeting left, the next thing and the one decision above a docked composer. */
+  .yv-shot { position: relative; height: 844px; overflow: hidden; scrollbar-gutter: auto; background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; }
+  .yv-shot #app { height: 844px; min-height: 0; overflow: hidden; }
+  .yv-shot #rail { position: absolute; }
+  .gm { height: 844px; padding-bottom: 73px; display: flex; flex-direction: column; min-width: 0; }
+  .gm-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 12px 0 16px; min-height: 56px; }
+  .gm-date { font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--muted); }
+  .gm-hist { display: inline-flex; align-items: center; min-height: 44px; padding: 0; border: 0; background: transparent; font: inherit; cursor: pointer; }
+  .gm-hist span { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px 0 10px; border-radius: var(--radius-pill); background: var(--control-surface); color: var(--text); font-size: var(--fs-sm); font-weight: var(--fw-semibold); }
+  .gm-hist i { font-size: 17px; }
+  .gm-scroll { flex: 1; min-height: 0; overflow: hidden; padding: 4px 16px 0; display: flex; flex-direction: column; }
+  .gm-dock { padding: 10px 16px 12px; }
+  .gm-composer { display: flex; align-items: flex-end; gap: 10px; padding: 8px 8px 8px 16px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-3xl); box-shadow: var(--shadow-float); }
+  .gm-input { flex: 1; min-height: 44px; padding: 10px 0 0; color: var(--muted); font-size: var(--fs-body); }
+  .gm-send { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--control-surface); color: var(--muted); display: grid; place-items: center; }
+  .gm-send svg { width: 20px; height: 20px; }
+
+  .gm-chk { flex: none; width: 44px; height: 44px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 50%; background: transparent; color: var(--ring); font-size: 22px; }
+  .gm-chk.p1 { color: var(--prio-1); }
+  .gm-chk.p2 { color: var(--prio-2); }
+  .gm-open { display: flex; align-items: center; gap: 8px; width: 100%; min-width: 0; min-height: 48px; padding: 6px 0; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; }
+  .gm-body { flex: 1; min-width: 0; }
+  .gm-title { display: block; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); line-height: var(--lh-snug); }
+  .gm-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 10px; margin-top: 2px; font-size: var(--fs-xs); color: var(--muted); }
+  .gm-meta .late { color: var(--overdue); font-weight: var(--fw-semibold); }
+  .gm-meta i { font-size: 13px; }
+  .gm-caret { flex: none; color: var(--muted); font-size: 16px; padding: 0 2px; }
+  .gm-card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-xl); }
+  .gm-row { display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: center; padding: 6px 8px 6px 4px; }
+  .gm-when { display: block; font-size: var(--fs-xs); font-weight: var(--fw-bold); color: var(--accent-2); }
+  .gm-presence { width: 40px; height: 34px; margin: 18px 0 14px; }
+  .gm-presence svg, .gm-mini svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .gm-presence .eq-bar, .gm-mini .eq-bar { fill: var(--accent); }
+  .gm-greet { margin: 0; font-size: var(--fs-display-sm); font-weight: var(--fw-heavy); letter-spacing: var(--ls-tight); line-height: var(--lh-tight); }
+  .gm-greet span { color: var(--accent-2); }
+  .gm-read { margin: 8px 0 0; font-size: var(--fs-body); color: var(--muted); }
+  .gm-read b { color: var(--text); font-weight: var(--fw-semibold); }
+  .gm-stack { display: flex; flex-direction: column; gap: 10px; margin-top: auto; padding-top: 24px; }
+  .gm .board-group h3 { margin: 0 0 6px 4px; }
+  .gm .board-cards .card-title { font-size: var(--fs-body-sm); }
+  .gm-top { justify-content: center; padding: 6px 16px 0; }
+  .gm-hero { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .gm-hero .gm-presence { margin: 14px 0 12px; }
+  .gm-eyebrow { font-size: var(--fs-xs); font-weight: var(--fw-semibold); letter-spacing: var(--ls-eyebrow); text-transform: uppercase; color: var(--muted); }
+  .gm-hero .gm-greet { margin-top: 4px; }
+  .gm-stack { gap: 14px; margin-top: 0; padding-top: 28px; }
+  /* Board rows keep the board's intended sizes (the later .task-card title rule otherwise wins) and show only the More menu, which also holds Schedule and Edit. */
+  .yv-shot .board-cards .card-title { font-size: var(--fs-body-sm); }
+  .yv-shot .board-cards .card-sub { font-size: var(--fs-xs); }
+  .yv-shot .board-cards .card-action.schedule, .yv-shot .board-cards .card-action.edit { display: none; }
+</style>
+<div class="yv-shot" style="background: var(--shell);">
+  <main id="app">
+    <nav id="rail" aria-label="Main navigation">
+        <div class="rail-brand">
+          <!-- Brand mark (bare bars, no tile) mirrors scripts/gen-icons.mjs, public/login.html, public/js/auth-screen.js and site/index.html; change all together. -->
+          <svg class="rail-mark" viewBox="4 17 92 66" aria-hidden="true"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"><line x1="10" y1="42" x2="10" y2="58" opacity="0.76"></line><line x1="30" y1="28" x2="30" y2="72" opacity="0.94"></line><line x1="50" y1="37" x2="50" y2="63" opacity="0.82"></line><line x1="70" y1="23" x2="70" y2="77" opacity="1.00"></line><line x1="90" y1="40" x2="90" y2="60" opacity="0.79"></line></g></svg>
+          <span class="rail-wordmark">yarvy</span>
+        </div>
+        <div class="rail-nav">
+          <button id="nav-home" class="nav-item active" type="button" aria-label="Chat" aria-current="page">
+            <i class="ph ph-chat-circle nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-chat-circle nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Chat</span>
+          </button>
+          <button id="nav-upcoming" class="nav-item" type="button" aria-label="Upcoming" title="Upcoming">
+            <i class="ph ph-calendar-blank nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-calendar-blank nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Upcoming</span>
+          </button>
+          <button id="nav-tasks" class="nav-item" type="button" aria-label="Tasks" title="Tasks">
+            <i class="ph ph-check-fat nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-check-fat nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Tasks</span>
+          </button>
+          <button id="nav-you" class="nav-item" type="button" aria-label="You" title="You">
+            <i class="ph ph-user nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-user nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">You</span>
+          </button>
+        </div>
+        <div class="rail-spacer"></div>
+        <div id="usermenu">
+          <button id="profile" type="button" aria-label="Account menu" title="Account menu" aria-haspopup="menu" aria-expanded="false">
+            <span class="nav-pill"><span id="avatar">BU</span></span>
+            <span id="rail-name">Brandon</span>
+            <i class="ph ph-caret-up-down profile-chevron" aria-hidden="true"></i>
+            <span class="nav-label">You</span>
+          </button>
+        </div>
+        <button id="nav-projects" class="nav-item" type="button" aria-label="Lists" title="Lists">
+          <i class="ph ph-list nav-ico" aria-hidden="true"></i>
+          <i class="ph-fill ph-list nav-ico-on" aria-hidden="true"></i>
+          <span class="nav-label">Lists</span>
+        </button>
+      </nav>
+    <section class="gm">
+      <div class="gm-top"><button class="gm-hist" type="button" aria-label="Earlier messages, 3 today"><span><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i>3 earlier</span></button></div>
+      <div class="gm-scroll">
+        <div class="gm-hero">
+          <div class="gm-presence" aria-hidden="true"><svg viewBox="0 0 42 36"><g class="signal-field"><rect class="eq-bar" x="3" y="12" width="4" height="12" rx="2"/><rect class="eq-bar" x="11" y="9" width="4" height="18" rx="2"/><rect class="eq-bar" x="19" y="6" width="4" height="24" rx="2"/><rect class="eq-bar" x="27" y="9" width="4" height="18" rx="2"/><rect class="eq-bar" x="35" y="12" width="4" height="12" rx="2"/></g></svg></div>
+          <span class="gm-eyebrow">Monday, September 14</span>
+          <h1 class="gm-greet"><span>Good morning,</span> Brandon</h1>
+          <p class="gm-read">Your run is next, at <b>12:30</b>. One task from Friday is overdue.</p>
+        </div>
+
+        <div class="gm-stack">
+          <div class="board-group">
+            <h3>Up next</h3>
+            <div class="project-tasks board-cards">
+              <div class="task-card prio-2"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark done" aria-label="Mark done: Long run, 14 km"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Long run, 14 km</div><div class="card-meta"><button type="button" class="meta-date" title="Change date"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>Today at 12:30 PM</span></button><button type="button" class="meta-loc" title="Open Health"><span class="cic emoji" aria-hidden="true">🏃</span><span class="meta-loc-name">Health</span></button></div></div><div class="card-actions"><button type="button" class="card-action schedule" title="Schedule" aria-label="Schedule task"><i class="ph ph-calendar-blank" aria-hidden="true"></i></button><button type="button" class="card-action edit" title="Edit" aria-label="Edit task"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="card-action more" title="More actions" aria-label="More task actions"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div>
+            </div>
+          </div>
+          <div class="board-group">
+            <h3>Overdue</h3>
+            <div class="project-tasks board-cards">
+              <div class="task-card prio-2"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark done" aria-label="Mark done: Review pricing page copy"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Review pricing page copy</div><div class="card-meta"><button type="button" class="meta-date overdue" title="Change date"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>Fri, 2 days ago</span></button><button type="button" class="meta-loc" title="Open Launch prep"><span class="cic emoji" aria-hidden="true">🚀</span><span class="meta-loc-name">Launch prep</span></button></div></div><div class="card-actions"><button type="button" class="card-action schedule" title="Schedule" aria-label="Schedule task"><i class="ph ph-calendar-blank" aria-hidden="true"></i></button><button type="button" class="card-action edit" title="Edit" aria-label="Edit task"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="card-action more" title="More actions" aria-label="More task actions"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gm-dock">
+        <div class="gm-composer"><div class="gm-input">Add a task or ask anything</div><button class="gm-send" type="button" aria-label="Send" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M12 5l-6 6M12 5l6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+      </div>
+    </section>
+  </main>
+</div>

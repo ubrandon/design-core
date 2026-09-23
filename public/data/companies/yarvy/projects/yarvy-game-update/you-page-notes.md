@@ -207,3 +207,46 @@ Feedback on 37 and 38: kind of there, still too complicated, hard to scan. Rerea
 45. **One rail.** The other way to be scannable: one picture instead of five rows. All five areas as faces on a single resting-to-full-swing rail, the unplanned-rest one ringed warm, and one sentence under it naming the only thing that needs attention with its one action. The whole month reads in a glance, and clustering is information: four faces bunched right and one alone on the left is the story, no words needed.
 
 **Pick: 44 as the section on the You page, 45 as the phone glance.** 44 keeps the list form every other section uses and each row is a whole target into 38. 45 is the most scannable thing this exploration has produced and earns the small slot: header area, widget, or watch face; as a full section it underuses the space and the labels fight at five areas or more. Both pass the doc's five-questions test in one read: what is this (my areas), what is the state (the chips or positions), what can I do (the one named action), what needs attention (the single warm signal), what counts as done (everything rolling or rest that was chosen).
+
+## Round ten: the life board (E)
+
+Brandon's ask: make c5 look better, read easier, feel more motivating, and fold in the side ideas (areas, statuses, radar, tiles, life overview) so tasks and goals visibly add up to a life. `you-e-life-board` (desktop) and `you-e-mobile` (phone) sit to the right of 39.
+
+What was wrong with c5:
+
+- Nothing connects the levels. Tasks live on Today, goals here, and the page never shows that a task moved a goal or that goals add up to anything bigger.
+- The header's three counts (tasks, check-ins, moments) are three units that mean nothing together.
+- Pace counts volume, and on a Tuesday it is two points on an empty chart.
+- Run a half marathon shows a 0% bar while two milestones are done: the wrong unit for that goal.
+- Badges ("3 goals set", "First list") are the only recognition on the page and they reward setup, not results.
+
+What E does, top to bottom:
+
+1. **Your life this week.** Six area tiles (39's areas, 24's tile look, 30's chips). Each tile has one status and a row of pips, one pip per real item this week: filled is done, hollow is planned and still open. This is the part that makes the page feel like a game: you can see each finished task land in part of your life, and the pips count real things, not points. Home shows chosen rest as Paused and Relationships is the only warm tile.
+2. **Your goals, grouped by area.** Every goal sits under its area, so the page reads area, goal, task. Each card keeps its own unit (milestone steps, day dots, a bar with the distance left, the latest moment) and adds its **chain**: the linked tasks as small chips, done with a green check and open with a hollow ring. Each chip opens that task.
+3. **Side column: improving, a look, finished.** One evidence-backed identity line ("You're becoming a regular runner", 1 to 2 runs a week), the single area that needs a look with one real action and a chosen-rest way out (38's question), and Finished in place of badges: milestones, books, lists that closed for good.
+
+Header now says "10 things done this week · 5 still planned": done against intended, the same split the pips show.
+
+Open questions for the app: tasks need a goal or area link (Yarvy can propose it, the person confirms); the "improving" line needs at least four weeks of history and a rule that every number traces to items; pips cap at about 8 before collapsing to a count.
+
+## Round eleven: F, E cut down
+
+Feedback on E: too complicated and overwhelming. `you-f-simple` and `you-f-mobile` keep one signal per area, one line per goal, one card beside them.
+
+- **Areas:** icon, name, and one mark per thing done this week. No status chips, no hollow "planned" marks, no counts. An area with nothing shows a word instead (Quiet 2 weeks in warm, Paused in grey).
+- **Goals:** back to one flat list with c5's cards. No area group headers, no task chips. The half marathon keeps milestone steps instead of a 0% bar.
+- **Side:** only What's improving. The Relationships prompt goes (the warm word on the tile is enough, the tap opens 38's detail). Finished becomes a link next to Paused and past.
+- **Header:** "10 things done this week", one number.
+
+## Round twelve: making Your life say what it is
+
+Feedback on F: the full row of six tiles is confusing. It reads like navigation, "Your life" does not say what is counted, and the key sits far from the marks. Five section-only screens (`you-life-1` to `5`, 960 wide), all on the same data: 10 things done this week, Health 4, Work 4, Learning 1, Money 1, Relationships quiet, Home paused. Every option has a heading that names the unit and a subtitle that says how things get sorted, and none shows a tile for an area with nothing in it.
+
+1. **Numbers.** Four tiles, a big count each; quiet and paused areas drop to one line under them.
+2. **One bar.** "Where your 10 things went": one split bar, labeled chips with counts, the quiet line.
+3. **Rows with receipts.** Each area names what went into it ("Long run, meditated twice, cooked once"), so the section explains itself without a key.
+4. **Bar chart.** One row per area, bar length is the count, empty rows say why ("Quiet for 2 weeks", "Paused, reno finished").
+5. **Sentence.** "Most of it went to Health and Work." as the headline, area chips with counts as the proof.
+
+**Pick: 3.** Seeing the items is what makes "area" make sense: you read "Health, 4 done: long run, meditated twice, cooked once" and the idea explains itself. 2 is the most compact and the best glance; 4 is the clearest comparison but the heaviest.
