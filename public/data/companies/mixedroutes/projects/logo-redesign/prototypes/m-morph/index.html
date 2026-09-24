@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>M morph</title>
+<link rel="stylesheet" href="../../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../../design-system/company.css" />
+<style>
+  html, body { margin:0; height:100%; }
+  body { background:var(--mm-bg); color:var(--mm-fg); transition:background .5s ease, color .5s ease; overflow:hidden; font-family:Geist, var(--font-sans, system-ui), sans-serif; }
+  .mm { --mm-bg:#101114; --mm-fg:#fff; --mm-muted:#8E94A1; --mm-chip:#1D1F25; --mm-chip-on:#fff; --mm-chip-on-fg:#101114; }
+  .mm.is-mono { --mm-bg:#fff; --mm-fg:#101114; --mm-muted:#555B67; --mm-chip:#F0F2F7; --mm-chip-on:#1749E5; --mm-chip-on-fg:#fff; }
+  body:has(.mm.is-mono) { --mm-bg:#fff; --mm-fg:#101114; }
+  body:has(.mm:not(.is-mono)) { --mm-bg:#101114; --mm-fg:#fff; }
+  .mm { position:relative; height:100vh; width:100%; display:grid; grid-template-rows:minmax(0,1fr) auto; grid-template-columns:minmax(0,1fr); overflow:hidden; }
+  .mm-stage { display:grid; place-items:center; min-height:0; padding:32px 24px 0; }
+  .mm-stage svg { width:min(58vh, 80vw); height:min(58vh, 80vw); display:block; overflow:visible; }
+  .mm-label { text-align:center; margin-top:8px; height:28px; font-size:15px; letter-spacing:.2px; color:var(--mm-muted); }
+  .mm-label b { color:var(--mm-fg); font-weight:600; }
+  .mm-bar { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:16px; padding:16px 28px 28px; }
+  .mm-bar-end { display:flex; gap:8px; }
+  .mm-chips { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; min-width:0; }
+  .mm-chip, .mm-btn { appearance:none; border:0; font:inherit; font-size:14px; font-weight:550; cursor:pointer; min-height:44px; border-radius:999px; padding:0 16px; background:var(--mm-chip); color:var(--mm-fg); white-space:nowrap; transition:background .15s ease, color .15s ease; }
+  .mm-chip[aria-pressed="true"] { background:var(--mm-chip-on); color:var(--mm-chip-on-fg); }
+  .mm-chip:focus-visible, .mm-btn:focus-visible { outline:2px solid #1749E5; outline-offset:2px; }
+  .mm-btn { display:inline-flex; align-items:center; gap:8px; flex:none; }
+  .mm-btn i { font-size:18px; }
+</style>
+</head>
+<body>
+<div class="mm" id="mm">
+  <div class="mm-stage">
+    <div>
+      <svg viewBox="0 0 1200 1200" aria-label="MixedRoutes M morphing into hobby objects" role="img">
+        <defs>
+          <mask id="mm-mask" maskUnits="userSpaceOnUse" x="-200" y="-200" width="1600" height="1600">
+            <rect x="-200" y="-200" width="1600" height="1600" fill="#fff"/>
+            <g id="mm-detail-tf"><g id="mm-detail" fill="#000"></g></g>
+          </mask>
+        </defs>
+        <g id="mm-body"><path id="mm-shape" mask="url(#mm-mask)" fill="#fff" stroke="#fff" stroke-width="0" stroke-linejoin="round"/></g>
+      </svg>
+      <div class="mm-label" id="mm-label" aria-live="polite"></div>
+    </div>
+  </div>
+  <div class="mm-bar">
+    <button class="mm-btn" id="mm-play" type="button"><i class="ph ph-pause"></i><span>Pause</span></button>
+    <div class="mm-chips" id="mm-chips"></div>
+    <div class="mm-bar-end">
+      <button class="mm-btn" id="mm-via" type="button" aria-pressed="true"><span>Back to M between</span></button>
+      <button class="mm-btn" id="mm-theme" type="button"><span>Blue on white</span></button>
+    </div>
+  </div>
+</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><path id="mm-sampler"/></svg>
+<script>
+const M_PATH = "M0 0 C11.06 9.93 21.68 20.65 30 33 C30.23 33.33 30.23 33.33 31.37 34.99 C46.41 57.02 55.79 81.06 64.81 105.97 C74.56 132.88 74.56 132.88 82 144 C82.38 144.6 82.77 145.19 83.16 145.81 C86.96 151.06 93.88 155.58 99.96 157.68 C109.42 159.18 116.99 158.33 125 153 C125.64 152.58 126.27 152.15 126.93 151.72 C140.34 141.48 146.09 121.06 151.46 105.89 C162.42 75.01 174.98 44.76 197 20 C197.46 19.48 197.92 18.96 198.39 18.43 C227.12 -13.88 265.11 -34.56 308.6 -37.75 C352.67 -40.24 395.42 -24.29 428.27 4.88 C431.57 7.86 434.79 10.92 438 14 C438.26 14.24 438.26 14.24 439.56 15.48 C447.54 23.06 454.44 31.17 461 40 C461.43 40.58 461.86 41.15 462.3 41.74 C468.81 50.48 474.66 59.51 480 69 C480.21 69.38 480.21 69.38 481.28 71.27 C509.44 121.69 519.45 178.12 526.92 234.7 C527 235.35 527.09 236 527.18 236.67 C528.79 248.89 530.39 261.11 531.98 273.34 C535.95 304.06 540.22 334.68 545.66 365.18 C545.72 365.5 545.72 365.5 546 367.09 C550.77 393.92 556.49 420.53 562.37 447.13 C576.09 509.3 576.09 509.3 578 536 C578.03 536.36 578.03 536.36 578.17 538.16 C578.54 543.1 578.82 548.05 579 553 C579.02 553.62 579.05 554.25 579.07 554.89 C580.56 602.14 568.95 652.9 540 691 C539.33 691.89 538.66 692.79 537.96 693.71 C514.98 723.01 482.69 744.12 445.5 749.62 C418.23 752.8 391.66 749.46 367 737 C366.33 736.66 365.66 736.33 364.97 735.98 C354.85 730.84 346.28 724.75 338 717 C337.45 716.49 336.9 715.99 336.34 715.47 C302.88 684.34 295.02 643.44 290.23 600.02 C285.36 556.35 285.36 556.35 270 544 C259.48 537.7 250.47 535.44 238.31 538 C228.81 540.59 220.04 545.66 212.12 551.44 C192.85 565.4 170.65 571.83 146.91 568.5 C130.35 565.71 115.67 557.86 103 547 C102.24 546.37 101.48 545.74 100.69 545.1 C94.66 539.98 89.8 534.26 85 528 C84.53 527.4 84.07 526.8 83.59 526.18 C69.34 507.55 59.81 485.87 50.09 464.66 C42.54 448.32 33.95 432.73 21 420 C20.42 419.42 19.84 418.84 19.24 418.25 C11.19 410.78 -0.26 405.79 -11.3 406.09 C-22.75 407.5 -30.61 411.47 -38.03 420.34 C-53.05 440.63 -52.42 469.17 -49.25 493 C-49.07 494.41 -48.89 495.81 -48.71 497.22 C-47.6 505.79 -46.39 514.33 -45.13 522.88 C-36.93 578.9 -39.38 638.59 -74.18 686.06 C-101.86 722.71 -137.64 743.62 -183.06 750.46 C-185.72 750.76 -188.33 750.92 -191 751 C-191.62 751.02 -192.25 751.04 -192.89 751.06 C-236.08 752.28 -275.75 738.21 -307.41 708.56 C-341.01 676.14 -360.05 626.2 -361.18 579.89 C-361.2 578.08 -361.22 576.27 -361.24 574.46 C-361.25 573.48 -361.26 572.5 -361.27 571.48 C-361.63 526.18 -353.81 484.61 -344.06 440.52 C-330.05 377.13 -320.05 313.64 -311.8 249.28 C-301.62 169.74 -301.62 169.74 -291 135 C-290.69 133.99 -290.39 132.99 -290.08 131.95 C-280.1 99.52 -265.47 68.15 -245 41 C-244.58 40.43 -244.15 39.86 -243.72 39.28 C-233.81 26.06 -222.73 13.56 -210 3 C-209.54 2.62 -209.08 2.23 -208.6 1.84 C-148.15 -48 -60.67 -52.11 0 0 Z";
+const STR = (w) => `fill="none" stroke="#000" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"`;
+const lines = (arr, w) => `<path d="${arr.join('')}" ${STR(w)}/>`;
+
+// Every shape is one closed contour in a 1200 box; details are mask cutouts.
+const SHAPES = [
+  { key:'m', name:'MixedRoutes', interest:'', color:'#FFFFFF', d:M_PATH, tf:{px:491, py:244}, detail:'' },
+  { key:'guitar', name:'Guitar', interest:'Music', color:'#C0AFFF',
+    d:'M565 170V353.6A170 170 0 0 0 460.5 617.1A230 230 0 1 0 739.5 617.1A170 170 0 0 0 635 353.6V170H655V70Q655 40 625 40H575Q545 40 545 70V170Z',
+    tf:{py:65, r:-32, s:.92},
+    detail:`<circle cx="600" cy="645" r="74"/><rect x="530" y="850" width="140" height="30" rx="15"/>${lines(['M584 60V860','M600 60V860','M616 60V860'], 6)}<circle cx="566" cy="88" r="10"/><circle cx="634" cy="88" r="10"/><circle cx="566" cy="136" r="10"/><circle cx="634" cy="136" r="10"/>` },
+  { key:'phones', name:'Headphones', interest:'Music', color:'#C0AFFF',
+    d:'M140 630Q140 560 210 560H215V520A385 385 0 0 1 985 520V560H990Q1060 560 1060 630V890Q1060 960 990 960H940Q870 960 870 890V630Q870 560 915 560V520A315 315 0 0 0 285 520V560Q330 560 330 630V890Q330 960 260 960H210Q140 960 140 890Z',
+    tf:{py:50},
+    detail:lines(['M290 590V930','M910 590V930'], 18) },
+  { key:'camera', name:'Camera', interest:'Arts and culture', color:'#FFB3CD',
+    d:'M270 400H290V380Q290 360 310 360H370Q390 360 390 380V400H470L515 300Q522 285 540 285H660Q678 285 685 300L730 400H930Q1000 400 1000 470V830Q1000 900 930 900H270Q200 900 200 830V470Q200 400 270 400Z',
+    tf:{py:8},
+    detail:`<circle cx="600" cy="650" r="190"/><circle cx="600" cy="650" r="145" fill="#fff"/><circle cx="600" cy="650" r="66"/><rect x="820" y="450" width="110" height="50" rx="16"/>${lines(['M200 520H405','M795 520H1000'], 16)}` },
+  { key:'boot', name:'Hiking boot', interest:'Outdoors', color:'#A1E7CE',
+    d:'M340 160Q300 160 296 205L272 740Q268 815 246 855Q226 892 232 935Q240 1000 310 1000H975Q1060 1000 1060 915Q1060 785 930 725L770 655Q660 610 632 520L590 210Q584 160 540 160Z',
+    tf:{px:-45, py:15, s:.95},
+    detail:`${lines(['M200 880H1100'], 26)}${lines(['M455 255L565 285','M468 355L582 385','M485 455L605 485'], 22)}` },
+  { key:'can', name:'Watering can', interest:'Outdoors', color:'#A1E7CE',
+    d:'M360 440H540V390Q540 260 680 260H730Q870 260 870 400V560Q870 640 790 650H760V900Q760 960 700 960H380Q320 960 320 900V730L165 440L110 415Q90 405 98 385L140 305Q150 285 172 295L232 325L218 385L320 580V480Q320 440 360 440Z',
+    tf:{px:120, py:-10},
+    detail:`<path d="M610 440V400Q610 330 690 330H720Q800 330 800 400V570Q800 585 785 585H760V440Z"/><circle cx="128" cy="372" r="11"/><circle cx="160" cy="326" r="11"/>` },
+  { key:'racket', name:'Tennis racket', interest:'Movement', color:'#1749E5',
+    d:'M470 715.8A260 330 0 1 1 730 715.8L640 840V1110Q640 1140 610 1140H590Q560 1140 560 1110V840Z',
+    tf:{py:-20, r:35, s:.9},
+    detail:`<ellipse cx="600" cy="430" rx="212" ry="282"/><path d="${[...Array(9)].map((_, i) => `M${440 + i * 40} 130V730`).join('')}${[...Array(13)].map((_, i) => `M370 ${190 + i * 40}H830`).join('')}" fill="none" stroke="#fff" stroke-width="9"/><path d="M558 788H642L600 836Z"/>${lines(['M560 960L640 940','M560 1010L640 990','M560 1060L640 1040'], 10)}` },
+  { key:'skate', name:'Skateboard', interest:'Movement', color:'#1749E5',
+    d:'M480 240A120 120 0 0 1 720 240V270H755Q775 270 775 290V350Q775 370 755 370H720V830H755Q775 830 775 850V910Q775 930 755 930H720V960A120 120 0 0 1 480 960V930H445Q425 930 425 910V850Q425 830 445 830H480V370H445Q425 370 425 350V290Q425 270 445 270H480Z',
+    tf:{r:35},
+    detail:`${lines(['M720 262V378','M480 262V378','M720 822V938','M480 822V938'], 14)}${lines(['M470 640L730 570'], 28)}` },
+  { key:'dice', name:'Dice', interest:'Games', color:'#E7EF8C',
+    d:'M300 200H900Q1000 200 1000 300V900Q1000 1000 900 1000H300Q200 1000 200 900V300Q200 200 300 200Z',
+    tf:{r:12, s:.9},
+    detail:[[400,400],[800,400],[600,600],[400,800],[800,800]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="72"/>`).join('') },
+  { key:'palette', name:'Paint palette', interest:'Arts and culture', color:'#FFB3CD',
+    d:'M600 140C900 140 1100 340 1100 580C1100 760 960 800 860 760C760 720 700 800 740 900C780 1000 700 1080 580 1080C300 1080 100 860 100 600C100 340 320 140 600 140Z',
+    tf:{py:-10, s:.95},
+    detail:'<ellipse cx="340" cy="790" rx="72" ry="60"/><circle cx="360" cy="440" r="68"/><circle cx="570" cy="300" r="68"/><circle cx="800" cy="340" r="68"/><circle cx="940" cy="540" r="60"/>' },
+  { key:'vase', name:'Vase', interest:'Arts and culture', color:'#FFB3CD',
+    d:'M470 160H730V210Q690 230 690 300Q690 380 830 480Q960 580 960 740Q960 1000 740 1060H460Q240 1000 240 740Q240 580 370 480Q510 380 510 300Q510 230 470 210Z',
+    tf:{py:-10, s:.95},
+    detail:`${lines(['M200 690H1000','M200 770H1000','M480 250H720'], 22)}${[...Array(5)].map((_, i) => `<circle cx="${440 + i * 80}" cy="900" r="18"/>`).join('')}` },
+  { key:'book', name:'Book', interest:'Reading', color:'#DCEAFF',
+    d:'M600 330Q450 250 150 280V900Q450 870 600 950Q750 870 1050 900V280Q750 250 600 330Z', tf:{},
+    detail:`${lines(['M600 345V935'], 14)}${lines([420, 500, 580, 660, 740].map(y => `M230 ${y}Q390 ${y - 20} 530 ${y + 15}M670 ${y + 15}Q810 ${y - 20} 970 ${y}`), 14)}` },
+  { key:'pan', name:'Frying pan', interest:'Food and drink', color:'#FFAC79',
+    d:'M828.1 565H1100Q1135 565 1135 600Q1135 635 1100 635H828.1A330 330 0 1 1 828.1 565Z',
+    tf:{px:-52, r:-25, s:.95},
+    detail:`<circle cx="500" cy="600" r="285" ${STR(18)}/><path d="M430 470C520 420 640 480 650 560C665 660 590 730 500 720C400 710 330 640 350 560C360 510 390 490 430 470Z"/><circle cx="505" cy="590" r="58" fill="#fff"/><circle cx="1090" cy="600" r="16"/>` },
+  { key:'mug', name:'Coffee', interest:'Food and drink', color:'#FFAC79',
+    d:'M300 360H780Q820 360 820 400V480H920Q1020 480 1020 580V690Q1020 790 920 790H820V860Q820 960 720 960H360Q260 960 260 860V400Q260 360 300 360Z',
+    tf:{px:-40, py:-60},
+    detail:`<rect x="822" y="550" width="128" height="170" rx="50"/>${lines(['M240 470H840','M240 515H840'], 16)}` },
+];
+
+const N = 560;
+const sampler = document.getElementById('mm-sampler');
+const shapeEl = document.getElementById('mm-shape');
+const detailEl = document.getElementById('mm-detail');
+const detailTf = document.getElementById('mm-detail-tf');
+const bodyEl = document.getElementById('mm-body');
+const labelEl = document.getElementById('mm-label');
+const root = document.getElementById('mm');
+
+function applyTf(tf, x, y) {
+  x += tf.px || 0; y += tf.py || 0;
+  const s = tf.s || 1, a = (tf.r || 0) * Math.PI / 180;
+  const dx = (x - 600) * s, dy = (y - 600) * s;
+  return [600 + dx * Math.cos(a) - dy * Math.sin(a) + (tf.tx || 0), 600 + dx * Math.sin(a) + dy * Math.cos(a) + (tf.ty || 0)];
+}
+function tfString(tf) {
+  return `translate(${tf.tx || 0} ${tf.ty || 0}) rotate(${tf.r || 0} 600 600) translate(600 600) scale(${tf.s || 1}) translate(-600 -600) translate(${tf.px || 0} ${tf.py || 0})`;
+}
+function sample(shape) {
+  sampler.setAttribute('d', shape.d);
+  const L = sampler.getTotalLength();
+  let pts = [];
+  for (let i = 0; i < N; i++) { const p = sampler.getPointAtLength(L * i / N); pts.push(applyTf(shape.tf, p.x, p.y)); }
+  let area = 0;
+  for (let i = 0; i < N; i++) { const [x1, y1] = pts[i], [x2, y2] = pts[(i + 1) % N]; area += x1 * y2 - x2 * y1; }
+  if (area < 0) pts.reverse();
+  return pts;
+}
+SHAPES.forEach(s => { s.pts = sample(s); s.sw = s.key === 'm' ? 0 : 36; });
+
+// Rotate the target's start index so points travel the shortest total distance.
+function align(from, to) {
+  let best = 0, bestCost = Infinity;
+  for (let k = 0; k < N; k += 2) {
+    let c = 0;
+    for (let i = 0; i < N; i += 4) { const a = from[i], b = to[(i + k) % N]; c += (a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2; if (c > bestCost) break; }
+    if (c < bestCost) { bestCost = c; best = k; }
+  }
+  return from.map((_, i) => to[(i + best) % N]);
+}
+const toD = pts => 'M' + pts.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('L') + 'Z';
+const ease = t => t < .5 ? 16 * t ** 5 : 1 - (-2 * t + 2) ** 5 / 2;
+const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+const mix = (a, b, t) => { const A = hex(a), B = hex(b); return `rgb(${A.map((v, i) => Math.round(v + (B[i] - v) * t)).join(',')})`; };
+
+let mono = false, via = true, playing = true;
+let cur = SHAPES[0], curPts = SHAPES[0].pts.map(p => p.slice()), curColor = '#FFFFFF';
+let run = 0, objIndex = 0, holdTimer = null;
+const colorOf = s => mono ? '#1749E5' : s.color;
+
+function setDetail(shape, on) {
+  detailEl.innerHTML = shape.detail;
+  detailTf.setAttribute('transform', tfString(shape.tf));
+  detailEl.animate(on ? [{ opacity: 0, transform: 'scale(1.04)' }, { opacity: 1, transform: 'scale(1)' }] : [{ opacity: 1 }, { opacity: 0 }],
+    { duration: on ? 260 : 140, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' });
+}
+function setLabel(shape) {
+  labelEl.innerHTML = shape.interest ? `<b>${shape.name}</b>&nbsp;&nbsp;${shape.interest}` : `<b>${shape.name}</b>`;
+  document.querySelectorAll('.mm-chip').forEach(c => c.setAttribute('aria-pressed', String(c.dataset.key === shape.key)));
+}
+
+function morphTo(target) {
+  const id = ++run;
+  clearTimeout(holdTimer);
+  if (cur.detail) setDetail(cur, false);
+  const from = curPts.map(p => p.slice()), to = align(from, target.pts);
+  const fromColor = curColor, toColor = colorOf(target);
+  const dur = 820, start = performance.now() + (cur.detail ? 120 : 0);
+  setLabel(target);
+  function frame(now) {
+    if (id !== run) return;
+    const raw = Math.min(1, Math.max(0, (now - start) / dur)), t = ease(raw);
+    curPts = from.map((a, i) => [a[0] + (to[i][0] - a[0]) * t, a[1] + (to[i][1] - a[1]) * t]);
+    shapeEl.setAttribute('d', toD(curPts));
+    curColor = mix(fromColor, toColor, t);
+    shapeEl.setAttribute('fill', curColor);
+    shapeEl.setAttribute('stroke', curColor);
+    shapeEl.setAttribute('stroke-width', (cur.sw + (target.sw - cur.sw) * t).toFixed(1));
+    const squash = Math.sin(Math.PI * raw) * .07;
+    bodyEl.setAttribute('transform', `translate(600 600) rotate(${Math.sin(Math.PI * raw) * -6}) scale(${1 - squash} ${1 + squash * .5}) translate(-600 -600)`);
+    if (raw < 1) return requestAnimationFrame(frame);
+    curPts = target.pts.map(p => p.slice());
+    curColor = toColor;
+    cur = target;
+    if (target.detail) setDetail(target, true); else detailEl.innerHTML = '';
+    if (playing) holdTimer = setTimeout(() => id === run && next(), target.key === 'm' ? 1100 : 1700);
+  }
+  requestAnimationFrame(frame);
+}
+
+function next() {
+  const objs = SHAPES.slice(1);
+  if (via && cur.key !== 'm') return morphTo(SHAPES[0]);
+  const target = objs[objIndex % objs.length];
+  objIndex++;
+  morphTo(target);
+}
+
+const chips = document.getElementById('mm-chips');
+SHAPES.forEach((s, i) => {
+  const b = document.createElement('button');
+  b.className = 'mm-chip'; b.type = 'button'; b.dataset.key = s.key; b.textContent = i === 0 ? 'M' : s.name;
+  b.addEventListener('click', () => { if (i > 0) objIndex = i; morphTo(s); });
+  chips.appendChild(b);
+});
+const playBtn = document.getElementById('mm-play');
+function setPlaying(p) {
+  playing = p;
+  playBtn.innerHTML = p ? '<i class="ph ph-pause"></i><span>Pause</span>' : '<i class="ph ph-play"></i><span>Play</span>';
+  clearTimeout(holdTimer);
+  if (p) holdTimer = setTimeout(next, 400);
+}
+playBtn.addEventListener('click', () => setPlaying(!playing));
+const viaBtn = document.getElementById('mm-via');
+viaBtn.addEventListener('click', () => { via = !via; viaBtn.setAttribute('aria-pressed', String(via)); viaBtn.querySelector('span').textContent = via ? 'Back to M between' : 'Object to object'; });
+const themeBtn = document.getElementById('mm-theme');
+themeBtn.addEventListener('click', () => {
+  mono = !mono; root.classList.toggle('is-mono', mono);
+  themeBtn.querySelector('span').textContent = mono ? 'Color on ink' : 'Blue on white';
+  curColor = colorOf(cur); shapeEl.setAttribute('fill', curColor); shapeEl.setAttribute('stroke', curColor);
+});
+document.addEventListener('keydown', e => { if (e.code === 'Space' && e.target === document.body) { e.preventDefault(); setPlaying(!playing); } });
+
+if (SHAPES[0].color && mono) curColor = '#1749E5';
+shapeEl.setAttribute('d', toD(curPts));
+shapeEl.setAttribute('fill', curColor);
+setLabel(cur);
+if (matchMedia('(prefers-reduced-motion: reduce)').matches) setPlaying(false);
+else holdTimer = setTimeout(next, 1100);
+</script>
+</body>
+</html>

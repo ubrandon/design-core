@@ -2,15 +2,15 @@
   "screens": [
     {
       "file": "current-logo.html",
-      "x": -1535,
-      "y": 54,
+      "x": 5038,
+      "y": 11872,
       "width": 480,
       "name": "Option A"
     },
     {
       "file": "reference-rounded-m.html",
-      "x": 1896,
-      "y": 54,
+      "x": -51,
+      "y": -576,
       "width": 480,
       "name": "Option B"
     },
@@ -23,8 +23,8 @@
     },
     {
       "file": "logo-07-modular.html",
-      "x": 184,
-      "y": 54,
+      "x": 6757,
+      "y": 11872,
       "width": 480,
       "name": "Option E"
     },
@@ -79,24 +79,31 @@
     },
     {
       "file": "logo-a-unified.html",
-      "x": -1535,
-      "y": 636,
+      "x": 5038,
+      "y": 12454,
       "width": 1440,
       "name": "Option A: Unified application"
     },
     {
       "file": "logo-b-unified.html",
-      "x": 1896,
-      "y": 636,
+      "x": -51,
+      "y": 6,
       "width": 1440,
       "name": "Option B: Unified application"
     },
     {
       "file": "logo-c-unified.html",
-      "x": 184,
-      "y": 636,
+      "x": 6757,
+      "y": 12454,
       "width": 1440,
       "name": "Option C: Unified application"
+    },
+    {
+      "file": "moving-m-brand-guide.html",
+      "x": 1503,
+      "y": 6,
+      "width": 1440,
+      "name": "Moving M brand guide"
     }
   ],
   "texts": [

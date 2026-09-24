@@ -1,0 +1,172 @@
+/* Home G: a fresh homepage on the Sept 22 homepage copy; every class uses the mhg- prefix. */
+.mhg { --mhg-pale:#DCEAFF; --mhg-dark-muted:#C3C7D1; }
+.mhg h2 { font-size:64px; line-height:1; letter-spacing:-3.4px; }
+.mhg-lede { font-size:18px; line-height:1.6; color:var(--muted); }
+
+/* Nav: quiet outline CTA so the hero button is the one blue action in view. */
+.mhg .mr-v2-nav { border-bottom:0; }
+.mhg-nav-cta { display:inline-flex; align-items:center; min-height:44px; padding:0 18px; border:1.5px solid var(--text); border-radius:15px; font-weight:600; }
+
+/* Hero: headline and support share one row, the world of plans runs full width below. */
+.mhg-hero { padding-top:56px; }
+.mhg-hero-top { display:grid; grid-template-columns:1.35fr 1fr; gap:48px; align-items:end; }
+.mhg-hero h1 { font-size:128px; line-height:.92; letter-spacing:-8px; }
+.mhg-hero-side { padding-bottom:12px; }
+.mhg-hero-side>p:first-child { font-size:21px; line-height:1.5; margin-bottom:28px; }
+.mhg-hero-side small { display:block; margin-top:16px; font-size:13px; color:var(--muted); }
+.mhg-world { position:relative; margin-top:64px; height:432px; isolation:isolate; }
+.mhg-world:before { content:""; position:absolute; z-index:-1; width:420px; height:420px; left:50%; top:4px; margin-left:-210px; border:1.5px solid var(--mr-v2-lilac); border-radius:50%; }
+.mhg-world:after { content:""; position:absolute; z-index:-2; inset:40px 0 0; background:radial-gradient(#C0AFFF 1.4px,transparent 1.4px) 0 0/16px 16px; -webkit-mask-image:linear-gradient(transparent,#000 30%,#000 70%,transparent); mask-image:linear-gradient(transparent,#000 30%,#000 70%,transparent); }
+.mhg-row { position:absolute; top:0; left:50%; display:flex; gap:20px; width:1516px; margin-left:-758px; align-items:flex-start; }
+.mhg-card { flex:none; width:236px; border-radius:24px; overflow:hidden; color:#101114; border:6px solid #fff; box-shadow:0 10px 30px #1011140f; }
+.mhg-card:nth-child(1) { margin-top:70px; }
+.mhg-card:nth-child(2) { margin-top:18px; }
+.mhg-card:nth-child(3) { margin-top:58px; }
+.mhg-card:nth-child(4) { margin-top:0; }
+.mhg-card:nth-child(5) { margin-top:44px; }
+.mhg-card:nth-child(6) { margin-top:12px; }
+.mhg-card-photo { position:relative; height:190px; border-radius:18px; overflow:hidden; }
+.mhg-card-photo>img { width:100%; height:100%; }
+.mhg-card-photo>.ml-tag { position:absolute; top:10px; left:10px; font-size:11px; padding:6px 10px; gap:5px; }
+.mhg-card-photo>.ml-tag img { width:17px; height:17px; }
+.mhg-card-body { padding:16px 12px 14px; }
+.mhg-card-body small { display:block; font-size:11px; font-weight:600; letter-spacing:.2px; opacity:.75; }
+.mhg-card-body h3 { font-size:25px; letter-spacing:-.9px; margin:6px 0 14px; }
+.mhg-who { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:550; padding:8px 10px 8px 8px; background:#ffffffb3; border-radius:12px; }
+.mhg-who img { width:24px; height:24px; border-radius:50%; flex:none; }
+.mhg-who i { font-size:16px; }
+.mhg-bg-movement .mhg-who { background:#ffffff26; }
+.mhg-bg-music { background:var(--mr-v2-lilac); }.mhg-bg-outdoors { background:var(--mr-v2-mint); }.mhg-bg-food { background:var(--mr-v2-apricot); }.mhg-bg-games { background:var(--mr-v2-citrus); }.mhg-bg-arts { background:var(--mr-v2-pink); }.mhg-bg-movement { background:var(--neon-blue); color:#fff; }
+
+/* Ritual strip: the route line as three steps between a "we should" bubble and a "see you there." bubble. */
+.mhg-ritual { margin-top:40px; padding-block:34px 38px; border-top:1px solid #10111414; border-bottom:1px solid #10111414; }
+.mhg-ritual>p { font-size:13px; font-weight:600; color:var(--muted); margin-bottom:18px; }
+.mhg-steps { display:flex; align-items:center; gap:14px; }
+.mhg-bubble { flex:none; font-size:13px; padding:11px 15px; border-radius:18px; line-height:1.3; }
+.mhg-bubble-from { background:#F0F2F7; color:var(--muted); border-bottom-left-radius:6px; }
+.mhg-bubble-to { background:var(--neon-blue); color:#fff; border-bottom-right-radius:6px; font-weight:550; }
+.mhg-step { flex:1; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; white-space:nowrap; }
+.mhg-step b { display:grid; place-items:center; width:30px; height:30px; border-radius:10px; background:var(--mr-v2-citrus); font-size:11px; flex:none; }
+.mhg-step:after { content:""; flex:1; min-width:12px; height:1.5px; background:var(--border); }
+
+/* Interest worlds on ink: coloured panels keep their interest mapping, three carry culture couplets. */
+.mhg-worlds { padding-block:96px 72px; margin-top:80px; }
+.mhg-worlds-head { display:flex; justify-content:space-between; align-items:end; gap:40px; margin-bottom:44px; }
+.mhg-worlds-head .mr-v2-eyebrow { color:var(--mr-v2-lilac); }
+.mhg-worlds-head>p { max-width:300px; font-size:16px; color:var(--mhg-dark-muted); }
+.mhg-bento { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:18px; }
+.mhg-panel { border-radius:26px; color:#101114; overflow:hidden; position:relative; }
+.mhg-panel-cap { font-size:10px; font-weight:650; letter-spacing:1.2px; }
+.mhg-panel h3 { font-size:40px; line-height:1; letter-spacing:-1.8px; margin:14px 0 0; }
+.mhg-panel-name { display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; }
+.mhg-panel-name img { width:24px; height:24px; }
+.mhg-panel-wide { grid-column:span 7; display:grid; grid-template-columns:1fr 1fr; min-height:340px; }
+.mhg-panel-wide>div { padding:30px; display:flex; flex-direction:column; justify-content:space-between; }
+.mhg-panel-wide>img { width:100%; height:100%; }
+.mhg-panel-tall { grid-column:span 5; padding:10px; display:flex; flex-direction:column; }
+.mhg-panel-tall>img { height:180px; border-radius:18px; width:100%; }
+.mhg-panel-tall>div { padding:22px 18px 16px; display:flex; flex-direction:column; flex:1; justify-content:space-between; gap:18px; }
+.mhg-panel-games { grid-column:span 5; display:grid; grid-template-columns:150px 1fr; min-height:240px; }
+.mhg-panel-games>img { width:100%; height:100%; }
+.mhg-panel-games>div { padding:26px; display:flex; flex-direction:column; justify-content:space-between; }
+.mhg-panel-games h3 { font-size:36px; }
+.mhg-panel-small { grid-column:span 7; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+.mhg-mini { color:#101114; border-radius:26px; padding:24px; display:flex; flex-direction:column; justify-content:space-between; gap:40px; }
+.mhg-mini>img { width:44px; height:44px; }
+.mhg-mini strong { display:block; font-size:19px; letter-spacing:-.5px; }
+.mhg-mini p { font-size:13px; line-height:1.45; margin-top:6px; }
+.mhg-mini.mhg-bg-movement { color:#fff; }
+.mhg-mini.mhg-bg-movement>img { filter:invert(1); }
+.mhg-worlds-foot { padding-top:32px; font-size:14px; color:var(--mhg-dark-muted); display:flex; align-items:center; gap:12px; }
+.mhg-worlds-foot:before { content:""; width:28px; height:1.5px; background:var(--mr-v2-lilac); }
+
+/* Common ground: the brand circles become an actual overlap of two people's interests. */
+.mhg-common { display:grid; grid-template-columns:.9fr 1.1fr; gap:64px; align-items:center; padding-block:112px; }
+.mhg-common .mr-v2-eyebrow { color:var(--neon-blue); }
+.mhg-common-copy>p { margin-top:24px; }
+.mhg-common-copy>p+p { margin-top:14px; color:var(--text); font-weight:550; }
+.mhg-venn { position:relative; height:470px; }
+.mhg-venn>svg { position:absolute; inset:0; width:100%; height:410px; }
+.mhg-person { position:absolute; top:6px; display:flex; flex-direction:column; align-items:center; gap:6px; font-size:13px; font-weight:600; }
+.mhg-person img,.mhg-you { width:56px; height:56px; border-radius:50%; border:4px solid #fff; box-shadow:0 4px 14px #10111414; }
+.mhg-you { display:grid; place-items:center; background:var(--neon-blue); color:#fff; font-size:15px; }
+.mhg-venn .ml-tag { position:absolute; font-size:12px; padding:7px 11px; gap:6px; white-space:nowrap; }
+.mhg-venn .ml-tag img { width:18px; height:18px; }
+.mhg-shared-label { position:absolute; left:50%; top:122px; transform:translateX(-50%); font-size:10px; font-weight:650; letter-spacing:1.2px; text-transform:uppercase; color:var(--neon-blue); background:#fff; padding:3px 8px; border-radius:6px; }
+.mhg-saved { position:absolute; left:50%; bottom:0; transform:translateX(-50%); width:330px; display:flex; align-items:center; gap:14px; padding:12px; background:#fff; border:1px solid var(--border); border-radius:20px; box-shadow:0 10px 30px #10111412; }
+.mhg-saved>img { width:58px; height:58px; border-radius:14px; flex:none; }
+.mhg-saved small { display:flex; align-items:center; gap:5px; font-size:11px; color:var(--muted); }
+.mhg-saved strong { display:block; font-size:17px; letter-spacing:-.3px; margin-top:3px; }
+.mhg-saved .ml-tag { position:static; margin-left:auto; font-size:10px; padding:5px 8px; gap:4px; }
+.mhg-saved .ml-tag img { width:15px; height:15px; }
+
+/* Plan: one plan card with its RSVP, conversation, and share link attached. */
+.mhg-plan { background:var(--mhg-pale); padding-block:104px; }
+.mhg-plan-inner { display:grid; grid-template-columns:1fr 1.05fr; gap:72px; align-items:center; }
+.mhg-plan .mr-v2-eyebrow { color:var(--neon-blue); }
+.mhg-plan-copy>p { margin-top:24px; }
+.mhg-plan-list { list-style:none; padding:0; margin:34px 0 0; display:grid; gap:0; border-top:1px solid #1011141a; }
+.mhg-plan-list li { display:flex; align-items:center; gap:14px; padding:15px 0; border-bottom:1px solid #1011141a; font-size:15px; font-weight:550; }
+.mhg-plan-list li i { display:grid; place-items:center; width:34px; height:34px; border-radius:11px; background:#fff; font-size:17px; color:var(--neon-blue); flex:none; }
+.mhg-plan-stage { position:relative; height:640px; }
+.mhg-plan-card { position:absolute; left:0; top:40px; width:350px; background:#fff; border-radius:26px; padding:10px; box-shadow:0 14px 40px #1749e514; }
+.mhg-plan-cover { position:relative; height:150px; border-radius:18px; overflow:hidden; }
+.mhg-plan-cover>img { width:100%; height:100%; }
+.mhg-plan-cover>.ml-tag { position:absolute; top:10px; left:10px; font-size:11px; padding:6px 10px; gap:5px; }
+.mhg-plan-cover>.ml-tag img { width:17px; height:17px; }
+.mhg-plan-body { padding:18px 14px 12px; }
+.mhg-plan-title { display:flex; align-items:center; gap:14px; }
+.mhg-plan-title small { font-size:11px; color:var(--muted); }
+.mhg-plan-title h3 { font-size:26px; margin:2px 0; }
+.mhg-plan-title p { font-size:13px; color:var(--muted); }
+.mhg-plan .hst-date { font-size:10px; }
+.mhg-plan-who { display:flex; align-items:center; gap:10px; margin-top:18px; padding-top:14px; border-top:1px solid var(--border); font-size:13px; }
+.mhg-plan-who strong { margin-left:auto; font-size:13px; }
+.mhg-faces { display:flex; padding-left:8px; }
+.mhg-faces img,.mhg-faces span { width:28px; height:28px; border-radius:50%; border:2px solid #fff; margin-left:-8px; }
+.mhg-faces span { display:grid; place-items:center; background:var(--neon-blue); color:#fff; font-size:10px; font-weight:650; }
+.mhg-rsvp { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-top:14px; }
+.mhg-rsvp span { display:flex; align-items:center; justify-content:center; gap:6px; min-height:44px; border-radius:14px; font-size:13px; font-weight:600; background:#F0F2F7; }
+.mhg-rsvp .mhg-on { background:var(--mr-v2-mint); }
+.mhg-chat { position:absolute; right:0; top:424px; width:310px; background:#101114; color:#fff; border-radius:24px; padding:18px; box-shadow:0 14px 40px #1011141f; }
+.mhg-chat-head { display:flex; justify-content:space-between; font-size:12px; color:var(--mhg-dark-muted); padding-bottom:12px; border-bottom:1px solid #ffffff1f; }
+.mhg-chat-head strong { color:#fff; }
+.mhg-msg { display:flex; gap:10px; align-items:flex-end; margin-top:12px; }
+.mhg-msg img { width:28px; height:28px; border-radius:50%; flex:none; }
+.mhg-msg div { background:#ffffff14; border-radius:16px 16px 16px 5px; padding:9px 12px; font-size:13px; }
+.mhg-msg small { display:block; font-size:10px; color:var(--mr-v2-lilac); margin-bottom:2px; }
+.mhg-msg-self { justify-content:flex-end; }
+.mhg-msg-self div { background:var(--neon-blue); border-radius:16px 16px 5px 16px; }
+.mhg-link { position:absolute; right:0; top:0; display:flex; align-items:center; gap:10px; padding:12px 16px; background:#fff; border-radius:16px; font-size:13px; box-shadow:0 10px 30px #1749e514; }
+.mhg-link i { font-size:18px; color:var(--neon-blue); }
+.mhg-link span { color:var(--muted); font-size:11px; display:block; }
+
+/* Being there: photography carries it, copy stays short. */
+.mhg-there { padding-block:112px 104px; }
+.mhg-there-head { display:flex; justify-content:space-between; align-items:end; gap:40px; margin-bottom:40px; }
+.mhg-there-head>p { font-size:16px; color:var(--muted); max-width:360px; text-align:right; }
+.mhg-mosaic { display:grid; grid-template-columns:1.25fr 1fr 1fr; grid-template-rows:260px 260px; gap:18px; }
+.mhg-mosaic figure { margin:0; position:relative; border-radius:26px; overflow:hidden; }
+.mhg-mosaic figure>img { width:100%; height:100%; }
+.mhg-mosaic figure:first-child { grid-row:span 2; }
+.mhg-mosaic figure:nth-child(2) { grid-column:span 2; }
+.mhg-mosaic figcaption { position:absolute; left:14px; bottom:14px; background:#fff; border-radius:12px; padding:9px 13px; font-size:12px; font-weight:550; }
+
+/* Creed on ink, then the light end band. */
+.mhg-creed { position:relative; overflow:hidden; padding-block:120px; text-align:center; }
+.mhg-creed:before,.mhg-creed:after { content:""; position:absolute; border:1.5px solid var(--mr-v2-lilac); border-radius:50%; opacity:.55; }
+.mhg-creed:before { width:360px; height:360px; left:-130px; top:-120px; }
+.mhg-creed:after { width:240px; height:240px; right:-60px; bottom:-110px; }
+.mhg-creed h2 { font-size:76px; letter-spacing:-4px; line-height:1.02; }
+.mhg-creed h2 span { display:block; color:#6E7380; }
+.mhg-creed p { margin-top:28px; font-size:17px; color:var(--mhg-dark-muted); }
+.mhg-end { position:relative; isolation:isolate; text-align:center; padding-block:112px; }
+.mhg-end:before { content:""; position:absolute; z-index:-1; inset:40px 18%; background:radial-gradient(#C0AFFF 1.4px,transparent 1.4px) 0 0/16px 16px; -webkit-mask-image:radial-gradient(closest-side,#000,transparent); mask-image:radial-gradient(closest-side,#000,transparent); opacity:.8; }
+.mhg-end h2 { font-size:72px; letter-spacing:-3.8px; }
+.mhg-end .btn { margin-top:36px; }
+.mhg-end p { margin-top:16px; font-size:14px; color:var(--muted); }
+.mhg-footer { padding-block:44px; display:grid; grid-template-columns:1fr auto; gap:28px 40px; align-items:center; }
+.mhg-footer .mr-v2-mark { background:#fff; }
+.mhg-footer nav { display:flex; gap:28px; font-size:14px; }
+.mhg-footer p { font-size:18px; font-weight:600; letter-spacing:-.4px; }
+.mhg-footer small { grid-column:1/-1; padding-top:24px; border-top:1px solid #ffffff1f; font-size:12px; color:var(--mhg-dark-muted); display:flex; justify-content:space-between; }

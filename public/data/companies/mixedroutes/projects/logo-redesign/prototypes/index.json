@@ -1,3 +1,10 @@
 {
-  "prototypes": []
+  "prototypes": [
+    {
+      "id": "m-morph",
+      "name": "M morph",
+      "description": "The Option B M morphing into hobby objects and back.",
+      "device": "online"
+    }
+  ]
 }

@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<style>
+  :root { --bg-0: #ffffff; }
+  html, body { background: #ffffff; margin: 0; }
+  body { min-height: 0; }
+
+.mr-app-comparison { --bg-0:#fff; position:relative; height:480px; overflow:clip; background:var(--bg-0); }
+.mr-app-main { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transform:translate(-30px,-60px) scale(.8); }
+.mr-app-main svg { display:block; width:280px; height:286px; --hx-a:#1749E5; --hx-b:#FFAC79; }
+.mr-app-tile { position:absolute; right:24px; bottom:174px; width:76px; height:76px; border-radius:19px; background:#005bff; overflow:hidden; isolation:isolate; display:grid; place-items:center; }
+.mr-app-tile svg { display:block; width:48px; height:49px; --hx-a:#fff; --hx-b:#FFAC79; --hx-blend:normal; }
+.mr-vote-letter { position:absolute; top:22px; left:24px; z-index:1; color:#000; font-size:24px; font-weight:700; line-height:1; }
+.mr-logo-reason { position:absolute; left:28px; right:28px; bottom:26px; min-height:128px; margin:0; padding-top:18px; border-top:1px solid #e5eaf1; color:#344054; font-size:26px; font-weight:500; line-height:34px; letter-spacing:-0.3px; text-wrap:pretty; }
+</style>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute;"><defs><g id="h-mx-cross" fill="none" stroke-linecap="round" stroke-width="18"><path d="M86 84 34 14" style="stroke:var(--hx-b)"/><path d="M14 84 66 14" style="stroke:var(--hx-a);mix-blend-mode:var(--hx-blend,multiply)"/></g></defs></svg>
+<div class="mr-scope mr-app-comparison" style="background:#fff;">
+  <span class="mr-vote-letter" aria-label="Option H" style="display:flex; align-items:center; gap:12px;">H</span>
+  <div class="mr-app-main"><svg viewBox="4 4 92 90" role="img" aria-label="MixedRoutes MX cross logo"><use href="#h-mx-cross"/></svg></div>
+  <div class="mr-app-tile" role="img" aria-label="White and apricot logo on a blue app icon"><svg viewBox="4 4 92 90" aria-hidden="true"><use href="#h-mx-cross"/></svg></div>
+  <p class="mr-logo-reason">Two routes cross high and keep going: an M on top, an X for the mix, and two paths that meet.</p>
+</div>

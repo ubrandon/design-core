@@ -1,0 +1,407 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+<style>
+  html, body { background:#ffffff; margin:0; }
+  body { min-height:0; }
+.om { --bg-0:#fff; padding:56px 56px 64px; color:#101114; overflow-x:clip; }
+.om-head { display:flex; justify-content:space-between; align-items:end; gap:48px; margin-bottom:40px; }
+.om-head h1 { margin:0; font-size:44px; line-height:1.05; letter-spacing:-1.8px; font-weight:650; }
+.om-head p { margin:0; max-width:520px; font-size:17px; line-height:1.5; color:#555B67; text-wrap:pretty; }
+.om-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px; }
+.om-card { border-radius:24px; background:#F0F2F7; padding:20px 20px 24px; display:flex; flex-direction:column; }
+.om-hero { position:relative; display:grid; place-items:center; height:220px; border-radius:18px; background:#fff; color:#1749E5; }
+.om-hero > svg { width:160px; height:160px; display:block; }
+.om-pick { position:absolute; top:12px; left:12px; padding:4px 10px; border-radius:999px; background:#E7EF8C; font-size:12px; font-weight:650; letter-spacing:.2px; }
+.om-row { display:flex; align-items:center; gap:10px; padding:16px 0; border-bottom:1px solid #D3DAE7; }
+.om-tile { flex:none; display:grid; place-items:center; width:52px; height:52px; border-radius:13px; }
+.om-tile svg { width:44px; height:44px; display:block; }
+.om-sm { color:#1749E5; display:block; flex:none; }
+.om-sm.s32 { width:32px; height:32px; margin-left:auto; }
+.om-sm.s20 { width:20px; height:20px; }
+.om-meta { display:flex; align-items:baseline; gap:10px; margin-top:16px; font-size:20px; letter-spacing:-.4px; }
+.om-meta b { font-weight:700; color:#1749E5; }
+.om-meta span { font-weight:600; }
+.om-card p { margin:6px 0 0; font-size:15px; line-height:1.5; color:#555B67; text-wrap:pretty; }
+.om-family { margin-top:20px; border-radius:28px; background:#101114; padding:40px 48px 44px; }
+.om-family h2 { margin:0 0 6px; font-size:22px; letter-spacing:-.5px; font-weight:650; color:#fff; }
+.om-family p { margin:0 0 28px; font-size:15px; color:#C3C7D1; }
+.om-strip { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:14px; }
+.om-strip span { aspect-ratio:1; border-radius:22%; display:grid; place-items:center; }
+.om-strip svg { width:84%; height:84%; display:block; }
+</style>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute;">
+  <defs>
+    <!-- Van -->
+    <mask id="om-van-m" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+      <rect width="120" height="120" fill="#fff"/>
+      <rect x="30" y="32" width="60" height="24" rx="10" fill="#000"/>
+      <circle cx="40" cy="72" r="7" fill="#000"/>
+      <circle cx="80" cy="72" r="7" fill="#000"/>
+      <path d="M52 79Q60 85 68 79" fill="none" stroke="#000" stroke-width="4.5" stroke-linecap="round"/>
+    </mask>
+    <g id="om-van" fill="currentColor">
+      <g mask="url(#om-van-m)">
+        <rect x="18" y="20" width="84" height="72" rx="26"/>
+        <rect x="26" y="84" width="18" height="18" rx="7"/>
+        <rect x="76" y="84" width="18" height="18" rx="7"/>
+        <rect x="8" y="44" width="14" height="14" rx="6"/>
+        <rect x="98" y="44" width="14" height="14" rx="6"/>
+      </g>
+    </g>
+
+    <!-- Walkie-talkie -->
+    <mask id="om-walkie-m" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+      <rect width="120" height="120" fill="#fff"/>
+      <rect x="42" y="52" width="34" height="5" rx="2.5" fill="#000"/>
+      <rect x="42" y="61" width="34" height="5" rx="2.5" fill="#000"/>
+      <rect x="42" y="70" width="34" height="5" rx="2.5" fill="#000"/>
+      <circle cx="59" cy="94" r="9" fill="#000"/>
+      <circle cx="59" cy="94" r="4" fill="#fff"/>
+    </mask>
+    <g id="om-walkie" fill="currentColor">
+      <g mask="url(#om-walkie-m)">
+        <rect x="36" y="6" width="11" height="36" rx="5.5"/>
+        <rect x="30" y="34" width="58" height="80" rx="18"/>
+        <rect x="84" y="54" width="10" height="20" rx="5"/>
+      </g>
+      <path d="M57 8Q63 14 57 20M66 2Q76 14 66 26" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+    </g>
+
+    <!-- Boombox -->
+    <mask id="om-boom-m" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+      <rect width="120" height="120" fill="#fff"/>
+      <circle cx="36" cy="70" r="16" fill="#000"/>
+      <circle cx="36" cy="70" r="7" fill="#fff"/>
+      <circle cx="84" cy="70" r="16" fill="#000"/>
+      <circle cx="84" cy="70" r="7" fill="#fff"/>
+      <rect x="53" y="86" width="14" height="6" rx="3" fill="#000"/>
+    </mask>
+    <g id="om-boom" fill="currentColor">
+      <g mask="url(#om-boom-m)">
+        <rect x="10" y="38" width="100" height="64" rx="22"/>
+      </g>
+      <path d="M36 40V30Q36 22 44 22H72Q80 22 80 30V40" fill="none" stroke="currentColor" stroke-width="7"/>
+      <path d="M98 40L106 14" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+    </g>
+
+    <!-- Dice -->
+    <mask id="om-dice-m" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+      <rect width="120" height="120" fill="#fff"/>
+      <g transform="rotate(-10 60 60)">
+        <circle cx="46" cy="44" r="7" fill="#000"/>
+        <circle cx="74" cy="44" r="7" fill="#000"/>
+        <circle cx="39" cy="66" r="6" fill="#000"/>
+        <circle cx="60" cy="80" r="6" fill="#000"/>
+        <circle cx="81" cy="66" r="6" fill="#000"/>
+      </g>
+    </mask>
+    <g id="om-dice" fill="currentColor">
+      <g mask="url(#om-dice-m)">
+        <rect x="18" y="18" width="84" height="84" rx="26" transform="rotate(-10 60 60)"/>
+      </g>
+    </g>
+
+    <!-- Backpack -->
+    <mask id="om-pack-m" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+      <rect width="120" height="120" fill="#fff"/>
+      <circle cx="48" cy="52" r="5.5" fill="#000"/>
+      <circle cx="72" cy="52" r="5.5" fill="#000"/>
+      <path d="M38 70H82V80Q82 94 68 94H52Q38 94 38 80Z" fill="none" stroke="#000" stroke-width="4.5" stroke-linejoin="round"/>
+    </mask>
+    <g id="om-pack" fill="currentColor">
+      <g mask="url(#om-pack-m)">
+        <rect x="24" y="26" width="72" height="82" rx="28"/>
+        <rect x="16" y="58" width="12" height="32" rx="6"/>
+        <rect x="92" y="58" width="12" height="32" rx="6"/>
+      </g>
+      <path d="M48 30V22Q48 14 56 14H64Q72 14 72 22V30" fill="none" stroke="currentColor" stroke-width="7"/>
+    </g>
+
+    <!-- Sneaker -->
+    <mask id="om-shoe-m" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+      <rect width="120" height="120" fill="#fff"/>
+      <path d="M14 83H112" stroke="#000" stroke-width="4.5"/>
+      <circle cx="46" cy="44" r="3.8" fill="#000"/>
+      <circle cx="54" cy="53" r="3.8" fill="#000"/>
+      <circle cx="63" cy="61" r="3.8" fill="#000"/>
+    </mask>
+    <g id="om-shoe" fill="currentColor">
+      <g mask="url(#om-shoe-m)">
+        <path d="M26 96H96Q108 96 108 84Q108 72 95 68L72 61Q63 58 59 50L53 35Q50 28 43 30L31 33Q23 36 22 45L19 86Q19 96 26 96Z"/>
+      </g>
+      <path d="M4 56H12M2 70H13M6 84H12" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+    </g>
+
+    <!-- Tent -->
+    <mask id="om-tent-m" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+      <rect width="120" height="120" fill="#fff"/>
+      <path d="M60 34Q37 52 31 102M60 34Q83 52 89 102" fill="none" stroke="#000" stroke-width="3.5"/>
+      <path d="M43 104V82Q43 64 60 64Q77 64 77 82V104Z" fill="#000"/>
+      <circle cx="54" cy="84" r="3.5" fill="#fff"/>
+      <circle cx="66" cy="84" r="3.5" fill="#fff"/>
+    </mask>
+    <g id="om-tent" fill="currentColor">
+      <g mask="url(#om-tent-m)">
+        <path d="M14 98C14 58 35 32 60 32C85 32 106 58 106 98Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/>
+      </g>
+      <path d="M60 30V11" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M61 9L77 15L61 21Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    </g>
+
+    <!-- Folded map -->
+    <mask id="om-map-m" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+      <rect width="120" height="120" fill="#fff"/>
+      <path d="M38 18V112M60 18V112M82 18V112" stroke="#000" stroke-width="3.5"/>
+      <path d="M26 78Q36 60 50 68Q62 76 72 62Q79 52 86 52" fill="none" stroke="#000" stroke-width="4.5" stroke-linecap="round" stroke-dasharray=".1 9"/>
+      <path d="M88 42L98 52M98 42L88 52" stroke="#000" stroke-width="4.5" stroke-linecap="round"/>
+    </mask>
+    <g id="om-map" fill="currentColor">
+      <g mask="url(#om-map-m)">
+        <path d="M16 24L38 36L60 24L82 36L104 24V90L82 102L60 90L38 102L16 90Z" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/>
+      </g>
+    </g>
+
+    <!-- Cheers -->
+    <g id="om-cheers" fill="currentColor">
+      <g transform="rotate(12 40 69)">
+        <rect x="25" y="46" width="30" height="46" rx="9"/>
+        <path d="M25 56H20Q13 56 13 63V73Q13 80 20 80H25" fill="none" stroke="currentColor" stroke-width="7"/>
+      </g>
+      <g transform="rotate(-12 80 69)">
+        <rect x="65" y="46" width="30" height="46" rx="9"/>
+        <path d="M95 56H100Q107 56 107 63V73Q107 80 100 80H95" fill="none" stroke="currentColor" stroke-width="7"/>
+      </g>
+      <path d="M60 16V28M46 22L41 15M74 22L79 15" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+    </g>
+
+    <!-- Marshmallow -->
+    <mask id="om-mallow-m" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+      <rect width="120" height="120" fill="#fff"/>
+      <g transform="rotate(18 73 38)">
+        <circle cx="64" cy="34" r="4.5" fill="#000"/>
+        <circle cx="82" cy="34" r="4.5" fill="#000"/>
+        <path d="M66 44Q73 50 80 44" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round"/>
+      </g>
+    </mask>
+    <g id="om-mallow" fill="currentColor">
+      <path d="M22 110L62 57" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      <g mask="url(#om-mallow-m)">
+        <rect x="48" y="14" width="50" height="48" rx="18" transform="rotate(18 73 38)"/>
+      </g>
+    </g>
+
+    <!-- Lantern -->
+    <mask id="om-lantern-m" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+      <rect width="120" height="120" fill="#fff"/>
+      <path d="M60 50C67 58 72 64 72 71C72 78 66 82 60 82C54 82 48 78 48 71C48 64 53 58 60 50Z" fill="#000"/>
+    </mask>
+    <g id="om-lantern" fill="currentColor">
+      <path d="M44 30Q44 10 60 10Q76 10 76 30" fill="none" stroke="currentColor" stroke-width="6"/>
+      <g mask="url(#om-lantern-m)">
+        <rect x="38" y="26" width="44" height="12" rx="6"/>
+        <rect x="34" y="41" width="52" height="47" rx="16"/>
+        <rect x="32" y="91" width="56" height="14" rx="7"/>
+      </g>
+    </g>
+
+    <!-- Popsicle -->
+    <mask id="om-pop-m" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+      <rect width="120" height="120" fill="#fff"/>
+      <circle cx="84" cy="20" r="10" fill="#000"/>
+      <circle cx="89" cy="37" r="8" fill="#000"/>
+    </mask>
+    <g id="om-pop" fill="currentColor">
+      <g mask="url(#om-pop-m)">
+        <path d="M34 36A26 26 0 0 1 86 36V74A10 10 0 0 1 76 84H44A10 10 0 0 1 34 74Z"/>
+      </g>
+      <rect x="40" y="78" width="8" height="16" rx="4"/>
+      <rect x="53" y="88" width="14" height="24" rx="7"/>
+    </g>
+  </defs>
+</svg>
+
+<div class="om" style="background: var(--bg-0);">
+  <header class="om-head">
+    <h1>Objects with personality</h1>
+    <p>Twelve everyday things friends ride in, bring along, or gather around. One color, rounded, bold enough to hold up as a 20px favicon.</p>
+  </header>
+
+  <div class="om-grid">
+    <article class="om-card">
+      <div class="om-hero"><span class="om-pick">Pick</span><svg viewBox="0 0 120 120"><use href="#om-van"/></svg></div>
+      <div class="om-row">
+        <span class="om-tile" style="background:#1749E5;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-van"/></svg></span>
+        <span class="om-tile" style="background:#101114;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-van"/></svg></span>
+        <span class="om-tile" style="background:#FFAC79;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-van"/></svg></span>
+        <svg class="om-sm s32" viewBox="0 0 120 120"><use href="#om-van"/></svg>
+        <svg class="om-sm s20" viewBox="0 0 120 120"><use href="#om-van"/></svg>
+      </div>
+      <div class="om-meta"><b>01</b><span>Van</span></div>
+      <p>The ride everyone piles into. Headlights double as eyes. Friends going somewhere, together.</p>
+    </article>
+
+    <article class="om-card">
+      <div class="om-hero"><span class="om-pick">Pick</span><svg viewBox="0 0 120 120"><use href="#om-walkie"/></svg></div>
+      <div class="om-row">
+        <span class="om-tile" style="background:#1749E5;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-walkie"/></svg></span>
+        <span class="om-tile" style="background:#101114;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-walkie"/></svg></span>
+        <span class="om-tile" style="background:#E7EF8C;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-walkie"/></svg></span>
+        <svg class="om-sm s32" viewBox="0 0 120 120"><use href="#om-walkie"/></svg>
+        <svg class="om-sm s20" viewBox="0 0 120 120"><use href="#om-walkie"/></svg>
+      </div>
+      <div class="om-meta"><b>02</b><span>Walkie-talkie</span></div>
+      <p>Come in, over. The friend on the other end, no feed in between. Short range on purpose.</p>
+    </article>
+
+    <article class="om-card">
+      <div class="om-hero"><span class="om-pick">Pick</span><svg viewBox="0 0 120 120"><use href="#om-boom"/></svg></div>
+      <div class="om-row">
+        <span class="om-tile" style="background:#1749E5;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-boom"/></svg></span>
+        <span class="om-tile" style="background:#101114;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-boom"/></svg></span>
+        <span class="om-tile" style="background:#C0AFFF;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-boom"/></svg></span>
+        <svg class="om-sm s32" viewBox="0 0 120 120"><use href="#om-boom"/></svg>
+        <svg class="om-sm s20" viewBox="0 0 120 120"><use href="#om-boom"/></svg>
+      </div>
+      <div class="om-meta"><b>03</b><span>Boombox</span></div>
+      <p>Bring the music. Two speakers read as eyes and the tape slot smiles back.</p>
+    </article>
+
+    <article class="om-card">
+      <div class="om-hero"><svg viewBox="0 0 120 120"><use href="#om-dice"/></svg></div>
+      <div class="om-row">
+        <span class="om-tile" style="background:#1749E5;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-dice"/></svg></span>
+        <span class="om-tile" style="background:#101114;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-dice"/></svg></span>
+        <span class="om-tile" style="background:#E7EF8C;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-dice"/></svg></span>
+        <svg class="om-sm s32" viewBox="0 0 120 120"><use href="#om-dice"/></svg>
+        <svg class="om-sm s20" viewBox="0 0 120 120"><use href="#om-dice"/></svg>
+      </div>
+      <div class="om-meta"><b>04</b><span>Die</span></div>
+      <p>A five that rearranged itself into a smile. Game night, in one shape.</p>
+    </article>
+
+    <article class="om-card">
+      <div class="om-hero"><svg viewBox="0 0 120 120"><use href="#om-pack"/></svg></div>
+      <div class="om-row">
+        <span class="om-tile" style="background:#1749E5;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-pack"/></svg></span>
+        <span class="om-tile" style="background:#101114;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-pack"/></svg></span>
+        <span class="om-tile" style="background:#A1E7CE;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-pack"/></svg></span>
+        <svg class="om-sm s32" viewBox="0 0 120 120"><use href="#om-pack"/></svg>
+        <svg class="om-sm s20" viewBox="0 0 120 120"><use href="#om-pack"/></svg>
+      </div>
+      <div class="om-meta"><b>05</b><span>Backpack</span></div>
+      <p>Packed and ready by the door. The front pocket carries the grin.</p>
+    </article>
+
+    <article class="om-card">
+      <div class="om-hero"><svg viewBox="0 0 120 120"><use href="#om-shoe"/></svg></div>
+      <div class="om-row">
+        <span class="om-tile" style="background:#1749E5;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-shoe"/></svg></span>
+        <span class="om-tile" style="background:#101114;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-shoe"/></svg></span>
+        <span class="om-tile" style="background:#FFB3CD;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-shoe"/></svg></span>
+        <svg class="om-sm s32" viewBox="0 0 120 120"><use href="#om-shoe"/></svg>
+        <svg class="om-sm s20" viewBox="0 0 120 120"><use href="#om-shoe"/></svg>
+      </div>
+      <div class="om-meta"><b>06</b><span>Sneaker</span></div>
+      <p>Just show up Saturday at 10. Laced, already moving.</p>
+    </article>
+
+    <article class="om-card">
+      <div class="om-hero"><svg viewBox="0 0 120 120"><use href="#om-tent"/></svg></div>
+      <div class="om-row">
+        <span class="om-tile" style="background:#1749E5;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-tent"/></svg></span>
+        <span class="om-tile" style="background:#101114;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-tent"/></svg></span>
+        <span class="om-tile" style="background:#A1E7CE;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-tent"/></svg></span>
+        <svg class="om-sm s32" viewBox="0 0 120 120"><use href="#om-tent"/></svg>
+        <svg class="om-sm s20" viewBox="0 0 120 120"><use href="#om-tent"/></svg>
+      </div>
+      <div class="om-meta"><b>07</b><span>Tent</span></div>
+      <p>Someone got there first. Two eyes peek out of the door.</p>
+    </article>
+
+    <article class="om-card">
+      <div class="om-hero"><svg viewBox="0 0 120 120"><use href="#om-map"/></svg></div>
+      <div class="om-row">
+        <span class="om-tile" style="background:#1749E5;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-map"/></svg></span>
+        <span class="om-tile" style="background:#101114;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-map"/></svg></span>
+        <span class="om-tile" style="background:#DCEAFF;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-map"/></svg></span>
+        <svg class="om-sm s32" viewBox="0 0 120 120"><use href="#om-map"/></svg>
+        <svg class="om-sm s20" viewBox="0 0 120 120"><use href="#om-map"/></svg>
+      </div>
+      <div class="om-meta"><b>08</b><span>Folded map</span></div>
+      <p>The folds make an M. A dotted route that ends at X, where the plan happens.</p>
+    </article>
+
+    <article class="om-card">
+      <div class="om-hero"><svg viewBox="0 0 120 120"><use href="#om-cheers"/></svg></div>
+      <div class="om-row">
+        <span class="om-tile" style="background:#1749E5;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-cheers"/></svg></span>
+        <span class="om-tile" style="background:#101114;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-cheers"/></svg></span>
+        <span class="om-tile" style="background:#FFAC79;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-cheers"/></svg></span>
+        <svg class="om-sm s32" viewBox="0 0 120 120"><use href="#om-cheers"/></svg>
+        <svg class="om-sm s20" viewBox="0 0 120 120"><use href="#om-cheers"/></svg>
+      </div>
+      <div class="om-meta"><b>09</b><span>Cheers</span></div>
+      <p>Two mugs meeting in the middle. Coffee, tea, or a pint, it counts.</p>
+    </article>
+
+    <article class="om-card">
+      <div class="om-hero"><svg viewBox="0 0 120 120"><use href="#om-mallow"/></svg></div>
+      <div class="om-row">
+        <span class="om-tile" style="background:#1749E5;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-mallow"/></svg></span>
+        <span class="om-tile" style="background:#101114;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-mallow"/></svg></span>
+        <span class="om-tile" style="background:#FFB3CD;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-mallow"/></svg></span>
+        <svg class="om-sm s32" viewBox="0 0 120 120"><use href="#om-mallow"/></svg>
+        <svg class="om-sm s20" viewBox="0 0 120 120"><use href="#om-mallow"/></svg>
+      </div>
+      <div class="om-meta"><b>10</b><span>Marshmallow</span></div>
+      <p>Happy on a stick. Pairs with the s'mores scene already in the campaign.</p>
+    </article>
+
+    <article class="om-card">
+      <div class="om-hero"><svg viewBox="0 0 120 120"><use href="#om-lantern"/></svg></div>
+      <div class="om-row">
+        <span class="om-tile" style="background:#1749E5;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-lantern"/></svg></span>
+        <span class="om-tile" style="background:#101114;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-lantern"/></svg></span>
+        <span class="om-tile" style="background:#C0AFFF;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-lantern"/></svg></span>
+        <svg class="om-sm s32" viewBox="0 0 120 120"><use href="#om-lantern"/></svg>
+        <svg class="om-sm s20" viewBox="0 0 120 120"><use href="#om-lantern"/></svg>
+      </div>
+      <div class="om-meta"><b>11</b><span>Lantern</span></div>
+      <p>The light that keeps the night going. A small flame, no screen glow.</p>
+    </article>
+
+    <article class="om-card">
+      <div class="om-hero"><svg viewBox="0 0 120 120"><use href="#om-pop"/></svg></div>
+      <div class="om-row">
+        <span class="om-tile" style="background:#1749E5;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-pop"/></svg></span>
+        <span class="om-tile" style="background:#101114;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-pop"/></svg></span>
+        <span class="om-tile" style="background:#FFB3CD;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-pop"/></svg></span>
+        <svg class="om-sm s32" viewBox="0 0 120 120"><use href="#om-pop"/></svg>
+        <svg class="om-sm s20" viewBox="0 0 120 120"><use href="#om-pop"/></svg>
+      </div>
+      <div class="om-meta"><b>12</b><span>Popsicle</span></div>
+      <p>One bite in, one drip on the way. A long summer afternoon.</p>
+    </article>
+  </div>
+
+  <section class="om-family">
+    <h2>As a family</h2>
+    <p>Any one could lead, with the rest living on as stickers, merch, and interest moments in the palette.</p>
+    <div class="om-strip">
+      <span style="background:#1749E5;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-van"/></svg></span>
+      <span style="background:#E7EF8C;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-walkie"/></svg></span>
+      <span style="background:#C0AFFF;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-boom"/></svg></span>
+      <span style="background:#E7EF8C;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-dice"/></svg></span>
+      <span style="background:#A1E7CE;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-pack"/></svg></span>
+      <span style="background:#1749E5;color:#fff;"><svg viewBox="0 0 120 120"><use href="#om-shoe"/></svg></span>
+      <span style="background:#A1E7CE;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-tent"/></svg></span>
+      <span style="background:#DCEAFF;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-map"/></svg></span>
+      <span style="background:#FFAC79;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-cheers"/></svg></span>
+      <span style="background:#FFB3CD;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-mallow"/></svg></span>
+      <span style="background:#C0AFFF;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-lantern"/></svg></span>
+      <span style="background:#FFB3CD;color:#101114;"><svg viewBox="0 0 120 120"><use href="#om-pop"/></svg></span>
+    </div>
+  </section>
+</div>
