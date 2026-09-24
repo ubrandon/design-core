@@ -25,7 +25,7 @@ All design data lives at `public/data/companies/<company-slug>/` with these subf
 
 `public/data/companies/index.json` lists the companies: `{ "companies": [{ "slug", "name", "createdAt" }] }`. `public/data/site.json` (optional `publicBaseUrl` for share links) stays at the top level.
 
-**Active company in the UI:** the home page has a company picker; the left rail has a company switcher at the top (with "add new company"); every tool page accepts `?company=<slug>` and remembers the last choice in the browser. Share links include `&company=`.
+**Active company in the UI:** the home page has a company picker; the left rail has a company switcher at the top (with "add new company"); every tool page accepts `?company=<slug>` and remembers the last choice in the browser and in `.designer`. Share links include `&company=`.
 
 **Choosing the company as the AI:** if the user names a company, use it. Otherwise read `public/data/companies/index.json`; if there is exactly one, use it; if there are several and context does not make it clear, ask. Project ids only need to be unique within a company.
 
@@ -33,7 +33,7 @@ All design data lives at `public/data/companies/<company-slug>/` with these subf
 
 **npm scripts:** `dev`, `build`, `preview`, `capture` (`npm run capture -- --company <slug>`, auto-picks when there is one company), `sync-public-url`, `doctor` (checks Node, deps, and every company's JSON, canvas entries, and CSS link depth), `import-company` (`npm run import-company -- <path-to-old-repo> <slug> "<Name>"` copies an old single-company repo's `public/data` into a company folder and fixes relative links).
 
-`.designer` (gitignored) may exist with `name` and `team`; it only feeds the "created by" attribution picker. Do not build any flow around it.
+`.designer` (gitignored) may exist with `name`, `team`, `activeCompany` (slug), and `currentUser`. `name` and `team` feed the user and "created by" pickers. `activeCompany` and `currentUser` are the last company and user picked in the browser; the tool writes them and restores them when browser storage is empty. The user is the same in every company; only favorites, recents, and filters are per company.
 
 ### Git rules
 

@@ -95,9 +95,13 @@ try {
   const newPage = browser.newPage.bind(browser);
   browser.newPage = async (options) => {
     const page = await newPage(options);
-    await page.addInitScript((companies) => {
-      for (const slug of companies) localStorage.setItem("design-core:current-user:" + slug, "Canvas Test");
-    }, [companyA, companyB]);
+    await page.addInitScript(() => {
+      localStorage.setItem("design-core:current-user", "Canvas Test");
+    });
+    // Never let test pages remember their fixture company or user in the real .designer.
+    await page.route("**/api/designer", (route) => (
+      route.request().method() === "GET" ? route.continue() : route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' })
+    ));
     return page;
   };
   await testCanvasFocus({ browser, url: `http://127.0.0.1:${port}/canvas.html?project=${projectId}&company=${companyB}` });

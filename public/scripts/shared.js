@@ -15,10 +15,43 @@ function readStoredCompany() {
 }
 
 function rememberCompany(slug) {
+  const changed = slug !== readStoredCompany();
   try {
     if (slug) localStorage.setItem(COMPANY_KEY, slug);
     else localStorage.removeItem(COMPANY_KEY);
   } catch {}
+  if (slug && changed) rememberInDesignerProfile({ activeCompany: slug });
+}
+
+/* The browser remembers the company and user, but browser storage is easy to
+   lose (another browser, the editor's preview, cleared site data). The local
+   .designer file keeps a copy so a fresh browser opens straight in. */
+function rememberInDesignerProfile(fields) {
+  return isLocalToolServer()
+    .then((local) => {
+      if (!local) return false;
+      return fetch("/api/designer", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fields),
+      }).then((r) => r.ok);
+    })
+    .catch(() => false);
+}
+
+let _companyRestore = null;
+/** Company slug saved in .designer, when it is still a real company ("" otherwise). */
+function companyFromDesignerProfile(list) {
+  if (!_companyRestore) {
+    _companyRestore = isLocalToolServer()
+      .then((local) => (local ? fetchDesignerProfile() : {}))
+      .then((prof) => {
+        const slug = String((prof && prof.activeCompany) || "").trim();
+        return COMPANY_SLUG_RE.test(slug) && list.some((c) => c.slug === slug) ? slug : "";
+      })
+      .catch(() => "");
+  }
+  return _companyRestore;
 }
 
 /** Slug of the company this page is working in ("" when none is chosen yet). */
@@ -98,13 +131,21 @@ function switchCompany(slug) {
   window.location.href = "index.html?company=" + encodeURIComponent(slug);
 }
 
-/** Makes sure a valid company is active. Resolves to the slug, or "" when the user still has to pick one (never auto-picked). */
+/** Makes sure a valid company is active. Resolves to the slug, or "" when the user still has to pick one (never guessed; only restored from .designer). */
 function ensureCompany() {
   return fetchCompanies().then((list) => {
     const current = activeCompany();
     if (current && (!list.length || list.some((c) => c.slug === current))) return current;
     if (current) rememberCompany("");
-    return "";
+    return companyFromDesignerProfile(list).then((saved) => {
+      if (!saved) return "";
+      // Reload inside the saved company so every data path on the page resolves there.
+      try { localStorage.setItem(COMPANY_KEY, saved); } catch {}
+      const url = new URL(window.location.href);
+      url.searchParams.set("company", saved);
+      window.location.replace(url.href);
+      return new Promise(() => {});
+    });
   });
 }
 
@@ -675,12 +716,14 @@ function projectHue(id) {
 
 /* ── Current user & per-user prefs ──
    Favorites, recents, theme, and filters are saved per user. Which user you are
-   is remembered per browser (localStorage); their prefs live in a committed
-   file (public/data/companies/<company>/users/<slug>.json) when the dev server is running, with a
+   is remembered per browser (localStorage) and in .designer, and is the same in
+   every company; their prefs are per company, in a committed file
+   (public/data/companies/<company>/users/<slug>.json) when the dev server is running, with a
    localStorage mirror for instant, offline reads. */
-// The selected user is remembered per company, since each company has its own users.
-function currentUserKey() {
-  return "design-core:current-user:" + activeCompany();
+const CURRENT_USER_KEY = "design-core:current-user";
+// Older builds remembered the user separately for each company.
+function legacyCurrentUserKey() {
+  return CURRENT_USER_KEY + ":" + activeCompany();
 }
 const PREFS_MIRROR_PREFIX = "design-core:prefs:v2:";
 const LEGACY_FAVORITES_KEY = "design-core:favorites";
@@ -712,7 +755,11 @@ function writeLs(key, value) {
 /** Display name of the selected user ("" = nobody picked yet). */
 function getCurrentUserName() {
   try {
-    return (localStorage.getItem(currentUserKey()) || "").trim();
+    const name = (localStorage.getItem(CURRENT_USER_KEY) || "").trim();
+    if (name) return name;
+    const legacy = (localStorage.getItem(legacyCurrentUserKey()) || "").trim();
+    if (legacy) localStorage.setItem(CURRENT_USER_KEY, legacy);
+    return legacy;
   } catch {
     return "";
   }
@@ -902,10 +949,13 @@ function applyUserTheme() {
 function setCurrentUser(name) {
   flushPendingPrefsSave();
   const n = String(name || "").trim();
+  const changed = n !== getCurrentUserName();
   try {
-    if (n) localStorage.setItem(currentUserKey(), n);
-    else localStorage.removeItem(currentUserKey());
+    if (n) localStorage.setItem(CURRENT_USER_KEY, n);
+    else localStorage.removeItem(CURRENT_USER_KEY);
+    localStorage.removeItem(legacyCurrentUserKey());
   } catch {}
+  if (n && changed) rememberInDesignerProfile({ currentUser: n });
   hydrateUserState();
   applyUserTheme();
   emitUserChanged();
@@ -1012,15 +1062,27 @@ function fetchUsersIndex() {
     .catch(() => []);
 }
 
-/** Names the identity picker can offer: the designer team plus any committed users. */
+/** Committed users of every company, so a user is offered whichever company is open. */
+function fetchAllCompanyUsers() {
+  return fetchCompanies()
+    .then((list) => Promise.all(list.map((c) =>
+      fetchJSON(dataPath("users/index.json", c.slug))
+        .then((d) => (Array.isArray(d.users) ? d.users : []))
+        .catch(() => []))))
+    .then((lists) => lists.flat().map((u) => u && u.name).filter(Boolean))
+    .catch(() => []);
+}
+
+/** Names the identity picker can offer: the designer team plus committed users from every company. */
 function fetchSelectableUsers() {
   return Promise.all([
     fetchDesignerProfile().then((p) => designerAttributionNames(p)).catch(() => []),
     fetchUsersIndex().then((list) => list.map((u) => u && u.name).filter(Boolean)).catch(() => []),
-  ]).then(([a, b]) => {
+    fetchAllCompanyUsers(),
+  ]).then(([a, b, c]) => {
     const seen = new Set();
     const out = [];
-    [...a, ...b].forEach((n) => {
+    [...a, ...b, ...c].forEach((n) => {
       const t = String(n || "").trim();
       const k = t.toLowerCase();
       if (t && !seen.has(k)) { seen.add(k); out.push(t); }

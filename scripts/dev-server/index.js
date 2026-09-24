@@ -132,6 +132,23 @@ function readJsonBody(req) {
 }
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+/** The local .designer profile, normalized; a missing or broken file reads as empty. */
+function readDesignerFile() {
+  let data = {};
+  try {
+    if (existsSync(DESIGNER_PATH)) data = JSON.parse(readFileSync(DESIGNER_PATH, "utf8")) || {};
+  } catch {}
+  const out = {
+    name: typeof data.name === "string" ? data.name.trim() : "",
+    company: typeof data.company === "string" ? data.company.trim() : "",
+    team: Array.isArray(data.team) ? data.team.filter((t) => t && typeof t.name === "string" && t.name.trim()) : [],
+  };
+  if (typeof data.activeCompany === "string" && SLUG_RE.test(data.activeCompany)) out.activeCompany = data.activeCompany;
+  if (typeof data.currentUser === "string" && data.currentUser.trim()) out.currentUser = data.currentUser.trim();
+  return out;
+}
+
 const SCREEN_FILE_RE = /^[a-zA-Z0-9][a-zA-Z0-9._-]*\.html$/;
 
 function uniqueScreenCopyFile(screensDir, file) {
@@ -514,7 +531,45 @@ function localDevDataApiPlugin() {
                 .map((t) => ({ name: t.name.trim() }));
             }
             if (!team.length && name) team = [{ name }];
+            // Keep the remembered company and user unless the caller sets them.
+            const prev = readDesignerFile();
+            const activeCompany = SLUG_RE.test(data.activeCompany || "") ? data.activeCompany : prev.activeCompany || "";
+            const currentUser = typeof data.currentUser === "string" ? data.currentUser.trim() : prev.currentUser || "";
             const out = { name, company, team };
+            if (activeCompany) out.activeCompany = activeCompany;
+            if (currentUser) out.currentUser = currentUser;
+            writeFileSync(DESIGNER_PATH, JSON.stringify(out, null, 2) + "\n", "utf8");
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end('{"ok":true}');
+          } catch (e) {
+            res.writeHead(400, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ error: e.message || "Bad JSON" }));
+          }
+          return;
+        }
+
+        // Remembers the last company and user picked in the browser, so a fresh
+        // browser (or a cleared one) opens straight in without asking again.
+        if (pathOnly === "/api/designer" && req.method === "PATCH") {
+          try {
+            const data = await readJsonBody(req);
+            const out = readDesignerFile();
+            if (typeof data.activeCompany === "string") {
+              const slug = data.activeCompany.trim();
+              if (slug && !SLUG_RE.test(slug)) throw new Error("Bad company id");
+              if (slug) out.activeCompany = slug;
+              else delete out.activeCompany;
+            }
+            if (typeof data.currentUser === "string") {
+              const user = data.currentUser.trim();
+              if (user) out.currentUser = user;
+              else delete out.currentUser;
+              // First pick on a machine without setup: that person owns this checkout.
+              if (user && !out.name) out.name = user;
+              if (user && !out.team.some((m) => m && String(m.name || "").trim().toLowerCase() === user.toLowerCase())) {
+                out.team.push({ name: user });
+              }
+            }
             writeFileSync(DESIGNER_PATH, JSON.stringify(out, null, 2) + "\n", "utf8");
             res.writeHead(200, { "Content-Type": "application/json" });
             res.end('{"ok":true}');

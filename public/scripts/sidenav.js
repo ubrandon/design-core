@@ -471,13 +471,39 @@
     });
   }
 
+  // A browser with no saved user picks up the one remembered in .designer
+  // (the last user picked, else the owner's name) instead of asking again.
+  function restoreUser() {
+    const load = typeof fetchDesignerProfile === "function" ? fetchDesignerProfile() : Promise.resolve({});
+    return load.catch(() => ({})).then((prof) => {
+      const saved = String((prof && (prof.currentUser || prof.name)) || "").trim();
+      if (curName()) return;
+      if (!saved) { requireUser(); return; }
+      if (typeof setCurrentUser === "function") setCurrentUser(saved);
+      paintUser();
+    });
+  }
+
+  // Browsers that picked a company and user before .designer remembered them
+  // copy those choices over once, so the next fresh browser opens straight in.
+  function backfillProfile(slug) {
+    if (typeof fetchDesignerProfile !== "function" || typeof rememberInDesignerProfile !== "function") return;
+    fetchDesignerProfile().then((prof) => {
+      const fields = {};
+      if (!prof.activeCompany) fields.activeCompany = slug;
+      if (!prof.currentUser && curName()) fields.currentUser = curName();
+      if (Object.keys(fields).length) rememberInDesignerProfile(fields);
+    }).catch(() => {});
+  }
+
   function ensureIdentity() {
     const companiesReady = typeof fetchCompanies === "function" ? fetchCompanies() : Promise.resolve([]);
     const localReady = typeof isLocalToolServer === "function" ? isLocalToolServer() : Promise.resolve(false);
     return Promise.all([companiesReady, localReady, typeof ensureCompany === "function" ? ensureCompany() : Promise.resolve("")])
       .then(([list, local, slug]) => {
         if (!slug) { requireCompany(list || [], local); return slug; }
-        if (local && !curName()) requireUser();
+        if (local && !curName()) return restoreUser().then(() => slug);
+        if (local) backfillProfile(slug);
         return slug;
       })
       .catch(() => "");
