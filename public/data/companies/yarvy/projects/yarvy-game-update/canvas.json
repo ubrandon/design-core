@@ -133,30 +133,6 @@
       "width": 390
     },
     {
-      "file": "you-side-23-radar.html",
-      "x": 3366,
-      "y": 7477,
-      "width": 340
-    },
-    {
-      "file": "you-side-24-skill-tiles.html",
-      "x": 3366,
-      "y": 7000,
-      "width": 340
-    },
-    {
-      "file": "you-side-37-condition-chips.html",
-      "x": 3739,
-      "y": 7003,
-      "width": 340
-    },
-    {
-      "file": "you-side-39-life-overview.html",
-      "x": 4121,
-      "y": 7003,
-      "width": 390
-    },
-    {
       "file": "chat-g-desk-fresh.html",
       "x": 3464,
       "y": 2094,
@@ -181,99 +157,87 @@
       "width": 390
     },
     {
-      "file": "you-e-life-board.html",
-      "x": 5465,
-      "y": 7000,
-      "width": 1200
-    },
-    {
-      "file": "you-e-mobile.html",
-      "x": 6705,
-      "y": 7000,
-      "width": 390
-    },
-    {
       "file": "you-f-simple.html",
-      "x": 7175,
-      "y": 7000,
+      "x": 3751,
+      "y": 6971,
       "width": 1200
     },
     {
       "file": "you-f-mobile.html",
-      "x": 8415,
-      "y": 7000,
+      "x": 4991,
+      "y": 6971,
       "width": 390
     },
     {
       "file": "you-life-1-numbers.html",
-      "x": 8885,
-      "y": 7000,
+      "x": 5461,
+      "y": 6971,
       "width": 960
     },
     {
       "file": "you-life-2-one-bar.html",
-      "x": 9885,
-      "y": 7000,
+      "x": 5461,
+      "y": 7253,
       "width": 960
     },
     {
       "file": "you-life-3-rows.html",
-      "x": 10885,
-      "y": 7000,
+      "x": 6459,
+      "y": 6977,
       "width": 960
     },
     {
       "file": "you-life-4-bars.html",
-      "x": 11885,
-      "y": 7000,
+      "x": 6459,
+      "y": 7350,
       "width": 960
     },
     {
       "file": "you-life-5-sentence.html",
-      "x": 12885,
-      "y": 7000,
+      "x": 5461,
+      "y": 6677,
       "width": 960
     },
     {
       "file": "you-life-5b-clearer.html",
-      "x": 13885,
-      "y": 7000,
+      "x": 6461,
+      "y": 6593,
       "width": 960
     },
     {
       "file": "you-life-5c-health-open.html",
-      "x": 14885,
-      "y": 7000,
+      "x": 7461,
+      "y": 6593,
       "width": 960
     },
     {
       "file": "you-life-5d-quiet-open.html",
-      "x": 15885,
-      "y": 7000,
+      "x": 7461,
+      "y": 7350,
       "width": 960
     },
     {
       "file": "you-life-5e-mobile.html",
-      "x": 16885,
-      "y": 7000,
+      "x": 8461,
+      "y": 7350,
       "width": 390
     },
     {
       "file": "you-life-5f-modal-health.html",
-      "x": 17355,
-      "y": 7000,
+      "x": 8963,
+      "y": 6593,
       "width": 1200
     },
     {
       "file": "you-life-5g-modal-quiet.html",
-      "x": 18595,
-      "y": 7000,
+      "x": 10203,
+      "y": 6593,
       "width": 1200
     },
     {
       "file": "you-life-5h-mobile-page.html",
-      "x": 19835,
-      "y": 7000,
+      "x": 11443,
+      "y": 6593,
       "width": 390
     }
   ],
