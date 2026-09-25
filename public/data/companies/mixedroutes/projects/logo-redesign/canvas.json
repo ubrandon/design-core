@@ -99,32 +99,18 @@
       "name": "Option C: Unified application"
     },
     {
-      "file": "moving-m-brand-guide.html",
-      "x": 1503,
-      "y": 6,
-      "width": 1440,
-      "name": "Moving M brand guide"
+      "file": "nautilus-card.html",
+      "x": 1543,
+      "y": -576,
+      "width": 480,
+      "name": "Nautilus"
     },
     {
-      "file": "geometric-m-sway.html",
-      "x": 3148,
+      "file": "nautilus-unified.html",
+      "x": 1543,
       "y": 6,
       "width": 1440,
-      "name": "Geometric M, liquid sway"
-    },
-    {
-      "file": "geometric-m-objects.html",
-      "x": 3148,
-      "y": 1126,
-      "width": 1440,
-      "name": "Geometric M, liquid objects"
-    },
-    {
-      "file": "geometric-m-nautilus-mark.html",
-      "x": 4688,
-      "y": 6,
-      "width": 600,
-      "name": "Nautilus, construction"
+      "name": "Nautilus: Unified application"
     }
   ],
   "texts": [
