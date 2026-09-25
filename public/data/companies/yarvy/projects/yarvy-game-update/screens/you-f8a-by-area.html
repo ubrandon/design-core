@@ -1,0 +1,590 @@
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/regular/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/bold/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/fonts/phosphor/fill/style.css" />
+<link rel="stylesheet" href="../../../design-system/app/yarvy-app.css" />
+<style>
+.yv-shot { background: var(--shell); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-body); line-height: var(--lh-base); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+.yv-shot #app { height: auto; min-height: 0; overflow: visible; }
+.yv-shot #main, .yv-shot #tasks-view, .yv-shot #tasks-side, .yv-shot #tasks-main, .yv-shot #chat-content { overflow: visible; }
+.yv-shot #chat-content { padding: 8px 16px 16px; }
+.yv-shot #main::before, .yv-shot #main::after { content: none; }
+.yv-shot #main { padding-bottom: 24px; }
+.yv-shot #fab { position: absolute; }
+.yv-shot .app-toast { display: none; }
+
+  /* You F: E cut to one signal per area, one line per goal, one card beside them. Prefix yf-. */
+  .yf-sub b { color: var(--text); font-weight: var(--fw-semibold); }
+  .yf-wk-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .yf-wk h2 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-bold); line-height: var(--lh-snug); letter-spacing: var(--ls-snug); }
+  .yf-wk h2 span { color: var(--tone); }
+  .yf-wk-head .yp-link { margin-top: -8px; }
+  .yf-wk p { margin: 4px 0 0; font-size: var(--fs-body-sm); color: var(--muted); }
+  .yf-wk p b { color: var(--accent-2); font-weight: var(--fw-semibold); }
+  .yf-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .yf-chip { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px 0 6px; border: 0; border-radius: var(--radius-pill); background: var(--wash); color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .yf-chip .yf-well { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--panel); color: var(--tone); font-size: 15px; }
+  .yf-chip em { font-style: normal; color: var(--muted); font-weight: var(--fw-normal); }
+  .yf-chip.quiet { background: transparent; box-shadow: inset 0 0 0 1px var(--line); }
+  .yf-chip.quiet .yf-well { background: var(--wash); }
+  .t-health { --tone: var(--cat-health); --wash: var(--cat-health-soft); }
+  .t-work { --tone: var(--cat-create); --wash: var(--cat-create-soft); }
+  .t-learn { --tone: var(--cat-learn); --wash: var(--cat-learn-soft); }
+  .t-money { --tone: var(--cat-money); --wash: var(--cat-money-soft); }
+  .t-rel { --tone: var(--accent); --wash: var(--chip-active); }
+  .t-home { --tone: var(--muted); --wash: var(--surface-hover); }
+  /* Proposed Fun tone: teal, clear of Health green and Learning blue; would become --cat-fun in the design system. */
+  .t-fun { --tone: #16918b; --wash: rgba(22, 145, 139, 0.13); }
+  .yf-steps { grid-column: 2 / -1; display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin-top: 10px; }
+  .yf-steps i { height: 6px; border-radius: var(--radius-pill); background: var(--surface-hover); }
+  .yf-steps i.d { background: var(--yp-tone); }
+  .yp-goal.t-work { --yp-tone: var(--cat-create); --yp-wash: var(--cat-create-soft); }
+  .yf-proud { padding: 18px 18px 8px; border-radius: var(--radius-xl); background: var(--success-soft); }
+  .yf-proud h3 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); line-height: var(--lh-snug); }
+  .yf-proud p { margin: 6px 0 0; font-size: var(--fs-body-sm); }
+  .yf-from { display: flex; align-items: center; justify-content: space-between; width: calc(100% + 16px); min-height: 44px; margin: 8px -8px 0; padding: 0 8px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--success-text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .yf-from:hover { background: color-mix(in srgb, var(--cat-health) 12%, transparent); }
+  .yf-foot { display: flex; gap: 8px; margin: 10px 0 0 -10px; }
+  .yp .yf-life { margin-top: -6px; }
+  .yp-c-grid { margin-top: 36px; grid-template-columns: minmax(0, 1fr) 288px; gap: 0 32px; }
+  .yp-c-side .yp-sec.yf-proud-sec { margin-top: 50px; }
+</style>
+<div class="yv-shot  " style="background: var(--shell);">
+<main id="app" class="account-mode">
+      <nav id="rail" aria-label="Main navigation">
+        <div class="rail-brand">
+          <!-- Brand mark (bare bars, no tile) mirrors scripts/gen-icons.mjs, public/login.html, public/js/auth-screen.js and site/index.html; change all together. -->
+          <svg class="rail-mark" viewBox="4 17 92 66" aria-hidden="true"><g stroke="currentColor" stroke-width="12" stroke-linecap="round" fill="none"><line x1="10" y1="42" x2="10" y2="58" opacity="0.76"></line><line x1="30" y1="28" x2="30" y2="72" opacity="0.94"></line><line x1="50" y1="37" x2="50" y2="63" opacity="0.82"></line><line x1="70" y1="23" x2="70" y2="77" opacity="1.00"></line><line x1="90" y1="40" x2="90" y2="60" opacity="0.79"></line></g></svg>
+          <span class="rail-wordmark">yarvy</span>
+        </div>
+        <div class="rail-nav">
+          <button id="nav-home" class="nav-item" type="button" aria-label="Chat">
+            <i class="ph ph-chat-circle nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-chat-circle nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Chat</span>
+          </button>
+          <button id="nav-upcoming" class="nav-item" type="button" aria-label="Today" title="Today">
+            <i class="ph ph-calendar-blank nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-calendar-blank nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Today</span>
+          </button>
+          <button id="nav-tasks" class="nav-item" type="button" aria-label="Lists" title="Lists">
+            <i class="ph ph-list nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-list nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">Lists</span>
+          </button>
+          <button id="nav-you" class="nav-item active" type="button" aria-label="You" title="You" aria-current="page">
+            <i class="ph ph-user nav-ico" aria-hidden="true"></i>
+            <i class="ph-fill ph-user nav-ico-on" aria-hidden="true"></i>
+            <span class="nav-label">You</span>
+          </button>
+        </div>
+        <div class="rail-spacer"></div>
+        <div id="usermenu">
+          <button id="profile" type="button" aria-label="Account menu" title="Account menu" aria-haspopup="menu" aria-expanded="false">
+            <span class="nav-pill"><span id="avatar">BU</span></span>
+            <span id="rail-name">Brandon</span>
+            <i class="ph ph-caret-up-down profile-chevron" aria-hidden="true"></i>
+            <span class="nav-label">You</span>
+          </button>
+        </div>
+        <button id="nav-projects" class="nav-item" type="button" aria-label="Lists" title="Lists">
+          <i class="ph ph-list nav-ico" aria-hidden="true"></i>
+          <i class="ph-fill ph-list nav-ico-on" aria-hidden="true"></i>
+          <span class="nav-label">Lists</span>
+        </button>
+      </nav>
+
+      <section id="main">
+        <!-- Page header: where am I, what day is it. Spans the chat column and the Today board on desktop. -->
+        <div class="chat-head"><h1 class="chat-title">Chat</h1><span id="datelabel">Tuesday, September 15</span></div>
+        <div id="hero">
+          
+          <div id="chat-content">
+            <div id="greeting">
+              <div id="presence-wrap">
+                <div id="presence" class="" aria-hidden="true">
+                  <svg viewBox="0 0 42 36" id="presence-svg">
+                    <g class="signal-field">
+                      <rect class="eq-bar" x="3" y="12" width="4" height="12" rx="2"></rect>
+                      <rect class="eq-bar" x="11" y="9" width="4" height="18" rx="2"></rect>
+                      <rect class="eq-bar" x="19" y="6" width="4" height="24" rx="2"></rect>
+                      <rect class="eq-bar" x="27" y="9" width="4" height="18" rx="2"></rect>
+                      <rect class="eq-bar" x="35" y="12" width="4" height="12" rx="2"></rect>
+                      <g class="glyph-layer"></g>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <span id="hero-date">Tuesday, September 15</span>
+              <h1 id="hello"><span class="grad">Good afternoon, </span><span id="username">Design</span></h1>
+              <!-- One line on the day (today-board.js): done count, overdue, and what is next. -->
+              <p id="hero-read">You've checked off 5 tasks today. Want help picking what to work on next?</p>
+            </div>
+
+            <!-- Fallback for history while the live reply is hidden or still arriving. -->
+            <div id="chat-tools">
+              <button id="chat-history" class="action-button" type="button" title="History" aria-expanded="false" aria-controls="chat-history-inline" aria-label="History"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2.6 7.4M3 4v7h7M12 7v5l3 2"></path></svg><span class="action-label">History</span></button>
+            </div>
+            <div id="chat-exchange">
+              <div id="chat-history-inline" hidden="">
+                <button id="chat-load-earlier" class="action-button" type="button" hidden="" aria-label="Load earlier" title="Load earlier"><span class="action-label">Load earlier</span></button>
+                <p id="chat-history-status" role="status" hidden=""></p>
+                <div id="chat-history-messages"></div>
+              </div>
+              <div id="last-prompt" hidden="">
+                <p><span id="last-prompt-text"></span></p>
+              </div>
+              <!-- Sender line: the live presence moves in here beside the reply during a chat (conversation.js). -->
+              <div id="reply-from"><span id="reply-presence-slot"></span><b>Yarvy</b><span id="reply-time"></span></div>
+              <div id="latest" aria-live="polite"></div>
+            </div>
+
+            <!-- Quick actions stay below Yarvy's latest message in every state, welcome or mid-chat. -->
+            <div id="suggestions" aria-label="Suggestions"><button type="button" class="chip suggestion-chip change" aria-label="I'd like to capture a thought."><i class="ph ph-arrow-bend-down-right chip-ico" aria-hidden="true"></i><span class="chip-label">Capture</span></button><button type="button" class="chip suggestion-chip ask" aria-label="Find one task from my to-do list I can do in about 15 minutes. Ask if you need to know how long it takes."><i class="ph ph-question chip-ico" aria-hidden="true"></i><span class="chip-label">Quick task</span></button><button type="button" class="chip suggestion-chip change" aria-label="Plan the rest of my afternoon using my current tasks."><i class="ph ph-arrow-bend-down-right chip-ico" aria-hidden="true"></i><span class="chip-label">Plan today</span></button></div>
+
+            <div id="banner" hidden=""></div>
+          </div>
+
+          <!-- The dock stays below the scrolling conversation during chat. -->
+          <div id="chat-dock">
+            <button id="chat-jump-latest" class="action-button" type="button" hidden="" aria-label="Latest reply ↓" title="Latest reply ↓"><span class="action-label">Latest reply ↓</span></button>
+            <form id="composer" autocomplete="off">
+              <textarea id="input" placeholder="Add a task or ask anything" aria-label="Message Yarvy" rows="2" style=""></textarea>
+              <button id="send" type="submit" aria-label="Send">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5M12 5l-6 6M12 5l6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- The Today board: the same task rows as the Tasks page, so chat changes show in place (today-board.js). -->
+        <aside id="today-board" aria-label="Schedule"><div class="board-head"><h2>Schedule</h2><span class="board-count">5 of 7 done today</span></div><div class="board-bar"><i style="width: 71%;"></i></div><div class="board-group" data-date="2026-09-15"><div class="board-group-head"><h3>Today</h3></div><div class="project-tasks board-cards"><div class="task-card prio-1" data-task-id="1149" draggable="true" data-drag-wired="1"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark done" aria-label="Mark done: Ship v2 release notes"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Ship v2 release notes</div><div class="card-meta"><button type="button" class="meta-date" title="Change date" aria-label="Change due date" draggable="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>Today at 11:00 AM</span></button><button type="button" class="meta-loc" title="Open Launch prep" aria-label="Open list Launch prep" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Launch prep</span></button></div></div><div class="card-actions"><button type="button" class="card-action schedule" title="Schedule" aria-label="Schedule task" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-calendar-blank" aria-hidden="true"></i></button><button type="button" class="card-action edit" title="Edit" aria-label="Edit task" draggable="false"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card" data-task-id="1150" draggable="true" data-drag-wired="1"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark done" aria-label="Mark done: Get a review from Priya"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Get a review from Priya</div><div class="card-meta"><button type="button" class="meta-date" title="Change date" aria-label="Change due date" draggable="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>Today</span></button><button type="button" class="meta-loc" title="Open Launch prep" aria-label="Open list Launch prep" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Launch prep</span></button></div></div><div class="card-actions"><button type="button" class="card-action schedule" title="Schedule" aria-label="Schedule task" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-calendar-blank" aria-hidden="true"></i></button><button type="button" class="card-action edit" title="Edit" aria-label="Edit task" draggable="false"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card done completed" data-task-id="1148"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark as not done" aria-label="Mark as not done: Team standup"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Team standup</div><div class="card-meta"><button type="button" class="meta-loc" title="Open Work" aria-label="Open list Work" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Work</span></button></div></div><div class="card-actions"><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card done completed" data-task-id="1147"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark as not done" aria-label="Mark as not done: Move $300 to savings"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Move $300 to savings</div></div><div class="card-actions"><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card done completed" data-task-id="1146"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark as not done" aria-label="Mark as not done: Finish chapter 9 of Piranesi"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Finish chapter 9 of Piranesi</div><div class="card-meta"><button type="button" class="meta-loc" title="Open Home" aria-label="Open list Home" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Home</span></button></div></div><div class="card-actions"><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card done completed" data-task-id="1145"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark as not done" aria-label="Mark as not done: Long run, 12 km"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Long run, 12 km</div><div class="card-meta"><button type="button" class="meta-loc" title="Open Health" aria-label="Open list Health" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Health</span></button></div></div><div class="card-actions"><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div><div class="task-card done completed" data-task-id="1144"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark as not done" aria-label="Mark as not done: Draft the highlights section"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Draft the highlights section</div><div class="card-meta"><button type="button" class="meta-loc" title="Open Launch prep" aria-label="Open list Launch prep" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Launch prep</span></button></div></div><div class="card-actions"><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div></div></div><div class="board-group" data-date="2026-09-16"><div class="board-group-head"><h3>Tomorrow</h3></div><div class="project-tasks board-cards"><div class="task-card" data-task-id="1151" draggable="true" data-drag-wired="1"><div class="card-main"><span class="card-select" aria-hidden="true"><i class="ph ph-circle sel-empty"></i><i class="ph-fill ph-check-circle sel-full"></i></span><button type="button" class="check" title="Mark done" aria-label="Mark done: Long run, 14 km"><i class="ph ph-circle check-empty" aria-hidden="true"></i><i class="ph-fill ph-check-circle check-full" aria-hidden="true"></i></button><div class="card-body" role="button" tabindex="0" title="View details"><div class="card-title">Long run, 14 km</div><div class="card-meta"><button type="button" class="meta-date" title="Change date" aria-label="Change due date" draggable="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>Tomorrow</span></button><button type="button" class="meta-loc" title="Open Health" aria-label="Open list Health" draggable="false"><span class="cic hash" aria-hidden="true">#</span><span class="meta-loc-name">Health</span></button></div></div><div class="card-actions"><button type="button" class="card-action schedule" title="Schedule" aria-label="Schedule task" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-calendar-blank" aria-hidden="true"></i></button><button type="button" class="card-action edit" title="Edit" aria-label="Edit task" draggable="false"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="card-action more" title="More actions" aria-label="More task actions" draggable="false" aria-haspopup="menu" aria-expanded="false"><i class="ph ph-dots-three" aria-hidden="true"></i></button></div></div></div></div></div><details class="board-later"><summary>Later</summary><div class="board-group" data-date="2026-09-17"><div class="board-group-head"><h3>Thursday, Sep 17</h3></div><div class="board-empty">Nothing planned yet.</div></div><div class="board-group" data-date="2026-09-18"><div class="board-group-head"><h3>Friday, Sep 18</h3></div><div class="board-empty">Nothing planned yet.</div></div></details></aside>
+      </section>
+
+      <section id="usage-view" hidden="">
+        <div class="usage-wrap">
+          <h1 class="usage-title">Admin</h1>
+          <div id="usage-body" class="usage-body"></div>
+        </div>
+      </section>
+
+      <section id="upcoming-view" hidden="">
+        <div class="upcoming-wrap">
+          <div class="upcoming-head">
+            <h1 class="upcoming-title">Today</h1>
+            <div id="upcoming-tools">
+              <button class="search-trigger loading-control" type="button" aria-label="Search" disabled=""><i class="ph ph-magnifying-glass" aria-hidden="true"></i></button>
+              <button class="display-btn select-btn loading-control" type="button" aria-label="Select tasks" disabled=""><i class="ph ph-check-square" aria-hidden="true"></i></button>
+              <button class="display-btn loading-control" type="button" aria-label="Display options" disabled=""><i class="ph ph-sliders-horizontal" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div id="upcoming-body">
+            
+          </div>
+        </div>
+      </section>
+
+      <section id="tasks-view" hidden="">
+        <aside id="tasks-side">
+          <!-- Skeletons (base.css) fill the shells until state loads on a cold start or deep link; the first render replaces them. -->
+          <div id="tasks-nav">
+            <button class="tnav-add-task loading-control" type="button" disabled=""><i class="ph-fill ph-plus-circle" aria-hidden="true"></i><span>Add task or note</span></button>
+            <div class="tnav-row"><button class="tnav-item loading-control" type="button" disabled=""><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>All tasks</span></span></button></div>
+            <div class="tnav-row"><button class="tnav-item loading-control" type="button" disabled=""><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M15 4v4h4M8 13h8M8 17h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>All notes</span></span></button></div>
+            <div class="tnav-row"><button class="tnav-item loading-control" type="button" disabled=""><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l2.4-7h11.2L20 13v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zM4 13h4l1.5 2.5h5L16 13h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Inbox</span></span></button></div>
+            <div class="tnav-row"><button class="tnav-item loading-control" type="button" disabled=""><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><circle cx="12" cy="15" r="2.3" fill="currentColor"></circle></svg><span>Today</span></span></button></div>
+            <div class="tnav-row"><button class="tnav-item loading-control" type="button" disabled=""><span class="tnav-name"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M4 9h16M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><span>Upcoming</span></span></button></div>
+            <div class="tnav-spaces-head"><h2 class="tnav-spaces-title">Lists</h2></div>
+            
+          </div>
+        </aside>
+        <div id="tasks-main">
+          <div id="tasks-head">
+            <div class="tasks-title-row">
+              <h1 class="tasks-title">All tasks</h1>
+            </div>
+              <div class="tasks-kind-switch">
+                <button class="tasks-kind-btn active loading-control" type="button" disabled=""><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="tasks-kind-label">Tasks</span><span class="tasks-kind-count" aria-hidden="true"><span class="sk-bar"></span></span></button>
+                <button class="tasks-kind-btn loading-control" type="button" disabled=""><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path><path d="M15 4v4h4M8 13h8M8 17h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="tasks-kind-label">Notes</span><span class="tasks-kind-count" aria-hidden="true"><span class="sk-bar"></span></span></button>
+              </div>
+            <div class="tasks-tools">
+              <button class="search-trigger loading-control" type="button" aria-label="Search" disabled=""><i class="ph ph-magnifying-glass" aria-hidden="true"></i></button>
+              <button class="display-btn select-btn loading-control" type="button" aria-label="Select tasks" disabled=""><i class="ph ph-check-square" aria-hidden="true"></i></button>
+              <button class="display-btn loading-control" type="button" aria-label="Display options" disabled=""><i class="ph ph-sliders-horizontal" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div id="tasks-body">
+            
+          </div>
+        </div>
+      </section>
+
+      <section id="projects-view" hidden="">
+        <div class="projects-wrap">
+          <div class="projects-head">
+            <h1 class="projects-title">Lists</h1>
+          </div>
+          <div id="projects-nav"></div>
+        </div>
+      </section>
+
+      <section id="search-view" hidden="">
+        <div class="search-wrap">
+          <div class="search-bar">
+            <div class="search-field">
+              <i class="ph ph-magnifying-glass search-bar-ico" aria-hidden="true"></i>
+              <input id="search-input" class="search-input" type="search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search" placeholder="Search tasks, notes, lists, and goals" aria-label="Search your tasks, notes, lists, and goals" style="">
+              <button id="search-clear" class="search-clear" type="button" aria-label="Clear search" hidden="">
+                <i class="ph ph-x" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div id="search-results" class="search-results" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="profile-view">
+        <div class="account-wrap">
+          <style>
+  /* You C5: C2 with the habit day dots back, and the big filled circle replaced by a labeled pill, Check in or Done today, the same size as the Moment button. */
+
+  /* You page variants, prefix yp-. Tokens from yarvy-app.css; the app's .you-* layout classes are not used. */
+  .yp { --yp-control: 44px; gap: 0; }
+  .yp .account-topbar { margin-bottom: 4px; }
+  .yp-head { display: flex; align-items: center; gap: 14px; min-height: 56px; margin: 14px 0 26px; }
+  .yp .account-topbar { margin: 4px 0 0; }
+  .yp-head .account-topbar-actions { display: none; }
+  .yp-head .account-avatar { width: 52px; height: 52px; font-size: var(--fs-body); flex: 0 0 auto; }
+  .yp-who { min-width: 0; flex: 1; line-height: 1.2; }
+  .yp-who h1 { margin: 0; font-size: var(--fs-h1); font-weight: var(--fw-heavy); letter-spacing: var(--ls-snug); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .yp-who > span { display: block; margin-top: 3px; font-size: var(--fs-sm); color: var(--muted); }
+  .yp-sub b { color: var(--text); font-weight: var(--fw-semibold); }
+  .yp-sub .yp-sep { margin: 0 6px; }
+  .yp-sub .yp-n { white-space: nowrap; }
+  .yp-head .account-topbar-actions { flex: 0 0 auto; }
+  .yp-id { display: flex; align-items: center; gap: 12px; min-height: 48px; margin-bottom: 18px; }
+  .yp-id .account-avatar { width: 40px; height: 40px; font-size: var(--fs-body-sm); }
+  .yp-id b { font-size: var(--fs-body); font-weight: var(--fw-bold); }
+  .yp-id span { color: var(--muted); font-size: var(--fs-sm); }
+  .yp-id span::before { content: "·"; margin: 0 6px; }
+  /* This week: one line of counts and a small seven day row. No headline, no fill. */
+  .yp-week { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; padding: 10px 16px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: var(--panel); margin-bottom: 26px; }
+  .yp-week-counts { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--fs-body-sm); color: var(--text); }
+  .yp-week-counts b { font-weight: var(--fw-bold); }
+  .yp-week-counts .yp-lab { color: var(--muted); font-weight: var(--fw-semibold); }
+  .yp-days { display: flex; gap: 6px; }
+  .yp-day { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 24px; font-size: var(--fs-2xs); color: var(--muted); }
+  .yp-day i { display: block; width: 100%; height: 22px; border-radius: 4px; background: var(--surface-hover); position: relative; overflow: hidden; }
+  .yp-day i::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: var(--h, 0); background: var(--accent-fill); }
+  .yp-day.today { color: var(--accent-2); font-weight: var(--fw-bold); }
+  .yp-day.future i { background: transparent; border-bottom: 2px solid var(--line); border-radius: 0; height: 22px; }
+  /* Sections. */
+  .yp-sec { margin-top: 30px; }
+  .yp-sec-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+  .yp-sec-head h2 { margin: 0; font-size: var(--fs-h2); font-weight: var(--fw-bold); letter-spacing: var(--ls-tight); }
+  .yp-link { display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 0 10px; margin-right: -10px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--accent-2); font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); cursor: pointer; }
+  .yp-link:hover { background: var(--surface-hover); }
+  .yp-link i { font-size: 16px; }
+  .yp-group { margin-top: 16px; }
+  .yp-group-head { display: flex; align-items: baseline; gap: 8px; margin: 0 0 8px 2px; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--muted); }
+  .yp-stack { display: flex; flex-direction: column; gap: 8px; }
+  /* Goal card: the whole card opens the goal; the habit check is its own target on top. */
+  .yp-goal { position: relative; display: grid; grid-template-columns: var(--yp-control) minmax(0, 1fr) auto; column-gap: 14px; align-items: center; padding: 14px 14px 14px 16px; background: var(--panel); border: 1px solid transparent; border-radius: var(--radius-xl); box-shadow: var(--shadow-soft); }
+  .yp-goal:hover { background: var(--card-hover); }
+  .yp-goal.cat-health { --yp-tone: var(--cat-health); --yp-wash: var(--cat-health-soft); }
+  .yp-goal.cat-money { --yp-tone: var(--cat-money); --yp-wash: var(--cat-money-soft); }
+  .yp-goal.cat-learn { --yp-tone: var(--cat-learn); --yp-wash: var(--cat-learn-soft); }
+  .yp-goal.cat-create { --yp-tone: var(--cat-create); --yp-wash: var(--cat-create-soft); }
+  .yp-goal.cat-default { --yp-tone: var(--accent); --yp-wash: var(--chip-active); }
+  .yp-face { display: grid; place-items: center; width: var(--yp-control); height: var(--yp-control); font-size: var(--fs-h2); border-radius: var(--radius-md); background: var(--yp-wash); }
+  .yp-open { display: block; min-width: 0; padding: 0; border: 0; background: none; color: var(--text); text-align: left; font: inherit; cursor: pointer; }
+  .yp-open::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius-xl); }
+  .yp-open:focus-visible { outline: none; }
+  .yp-open:focus-visible::after { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+  .yp-title { display: block; font-size: var(--fs-body); font-weight: var(--fw-semibold); line-height: var(--lh-snug); }
+  .yp-value { display: block; margin-top: 2px; font-size: var(--fs-sm); color: var(--muted); }
+  .yp-value b { color: var(--text); font-weight: var(--fw-semibold); }
+  .yp-bar { grid-column: 2 / -1; height: 6px; margin-top: 10px; border-radius: var(--radius-pill); background: var(--surface-hover); overflow: hidden; }
+  .yp-bar i { display: block; height: 100%; width: var(--w, 0); background: var(--yp-tone); border-radius: var(--radius-pill); }
+  .yp-remaining { grid-column: 2 / -1; margin-top: 8px; font-size: var(--fs-sm); color: var(--muted); }
+  .yp-next { grid-column: 2 / -1; display: flex; align-items: center; gap: 6px; margin-top: 10px; font-size: var(--fs-sm); color: var(--text); }
+  .yp-next i { color: var(--yp-tone); font-size: 15px; }
+  .yp-end { position: relative; z-index: 1; display: flex; align-items: center; gap: 8px; }
+  .yp-caret { color: var(--muted); font-size: 16px; }
+  .yp-check { flex: 0 0 auto; width: var(--yp-control); height: var(--yp-control); border-radius: 50%; display: grid; place-items: center; border: 0; background: var(--line-strong); color: var(--on-accent); cursor: pointer; }
+  .yp-check i { font-size: 20px; }
+  .yp-check.checked { background: var(--success-fill); }
+  .yp-check:hover:not(.checked) { background: var(--ring); }
+  .yp-dots { grid-column: 2 / -1; display: flex; gap: 6px; margin-top: 10px; }
+  .yp-dot { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 26px; font-size: var(--fs-2xs); color: var(--muted); }
+  .yp-dot i { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--field-surface); font-style: normal; font-size: 12px; }
+  .yp-dot.checked i { background: var(--success-soft); color: var(--success-text); font-size: 11px; }
+  .yp-dot.today i { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+  .yp-dot.future i { background: none; border: 1px solid var(--line); }
+  .yp-quote { grid-column: 2 / -1; margin: 8px 0 0; font-size: var(--fs-body-sm); color: var(--text); }
+  .yp-quote small { display: block; margin-top: 2px; color: var(--muted); font-size: var(--fs-xs); }
+  .yp-btn { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--panel); color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; white-space: nowrap; }
+  .yp-btn:hover { border-color: var(--accent); background: var(--chip-active); }
+  .yp-btn i { font-size: 16px; color: var(--muted); }
+  .yp-foot { margin-top: 10px; }
+  /* Wins: evidence, three rows, then the labeled route to the rest. */
+  .yp-win { display: grid; grid-template-columns: 10px minmax(0, 1fr); column-gap: 12px; align-items: baseline; min-height: 48px; padding: 6px 0; border-top: 1px solid var(--line-soft); }
+  .yp-win:first-child { border-top: 0; }
+  .yp-win i { width: 10px; height: 10px; border-radius: 50%; background: var(--yp-tone, var(--accent)); align-self: center; }
+  .yp-win.cat-health { --yp-tone: var(--cat-health); } .yp-win.cat-learn { --yp-tone: var(--cat-learn); } .yp-win.cat-money { --yp-tone: var(--cat-money); }
+  .yp-win small { display: block; font-size: var(--fs-xs); color: var(--muted); }
+  .yp-win b { display: block; font-weight: var(--fw-semibold); font-size: var(--fs-body-sm); }
+  /* Badges: last, quiet, no repeated Earned label. */
+  .yp-badges { display: flex; gap: 18px; }
+  .yp-badges .badge { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 92px; padding: 8px 0; border: 0; background: none; font: inherit; color: var(--text); cursor: pointer; border-radius: var(--radius-md); }
+  .yp-badges .badge:hover { background: var(--surface-hover); }
+  .yp-badges .badge-label { font-size: var(--fs-xs); font-weight: var(--fw-semibold); text-align: center; }
+
+  .yv-shot #profile-view .account-wrap { max-width: 1040px; }
+  .yp-c-grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 0 40px; align-items: start; }
+  .yp-c-side { position: sticky; top: 16px; }
+  .yp-c-side .yp-sec:first-child { margin-top: 0; }
+  .yp-c-side .yp-sec-head h2 { font-size: var(--fs-body); }
+  .yp-c-side .yp-week { flex-direction: column; align-items: stretch; gap: 10px; margin: 0; }
+  .yp-c-side .yp-days { justify-content: space-between; }
+  .yp-c-side .yp-day { width: 28px; }
+  .yp-c-side .yp-week-counts { flex-direction: column; gap: 2px; }
+  .yp-c-main .yp-sec:first-child { margin-top: 0; }
+  .yp-side-week { padding: 12px 16px; border: 1px solid var(--line); border-radius: var(--radius-xl); background: var(--panel); display: flex; flex-direction: column; gap: 2px; font-size: var(--fs-body-sm); }
+  .yp-side-week b { font-weight: var(--fw-bold); }
+  .yp-two { padding: 12px 14px 12px 14px; }
+  .yp-two .yp-bar { margin-top: 8px; height: 5px; }
+  .yp-two .yp-value { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .yp-habit .yp-dots { margin-top: 10px; }
+  .yp-pill { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px 0 12px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--panel); color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); cursor: pointer; white-space: nowrap; }
+  .yp-pill i { font-size: 16px; color: var(--muted); }
+  .yp-pill:hover { border-color: var(--accent); background: var(--chip-active); }
+  .yp-pill.done { border-color: transparent; background: var(--success-soft); color: var(--success-text); }
+  .yp-pill.done i { color: var(--success-text); }
+  .ys-pace { position: relative; height: 90px; margin-top: 6px; }
+  .ys-pace svg { width: 100%; height: 100%; overflow: visible; }
+  .ys-pace .usual { fill: none; stroke: var(--line); stroke-width: 2; stroke-dasharray: 4 4; }
+  .ys-pace .now { fill: none; stroke: var(--accent-2); stroke-width: 2.5; stroke-linecap: round; }
+  .ys-pace .dot { fill: var(--accent-2); }
+  .ys-axis { display: grid; grid-template-columns: repeat(7, 1fr); margin-top: 6px; font-size: var(--fs-2xs); color: var(--muted); text-align: center; }
+  .ys-key { display: flex; gap: 14px; margin-top: 8px; font-size: var(--fs-xs); color: var(--muted); }
+  .ys-key i { display: inline-block; width: 14px; height: 0; border-top: 2px solid var(--accent-2); vertical-align: middle; margin-right: 5px; }
+  .ys-key i.u { border-top: 2px dashed var(--line); }
+  .ys-lead { margin: 10px 0 0; font-size: var(--fs-body-sm); }
+  .ys-lead b { font-weight: var(--fw-semibold); }
+
+  /* You F3: goal cards built on the app's real goal model (goal-card.js). Prefix yg-. */
+  .yg-group:first-of-type { margin-top: 4px; }
+  .yg-group + .yg-group { margin-top: 22px; }
+  .yp-group-head h3 { margin: 0; font: inherit; color: var(--text); }
+  .yg-card { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; column-gap: 14px; align-items: center; padding: 12px 14px; background: var(--panel); border-radius: var(--radius-xl); box-shadow: var(--shadow-soft); }
+  .yg-card:hover { background: var(--card-hover); }
+  .yg-card.cat-health { --yg-tone: var(--cat-health); --yg-wash: var(--cat-health-soft); --yg-ink: var(--success-text); }
+  .yg-card.cat-money { --yg-tone: var(--cat-money); --yg-wash: var(--cat-money-soft); --yg-ink: var(--warn-text); }
+  .yg-card.cat-learn { --yg-tone: var(--cat-learn); --yg-wash: var(--cat-learn-soft); --yg-ink: var(--info-text); }
+  .yg-card.cat-create { --yg-tone: var(--cat-create); --yg-wash: var(--cat-create-soft); --yg-ink: var(--creative-text); }
+  .yg-card.cat-default { --yg-tone: var(--accent); --yg-wash: var(--chip-active); --yg-ink: var(--accent-2); }
+  .yg-face { display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--yg-wash); color: var(--yg-ink); font-size: 22px; }
+  .yg-open { display: block; min-width: 0; padding: 0; border: 0; background: none; color: var(--text); text-align: left; font: inherit; cursor: pointer; }
+  .yg-open::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius-xl); }
+  .yg-open:focus-visible { outline: none; }
+  .yg-open:focus-visible::after { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+  .yg-title { display: flex; align-items: center; gap: 8px; font-size: var(--fs-body); font-weight: var(--fw-semibold); line-height: var(--lh-snug); }
+  .yg-kind { padding: 2px 8px; border-radius: var(--radius-pill); background: var(--line-soft); color: var(--muted); font-size: var(--fs-2xs); font-weight: var(--fw-bold); white-space: nowrap; }
+  .yg-line { display: block; margin-top: 2px; font-size: var(--fs-sm); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .yg-line b { color: var(--text); font-weight: var(--fw-semibold); }
+  .yg-end { position: relative; z-index: 1; display: flex; align-items: center; }
+  .yg-track { grid-column: 2 / -1; margin-top: 10px; }
+  /* Habit week: one row of lettered days; today gets a neutral ring, the streak fills the spare width. */
+  .yg-week { display: flex; align-items: center; gap: 6px; }
+  .yg-day { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--field-surface); color: var(--muted); font-size: var(--fs-2xs); font-weight: var(--fw-semibold); }
+  .yg-day.done { background: var(--yg-tone); color: var(--on-accent); }
+  .yg-day.future { background: none; box-shadow: inset 0 0 0 1px var(--line); }
+  .yg-day.off { background: none; box-shadow: none; border: 1px dashed var(--line); color: var(--line-strong); }
+  .yg-day.today { outline: 1.5px solid var(--text); outline-offset: 2px; }
+  .yg-streak { display: inline-flex; align-items: center; gap: 5px; margin-left: auto; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--text); }
+  .yg-streak i { color: var(--accent); font-size: 16px; }
+  /* Achieve tracks: milestone steps or one bar, with an even-pace mark where the data supports it. */
+  .yg-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+  .yg-steps i { height: 6px; border-radius: var(--radius-pill); background: var(--surface-hover); }
+  .yg-steps i.d { background: var(--yg-tone); }
+  .yg-bar { position: relative; height: 6px; border-radius: var(--radius-pill); background: var(--surface-hover); }
+  .yg-bar i { display: block; height: 100%; width: var(--w, 0); border-radius: var(--radius-pill); background: var(--yg-tone); }
+  .yg-mark { position: absolute; top: -4px; bottom: -4px; left: var(--at); width: 2px; margin-left: -1px; border-radius: 1px; background: var(--text); opacity: .5; }
+  .yg-foot { grid-column: 2 / -1; display: flex; align-items: center; gap: 8px; min-height: 32px; margin-top: 6px; font-size: var(--fs-sm); color: var(--text); }
+  .yg-foot > i { color: var(--yg-ink); font-size: 15px; }
+  .yg-foot b { font-weight: var(--fw-semibold); }
+  .yg-foot .goal-pace-chip { align-self: center; margin: 0; }
+  .yg-soft { color: var(--muted); }
+  .yg-foot .yg-adjust { position: relative; z-index: 1; min-height: 32px; margin-left: auto; }
+  /* Quiet control: control-surface disc, dark glyph, 44px target that does not grow the row. */
+  .yg-disc { position: relative; z-index: 1; display: grid; place-items: center; width: 44px; height: 44px; margin: -6px -6px -6px auto; padding: 0; border: 0; background: none; color: var(--text); cursor: pointer; }
+  .yg-disc span { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--control-surface); font-size: 16px; }
+  .yg-disc:hover span { background: var(--surface-hover); }
+  .yg-due { position: relative; z-index: 1; grid-column: 2 / -1; display: flex; align-items: center; gap: 8px; min-height: 40px; margin-top: 10px; padding: 0 10px; border: 0; border-radius: var(--radius-md); background: var(--surface-hover); color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: var(--fw-semibold); text-align: left; cursor: pointer; }
+  .yg-due > i:first-child { color: var(--yg-ink); font-size: 16px; }
+  .yg-due-caret { margin-left: auto; color: var(--muted); font-size: 14px; }
+  /* Growth: one flower per recent moment (never a percentage), then the latest moment in their words. */
+  .yg-grow { display: flex; align-items: flex-end; gap: 12px; min-width: 0; }
+  .yg-garden { display: flex; align-items: flex-end; gap: 1px; flex: 0 0 auto; color: var(--yg-tone); font-size: 18px; line-height: 1; }
+  .yg-garden i:nth-child(2n) { color: var(--yg-ink); transform: translateY(-3px); }
+  .yg-garden i:nth-child(3n) { transform: rotate(-10deg); }
+  .yg-quote { min-width: 0; font-size: var(--fs-sm); color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .yg-quote small { color: var(--muted); font-size: var(--fs-xs); margin-left: 4px; }
+  /* You F5: one button per card, the main way to log progress; the card itself opens the goal. */
+  .yg-line .goal-pace-chip { margin: 0 0 0 8px; vertical-align: 1px; }
+  .yg-due-text { color: var(--accent-2); font-weight: var(--fw-semibold); }
+  p.yg-quote { margin: 8px 0 0; }
+  /* You F6: badges in the side column. Goal badges are saved records; area badges count real things done. Prefix yb-. */
+  .yp-c-side .yb-sec { margin-top: 32px; }
+  .yb-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .yb-head h2 { margin: 0; font-size: var(--fs-body); font-weight: var(--fw-bold); }
+  .yb-sub { margin: 2px 0 0; font-size: var(--fs-sm); color: var(--muted); }
+  .t-health { --ink: var(--success-text); } .t-work { --ink: var(--creative-text); } .t-learn { --ink: var(--info-text); } .t-money { --ink: var(--warn-text); }
+  .t-rel { --ink: var(--accent-2); } .t-home { --ink: var(--text); } .t-fun { --ink: #0f6f6a; }
+  /* Goal badge: a medal with a ribbon, so it never reads like an area coin. */
+  .yb-medals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+  .yb-medal { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0; padding: 6px 2px 8px; border: 0; border-radius: var(--radius-md); background: none; color: var(--text); font: inherit; text-align: center; cursor: pointer; }
+  .yb-medal:hover { background: var(--surface-hover); }
+  .yb-disc { position: relative; display: grid; place-items: center; width: 60px; height: 60px; margin-bottom: 16px; border-radius: 50%; background: linear-gradient(var(--wash), var(--wash)), var(--panel); color: var(--ink); font-size: 26px; border: 2px solid var(--tone); box-shadow: inset 0 0 0 4px var(--panel), 0 3px 0 var(--line); }
+  .yb-disc::before, .yb-disc::after { content: ""; position: absolute; z-index: -1; top: 44px; width: 14px; height: 26px; background: var(--tone); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%); }
+  .yb-disc::before { left: 13px; transform: rotate(16deg); }
+  .yb-disc::after { right: 13px; transform: rotate(-16deg); opacity: .8; }
+  .yb-medal b { max-width: 100%; font-size: var(--fs-xs); font-weight: var(--fw-bold); line-height: var(--lh-snug); }
+  .yb-medal small { font-size: var(--fs-2xs); color: var(--muted); }
+  .yb-next { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 56px; margin-top: 6px; padding: 6px 8px; border: 1px dashed var(--line); border-radius: var(--radius-md); background: none; color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+  .yb-next:hover { background: var(--surface-hover); }
+  .yb-next b { display: block; font-size: var(--fs-sm); font-weight: var(--fw-semibold); }
+  .yb-next small { display: block; font-size: var(--fs-xs); color: var(--muted); }
+  .yb-ring { position: relative; flex: 0 0 auto; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: conic-gradient(var(--tone) var(--p), var(--line-soft) 0); color: var(--muted); font-size: 18px; }
+  .yb-ring::before { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--shell); }
+  .yb-ring i { position: relative; }
+  /* Area badge: the area's coin with its tier on a tab; the rim grows with the tier. */
+  .yb-areas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 8px; margin: 14px 0 6px; }
+  .yb-area { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0; padding: 6px 0 8px; border: 0; border-radius: var(--radius-md); background: none; color: var(--text); font: inherit; cursor: pointer; }
+  .yb-area:hover { background: var(--surface-hover); }
+  .yb-coin { position: relative; display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 10px; border-radius: 50%; background: var(--wash); color: var(--ink); font-size: 22px; }
+  .yb-coin em { position: absolute; left: 50%; bottom: -9px; transform: translateX(-50%); min-width: 26px; padding: 1px 6px; border-radius: var(--radius-pill); background: var(--panel); box-shadow: inset 0 0 0 1.5px var(--tone); color: var(--ink); font-style: normal; font-size: var(--fs-2xs); font-weight: var(--fw-bold); line-height: 1.35; }
+  .lv2 .yb-coin { box-shadow: inset 0 0 0 2px var(--tone); }
+  .lv3 .yb-coin { box-shadow: inset 0 0 0 2px var(--tone), inset 0 0 0 5px var(--panel), 0 3px 0 var(--line); }
+  .yb-area b { font-size: var(--fs-xs); font-weight: var(--fw-semibold); }
+  .yb-all { margin: 6px 0 0 -10px; }
+  /* You F7: area badges are patterns Yarvy noticed, drawn as hexagons so they read apart from goal medals. Prefix yn-. */
+  .t-home { --tone: var(--text-muted-2, var(--muted)); }
+  .yn-list { display: flex; flex-direction: column; margin: 10px 0 6px; }
+  .yn-row { display: flex; align-items: center; gap: 12px; min-height: 60px; margin: 0 -8px; padding: 6px 8px; border: 0; border-radius: var(--radius-md); background: none; color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+  .yn-row:hover { background: var(--surface-hover); }
+  .yn-hex { flex: 0 0 auto; display: grid; place-items: center; width: 44px; height: 48px; background: var(--tone); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
+  .yn-hex > span { display: grid; place-items: center; width: 39px; height: 43px; background: linear-gradient(var(--wash), var(--wash)), var(--panel); color: var(--ink); font-size: 20px; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
+  .yn-txt { min-width: 0; }
+  .yn-txt b { display: block; font-size: var(--fs-sm); font-weight: var(--fw-bold); line-height: var(--lh-snug); }
+  .yn-txt small { display: block; margin-top: 1px; font-size: var(--fs-xs); color: var(--muted); }
+  .yn-txt em { font-style: normal; font-weight: var(--fw-semibold); color: var(--ink); }
+  .yb-next small { line-height: var(--lh-snug); }
+  /* You F8: shared bits. Achieve tracks end in an outlined medal; a run that is close to a badge says so. Prefix ya-. */
+  .ya-goaltrack { display: flex; align-items: center; gap: 10px; }
+  .ya-goaltrack > div { flex: 1; min-width: 0; }
+  .ya-ghost { flex: 0 0 auto; color: var(--line-strong); font-size: 18px; }
+  .ya-tobadge { font-size: inherit; font-weight: var(--fw-normal); color: var(--muted); }
+  .ya-mm, .ya-mh { display: grid; place-items: center; flex: 0 0 auto; color: var(--ink); }
+  .ya-mm { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(var(--wash), var(--wash)), var(--panel); box-shadow: inset 0 0 0 2px var(--tone), inset 0 0 0 4px var(--panel); font-size: 14px; }
+  .ya-mh { width: 28px; height: 31px; background: var(--tone); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
+  .ya-mh > i { display: grid; place-items: center; width: 24px; height: 27px; background: linear-gradient(var(--wash), var(--wash)), var(--panel); clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); font-size: 13px; }
+  .ya-mring { position: relative; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: conic-gradient(var(--tone) var(--p), var(--line-soft) 0); color: var(--muted); font-size: 14px; }
+  .ya-mring::before { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--panel); }
+  .ya-mring i { position: relative; }
+
+  /* You F8a: one row per part of your life; its name, insight and badges on the left, its goals on the right. */
+  .ya-intro { margin-bottom: 8px; }
+  .ya-area { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 28px; padding: 22px 0; border-top: 1px solid var(--line-soft); }
+  .ya-side { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  .ya-phead { display: flex; align-items: center; gap: 12px; }
+  .ya-well { display: grid; place-items: center; flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; background: var(--wash); color: var(--tone); font-size: 20px; }
+  .ya-pname { display: flex; flex-direction: column; min-width: 0; padding: 0; border: 0; background: none; color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+  .ya-pname b { font-size: var(--fs-h3, 18px); font-weight: var(--fw-bold); line-height: var(--lh-snug); }
+  .ya-pname small { font-size: var(--fs-xs); color: var(--muted); }
+  .ya-warm { color: var(--accent-2); font-weight: var(--fw-semibold); }
+  .ya-insight { display: flex; align-items: flex-start; gap: 8px; margin: 0; padding: 10px 12px; border-radius: var(--radius-md); background: var(--success-soft); font-size: var(--fs-sm); line-height: var(--lh-snug); }
+  .ya-insight i { margin-top: 2px; color: var(--success-text); font-size: 15px; }
+  .ya-insight b { font-weight: var(--fw-bold); }
+  .ya-bls { display: flex; flex-direction: column; gap: 2px; }
+  .ya-bl { display: flex; align-items: center; gap: 10px; min-height: 44px; margin: 0 -6px; padding: 4px 6px; border: 0; border-radius: var(--radius-md); background: none; color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+  button.ya-bl:hover { background: var(--surface-hover); }
+  .ya-bl b { display: block; font-size: var(--fs-sm); font-weight: var(--fw-semibold); line-height: var(--lh-snug); }
+  .ya-bl small { display: block; font-size: var(--fs-xs); color: var(--muted); }
+  .ya-none { margin: 0; font-size: var(--fs-sm); color: var(--muted); }
+  .ya-goals { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .ya-rest { padding-top: 22px; border-top: 1px solid var(--line-soft); }
+  .ya-rest-h { margin: 0 0 10px; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--muted); }
+  .ya-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .ya-tile { display: flex; flex-direction: column; align-items: stretch; gap: 10px; padding: 14px 14px 10px; border-radius: var(--radius-xl); background: var(--panel); box-shadow: var(--shadow-soft); }
+  .ya-tile .ya-pname b { font-size: var(--fs-body); }
+  .ya-tile .ya-bl { margin: 0 -6px; }
+  .ya-foot { margin-top: 18px; }
+</style>
+<div id="profile-body" class="account-body yp"><div class="account-topbar"><h1 class="account-title">You</h1><div class="account-topbar-actions"><button type="button" class="account-topbar-btn" title="Edit profile" aria-label="Edit profile"><i class="ph ph-pencil-simple" aria-hidden="true"></i></button><button type="button" class="account-topbar-btn" title="Settings" aria-label="Settings"><i class="ph ph-gear" aria-hidden="true"></i></button></div></div><header class="yp-head"><div class="account-avatar">BU</div><div class="yp-who"><h1>Brandon Unglaub</h1><span class="yf-sub"><b>12</b> things done this week</span></div></header><section class="yp-sec yf-life yf-wk ya-intro"><div class="yf-wk-head"><h2>Most of your week went to <span class="t-health">Health</span> and <span class="t-work">Work</span>.</h2><button type="button" class="yp-link">Add goal</button></div><p><b>Relationships</b> has been quiet for 2 weeks. Home is paused.</p></section><section class="ya-area t-health" aria-label="Health"><div class="ya-side"><div class="ya-phead"><span class="ya-well" aria-hidden="true"><i class="ph ph-person-simple-run"></i></span><button type="button" class="ya-pname"><b>Health</b><small>4 done this week</small></button></div><p class="ya-insight"><i class="ph-fill ph-sparkle" aria-hidden="true"></i><span><b>Becoming a regular runner.</b> Two runs a week for 3 weeks; in August it was one.</span></p><div class="ya-bls"><button type="button" class="ya-bl t-health"><span class="ya-mm t-health" title="Sub-hour 10K"><i class="ph-fill ph-person-simple-run" aria-hidden="true"></i></span><span><b>Sub-hour 10K</b><small>Goal · Jul 12</small></span></button></div></div><div class="ya-goals"><article class="yg-card cat-health" aria-label="Meditate every morning"><span class="yg-face" aria-hidden="true"><i class="ph-fill ph-flower-lotus"></i></span><button type="button" class="yg-open" aria-label="Open Meditate every morning"><span class="yg-title">Meditate every morning</span><span class="yg-line"><b>2 of 7</b> days this week</span></button><span class="yg-end"><button type="button" class="yp-pill done" aria-pressed="true" aria-label="Meditate every morning: done today, press to undo"><i class="ph ph-check" aria-hidden="true"></i>Done today</button></span><div class="yg-track yg-week" role="img" aria-label="Monday and Tuesday done, 9-day streak"><span class="yg-day done">M</span><span class="yg-day done today">T</span><span class="yg-day future">W</span><span class="yg-day future">T</span><span class="yg-day future">F</span><span class="yg-day future">S</span><span class="yg-day future">S</span><span class="yg-streak"><i class="ph-fill ph-fire" aria-hidden="true"></i>9-day streak</span></div></article><article class="yg-card cat-default" aria-label="Less takeout, more cooking"><span class="yg-face" aria-hidden="true"><i class="ph-fill ph-cooking-pot"></i></span><button type="button" class="yg-open" aria-label="Open Less takeout, more cooking"><span class="yg-title">Less takeout, more cooking<span class="yg-kind">Cutting back</span></span><span class="yg-line"><b>1 on-plan day</b> this week, aiming for 5</span></button><span class="yg-end"><button type="button" class="yp-pill" aria-pressed="false" aria-label="Less takeout, more cooking: on plan today"><i class="ph ph-check" aria-hidden="true"></i>On plan today</button></span><div class="yg-track yg-week" role="img" aria-label="Monday on plan, weekends not scheduled, 3-week run"><span class="yg-day done">M</span><span class="yg-day today">T</span><span class="yg-day future">W</span><span class="yg-day future">T</span><span class="yg-day future">F</span><span class="yg-day off" title="Not scheduled">S</span><span class="yg-day off" title="Not scheduled">S</span><span class="yg-streak"><i class="ph-fill ph-fire" aria-hidden="true"></i><span>3-week run <small class="ya-tobadge">· 1 more for a badge</small></span></span></div></article><article class="yg-card cat-health" aria-label="Run a half marathon"><span class="yg-face" aria-hidden="true"><i class="ph-fill ph-person-simple-run"></i></span><button type="button" class="yg-open" aria-label="Open Run a half marathon"><span class="yg-title">Run a half marathon</span><span class="yg-line"><b>2 of 5</b> milestones · next, 15 km long run</span></button><span class="yg-end"><button type="button" class="yp-pill" aria-label="Mark 15 km long run done"><i class="ph ph-flag-pennant" aria-hidden="true"></i>Log milestone</button></span><div class="yg-track ya-goaltrack"><div class="yg-steps" role="progressbar" aria-label="Milestones" aria-valuemin="0" aria-valuemax="5" aria-valuenow="2"><i class="d"></i><i class="d"></i><i></i><i></i><i></i></div><i class="ph ph-medal ya-ghost" title="Finish it to make its badge" aria-hidden="true"></i></div></article></div></section><section class="ya-area t-work" aria-label="Work"><div class="ya-side"><div class="ya-phead"><span class="ya-well" aria-hidden="true"><i class="ph ph-briefcase"></i></span><button type="button" class="ya-pname"><b>Work</b><small>4 done this week</small></button></div><p class="ya-none">No badges here yet.</p></div><div class="ya-goals"><article class="yg-card cat-create" aria-label="Be more patient"><span class="yg-face" aria-hidden="true"><i class="ph-fill ph-target"></i></span><button type="button" class="yg-open" aria-label="Open Be more patient"><span class="yg-title">Be more patient</span><span class="yg-line"><b>3 moments</b> this month</span></button><span class="yg-end"><button type="button" class="yp-pill" aria-label="Log a moment for Be more patient"><i class="ph ph-note-pencil" aria-hidden="true"></i>Log a moment</button></span><p class="yg-track yg-quote">“Let the standup run over without jumping in.” <small>Today</small></p></article><article class="yg-card cat-create" aria-label="Write more clearly"><span class="yg-face" aria-hidden="true"><i class="ph-fill ph-pen-nib"></i></span><button type="button" class="yg-open" aria-label="Open Write more clearly"><span class="yg-title">Write more clearly</span><span class="yg-line"><b>1 moment</b> this month</span></button><span class="yg-end"><button type="button" class="yp-pill" aria-label="Log a moment for Write more clearly"><i class="ph ph-note-pencil" aria-hidden="true"></i>Log a moment</button></span><p class="yg-track yg-quote">“Cut the release notes to 280 words.” <small>Last week</small></p></article></div></section><section class="ya-area t-learn" aria-label="Learning"><div class="ya-side"><div class="ya-phead"><span class="ya-well" aria-hidden="true"><i class="ph ph-book-open"></i></span><button type="button" class="ya-pname"><b>Learning</b><small>1 done this week</small></button></div><div class="ya-bls"><button type="button" class="ya-bl t-learn"><span class="ya-mh t-learn" title="Back to reading"><i class="ph-fill ph-book-open" aria-hidden="true"></i></span><span><b>Back to reading</b><small>Noticed · Sep 14</small></span></button></div></div><div class="ya-goals"><article class="yg-card cat-learn" aria-label="Read 12 books this year"><span class="yg-face" aria-hidden="true"><i class="ph-fill ph-books"></i></span><button type="button" class="yg-open" aria-label="Open Read 12 books this year"><span class="yg-title">Read 12 books this year</span><span class="yg-line"><b>4 of 12</b> books<span class="goal-pace-chip behind">A little behind</span></span></button><span class="yg-end"><button type="button" class="yp-pill" aria-label="Log a finished book for Read 12 books this year"><i class="ph ph-plus" aria-hidden="true"></i>Log a book</button></span><div class="yg-track ya-goaltrack"><div class="yg-bar" role="progressbar" aria-label="Books read" aria-valuemin="0" aria-valuemax="12" aria-valuenow="4"><i style="--w:33%"></i></div><i class="ph ph-medal ya-ghost" title="Finish it to make its badge" aria-hidden="true"></i></div></article></div></section><section class="ya-area t-money" aria-label="Money"><div class="ya-side"><div class="ya-phead"><span class="ya-well" aria-hidden="true"><i class="ph ph-wallet"></i></span><button type="button" class="ya-pname"><b>Money</b><small>1 done this week</small></button></div><div class="ya-bls"><button type="button" class="ya-bl t-money"><span class="ya-mh t-money" title="First month under budget"><i class="ph-fill ph-wallet" aria-hidden="true"></i></span><span><b>First month under budget</b><small>Noticed · Aug 31</small></span></button><button type="button" class="ya-bl t-money"><span class="ya-mm t-money" title="Rainy-day fund"><i class="ph-fill ph-piggy-bank" aria-hidden="true"></i></span><span><b>Rainy-day fund</b><small>Goal · Mar 3</small></span></button></div></div><div class="ya-goals"><article class="yg-card cat-money" aria-label="Save $5,000"><span class="yg-face" aria-hidden="true"><i class="ph-fill ph-piggy-bank"></i></span><button type="button" class="yg-open" aria-label="Open Save $5,000, weekly review due"><span class="yg-title">Save $5,000</span><span class="yg-line"><b>$1,800 of $5,000</b> · <span class="yg-due-text">Weekly review due</span></span></button><span class="yg-end"><button type="button" class="yp-pill" aria-label="Add to Save $5,000"><i class="ph ph-plus" aria-hidden="true"></i>Add savings</button></span><div class="yg-track ya-goaltrack"><div class="yg-bar" role="progressbar" aria-label="Saved" aria-valuemin="0" aria-valuemax="5000" aria-valuenow="1800"><i style="--w:36%"></i></div><i class="ph ph-medal ya-ghost" title="Finish it to make its badge" aria-hidden="true"></i></div></article></div></section><section class="ya-rest" aria-label="Other parts of your life"><h3 class="ya-rest-h">No goals right now</h3><div class="ya-tiles"><div class="ya-tile t-fun"><div class="ya-phead"><span class="ya-well" aria-hidden="true"><i class="ph ph-confetti"></i></span><button type="button" class="ya-pname"><b>Fun</b><small>2 done this week</small></button></div><button type="button" class="ya-bl t-fun"><span class="ya-mm t-fun" title="Bread person"><i class="ph-fill ph-bread" aria-hidden="true"></i></span><span><b>Bread person</b><small>Goal · Sep 22</small></span></button></div><div class="ya-tile t-rel"><div class="ya-phead"><span class="ya-well" aria-hidden="true"><i class="ph ph-heart"></i></span><button type="button" class="ya-pname"><b>Relationships</b><small><span class="ya-warm">Quiet for 2 weeks</span></small></button></div><span class="ya-bl t-rel"><span class="ya-mring" style="--p:90%"><i class="ph-fill ph-heart" aria-hidden="true"></i></span><span><b>First badge</b><small>1 more thing to go</small></span></span></div><div class="ya-tile t-home"><div class="ya-phead"><span class="ya-well" aria-hidden="true"><i class="ph ph-house"></i></span><button type="button" class="ya-pname"><b>Home</b><small>Paused</small></button></div><button type="button" class="ya-bl t-home"><span class="ya-mh t-home" title="The fence, finally"><i class="ph-fill ph-hammer" aria-hidden="true"></i></span><span><b>The fence, finally</b><small>Noticed · Aug 30</small></span></button></div></div></section><div class="yf-foot ya-foot"><button type="button" class="yp-link">All badges</button><button type="button" class="yp-link">Finished</button><button type="button" class="yp-link">Paused and past</button><button type="button" class="yp-link">Edit areas</button></div></div>
+        </div>
+      </section>
+
+      <section id="settings-view" hidden="">
+        <div class="account-wrap">
+          <div class="account-head">
+            <button id="settings-back" class="account-back" type="button" aria-label="Back to profile">
+              <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            </button>
+            <h1 class="account-title">Settings</h1>
+          </div>
+          <div id="settings-body" class="account-body"></div>
+        </div>
+      </section>
+
+      <section id="editprofile-view" hidden="">
+        <div class="account-wrap">
+          <div class="account-head">
+            <button class="account-back" data-you-back="profile" type="button" aria-label="Back to your page">
+              <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            </button>
+            <h1 class="account-title">Edit profile</h1>
+          </div>
+          <div id="editprofile-body" class="account-body"></div>
+        </div>
+      </section>
+
+      <section id="memory-view" hidden="">
+        <div class="account-wrap">
+          <div class="account-head">
+            <button class="account-back" data-you-back="settings" type="button" aria-label="Back to settings">
+              <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            </button>
+            <h1 class="account-title">Memory &amp; activity</h1>
+          </div>
+          <div id="memory-body" class="account-body"></div>
+        </div>
+      </section>
+
+      <section id="goaldetail-view" hidden="">
+        <div class="account-wrap">
+          <div class="account-head">
+            <button class="account-back" data-you-back="profile" type="button" aria-label="Back to your page">
+              <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            </button>
+            <h1 class="account-title">Goal</h1>
+            <div id="goaldetail-actions" class="account-head-actions"></div>
+          </div>
+          <div id="goaldetail-body" class="account-body"></div>
+        </div>
+      </section>
+
+      <section id="plan-view" hidden="">
+        <div class="account-wrap">
+          <div class="account-head">
+            <button class="account-back" data-you-back="settings" type="button" aria-label="Back to settings">
+              <i class="ph ph-arrow-left" aria-hidden="true"></i>
+            </button>
+            <h1 class="account-title">Plan</h1>
+          </div>
+          <div id="plan-body" class="account-body"></div>
+        </div>
+      </section>
+    </main>
+</div>

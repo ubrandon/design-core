@@ -322,3 +322,31 @@ Question on F6: with AI, can area badges be smarter than a count of things done?
 - The goal shelf now leads with Bread person (made in F6b); Six-book summer is gone because it contradicted the Learning comeback.
 
 For the app: the repo has no scheduled job yet; noticing needs one (VISION.md's nightly pass), plus a badges table with kind, area, name, earned date and the evidence item ids.
+
+## Round nineteen: F8, making the pieces relate
+
+Brandon loved F7 and asked whether the page could be organized so everything relates, or cleaner. Two reimaginings to the right of F7b, same data and same goal cards:
+
+- **F8a, by part of your life (`you-f8a-by-area`).** The area chips become the page's structure. Each area is one row: on the left its name, this week's count, its insight (the runner line lives in Health) and its badges by name, goal medals and noticed hexagons together; on the right its goals. Areas with no goals (Fun, Relationships, Home) share one row of tiles at the end, each still showing its badge or its next one. The goal type groups (Habits, Achieve, Grow) go away; the card's track already says the type.
+- **F8b, doing and earned (`you-f8b-doing-earned`).** F7's layout with two jobs made plain. Left is doing: the goals. Right is earned: one Earned shelf mixing goal medals and noticed hexagons by date (a two-shape key explains them), then one Almost there list holding every next badge (Relationships, cooking at home, the half marathon). The area chips gain an All chip and filter both columns.
+
+Both link goals to badges on the card itself: every achieve track ends in an outlined medal (finishing makes its badge), and the cooking run reads "3-week run · 1 more for a badge".
+
+**Lean: F8a.** It answers "how does this all relate" directly: area, then its goals, then what they earned. F8b is the smaller step from F7 and keeps the big medal shelf, but areas, goals and badges still live in three places.
+
+## Round twenty: F9, F8b kept and finished
+
+F8a was too much at once. From F8, Brandon kept three things: F8b's right column (one Earned shelf with the two-shape key, then Almost there), F8b's area chips as filters, and the outlined medal at the end of each goal's track, which was only on achieve goals.
+
+- **`you-f9-calm`:** F8b with the outlined medal on every goal. Habits earn theirs when marked established, growth goals when they feel part of you, achieve goals when finished (the app's own completion copy). The "1 more for a badge" text on the cooking card goes; Almost there already says it.
+- **`you-f9b-area-open`:** the Health chip on. The goals narrow to Health's three (the heading becomes Health goals), Earned becomes Earned in Health (Sub-hour 10K and a noticed "Moved every week in August"), and Almost there keeps only the Health rows. This is how areas, goals and badges relate: one tap, same page, nothing added.
+
+F8a and the F7b-style area modal are set aside.
+
+## Round twenty-one: F10, one badge shape
+
+Feedback on F9: the two shapes and their key were bloat, and the outlined medals on the goal cards did not quite make sense. `you-f10-one-shape` and `you-f10b-health` (Health chip on) sit to the right of F9b.
+
+- Every badge is the ribbon medal; the line under it still says Goal or Noticed and the date. The key is gone.
+- No badge marks on goal cards. The link from a goal to its badge lives in Almost there.
+- Almost there drops the jargon: "3 of 4 weeks. One more earns it." and "2 of 5 milestones to its badge".
