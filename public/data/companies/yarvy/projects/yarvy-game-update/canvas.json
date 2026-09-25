@@ -109,18 +109,6 @@
       "width": 1200
     },
     {
-      "file": "you-c5-habit-pill.html",
-      "x": 1370,
-      "y": 7000,
-      "width": 1200
-    },
-    {
-      "file": "you-c5-mobile.html",
-      "x": 2633,
-      "y": 7000,
-      "width": 390
-    },
-    {
       "file": "lists-tab-mobile-copy.html",
       "x": 0,
       "y": 9877,
@@ -157,135 +145,21 @@
       "width": 390
     },
     {
-      "file": "you-f-simple.html",
-      "x": 3751,
-      "y": 6971,
-      "width": 1200
-    },
-    {
-      "file": "you-life-1-numbers.html",
-      "x": 5449,
-      "y": 7265,
-      "width": 960
-    },
-    {
-      "file": "you-life-2-one-bar.html",
-      "x": 5449,
-      "y": 7547,
-      "width": 960
-    },
-    {
-      "file": "you-life-5-sentence.html",
-      "x": 5449,
-      "y": 6971,
-      "width": 960
-    },
-    {
-      "file": "you-life-5b-clearer.html",
-      "x": 5449,
-      "y": 7824,
-      "width": 960
-    },
-    {
-      "file": "you-life-5f-modal-health.html",
-      "x": 8963,
-      "y": 6593,
-      "width": 1200
-    },
-    {
-      "file": "you-life-5g-modal-quiet.html",
-      "x": 10203,
-      "y": 6593,
-      "width": 1200
-    },
-    {
-      "file": "you-life-5h-mobile-page.html",
-      "x": 11443,
-      "y": 6593,
-      "width": 390
-    },
-    {
-      "file": "you-f2-fun.html",
-      "x": 3751,
-      "y": 8305,
-      "width": 1200
-    },
-    {
-      "file": "you-f3-goals.html",
-      "x": 4991,
-      "y": 8305,
-      "width": 1200
-    },
-    {
-      "file": "you-f4-calm.html",
-      "x": 6231,
-      "y": 8305,
-      "width": 1200
-    },
-    {
-      "file": "you-f5-one-action.html",
-      "x": 7471,
-      "y": 8305,
-      "width": 1200
-    },
-    {
-      "file": "you-f6-badges.html",
-      "x": 8711,
-      "y": 8305,
-      "width": 1200
-    },
-    {
-      "file": "you-f6b-make-badge.html",
-      "x": 9951,
-      "y": 8305,
-      "width": 1200
-    },
-    {
-      "file": "you-f7-noticed.html",
-      "x": 11191,
-      "y": 8305,
-      "width": 1200
-    },
-    {
       "file": "you-f7b-badge-proof.html",
-      "x": 12431,
-      "y": 8305,
-      "width": 1200
-    },
-    {
-      "file": "you-f8a-by-area.html",
-      "x": 13671,
-      "y": 8305,
-      "width": 1200
-    },
-    {
-      "file": "you-f8b-doing-earned.html",
-      "x": 14911,
-      "y": 8305,
-      "width": 1200
-    },
-    {
-      "file": "you-f9-calm.html",
-      "x": 16151,
-      "y": 8305,
-      "width": 1200
-    },
-    {
-      "file": "you-f9b-area-open.html",
-      "x": 17391,
-      "y": 8305,
+      "x": 4431,
+      "y": 6997,
       "width": 1200
     },
     {
       "file": "you-f10-one-shape.html",
-      "x": 18631,
-      "y": 8305,
+      "x": 1920,
+      "y": 6997,
       "width": 1200
     },
     {
       "file": "you-f10b-health.html",
-      "x": 19871,
-      "y": 8305,
+      "x": 3170,
+      "y": 7000,
       "width": 1200
     }
   ],
