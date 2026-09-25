@@ -263,3 +263,49 @@ Brandon liked 5 best and asked for it to make a little more sense, and for what 
 Only one chip is open at a time; tapping it again closes the card back to 5b.
 
 **Chip opens a modal, not inline** (feedback: do not grow the card below). `you-life-5f-modal-health` and `5g-modal-quiet` stage the app's own modal (`.modal-backdrop` / `.modal`) over the You page, which now carries 5b's section in place of the tile row. `5h-mobile-page` is the phone version as a pushed page with a back link to You, since a long modal on a phone is a page anyway. The area modal has four parts: the name with this week's count against last week; four weeks as small columns, this week darkest; This week and Still planned, each item with the goal it counted toward; Goals in this area, each opening its goal. The quiet version swaps the lists for "One small thing would count" (two steps from the person's own items), an empty goals row with Add goal, and Resting for now in the footer. 5c to 5e (the inline versions) are superseded.
+
+## Round fourteen: goal cards on the real goal model
+
+`you-f3-goals` sits to the right of `you-f2-fun`. Only the goals section changes. Every card follows what the app's `goal-card.js` and `routes/goals.ts` actually support.
+
+- **Grouped by kind again:** Habits, Achieve, Grow, as the live You page does. Habits come first here because they are today's taps (the live order is Achieve first).
+- **One skeleton:** icon tile, title, one line, one quick action or a caret, one track, then an optional footer row.
+- **Habits:** lettered day circles in one row, with the streak (daily) or week run (fewer days a week) filling the spare width. Today gets a neutral ring instead of the rust one. The cooking goal is a reduce habit, so it reads "Cutting back", counts on-plan days, and marks unscheduled weekend days with dashed circles.
+- **Achieve:** the marathon's next milestone can be checked off from the card. Books shows the app's own pace read ("A little behind"), an even-pace mark on the bar, what it would take, and an Adjust way out. Savings has no target date, so no pace; its quick action is Update, since the amount is typed by hand.
+- **Grow:** a count of moments this month, one flower per recent moment (the detail screen's garden), and the latest moment in the person's words.
+- **Attention row:** savings shows "Weekly review is due", the state live cards get most often.
+- **Faces:** Phosphor fill icons in the category ink, the app's curated goal icons, instead of emoji.
+
+For the app: the You page card currently drops the pace read in compact mode, and the milestone check and Update actions need card-level wiring to existing endpoints.
+
+## Round fifteen: F4, one thing to do per card
+
+Feedback on F3: the flowers on Grow were confusing, the round check on the half marathon did not say what it did, and every card had a different extra option, so it was hard to know what to do. `you-f4-calm` sits to the right of F3.
+
+- **One rule:** a button appears only for a check-in you can do today (the two habits). Every other card just opens its goal.
+- **Half marathon:** the milestone check is gone; the next milestone rides in the line ("next, 15 km long run").
+- **Books:** the pace chip sits in the line; the even-pace mark, the "about 2 a month" sentence, and Adjust move to the goal screen.
+- **Savings:** Update and the review row are gone; "Weekly review due" is a word in the line, and the tap opens the goal.
+- **Grow:** no flowers and no Moment button; the count and the latest moment in the person's words. Logging a moment happens on the goal or by telling Yarvy.
+
+Every card is now three rows: title, one line, one track (days, steps, bar, or the latest moment).
+
+## Round sixteen: F5, one button per card
+
+Feedback on F4: a button for the main action made sense. The problem in F3 was the mix of extras, not the buttons. `you-f5-one-action` is F4 with one pill on every card, always in the same spot, always naming what it logs: Done today / On plan today, Log milestone, Log a book, Add savings, Log a moment. Nothing else on a card is a control; tapping anywhere else opens the goal.
+
+For the app: Log a book switches the goal from counting linked tasks to a typed number (`current_value`), and Add savings adds to the saved total rather than replacing it.
+
+## Round seventeen: F6, badges in the side column
+
+How the app does badges today (`public/js/components/badges.js`): six tracks computed on the fly from account totals (tasks done, longest streak, goals achieved, time with Yarvy, goals set, lists), each with tiers. Nothing is stored, so a badge has no earned date and can disappear (delete a list and "5 lists" goes). Two tracks reward setup, not results. There is no badge for a specific goal and none for areas.
+
+`you-f6-badges` is F5 with two badge sections under What's improving:
+
+- **Goal badges.** One per finished goal, drawn as a medal with a ribbon so it never reads like an area coin. Each carries the name the person gave it and the month it was earned. A dashed Next row links to the closest active goal ("Run a half marathon, 2 of 5 milestones to its badge"). See all opens the full case.
+- **Parts of your life.** One coin per area, tiered at 10, 25, 50 and 100 things done there. The number sits on a tab and the rim gets heavier with each tier. The closest unearned one gets the same dashed Next row with a progress ring. Counts never go down.
+- **All badges** keeps the everyday tracks (tasks done, streak, time with Yarvy) one tap away. Proposal: drop the setup tracks (goals set, lists).
+
+`you-f6b-make-badge` is the moment Mark achieved opens: the medal large, "You finished it.", then Make its badge (name, which starts as the goal's name; icon; color, which starts as the area's). "Saved with it" shows the record frozen onto the badge (how long it took, what was logged, milestones), and says it stays even if the goal is deleted. An optional line to remember it, then Keep this badge.
+
+For the app: goal badges need a stored table (goal id, name, icon, color, earned date, a snapshot of the stats and the note) so they survive goal deletion and renames. Area badges need tasks linked to an area and an earned-at date per tier so they stay once earned.

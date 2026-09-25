@@ -209,6 +209,36 @@
       "x": 3751,
       "y": 8305,
       "width": 1200
+    },
+    {
+      "file": "you-f3-goals.html",
+      "x": 4991,
+      "y": 8305,
+      "width": 1200
+    },
+    {
+      "file": "you-f4-calm.html",
+      "x": 6231,
+      "y": 8305,
+      "width": 1200
+    },
+    {
+      "file": "you-f5-one-action.html",
+      "x": 7471,
+      "y": 8305,
+      "width": 1200
+    },
+    {
+      "file": "you-f6-badges.html",
+      "x": 8711,
+      "y": 8305,
+      "width": 1200
+    },
+    {
+      "file": "you-f6b-make-badge.html",
+      "x": 9951,
+      "y": 8305,
+      "width": 1200
     }
   ],
   "texts": [
