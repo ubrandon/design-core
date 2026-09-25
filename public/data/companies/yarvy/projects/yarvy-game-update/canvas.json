@@ -163,64 +163,28 @@
       "width": 1200
     },
     {
-      "file": "you-f-mobile.html",
-      "x": 4991,
-      "y": 6971,
-      "width": 390
-    },
-    {
       "file": "you-life-1-numbers.html",
-      "x": 5461,
-      "y": 6971,
+      "x": 5449,
+      "y": 7265,
       "width": 960
     },
     {
       "file": "you-life-2-one-bar.html",
-      "x": 5461,
-      "y": 7253,
-      "width": 960
-    },
-    {
-      "file": "you-life-3-rows.html",
-      "x": 6459,
-      "y": 6977,
-      "width": 960
-    },
-    {
-      "file": "you-life-4-bars.html",
-      "x": 6459,
-      "y": 7350,
+      "x": 5449,
+      "y": 7547,
       "width": 960
     },
     {
       "file": "you-life-5-sentence.html",
-      "x": 5461,
-      "y": 6677,
+      "x": 5449,
+      "y": 6971,
       "width": 960
     },
     {
       "file": "you-life-5b-clearer.html",
-      "x": 6461,
-      "y": 6593,
+      "x": 5449,
+      "y": 7824,
       "width": 960
-    },
-    {
-      "file": "you-life-5c-health-open.html",
-      "x": 7461,
-      "y": 6593,
-      "width": 960
-    },
-    {
-      "file": "you-life-5d-quiet-open.html",
-      "x": 7461,
-      "y": 7350,
-      "width": 960
-    },
-    {
-      "file": "you-life-5e-mobile.html",
-      "x": 8461,
-      "y": 7350,
-      "width": 390
     },
     {
       "file": "you-life-5f-modal-health.html",
@@ -239,6 +203,12 @@
       "x": 11443,
       "y": 6593,
       "width": 390
+    },
+    {
+      "file": "you-f2-fun.html",
+      "x": 3751,
+      "y": 8305,
+      "width": 1200
     }
   ],
   "texts": [
