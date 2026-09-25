@@ -309,3 +309,16 @@ How the app does badges today (`public/js/components/badges.js`): six tracks com
 `you-f6b-make-badge` is the moment Mark achieved opens: the medal large, "You finished it.", then Make its badge (name, which starts as the goal's name; icon; color, which starts as the area's). "Saved with it" shows the record frozen onto the badge (how long it took, what was logged, milestones), and says it stays even if the goal is deleted. An optional line to remember it, then Keep this badge.
 
 For the app: goal badges need a stored table (goal id, name, icon, color, earned date, a snapshot of the stats and the note) so they survive goal deletion and renames. Area badges need tasks linked to an area and an earned-at date per tier so they stay once earned.
+
+## Round eighteen: F7, badges Yarvy notices
+
+Question on F6: with AI, can area badges be smarter than a count of things done? `you-f7-noticed` replaces the count coins with patterns Yarvy noticed, and `you-f7b-badge-proof` opens one.
+
+- **Kinds of pattern:** consistency (the same thing N weeks running), comeback (an area quiet 60+ days, then something finished), first ever (first month under budget), personal best against your own history, follow-through (a task moved 5 times, then done), shift (more home meals than takeout for a month).
+- **Rules decide, AI names.** Each kind is a query over tasks and check-ins; the model only writes the name and the one line from the matching items, so it cannot invent praise.
+- **Proof on every badge.** F7b shows the items and dates behind "Back to reading" (the quiet gap drawn as its own row), the rule that earned it in plain words, and Rename or Hide.
+- **Rare and never lost.** At most about one per area a month; stored with its date and evidence; no negative badges.
+- **Drawn as hexagons** so they read apart from goal medals. A dashed Taking shape row shows the closest one ("cooking at home, 3 of 4 weeks").
+- The goal shelf now leads with Bread person (made in F6b); Six-book summer is gone because it contradicted the Learning comeback.
+
+For the app: the repo has no scheduled job yet; noticing needs one (VISION.md's nightly pass), plus a badges table with kind, area, name, earned date and the evidence item ids.
