@@ -76,13 +76,13 @@ const SHAPES = [
     tf:{py:8},
     detail:`<circle cx="600" cy="650" r="190"/><circle cx="600" cy="650" r="145" fill="#fff"/><circle cx="600" cy="650" r="66"/><rect x="820" y="450" width="110" height="50" rx="16"/>${lines(['M200 520H405','M795 520H1000'], 16)}` },
   { key:'boot', name:'Hiking boot', interest:'Outdoors', color:'#A1E7CE',
-    d:'M340 160Q300 160 296 205L272 740Q268 815 246 855Q226 892 232 935Q240 1000 310 1000H975Q1060 1000 1060 915Q1060 785 930 725L770 655Q660 610 632 520L590 210Q584 160 540 160Z',
-    tf:{px:-45, py:15, s:.95},
-    detail:`${lines(['M200 880H1100'], 26)}${lines(['M455 255L565 285','M468 355L582 385','M485 455L605 485'], 22)}` },
-  { key:'can', name:'Watering can', interest:'Outdoors', color:'#A1E7CE',
-    d:'M360 440H540V390Q540 260 680 260H730Q870 260 870 400V560Q870 640 790 650H760V900Q760 960 700 960H380Q320 960 320 900V730L165 440L110 415Q90 405 98 385L140 305Q150 285 172 295L232 325L218 385L320 580V480Q320 440 360 440Z',
-    tf:{px:120, py:-10},
-    detail:`<path d="M610 440V400Q610 330 690 330H720Q800 330 800 400V570Q800 585 785 585H760V440Z"/><circle cx="128" cy="372" r="11"/><circle cx="160" cy="326" r="11"/>` },
+    d:'M318 180Q330 160 360 162C420 168 470 230 540 238L600 236L630 140Q640 115 668 118L700 122Q722 126 720 150L728 480Q735 560 810 600L965 680Q1070 735 1075 840V900Q1090 905 1090 935V965Q1090 1000 1055 1000H760C715 1000 700 965 650 965H570C520 965 510 1000 470 1000H300Q265 1000 265 965V905Q265 870 285 840Q310 790 306 680L296 330Q292 220 318 180Z',
+    tf:{px:-78, py:-20},
+    detail:`${lines(['M180 900H1180'], 24)}${lines(['M290 250C400 250 460 300 560 306'], 18)}${lines(['M590 330L700 310','M592 410L702 390','M594 490L704 470'], 22)}${[330,420,810,900,990].map(x => `<rect x="${x}" y="982" width="44" height="60" rx="10"/>`).join('')}` },
+  { key:'tent', name:'Tent', interest:'Outdoors', color:'#A1E7CE',
+    d:'M150 950L592 282L523 177L545 163L600 246L655 163L677 177L608 282L1050 950Z',
+    tf:{py:-10},
+    detail:`<path d="M600 440Q540 700 420 990H660Q620 720 600 440Z"/>` },
   { key:'racket', name:'Tennis racket', interest:'Movement', color:'#1749E5',
     d:'M470 715.8A260 330 0 1 1 730 715.8L640 840V1110Q640 1140 610 1140H590Q560 1140 560 1110V840Z',
     tf:{py:-20, r:35, s:.9},
@@ -90,7 +90,7 @@ const SHAPES = [
   { key:'skate', name:'Skateboard', interest:'Movement', color:'#1749E5',
     d:'M480 240A120 120 0 0 1 720 240V270H755Q775 270 775 290V350Q775 370 755 370H720V830H755Q775 830 775 850V910Q775 930 755 930H720V960A120 120 0 0 1 480 960V930H445Q425 930 425 910V850Q425 830 445 830H480V370H445Q425 370 425 350V290Q425 270 445 270H480Z',
     tf:{r:35},
-    detail:`${lines(['M720 262V378','M480 262V378','M720 822V938','M480 822V938'], 14)}${lines(['M470 640L730 570'], 28)}` },
+    detail:`${lines(['M720 262V378','M480 262V378','M720 822V938','M480 822V938'], 14)}${[[570,280],[630,280],[570,360],[630,360],[570,840],[630,840],[570,920],[630,920]].map(([x,y]) => `<circle cx="${x}" cy="${y}" r="14"/>`).join('')}` },
   { key:'dice', name:'Dice', interest:'Games', color:'#E7EF8C',
     d:'M300 200H900Q1000 200 1000 300V900Q1000 1000 900 1000H300Q200 1000 200 900V300Q200 200 300 200Z',
     tf:{r:12, s:.9},
@@ -177,6 +177,22 @@ function setLabel(shape) {
   document.querySelectorAll('.mm-chip').forEach(c => c.setAttribute('aria-pressed', String(c.dataset.key === shape.key)));
 }
 
+// While resting on the M, a soft ripple travels along its outline; the next morph starts from wherever it is.
+const FLOW_A = 24, reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function idleFlow(id) {
+  if (reduceMotion) return;
+  const P = SHAPES[0].pts, t0 = performance.now();
+  const normals = P.map((_, i) => { const a = P[(i - 5 + N) % N], b = P[(i + 5) % N], nx = b[1] - a[1], ny = a[0] - b[0], l = Math.hypot(nx, ny) || 1; return [nx / l, ny / l]; });
+  function frame(now) {
+    if (id !== run) return;
+    const s = (now - t0) / 1000, amp = FLOW_A * Math.sin(Math.min(1, s / 1.2) * Math.PI / 2) ** 2;
+    curPts = P.map((p, i) => { const u = i / N, o = amp * (.8 * Math.sin(2 * Math.PI * (2 * u - .16 * s)) + .2 * Math.sin(2 * Math.PI * (u + .08 * s) + .8)); return [p[0] + normals[i][0] * o, p[1] + normals[i][1] * o]; });
+    shapeEl.setAttribute('d', toD(curPts));
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
 function morphTo(target) {
   const id = ++run;
   clearTimeout(holdTimer);
@@ -201,7 +217,8 @@ function morphTo(target) {
     curColor = toColor;
     cur = target;
     if (target.detail) setDetail(target, true); else detailEl.innerHTML = '';
-    if (playing) holdTimer = setTimeout(() => id === run && next(), target.key === 'm' ? 1100 : 1700);
+    if (target.key === 'm') idleFlow(id);
+    if (playing) holdTimer = setTimeout(() => id === run && next(), target.key === 'm' ? 1900 : 1700);
   }
   requestAnimationFrame(frame);
 }
@@ -243,8 +260,9 @@ if (SHAPES[0].color && mono) curColor = '#1749E5';
 shapeEl.setAttribute('d', toD(curPts));
 shapeEl.setAttribute('fill', curColor);
 setLabel(cur);
+idleFlow(run);
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) setPlaying(false);
-else holdTimer = setTimeout(next, 1100);
+else holdTimer = setTimeout(next, 1900);
 </script>
 </body>
 </html>

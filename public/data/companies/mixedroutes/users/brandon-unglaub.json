@@ -8,7 +8,7 @@
   "recents": [
     {
       "id": "logo-redesign",
-      "ts": 1790358985073
+      "ts": 1790360757684
     },
     {
       "id": "marketing-site",
@@ -32,6 +32,6 @@
     "sort": "",
     "status": ""
   },
-  "navCollapsed": false,
-  "updatedAt": 1790358985073
+  "navCollapsed": true,
+  "updatedAt": 1790361307065
 }
