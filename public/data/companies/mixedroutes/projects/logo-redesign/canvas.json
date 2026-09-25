@@ -100,14 +100,14 @@
     },
     {
       "file": "nautilus-card.html",
-      "x": 1543,
+      "x": 1663,
       "y": -576,
       "width": 480,
       "name": "Nautilus"
     },
     {
       "file": "nautilus-unified.html",
-      "x": 1543,
+      "x": 1663,
       "y": 6,
       "width": 1440,
       "name": "Nautilus: Unified application"
