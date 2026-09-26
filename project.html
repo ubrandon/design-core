@@ -690,6 +690,14 @@
         );
       }
 
+      // Most recently edited first; ties and missing times fall back to newest canvas entry first.
+      function newestScreensFirst(screens, times) {
+        return screens
+          .map((s, i) => ({ s, i, t: (s && times[s.file]) || 0 }))
+          .sort((a, b) => b.t - a.t || b.i - a.i)
+          .map((row) => row.s);
+      }
+
       function renderCanvasStrip(screens, canvasFailed) {
         const canvasHref = el.canvasLink.href;
         if (canvasFailed) {
@@ -1058,8 +1066,13 @@
                 (d) => ({ ok: true, list: d.prototypes || [] }),
                 () => ({ ok: false, list: [] }),
               ),
-            ]).then(([canvasResult, protoResult]) => {
-              const screens = canvasResult.screens;
+              // Screen file edit times from the dev server; empty on static hosting.
+              fetch(apiUrl("/api/screen-times?project=" + encodeURIComponent(projectId)))
+                .then((r) => (r.ok ? r.json() : null))
+                .then((d) => (d && d.times) || {})
+                .catch(() => ({})),
+            ]).then(([canvasResult, protoResult, screenTimes]) => {
+              const screens = newestScreensFirst(canvasResult.screens, screenTimes);
               const protoList = protoResult.list;
               renderCanvasStrip(screens, !canvasResult.ok);
               renderPrototypesGrid(protoList, !protoResult.ok);

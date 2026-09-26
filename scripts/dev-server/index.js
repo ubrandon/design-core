@@ -480,7 +480,7 @@ function localDevDataApiPlugin() {
 
         // Everything below works inside one company's data folder.
         if (!pathOnly.startsWith("/api/")) return next();
-        const COMPANY_APIS = ["/api/projects-summary", "/api/user-prefs", "/api/users", "/api/duplicate-screen", "/api/project-admin"];
+        const COMPANY_APIS = ["/api/projects-summary", "/api/screen-times", "/api/user-prefs", "/api/users", "/api/duplicate-screen", "/api/project-admin"];
         const DATA_ROOT = COMPANY_APIS.includes(pathOnly) ? companyDataRoot(req) : null;
         if (COMPANY_APIS.includes(pathOnly) && !DATA_ROOT) {
           res.writeHead(400, { "Content-Type": "application/json" });
@@ -502,6 +502,28 @@ function localDevDataApiPlugin() {
             res.writeHead(500);
             res.end(JSON.stringify({ error: e.message || "Server error" }));
           }
+          return;
+        }
+
+        // Screen file edit times for one project, so the canvas can open on the last one touched.
+        if (pathOnly === "/api/screen-times" && req.method === "GET") {
+          res.setHeader("Content-Type", "application/json");
+          let projectId = "";
+          try { projectId = (new URL(req.url, "http://localhost").searchParams.get("project") || "").trim(); } catch {}
+          if (!SLUG_RE.test(projectId)) {
+            res.writeHead(400);
+            res.end(JSON.stringify({ error: "Invalid project." }));
+            return;
+          }
+          const dir = resolve(DATA_ROOT, "projects", projectId);
+          const canvas = readJsonFileSafe(resolve(dir, "canvas.json"));
+          const times = {};
+          for (const sc of (canvas && Array.isArray(canvas.screens) ? canvas.screens : [])) {
+            if (!sc || typeof sc.file !== "string" || !SCREEN_FILE_RE.test(sc.file)) continue;
+            try { times[sc.file] = Math.round(statSync(resolve(dir, "screens", sc.file)).mtimeMs); } catch {}
+          }
+          res.writeHead(200);
+          res.end(JSON.stringify({ times }));
           return;
         }
 

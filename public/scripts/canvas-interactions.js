@@ -91,6 +91,20 @@ function savePanZoom() {
 }
 window.addEventListener("pagehide", savePanZoom);
 
+// Last screen selected on this canvas, so a fresh open can land near it.
+const TOUCHED_KEY = "design-core:canvas-touched:" + activeCompany() + ":" + projectId;
+function rememberTouchedScreen(idx) {
+  const s = screens[idx];
+  if (!s || !s.file) return;
+  try { localStorage.setItem(TOUCHED_KEY, JSON.stringify({ file: s.file, t: Date.now() })); } catch (_) {}
+}
+
+// Screen file edit times from the dev server; empty on static hosting.
+const screenTimesRequest = fetch(apiUrl("/api/screen-times?project=" + encProjectId))
+  .then((r) => (r.ok ? r.json() : null))
+  .then((d) => (d && d.times) || {})
+  .catch(() => ({}));
+
 let screens = [];
 let texts = [];
 let duplicateBusy = false;
@@ -173,6 +187,7 @@ function reloadChangedIframes(changedFiles, reloadAll) {
 }
 
 function setCanvasSelection(screenIndices, textIndices) {
+  if (screenIndices.length === 1) rememberTouchedScreen(screenIndices[0]);
   selected.clear();
   screenIndices.forEach(i => selected.add(i));
   selectedTexts.clear();
@@ -1198,17 +1213,43 @@ function centerOnContent() {
   frameBounds(b, 60);
 }
 
-//  Frame a single screen by its file name. Returns true if the screen was found.
-function centerOnScreen(file) {
-  const idx = screens.findIndex((s) => s.file === file);
-  if (idx < 0) return false;
-  const s = screens[idx];
-  const w = s.width || 390;
-  const card = document.getElementById("card-" + idx);
-  const measured = card ? card.offsetHeight : 0;
-  const h = measured > 200 ? measured : Math.round(w * 2.16);
-  frameBounds({ minX: s.x, minY: s.y, maxX: s.x + w, maxY: s.y + h }, 40);
+//  Frame a screen with room for its neighbors. Returns true if the screen was found.
+function frameAroundScreen(file) {
+  const b = screenBounds(screens.findIndex((s) => s.file === file));
+  if (!b) return false;
+  const w = b.maxX - b.minX;
+  const h = b.maxY - b.minY;
+  const cx = (b.minX + b.maxX) / 2;
+  const cy = (b.minY + b.maxY) / 2;
+  const halfW = w * 1.8;
+  const halfH = h * 0.7;
+  const all = getCanvasBounds();
+  // When everything fits in that window anyway, frame it all instead.
+  if (all && all.maxX - all.minX <= halfW * 2 && all.maxY - all.minY <= halfH * 2) {
+    frameBounds(all, 60);
+    return true;
+  }
+  frameBounds({ minX: cx - halfW, minY: cy - halfH, maxX: cx + halfW, maxY: cy + halfH }, 0);
   return true;
+}
+
+//  Most recently edited on disk or selected here; without times, the newest canvas entry.
+function lastTouchedScreen(times) {
+  let best = null;
+  let bestT = -1;
+  screens.forEach((s) => {
+    const t = times[s.file] || 0;
+    // Ties go to the later canvas entry, which is the newer screen.
+    if (t >= bestT) { best = s.file; bestT = t; }
+  });
+  try {
+    const local = JSON.parse(localStorage.getItem(TOUCHED_KEY) || "null");
+    if (local && local.t >= bestT && screens.some((s) => s.file === local.file)) {
+      best = local.file;
+      bestT = local.t;
+    }
+  } catch (_) {}
+  return best;
 }
 
 function applyCanvasState(merged, changedFiles, reloadAllScreens) {
@@ -1288,11 +1329,12 @@ function refreshScreens() {
 // view, otherwise clicking a preview card could land on a different spot.
 const deepLinkScreen = getParam("screen");
 
-loadCanvas().then(() => {
+Promise.all([loadCanvas(), screenTimesRequest]).then(([, screenTimes]) => {
   const applyInitialFrame = () => {
     // A manual zoom or pan owns the view from that point onward.
     if (pz.transformVersion !== initialFrameVersion) return;
-    if (!(deepLinkScreen && centerOnScreen(deepLinkScreen)) && !restoreState) centerOnContent();
+    const framed = deepLinkScreen && frameAroundScreen(deepLinkScreen);
+    if (!framed && !restoreState && !frameAroundScreen(lastTouchedScreen(screenTimes))) centerOnContent();
     initialFrameVersion = pz.transformVersion;
   };
 
