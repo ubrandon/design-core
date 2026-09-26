@@ -1,0 +1,6 @@
+/* Nautilus M is scoped to the Marketing Branding V2 canvas pages. */
+.mr-v2 .mr-v2-mark,
+.mr-v2 .wp-app-mark span {
+  -webkit-mask-image: url("nautilus-m-logo.svg");
+  mask-image: url("nautilus-m-logo.svg");
+}
