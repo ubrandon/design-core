@@ -1,0 +1,116 @@
+{
+  "name": "Nautilus, Cheer",
+  "frame": "SVG units of assets/nautilus-m.svg (1200 frame, y down)",
+  "spiral": {
+    "eye": [
+      799.4,
+      684.7
+    ],
+    "growth_per_quarter_turn": "phi",
+    "r_of_theta": "37.7239 * exp(0.306296 * theta), theta in radians, y down"
+  },
+  "stars": {
+    "center": "spiral eye",
+    "tilt_deg": 17.03,
+    "circumradius": {
+      "phi^4": 258.54,
+      "phi^5": 418.33,
+      "phi^6": 676.87
+    }
+  },
+  "unit_radius": 37.72,
+  "ground_y": 987.97,
+  "circles": [
+    {
+      "id": "LF",
+      "cx": 255.09,
+      "cy": 828.18,
+      "r": 159.79,
+      "size": "\u03c6\u00b3",
+      "hole": false
+    },
+    {
+      "id": "LH",
+      "cx": 396.22,
+      "cy": 444.08,
+      "r": 98.75,
+      "size": "\u03c6\u00b2",
+      "hole": false
+    },
+    {
+      "id": "N",
+      "cx": 600.58,
+      "cy": 447.94,
+      "r": 37.72,
+      "size": "1",
+      "hole": true
+    },
+    {
+      "id": "RH",
+      "cx": 804.74,
+      "cy": 441.52,
+      "r": 159.79,
+      "size": "\u03c6\u00b3",
+      "hole": false
+    },
+    {
+      "id": "SR",
+      "cx": 12.02,
+      "cy": 938.11,
+      "r": 1095.2,
+      "size": "\u03c6\u2077",
+      "hole": false
+    },
+    {
+      "id": "RF",
+      "cx": 940.95,
+      "cy": 828.18,
+      "r": 159.79,
+      "size": "\u03c6\u00b3",
+      "hole": false
+    },
+    {
+      "id": "IR",
+      "cx": 725.54,
+      "cy": 876.74,
+      "r": 61.03,
+      "size": "\u03c6",
+      "hole": true
+    },
+    {
+      "id": "M",
+      "cx": 679.36,
+      "cy": 723.77,
+      "r": 98.75,
+      "size": "\u03c6\u00b2",
+      "hole": false
+    },
+    {
+      "id": "IL",
+      "cx": 495.0,
+      "cy": 770.41,
+      "r": 61.03,
+      "size": "\u03c6",
+      "hole": true
+    }
+  ],
+  "rules": [
+    "Left foot: touches spiral and phi^6 star line at 77 deg",
+    "Left side: the spiral itself",
+    "Left hump: touches spiral and star axis at 137 deg",
+    "Notch: corner of the axis and the phi^5 star line at 77 deg",
+    "Right hump: touches spiral and phi^5 star line at 77 deg",
+    "Right side: phi^7 arc touching right hump and right foot",
+    "Right foot: ground and phi^6 star line at 17 deg",
+    "Middle: on phi^5 star line at 137 deg; crease touches right foot, middle and spiral",
+    "Counter: corner of the phi^6 line at 77 deg and phi^5 line at 137 deg"
+  ],
+  "match_to_current": 0.915,
+  "head": {
+    "cx": 694.66,
+    "cy": 207.52,
+    "r": 61.0,
+    "size": "phi",
+    "rule": "center on the phi^5 star line at 77 deg that carries the notch edge, extended upward; gap to the right hump is one unit radius (37.72)"
+  }
+}

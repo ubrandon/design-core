@@ -100,24 +100,45 @@
     },
     {
       "file": "nautilus-card.html",
-      "x": 1663,
-      "y": -576,
+      "x": 8398,
+      "y": 11872,
       "width": 480,
       "name": "Nautilus"
     },
     {
       "file": "nautilus-unified.html",
-      "x": 1663,
-      "y": 6,
+      "x": 8398,
+      "y": 12454,
       "width": 1440,
       "name": "Nautilus: Unified application"
     },
     {
-      "file": "nautilus-m-moves.html",
-      "x": 3183,
+      "file": "nautilus-planted-star-card.html",
+      "x": 1543,
+      "y": -576,
+      "width": 480,
+      "name": "Planted Star"
+    },
+    {
+      "file": "nautilus-planted-star-unified.html",
+      "x": 1543,
       "y": 6,
       "width": 1440,
-      "name": "Nautilus: M joining in"
+      "name": "Planted Star: Unified application"
+    },
+    {
+      "file": "planted-star-store-search.html",
+      "x": 3058,
+      "y": 6,
+      "width": 390,
+      "name": "Planted Star: App Store search"
+    },
+    {
+      "file": "planted-star-home-screen.html",
+      "x": 3485,
+      "y": 6,
+      "width": 390,
+      "name": "Planted Star: Home screen"
     }
   ],
   "texts": [
