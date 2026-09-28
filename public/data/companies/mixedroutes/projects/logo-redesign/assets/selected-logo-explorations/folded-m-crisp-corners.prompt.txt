@@ -1,4 +1,0 @@
-Tool: built-in image_gen
-Reference: folded-m-rounded-shoulders.png
-
-undefined

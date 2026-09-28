@@ -1,3 +1,0 @@
-Generated with the built-in image_gen tool. No reference images supplied.
-
-undefined
