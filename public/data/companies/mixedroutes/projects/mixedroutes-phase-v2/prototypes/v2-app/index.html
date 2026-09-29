@@ -1135,6 +1135,96 @@
   .dc .dt-join.done { background: #e1e3e6; color: #101724; }
   .dc .dt-join.done i { color: #0ca678; }
 
+  /* Sheet children never shrink (a flex column with max-height squashes fixed-height buttons) */
+  .mrp .sheet-host .sheet > * { flex-shrink: 0; }
+  .mrp .cm-host > .a-head, .mrp .cm-host > .a-foot, .mrp .cm-layer > .a-head { flex-shrink: 0; }
+  .dc .sheet.v2 { gap: 16px; }
+  .dc .sheet.v2 .sh-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-top: 2px; }
+  .dc .sheet.v2 .sh-top .sub { display: block; margin-top: 3px; }
+  .dc .sheet.v2 .sh-top .x { width: 36px; height: 36px; margin-right: -4px; border-radius: 50%; background: #f1f4f7; display: grid; place-items: center; font-size: 17px; color: #1a2332; flex-shrink: 0; }
+  .dc .sheet.v2 .places { display: flex; flex-direction: column; gap: 8px; }
+  .dc .sheet.v2 .note { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: -6px; font-size: 13px; color: #5c6b7d; }
+  .dc .sheet.v2 .note i { font-size: 15px; color: #2563eb; }
+
+  /* Guests (AttendeesViewModal) */
+  .hm .gv { padding-bottom: 40px; }
+  .hm .gv-ban { margin: 7.11px 16px 8px; display: flex; align-items: center; gap: 10.67px; padding: 16px; border-radius: 16px; background: rgba(133, 139, 148, 0.08); color: #5c6b7d; font-size: 14px; line-height: 1.3; }
+  .hm .gv-ban i { font-size: 22px; flex-shrink: 0; }
+  .hm .gv-ban strong { color: #1a2332; font-weight: 700; }
+  .hm .gv-row { width: 100%; display: flex; align-items: center; gap: 16px; padding: 10.67px 16px; text-align: left; }
+  .hm .gv-row[data-act]:active { background: rgba(32, 36, 42, 0.06); }
+  .hm .gv-row:disabled { opacity: 0.5; }
+  .hm .gv-row .ga { position: relative; flex-shrink: 0; }
+  .hm .gv-row .ga img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; display: block; }
+  .hm .gv-row .ga .bdg { position: absolute; right: -4px; bottom: -4px; width: 24px; height: 24px; border-radius: 50%; background: #ffffff; display: grid; place-items: center; font-size: 22px; line-height: 1; }
+  .hm .gv-grad { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; display: grid; place-items: center; font-size: 22px; flex-shrink: 0; }
+  .hm .gv-row .c { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .hm .gv-row .nm { font-size: 16px; color: #1a2332; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hm .gv-row .st { margin-top: 4.74px; font-size: 14px; color: #5c6b7d; }
+  .hm .gv-row .role { color: #ea943b; }
+  .hm .gv-row .end { font-size: 20px; color: #5c6b7d; }
+  .hm .gv-nudge { height: 28px; padding: 0 10px; border-radius: 999px; border: 1px solid #06b6d4; color: #06b6d4; font-size: 14px; font-weight: 500; flex-shrink: 0; }
+  .hm .gv-nudge:disabled { border-color: rgba(32, 36, 42, 0.16); color: #858b94; }
+  /* Interest page */
+  .hm .ip-top { margin: 4px 16px 0; padding: 18px; border-radius: 24px; background: linear-gradient(160deg, color-mix(in srgb, var(--int) 16%, #ffffff), color-mix(in srgb, var(--int) 5%, #ffffff)); display: flex; flex-direction: column; gap: 14px; }
+  .hm .ip-top .row { display: flex; align-items: center; gap: 14px; }
+  .hm .ip-top .emo { width: 64px; height: 64px; border-radius: 18px; background: #ffffff; display: grid; place-items: center; font-size: 34px; box-shadow: 0 3px 10px rgba(16, 24, 40, 0.08); flex-shrink: 0; }
+  .hm .ip-top h1 { font-size: 28px; font-weight: 800; line-height: 1.15; color: #101724; letter-spacing: -0.01em; }
+  .hm .ip-top small { display: block; margin-top: 3px; font-size: 14px; color: #5c6b7d; }
+  .hm .ip-acts { display: flex; gap: 8px; }
+  .hm .h2-btn.ip-fol { height: 40px; padding: 0 18px; font-size: 15px; }
+  .hm .h2-btn.ip-fol.ghost { background: rgba(255, 255, 255, 0.55); }
+  .hm .ip-kids { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hm .ip-kids span { height: 32px; padding: 0 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.7); display: inline-flex; align-items: center; font-size: 13px; font-weight: 600; color: #1a2332; cursor: pointer; }
+  .hm .ip-friends { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: rgba(255, 255, 255, 0.7); font-size: 14px; color: #5c6b7d; }
+  .hm .ip-friends > span:not(.h2-av) { flex: 1; min-width: 0; text-align: left; }
+  .hm .ip-friends strong { color: #101724; }
+  .hm .ip-friends .h2-av img { width: 26px; height: 26px; margin-left: -8px; }
+  .hm .ip-friends .h2-av img:first-child { margin-left: 0; }
+  .hm .ip-friends > i { font-size: 15px; color: #8a94a2; }
+  .dc .ip-body { padding-top: 20px; }
+  .hm .ip-grp { display: flex; align-items: center; gap: 12px; padding: 12px 14px 12px 12px; border-radius: 20px; background: #ffffff; border: 1px solid rgba(16, 23, 36, 0.08); box-shadow: 0 2px 6px rgba(16, 24, 40, 0.05), 0 10px 24px rgba(16, 24, 40, 0.08); }
+  .hm .ip-grp img { width: 52px; height: 52px; border-radius: 14px; object-fit: cover; flex-shrink: 0; }
+  .hm .ip-grp .c { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .hm .ip-grp strong { font-size: 16px; font-weight: 700; color: #101724; }
+  .hm .ip-grp span { font-size: 13px; color: #5c6b7d; }
+  .hm .h2-int[data-go] { cursor: pointer; }
+  .hm .ichip[data-go], .hm .int-chips span[data-go] { cursor: pointer; }
+
+  /* Status sheet: two steps (status, then optional check in) */
+  .dc .sheet.v2 .sh-top { display: grid; grid-template-columns: 36px 1fr 36px; align-items: center; gap: 8px; margin-top: 0; }
+  .dc .sheet.v2 .sh-top h3 { text-align: center; font-size: 18px; font-weight: 700; }
+  .dc .sheet.v2 .sh-top .x { margin: 0; }
+  .dc .sheet.v2 > .sub { margin-top: -4px; font-size: 14px; font-weight: 700; color: #1a2332; }
+  .dc .sheet.v2 > .sub em { font-style: normal; font-weight: 500; color: #8a94a2; }
+  .dc .sheet.v2 .st-prev { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; background: #f6f8fa; }
+  .dc .sheet.v2 .st-prev .avw { position: relative; flex-shrink: 0; }
+  .dc .sheet.v2 .st-prev img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: block; }
+  .dc .sheet.v2 .st-prev .dot { position: absolute; right: -2px; bottom: -2px; width: 14px; height: 14px; border-radius: 50%; border: 2.5px solid #f6f8fa; }
+  .dc .sheet.v2 .st-prev .c { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .dc .sheet.v2 .st-prev strong { font-size: 16px; font-weight: 700; color: #101724; }
+  .dc .sheet.v2 .st-prev .c span { display: inline-flex; align-items: center; gap: 3px; font-size: 13px; color: #5c6b7d; }
+  .dc .sheet.v2 .st-prev small { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #8a94a2; }
+  .dc .sheet.v2 .st-opts { display: flex; flex-direction: column; margin: -4px 0; }
+  .dc .sheet.v2 .st-opt { display: flex; align-items: center; gap: 14px; padding: 11px 4px; text-align: left; border-radius: 12px; }
+  .dc .sheet.v2 .st-opt + .st-opt { border-top: 1px solid #f1f4f7; }
+  .dc .sheet.v2 .st-opt .sd { width: 12px; height: 12px; border-radius: 50%; margin: 0 4px; flex-shrink: 0; }
+  .dc .sheet.v2 .st-opt .c { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .dc .sheet.v2 .st-opt strong { font-size: 16px; font-weight: 600; color: #101724; }
+  .dc .sheet.v2 .st-opt .c span { font-size: 13px; color: #5c6b7d; }
+  .dc .sheet.v2 .st-opt .rad { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #d6dce3; display: grid; place-items: center; color: transparent; font-size: 13px; flex-shrink: 0; }
+  .dc .sheet.v2 .st-opt.on .rad { border: 0; background: #101724; color: #ffffff; }
+  .dc .sheet.v2 .st-ci { width: 100%; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; border: 1.5px solid rgba(32, 36, 42, 0.12); text-align: left; }
+  .dc .sheet.v2 .st-ci .ic { width: 40px; height: 40px; border-radius: 12px; background: #f1f4f7; display: grid; place-items: center; font-size: 20px; color: #1a2332; flex-shrink: 0; }
+  .dc .sheet.v2 .st-ci.on { border-color: #3b82f6; background: rgba(59, 130, 246, 0.05); }
+  .dc .sheet.v2 .st-ci.on .ic { background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; }
+  .dc .sheet.v2 .st-ci .c { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .dc .sheet.v2 .st-ci strong { font-size: 15px; font-weight: 700; color: #101724; }
+  .dc .sheet.v2 .st-ci .c span { font-size: 13px; color: #5c6b7d; }
+  .dc .sheet.v2 .st-ci > i { font-size: 16px; color: #8a94a2; }
+  .dc .sheet.v2 .st-ci .out { height: 34px; padding: 0 12px; border-radius: 999px; border: 1.5px solid rgba(180, 35, 24, 0.3); background: #ffffff; color: #b42318; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+  .dc .sheet.v2 .btn-plain { width: 100%; height: 50px; border-radius: 999px; background: #e1e3e6; color: #1a2332; font-size: 16px; font-weight: 700; }
+
   /* Safe areas: simulated iPhone status bar (47px) and home indicator (34px); touch devices use env() */
   .mrp { --sat: 47px; --sab: 34px; }
   @media (hover: none) and (pointer: coarse) { .mrp { --sat: env(safe-area-inset-top, 0px); --sab: env(safe-area-inset-bottom, 0px); } .mrp .sbar, .mrp .hbar { display: none; } }
@@ -1157,6 +1247,8 @@
   .mrp .sheet-host .sheet { padding-bottom: calc(16px + var(--sab)); }
   .mrp .toast { bottom: calc(72px + var(--sab)); }
   .mrp.no-tabs .toast { bottom: calc(80px + var(--sab)); }
+  .mrp .sheet-host.open ~ .toast, .mrp .cm-host.open ~ .toast { bottom: auto; top: calc(var(--sat) + 8px); transform: translate(-50%, -12px); }
+  .mrp .sheet-host.open ~ .toast.show, .mrp .cm-host.open ~ .toast.show { transform: translate(-50%, 0); }
 </style>
 
 <div class="hm mrp" id="app">
@@ -1175,6 +1267,8 @@
     <div class="view" id="view-person"></div>
     <div class="view" id="view-saved"></div>
     <div class="view" id="view-invites"></div>
+    <div class="view" id="view-guests"></div>
+    <div class="view dc" id="view-interest"></div>
     <div class="view" id="view-review"></div>
   </div>
   <nav class="tab-bar" id="tabbar"></nav>
@@ -1246,11 +1340,11 @@
   };
 
   var PLANS = {
-    bavettes: { title: "Dinner at Bavette's", kick: 'TOMORROW · 7:00 PM', img: '1414235077428-338989a2e8c0', people: ['sara', 'sam'], going: '3 going', sort: 1, greet: 'Tomorrow night', sub: "Dinner at Bavette's · 7pm", place: 'bavettes', about: 'Table for three under Sara. Sam might be ten minutes late.' },
-    sunrise: { title: 'Sunrise trail hike', kick: 'SAT · 8:00 AM', img: '1464822759023-fed622ff2c3b', people: ['alex'], going: '2 going', sort: 3.02, greet: 'Saturday', sub: 'Sunrise trail hike · 8am', where: 'Mount Pisgah trailhead', about: 'Meet at the lot. Coffee after at Ultra.' },
-    movienight: { title: 'Outdoor movie night', kick: 'SUN · 6:30 PM', img: '1514525253161-7a46d19cd819', people: ['maya', 'sara', 'sam'], going: 'Maya + 2 going', sort: 5, greet: 'Sunday', sub: 'Outdoor movie night · 6:30pm', place: 'highland', about: 'Grab a spot on the lawn early. Maya is bringing blankets.' },
-    craggyhike: { title: 'Hike at Craggy Gardens', kick: 'SAT · 9:00 AM', img: '1551632811-561732d1e306', people: ['sam', 'jordan'], going: 'Sam + 2 going', sort: 3.1, greet: 'Saturday', sub: 'Hike at Craggy Gardens · 9am', where: 'Craggy Gardens trailhead', about: 'Carpool from Sam’s at 8:15.' },
-    pizzanight: { title: 'Pizza night', kick: 'FRI · 6:30 PM', img: '1513104890138-7c749659a591', people: ['maya', 'sara'], going: 'Maya + 2 going', sort: 2, greet: 'Friday', sub: 'Pizza night · 6:30pm', where: 'Maya’s place', about: 'Bring a topping. Maya has the dough.' }
+    bavettes: { host: 'sara', title: "Dinner at Bavette's", kick: 'TOMORROW · 7:00 PM', img: '1414235077428-338989a2e8c0', people: ['sara', 'sam'], going: '3 going', sort: 1, greet: 'Tomorrow night', sub: "Dinner at Bavette's · 7pm", place: 'bavettes', about: 'Table for three under Sara. Sam might be ten minutes late.' },
+    sunrise: { host: 'alex', title: 'Sunrise trail hike', kick: 'SAT · 8:00 AM', img: '1464822759023-fed622ff2c3b', people: ['alex'], going: '2 going', sort: 3.02, greet: 'Saturday', sub: 'Sunrise trail hike · 8am', where: 'Mount Pisgah trailhead', about: 'Meet at the lot. Coffee after at Ultra.' },
+    movienight: { host: 'maya', title: 'Outdoor movie night', kick: 'SUN · 6:30 PM', img: '1514525253161-7a46d19cd819', people: ['maya', 'sara', 'sam'], going: 'Maya + 2 going', sort: 5, greet: 'Sunday', sub: 'Outdoor movie night · 6:30pm', place: 'highland', about: 'Grab a spot on the lawn early. Maya is bringing blankets.' },
+    craggyhike: { host: 'sam', title: 'Hike at Craggy Gardens', kick: 'SAT · 9:00 AM', img: '1551632811-561732d1e306', people: ['sam', 'jordan'], going: 'Sam + 2 going', sort: 3.1, greet: 'Saturday', sub: 'Hike at Craggy Gardens · 9am', where: 'Craggy Gardens trailhead', about: 'Carpool from Sam’s at 8:15.' },
+    pizzanight: { host: 'maya', title: 'Pizza night', kick: 'FRI · 6:30 PM', img: '1513104890138-7c749659a591', people: ['maya', 'sara'], going: 'Maya + 2 going', sort: 2, greet: 'Friday', sub: 'Pizza night · 6:30pm', where: 'Maya’s place', about: 'Bring a topping. Maya has the dough.' }
   };
   var INVITES = {
     craggy: { t: 'Hike at Craggy Gardens', emo: '🥾', from: 'sam', when: 'Saturday 9:00 AM', plan: 'craggyhike' },
@@ -1301,7 +1395,6 @@
   var STATUS = {
     online: { l: 'Online', c: '#0ca678' },
     hang: { l: 'Down to hang', c: '#14b8a6' },
-    busy: { l: 'Heads down', c: '#d97706' },
     invisible: { l: 'Invisible', c: '#c5ccd4' }
   };
   var NEARBY = [['ultra', '120 ft away'], ['jumbo', '0.3 mi away'], ['cindys', '0.4 mi away']];
@@ -1325,7 +1418,7 @@
       plans: m.plans.slice(), invites: m.invites.slice(), accepted: [], declined: {}, banners: m.banners.slice(),
       gs: m.gs ? Object.assign({ friend: false, plan: false, discover: false }, m.gs) : null, gsHidden: false,
       status: m.status ? clone(m.status) : null, saved: clone(m.saved), joined: {}, sent: {}, following: {}, rsvp: {},
-      created: [], notifSeen: false, filters: { events: {}, places: {} }, reviews: {}, interests: ['🎸 Live music', '🥾 Hiking', '☕ Coffee', '🍸 Cocktails'],
+      created: [], notifSeen: false, filters: { events: {}, places: {} }, reviews: {}, interests: mode === 'active' ? ['🥾 Hiking', '☕ Coffee', '🍸 Cocktails', '🎲 Board games'] : ['🎸 Live music', '🥾 Hiking', '☕ Coffee', '🍸 Cocktails'],
       ask: '', requests: mode === 'active' ? { nina: 1 } : {}, lists: { coffee: mode === 'active' ? { ultra: 1 } : {}, date: mode === 'active' ? { jumbo: 1, cindys: 1 } : {} }
     };
   }
@@ -1406,9 +1499,9 @@
     }
     return '<button class="add-btn' + (fr || sent ? ' sent' : '') + '"' + a + '>' + (fr ? 'Friends' : req ? 'Accept' : sent ? 'Sent' : 'Add') + '</button>';
   };
-  R.follow = function (id) {
-    var on = !!S.following[id];
-    return '<button class="h2-btn white' + (on ? ' on' : '') + '" data-act="follow" data-id="' + id + '" data-v="w">' + (on ? '<i class="ph-bold ph-check"></i>Following' : 'Follow') + '</button>';
+  R.follow = function (id, v) {
+    var on = isFollowing(id);
+    return '<button class="h2-btn white' + (v === 'ip' ? ' ip-fol' : '') + (on ? ' on' : '') + '" data-act="follow" data-id="' + id + '" data-v="' + (v || 'w') + '">' + (on ? '<i class="ph-bold ph-check"></i>Following' : 'Follow') + '</button>';
   };
   function sync(act, id) {
     document.querySelectorAll('[data-act="' + act + '"][data-id="' + id + '"]').forEach(function (el) {
@@ -1499,7 +1592,7 @@
   }
   function interestCard() {
     var fr = friendsOnly(['sara', 'sam', 'priya']);
-    return '<div class="h2-card h2-int" style="--int: #e0483a;"><div class="top"><span class="emo">🎸</span><div class="c"><strong>Live music</strong><small>Music · 42 events near you</small></div>' + R.follow('music') + '</div>' + (fr.length ? '<div class="h2-int-friends">' + avStack(fr, 70) + '<span><strong>Sara, Sam + 4</strong> follow Live music</span></div>' : '') + '</div>';
+    return '<div class="h2-card h2-int" style="--int: #e0483a;" data-go="interest-music"><div class="top"><span class="emo">🎸</span><div class="c"><strong>Live music</strong><small>Music · 42 events near you</small></div>' + R.follow('music') + '</div>' + (fr.length ? '<div class="h2-int-friends">' + avStack(fr, 70) + '<span><strong>Sara, Sam + 4</strong> follow Live music</span></div>' : '') + '</div>';
   }
   function suggested() {
     var list = SUGGEST.filter(function (p) { return !isFriend(p); }).slice(0, 5);
@@ -1516,7 +1609,7 @@
       }).join('') + '<div class="tail" data-go="' + go + '"><span class="circ"><i class="ph-bold ph-caret-right"></i></span><span>View more</span></div></div></section>';
   }
   function interestsRow() {
-    return '<section><div class="sec-head"><h2>Your interests</h2><button class="more" data-act="tab" data-id="you" aria-label="Edit interests"><i class="ph-bold ph-pencil-simple"></i></button></div><div class="int-chips">' + S.interests.map(function (i) { return '<span data-act="tab" data-id="you">' + i + '</span>'; }).join('') + '</div></section>';
+    return '<section><div class="sec-head"><h2>Your interests</h2><button class="more" data-act="tab" data-id="you" aria-label="Edit interests"><i class="ph-bold ph-pencil-simple"></i></button></div><div class="int-chips">' + S.interests.map(function (i) { return intChip(i, ''); }).join('') + '</div></section>';
   }
   function nudge() {
     return '<div class="h2-card h2-pr"><img src="' + U('1529156069898-49953e39b3ac', 120) + '" alt="" data-go="chat-crew" /><div class="c" data-go="chat-crew"><strong>Weekend Crew is quiet</strong><span>Nothing planned this month.</span></div><button class="h2-btn pri" data-go="ideas"><i class="ph-fill ph-sparkle"></i>Get ideas</button></div>';
@@ -1641,7 +1734,7 @@
     if (mode === 'foryou') {
       h += '<section>' + secHead('Plans near you', false, 'More', 'discover-plans') + '<div class="rail dt-r plans">' + ['craggypub', 'coffeewalk', 'pizzagames'].map(dtPlan).join('') + dtTail('discover-plans') + '</div></section>';
       h += '<section>' + secHead('Near you this weekend', true, '', '', 'weekend') + '<div class="rail dt-r">' + dtEvent('comedy', timeWhy('comedy'), dtProof(['maya', 'sam'], 'Maya + 1 saved it')) + dtEvent('shindig', timeWhy('shindig'), dtProof(['alex', 'lena'], '2 plans made')) + dtEvent('brunch') + dtTail('discover-events') + '</div></section>';
-      h += '<section>' + secHead('Because you like live music', true) + '<div class="rail dt-r">' + dtEvent('wood', { i: 'ph-sparkle', t: 'You saw them in May' }) + dtEvent('jazz', { i: 'ph-trend-up', c: '#e11d48', t: 'Trending' }, '', { a1: '#ede9fe', a2: '#fce7f3', ac: '#7c3aed', i: 'ph-piano-keys' }) + dtEvent('pickin', { i: 'ph-tag', c: '#16a34a', t: 'Free' }) + dtTail('discover-events') + '</div></section>';
+      h += '<section>' + secHead('Because you like live music', true, 'More', 'interest-music') + '<div class="rail dt-r">' + dtEvent('wood', { i: 'ph-sparkle', t: 'You saw them in May' }) + dtEvent('jazz', { i: 'ph-trend-up', c: '#e11d48', t: 'Trending' }, '', { a1: '#ede9fe', a2: '#fce7f3', ac: '#7c3aed', i: 'ph-piano-keys' }) + dtEvent('pickin', { i: 'ph-tag', c: '#16a34a', t: 'Free' }) + dtTail('discover-events') + '</div></section>';
       h += '<section>' + secHead('Places to try', false, 'All places', 'discover-places') + '<div class="rail dt-r">' + dtPlace('wellplayed', { dot: '#22c55e', t: 'Open now' }) + dtPlace('bavettes', { i: 'ph-sparkle', t: 'You like French food' }) + dtPlace('jumbo') + dtTail('discover-places') + '</div></section>';
       if (S.mode === 'active') h += '<section>' + secHead('Loved by your friends') + '<div class="rail dt-r">' + dtPlace('ultra', { img: 'sara', t: 'Sara is here' }, dtProof(['priya', 'jordan'], '4.6 (4 friends)', true), true) + dtPlace('cindys', { dot: '#f59e0b', t: 'Closes soon' }, dtProof(['sara', 'priya'], 'Maya + 3 saved it'), true) + dtPlace('saltstraw', null, dtProof(['devon', 'sam'], 'Devon + 2 saved it'), true) + dtTail('discover-places') + '</div></section>';
       else if (S.mode === 'few') h += '<section>' + secHead('Loved by your friends') + '<div class="rail dt-r">' + dtPlace('cindys', { dot: '#f59e0b', t: 'Closes soon' }, dtProof(['sara'], 'Sara saved it'), true) + dtTail('discover-places') + '</div></section>';
@@ -1790,8 +1883,8 @@
     craggyhike: [D(9, 3, 9), '9 AM', ['🥾 Hiking']], pizzanight: [D(9, 2, 18, 30), '6:30 PM', ['🍕 Pizza']], craggypub: [D(9, 4, 9), '9 AM', ['🥾 Hiking']],
     coffeewalk: [D(9, 3, 10), '10 AM', ['☕ Coffee']], pizzagames: [D(9, 2, 19), '7 PM', ['🎲 Board games']], triviapast: [D(8, 24, 19), '7 PM', ['🧠 Trivia']], coffeepast: [D(8, 27, 10), '10 AM', ['☕ Coffee']]
   };
-  PLANS.triviapast = { title: 'Trivia at The Well', img: '1543007630-9710e4a00a20', people: ['sara', 'sam', 'maya', 'alex'], going: '5 went', where: 'The Well', past: true, about: 'Third place again. Rematch soon.' };
-  PLANS.coffeepast = { title: 'Coffee at Ultra Coffeebar', img: '1509042239860-f550ce710b93', people: ['riley'], going: '2 went', place: 'ultra', past: true, about: 'Window seats, as promised.' };
+  PLANS.triviapast = { host: 'sara', title: 'Trivia at The Well', img: '1543007630-9710e4a00a20', people: ['sara', 'sam', 'maya', 'alex'], going: '5 went', where: 'The Well', past: true, about: 'Third place again. Rematch soon.' };
+  PLANS.coffeepast = { host: 'riley', title: 'Coffee at Ultra Coffeebar', img: '1509042239860-f550ce710b93', people: ['riley'], going: '2 went', place: 'ultra', past: true, about: 'Window seats, as promised.' };
   var EV_DAY = { today: D(8, 29), wed: D(8, 30), thu: D(9, 1), fri: D(9, 2), sat: D(9, 3), sun: D(9, 4) };
   var EV_TAG = { music: '🎸 Live music', food: '🍽️ Food & drink', outdoors: '🥾 Outdoors', arts: '🎨 Arts', comedy: '😂 Comedy' };
   function eventAt(id) { var e = E[id], t = e.k.split('· ')[1] || '7:00 PM', hm = parseTime(t), b = EV_DAY[e.day]; return new Date(b.getFullYear(), b.getMonth(), b.getDate(), hm[0], hm[1]); }
@@ -1890,11 +1983,11 @@
     else btns = '<button class="a-pill grey" data-go="chat-p-' + id + '"><i class="ph-fill ph-chat-circle"></i>Chat' + (id === 'bavettes' && getMsgs('p-bavettes').length < 3 ? '<span class="new">New</span>' : '') + '</button>' + rsvpPill(id, r);
     h += '<div class="pd-top" style="background-image: url(\'' + planImgUrl(p, 800) + '\');">' + (p.at ? '<span class="pd-date">' + dayWord(p.at) + '</span>' : '') + '<h1>' + p.title + '</h1><div class="pd-btns">' + btns + '</div></div>';
     var guests = (mine ? [['me', host ? 'going' : r]] : []).concat(p.people.map(function (q) { return [q, host ? 'pending' : 'going']; }));
-    h += '<div class="pd-bottom"><button class="guests" data-act="guests" data-id="' + id + '"><span class="stk">' + guests.slice(0, 5).map(function (g) { return '<span class="ga"><img src="' + av(g[0]) + '" alt="" />' + (badge(g[1]) ? '<span class="bdg">' + badge(g[1]) + '</span>' : '') + '</span>'; }).join('') + '</span><span class="c"><strong>' + guests.length + (guests.length === 1 ? ' guest' : ' guests') + '</strong><span>' + (participant && !past ? 'View and invite' : 'View guests') + '</span></span><i class="ph-bold ph-caret-right"></i></button>';
+    h += '<div class="pd-bottom"><button class="guests" data-go="guests-' + id + '"><span class="stk">' + guests.slice(0, 5).map(function (g) { return '<span class="ga"><img src="' + av(g[0]) + '" alt="" />' + (badge(g[1]) ? '<span class="bdg">' + badge(g[1]) + '</span>' : '') + '</span>'; }).join('') + '</span><span class="c"><strong>' + guests.length + (guests.length === 1 ? ' guest' : ' guests') + '</strong><span>' + (participant && !past ? 'View and invite' : 'View guests') + '</span></span><i class="ph-bold ph-caret-right"></i></button>';
     if (p.at) h += '<div class="pd-when"><i class="ph ph-calendar-blank"></i><span>' + longDate(p.at) + '</span><span>· ' + p.time + '</span></div>';
     if (p.about) h += '<div class="pd-desc">' + p.about + '</div>';
     h += '<div class="facets">';
-    if (p.tags && p.tags.length) h += '<div class="ichips wrap">' + p.tags.map(function (t) { return '<span class="ichip">' + t + '</span>'; }).join('') + '</div>';
+    if (p.tags && p.tags.length) h += '<div class="ichips wrap">' + p.tags.map(function (t) { return intChip(t); }).join('') + '</div>';
     if (p.place) h += locFacet(L[p.place].t, L[p.place].addr + ', Asheville, NC', L[p.place].r, 'place-' + p.place);
     else if (p.where) h += locFacet(p.where, 'Asheville, NC', 0);
     h += '</div>';
@@ -1911,7 +2004,7 @@
     h += '<div class="pf-top"><span class="bd" style="background-image: url(\'' + av('me', 400) + '\');"></span><span class="pf-av"><img src="' + av('me', 260) + '" alt="" /></span><h1>Brandon Unglaub</h1><div class="pf-meta"><b>@brandon</b><span class="d">·</span><span class="j">Joined Mar 2024</span></div><button class="a-pill grey" data-act="toast" data-id="Editing your profile is not part of this prototype"><i class="ph-fill ph-pencil-simple"></i>Edit profile</button></div>';
     h += '<div class="pf-body"><button class="fr-row" data-act="findfriends"><span class="stk">' + (fr.length ? fr.slice(0, 6).map(function (q) { return '<img src="' + av(q) + '" alt="" />'; }).join('') : '<span class="plus">+</span>') + '</span><span class="c"><strong>' + (fr.length ? fr.length + (fr.length === 1 ? ' friend' : ' friends') : 'Your friends') + '</strong><span>' + (fr.length ? 'View and invite' : 'Find friends') + '</span></span><i class="ph-bold ph-caret-right"></i></button>';
     var ints = S.editInts ? ALL_INTERESTS : S.interests;
-    h += '<div><button class="stb" data-act="edit-ints"><h2 class="a-h2">Interests</h2><span class="circ"><i class="ph-bold ' + (S.editInts ? 'ph-check' : 'ph-pencil-simple') + '"></i></span></button><div class="ichips wrap">' + ints.map(function (i) { return '<span class="ichip' + (S.editInts && S.interests.indexOf(i) > -1 ? ' on' : '') + '"' + (S.editInts ? ' data-act="interest" data-id="' + i + '"' : '') + '>' + i + '</span>'; }).join('') + '</div></div>';
+    h += '<div><button class="stb" data-act="edit-ints"><h2 class="a-h2">Interests</h2><span class="circ"><i class="ph-bold ' + (S.editInts ? 'ph-check' : 'ph-pencil-simple') + '"></i></span></button><div class="ichips wrap">' + ints.map(function (i) { return S.editInts ? '<span class="ichip' + (S.interests.indexOf(i) > -1 ? ' on' : '') + '" data-act="interest" data-id="' + i + '">' + i + '</span>' : intChip(i); }).join('') + '</div></div>';
     h += '<div class="pf-sec"><div class="stb"><h2 class="a-h2">My Groups</h2><button class="circ" data-act="toast" data-id="Creating groups is not part of this prototype" aria-label="New group"><i class="ph-bold ph-plus"></i></button></div>' + (S.mode === 'active' ? tileRow([groupTile('crew'), groupTile('hiking')]) : '<button class="bcard empty" data-act="toast" data-id="Creating groups is not part of this prototype"><span class="emo ic"><i class="ph-fill ph-users"></i></span><span class="c"><strong>No groups yet</strong><span>Create a private space for plans, chat, and shared places.</span></span><i class="ph-bold ph-caret-right"></i></button>') + '</div>';
     var lists = ['<button class="tile" data-go="saved"><span class="ti round">❤️</span><strong>Saved</strong><span>' + saved.length + (saved.length === 1 ? ' place' : ' places') + '</span><small>Private</small></button>'];
     if (S.mode === 'active') LISTS.forEach(function (l) { var n = Object.keys(S.lists[l.id]).filter(function (k) { return S.lists[l.id][k]; }).length; lists.push('<button class="tile" data-act="toast" data-id="Lists are not part of this prototype"><span class="ti round">' + l.e + '</span><strong>' + l.t + '</strong><span>' + n + (n === 1 ? ' place' : ' places') + '</span><small>' + l.s + '</small></button>'); });
@@ -1929,7 +2022,7 @@
     var h = '<div class="ovl"><button class="cb" data-act="back" aria-label="Back"><i class="ph-bold ph-caret-left"></i></button><span class="ttl">' + p.full + '</span><button class="cb" data-act="person-opts" data-id="' + id + '" aria-label="More options"><i class="ph-bold ph-dots-three"></i></button></div>';
     h += '<div class="pf-top"><span class="bd" style="background-image: url(\'' + av(id, 400) + '\');"></span><span class="pf-av"><img src="' + av(id, 260) + '" alt="" />' + (fr && ONLINE.indexOf(id) > -1 ? '<span class="on"></span>' : '') + '</span><h1>' + p.full + '</h1><div class="pf-meta"><b>@' + id + '</b><span class="d">·</span><span class="j">Joined Jan 2024</span></div><div class="pf-btns"><button class="a-pill grey" data-go="' + chatFor(id) + '"><i class="ph-fill ph-chat-circle"></i>Chat</button>' + R.add(id, 'pf') + '</div></div>';
     var ints = (p.ints || []).slice().sort(function (a, b) { return (S.interests.indexOf(b) > -1) - (S.interests.indexOf(a) > -1); });
-    h += '<div class="pf-body"><div style="margin-top: 10.67px;"><h2 class="a-h2" style="margin-bottom: 10.67px;">Interests</h2><div class="ichips wrap">' + ints.map(function (i) { return '<span class="ichip' + (S.interests.indexOf(i) > -1 ? ' on' : '') + '">' + i + '</span>'; }).join('') + '</div></div>';
+    h += '<div class="pf-body"><div style="margin-top: 10.67px;"><h2 class="a-h2" style="margin-bottom: 10.67px;">Interests</h2><div class="ichips wrap">' + ints.map(function (i) { return intChip(i, 'ichip' + (S.interests.indexOf(i) > -1 ? ' on' : '')); }).join('') + '</div></div>';
     if (groups.length) h += '<div class="pf-sec"><h2 class="a-h2" style="margin-bottom: 10.67px;">Mutual Groups</h2>' + tileRow(groups.map(groupTile)) + '</div>';
     h += '<div style="margin-top: 16px;"><h2 class="a-h2" style="margin-bottom: 10.67px;">Upcoming plans</h2>' + (plans.length ? '<div class="ac-rail">' + plans.map(function (x) { return acCard(x, true); }).join('') + '</div>' : bcard('🗓️', 'No upcoming plans', 'New plans will show up here.', '', true)) + '</div>';
     $('view-person').innerHTML = h + '</div>';
@@ -2009,6 +2102,57 @@
     $('view-review').innerHTML = h;
   }
 
+  // ---------- Guests (AttendeesViewModal) ----------
+  var RSVP_TXT = { going: 'Going', maybe: 'Maybe', no: 'Not going', pending: 'Pending' };
+  var PRIV_BAN = { invite: ['ph-lock', 'Private plan', 'Only invited guests can see this plan.'], friends: ['ph-users', 'Friends only', 'Visible to your friends.'], anyone: ['ph-eye', 'Public plan', 'Anyone can find and join.'] };
+  function planHost(p) { return p.created ? 'me' : p.host || (p.people[0] || 'me'); }
+  function renderGuests(id) {
+    var p = getPlan(id); if (!p) return;
+    if (!S.nudged) S.nudged = {};
+    var mine = planIds().indexOf(id) > -1, host = planHost(p), amHost = host === 'me', r = S.rsvp[id] || 'going';
+    var rows = (mine ? [['me', r]] : []).concat(p.people.map(function (q) { return [q, p.created ? 'pending' : 'going']; }));
+    var order = { going: 0, maybe: 1, no: 2, pending: 3 };
+    rows.sort(function (a, b) { return order[a[1]] - order[b[1]]; });
+    var pv = PRIV_BAN[p.pub ? 'anyone' : p.privacy || 'invite'], pend = rows.filter(function (g) { return g[1] === 'pending'; });
+    var h = '<div class="a-head big"><h1>Guests</h1><button class="ib" data-act="toast" data-id="Plan link copied" aria-label="Share plan link"><i class="ph-bold ph-share-network"></i></button><button class="ib" data-act="back" aria-label="Close"><i class="ph-bold ph-x"></i></button></div><div class="gv">';
+    h += '<div class="gv-ban"><i class="ph-bold ' + pv[0] + '"></i><div><strong>' + pv[1] + '</strong> ' + pv[2] + '</div></div>';
+    if (mine && !p.past) h += '<button class="gv-row" data-act="toast" data-id="The invite picker is not part of this prototype"><span class="gv-grad"><i class="ph-bold ph-user-plus"></i></span><span class="c"><span class="nm">Invite guests</span></span><i class="ph-bold ph-caret-right end"></i></button>';
+    if (amHost && pend.length) h += '<button class="gv-row" data-act="nudge" data-id="' + id + '"' + (S.nudged[id] ? ' disabled' : '') + '><span class="gv-grad"><i class="ph-bold ph-bell-ringing"></i></span><span class="c"><span class="nm">Nudge all</span><span class="st">' + (S.nudged[id] ? 'Nudged just now' : pend.length + (pend.length === 1 ? ' hasn’t' : ' haven’t') + ' replied') + '</span></span></button>';
+    rows.forEach(function (g) {
+      var q = g[0], b = badge(g[1]), nudged = S.nudged[id] || S.nudged[id + ':' + q];
+      h += '<div class="gv-row"' + (q !== 'me' ? ' data-act="guest-opts" data-id="' + q + '"' : '') + '><span class="ga"><img src="' + av(q) + '" alt="" />' + (b ? '<span class="bdg">' + b + '</span>' : '') + '</span><span class="c"><span class="nm">' + (q === 'me' ? P.me.full : P[q].full) + '</span><span class="st">' + RSVP_TXT[g[1]] + (q === host ? ' - <span class="role">Host</span>' : '') + '</span></span>' + (amHost && g[1] === 'pending' ? '<button class="gv-nudge" data-act="nudge" data-id="' + id + ':' + q + '"' + (nudged ? ' disabled' : '') + '>' + (nudged ? 'Just now' : 'Nudge') + '</button>' : '') + '</div>';
+    });
+    $('view-guests').innerHTML = h + '</div>';
+  }
+
+  // ---------- Interest pages (9_INTEREST_PAGES.md, V2 card system) ----------
+  var INTS = {
+    music: { label: '🎸 Live music', name: 'Live music', emo: '🎸', cat: 'Music', tint: '#e0483a', count: '42 events near you', kids: ['Jazz', 'Bluegrass', 'Indie', 'Folk'], friends: ['sara', 'sam', 'alex', 'marcus', 'priya'], n: 6, events: ['wood', 'jazz', 'shindig', 'pickin', 'vinyl'], plans: [], places: ['jumbo', 'highland'], groups: ['crew'] },
+    hiking: { label: '🥾 Hiking', name: 'Hiking', emo: '🥾', cat: 'Outdoors', tint: '#16a34a', count: '18 trails and events near you', kids: ['Day hikes', 'Sunrise hikes', 'Waterfalls'], friends: ['sam', 'jordan', 'priya'], n: 3, events: ['craggy'], plans: ['craggypub'], places: ['highland'], groups: ['hiking'] },
+    coffee: { label: '☕ Coffee', name: 'Coffee', emo: '☕', cat: 'Food & drink', tint: '#b45309', count: '26 cafés near you', kids: ['Espresso', 'Roasters', 'Work cafés'], friends: ['sara', 'riley', 'nina'], n: 3, events: [], plans: ['coffeewalk'], places: ['ultra', 'wellplayed'], groups: [] },
+    cocktails: { label: '🍸 Cocktails', name: 'Cocktails', emo: '🍸', cat: 'Food & drink', tint: '#7c3aed', count: '31 bars near you', kids: ['Speakeasies', 'Rooftops', 'Mezcal'], friends: ['maya', 'alex'], n: 2, events: ['jazz', 'vinyl'], plans: [], places: ['jumbo', 'cindys'], groups: ['crew'] },
+    games: { label: '🎲 Board games', name: 'Board games', emo: '🎲', cat: 'Games', tint: '#0284c7', count: '9 game nights near you', kids: ['Trivia', 'Game cafés', 'Card games'], friends: ['devon', 'lena'], n: 2, events: ['trivia'], plans: ['pizzagames'], places: ['wellplayed', 'gameloft'], groups: ['crew'] }
+  };
+  function intFor(label) { for (var k in INTS) if (INTS[k].label === label) return k; return null; }
+  function intChip(label, cls, extra) { var k = intFor(label); return '<span class="' + (cls || 'ichip') + '"' + (k ? ' data-go="interest-' + k + '"' : '') + (extra || '') + '>' + label + '</span>'; }
+  function isFollowing(k) { return !!S.following[k] || S.interests.indexOf(INTS[k].label) > -1; }
+  function renderInterest(k) {
+    var it = INTS[k]; if (!it) return;
+    var fr = friendsOnly(it.friends), on = isFollowing(k);
+    var h = aHead(it.name, false, '<button class="ib" data-act="toast" data-id="Interest link copied" aria-label="Share"><i class="ph-bold ph-export"></i></button>');
+    h += '<div class="ip-top" style="--int: ' + it.tint + ';"><div class="row"><span class="emo">' + it.emo + '</span><div class="c"><h1>' + it.name + '</h1><small>' + it.cat + ' · ' + it.count + '</small></div></div>';
+    h += '<div class="ip-acts">' + R.follow(k, 'ip') + '<button class="h2-btn white ip-fol ghost" data-act="create" data-with="' + fr.join(',') + '"><i class="ph-bold ph-calendar-plus"></i>Make a plan</button></div>';
+    h += '<div class="ip-kids">' + it.kids.map(function (c) { return '<span data-act="toast" data-id="' + c + ' has its own page in the app">' + c + '</span>'; }).join('') + '</div>';
+    if (fr.length) h += '<div class="ip-friends" data-go="person-' + fr[0] + '">' + avStack(fr.slice(0, 3), 70) + '<span><strong>' + fr.slice(0, 2).map(function (q) { return P[q].name; }).join(', ') + (it.n > 2 && fr.length > 1 ? ' + ' + (it.n - 2) : '') + '</strong> ' + (it.n === 1 ? 'is' : 'are') + ' into ' + it.name.toLowerCase() + '</span><i class="ph-bold ph-caret-right"></i></div>';
+    h += '</div><main class="page-content ip-body">';
+    if (it.events.length) h += '<section>' + secHead('Upcoming events', false, 'All events', 'discover-events') + '<div class="rail dt-r">' + it.events.map(function (id) { var e = E[id], sb = friendsOnly(e.savedBy || e.going || []); return dtEvent(id, e.why ? { i: 'ph-sparkle', t: e.why } : null, sb.length ? dtProof(sb.slice(0, 2), names(sb) + ' ' + (e.going ? 'going' : 'saved it')) : ''); }).join('') + '</div></section>';
+    if (it.plans.length) h += '<section>' + secHead('Public plans', false, 'More', 'discover-plans') + '<div class="rail dt-r plans">' + it.plans.map(dtPlan).join('') + '</div></section>';
+    if (it.places.length) h += '<section>' + secHead('Places', false, 'All places', 'discover-places') + '<div class="rail dt-r">' + it.places.map(function (id) { var lv = LOVED[id], lf = lv ? friendsOnly(lv.who) : []; return dtPlace(id, null, lf.length ? dtProof(lf.slice(0, 2), lv.text) : ''); }).join('') + '</div></section>';
+    var grps = S.mode === 'active' ? it.groups : [];
+    if (grps.length) h += '<section>' + secHead('Your groups') + grps.map(function (g) { var G = GROUPS[g]; return '<div class="ip-grp" data-go="chat-' + g + '"><img src="' + U(G.img, 120, 120) + '" alt="" /><div class="c"><strong>' + G.t + '</strong><span>' + Math.min(G.n - 1, it.n) + ' of ' + G.n + ' are into ' + it.name.toLowerCase() + '</span></div><button class="h2-btn pri" data-go="ideas"><i class="ph-fill ph-sparkle"></i>Get ideas</button></div>'; }).join('') + '</section>';
+    $('view-interest').innerHTML = h + '</main>';
+  }
+
   // ---------- Sheets ----------
   var sheetState = null;
   function openSheet(html, kind) {
@@ -2039,21 +2183,28 @@
   function openFilter(kind) { sheetState = { type: 'filter', kind: kind, draft: clone(S.filters[kind]) }; openSheet('', ''); filterSheet(); }
 
   // Status + check-in (V2 check-in-flow.html)
-  var AVAIL = [['online', 'Online'], ['hang', 'Down to hang'], ['busy', 'Heads down'], ['invisible', 'Invisible']];
+  var AVAIL = [['hang', 'Down to hang', 'Let friends know you\u2019re free to do something'], ['invisible', 'Invisible', 'Hide that you\u2019re online']];
   var DOING = ['☕ Coffee', '💻 Working', '🍻 Drinks', '🥾 On a walk'];
+  function statusLine2() { var st = S.status; return st && st.at ? '<i class="ph-fill ph-map-pin"></i>At ' + L[st.at].t : st && st.doing ? st.doing : 'Visible to friends'; }
   function statusSheet() {
-    var st = sheetState;
-    var h = '<span class="handle"></span><h3>Your status</h3><span class="sub">Friends see this on Home and your profile</span>';
-    h += '<div class="doing">' + AVAIL.map(function (a) { return '<span class="chip' + (st.s === a[0] ? ' selected' : '') + '" data-act="st-s" data-id="' + a[0] + '"><span class="sd" style="background: ' + STATUS[a[0]].c + ';"></span>' + a[1] + '</span>'; }).join('') + '</div>';
-    h += '<span class="lbl">Check in</span><span class="sub" style="margin-top: -10px;">Near you now</span>' + NEARBY.map(function (n) { var l = L[n[0]], on = st.at === n[0]; return '<div class="place-row' + (on ? ' selected' : '') + '" data-act="st-at" data-id="' + n[0] + '"><img src="' + U(l.img, 96, 96) + '" alt="" /><div class="p-txt"><strong>' + l.t + '</strong><span>' + n[1] + '</span></div><span class="radio"><i class="ph-bold ph-check"></i></span></div>'; }).join('');
-    h += '<div class="doing">' + DOING.map(function (d) { return '<span class="chip' + (st.doing === d ? ' selected' : '') + '" data-act="st-doing" data-id="' + d + '">' + d + '</span>'; }).join('') + '</div>';
-    h += '<div class="audience"><span class="a-icon"><i class="ph-fill ph-users"></i></span><div class="a-txt"><strong>Friends can see this</strong><span>' + (st.at ? 'Clears on its own after 2 hours, or check out anytime.' : 'Only friends see your status. Invisible hides your dot.') + '</span></div></div>';
-    h += '<button class="btn-grad" data-act="st-save">' + (st.at ? '<i class="ph-fill ph-map-pin"></i>Check in at ' + L[st.at].t : 'Save status') + '</button>';
-    if (S.status && S.status.at) h += '<button class="checkout" data-act="st-out">Check out of ' + L[S.status.at].t + '</button>';
-    else if (S.status) h += '<button class="checkout" style="color: #5c6b7d;" data-act="st-clear">Clear status</button>';
+    var st = sheetState, cur = S.status || { s: '' }, h;
+    if (st.step === 'checkin') {
+      h = '<span class="handle"></span><div class="sh-top"><button class="x" data-act="st-step" data-id="main" aria-label="Back"><i class="ph-bold ph-caret-left"></i></button><h3>Check in</h3><button class="x" data-act="sheet-close" aria-label="Close"><i class="ph-bold ph-x"></i></button></div>';
+      h += '<span class="sub">Near you now</span><div class="places">' + NEARBY.map(function (n) { var l = L[n[0]], on = st.at === n[0]; return '<div class="place-row' + (on ? ' selected' : '') + '" data-act="st-at" data-id="' + n[0] + '"><img src="' + U(l.img, 96, 96) + '" alt="" /><div class="p-txt"><strong>' + l.t + '</strong><span>' + n[1] + '</span></div><span class="radio"><i class="ph-bold ph-check"></i></span></div>'; }).join('') + '</div>';
+      h += '<span class="sub">What are you up to? <em>Optional</em></span><div class="doing">' + DOING.map(function (d) { return '<span class="chip' + (st.doing === d ? ' selected' : '') + '" data-act="st-doing" data-id="' + d + '">' + d + '</span>'; }).join('') + '</div>';
+      h += '<button class="btn-grad" data-act="st-go"' + (st.at ? '' : ' disabled') + '><i class="ph-fill ph-map-pin"></i>' + (st.at ? 'Check in at ' + L[st.at].t : 'Pick a place') + '</button><p class="note"><i class="ph-fill ph-users"></i>Only friends see this. Clears after 2 hours.</p>';
+    } else {
+      h = '<span class="handle"></span><div class="sh-top"><span></span><h3>Your status</h3><button class="x" data-act="sheet-close" aria-label="Close"><i class="ph-bold ph-x"></i></button></div>';
+      h += '<div class="st-prev"><span class="avw"><img src="' + av('me') + '" alt="" /><span class="dot" style="background: ' + (cur.s ? STATUS[cur.s].c : '#c5ccd4') + ';"></span></span><div class="c"><strong>' + (cur.s ? STATUS[cur.s].l : 'No status') + '</strong><span>' + (cur.s || cur.at ? statusLine2() : 'Friends just see you\u2019re online') + '</span></div><small>What friends see</small></div>';
+      h += '<div class="st-opts">' + AVAIL.map(function (a) { var on = cur.s === a[0]; return '<button class="st-opt' + (on ? ' on' : '') + '" data-act="st-s" data-id="' + a[0] + '"><span class="sd" style="background: ' + STATUS[a[0]].c + ';"></span><span class="c"><strong>' + a[1] + '</strong><span>' + a[2] + '</span></span><span class="rad"><i class="ph-bold ph-check"></i></span></button>'; }).join('') + '</div>';
+      h += cur.at ? '<div class="st-ci on"><span class="ic"><i class="ph-fill ph-map-pin"></i></span><div class="c"><strong>At ' + L[cur.at].t + '</strong><span>' + (cur.doing ? cur.doing + ' · ' : '') + 'Clears in 2 hours</span></div><button class="out" data-act="st-out">Check out</button></div>'
+        : '<button class="st-ci" data-act="st-step" data-id="checkin"><span class="ic"><i class="ph-bold ph-map-pin"></i></span><span class="c"><strong>Check in at a place</strong><span>Let friends know where you are</span></span><i class="ph-bold ph-caret-right"></i></button>';
+      h += '<button class="btn-plain" data-act="sheet-close">Done</button>';
+      if (cur.s && !cur.at) h += '<button class="checkout" style="color: #5c6b7d;" data-act="st-clear">Clear status</button>';
+    }
     $('sheet').innerHTML = h;
   }
-  function openStatus(at) { sheetState = { type: 'status', s: S.status ? S.status.s : 'hang', at: typeof at === 'string' ? at : S.status ? S.status.at : '', doing: S.status ? S.status.doing : '' }; openSheet('', 'v2'); statusSheet(); }
+  function openStatus(at) { var pre = typeof at === 'string'; sheetState = { type: 'status', step: pre ? 'checkin' : 'main', at: pre ? at : '', doing: '' }; openSheet('', 'v2'); statusSheet(); }
 
   function friendsSheet() {
     var list = SUGGEST.filter(function (p) { return !isFriend(p); });
@@ -2075,11 +2226,6 @@
   function planOptsSheet() {
     var id = sheetState.id, p = getPlan(id), host = p && p.created, mine = planIds().indexOf(id) > -1;
     appSheet('Options', '<div class="ar" data-act="opt" data-v="share"><i class="ph-bold ph-share-network"></i><div class="c"><span>Share plan link</span></div><i class="ph-bold ph-caret-right end"></i></div>' + (mine && !host ? '<div class="ar" data-act="opt" data-v="leave"><i class="ph-bold ph-sign-out"></i><div class="c"><span>Leave plan</span></div><i class="ph-bold ph-caret-right end"></i></div>' : '') + '<div class="ar" data-act="opt" data-v="report"><i class="ph-bold ph-flag"></i><div class="c"><span>Report plan</span></div><i class="ph-bold ph-caret-right end"></i></div>' + (host ? '<div class="ar red" data-act="opt" data-v="delete"><i class="ph-bold ph-trash"></i><div class="c"><span>Delete plan</span></div><i class="ph-bold ph-caret-right end"></i></div>' : ''));
-  }
-  function guestsSheet() {
-    var id = sheetState.id, p = getPlan(id), mine = planIds().indexOf(id) > -1, r = S.rsvp[id] || 'going';
-    var rows = (mine ? [['me', p.created ? 'Host' : r === 'maybe' ? 'Maybe' : r === 'no' ? 'Not going' : 'Going']] : []).concat(p.people.map(function (q) { return [q, p.created ? 'Invited' : 'Going']; }));
-    appSheet('Guests', rows.map(function (g) { return '<div class="ar gl"' + (g[0] !== 'me' ? ' data-act="sheet-go" data-id="person-' + g[0] + '"' : '') + '><img src="' + av(g[0]) + '" alt="" /><div class="c"><span style="font-weight: 700;">' + (g[0] === 'me' ? 'You' : P[g[0]].full) + '</span><small>' + g[1] + '</small></div></div>'; }).join('') + (mine ? '<button class="a-btn grad" data-act="toast" data-id="Invite link copied"><i class="ph-bold ph-user-plus"></i>Invite friends</button>' : ''));
   }
 
   // ---------- Create plan (CreateActivityModal) ----------
@@ -2159,7 +2305,7 @@
     var C = S.draft, n = S.created.length + 1, id = 'c' + n, at = null, pl = C.place ? L[C.place] : null;
     if (C.date) { at = new Date(C.date.getTime()); var tm = parseTime(C.time || '7 PM'); at.setHours(tm[0], tm[1]); }
     var who = skip ? [] : C.who.slice(), title = C.title.trim();
-    var plan = { id: id, created: true, title: title, imgUrl: C.img || (pl ? U(pl.img, 800) : PLAN_DEFAULT), people: who, going: who.length ? 'You + ' + who.length + (who.length === 1 ? ' other' : ' others') : 'Hosted by you', at: at, time: at ? (C.time || '7 PM') : null, place: C.place, where: C.where, event: C.event, tags: C.tags.slice(), about: '' };
+    var plan = { id: id, created: true, title: title, imgUrl: C.img || (pl ? U(pl.img, 800) : PLAN_DEFAULT), people: who, going: who.length ? 'You + ' + who.length + (who.length === 1 ? ' other' : ' others') : 'Hosted by you', at: at, time: at ? (C.time || '7 PM') : null, place: C.place, where: C.where, event: C.event, tags: C.tags.slice(), privacy: C.privacy, about: '' };
     if (at) { plan.kick = kickFor(at); plan.greet = greetFor(at); plan.sub = title + ' · ' + plan.time.toLowerCase().replace(' ', ''); }
     S.created.push(plan);
     var chatId = 'p-' + id;
@@ -2173,9 +2319,9 @@
 
   // ---------- Router ----------
   var ROOTS = { home: 'home', discover: 'discover', 'discover-events': 'discover', 'discover-places': 'discover', 'discover-plans': 'discover', plans: 'plans', chats: 'chats', you: 'you' };
-  var RENDER = { invites: renderInvites, saved: renderSaved, review: renderReview, home: renderHome, notifications: renderNotifs, discover: renderDiscover, ask: renderAsk, plans: renderPlans, chats: renderChats, chat: renderChat, you: renderYou, event: renderEvent, place: renderPlace, plan: renderPlan, person: renderPerson };
+  var RENDER = { guests: renderGuests, interest: renderInterest, invites: renderInvites, saved: renderSaved, review: renderReview, home: renderHome, notifications: renderNotifs, discover: renderDiscover, ask: renderAsk, plans: renderPlans, chats: renderChats, chat: renderChat, you: renderYou, event: renderEvent, place: renderPlace, plan: renderPlan, person: renderPerson };
   var stack = [], scrolls = {}, cur = null, curHash = '', curTab = 'home', curView = '';
-  var MODAL = { event: 1, place: 1, review: 1 };
+  var MODAL = { event: 1, place: 1, review: 1, guests: 1 };
   function syncOvl(v) {
     var o = v && v.querySelector('.ovl');
     if (o) o.classList.toggle('solid', v.scrollTop > 150);
@@ -2185,7 +2331,7 @@
   }
   function parse(h) {
     if (ROOTS[h]) return { view: ROOTS[h], root: true, arg: h };
-    var m = h.match(/^(event|place|plan|chat|person|review)-(.+)$/);
+    var m = h.match(/^(event|place|plan|chat|person|review|guests|interest)-(.+)$/);
     if (m) return { view: m[1], arg: m[2] };
     if (h === 'notifications' || h === 'ask' || h === 'saved' || h === 'invites') return { view: h, arg: h };
     if (h === 'ideas') return { view: 'ask', arg: 'ideas' };
@@ -2277,9 +2423,12 @@
     }
   };
   A.follow = function (el) {
-    var id = el.getAttribute('data-id'); S.following[id] = !S.following[id];
+    var id = el.getAttribute('data-id'), it = INTS[id], on = !isFollowing(id), at = S.interests.indexOf(it.label);
+    S.following[id] = on;
+    if (on && at < 0) S.interests.push(it.label);
+    if (!on && at > -1) S.interests.splice(at, 1);
     sync('follow', id);
-    if (S.following[id]) { toast('Following Live music', 'ph-music-notes'); if (S.interests.indexOf('🎸 Live music') < 0) S.interests.push('🎸 Live music'); }
+    toast(on ? 'Following ' + it.name : 'Unfollowed ' + it.name, on ? 'ph-check-circle' : 'ph-x-circle');
   };
   A.gs = function (el) {
     var id = el.getAttribute('data-id');
@@ -2351,7 +2500,8 @@
     else if (v === 'leave') { if (id.indexOf('j-') === 0) S.joined[id.slice(2)] = false; else S.rsvp[id] = 'no'; toast('You left the plan', 'ph-sign-out'); back(); }
     else if (v === 'delete') { S.created = S.created.filter(function (c) { return c.id !== id; }); S.chats = S.chats.filter(function (c) { return c !== 'p-' + id; }); toast('Plan deleted', 'ph-trash'); back(); }
   };
-  A.guests = function (el) { sheetState = { type: 'guests', id: el.getAttribute('data-id') }; openSheet('', 'app'); guestsSheet(); };
+  A.nudge = function (el) { if (!S.nudged) S.nudged = {}; var k = el.getAttribute('data-id'), q = k.split(':')[1]; S.nudged[k] = true; toast(q ? 'Nudged ' + P[q].name : 'Nudged everyone who hasn\u2019t replied', 'ph-bell-ringing'); rerender(); };
+  A['guest-opts'] = function (el) { var q = el.getAttribute('data-id'); sheetState = { type: 'guest' }; openSheet('', 'app'); appSheet(P[q].full, '<div class="ar" data-act="sheet-go" data-id="person-' + q + '"><i class="ph-bold ph-user"></i><div class="c"><span>View profile</span></div><i class="ph-bold ph-caret-right end"></i></div><div class="ar" data-act="sheet-go" data-id="' + chatFor(q) + '"><i class="ph-bold ph-chat-circle"></i><div class="c"><span>Message</span></div><i class="ph-bold ph-caret-right end"></i></div>'); };
   A['person-opts'] = function () { sheetState = { type: 'popts' }; openSheet('', 'app'); appSheet('Options', '<div class="ar" data-act="opt2" data-v="block"><i class="ph-bold ph-prohibit"></i><div class="c"><span>Block User</span></div><i class="ph-bold ph-caret-right end"></i></div><div class="ar" data-act="opt2" data-v="report"><i class="ph-bold ph-flag"></i><div class="c"><span>Report User</span></div><i class="ph-bold ph-caret-right end"></i></div>'); };
   A.opt2 = function (el) { closeSheet(); toast(el.getAttribute('data-v') === 'block' ? 'Blocking is not part of this prototype' : 'Thanks, we’ll take a look', 'ph-info'); };
   A.hours = function () { S.hoursOpen = !S.hoursOpen; rerender(); };
@@ -2359,12 +2509,18 @@
   A['list-saved'] = function () { var id = sheetState.id, on = !S.saved[id]; S.saved[id] = on ? 1 : 0; sync('save', id); listsSheet(); toast(on ? 'Saved to Saved' : 'Removed from Saved', on ? 'ph-bookmark-simple' : 'ph-x-circle'); };
   A['list-tog'] = function (el) { var id = sheetState.id, l = el.getAttribute('data-id'), on = !S.lists[l][id], ls = LISTS.filter(function (x) { return x.id === l; })[0]; S.lists[l][id] = on ? 1 : 0; listsSheet(); toast((on ? 'Saved to ' : 'Removed from ') + ls.t, on ? 'ph-check-circle' : 'ph-x-circle'); };
   // Status + check-in
-  A['st-s'] = function (el) { sheetState.s = el.getAttribute('data-id'); statusSheet(); };
+  A['st-s'] = function (el) {
+    var v = el.getAttribute('data-id'), cur = S.status;
+    if (cur && cur.s === v && !cur.at) S.status = null;
+    else if (!(cur && cur.s === v)) S.status = Object.assign({ at: '', doing: '' }, cur || {}, { s: v });
+    statusSheet(); rerender();
+  };
+  A['st-clear'] = function () { S.status = null; statusSheet(); rerender(); toast('Status cleared', 'ph-x-circle'); };
+  A['st-step'] = function (el) { sheetState.step = el.getAttribute('data-id'); if (sheetState.step === 'checkin') { sheetState.at = ''; sheetState.doing = ''; } statusSheet(); $('sheet').scrollTop = 0; };
   A['st-at'] = function (el) { var id = el.getAttribute('data-id'); sheetState.at = sheetState.at === id ? '' : id; statusSheet(); };
   A['st-doing'] = function (el) { var d = el.getAttribute('data-id'); sheetState.doing = sheetState.doing === d ? '' : d; statusSheet(); };
-  A['st-save'] = function () { var st = sheetState; S.status = { s: st.s, at: st.at, doing: st.doing }; closeSheet(); toast(st.at ? 'Checked in at ' + L[st.at].t : 'Status updated', st.at ? 'ph-map-pin' : 'ph-check-circle'); rerender(); };
-  A['st-out'] = function () { S.status.at = ''; closeSheet(); toast('Checked out', 'ph-sign-out'); rerender(); };
-  A['st-clear'] = function () { S.status = null; closeSheet(); toast('Status cleared', 'ph-x-circle'); rerender(); };
+  A['st-go'] = function () { var st = sheetState; S.status = Object.assign({ s: 'hang' }, S.status || {}, { at: st.at, doing: st.doing }); if (S.status.s === 'invisible') S.status.s = 'hang'; closeSheet(); toast('Checked in at ' + L[st.at].t, 'ph-map-pin'); rerender(); };
+  A['st-out'] = function () { S.status.at = ''; S.status.doing = ''; toast('Checked out', 'ph-sign-out'); statusSheet(); rerender(); };
   // Write review page
   A['rv-star'] = function (el) { rvDraft(curHash.slice(7)).stars = +el.getAttribute('data-id'); rerender(); };
   A['rv-tag'] = function (el) { var r = rvDraft(curHash.slice(7)), t = el.getAttribute('data-id'), at = r.tags.indexOf(t); if (at > -1) r.tags.splice(at, 1); else r.tags.push(t); el.classList.toggle('selected', at < 0); };
