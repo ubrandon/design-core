@@ -32,8 +32,8 @@
     },
     {
       "file": "discover-v2-real-cards.html",
-      "x": 7488,
-      "y": -1297,
+      "x": 8620,
+      "y": -1311,
       "width": 390
     },
     {
@@ -56,26 +56,26 @@
     },
     {
       "file": "status-nav-identity.html",
-      "x": 3877,
-      "y": -1297,
+      "x": 2909,
+      "y": 4214,
       "width": 390
     },
     {
       "file": "status-under-greeting.html",
-      "x": 3877,
-      "y": -1086,
+      "x": 2909,
+      "y": 4425,
       "width": 390
     },
     {
       "file": "status-greeting-chips.html",
-      "x": 3877,
-      "y": -834,
+      "x": 2909,
+      "y": 4677,
       "width": 390
     },
     {
       "file": "status-nav-avatar.html",
-      "x": 3877,
-      "y": -556,
+      "x": 2909,
+      "y": 4955,
       "width": 390
     },
     {
@@ -104,19 +104,19 @@
     },
     {
       "file": "home-v2-empty.html",
-      "x": 8587,
-      "y": -1297,
+      "x": 3938,
+      "y": -1291,
       "width": 390
     },
     {
       "file": "guidance-intro-modal.html",
-      "x": 9017,
+      "x": 9245,
       "y": -1297,
       "width": 390
     },
     {
       "file": "guidance-coach-marks.html",
-      "x": 9447,
+      "x": 9675,
       "y": -1297,
       "width": 390
     },
@@ -242,15 +242,15 @@
     },
     {
       "text": "Status ideas",
-      "x": 3877,
-      "y": -1428,
-      "size": 72,
+      "x": 2909,
+      "y": 4117,
+      "size": 36,
       "id": "text-legacy-muc2kpol-6"
     },
     {
       "text": "Discover",
-      "x": 7488,
-      "y": -1428,
+      "x": 8620,
+      "y": -1442,
       "size": 72,
       "id": "text-legacy-muc2kpol-7"
     },
@@ -288,13 +288,6 @@
       "y": 7867,
       "size": 48,
       "id": "text-legacy-muc2kpol-12"
-    },
-    {
-      "text": "Cold start + first visit",
-      "x": 8587,
-      "y": -1428,
-      "size": 72,
-      "id": "text-legacy-muc2kpol-13"
     },
     {
       "text": "AI layer",
@@ -344,6 +337,13 @@
       "y": 4117,
       "size": 72,
       "id": "text-mum4wtsg-6"
+    },
+    {
+      "text": "Tour",
+      "x": 9245,
+      "y": -1416,
+      "size": 72,
+      "id": "text-mumwrou3-1"
     }
   ]
 }
