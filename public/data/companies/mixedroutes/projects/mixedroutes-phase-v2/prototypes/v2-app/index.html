@@ -1124,6 +1124,7 @@
     <div class="view" id="view-plan"></div>
     <div class="view" id="view-person"></div>
     <div class="view" id="view-saved"></div>
+    <div class="view" id="view-invites"></div>
     <div class="view" id="view-review"></div>
   </div>
   <nav class="tab-bar" id="tabbar"></nav>
@@ -1273,7 +1274,7 @@
       gs: m.gs ? Object.assign({ friend: false, plan: false, discover: false }, m.gs) : null, gsHidden: false,
       status: m.status ? clone(m.status) : null, saved: clone(m.saved), joined: {}, sent: {}, following: {}, rsvp: {},
       created: [], notifSeen: false, filters: { events: {}, places: {} }, reviews: {}, interests: ['🎸 Live music', '🥾 Hiking', '☕ Coffee', '🍸 Cocktails'],
-      inviteOpen: false, ask: '', requests: mode === 'active' ? { nina: 1 } : {}, lists: { coffee: mode === 'active' ? { ultra: 1 } : {}, date: mode === 'active' ? { jumbo: 1, cindys: 1 } : {} }
+      ask: '', requests: mode === 'active' ? { nina: 1 } : {}, lists: { coffee: mode === 'active' ? { ultra: 1 } : {}, date: mode === 'active' ? { jumbo: 1, cindys: 1 } : {} }
     };
   }
   var startMode = 'active';
@@ -1414,15 +1415,11 @@
   }
   function inviteBanner() {
     var list = S.invites.map(function (k) { return INVITES[k]; });
-    return '<div class="invite-banner' + (S.inviteOpen ? ' is-open' : '') + '"><button class="invite-banner-head" data-act="invite-toggle" aria-expanded="' + S.inviteOpen + '"><span class="stack">' + list.map(function (i) { return '<img src="' + av(i.from) + '" alt="" />'; }).join('') + '</span><span class="stack-check"><i class="ph-fill ph-check-circle"></i></span><span class="b-txt"><strong class="banner-title">' + (list.length === 1 ? '1 invite waiting on you' : list.length + ' invites waiting on you') + '</strong><span class="banner-sub">' + list.map(function (i) { return i.t; }).join(' · ') + '</span></span><i class="ph-bold ph-caret-right caret"></i></button><div class="invite-banner-body">' +
-      S.invites.map(function (k) {
-        var i = INVITES[k];
-        return '<div class="invite-row" data-id="' + k + '"><img class="av" src="' + av(i.from) + '" alt="" data-go="plan-' + i.plan + '" /><div class="r-txt" data-go="plan-' + i.plan + '"><strong>' + i.t + ' ' + i.emo + '</strong><span>' + P[i.from].name + ' · ' + i.when + '</span></div><div class="r-btns"><button class="invite-go" data-act="invite" data-id="' + k + '" data-v="go"><i class="ph-bold ph-check"></i>Going</button><button class="invite-no" data-act="invite" data-id="' + k + '" data-v="no">Can’t</button></div></div>';
-      }).join('') + '</div></div>';
+    return '<div class="invite-banner"><button class="invite-banner-head" data-go="invites"><span class="stack">' + list.slice(0, 2).map(function (i) { return '<img src="' + av(i.from) + '" alt="" />'; }).join('') + '</span><span class="b-txt"><strong class="banner-title">' + (list.length === 1 ? '1 invite waiting on you' : list.length + ' invites waiting on you') + '</strong><span class="banner-sub">' + list.map(function (i) { return i.t; }).join(' · ') + '</span></span><i class="ph-bold ph-caret-right caret"></i></button></div>';
   }
   function planRow(p) {
     var r = S.rsvp[p.id], people = p.people.slice(0, 2);
-    var btn = p.created ? '<button class="h2-btn glass"><i class="ph-fill ph-paper-plane-tilt" style="color:#93c5fd"></i>' + (p.people.length ? 'Invited' : 'Hosting') + '</button>' : r === 'maybe' ? '<button class="h2-btn glass maybe"><i class="ph-fill ph-question"></i>Maybe</button>' : '<button class="h2-btn glass"><i class="ph-fill ph-check-circle"></i>Going</button>';
+    var btn = r === 'maybe' ? '<button class="h2-btn white" data-act="rsvp-open" data-id="' + p.id + '">RSVP</button>' : '<button class="h2-btn glass"><i class="ph-fill ph-check-circle"></i>Going</button>';
     var media = p.art ? 'background: linear-gradient(135deg, ' + p.art.a1 + ', ' + p.art.a2 + ');' : planImg(p, 400);
     return '<div class="h2-row" data-go="plan-' + p.id + '"><div class="amb" style="' + (p.art ? media : planImg(p, 500)) + '"></div><div class="shade"></div><div class="media" style="' + media + '"></div><div class="rc"><div class="rk">' + p.kick.toUpperCase() + '</div><div class="rt">' + p.title + '</div><div class="rm">' + (people.length ? avStack(people) : '') + '<span>' + p.going + '</span>' + btn + '</div></div></div>';
   }
@@ -1755,7 +1752,7 @@
   function acCard(p, v) {
     var img = planImgUrl(p, v ? 600 : 300), loc = p.place ? L[p.place].t + ', NC' : p.where || '', ppl = p.people || [];
     var label = p.created && !ppl.length ? 'Hosted by you' : p.going;
-    var faces = (p.pub && !S.joined[p.id] ? [] : ['me']).concat(ppl).slice(0, 5);
+    var faces = ((p.pub && !S.joined[p.id]) || inviteFor(p.id) ? [] : ['me']).concat(ppl).slice(0, 5);
     return '<button class="ac' + (v ? ' v' : '') + '" data-go="plan-' + p.id + '"><span class="ac-bd" style="background-image: url(\'' + img + '\');"></span><span class="ac-img" style="background-image: url(\'' + img + '\');"></span><span class="ac-d"><span class="ac-date">' + (p.at ? dayWord(p.at) : 'No date yet') + '</span><span class="ac-t">' + p.title + '</span>' + (loc ? '<span class="ac-loc"><i class="ph-fill ' + (p.place ? 'ph-storefront' : 'ph-map-pin') + '"></i><span>' + loc + '</span></span>' : '') + '<span class="ac-ppl"><span class="mav">' + faces.map(function (q) { return '<img src="' + av(q, 60) + '" alt="" />'; }).join('') + '</span><span>' + label + '</span></span></span></button>';
   }
   function stars(r) { var h = ''; for (var i = 1; i <= 5; i++) h += '<i class="ph-fill ' + (r >= i - 0.25 ? 'ph-star' : r >= i - 0.75 ? 'ph-star-half' : 'ph-star') + '"' + (r < i - 0.75 ? ' style="opacity: 0.3;"' : '') + '></i>'; return h; }
@@ -1804,6 +1801,11 @@
       h += past.length ? '<div class="pl-list">' + grouped(past, pastSection) + '</div>' : emptyState('photos', 'No past plans yet.', 'Plans that happened land here, so you can look back anytime.');
     }
     $('view-plans').innerHTML = h + '</div>';
+  }
+
+  function renderInvites() {
+    var list = S.invites.map(function (k) { return getPlan(INVITES[k].plan); }).sort(function (a, b) { return a.at - b.at; });
+    $('view-invites').innerHTML = aHead('Invites') + '<div class="content" style="padding-top: 1.41px;">' + (list.length ? '<div class="pl-list">' + grouped(list, upSection) + '</div>' : emptyState('envelope', 'No invites yet.', 'When friends invite you to plans, they\u2019ll show up here.')) + '</div>';
   }
 
   // ---------- Plan detail (ActivityOverview) ----------
@@ -2093,7 +2095,7 @@
     var C = S.draft, n = S.created.length + 1, id = 'c' + n, at = null, pl = C.place ? L[C.place] : null;
     if (C.date) { at = new Date(C.date.getTime()); var tm = parseTime(C.time || '7 PM'); at.setHours(tm[0], tm[1]); }
     var who = skip ? [] : C.who.slice(), title = C.title.trim();
-    var plan = { id: id, created: true, title: title, imgUrl: C.img || (pl ? U(pl.img, 800) : PLAN_DEFAULT), people: who, going: who.length ? (who.length + 1) + ' invited' : 'Hosted by you', at: at, time: at ? (C.time || '7 PM') : null, place: C.place, where: C.where, event: C.event, tags: C.tags.slice(), about: '' };
+    var plan = { id: id, created: true, title: title, imgUrl: C.img || (pl ? U(pl.img, 800) : PLAN_DEFAULT), people: who, going: who.length ? 'You + ' + who.length + (who.length === 1 ? ' other' : ' others') : 'Hosted by you', at: at, time: at ? (C.time || '7 PM') : null, place: C.place, where: C.where, event: C.event, tags: C.tags.slice(), about: '' };
     if (at) { plan.kick = kickFor(at); plan.greet = greetFor(at); plan.sub = title + ' · ' + plan.time.toLowerCase().replace(' ', ''); }
     S.created.push(plan);
     var chatId = 'p-' + id;
@@ -2107,7 +2109,7 @@
 
   // ---------- Router ----------
   var ROOTS = { home: 'home', discover: 'discover', 'discover-events': 'discover', 'discover-places': 'discover', 'discover-plans': 'discover', plans: 'plans', chats: 'chats', you: 'you' };
-  var RENDER = { saved: renderSaved, review: renderReview, home: renderHome, notifications: renderNotifs, discover: renderDiscover, ask: renderAsk, plans: renderPlans, chats: renderChats, chat: renderChat, you: renderYou, event: renderEvent, place: renderPlace, plan: renderPlan, person: renderPerson };
+  var RENDER = { invites: renderInvites, saved: renderSaved, review: renderReview, home: renderHome, notifications: renderNotifs, discover: renderDiscover, ask: renderAsk, plans: renderPlans, chats: renderChats, chat: renderChat, you: renderYou, event: renderEvent, place: renderPlace, plan: renderPlan, person: renderPerson };
   var stack = [], scrolls = {}, cur = null, curHash = '', curTab = 'home', curView = '';
   var MODAL = { event: 1, place: 1, review: 1 };
   function syncOvl(v) {
@@ -2121,7 +2123,7 @@
     if (ROOTS[h]) return { view: ROOTS[h], root: true, arg: h };
     var m = h.match(/^(event|place|plan|chat|person|review)-(.+)$/);
     if (m) return { view: m[1], arg: m[2] };
-    if (h === 'notifications' || h === 'ask' || h === 'saved') return { view: h, arg: h };
+    if (h === 'notifications' || h === 'ask' || h === 'saved' || h === 'invites') return { view: h, arg: h };
     if (h === 'ideas') return { view: 'ask', arg: 'ideas' };
     return null;
   }
@@ -2214,39 +2216,6 @@
     var id = el.getAttribute('data-id'); S.following[id] = !S.following[id];
     sync('follow', id);
     if (S.following[id]) { toast('Following Live music', 'ph-music-notes'); if (S.interests.indexOf('🎸 Live music') < 0) S.interests.push('🎸 Live music'); }
-  };
-  A['invite-toggle'] = function (el) {
-    var b = el.closest('.invite-banner'); S.inviteOpen = !S.inviteOpen;
-    b.classList.toggle('is-open', S.inviteOpen); el.setAttribute('aria-expanded', S.inviteOpen);
-  };
-  A.invite = function (el) {
-    var k = el.getAttribute('data-id'), go = el.getAttribute('data-v') === 'go', inv = INVITES[k];
-    S.invites = S.invites.filter(function (x) { return x !== k; });
-    S.accepted.push(inv.plan); if (!go) S.rsvp[inv.plan] = 'no';
-    toast(go ? 'You’re going to ' + inv.t : 'Declined ' + inv.t, go ? 'ph-check-circle' : 'ph-x-circle');
-    var row = el.closest('.invite-row');
-    if (!row) { rerender(); return; }
-    var banner = row.closest('.invite-banner'), sec = row.closest('section');
-    row.classList.add('is-leaving');
-    setTimeout(function () {
-      row.remove();
-      var left = banner.querySelectorAll('.invite-row').length;
-      if (curHash !== 'home') { rerender(); return; }
-      var stackEl = sec.querySelector('.h2-stack');
-      if (stackEl) stackEl.innerHTML = myPlans().slice(0, 3).map(planRow).join('');
-      if (!left) {
-        banner.querySelector('.banner-title').textContent = 'All caught up';
-        banner.querySelector('.banner-sub').textContent = 'No invites waiting';
-        banner.classList.remove('is-open'); banner.classList.add('is-done'); S.inviteOpen = false;
-        setTimeout(function () { banner.classList.add('is-gone'); }, 1400);
-        setTimeout(function () { banner.remove(); }, 1800);
-      } else {
-        banner.querySelector('.banner-title').textContent = left === 1 ? '1 invite waiting on you' : left + ' invites waiting on you';
-        banner.querySelector('.banner-sub').textContent = S.invites.map(function (x) { return INVITES[x].t; }).join(' · ');
-        var imgs = banner.querySelectorAll('.invite-banner-head .stack img');
-        imgs.forEach(function (im, i) { im.style.display = i < left ? '' : 'none'; });
-      }
-    }, 300);
   };
   A.gs = function (el) {
     var id = el.getAttribute('data-id');
