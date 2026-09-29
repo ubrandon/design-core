@@ -260,17 +260,21 @@
   .mrv2-home2 .fp-row span { font-size: 13px; color: #5c6b7d; }
   .mrv2-home2 .fp-link { height: 44px; margin-top: 4px; border: 0; border-top: 1px solid #f1f4f7; background: none; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: 700; color: #101724; }
   .mrv2-home2 .status-pill.unset .me .dot { background: #c5ccd4; }
-  /* Feed ends with a caught-up marker; older activity loads in place below */
+  /* Friend activity is capped on Home; the rest lives on the Updates page */
   .mrv2-home2 .act-head .more { text-decoration: none; }
   .mrv2-home2 .act-more { height: 48px; border-radius: 999px; background: #f1f4f7; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 15px; font-weight: 700; color: #101724; text-decoration: none; }
   .mrv2-home2 .act-more i { font-size: 14px; color: #5c6b7d; }
+
+  /* Endless feed: marker where seen activity starts, then older activity mixed with suggestions */
   .mrv2-home2 .caught-up { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 20px 0 12px; text-align: center; }
   .mrv2-home2 .caught-up .cu-rule { align-self: stretch; display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
   .mrv2-home2 .caught-up .cu-rule::before, .mrv2-home2 .caught-up .cu-rule::after { content: ""; flex: 1; height: 1px; background: #e4e8ed; }
   .mrv2-home2 .caught-up .cu-icon { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: #e6f6f0; color: #0ca678; font-size: 22px; line-height: 1; }
   .mrv2-home2 .caught-up strong { font-size: 17px; font-weight: 700; color: #101724; line-height: 1.3; }
   .mrv2-home2 .caught-up span { font-size: 14px; color: #5c6b7d; line-height: 1.35; }
-  .mrv2-home2 .caught-up + .act-more { margin-top: -4px; }
+  .mrv2-home2 .feed-loading { display: grid; place-items: center; padding: 8px 0 4px; color: #8a94a2; font-size: 24px; }
+  .mrv2-home2 .feed-loading i { display: block; animation: mrv2-home2-spin 0.9s linear infinite; }
+  @keyframes mrv2-home2-spin { to { transform: rotate(360deg); } }
 </style>
 
 <div class="mrv2-home2 home2fact" style="background: #ffffff;">
@@ -412,16 +416,39 @@
       </div>
     </div>
 
-    <div class="h2-card h2-int" style="--int: #e0483a;">
-      <div class="top"><span class="emo">🎸</span><div class="c"><strong>Live music</strong><small>Music · 42 events near you</small></div><button class="h2-btn white">Follow</button></div>
-      <div class="h2-int-friends"><span class="h2-av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=70&q=80" alt="" /></span><span><strong>Sara, Sam + 4</strong> follow Live music</span></div>
-    </div>
-
     <div class="h2-card fa-card">
       <div class="fa-body fa-act">
         <div class="h2-who"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Priya</strong> + 3 are going</span><time>3h</time></div>
         <div class="fa-obj"><img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=160&q=80" alt="" /><div class="c"><strong>Farmers market brunch</strong><small>Sun · 11:00 AM · River Arts</small></div><button class="h2-btn ink">Join</button></div>
       </div>
+    </div>
+
+    <div class="h2-card fa-card fa-card--review">
+      <div class="fa-body">
+        <div class="h2-who"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Riley</strong> reviewed <strong>Ultra Coffeebar</strong></span><time>5h</time></div>
+        <div class="fa-obj"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=160&q=80" alt="" /><div class="c"><span class="fa-stars">★★★★★</span><span class="fa-quote">"Best cortado in town, grab the window seats."</span></div></div>
+        <div class="fa-foot"><span class="fa-meta"><i class="ph-fill ph-coffee"></i><span>Coffee shop · Downtown</span></span><button class="h2-btn soft"><i class="ph-bold ph-bookmark-simple"></i>Save</button></div>
+      </div>
+    </div>
+
+    <div class="h2-card fa-card">
+      <div class="fa-media" style="background-image: url('https://images.unsplash.com/photo-1544413660-299165566b1d?auto=format&fit=crop&w=780&q=80'); background-position: center 80%;"><span class="h2-why"><i class="ph-fill ph-map-pin"></i><span>Nearby</span></span></div>
+      <div class="fa-body">
+        <div class="h2-who"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Maya</strong> + 3 saved this</span><time>6h</time></div>
+        <div class="fa-title">Cindy's Rooftop</div>
+        <div class="fa-foot"><span class="fa-meta"><i class="ph-fill ph-martini"></i><span>Rooftop bar · 0.4 mi</span></span><button class="h2-btn soft"><i class="ph-bold ph-bookmark-simple"></i>Save</button></div>
+      </div>
+    </div>
+
+    <div class="h2-card h2-int" style="--int: #e0483a;">
+      <div class="top"><span class="emo">🎸</span><div class="c"><strong>Live music</strong><small>Music · 42 events near you</small></div><button class="h2-btn white">Follow</button></div>
+      <div class="h2-int-friends"><span class="h2-av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=70&q=80" alt="" /></span><span><strong>Sara, Sam + 4</strong> follow Live music</span></div>
+    </div>
+
+    <div class="caught-up" role="separator" aria-label="You're all caught up. Older activity below">
+      <span class="cu-rule"><span class="cu-icon"><i class="ph-bold ph-check"></i></span></span>
+      <strong>You're all caught up</strong>
+      <span>Older activity and picks for you below</span>
     </div>
 
     <section>
@@ -457,11 +484,19 @@
       </div>
     </section>
 
-    <div class="h2-card fa-card fa-card--review">
+    <div class="h2-card fa-card">
+      <div class="fa-media" style="background-image: url('https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=780&q=80');"><span class="h2-why"><i class="ph-fill ph-sparkle"></i><span>You like hiking</span></span></div>
       <div class="fa-body">
-        <div class="h2-who"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Riley</strong> reviewed <strong>Ultra Coffeebar</strong></span><time>5h</time></div>
-        <div class="fa-obj"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=160&q=80" alt="" /><div class="c"><span class="fa-stars">★★★★★</span><span class="fa-quote">"Best cortado in town, grab the window seats."</span></div></div>
-        <div class="fa-foot"><span class="fa-meta"><i class="ph-fill ph-coffee"></i><span>Coffee shop · Downtown</span></span><button class="h2-btn soft"><i class="ph-bold ph-bookmark-simple"></i>Save</button></div>
+        <div class="h2-who"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Sam</strong> + 2 hiked here</span><time>Yesterday</time></div>
+        <div class="fa-title">Craggy Gardens Trail</div>
+        <div class="fa-foot"><span class="fa-meta"><i class="ph-fill ph-mountains"></i><span>Trail · 1.4 mi loop</span></span><button class="h2-btn soft"><i class="ph-bold ph-bookmark-simple"></i>Save</button></div>
+      </div>
+    </div>
+
+    <div class="h2-card fa-card">
+      <div class="fa-body fa-act">
+        <div class="h2-who"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Jordan</strong> is going</span><time>Yesterday</time></div>
+        <div class="fa-obj"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=160&q=80" alt="" /><div class="c"><strong>The Wood Brothers</strong><small>Fri · 9:00 PM · Orange Peel</small></div><button class="h2-btn ink">Join</button></div>
       </div>
     </div>
 
@@ -471,12 +506,11 @@
       <button class="h2-btn pri"><i class="ph-fill ph-sparkle"></i>Get ideas</button>
     </div>
 
-    <div class="h2-card fa-card">
-      <div class="fa-media" style="background-image: url('https://images.unsplash.com/photo-1544413660-299165566b1d?auto=format&fit=crop&w=780&q=80'); background-position: center 80%;"><span class="h2-why"><i class="ph-fill ph-map-pin"></i><span>Nearby</span></span></div>
+    <div class="h2-card fa-card fa-card--review">
       <div class="fa-body">
-        <div class="h2-who"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Maya</strong> + 3 saved this</span><time>6h</time></div>
-        <div class="fa-title">Cindy's Rooftop</div>
-        <div class="fa-foot"><span class="fa-meta"><i class="ph-fill ph-martini"></i><span>Rooftop bar · 0.4 mi</span></span><button class="h2-btn soft"><i class="ph-bold ph-bookmark-simple"></i>Save</button></div>
+        <div class="h2-who"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Devon</strong> reviewed <strong>Little Jumbo</strong></span><time>2d</time></div>
+        <div class="fa-obj"><img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=160&q=80" alt="" /><div class="c"><span class="fa-stars">★★★★☆</span><span class="fa-quote">"Tiny and loud in the best way. Get the Jungle Bird."</span></div></div>
+        <div class="fa-foot"><span class="fa-meta"><i class="ph-fill ph-martini"></i><span>Cocktail bar · Montford</span></span><button class="h2-btn soft"><i class="ph-bold ph-bookmark-simple"></i>Save</button></div>
       </div>
     </div>
 
@@ -492,13 +526,14 @@
       </div>
     </div>
 
-    <div class="caught-up" role="separator" aria-label="You're all caught up">
-      <span class="cu-rule"><span class="cu-icon"><i class="ph-bold ph-check"></i></span></span>
-      <strong>You're all caught up</strong>
-      <span>You've seen all new activity from friends</span>
+    <div class="h2-card fa-card">
+      <div class="fa-body fa-act">
+        <div class="h2-who"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Priya</strong> saved this</span><time>3d</time></div>
+        <div class="fa-obj"><img src="https://images.unsplash.com/photo-1560008581-09826d1de69e?auto=format&fit=crop&w=160&q=80" alt="" /><div class="c"><strong>Salt &amp; Straw</strong><small>Ice cream · Downtown</small></div><button class="h2-btn soft"><i class="ph-bold ph-bookmark-simple"></i>Save</button></div>
+      </div>
     </div>
 
-    <a class="act-more" href="#">Show older activity<i class="ph-bold ph-caret-down"></i></a>
+    <div class="feed-loading" aria-label="Loading more"><i class="ph-bold ph-circle-notch"></i></div>
   </div>
 
   <div class="tab-bar">
@@ -511,91 +546,3 @@
     </span>
   </div>
 </div>
-
-<script>
-(function () {
-  var root = document.querySelector('.home2fact');
-  if (!root) return;
-
-  var stack = root.querySelector('.home-banner-stack');
-  if (stack) {
-    function cards() {
-      return Array.prototype.slice.call(stack.querySelectorAll('.home-banner-card:not(.is-leaving)'));
-    }
-    // Reassign depth classes and indexes so the next card rises to the front
-    function layout() {
-      var list = cards().sort(function (a, b) {
-        return parseInt(getComputedStyle(a).getPropertyValue('--card-index'), 10) - parseInt(getComputedStyle(b).getPropertyValue('--card-index'), 10);
-      });
-      list.forEach(function (card, i) {
-        card.style.setProperty('--card-index', i);
-        card.classList.toggle('is-top', i === 0);
-        card.classList.toggle('is-second', i === 1);
-        card.classList.toggle('is-third', i === 2);
-        if (i === 0) card.removeAttribute('aria-hidden');
-        else card.setAttribute('aria-hidden', 'true');
-      });
-      if (list.length) stack.setAttribute('aria-label', list.length + (list.length === 1 ? ' update' : ' updates'));
-      else stack.classList.add('is-empty');
-    }
-    stack.addEventListener('click', function (e) {
-      var btn = e.target.closest('.home-banner-dismiss, .home-banner-cta');
-      if (!btn) return;
-      var card = btn.closest('.home-banner-card');
-      if (!card || !card.classList.contains('is-top')) return;
-      card.classList.add('is-leaving');
-      setTimeout(function () {
-        card.remove();
-        layout();
-      }, 320);
-    });
-  }
-
-  // Invite banner: tap to expand, respond to invites inline, banner leaves when done
-  var banner = root.querySelector('.invite-banner');
-  if (!banner) return;
-  var head = banner.querySelector('.invite-banner-head');
-  var title = banner.querySelector('.banner-title');
-  var sub = banner.querySelector('.banner-sub');
-  var avStack = banner.querySelector('.invite-banner-head .stack');
-
-  function rows() {
-    return Array.prototype.slice.call(banner.querySelectorAll('.invite-row:not(.is-leaving)'));
-  }
-
-  function refresh() {
-    var list = rows();
-    var n = list.length;
-    if (n === 0) {
-      title.textContent = 'All caught up';
-      sub.textContent = 'No invites waiting';
-      banner.classList.remove('is-open');
-      banner.classList.add('is-done');
-      setTimeout(function () { banner.classList.add('is-gone'); }, 1400);
-      setTimeout(function () { banner.remove(); }, 1800);
-      return;
-    }
-    title.textContent = n === 1 ? '1 invite waiting on you' : n + ' invites waiting on you';
-    sub.textContent = list.map(function (r) { return r.getAttribute('data-title'); }).join(' · ');
-    var avs = avStack.querySelectorAll('img');
-    for (var i = 0; i < avs.length; i++) avs[i].style.display = i < n ? '' : 'none';
-  }
-
-  head.addEventListener('click', function () {
-    var open = banner.classList.toggle('is-open');
-    head.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-
-  banner.addEventListener('click', function (e) {
-    var btn = e.target.closest('.invite-go, .invite-no');
-    if (!btn) return;
-    var row = btn.closest('.invite-row');
-    if (!row) return;
-    row.classList.add('is-leaving');
-    setTimeout(function () {
-      row.remove();
-      refresh();
-    }, 300);
-  });
-})();
-</script>
