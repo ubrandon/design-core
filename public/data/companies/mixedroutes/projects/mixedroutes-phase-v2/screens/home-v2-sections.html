@@ -228,6 +228,16 @@
   .mrv2-home2 .teaser .t-txt strong { font-size: 16px; font-weight: 700; color: #101724; }
   .mrv2-home2 .teaser .t-txt span { font-size: 14px; color: #5c6b7d; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .mrv2-home2 .teaser > .inner > i { color: #3b82f6; font-size: 18px; flex-shrink: 0; }
+  /* Weekend picks teaser: photo fan of real picks instead of an icon */
+  .mrv2-home2 .teaser .inner { padding: 14px 16px 14px 14px; gap: 14px; }
+  .mrv2-home2 .wk-fan { position: relative; width: 72px; height: 64px; flex-shrink: 0; }
+  .mrv2-home2 .wk-fan img { position: absolute; top: 2px; width: 44px; height: 58px; border-radius: 10px; object-fit: cover; border: 2px solid #ffffff; box-shadow: 0 2px 8px rgba(16, 23, 36, 0.16); }
+  .mrv2-home2 .wk-fan img:nth-child(1) { left: 0; transform: rotate(-9deg); }
+  .mrv2-home2 .wk-fan img:nth-child(2) { left: 26px; transform: rotate(8deg); }
+  .mrv2-home2 .wk-fan img:nth-child(3) { left: 13px; top: 0; z-index: 1; }
+  .mrv2-home2 .teaser .wk-kick { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; color: #1e4fbf; }
+  .mrv2-home2 .teaser .wk-kick i { font-size: 12px; color: #3b82f6; }
+  .mrv2-home2 .teaser .t-txt span { -webkit-line-clamp: 1; display: block; white-space: nowrap; text-overflow: ellipsis; }
 
   /* Tab bar */
   .mrv2-home2 .tab-bar { position: relative; z-index: 5; background: #ffffff; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12); display: flex; align-items: stretch; padding: 0 0 12px; }
@@ -467,10 +477,11 @@
 
     <div class="teaser">
       <div class="inner">
-        <span class="spark"><i class="ph-fill ph-sparkle"></i></span>
+        <span class="wk-fan"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=120&h=150&q=80" alt="" /><img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=120&h=150&q=80" alt="" /><img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=120&h=150&q=80" alt="" /></span>
         <div class="t-txt">
-          <strong>This weekend near Asheville</strong>
-          <span>Comedy festival, drag brunch, Shindig on the Green…</span>
+          <small class="wk-kick"><i class="ph-fill ph-sparkle"></i>This weekend</small>
+          <strong>12 picks near Asheville</strong>
+          <span>Live music, hikes, markets</span>
         </div>
         <i class="ph-bold ph-caret-right"></i>
       </div>

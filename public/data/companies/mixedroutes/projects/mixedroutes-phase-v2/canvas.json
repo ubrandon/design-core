@@ -32,7 +32,7 @@
     },
     {
       "file": "discover-v2-real-cards.html",
-      "x": -16,
+      "x": 7488,
       "y": -1297,
       "width": 390
     },
@@ -50,31 +50,31 @@
     },
     {
       "file": "home-v2-friend-cards.html",
-      "x": 475,
-      "y": -1297,
+      "x": 1544,
+      "y": 4260,
       "width": 390
     },
     {
       "file": "status-nav-identity.html",
-      "x": 970,
+      "x": 7959,
       "y": -1297,
       "width": 390
     },
     {
       "file": "status-under-greeting.html",
-      "x": 970,
+      "x": 7959,
       "y": -1086,
       "width": 390
     },
     {
       "file": "status-greeting-chips.html",
-      "x": 970,
+      "x": 7959,
       "y": -834,
       "width": 390
     },
     {
       "file": "status-nav-avatar.html",
-      "x": 970,
+      "x": 7959,
       "y": -556,
       "width": 390
     },
@@ -87,7 +87,7 @@
     {
       "file": "card-variations-audit.html",
       "x": -16,
-      "y": 5018,
+      "y": 4260,
       "width": 1440
     },
     {
@@ -104,111 +104,104 @@
     },
     {
       "file": "home-v2-empty.html",
-      "x": 3283,
+      "x": 8587,
       "y": -1297,
       "width": 390
     },
     {
       "file": "guidance-intro-modal.html",
-      "x": 3713,
+      "x": 9017,
       "y": -1297,
       "width": 390
     },
     {
       "file": "guidance-coach-marks.html",
-      "x": 4143,
+      "x": 9447,
       "y": -1297,
       "width": 390
     },
     {
       "file": "discover-for-you.html",
-      "x": 4898,
+      "x": 10202,
       "y": -1297,
       "width": 390
     },
     {
       "file": "discover-events.html",
-      "x": 5328,
+      "x": 10632,
       "y": -1297,
       "width": 390
     },
     {
       "file": "discover-places.html",
-      "x": 5758,
+      "x": 11076,
       "y": -1297,
       "width": 390
     },
     {
       "file": "write-review.html",
-      "x": 1591,
-      "y": 694,
+      "x": 12161,
+      "y": -1306,
       "width": 390
     },
     {
       "file": "check-in-flow.html",
-      "x": 2021,
-      "y": 694,
+      "x": 12591,
+      "y": -1306,
       "width": 390
     },
     {
       "file": "discover-events-filters.html",
-      "x": 6203,
+      "x": 11521,
       "y": -1297,
       "width": 390
     },
     {
       "file": "chat-ai-collapsed.html",
-      "x": 2474,
-      "y": 694,
+      "x": 13044,
+      "y": -1306,
       "width": 390,
       "name": "chat-ai-collapsed"
     },
     {
       "file": "card-variations-v2.html",
-      "x": -4893,
-      "y": -1267,
+      "x": -16,
+      "y": -1297,
       "width": 2384
     },
     {
-      "file": "home-v2-feed.html",
-      "x": 1400,
-      "y": -1297,
-      "width": 390
-    },
-    {
-      "file": "home-v2-upnext.html",
-      "x": 1850,
-      "y": -1297,
-      "width": 390,
-      "name": "Home \u00b7 active"
-    },
-    {
       "file": "home-v2-quiet.html",
-      "x": 2300,
-      "y": -1297,
+      "x": 2988,
+      "y": -1303,
       "width": 390,
-      "name": "Home \u00b7 few friends"
+      "name": "Home · few friends"
     },
     {
       "file": "home-v2-day-one.html",
-      "x": 2750,
-      "y": -1297,
+      "x": 3421,
+      "y": -1312,
       "width": 390,
-      "name": "Home \u00b7 day one"
-    },
-    {
-      "file": "home-v2-sections.html",
-      "x": -900,
-      "y": -1297,
-      "width": 390,
-      "name": "Home \u00b7 sections"
+      "name": "Home · day one"
     },
     {
       "file": "updates-all.html",
-      "x": -450,
+      "x": 3973,
+      "y": -1303,
+      "width": 390,
+      "name": "Friend activity"
+    },
+    {
+      "file": "home-v2-capped.html",
+      "x": 2537,
       "y": -1297,
       "width": 390,
-      "name": "Updates"
+      "name": "Home · capped activity"
+    },
+    {
+      "file": "home-v2-friend-cards-copy-copy.html",
+      "x": 1978,
+      "y": 4260,
+      "width": 390
     }
   ],
   "texts": [
@@ -236,29 +229,29 @@
     {
       "text": "MixedRoutes 2.0",
       "x": -16,
-      "y": -1496,
-      "size": 72,
+      "y": -1688,
+      "size": 144,
       "id": "text-legacy-muc2kpol-4"
     },
     {
       "text": "Home",
-      "x": 475,
-      "y": -1382,
-      "size": 48,
+      "x": 1544,
+      "y": 4117,
+      "size": 72,
       "id": "text-legacy-muc2kpol-5"
     },
     {
       "text": "Status ideas",
-      "x": 970,
-      "y": -1382,
-      "size": 48,
+      "x": 7959,
+      "y": -1428,
+      "size": 72,
       "id": "text-legacy-muc2kpol-6"
     },
     {
       "text": "Discover",
-      "x": -16,
-      "y": -1382,
-      "size": 48,
+      "x": 7488,
+      "y": -1428,
+      "size": 72,
       "id": "text-legacy-muc2kpol-7"
     },
     {
@@ -277,9 +270,9 @@
     },
     {
       "text": "Card variations",
-      "x": 1591,
-      "y": -1382,
-      "size": 48,
+      "x": -16,
+      "y": -1428,
+      "size": 72,
       "id": "text-legacy-muc2kpol-10"
     },
     {
@@ -298,52 +291,59 @@
     },
     {
       "text": "Cold start + first visit",
-      "x": 3283,
-      "y": -1382,
-      "size": 48,
+      "x": 8587,
+      "y": -1428,
+      "size": 72,
       "id": "text-legacy-muc2kpol-13"
     },
     {
       "text": "AI layer",
-      "x": 4263,
-      "y": -1382,
-      "size": 48,
+      "x": 10202,
+      "y": -1428,
+      "size": 72,
       "id": "text-legacy-muc2kpol-14"
     },
     {
       "text": "Later phases",
-      "x": 1591,
-      "y": 609,
-      "size": 48,
+      "x": 12161,
+      "y": -1428,
+      "size": 72,
       "id": "text-legacy-muc2kpol-15"
     },
     {
       "text": "AI in chat",
-      "x": 2474,
-      "y": 609,
-      "size": 48,
+      "x": 13044,
+      "y": -1428,
+      "size": 72,
       "id": "text-legacy-muc2kpol-17"
     },
     {
       "text": "Archive",
       "x": -16,
-      "y": 4795,
+      "y": 4037,
       "size": 144,
       "id": "text-mum2fuzd-1"
     },
     {
-      "text": "Home with sections",
-      "x": -900,
-      "y": -1382,
-      "size": 48,
-      "id": "text-home-sections-1"
+      "text": "Home",
+      "x": 2537,
+      "y": -1428,
+      "size": 72,
+      "id": "text-mum464rw-4"
     },
     {
-      "text": "Home by content level",
-      "x": 1850,
-      "y": -1470,
-      "size": 48,
-      "id": "text-home-levels-1"
+      "text": "Empty states",
+      "x": 2988,
+      "y": -1395,
+      "size": 36,
+      "id": "text-mum4o6b1-5"
+    },
+    {
+      "text": "Activity",
+      "x": 3973,
+      "y": -1428,
+      "size": 72,
+      "id": "text-mum4wtsg-6"
     }
   ]
 }

@@ -263,23 +263,21 @@
   .mrv2-home2 .up-th { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
   .mrv2-home2 .up-all { height: 48px; border-top: 1px solid #f1f4f7; display: flex; align-items: center; justify-content: center; gap: 4px; font-size: 14px; font-weight: 700; color: #101724; text-decoration: none; }
   .mrv2-home2 .up-all i { font-size: 13px; color: #5c6b7d; }
-  /* Updates page */
-  .mrv2-home2 .nav-head { height: 56px; display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; padding: 0 8px; background: #ffffff; }
+  /* Friend activity page: app header with large title, notification-style group labels */
+  .mrv2-home2 .nav-head { height: 56px; display: flex; align-items: center; gap: 2px; padding: 0 8px; background: #ffffff; }
   .mrv2-home2 .nav-head .back { width: 44px; height: 44px; display: grid; place-items: center; font-size: 22px; color: #1a2332; }
-  .mrv2-home2 .nav-head h1 { text-align: center; font-size: 17px; font-weight: 700; color: #1a2332; }
-  .mrv2-home2 .day-head { padding-top: 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: #8a94a2; text-transform: uppercase; }
-  .mrv2-home2 .day-head:first-child { padding-top: 4px; }
+  .mrv2-home2 .nav-head h1 { font-size: 24px; font-weight: 700; line-height: 1.2; color: #1a2332; }
+  .mrv2-home2 .day-head { margin: 8px 0 -4px; font-size: 16px; font-weight: 700; letter-spacing: 0.05rem; text-transform: uppercase; color: #5c6b7d; }
 </style>
 
 <div class="mrv2-home2 home2fact" style="background: #ffffff;">
   <div class="nav-head">
     <span class="back" aria-label="Back"><i class="ph-bold ph-caret-left"></i></span>
-    <h1>Updates</h1>
-    <span></span>
+    <h1>Friend activity</h1>
   </div>
 
   <div class="content">
-    <div class="day-head">New</div>
+    <div class="day-head">Today</div>
 
     <div class="h2-card fa-card">
       <div class="fa-media" style="background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=780&q=80');"><span class="h2-why"><i class="ph-fill ph-sparkle"></i><span>You like live music</span></span></div>
@@ -296,8 +294,6 @@
         <div class="fa-obj"><img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=160&q=80" alt="" /><div class="c"><strong>Farmers market brunch</strong><small>Sun · 11:00 AM · River Arts</small></div><button class="h2-btn ink">Join</button></div>
       </div>
     </div>
-
-    <div class="day-head">Earlier today</div>
 
     <div class="h2-card fa-card fa-card--review">
       <div class="fa-body">
@@ -322,16 +318,6 @@
       <div class="top"><span class="emo">🎸</span><div class="c"><strong>Live music</strong><small>Music · 42 events near you</small></div><button class="h2-btn white">Follow</button></div>
       <div class="h2-int-friends"><span class="h2-av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=70&q=80" alt="" /></span><span><strong>Sara, Sam + 4</strong> follow Live music</span></div>
     </div>
-  </div>
-
-  <div class="tab-bar">
-    <span class="tab selected"><i class="ph-fill ph-house"></i></span>
-    <span class="tab discover"><i class="ph-bold ph-compass"></i></span>
-    <span class="tab"><span class="you-wrap"><img class="you" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><span class="dot"></span></span></span>
-    <span class="tab"><i class="ph-bold ph-calendar-blank"></i></span>
-    <span class="tab">
-      <span class="icon-wrap"><i class="ph-bold ph-chat"></i><span class="badge-dot">4</span></span>
-    </span>
   </div>
 </div>
 

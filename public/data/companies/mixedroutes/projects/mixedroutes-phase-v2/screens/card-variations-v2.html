@@ -211,12 +211,18 @@
   .cv2-pr .c span { display: block; margin-top: 2px; color: #5c6b7d; font-size: 13px; line-height: 1.35; }
   .cv2-pr .cv2-actions { grid-column: 2; }
   .cv2-teaser { border-radius: 22px; padding: 1.5px; background: linear-gradient(135deg,#14b8a6,#3b82f6); }
-  .cv2-teaser .in { border-radius: 20.5px; background: linear-gradient(135deg,rgba(20,184,166,.07),rgba(59,130,246,.07)), #fff; padding: 13px 14px; display: flex; align-items: center; gap: 12px; }
-  .cv2-teaser .sp { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg,#14b8a6,#3b82f6); color: #fff; font-size: 20px; flex-shrink: 0; }
-  .cv2-teaser .c { flex: 1; min-width: 0; }
-  .cv2-teaser strong { display: block; font-size: 15px; font-weight: 700; }
-  .cv2-teaser span { display: block; margin-top: 2px; color: #5c6b7d; font-size: 13px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-  .cv2-teaser .in > i { color: #3b82f6; font-size: 17px; }
+  .cv2-teaser .in { border-radius: 20.5px; background: linear-gradient(135deg,rgba(20,184,166,.07),rgba(59,130,246,.07)), #fff; padding: 14px 16px 14px 14px; display: flex; align-items: center; gap: 14px; }
+  .cv2-teaser .fan { position: relative; width: 72px; height: 64px; flex-shrink: 0; }
+  .cv2-teaser .fan img { position: absolute; top: 2px; width: 44px; height: 58px; border-radius: 10px; object-fit: cover; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(16,23,36,.16); }
+  .cv2-teaser .fan img:nth-child(1) { left: 0; transform: rotate(-9deg); }
+  .cv2-teaser .fan img:nth-child(2) { left: 26px; transform: rotate(8deg); }
+  .cv2-teaser .fan img:nth-child(3) { left: 13px; top: 0; z-index: 1; }
+  .cv2-teaser .c { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+  .cv2-teaser .kick { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; color: #1e4fbf; }
+  .cv2-teaser .kick i { font-size: 12px; color: #3b82f6; }
+  .cv2-teaser strong { display: block; font-size: 16px; font-weight: 700; }
+  .cv2-teaser .c > span { display: block; color: #5c6b7d; font-size: 14px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .cv2-teaser .in > i { color: #3b82f6; font-size: 18px; }
 
   /* Home updates: one card layout (Home v2 stack card), only icon, color, copy and action change */
   .cv2-sc { position: relative; min-height: 117px; align-content: center; display: grid; grid-template-columns: auto 1fr; row-gap: 8px; column-gap: 14px; padding: 16px 46px 16px 16px; border-radius: 20px; background: #fff; border: 1px solid rgba(16,23,36,.08); box-shadow: 0 2px 6px rgba(16,24,40,.05), 0 14px 32px rgba(16,24,40,.1); }
@@ -559,7 +565,7 @@
 
         <article class="cv2-spec">
           <div class="cv2-spec-head"><span class="cv2-spec-name">Weekend teaser</span></div>
-          <div class="cv2-teaser"><div class="in"><span class="sp"><i class="ph-fill ph-sparkle"></i></span><div class="c"><strong>This weekend near Asheville</strong><span>Comedy, brunch, live music and more</span></div><i class="ph ph-caret-right"></i></div></div>
+          <div class="cv2-teaser"><div class="in"><span class="fan"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=120&h=150&q=80" alt="" /><img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=120&h=150&q=80" alt="" /><img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=120&h=150&q=80" alt="" /></span><div class="c"><small class="kick"><i class="ph-fill ph-sparkle"></i>This weekend</small><strong>12 picks near Asheville</strong><span>Live music, hikes, markets</span></div><i class="ph-bold ph-caret-right"></i></div></div>
         </article>
 
       </div>
