@@ -44,6 +44,13 @@
       "name": "Discover · card system"
     },
     {
+      "file": "discover-v2-plan-tiles.html",
+      "x": 5649,
+      "y": -1384,
+      "width": 390,
+      "name": "Discover · light plan tiles"
+    },
+    {
       "file": "home-v2-copy.html",
       "x": 1020,
       "y": 7934,

@@ -1085,6 +1085,56 @@
   /* Headline greeting: moment word in blue to violet, rest stays ink (home-v2-capped) */
   .hm .greet h1 .grad { background: linear-gradient(90deg, #1749E5 0%, #7C5CFF 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
+  /* Discover card system tiles (discover-v2-plan-tiles.html) */
+  .dc .try-chip, .dc .try-chip.plain { height: 36px; padding: 0 14px; border: 0; border-radius: 999px; background: #f1f4f7; color: #3b4551; font-size: 14px; font-weight: 600; }
+  .dc .try-chip i, .dc .try-chip.plain i { font-size: 14px; color: #5c6b7d; }
+  .dc .try-chip.selected { background: #1a2332; color: #ffffff; font-weight: 700; }
+  .dc .try-chip.selected i { color: #ffffff; }
+  .dc .toolbar .actions .tbtn .badge-dot { top: -8px; right: -8px; }
+  .dc .rail.dt-r { gap: 14px; align-items: flex-start; }
+  .dc .rail.dt-r.plans { align-items: stretch; }
+  .dc .rail.dt-r .tail { width: 96px; margin: 0 20px; align-self: center; }
+  .dc .rail.dt-r .tail .circ { width: 64px; height: 64px; font-size: 26px; }
+  .dc .dt-tile { width: 192px; flex-shrink: 0; display: flex; flex-direction: column; transition: transform 0.16s ease; }
+  .dc .dt-tile:active { transform: scale(0.98); }
+  .dc .dt-photo { position: relative; aspect-ratio: 1.85 / 1; border-radius: 18px; overflow: hidden; background: #d9e1e7 center / cover no-repeat; }
+  .dc .dt-photo.art { display: grid; place-items: center; background: linear-gradient(135deg, var(--a1, #ccfbf1), var(--a2, #dbeafe)); }
+  .dc .dt-photo.art::before { content: ""; position: absolute; width: 120px; height: 120px; left: -40px; top: -56px; border-radius: 50%; background: rgba(255, 255, 255, 0.36); }
+  .dc .dt-photo.art::after { content: ""; position: absolute; width: 84px; height: 84px; right: -22px; bottom: -36px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, 0.62); }
+  .dc .dt-art-icon { position: relative; z-index: 1; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, 0.72); color: var(--ai, #0f766e); font-size: 23px; box-shadow: 0 3px 12px rgba(16, 24, 40, 0.09); }
+  .dc .dt-save { position: absolute; right: 8px; top: 8px; z-index: 2; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: rgba(16, 23, 36, 0.62); color: #ffffff; font-size: 16px; }
+  .dc .dt-save.on { background: #ffffff; color: #2563eb; box-shadow: 0 2px 8px rgba(16, 23, 36, 0.18); }
+  .dc .dt-why { position: absolute; left: 8px; bottom: 8px; z-index: 2; max-width: calc(100% - 16px); height: 24px; padding: 0 9px 0 7px; border-radius: 999px; display: inline-flex; align-items: center; gap: 4px; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: #101724; box-shadow: 0 2px 8px rgba(16, 23, 36, 0.14); font-size: 12px; font-weight: 700; white-space: nowrap; }
+  .dc .dt-why i { flex-shrink: 0; color: #3b82f6; font-size: 13px; }
+  .dc .dt-why span { overflow: hidden; text-overflow: ellipsis; }
+  .dc .dt-sdot { width: 7px; height: 7px; margin: 0 1px 0 2px; border-radius: 50%; flex-shrink: 0; }
+  .dc .dt-sav { width: 16px; height: 16px; border-radius: 50%; object-fit: cover; flex-shrink: 0; margin-left: -2px; }
+  .dc .dt-tb { padding: 10px 3px 0; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .dc .dt-k { color: #5c6b7d; font-size: 12px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.2; margin-bottom: 1px; }
+  .dc .dt-t { color: #101724; font-size: 16px; font-weight: 700; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .dc .dt-s { color: #5c6b7d; font-size: 14px; line-height: 1.3; }
+  .dc .dt-m { min-width: 0; display: flex; align-items: center; gap: 5px; color: #667285; font-size: 13px; font-weight: 600; }
+  .dc .dt-m span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .dc .dt-m i { flex-shrink: 0; font-size: 13px; }
+  .dc .dt-m .star { color: #f5a524; }
+  .dc .dt-dot { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: 0.5; flex-shrink: 0; }
+  .dc .dt-proof { display: flex; align-items: center; gap: 6px; margin-top: 3px; color: #5c6b7d; font-size: 13px; min-width: 0; }
+  .dc .dt-proof span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .dc .dt-av { display: flex; align-items: center; flex-shrink: 0; }
+  .dc .dt-av img { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; border: 2px solid #ffffff; margin-left: -7px; }
+  .dc .dt-av img:first-child { margin-left: 0; }
+  .dc .dt-media { position: relative; }
+  .dc .dt-faces { position: absolute; left: 10px; bottom: -14px; z-index: 3; display: flex; }
+  .dc .dt-faces img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 2.5px solid #ffffff; margin-left: -9px; box-shadow: 0 2px 6px rgba(16, 23, 36, 0.14); }
+  .dc .dt-faces img:first-child { margin-left: 0; }
+  .dc .dt-faces .more { height: 30px; min-width: 30px; margin-left: -9px; padding: 0 7px; border-radius: 999px; border: 2.5px solid #ffffff; background: #eef1f4; color: #3b4551; font-size: 11px; font-weight: 800; display: grid; place-items: center; box-shadow: 0 2px 6px rgba(16, 23, 36, 0.14); }
+  .dc .dt-media + .dt-tb { padding-top: 22px; flex: 1; }
+  .dc .dt-going { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 6px; min-width: 0; }
+  .dc .dt-going span { color: #5c6b7d; font-size: 13px; font-weight: 600; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .dc .dt-join { height: 30px; padding: 0 14px; border-radius: 999px; background: #101724; color: #ffffff; font-size: 13px; font-weight: 700; flex-shrink: 0; display: inline-flex; align-items: center; gap: 5px; transition: background 0.2s ease, color 0.2s ease; }
+  .dc .dt-join.done { background: #e1e3e6; color: #101724; }
+  .dc .dt-join.done i { color: #0ca678; }
+
   /* Safe areas: simulated iPhone status bar (47px) and home indicator (34px); touch devices use env() */
   .mrp { --sat: 47px; --sab: 34px; }
   @media (hover: none) and (pointer: coarse) { .mrp { --sat: env(safe-area-inset-top, 0px); --sab: env(safe-area-inset-bottom, 0px); } .mrp .sbar, .mrp .hbar { display: none; } }
@@ -1151,6 +1201,7 @@
     riley: { name: 'Riley', full: 'Riley Brooks', img: '1438761681033-6461ffad8d80', ints: ['☕ Coffee', '📚 Books'] },
     devon: { name: 'Devon', full: 'Devon Hayes', img: '1506794778202-cad84cf45f1d', ints: ['🎲 Board games', '🍻 Breweries'] },
     jordan: { name: 'Jordan', full: 'Jordan Lee', img: '1539571696357-5a69c17a67c6', ints: ['⚽ Soccer', '🥾 Hiking'] },
+    lena: { name: 'Lena', full: 'Lena Hart', img: '1517841905240-472988babdf9', ints: ['🎲 Board games', '🍕 Pizza'] },
     nina: { name: 'Nina', full: 'Nina Park', img: '1531746020798-e6953c6e8e04', ints: ['🎨 Art', '☕ Coffee'] },
     marcus: { name: 'Marcus', full: 'Marcus Webb', img: '1507003211169-0a1dd7228f2d', ints: ['🎸 Live music', '🌮 Tacos'] }
   };
@@ -1160,25 +1211,26 @@
     jazz: { t: 'Jazz night at Little Jumbo', img: '1415201364774-f6f0bb35f28f', k: 'Tonight · 8:30 PM', day: 'today', v: 'Lexington Ave', addr: '241 Broadway St', type: 'music', price: 10, d: 0.3, blurb: 'Small room, table seating, sets end by 11.', why: 'Small room, easy to talk over', going: ['sara'], sort: 0.5, place: 'jumbo' },
     vinyl: { t: 'Vinyl listening bar at The Getaway', img: '1470225620780-dba8ba36b745', k: 'Tonight · 9:00 PM', day: 'today', v: 'South Slope', addr: '14 Coxe Ave', type: 'music', price: 0, d: 0.9, blurb: 'Mellow records all night, couches in back.', why: 'Mellow records, couches in back', sort: 0.6 },
     pickin: { t: "Pickin' in the Park", img: '1501386761578-eac5c94b800a', k: 'Thu · 6:00 PM', day: 'thu', v: 'Pritchard Park', addr: '4 College St', type: 'music', price: 0, d: 0.4, blurb: 'Open bluegrass jam in the park. Bring a blanket and a snack.', why: 'Free, bring a blanket', sort: 1.2 },
-    trivia: { t: 'Trivia at The Well', art: { a1: '#fef3c7', a2: '#ffedd5', ac: '#d97706', i: 'ph-lightbulb' }, k: 'Any Thursday · 7:00 PM', day: 'thu', weekly: true, v: 'South Slope', addr: '22 Buxton Ave', type: 'food', price: 0, d: 0.9, blurb: 'Teams of up to six, pub food, prizes for the top three.', why: '4 of 5 in the crew like trivia', sort: 1.3 },
-    comedy: { t: 'Stand-up at The Mothlight', art: { a1: '#fce7f3', a2: '#ede9fe', ac: '#be185d', i: 'ph-smiley' }, k: 'Fri · 8:00 PM', day: 'fri', v: 'West Asheville', addr: '701 Haywood Rd', type: 'comedy', price: 15, d: 2.4, blurb: 'Six local comics, one headliner, done by ten.', sort: 2.4 },
+    trivia: { t: 'Trivia at The Well', img: '1514933651103-005eec06c04b', k: 'Wed · 7:30 PM', day: 'wed', weekly: true, v: 'South Slope', addr: '22 Buxton Ave', type: 'food', price: 0, d: 0.9, blurb: 'Teams of up to six, pub food, prizes for the top three.', why: '4 of 5 in the crew like trivia', sort: 1.3 },
+    comedy: { t: 'Asheville Comedy Festival', img: '1527224857830-43a7acc85260', k: 'Fri · 8:00 PM', day: 'fri', v: 'Diana Wortham Theatre', addr: '18 Biltmore Ave', type: 'comedy', price: 15, d: 0.5, blurb: 'Three nights of stand-up, headliners on Friday.', savedBy: ['maya', 'sam'], sort: 2.4 },
     wood: { t: 'The Wood Brothers', img: '1493225457124-a3eb161ffa5f', k: 'Fri · 9:00 PM', day: 'fri', v: 'The Orange Peel', addr: '101 Biltmore Ave', type: 'music', price: 32, tickets: true, d: 1.2, blurb: 'Last local show of their tour.', savedBy: ['sara', 'sam', 'maya'], sort: 2.5 },
-    brunch: { t: 'Drag brunch downtown', img: '1504674900247-0877df9cc836', k: 'Sat · 11:00 AM', day: 'sat', v: 'Banks Ave', addr: '32 Banks Ave', type: 'food', price: 25, d: 0.8, blurb: 'Books out early, reserve ahead.', sort: 3.2 },
+    brunch: { t: 'Drag brunch downtown', img: '1504674900247-0877df9cc836', k: 'Sun · 11:00 AM', day: 'sun', v: 'Banks Ave', addr: '32 Banks Ave', type: 'food', price: 25, d: 0.8, blurb: 'Books out early, reserve ahead.', sort: 3.2 },
     craggy: { t: 'Craggy Gardens sunrise hike', img: '1464822759023-fed622ff2c3b', k: 'Sat · 6:15 AM', day: 'sat', v: 'Blue Ridge Pkwy', addr: 'Milepost 364', type: 'outdoors', price: 0, d: 18, blurb: 'Short climb to the best sunrise view in the county. Bring layers.', why: "You haven't hiked together since June", sort: 3.05 },
     shindig: { t: 'Shindig on the Green', img: '1470229722913-7c0e2dbbafd3', k: 'Sat · 5:00 PM', day: 'sat', v: 'Pack Square Park', addr: '80 Court Plaza', type: 'music', price: 0, d: 0.6, blurb: 'Free bluegrass and old-time music on the lawn. Bring chairs.', going: ['alex'], sort: 3.5 },
     market: { t: 'Farmers market brunch', img: '1488459716781-31db52582fe9', k: 'Sun · 11:00 AM', day: 'sun', v: 'River Arts', addr: '191 Lyman St', type: 'food', price: 0, d: 1.5, blurb: 'Local stalls, live fiddle, and the good biscuits.', going: ['priya'], goingN: 3, sort: 4.5 },
-    movie: { t: 'Outdoor movie night', img: '1489599849927-2ee91cede3ba', k: 'Sun · 8:30 PM', day: 'sun', v: 'Highland Brewing', addr: '12 Old Charlotte Hwy', type: 'arts', price: 0, d: 4.1, blurb: 'The Sandlot, on the big lawn. Food trucks from 7.', why: 'Free, and everyone is around Sunday', sort: 5.2 }
+    movie: { t: 'Outdoor movie night', img: '1489599849927-2ee91cede3ba', k: 'Sat · 8:30 PM', day: 'sat', v: 'Highland Brewing', addr: '12 Old Charlotte Hwy', type: 'arts', price: 0, d: 4.1, blurb: 'The Sandlot, on the big lawn. Food trucks from 7.', why: 'Free, and 3 of 5 are free Saturday', sort: 5.2 }
   };
   var EVENT_ORDER = ['jazz', 'vinyl', 'pickin', 'trivia', 'comedy', 'wood', 'brunch', 'craggy', 'shindig', 'market', 'movie'];
 
   var L = {
     cindys: { t: "Cindy's Rooftop", img: '1544413660-299165566b1d', pos: 'center 80%', cat: 'Rooftop bar', icon: 'ph-martini', addr: '1 Battery Park Ave', area: 'Downtown', r: 4.5, n: '1,380', d: 0.4, type: 'bars', hours: 'Open until 1 AM', blurb: 'Rooftop bar on the 11th floor with mountain views. Busy at sunset, calmer after 9.' },
-    ultra: { t: 'Ultra Coffeebar', img: '1509042239860-f550ce710b93', cat: 'Coffee shop', icon: 'ph-coffee', addr: '1 Roberts St', area: 'River Arts District', r: 4.8, n: '862', d: 0.2, type: 'coffee', hours: 'Open until 6 PM', blurb: 'Roaster and café in an old warehouse. Big windows, good for working.' },
-    jumbo: { t: 'Little Jumbo', img: '1514362545857-3bc16c4c7d1b', cat: 'Cocktail bar', icon: 'ph-martini', addr: '241 Broadway St', area: 'Lexington Ave', r: 4.6, n: '533', d: 0.3, type: 'bars', hours: 'Open until 2 AM', blurb: 'Tiny cocktail bar with a jazz trio most weeknights.' },
-    saltstraw: { t: 'Salt & Straw', img: '1560008581-09826d1de69e', cat: 'Ice cream', icon: 'ph-ice-cream', addr: '44 Biltmore Ave', area: 'Downtown', r: 4.7, n: '1,050', d: 0.5, type: 'food', hours: 'Open until 11 PM', blurb: 'Small-batch ice cream with weird, good flavors. The line moves fast.' },
+    ultra: { t: 'Ultra Coffeebar', img: '1509042239860-f550ce710b93', street: 'Roberts St', cat: 'Coffee shop', icon: 'ph-coffee', addr: '1 Roberts St', area: 'River Arts District', r: 4.8, n: '862', d: 0.2, type: 'coffee', hours: 'Open until 6 PM', blurb: 'Roaster and café in an old warehouse. Big windows, good for working.' },
+    jumbo: { t: 'Little Jumbo', img: '1514362545857-3bc16c4c7d1b', cat: 'Cocktail bar', icon: 'ph-martini', street: 'Lexington Ave', addr: '241 Broadway St', area: 'Lexington Ave', r: 4.8, n: '533', d: 0.3, type: 'bars', hours: 'Open until 2 AM', blurb: 'Tiny cocktail bar with a jazz trio most weeknights.' },
+    saltstraw: { t: 'Salt & Straw', img: '1497034825429-c343d7c6a68f', street: 'Biltmore Ave', cat: 'Ice cream', icon: 'ph-ice-cream', addr: '44 Biltmore Ave', area: 'Downtown', r: 4.7, n: '1,050', d: 0.5, type: 'food', hours: 'Open until 11 PM', blurb: 'Small-batch ice cream with weird, good flavors. The line moves fast.' },
     highland: { t: 'Highland Brewing', img: '1543007630-9710e4a00a20', cat: 'Brewery, big lawn', icon: 'ph-beer-stein', addr: '12 Old Charlotte Hwy', area: 'East Asheville', r: 4.6, n: '2,910', d: 4.1, type: 'bars', hours: 'Open until 10 PM', blurb: 'Big lawn, rooftop, food trucks. Movie nights on Sundays.' },
-    wellplayed: { t: 'Well Played Board Game Café', img: '1554118811-1e0d58224f24', cat: 'Board game café', sub: 'Great for groups', icon: 'ph-game-controller', addr: '58 Wall St', area: 'Downtown', r: 4.7, n: '1,204', d: 0.5, type: 'games', hours: 'Open until 11 PM', blurb: 'Hundreds of games and staff who will teach you any of them.' },
-    bavettes: { t: "Bavette's", img: '1414235077428-338989a2e8c0', cat: 'Steakhouse', icon: 'ph-fork-knife', addr: '18 Battery Park Ave', area: 'Downtown', r: 4.7, n: '2,145', d: 0.5, type: 'food', hours: 'Open until 11 PM', blurb: 'Dark, cozy steakhouse. Book ahead on weekends.' }
+    wellplayed: { t: 'Well Played Board Game Café', short: 'Well Played', street: 'Wall St', img: '1554118811-1e0d58224f24', cat: 'Board game café', sub: 'Great for groups', icon: 'ph-game-controller', addr: '58 Wall St', area: 'Downtown', r: 4.7, n: '1,204', d: 0.5, type: 'games', hours: 'Open until 11 PM', blurb: 'Hundreds of games and staff who will teach you any of them.' },
+    bavettes: { t: "Bavette's", img: '1414235077428-338989a2e8c0', cat: 'French bistro', icon: 'ph-fork-knife', street: 'Biltmore Ave', addr: '18 Battery Park Ave', area: 'Downtown', r: 4.6, n: '2,145', d: 0.5, type: 'food', hours: 'Open until 11 PM', blurb: 'Dark, cozy French bistro. Book ahead on weekends.' },
+    gameloft: { t: 'The Game Loft', img: '1554118811-1e0d58224f24', art: { a1: '#fef3c7', a2: '#ffedd5', ac: '#d97706', i: 'ph-lightbulb' }, cat: 'Board game bar', icon: 'ph-game-controller', street: 'Patton Ave', addr: '78 Patton Ave', area: 'Downtown', r: 4.5, n: '312', d: 0.6, type: 'games', hours: 'Open until 12 AM', blurb: 'Board game bar with a big library, pinball in back, and a long beer list.' }
   };
   var PLACE_ORDER = ['wellplayed', 'cindys', 'ultra', 'jumbo', 'highland', 'saltstraw'];
 
@@ -1205,9 +1257,9 @@
     pizza: { t: 'Pizza night', emo: '🍕', from: 'maya', when: 'Friday 6:30 PM', plan: 'pizzanight' }
   };
   var PUB = {
-    soccer: { title: 'Pickup soccer at the park', img: '1551958219-acbc608c6377', kick: 'Sun · 4pm · 2 mi away', people: ['jordan', 'devon', 'nina'], going: 'Jordan + 4 going', sort: 5.1, where: 'Carrier Park fields', about: 'Casual 7v7, all levels. Bring a light and a dark shirt.' },
-    coffeewalk: { title: 'Coffee walk downtown', img: '1495474472287-4d71bcdd2085', kick: 'Sat · 10am · 1 mi away', people: ['priya', 'riley'], going: 'Priya + 2 going', sort: 3.15, place: 'ultra', about: 'Start at Ultra, loop through the River Arts District.' },
-    yoga: { title: 'Sunset yoga by the river', img: '1506126613408-eca07ce68773', kick: 'Fri · 6pm · 3 mi away', people: ['nina', 'marcus'], going: 'Nina + 6 going', sort: 2.3, where: 'French Broad River Park', about: 'Bring a mat. Taco truck after.' }
+    craggypub: { title: 'Craggy Gardens sunrise hike', img: '1551632811-561732d1e306', kick: 'Sun · 9am · 2 mi away', people: ['jordan', 'sara', 'sam'], more: 2, going: 'Jordan + 4 going', where: 'Craggy Gardens trailhead', about: 'Easy loop with the best sunrise in the county. Carpool at 8.' },
+    coffeewalk: { title: 'Coffee walk downtown', img: '1495474472287-4d71bcdd2085', kick: 'Sat · 10am · 1 mi away', people: ['priya', 'alex'], going: 'Priya + 1 going', place: 'ultra', about: 'Start at Ultra, loop through the River Arts District.' },
+    pizzagames: { title: 'Pizza and board games', img: '1529156069898-49953e39b3ac', kick: 'Fri · 7pm · 3 mi away', people: ['devon', 'lena', 'maya'], more: 5, going: 'Sam + 7 going', place: 'wellplayed', about: 'Two large pies and whatever game wins the vote.' }
   };
   var PAST = [
     { title: 'Trivia at The Well', when: 'Last Thursday · 5 went', img: '1543007630-9710e4a00a20', place: null },
@@ -1260,7 +1312,7 @@
   var REPLIES = ['Love it 🙌', "Yes! I'm in", 'Haha perfect', 'Works for me', '👍', "Let's do it", 'Ooh good call'];
   var WHY = {
     'l:ultra': 'Quiet corner seats, open till 6', 'l:wellplayed': 'Easy with a group, no reservation', 'l:jumbo': 'Small and dim, good for talking', 'l:cindys': 'Sunset views, Sara rated it 5★', 'l:highland': 'Big lawn, dogs welcome', 'l:bavettes': 'Cozy, book ahead', 'l:saltstraw': 'Open late, short walk',
-    'e:wood': '3 friends saved it', 'e:brunch': 'Books out early, reserve today', 'e:market': 'Priya + 3 are going', 'e:shindig': 'Free, and Alex is going', 'e:comedy': 'Done by ten, easy night'
+    'e:wood': '3 friends saved it', 'e:brunch': 'Books out early, reserve today', 'e:market': 'Priya + 3 are going', 'e:shindig': 'Free, and Alex is going', 'e:comedy': 'Headliners on Friday, done by ten'
   };
 
   // ---------- State ----------
@@ -1333,12 +1385,14 @@
     if (v === 'serp') return '<span class="save' + (on ? ' saved' : '') + '"' + a + '><i class="' + ic + '"></i></span>';
     if (v === 'row') return '<span class="save-btn' + (on ? ' saved' : '') + '"' + a + '><i class="' + ic + '"></i></span>';
     if (v === 'float') return '<button class="x-float r' + (on ? ' on' : '') + '"' + a + ' aria-label="Save"><i class="' + ic + '"></i></button>';
+    if (v === 'dt') return '<span class="dt-save' + (on ? ' on' : '') + '"' + a + ' aria-label="Save"><i class="' + (on ? 'ph-fill' : 'ph') + ' ph-bookmark-simple"></i></span>';
     if (v === 'hd' || v === 'hdl') return '<button class="ib"' + a + ' aria-label="Save"><i class="' + (on ? 'ph-fill' : 'ph') + ' ph-bookmark-simple" style="font-size: 22px;' + (on ? ' color: #06b6d4;' : '') + '"></i></button>';
     return '<button class="a-save' + (on ? ' on' : '') + '"' + a + ' aria-label="Save"><i class="' + (on ? 'ph-fill' : 'ph') + ' ph-bookmark-simple"></i></button>';
   };
   R.join = function (id, v) {
     var on = !!S.joined[id], a = ' data-act="join" data-id="' + id + '" data-v="' + v + '"';
     if (v === 'glass') return '<button class="join-pill' + (on ? ' done' : '') + '"' + a + '>' + (on ? '<i class="ph-bold ph-check"></i>Going' : 'Join') + '</button>';
+    if (v === 'dt') return '<button class="dt-join' + (on ? ' done' : '') + '"' + a + '>' + (on ? '<i class="ph-bold ph-check"></i>Going' : 'Join') + '</button>';
     if (v === 'plan') return '<button class="a-pill grad" style="flex: 0 0 130px;"' + a + '>Join this plan</button>';
     return '<button class="h2-btn ' + (on ? 'done' : 'ink') + (v === 'sm' ? ' join-sm' : '') + '"' + a + '>' + (on ? '<i class="ph-bold ph-check"></i>Going' : 'Join') + '</button>';
   };
@@ -1514,7 +1568,7 @@
   function distOk(d, f) { return !f.dist || f.dist === 'any' || (f.dist === 'walk' ? d <= 1 : d <= +f.dist); }
   function matchEvent(e, f) {
     if (f.when === 'today' && e.day !== 'today') return false;
-    if (f.when === 'tomorrow' && e.day !== 'thu') return false;
+    if (f.when === 'tomorrow' && e.day !== 'wed') return false;
     if (f.when === 'weekend' && ['fri', 'sat', 'sun'].indexOf(e.day) < 0) return false;
     if (f.when === 'next' && !e.weekly) return false;
     if (f.price === 'free' && e.price > 0) return false;
@@ -1536,22 +1590,30 @@
     return '<div class="sec-head"' + (key ? ' data-sec="' + key + '"' : '') + '><div class="h-wrap"><h2>' + title + '</h2>' + (ai ? '<span class="ai-mark"><i class="ph-fill ph-sparkle"></i></span>' : '') + '</div>' + (action ? '<span class="action" data-go="' + go + '">' + action + ' <i class="ph-fill ph-caret-right"></i></span>' : '') + '</div>';
   }
   function tail(go) { return '<div class="tail" data-go="' + go + '"><span class="circ"><i class="ph-fill ph-caret-right"></i></span><span>View more</span></div>'; }
-  function serpEvent(id, why) {
+  function dtWhy(w) {
+    if (!w) return '';
+    return '<span class="dt-why">' + (w.img ? '<img class="dt-sav" src="' + av(w.img, 40) + '" alt="" />' : w.dot ? '<b class="dt-sdot" style="background: ' + w.dot + ';"></b>' : '<i class="ph-fill ' + w.i + '"' + (w.c ? ' style="color: ' + w.c + ';"' : '') + '></i>') + '<span>' + w.t + '</span></span>';
+  }
+  function dtPhoto(d, id, why, art) {
+    var a = art || (d.img ? null : d.art), inner = dtWhy(why) + R.save(id, 'dt');
+    if (a) return '<div class="dt-photo art" style="--a1: ' + a.a1 + '; --a2: ' + a.a2 + '; --ai: ' + a.ac + ';">' + inner + '<span class="dt-art-icon"><i class="ph-fill ' + a.i + '"></i></span></div>';
+    return '<div class="dt-photo" style="' + bg(d.img, 720, 0, d.pos) + '">' + inner + '</div>';
+  }
+  function dtProof(ids, text, star) { return '<div class="dt-proof"><span class="dt-av">' + ids.map(function (q) { return '<img src="' + av(q, 60) + '" alt="" />'; }).join('') + '</span>' + (star ? '<i class="ph-fill ph-star" style="color: #f5a524; font-size: 13px;"></i>' : '') + '<span>' + text + '</span></div>'; }
+  function timeWhy(id) { var x = dayDiff(eventAt(id)); return { i: 'ph-clock', c: '#f97316', t: x === 0 ? 'Tonight' : x === 1 ? 'Tomorrow' : 'This ' + DOW[eventAt(id).getDay()] }; }
+  function dtEvent(id, why, proof, art) {
     var e = E[id];
-    var media = e.art ? '<div class="art" style="--a1: ' + e.art.a1 + '; --a2: ' + e.art.a2 + '; --ac: ' + e.art.ac + ';"><span class="disc"><i class="ph-fill ' + e.art.i + '"></i></span><span class="spark"><i class="ph-fill ph-sparkle"></i></span></div>'
-      : '<div class="img" style="' + bg(e.img, 420, 196) + '">' + (e.tickets ? '<span class="tickets"><i class="ph-fill ph-ticket"></i>Tickets</span>' : '') + R.save(id, 'serp') + '</div>';
-    return '<div class="serp-card" data-go="event-' + id + '">' + media + '<div class="body"><div class="date">' + e.k + '</div><div class="title">' + e.t + '</div>' + (why && e.why ? '<div class="why">' + e.why + '</div>' : '') + '<div class="meta"><i class="ph-fill ph-map-pin"></i><span class="loc-txt">' + e.v + '</span></div></div></div>';
+    return '<div class="dt-tile" data-go="event-' + id + '">' + dtPhoto(e, id, why, art) + '<div class="dt-tb"><div class="dt-k">' + e.k + '</div><div class="dt-t">' + e.t + '</div><div class="dt-m"><i class="ph-fill ph-map-pin"></i><span>' + e.v + '</span></div>' + (proof || '') + '</div></div>';
   }
-  function serpPlace(id, loved) {
-    var l = L[id], lv = loved && LOVED[id];
-    var meta = lv ? '<span class="stack">' + friendsOnly(lv.who).concat(lv.who.filter(function (p) { return !isFriend(p); })).slice(0, 3).map(function (p) { return '<img src="' + av(p) + '" alt="" />'; }).join('') + '</span><span>' + lv.text + '</span>'
-      : '<i class="ph-fill ph-star"></i><span>' + l.r + '</span><span class="dot"></span><i class="ph-fill ph-map-pin"></i><span class="loc-txt">' + l.area + '</span>';
-    return '<div class="serp-card" data-go="place-' + id + '"><div class="img" style="' + bg(l.img, 420, 196, l.pos) + '">' + R.save(id, 'serp') + '</div><div class="body"><div class="title">' + l.t + '</div><div class="subtitle">' + (l.sub || l.cat) + '</div><div class="meta">' + meta + '</div></div></div>';
+  function dtPlace(id, why, proof, noMeta) {
+    var l = L[id];
+    return '<div class="dt-tile" data-go="place-' + id + '">' + dtPhoto(l, id, why, l.art) + '<div class="dt-tb"><div class="dt-t">' + (l.short || l.t) + '</div><div class="dt-s">' + l.cat + '</div>' + (noMeta ? '' : '<div class="dt-m"><i class="ph-fill ph-star star"></i><span>' + l.r + '</span><span class="dt-dot"></span><span>' + (l.street || l.area) + '</span></div>') + (proof || '') + '</div></div>';
   }
-  function planCard(id) {
+  function dtPlan(id) {
     var p = PUB[id];
-    return '<div class="plan-card" data-go="plan-' + id + '"><div class="ambient" style="' + bg(p.img, 400, 300) + '"></div><div class="hairline"></div><div class="photo" style="' + bg(p.img, 560, 420) + '"></div><div class="facepile">' + p.people.map(function (q) { return '<img src="' + av(q) + '" alt="" />'; }).join('') + '</div><div class="details"><div class="date">' + p.kick + '</div><div class="title">' + p.title + '</div><div class="meta"><div class="going"><span>' + p.going + '</span></div>' + R.join(id, 'glass') + '</div></div></div>';
+    return '<div class="dt-tile" data-go="plan-' + id + '"><div class="dt-media"><div class="dt-photo" style="' + bg(p.img, 720) + '"></div><span class="dt-faces">' + p.people.slice(0, 3).map(function (q) { return '<img src="' + av(q, 80) + '" alt="" />'; }).join('') + (p.more ? '<span class="more">+' + p.more + '</span>' : '') + '</span></div><div class="dt-tb"><div class="dt-k">' + p.kick + '</div><div class="dt-t">' + p.title + '</div><div class="dt-going"><span>' + p.going + '</span>' + R.join(id, 'dt') + '</div></div></div>';
   }
+  function dtTail(go, label, icon) { return '<div class="tail" data-go="' + go + '"><span class="circ"><i class="ph-fill ' + (icon || 'ph-caret-right') + '"></i></span><span>' + (label || 'View more') + '</span></div>'; }
   function eventRow(id) {
     var e = E[id], sb = friendsOnly(e.savedBy || []);
     var thumb = e.art ? '<div class="thumb ph-art" style="--a1: ' + e.art.a1 + '; --a2: ' + e.art.a2 + '; --ac: ' + e.art.ac + ';"><i class="ph-fill ' + e.art.i + '"></i></div>' : '<div class="thumb" style="' + bg(e.img, 192, 192) + '"></div>';
@@ -1570,24 +1632,26 @@
     var mode = arg === 'discover' ? 'foryou' : arg.replace('discover-', '');
     if (S.gs && !S.gs.discover) { S.gs.discover = true; S.gsJust = 'discover'; }
     var fk = mode === 'events' || mode === 'places' ? mode : null, fc = fk ? filterCount(S.filters[fk]) : 0;
-    var h = '<div class="toolbar"><span class="page-title">Discover</span><div class="actions">' + (fk ? '<button class="tbtn" data-act="filter" data-id="' + fk + '" aria-label="Filters"><i class="ph ph-sliders-horizontal"></i>' + (fc ? '<span class="n">' + fc + '</span>' : '') + '</button>' : '<button class="tbtn" data-act="create" aria-label="New plan"><i class="ph ph-plus-circle"></i></button>') + '</div></div>';
+    var nc = notifCount(), bell = '<button class="tbtn" data-go="notifications" aria-label="Notifications"><i class="ph-fill ph-bell"></i>' + (nc ? '<span class="badge-dot">' + nc + '</span>' : '') + '</button>';
+    var h = '<div class="toolbar"><span class="page-title">Discover</span><div class="actions">' + (fk ? '<button class="tbtn" data-act="filter" data-id="' + fk + '" aria-label="Filters"><i class="ph ph-sliders-horizontal"></i>' + (fc ? '<span class="n">' + fc + '</span>' : '') + '</button>' : '<button class="tbtn" data-act="findfriends" aria-label="Find people"><i class="ph-fill ph-user-plus"></i></button>') + bell + '</div></div>';
     h += '<main class="page-content"><div class="ask-wrap"><form class="ask-bar" data-form="ask"><i class="ph-fill ph-sparkle"></i><input type="text" name="q" placeholder="What do you feel like doing?" autocomplete="off" /><button class="send" type="submit" aria-label="Ask"><i class="ph-fill ph-paper-plane-tilt"></i></button></form><div class="x-sug"><div class="lbl">Try asking</div><button data-act="ask-sug" data-id="Something chill tonight"><i class="ph-fill ph-sparkle"></i>Something chill tonight</button><button data-act="ask-sug" data-id="Outdoors this weekend"><i class="ph-fill ph-sparkle"></i>Outdoors this weekend</button><button data-act="ask-sug" data-id="Date night, not too loud"><i class="ph-fill ph-sparkle"></i>Date night, not too loud</button><button data-act="ask-sug" data-id="Cheap things with the crew"><i class="ph-fill ph-sparkle"></i>Cheap things with the crew</button></div></div>';
     h += '<div class="try-row">' + [['foryou', 'For you', '', 'discover'], ['events', 'Events', 'ph-ticket', 'discover-events'], ['places', 'Places', 'ph-map-pin', 'discover-places'], ['plans', 'Plans', 'ph-calendar-blank', 'discover-plans']].map(function (c) {
       return '<span class="try-chip ' + (c[0] === mode ? 'selected' : 'plain') + '" data-act="chip" data-id="' + c[3] + '">' + (c[2] ? '<i class="ph-fill ' + c[2] + '"></i>' : '') + c[1] + '</span>';
     }).join('') + '</div>';
     if (mode === 'foryou') {
-      h += '<section>' + secHead('Plans near you', false, 'More', 'discover-plans') + '<div class="rail">' + ['coffeewalk', 'soccer', 'yoga'].map(planCard).join('') + tail('discover-plans') + '</div></section>';
-      h += '<section>' + secHead('This weekend', true, 'All events', 'discover-events', 'weekend') + '<div class="rail">' + ['wood', 'brunch', 'shindig', 'craggy'].map(function (id) { return serpEvent(id); }).join('') + tail('discover-events') + '</div></section>';
-      h += '<section>' + secHead('Because you like live music', true) + '<div class="rail">' + ['jazz', 'pickin', 'vinyl'].map(function (id) { return serpEvent(id, true); }).join('') + tail('discover-events') + '</div></section>';
-      if (S.mode === 'active') h += '<section>' + secHead('For Weekend Crew', true) + '<div class="rail">' + ['trivia', 'craggy', 'movie'].map(function (id) { return serpEvent(id, true); }).join('') + '<div class="tail" data-go="ideas"><span class="circ"><i class="ph-fill ph-sparkle"></i></span><span>More ideas</span></div></div></section>';
-      if (S.mode !== 'dayone') h += '<section>' + secHead('Loved by your friends') + '<div class="rail">' + (S.mode === 'active' ? ['cindys', 'saltstraw', 'highland'] : ['cindys']).map(function (id) { return serpPlace(id, true); }).join('') + tail('discover-places') + '</div></section>';
-      h += '<section>' + secHead('Places to try', false, 'All places', 'discover-places') + '<div class="rail">' + ['wellplayed', 'ultra', 'jumbo'].map(function (id) { return serpPlace(id); }).join('') + tail('discover-places') + '</div></section>';
+      h += '<section>' + secHead('Plans near you', false, 'More', 'discover-plans') + '<div class="rail dt-r plans">' + ['craggypub', 'coffeewalk', 'pizzagames'].map(dtPlan).join('') + dtTail('discover-plans') + '</div></section>';
+      h += '<section>' + secHead('Near you this weekend', true, '', '', 'weekend') + '<div class="rail dt-r">' + dtEvent('comedy', timeWhy('comedy'), dtProof(['maya', 'sam'], 'Maya + 1 saved it')) + dtEvent('shindig', timeWhy('shindig'), dtProof(['alex', 'lena'], '2 plans made')) + dtEvent('brunch') + dtTail('discover-events') + '</div></section>';
+      h += '<section>' + secHead('Because you like live music', true) + '<div class="rail dt-r">' + dtEvent('wood', { i: 'ph-sparkle', t: 'You saw them in May' }) + dtEvent('jazz', { i: 'ph-trend-up', c: '#e11d48', t: 'Trending' }, '', { a1: '#ede9fe', a2: '#fce7f3', ac: '#7c3aed', i: 'ph-piano-keys' }) + dtEvent('pickin', { i: 'ph-tag', c: '#16a34a', t: 'Free' }) + dtTail('discover-events') + '</div></section>';
+      h += '<section>' + secHead('Places to try', false, 'All places', 'discover-places') + '<div class="rail dt-r">' + dtPlace('wellplayed', { dot: '#22c55e', t: 'Open now' }) + dtPlace('bavettes', { i: 'ph-sparkle', t: 'You like French food' }) + dtPlace('jumbo') + dtTail('discover-places') + '</div></section>';
+      if (S.mode === 'active') h += '<section>' + secHead('Loved by your friends') + '<div class="rail dt-r">' + dtPlace('ultra', { img: 'sara', t: 'Sara is here' }, dtProof(['priya', 'jordan'], '4.6 (4 friends)', true), true) + dtPlace('cindys', { dot: '#f59e0b', t: 'Closes soon' }, dtProof(['sara', 'priya'], 'Maya + 3 saved it'), true) + dtPlace('saltstraw', null, dtProof(['devon', 'sam'], 'Devon + 2 saved it'), true) + dtTail('discover-places') + '</div></section>';
+      else if (S.mode === 'few') h += '<section>' + secHead('Loved by your friends') + '<div class="rail dt-r">' + dtPlace('cindys', { dot: '#f59e0b', t: 'Closes soon' }, dtProof(['sara'], 'Sara saved it'), true) + dtTail('discover-places') + '</div></section>';
+      if (S.mode === 'active') h += '<section>' + secHead('For Weekend Crew', true) + '<div class="rail dt-r">' + dtEvent('trivia', { i: 'ph-sparkle', t: 'Crew likes trivia' }) + dtPlace('gameloft', { i: 'ph-sparkle', t: 'Like your game night' }, '', true) + dtEvent('movie', { i: 'ph-sparkle', t: '3 of 5 free Sat' }) + dtTail('ideas', 'More ideas', 'ph-sparkle') + '</div></section>';
     } else if (fk) {
       var ids = fk === 'events' ? filteredEvents(S.filters.events) : filteredPlaces(S.filters.places);
       if (fc) h += '<div class="x-count">' + ids.length + ' ' + FILTERS[fk].noun + ' match<button data-act="filter-clear" data-id="' + fk + '">Clear filters</button></div>';
       h += ids.length ? '<div class="list">' + ids.map(fk === 'events' ? eventRow : placeRow).join('') + '</div>' : '<div class="hm"><div class="x-empty"><span class="emo">🔍</span><strong>Nothing matches</strong><span>Try a wider distance or a different day.</span><div class="btns"><button class="h2-btn ink" data-act="filter-clear" data-id="' + fk + '">Clear filters</button></div></div></div>';
     } else {
-      h += '<div class="list">' + ['yoga', 'coffeewalk', 'soccer'].map(pubRow).join('') + '</div>';
+      h += '<div class="list">' + ['pizzagames', 'coffeewalk', 'craggypub'].map(pubRow).join('') + '</div>';
     }
     $('view-discover').innerHTML = h + '</main>';
   }
@@ -1723,12 +1787,12 @@
   function parseTime(t) { var m = t.match(/(\d+)(?::(\d+))? (AM|PM)/); return [+m[1] % 12 + (m[3] === 'PM' ? 12 : 0), +(m[2] || 0)]; }
   var PLAN_AT = {
     bavettes: [D(8, 30, 19), '7 PM - 9 PM', ['🍽️ Dinner']], sunrise: [D(9, 3, 8), '8 AM - 11 AM', ['🥾 Hiking']], movienight: [D(9, 4, 18, 30), '6:30 PM - 10 PM', ['🎬 Movies']],
-    craggyhike: [D(9, 3, 9), '9 AM', ['🥾 Hiking']], pizzanight: [D(9, 2, 18, 30), '6:30 PM', ['🍕 Pizza']], soccer: [D(9, 4, 16), '4 PM', ['⚽ Soccer']],
-    coffeewalk: [D(9, 3, 10), '10 AM', ['☕ Coffee']], yoga: [D(9, 2, 18), '6 PM', ['🧘 Yoga']], triviapast: [D(8, 24, 19), '7 PM', ['🧠 Trivia']], coffeepast: [D(8, 27, 10), '10 AM', ['☕ Coffee']]
+    craggyhike: [D(9, 3, 9), '9 AM', ['🥾 Hiking']], pizzanight: [D(9, 2, 18, 30), '6:30 PM', ['🍕 Pizza']], craggypub: [D(9, 4, 9), '9 AM', ['🥾 Hiking']],
+    coffeewalk: [D(9, 3, 10), '10 AM', ['☕ Coffee']], pizzagames: [D(9, 2, 19), '7 PM', ['🎲 Board games']], triviapast: [D(8, 24, 19), '7 PM', ['🧠 Trivia']], coffeepast: [D(8, 27, 10), '10 AM', ['☕ Coffee']]
   };
   PLANS.triviapast = { title: 'Trivia at The Well', img: '1543007630-9710e4a00a20', people: ['sara', 'sam', 'maya', 'alex'], going: '5 went', where: 'The Well', past: true, about: 'Third place again. Rematch soon.' };
   PLANS.coffeepast = { title: 'Coffee at Ultra Coffeebar', img: '1509042239860-f550ce710b93', people: ['riley'], going: '2 went', place: 'ultra', past: true, about: 'Window seats, as promised.' };
-  var EV_DAY = { today: D(8, 29), thu: D(9, 1), fri: D(9, 2), sat: D(9, 3), sun: D(9, 4) };
+  var EV_DAY = { today: D(8, 29), wed: D(8, 30), thu: D(9, 1), fri: D(9, 2), sat: D(9, 3), sun: D(9, 4) };
   var EV_TAG = { music: '🎸 Live music', food: '🍽️ Food & drink', outdoors: '🥾 Outdoors', arts: '🎨 Arts', comedy: '😂 Comedy' };
   function eventAt(id) { var e = E[id], t = e.k.split('· ')[1] || '7:00 PM', hm = parseTime(t), b = EV_DAY[e.day]; return new Date(b.getFullYear(), b.getMonth(), b.getDate(), hm[0], hm[1]); }
   function withAt(p) { var a = PLAN_AT[p.id]; if (a) { p.at = a[0]; p.time = a[1]; p.tags = a[2]; } return p; }
