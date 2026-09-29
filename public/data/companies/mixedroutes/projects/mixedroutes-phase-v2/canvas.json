@@ -151,12 +151,6 @@
       "width": 390
     },
     {
-      "file": "prompt-governance.html",
-      "x": 2451,
-      "y": 694,
-      "width": 880
-    },
-    {
       "file": "discover-events-filters.html",
       "x": 6203,
       "y": -1297,
@@ -164,22 +158,22 @@
     },
     {
       "file": "chat-ai-collapsed.html",
-      "x": 3371,
+      "x": 2474,
       "y": 694,
       "width": 390,
       "name": "chat-ai-collapsed"
     },
     {
-      "file": "discover-v2-real-cards-copy.html",
-      "x": -2021,
-      "y": -1297,
-      "width": 390
+      "file": "card-variations-audit-copy.html",
+      "x": -3823,
+      "y": -2596,
+      "width": 1440
     },
     {
-      "file": "discover-from-scratch.html",
-      "x": -1591,
-      "y": -1297,
-      "width": 390
+      "file": "card-variations-v2.html",
+      "x": -4893,
+      "y": -1267,
+      "width": 2958
     }
   ],
   "texts": [
@@ -289,15 +283,8 @@
       "id": "text-legacy-muc2kpol-15"
     },
     {
-      "text": "Prompt governance",
-      "x": 2451,
-      "y": 609,
-      "size": 48,
-      "id": "text-legacy-muc2kpol-16"
-    },
-    {
       "text": "AI in chat",
-      "x": 3371,
+      "x": 2474,
       "y": 609,
       "size": 48,
       "id": "text-legacy-muc2kpol-17"
