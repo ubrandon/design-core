@@ -245,6 +245,7 @@ A prototype is a **self-contained interactive mini web app**. It lives in a sing
 7. **Self-contained.** Everything the prototype needs goes in its folder. No external npm packages or CDN scripts unless the designer explicitly asks.
 8. **Look at the design system.** Read the company's existing component HTML files in `public/data/companies/<c>/design-system/components/<c>/` for visual patterns.
 9. **One file preferred.** Keep the prototype in a single `index.html` unless it grows large enough to justify splitting.
+10. **Mobile prototypes must work on a real phone.** Shared links open fullscreen on phones, so a simulated status bar ("9:41") or home indicator must be hidden under `@media (hover: none) and (pointer: coarse)`, with `env(safe-area-inset-*)` in its place. Put that media query **after** the status bar rules or they override it. Size the app shell with `100dvh` and keep inputs at `font-size: 16px` or larger so iOS does not zoom on focus. The viewer already blocks double-tap zoom and long-press selection on touch devices.
 
 ### Hash routing pattern
 

@@ -1227,7 +1227,6 @@
 
   /* Safe areas: simulated iPhone status bar (47px) and home indicator (34px); touch devices use env() */
   .mrp { --sat: 47px; --sab: 34px; }
-  @media (hover: none) and (pointer: coarse) { .mrp { --sat: env(safe-area-inset-top, 0px); --sab: env(safe-area-inset-bottom, 0px); } .mrp .sbar, .mrp .hbar { display: none; } }
   .mrp .sbar { position: absolute; top: 0; left: 0; right: 0; z-index: 16; height: var(--sat); display: flex; align-items: center; justify-content: space-between; padding: 2px 26px 0 44px; background: #ffffff; color: #101724; font-size: 16px; font-weight: 600; pointer-events: none; transition: background 0.25s ease, color 0.25s ease; }
   .mrp .sbar .ic { display: flex; align-items: center; gap: 6px; font-size: 17px; }
   .mrp .sbar .ic .bat { font-size: 25px; }
@@ -1235,6 +1234,8 @@
   .mrp.sb-light .sbar { color: #ffffff; }
   .mrp.cm-open .sbar { background: #ffffff; color: #101724; }
   .mrp .hbar { position: absolute; left: 50%; bottom: 8px; z-index: 31; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: #101724; pointer-events: none; }
+  /* Real phones draw their own status bar; this must come after the .sbar/.hbar rules to win */
+  @media (hover: none) and (pointer: coarse) { .mrp { --sat: env(safe-area-inset-top, 0px); --sab: env(safe-area-inset-bottom, 0px); } .mrp .sbar, .mrp .hbar { display: none; } }
   .mrp .toolbar, .mrp .x-top, .mrp .a-head, .mrp .x-chat-head, .mrp .nav-head, .mrp .ovl, .mrp .wrev .toolbar { height: calc(56px + var(--sat)); padding-top: var(--sat); }
   .mrp .ovl { margin-bottom: calc(-56px - var(--sat)); }
   .mrp .pf-top { padding-top: calc(72px + var(--sat)); }

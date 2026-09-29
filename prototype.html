@@ -81,6 +81,13 @@
     }
     /* Embed on phones: behave like fullscreen without clipping mobile browser safe areas */
     @media (max-width: 800px) {
+      /* Lock the host page so drags inside the prototype never scroll or bounce it */
+      html:has(body.is-embed),
+      body.is-embed {
+        height: 100%;
+        overflow: hidden;
+        overscroll-behavior: none;
+      }
       body.is-embed .preview-page {
         min-height: 100svh !important;
         padding: 0 0 env(safe-area-inset-bottom) !important;
@@ -438,6 +445,31 @@
 
     var protoFrame = document.getElementById("proto-frame");
 
+    // Phone polish for any prototype: no double-tap zoom, no long-press text selection or image callouts, working :active, reset after the keyboard closes
+    function tuneFrameForTouch() {
+      if (!window.matchMedia("(hover: none) and (pointer: coarse)").matches) return;
+      try {
+        var iw = protoFrame.contentWindow;
+        var doc = iw.document;
+        if (!doc || doc.getElementById("dc-touch-tune")) return;
+        var st = doc.createElement("style");
+        st.id = "dc-touch-tune";
+        st.textContent =
+          "html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:100%}" +
+          "body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}" +
+          "input,textarea,[contenteditable]{-webkit-user-select:text;user-select:text}";
+        (doc.head || doc.documentElement).appendChild(st);
+        doc.addEventListener("touchstart", function () {}, { passive: true });
+        doc.addEventListener("focusout", function () {
+          setTimeout(function () {
+            var a = doc.activeElement;
+            if (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return;
+            window.scrollTo(0, 0);
+          }, 120);
+        });
+      } catch (e) {}
+    }
+
     protoFrame.addEventListener("load", function () {
       try {
         var frameUrl = protoFrame.contentWindow.location.href;
@@ -446,6 +478,7 @@
           return;
         }
       } catch (e) {}
+      tuneFrameForTouch();
       try {
         var iw = protoFrame.contentWindow;
         if (!iw) return;
