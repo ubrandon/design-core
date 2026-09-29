@@ -32,9 +32,16 @@
     },
     {
       "file": "discover-v2-real-cards.html",
-      "x": 8620,
-      "y": -1311,
+      "x": 4749,
+      "y": -1384,
       "width": 390
+    },
+    {
+      "file": "discover-v2-card-system.html",
+      "x": 5199,
+      "y": -1384,
+      "width": 390,
+      "name": "Discover · card system"
     },
     {
       "file": "home-v2-copy.html",
@@ -104,20 +111,20 @@
     },
     {
       "file": "home-v2-empty.html",
-      "x": 3938,
+      "x": 3852,
       "y": -1291,
       "width": 390
     },
     {
       "file": "guidance-intro-modal.html",
-      "x": 9245,
-      "y": -1297,
+      "x": 13600,
+      "y": -1323,
       "width": 390
     },
     {
       "file": "guidance-coach-marks.html",
-      "x": 9675,
-      "y": -1297,
+      "x": 14030,
+      "y": -1323,
       "width": 390
     },
     {
@@ -249,8 +256,8 @@
     },
     {
       "text": "Discover",
-      "x": 8620,
-      "y": -1442,
+      "x": 4749,
+      "y": -1515,
       "size": 72,
       "id": "text-legacy-muc2kpol-7"
     },
@@ -340,10 +347,17 @@
     },
     {
       "text": "Tour",
-      "x": 9245,
-      "y": -1416,
+      "x": 13600,
+      "y": -1442,
       "size": 72,
       "id": "text-mumwrou3-1"
+    },
+    {
+      "text": "Alt empty",
+      "x": 3852,
+      "y": -1389,
+      "size": 36,
+      "id": "text-mumyexfb-2"
     }
   ]
 }

@@ -1,0 +1,364 @@
+<link rel="stylesheet" href="../../../../../../styles/shared.css" />
+<link rel="stylesheet" href="../../../../../../styles/ds.css" />
+<link rel="stylesheet" href="../../../design-system/company.css" />
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap");
+
+  .dcs, .dcs * { box-sizing: border-box; font-family: "Geist", sans-serif; margin: 0; }
+  .dcs { background: #ffffff; color: #101724; position: relative; overflow-x: clip; }
+  .dcs .page-content { padding: 4px 16px 82px; display: flex; flex-direction: column; gap: 16px; }
+
+  /* Toolbar: same as current Discover, add + notifications only */
+  .dcs .toolbar { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; background: #ffffff; }
+  .dcs .toolbar .page-title { font-size: 24px; font-weight: 700; color: #1a2332; }
+  .dcs .toolbar .actions { display: flex; align-items: center; gap: 18px; }
+  .dcs .toolbar .tbtn { position: relative; color: #1a2332; font-size: 24px; line-height: 1; }
+  .dcs .toolbar .badge-dot { position: absolute; top: -8px; right: -8px; min-width: 22px; height: 22px; border-radius: 999px; background: #0ca678; color: #fff; font-size: 12px; font-weight: 700; display: grid; place-items: center; border: 2px solid #ffffff; padding: 0 4px; }
+
+  /* Ask bar + chips */
+  .dcs .ask-bar { display: flex; align-items: center; gap: 10px; height: 52px; padding: 0 6px 0 16px; border-radius: 999px; border: 1px solid transparent; background: linear-gradient(#ffffff, #ffffff) padding-box, linear-gradient(135deg, rgba(20, 184, 166, 0.4), rgba(59, 130, 246, 0.4)) border-box; box-shadow: 0 1px 4px rgba(16, 23, 36, 0.05); }
+  .dcs .ask-bar > i { font-size: 18px; flex-shrink: 0; background-image: linear-gradient(135deg, #14b8a6, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .dcs .ask-bar .placeholder { flex: 1; font-size: 16px; font-weight: 500; color: #8b98a8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dcs .ask-bar .send { width: 40px; height: 40px; flex-shrink: 0; border: 0; border-radius: 50%; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #fff; font-size: 17px; display: grid; place-items: center; }
+  .dcs .chips { display: flex; gap: 8px; margin: -6px -16px 0; padding: 0 16px 2px; }
+  .dcs .chip { height: 36px; padding: 0 14px; border-radius: 999px; background: #f1f4f7; color: #3b4551; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; flex-shrink: 0; }
+  .dcs .chip i { font-size: 14px; color: #5c6b7d; }
+  .dcs .chip.on { background: #1a2332; color: #ffffff; font-weight: 700; }
+
+  /* Section header */
+  .dcs section { display: flex; flex-direction: column; gap: 11px; }
+  .dcs section + section { margin-top: -12px; }
+  .dcs .sec-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .dcs .sec-head .h-wrap { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .dcs .sec-head h2 { font-size: 22px; font-weight: 700; line-height: 1.2; color: #1a2332; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dcs .sec-head .ai-mark { flex-shrink: 0; font-size: 18px; line-height: 1; display: inline-flex; }
+  .dcs .sec-head .ai-mark i { background: linear-gradient(145deg, #14b8a6, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .dcs .sec-head .action { display: inline-flex; align-items: center; gap: 3px; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #5c6b7d; white-space: nowrap; }
+  .dcs .sec-head .action i { font-size: 16px; }
+
+  /* Rails */
+  .dcs .rail { display: flex; align-items: flex-start; margin: -19px -16px -36px; padding: 24px 16px 56px; gap: 14px; }
+  .dcs .rail.plans { align-items: stretch; gap: 16px; }
+
+  /* Shared bits (card system) */
+  .dcs .av { display: flex; align-items: center; flex-shrink: 0; }
+  .dcs .av img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; margin-left: -7px; }
+  .dcs .av img:first-child { margin-left: 0; }
+  .dcs .dot { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: .5; flex-shrink: 0; }
+  .dcs .why { align-self: flex-start; max-width: 100%; height: 24px; padding: 0 9px 0 7px; border-radius: 999px; display: inline-flex; align-items: center; gap: 4px; background: #eaf1fe; color: #1e4fbf; font-size: 12px; font-weight: 700; white-space: nowrap; }
+  .dcs .why i { flex-shrink: 0; color: #3b82f6; font-size: 13px; }
+  .dcs .why span { overflow: hidden; text-overflow: ellipsis; }
+  .dcs .why.on-img { position: absolute; left: 8px; bottom: 8px; z-index: 2; max-width: calc(100% - 16px); background: rgba(255,255,255,.92); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: #101724; box-shadow: 0 2px 8px rgba(16,23,36,.14); }
+  .dcs .sdot { width: 7px; height: 7px; margin: 0 1px 0 2px; border-radius: 50%; flex-shrink: 0; }
+  .dcs .sav { width: 16px; height: 16px; border-radius: 50%; object-fit: cover; flex-shrink: 0; margin-left: -2px; }
+
+  /* Event + place tiles: flat, no chrome */
+  .dcs .tile { width: 192px; flex-shrink: 0; display: flex; flex-direction: column; }
+  .dcs .photo { position: relative; aspect-ratio: 1.85 / 1; border-radius: 18px; overflow: hidden; background: #d9e1e7 center / cover no-repeat; }
+  .dcs .photo.art { display: grid; place-items: center; background: linear-gradient(135deg, var(--a1, #ccfbf1), var(--a2, #dbeafe)); }
+  .dcs .photo.art::before { content: ""; position: absolute; width: 120px; height: 120px; left: -40px; top: -56px; border-radius: 50%; background: rgba(255,255,255,.36); }
+  .dcs .photo.art::after { content: ""; position: absolute; width: 84px; height: 84px; right: -22px; bottom: -36px; border-radius: 50%; border: 2px solid rgba(255,255,255,.62); }
+  .dcs .art-icon { position: relative; z-index: 1; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.72); color: var(--ai, #0f766e); font-size: 23px; box-shadow: 0 3px 12px rgba(16,24,40,.09); }
+  .dcs .save { position: absolute; right: 8px; top: 8px; z-index: 2; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: rgba(16,23,36,.62); color: #fff; font-size: 16px; }
+  .dcs .save.on { background: #fff; color: #2563eb; box-shadow: 0 2px 8px rgba(16,23,36,.18); }
+  .dcs .tb { padding: 10px 3px 0; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .dcs .k { color: #5c6b7d; font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; line-height: 1.2; margin-bottom: 1px; }
+  .dcs .t { color: #101724; font-size: 16px; font-weight: 700; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .dcs .s { color: #5c6b7d; font-size: 14px; line-height: 1.3; }
+  .dcs .m { min-width: 0; display: flex; align-items: center; gap: 5px; color: #667285; font-size: 13px; font-weight: 600; }
+  .dcs .m span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .dcs .m i { flex-shrink: 0; font-size: 13px; }
+  .dcs .m .star { color: #f5a524; }
+  .dcs .proof { display: flex; align-items: center; gap: 6px; margin-top: 3px; color: #5c6b7d; font-size: 13px; min-width: 0; }
+  .dcs .proof .av img { width: 20px; height: 20px; }
+  .dcs .proof span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+  /* Public plan: dark ambient card */
+  .dcs .plan { width: 282px; flex-shrink: 0; position: relative; overflow: hidden; border-radius: 25px; background: #1e2832; color: #fff; isolation: isolate; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 4px 28px rgba(0,0,0,.28); transform: translateZ(0); }
+  .dcs .plan .amb { position: absolute; inset: 0; z-index: -2; background: center / cover no-repeat; filter: blur(70px) saturate(4) brightness(1.35); transform: scale(1.35); }
+  .dcs .plan .shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(8,10,18,0), rgba(8,10,18,.22)); }
+  .dcs .plan .hero { height: 150px; background: center / cover no-repeat; -webkit-mask-image: linear-gradient(to bottom, #000 54%, transparent 100%); mask-image: linear-gradient(to bottom, #000 54%, transparent 100%); }
+  .dcs .plan .aud { position: absolute; left: 12px; top: 12px; z-index: 2; height: 26px; padding: 0 10px; border-radius: 999px; display: inline-flex; align-items: center; gap: 5px; background: rgba(16,23,36,.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; font-size: 12px; font-weight: 700; }
+  .dcs .plan .copy { padding: 10px 16px 16px; display: flex; flex-direction: column; gap: 5px; text-shadow: 0 0 16px rgba(0,0,0,.32); }
+  .dcs .plan .pk { color: rgba(255,255,255,.75); font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+  .dcs .plan .pt { font-size: 19px; font-weight: 800; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .dcs .plan .pm { display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,.86); font-size: 13px; min-width: 0; }
+  .dcs .plan .pm span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .dcs .plan .pm.who { margin-top: 4px; padding-right: 72px; }
+  .dcs .plan .av img { border-width: 1.5px; }
+  .dcs .join { position: absolute; right: 14px; bottom: 14px; height: 32px; padding: 0 16px; border: 0; border-radius: 999px; background: #fff; color: #101724; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; box-shadow: 0 3px 12px rgba(0,0,0,.25); }
+
+  /* Tail affordance */
+  .dcs .tail { width: 96px; margin: 0 20px; flex-shrink: 0; align-self: center; display: flex; flex-direction: column; align-items: center; gap: 7px; }
+  .dcs .tail .circ { width: 64px; height: 64px; border-radius: 50%; background: #f1f4f7; display: grid; place-items: center; font-size: 26px; color: #1a2332; }
+  .dcs .tail span { font-size: 14px; color: #5c6b7d; }
+
+  /* Tab bar */
+  .dcs .tab-bar { position: relative; z-index: 5; height: 67px; background: #ffffff; box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12); display: flex; align-items: flex-start; padding-top: 9px; }
+  .dcs .tab { flex: 1; display: flex; align-items: center; justify-content: center; color: #3b4551; }
+  .dcs .tab i { font-size: 24px; }
+  .dcs .tab.discover i { font-size: 26px; }
+  .dcs .tab.selected { color: #1a2332; }
+  .dcs .you { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+  .dcs .chat-wrap { position: relative; display: inline-flex; }
+  .dcs .unread { position: absolute; top: -8px; right: -14px; min-width: 22px; height: 22px; display: grid; place-items: center; padding: 0 4px; border: 2px solid #ffffff; border-radius: 999px; background: #0ca678; color: #ffffff; font-size: 12px; font-weight: 700; }
+</style>
+
+<div class="dcs" style="background: #ffffff;">
+  <div class="toolbar">
+    <span class="page-title">Discover</span>
+    <div class="actions">
+      <span class="tbtn"><i class="ph-fill ph-user-plus"></i></span>
+      <span class="tbtn"><i class="ph-fill ph-bell"></i><span class="badge-dot">2</span></span>
+    </div>
+  </div>
+
+  <main class="page-content">
+    <div class="ask-bar">
+      <i class="ph-fill ph-sparkle"></i>
+      <span class="placeholder">What do you feel like doing?</span>
+      <button class="send"><i class="ph-fill ph-paper-plane-tilt"></i></button>
+    </div>
+
+    <div class="chips ds-scroll-x">
+      <span class="chip on">For you</span>
+      <span class="chip"><i class="ph-fill ph-ticket"></i>Events</span>
+      <span class="chip"><i class="ph-fill ph-map-pin"></i>Places</span>
+      <span class="chip"><i class="ph-fill ph-calendar-blank"></i>Plans</span>
+    </div>
+
+    <!-- Plans near you: public plan cards -->
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>Plans near you</h2></div>
+        <span class="action">More <i class="ph-fill ph-caret-right"></i></span>
+      </div>
+      <div class="rail plans ds-scroll-x">
+        <div class="plan">
+          <div class="amb" style="background-image:url('https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=500&q=70');"></div><div class="shade"></div>
+          <span class="aud"><i class="ph ph-globe-hemisphere-west"></i>Public</span>
+          <div class="hero" style="background-image:url('https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=720&q=80');"></div>
+          <div class="copy">
+            <div class="pk">Sun · 9am · 2 mi away</div>
+            <div class="pt">Craggy Gardens sunrise hike</div>
+            <div class="pm"><i class="ph-fill ph-map-pin"></i><span>Blue Ridge Pkwy</span></div>
+            <div class="pm who"><span class="av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>Jordan + 4 going</span></div>
+          </div>
+          <button class="join">Join</button>
+        </div>
+        <div class="plan">
+          <div class="amb" style="background-image:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=500&q=70');"></div><div class="shade"></div>
+          <span class="aud"><i class="ph ph-globe-hemisphere-west"></i>Public</span>
+          <div class="hero" style="background-image:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=720&q=80');"></div>
+          <div class="copy">
+            <div class="pk">Sat · 10am · 1 mi away</div>
+            <div class="pt">Coffee walk downtown</div>
+            <div class="pm"><i class="ph-fill ph-map-pin"></i><span>Pritchard Park</span></div>
+            <div class="pm who"><span class="av"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>Priya + 2 going</span></div>
+          </div>
+          <button class="join">Join</button>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph-fill ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- This weekend: event tiles -->
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>Near you this weekend</h2><span class="ai-mark"><i class="ph-fill ph-sparkle"></i></span></div>
+      </div>
+      <div class="rail ds-scroll-x">
+        <div class="tile">
+          <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1527224857830-43a7acc85260?auto=format&fit=crop&w=720&q=80');"><span class="why on-img"><i class="ph-fill ph-clock" style="color:#f97316;"></i><span>Tonight</span></span><span class="save"><i class="ph ph-bookmark-simple"></i></span></div>
+          <div class="tb">
+            <div class="k">Fri · 8:00 PM</div>
+            <div class="t">Asheville Comedy Festival</div>
+            <div class="m"><i class="ph-fill ph-map-pin"></i><span>Diana Wortham Theatre</span></div>
+            <div class="proof"><span class="av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>Maya + 1 saved it</span></div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=720&q=80');"><span class="why on-img"><i class="ph-fill ph-clock" style="color:#f97316;"></i><span>Tomorrow</span></span><span class="save on"><i class="ph-fill ph-bookmark-simple"></i></span></div>
+          <div class="tb">
+            <div class="k">Sat · 5:00 PM</div>
+            <div class="t">Shindig on the Green</div>
+            <div class="m"><i class="ph-fill ph-map-pin"></i><span>Pack Square Park</span></div>
+            <div class="proof"><span class="av"><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>2 plans made</span></div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=720&q=80');"><span class="save"><i class="ph ph-bookmark-simple"></i></span></div>
+          <div class="tb">
+            <div class="k">Sun · 11:00 AM</div>
+            <div class="t">Drag brunch downtown</div>
+            <div class="m"><i class="ph-fill ph-map-pin"></i><span>Banks Ave</span></div>
+          </div>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph-fill ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Because you like: event tiles, AI reasons -->
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>Because you like live music</h2><span class="ai-mark"><i class="ph-fill ph-sparkle"></i></span></div>
+      </div>
+      <div class="rail ds-scroll-x">
+        <div class="tile">
+          <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=720&q=80');"><span class="why on-img"><i class="ph-fill ph-sparkle"></i><span>You saw them in May</span></span><span class="save"><i class="ph ph-bookmark-simple"></i></span></div>
+          <div class="tb">
+            <div class="k">Fri, Aug 7 · 9:00 PM</div>
+            <div class="t">The Wood Brothers</div>
+            <div class="m"><i class="ph-fill ph-map-pin"></i><span>The Orange Peel</span></div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="photo art" style="--a1:#ede9fe;--a2:#fce7f3;--ai:#7c3aed;"><span class="why on-img"><i class="ph-fill ph-trend-up" style="color:#e11d48;"></i><span>Trending</span></span><span class="art-icon"><i class="ph-fill ph-piano-keys"></i></span><span class="save"><i class="ph ph-bookmark-simple"></i></span></div>
+          <div class="tb">
+            <div class="k">Sat, Aug 15 · 8:30 PM</div>
+            <div class="t">Jazz night at Little Jumbo</div>
+            <div class="m"><i class="ph-fill ph-map-pin"></i><span>Lexington Ave</span></div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=720&q=80');"><span class="why on-img"><i class="ph-fill ph-tag" style="color:#16a34a;"></i><span>Free</span></span><span class="save"><i class="ph ph-bookmark-simple"></i></span></div>
+          <div class="tb">
+            <div class="k">Thu, Aug 13 · 6:00 PM</div>
+            <div class="t">Pickin' in the Park</div>
+            <div class="m"><i class="ph-fill ph-map-pin"></i><span>Pritchard Park</span></div>
+          </div>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph-fill ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Places to try: place tiles -->
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>Places to try</h2></div>
+        <span class="action">All places <i class="ph-fill ph-caret-right"></i></span>
+      </div>
+      <div class="rail ds-scroll-x">
+        <div class="tile">
+          <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=720&q=80');"><span class="why on-img"><b class="sdot" style="background:#22c55e;"></b><span>Open now</span></span><span class="save"><i class="ph ph-bookmark-simple"></i></span></div>
+          <div class="tb">
+            <div class="t">Well Played</div>
+            <div class="s">Board game café</div>
+            <div class="m"><i class="ph-fill ph-star star"></i><span>4.7</span><span class="dot"></span><span>Wall St</span></div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=720&q=80');"><span class="why on-img"><i class="ph-fill ph-sparkle"></i><span>You like French food</span></span><span class="save"><i class="ph ph-bookmark-simple"></i></span></div>
+          <div class="tb">
+            <div class="t">Bavette's</div>
+            <div class="s">French bistro</div>
+            <div class="m"><i class="ph-fill ph-star star"></i><span>4.6</span><span class="dot"></span><span>Biltmore Ave</span></div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=720&q=80');"><span class="save on"><i class="ph-fill ph-bookmark-simple"></i></span></div>
+          <div class="tb">
+            <div class="t">Little Jumbo</div>
+            <div class="s">Cocktail bar</div>
+            <div class="m"><i class="ph-fill ph-star star"></i><span>4.8</span><span class="dot"></span><span>Lexington Ave</span></div>
+          </div>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph-fill ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Loved by your friends: friend-backed place tiles -->
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>Loved by your friends</h2></div>
+      </div>
+      <div class="rail ds-scroll-x">
+        <div class="tile">
+          <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=720&q=80');"><span class="why on-img"><img class="sav" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=40&q=80" alt="" /><span>Sara is here</span></span><span class="save"><i class="ph ph-bookmark-simple"></i></span></div>
+          <div class="tb">
+            <div class="t">Ultra Coffeebar</div>
+            <div class="s">Coffee shop</div>
+            <div class="proof"><span class="av"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=60&q=80" alt="" /></span><i class="ph-fill ph-star" style="color:#f5a524;font-size:13px;"></i><span>4.6 (4 friends)</span></div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1544413660-299165566b1d?auto=format&fit=crop&w=720&q=80');"><span class="why on-img"><b class="sdot" style="background:#f59e0b;"></b><span>Closes soon</span></span><span class="save"><i class="ph ph-bookmark-simple"></i></span></div>
+          <div class="tb">
+            <div class="t">Cindy's Rooftop</div>
+            <div class="s">Rooftop bar</div>
+            <div class="proof"><span class="av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>Maya + 3 saved it</span></div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=720&q=80');"><span class="save"><i class="ph ph-bookmark-simple"></i></span></div>
+          <div class="tb">
+            <div class="t">Salt &amp; Straw</div>
+            <div class="s">Ice cream</div>
+            <div class="proof"><span class="av"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>Devon + 2 saved it</span></div>
+          </div>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph-fill ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- For group: suggested event + suggested place -->
+    <section>
+      <div class="sec-head">
+        <div class="h-wrap"><h2>For Weekend Crew</h2><span class="ai-mark"><i class="ph-fill ph-sparkle"></i></span></div>
+      </div>
+      <div class="rail ds-scroll-x">
+        <div class="tile">
+          <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=720&q=80');"><span class="why on-img"><i class="ph-fill ph-sparkle"></i><span>Crew likes trivia</span></span><span class="save"><i class="ph ph-bookmark-simple"></i></span></div>
+          <div class="tb">
+            <div class="k">Wed · 7:30 PM</div>
+            <div class="t">Trivia at The Well</div>
+            <div class="m"><i class="ph-fill ph-map-pin"></i><span>South Slope</span></div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="photo art" style="--a1:#fef3c7;--a2:#ffedd5;--ai:#d97706;"><span class="why on-img"><i class="ph-fill ph-sparkle"></i><span>Like your game night</span></span><span class="art-icon"><i class="ph-fill ph-lightbulb"></i></span><span class="save"><i class="ph ph-bookmark-simple"></i></span></div>
+          <div class="tb">
+            <div class="t">The Game Loft</div>
+            <div class="s">Board game bar</div>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=720&q=80');"><span class="why on-img"><i class="ph-fill ph-sparkle"></i><span>3 of 5 free Sat</span></span><span class="save"><i class="ph ph-bookmark-simple"></i></span></div>
+          <div class="tb">
+            <div class="k">Sat · 8:30 PM</div>
+            <div class="t">Outdoor movie night</div>
+            <div class="m"><i class="ph-fill ph-map-pin"></i><span>Highland Brewing</span></div>
+          </div>
+        </div>
+        <div class="tail">
+          <span class="circ"><i class="ph-fill ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tab-bar">
+    <span class="tab"><i class="ph-fill ph-house"></i></span>
+    <span class="tab discover selected"><i class="ph-fill ph-compass"></i></span>
+    <span class="tab"><img class="you" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /></span>
+    <span class="tab"><i class="ph-fill ph-calendar-blank"></i></span>
+    <span class="tab"><span class="chat-wrap"><i class="ph-fill ph-chat"></i><span class="unread">4</span></span></span>
+  </nav>
+</div>
