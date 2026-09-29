@@ -485,6 +485,20 @@
       }
     }
 
+    // Deploy id from build.json (fresh fetch); dev has no build.json, so every load is fresh
+    var buildIdPromise = fetch("build.json", { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) { return j && j.id ? String(j.id) : String(Date.now()); })
+      .catch(function () { return String(Date.now()); });
+
+    function setProtoFrameSrc(bust) {
+      var src = basePath + "index.html" + (bust ? "?v=" + encodeURIComponent(bust) : "");
+      var ph = window.location.hash;
+      if (ph && ph !== "#") src += ph;
+      if (isToolPage(src)) showProtoError();
+      else protoFrame.src = src;
+    }
+
     function applyIframeFromMeta(data) {
       var bust =
         data.updatedAt != null && String(data.updatedAt).trim() !== ""
@@ -492,14 +506,8 @@
           : data.cacheKey != null && String(data.cacheKey).trim() !== ""
             ? String(data.cacheKey).trim()
             : "";
-      var src = basePath + "index.html" + (bust !== "" ? "?v=" + encodeURIComponent(bust) : "");
-      var ph = window.location.hash;
-      if (ph && ph !== "#") src += ph;
-      if (isToolPage(src)) {
-        showProtoError();
-      } else {
-        protoFrame.src = src;
-      }
+      if (bust !== "") setProtoFrameSrc(bust);
+      else buildIdPromise.then(setProtoFrameSrc);
     }
 
     function refreshProtoMetaFromDisk() {
@@ -512,11 +520,7 @@
         .catch(() => {
           const fallback = { name: protoId, description: "" };
           applyMetaLabels(fallback);
-          var src = basePath + "index.html";
-          var ph0 = window.location.hash;
-          if (ph0 && ph0 !== "#") src += ph0;
-          if (isToolPage(src)) showProtoError();
-          else protoFrame.src = src;
+          buildIdPromise.then(setProtoFrameSrc);
           return fallback;
         });
     }

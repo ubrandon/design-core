@@ -5,6 +5,16 @@ import { designCorePlugins } from "./scripts/dev-server/index.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+// Per-deploy id so prototype iframes skip the 10 minute GitHub Pages cache after a push
+const BUILD_ID = (process.env.GITHUB_SHA || "").slice(0, 12) || Date.now().toString(36);
+const buildIdPlugin = {
+  name: "design-core-build-id",
+  apply: "build",
+  generateBundle() {
+    this.emitFile({ type: "asset", fileName: "build.json", source: JSON.stringify({ id: BUILD_ID }) });
+  },
+};
+
 export default defineConfig(({ mode }) => {
   const viteEnv = loadEnv(mode, __dirname, "");
 
@@ -12,7 +22,7 @@ export default defineConfig(({ mode }) => {
     appType: "mpa",
     base: "./",
     server: { port: 3000, strictPort: true },
-    plugins: designCorePlugins(viteEnv),
+    plugins: [...designCorePlugins(viteEnv), buildIdPlugin],
     build: {
       rollupOptions: {
         input: {
