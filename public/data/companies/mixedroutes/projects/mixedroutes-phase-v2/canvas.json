@@ -174,6 +174,41 @@
       "x": 1400,
       "y": -1297,
       "width": 390
+    },
+    {
+      "file": "home-v2-upnext.html",
+      "x": 1850,
+      "y": -1297,
+      "width": 390,
+      "name": "Home \u00b7 active"
+    },
+    {
+      "file": "home-v2-quiet.html",
+      "x": 2300,
+      "y": -1297,
+      "width": 390,
+      "name": "Home \u00b7 few friends"
+    },
+    {
+      "file": "home-v2-day-one.html",
+      "x": 2750,
+      "y": -1297,
+      "width": 390,
+      "name": "Home \u00b7 day one"
+    },
+    {
+      "file": "home-v2-sections.html",
+      "x": -900,
+      "y": -1297,
+      "width": 390,
+      "name": "Home \u00b7 sections"
+    },
+    {
+      "file": "updates-all.html",
+      "x": -450,
+      "y": -1297,
+      "width": 390,
+      "name": "Updates"
     }
   ],
   "texts": [
@@ -295,6 +330,20 @@
       "y": 4795,
       "size": 144,
       "id": "text-mum2fuzd-1"
+    },
+    {
+      "text": "Home with sections",
+      "x": -900,
+      "y": -1382,
+      "size": 48,
+      "id": "text-home-sections-1"
+    },
+    {
+      "text": "Home by content level",
+      "x": 1850,
+      "y": -1470,
+      "size": 48,
+      "id": "text-home-levels-1"
     }
   ]
 }

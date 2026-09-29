@@ -32,6 +32,13 @@
   .mrv2-home2 .greet h1 .grad { color: #1a2332; }
   .mrv2-home2 .greet h1 .name { color: #5c6b7d; }
   .mrv2-home2 .greet .subline { font-size: 16px; font-weight: 600; color: #5c6b7d; line-height: 1.4; }
+  /* Up next: summary of coming plans, taps through to the Plans tab */
+  .mrv2-home2 .upnext { display: flex; flex-direction: column; gap: 2px; margin: 0 -8px; padding: 6px 8px; border-radius: 12px; color: inherit; text-decoration: none; }
+  .mrv2-home2 .upnext:active { background: #f1f4f7; }
+  .mrv2-home2 .upnext .un-now { font-size: 16px; font-weight: 600; color: #1a2332; line-height: 1.4; }
+  .mrv2-home2 .upnext .un-next { display: flex; align-items: center; gap: 4px; font-size: 15px; font-weight: 500; color: #5c6b7d; line-height: 1.4; white-space: nowrap; }
+  .mrv2-home2 .upnext .un-next b { font-weight: 700; color: #2563eb; }
+  .mrv2-home2 .upnext .un-next i { font-size: 14px; color: #5c6b7d; }
 
   /* Current app banner stack — full cards share one grid cell and step down in depth */
   .mrv2-home2 .home-banner-stack { --stack-offset: 12px; position: relative; display: grid; align-items: end; padding: 2px 2px 18px; overflow: visible; }
@@ -231,6 +238,18 @@
   .mrv2-home2 .tab-bar .tab .icon-wrap { position: relative; display: inline-flex; }
   .mrv2-home2 .tab-bar .tab .badge-dot { position: absolute; top: -8px; right: -14px; }
   .mrv2-home2 .tab-bar .tab .you { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; display: block; }
+  /* Find your people: shows only while you have few friends */
+  .mrv2-home2 .fp-card { padding: 16px 16px 6px; display: flex; flex-direction: column; }
+  .mrv2-home2 .fp-head { display: flex; flex-direction: column; gap: 2px; padding-bottom: 6px; }
+  .mrv2-home2 .fp-head strong { font-size: 17px; font-weight: 700; color: #101724; line-height: 1.3; }
+  .mrv2-home2 .fp-head span { font-size: 14px; color: #5c6b7d; line-height: 1.35; }
+  .mrv2-home2 .fp-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+  .mrv2-home2 .fp-row img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .mrv2-home2 .fp-row .c { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .mrv2-home2 .fp-row strong { font-size: 15px; font-weight: 700; color: #101724; }
+  .mrv2-home2 .fp-row span { font-size: 13px; color: #5c6b7d; }
+  .mrv2-home2 .fp-link { height: 44px; margin-top: 4px; border: 0; border-top: 1px solid #f1f4f7; background: none; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: 700; color: #101724; }
+  .mrv2-home2 .status-pill.unset .me .dot { background: #c5ccd4; }
 </style>
 
 <div class="mrv2-home2 home2fact" style="background: #ffffff;">
@@ -245,7 +264,10 @@
   <div class="content">
     <div class="greet">
       <h1><span class="grad">Evening, Brandon</span></h1>
-      <h3 class="subline">Dinner at Bavette's · 7pm</h3>
+      <a class="upnext" href="#" aria-label="Coming up. View all plans">
+        <span class="un-now">Dinner at Bavette's · 7pm</span>
+        <span class="un-next">Sat hike · Sun movie night<i class="ph-bold ph-caret-right"></i></span>
+      </a>
     </div>
 
     <div class="home-banner-stack" aria-label="2 updates">
@@ -269,97 +291,47 @@
       </div>
     </div>
 
-    <section>
-      <div class="sec-head">
-        <h2>Recent chats</h2>
-        <span class="more"><i class="ph-bold ph-caret-right"></i></span>
-      </div>
-      <div class="rail rail-people">
-        <div class="mini-card">
-          <div class="av-wrap">
-            <img class="av av-sq" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
-            <span class="unread">3</span>
+    <div class="invite-banner">
+      <button class="invite-banner-head" aria-expanded="false">
+        <span class="stack">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+        </span>
+        <span class="stack-check"><i class="ph-fill ph-check-circle"></i></span>
+        <span class="b-txt">
+          <strong class="banner-title">2 invites waiting on you</strong>
+          <span class="banner-sub">Hike at Craggy Gardens · Pizza night</span>
+        </span>
+        <i class="ph-bold ph-caret-right caret"></i>
+      </button>
+      <div class="invite-banner-body">
+        <div class="invite-row" data-title="Hike at Craggy Gardens">
+          <img class="av" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+          <div class="r-txt">
+            <strong>Hike at Craggy Gardens 🥾</strong>
+            <span>Sam · Saturday 9:00 AM</span>
           </div>
-          <div class="txt"><strong>Weekend Crew</strong><span>Sara: who's in for Sat?</span></div>
-        </div>
-        <div class="mini-card">
-          <div class="av-wrap">
-            <img class="av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
-            <span class="unread">1</span>
+          <div class="r-btns">
+            <button class="invite-go"><i class="ph-bold ph-check"></i>Going</button>
+            <button class="invite-no">Can't</button>
           </div>
-          <div class="txt"><strong>Sara</strong><span>See you at 7!</span></div>
         </div>
-        <div class="mini-card">
-          <div class="av-wrap">
-            <img class="av av-sq" src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
+        <div class="invite-row" data-title="Pizza night">
+          <img class="av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+          <div class="r-txt">
+            <strong>Pizza night 🍕</strong>
+            <span>Maya · Friday 6:30 PM</span>
           </div>
-          <div class="txt"><strong>Hiking Club</strong><span>Trail is open again 🎉</span></div>
-        </div>
-        <div class="mini-card">
-          <div class="av-wrap">
-            <img class="av" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
-          </div>
-          <div class="txt"><strong>Sam</strong><span>Sounds good 👍</span></div>
-        </div>
-        <div class="tail">
-          <span class="circ"><i class="ph-bold ph-caret-right"></i></span>
-          <span>View more</span>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="sec-head">
-        <h2>Your plans</h2>
-        <span class="more"><i class="ph-bold ph-caret-right"></i></span>
-      </div>
-
-      <div class="invite-banner">
-        <button class="invite-banner-head" aria-expanded="false">
-          <span class="stack">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
-          </span>
-          <span class="stack-check"><i class="ph-fill ph-check-circle"></i></span>
-          <span class="b-txt">
-            <strong class="banner-title">2 invites waiting on you</strong>
-            <span class="banner-sub">Hike at Craggy Gardens · Pizza night</span>
-          </span>
-          <i class="ph-bold ph-caret-right caret"></i>
-        </button>
-        <div class="invite-banner-body">
-          <div class="invite-row" data-title="Hike at Craggy Gardens">
-            <img class="av" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
-            <div class="r-txt">
-              <strong>Hike at Craggy Gardens 🥾</strong>
-              <span>Sam · Saturday 9:00 AM</span>
-            </div>
-            <div class="r-btns">
-              <button class="invite-go"><i class="ph-bold ph-check"></i>Going</button>
-              <button class="invite-no">Can't</button>
-            </div>
-          </div>
-          <div class="invite-row" data-title="Pizza night">
-            <img class="av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
-            <div class="r-txt">
-              <strong>Pizza night 🍕</strong>
-              <span>Maya · Friday 6:30 PM</span>
-            </div>
-            <div class="r-btns">
-              <button class="invite-go"><i class="ph-bold ph-check"></i>Going</button>
-              <button class="invite-no">Can't</button>
-            </div>
+          <div class="r-btns">
+            <button class="invite-go"><i class="ph-bold ph-check"></i>Going</button>
+            <button class="invite-no">Can't</button>
           </div>
         </div>
       </div>
-      <div class="h2-stack">
-        <div class="h2-row"><div class="amb" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=500&q=70');"></div><div class="shade"></div><div class="media" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=400&q=80');"></div><div class="rc"><div class="rk">TOMORROW · 7:00 PM</div><div class="rt">Dinner at Bavette's</div><div class="rm"><span class="h2-av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>3 going</span><button class="h2-btn glass"><i class="ph-fill ph-check-circle"></i>Going</button></div></div></div>
-        <div class="h2-row"><div class="amb" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=70');"></div><div class="shade"></div><div class="media" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80');"></div><div class="rc"><div class="rk">SAT · 8:00 AM</div><div class="rt">Sunrise trail hike</div><div class="rm"><span class="h2-av"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>2 going</span><button class="h2-btn glass"><i class="ph-fill ph-check-circle"></i>Going</button></div></div></div>
-        <div class="h2-row"><div class="amb" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=500&q=70');"></div><div class="shade"></div><div class="media" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&q=80');"></div><div class="rc"><div class="rk">SUN · 6:30 PM</div><div class="rt">Outdoor movie night</div><div class="rm"><span class="h2-av"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>Maya + 2 going</span><button class="h2-btn glass"><i class="ph-fill ph-check-circle"></i>Going</button></div></div></div>
-      </div>
-    </section>
+    </div>
 
     <div class="feed-head"><h2>From your friends</h2></div>
+
     <div class="h2-card fa-card">
       <div class="fa-media" style="background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=780&q=80');"><span class="h2-why"><i class="ph-fill ph-sparkle"></i><span>You like live music</span></span></div>
       <div class="fa-body">

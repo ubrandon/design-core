@@ -32,6 +32,13 @@
   .mrv2-home2 .greet h1 .grad { color: #1a2332; }
   .mrv2-home2 .greet h1 .name { color: #5c6b7d; }
   .mrv2-home2 .greet .subline { font-size: 16px; font-weight: 600; color: #5c6b7d; line-height: 1.4; }
+  /* Up next: summary of coming plans, taps through to the Plans tab */
+  .mrv2-home2 .upnext { display: flex; flex-direction: column; gap: 2px; margin: 0 -8px; padding: 6px 8px; border-radius: 12px; color: inherit; text-decoration: none; }
+  .mrv2-home2 .upnext:active { background: #f1f4f7; }
+  .mrv2-home2 .upnext .un-now { font-size: 16px; font-weight: 600; color: #1a2332; line-height: 1.4; }
+  .mrv2-home2 .upnext .un-next { display: flex; align-items: center; gap: 4px; font-size: 15px; font-weight: 500; color: #5c6b7d; line-height: 1.4; white-space: nowrap; }
+  .mrv2-home2 .upnext .un-next b { font-weight: 700; color: #2563eb; }
+  .mrv2-home2 .upnext .un-next i { font-size: 14px; color: #5c6b7d; }
 
   /* Current app banner stack — full cards share one grid cell and step down in depth */
   .mrv2-home2 .home-banner-stack { --stack-offset: 12px; position: relative; display: grid; align-items: end; padding: 2px 2px 18px; overflow: visible; }
@@ -231,6 +238,37 @@
   .mrv2-home2 .tab-bar .tab .icon-wrap { position: relative; display: inline-flex; }
   .mrv2-home2 .tab-bar .tab .badge-dot { position: absolute; top: -8px; right: -14px; }
   .mrv2-home2 .tab-bar .tab .you { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; display: block; }
+  /* Find your people: shows only while you have few friends */
+  .mrv2-home2 .fp-card { padding: 16px 16px 6px; display: flex; flex-direction: column; }
+  .mrv2-home2 .fp-head { display: flex; flex-direction: column; gap: 2px; padding-bottom: 6px; }
+  .mrv2-home2 .fp-head strong { font-size: 17px; font-weight: 700; color: #101724; line-height: 1.3; }
+  .mrv2-home2 .fp-head span { font-size: 14px; color: #5c6b7d; line-height: 1.35; }
+  .mrv2-home2 .fp-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+  .mrv2-home2 .fp-row img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .mrv2-home2 .fp-row .c { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .mrv2-home2 .fp-row strong { font-size: 15px; font-weight: 700; color: #101724; }
+  .mrv2-home2 .fp-row span { font-size: 13px; color: #5c6b7d; }
+  .mrv2-home2 .fp-link { height: 44px; margin-top: 4px; border: 0; border-top: 1px solid #f1f4f7; background: none; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: 700; color: #101724; }
+  .mrv2-home2 .status-pill.unset .me .dot { background: #c5ccd4; }
+  /* New from friends: latest 3 updates, the rest live on the Updates page */
+  .mrv2-home2 .up-card { padding: 4px 0 0; }
+  .mrv2-home2 .up-row { position: relative; display: flex; align-items: center; gap: 12px; padding: 12px 14px 12px 16px; }
+  .mrv2-home2 .up-row + .up-row { border-top: 1px solid #f1f4f7; }
+  .mrv2-home2 .up-new { position: absolute; left: 5px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: #2563eb; }
+  .mrv2-home2 .up-av { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .mrv2-home2 .up-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .mrv2-home2 .up-txt span { font-size: 15px; line-height: 1.35; color: #5c6b7d; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .mrv2-home2 .up-txt strong { color: #101724; font-weight: 700; }
+  .mrv2-home2 .up-txt time { font-size: 12px; color: #8a94a2; }
+  .mrv2-home2 .up-th { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
+  .mrv2-home2 .up-all { height: 48px; border-top: 1px solid #f1f4f7; display: flex; align-items: center; justify-content: center; gap: 4px; font-size: 14px; font-weight: 700; color: #101724; text-decoration: none; }
+  .mrv2-home2 .up-all i { font-size: 13px; color: #5c6b7d; }
+  /* Updates page */
+  .mrv2-home2 .nav-head { height: 56px; display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; padding: 0 8px; background: #ffffff; }
+  .mrv2-home2 .nav-head .back { width: 44px; height: 44px; display: grid; place-items: center; font-size: 22px; color: #1a2332; }
+  .mrv2-home2 .nav-head h1 { text-align: center; font-size: 17px; font-weight: 700; color: #1a2332; }
+  .mrv2-home2 .day-head { padding-top: 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: #8a94a2; text-transform: uppercase; }
+  .mrv2-home2 .day-head:first-child { padding-top: 4px; }
 </style>
 
 <div class="mrv2-home2 home2fact" style="background: #ffffff;">
@@ -359,22 +397,34 @@
       </div>
     </section>
 
-    <div class="feed-head"><h2>From your friends</h2></div>
-    <div class="h2-card fa-card">
-      <div class="fa-media" style="background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=780&q=80');"><span class="h2-why"><i class="ph-fill ph-sparkle"></i><span>You like live music</span></span></div>
-      <div class="fa-body">
-        <div class="h2-who"><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Alex</strong> is going</span><time>1h</time></div>
-        <div class="fa-title">Shindig on the Green</div>
-        <div class="fa-foot"><span class="fa-meta"><span>Sat · 5:00 PM · Pack Square</span></span><button class="h2-btn ink">Join</button></div>
+    <section>
+      <div class="sec-head">
+        <h2>New from friends</h2>
+        <span class="more"><i class="ph-bold ph-caret-right"></i></span>
       </div>
-    </div>
+      <div class="h2-card up-card">
+        <div class="up-row"><span class="up-new"></span><img class="up-av" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><div class="up-txt"><span><strong>Alex</strong> is going to <strong>Shindig on the Green</strong></span><time>1h</time></div><img class="up-th" src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=120&h=120&q=80" alt="" /></div>
+        <div class="up-row"><span class="up-new"></span><img class="up-av" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><div class="up-txt"><span><strong>Priya</strong> + 3 are going to <strong>Farmers market brunch</strong></span><time>3h</time></div><img class="up-th" src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=120&h=120&q=80" alt="" /></div>
+        <div class="up-row"><img class="up-av" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><div class="up-txt"><span><strong>Riley</strong> reviewed <strong>Ultra Coffeebar</strong></span><time>5h</time></div><img class="up-th" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=120&h=120&q=80" alt="" /></div>
+        <a class="up-all" href="#">See all updates<i class="ph-bold ph-caret-right"></i></a>
+      </div>
+    </section>
 
-    <div class="h2-card fa-card">
-      <div class="fa-body fa-act">
-        <div class="h2-who"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Priya</strong> + 3 are going</span><time>3h</time></div>
-        <div class="fa-obj"><img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=160&q=80" alt="" /><div class="c"><strong>Farmers market brunch</strong><small>Sun · 11:00 AM · River Arts</small></div><button class="h2-btn ink">Join</button></div>
+    <section>
+      <div class="sec-head">
+        <h2>Friends saved</h2>
+        <span class="more"><i class="ph-bold ph-caret-right"></i></span>
       </div>
-    </div>
+      <div class="rail rail-places">
+        <div class="h2-tile"><div class="h2-photo" style="background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=400&q=80');"><span class="h2-save"><i class="ph ph-bookmark-simple"></i></span></div><div class="h2-tb"><div class="h2-t">Little Jumbo</div><div class="h2-s">Cocktail bar</div><div class="h2-proof"><span class="h2-av"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>Jordan saved it</span></div></div></div>
+        <div class="h2-tile"><div class="h2-photo" style="background-image: url('https://images.unsplash.com/photo-1560008581-09826d1de69e?auto=format&fit=crop&w=400&q=80');"><span class="h2-save"><i class="ph ph-bookmark-simple"></i></span></div><div class="h2-tb"><div class="h2-t">Salt &amp; Straw</div><div class="h2-s">Ice cream</div><div class="h2-proof"><span class="h2-av"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>Devon saved it</span></div></div></div>
+        <div class="h2-tile"><div class="h2-photo" style="background-image: url('https://images.unsplash.com/photo-1544413660-299165566b1d?auto=format&fit=crop&w=400&q=80');"><span class="h2-save"><i class="ph ph-bookmark-simple"></i></span></div><div class="h2-tb"><div class="h2-t">Cindy's Rooftop</div><div class="h2-s">Rooftop bar</div><div class="h2-proof"><span class="h2-av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>Maya + 3 saved it</span></div></div></div>
+        <div class="tail">
+          <span class="circ"><i class="ph-bold ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
 
     <section>
       <div class="sec-head">
@@ -409,32 +459,10 @@
       </div>
     </section>
 
-    <div class="h2-card fa-card fa-card--review">
-      <div class="fa-body">
-        <div class="h2-who"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Riley</strong> reviewed <strong>Ultra Coffeebar</strong></span><time>5h</time></div>
-        <div class="fa-obj"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=160&q=80" alt="" /><div class="c"><span class="fa-stars">★★★★★</span><span class="fa-quote">"Best cortado in town, grab the window seats."</span></div></div>
-        <div class="fa-foot"><span class="fa-meta"><i class="ph-fill ph-coffee"></i><span>Coffee shop · Downtown</span></span><button class="h2-btn soft"><i class="ph-bold ph-bookmark-simple"></i>Save</button></div>
-      </div>
-    </div>
-
     <div class="h2-card h2-pr">
       <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=120&q=80" alt="" />
       <div class="c"><strong>Weekend Crew is quiet</strong><span>Nothing planned this month.</span></div>
       <button class="h2-btn pri"><i class="ph-fill ph-sparkle"></i>Get ideas</button>
-    </div>
-
-    <div class="h2-card fa-card">
-      <div class="fa-media" style="background-image: url('https://images.unsplash.com/photo-1544413660-299165566b1d?auto=format&fit=crop&w=780&q=80'); background-position: center 80%;"><span class="h2-why"><i class="ph-fill ph-map-pin"></i><span>Nearby</span></span></div>
-      <div class="fa-body">
-        <div class="h2-who"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Maya</strong> + 3 saved this</span><time>6h</time></div>
-        <div class="fa-title">Cindy's Rooftop</div>
-        <div class="fa-foot"><span class="fa-meta"><i class="ph-fill ph-martini"></i><span>Rooftop bar · 0.4 mi</span></span><button class="h2-btn soft"><i class="ph-bold ph-bookmark-simple"></i>Save</button></div>
-      </div>
-    </div>
-
-    <div class="h2-card h2-int" style="--int: #e0483a;">
-      <div class="top"><span class="emo">🎸</span><div class="c"><strong>Live music</strong><small>Music · 42 events near you</small></div><button class="h2-btn white">Follow</button></div>
-      <div class="h2-int-friends"><span class="h2-av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=70&q=80" alt="" /></span><span><strong>Sara, Sam + 4</strong> follow Live music</span></div>
     </div>
 
     <div class="teaser">
