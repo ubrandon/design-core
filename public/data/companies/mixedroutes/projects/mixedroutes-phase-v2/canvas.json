@@ -3,31 +3,31 @@
     {
       "file": "home.html",
       "x": -16,
-      "y": 3683,
+      "y": 7952,
       "width": 390
     },
     {
       "file": "discover.html",
       "x": 414,
-      "y": 3683,
+      "y": 7952,
       "width": 390
     },
     {
       "file": "home-v2.html",
       "x": 1865,
-      "y": 3665,
+      "y": 7934,
       "width": 390
     },
     {
       "file": "discover-v2-clean.html",
       "x": 2304,
-      "y": 3665,
+      "y": 7934,
       "width": 390
     },
     {
       "file": "discover-v2-flat.html",
       "x": 2723,
-      "y": 3680,
+      "y": 7949,
       "width": 390
     },
     {
@@ -39,13 +39,13 @@
     {
       "file": "home-v2-copy.html",
       "x": 1020,
-      "y": 3665,
+      "y": 7934,
       "width": 390
     },
     {
       "file": "home-v2-list.html",
       "x": 1450,
-      "y": 3665,
+      "y": 7934,
       "width": 390
     },
     {
@@ -81,25 +81,25 @@
     {
       "file": "nav-current-major-pages.html",
       "x": 3392,
-      "y": 3683,
+      "y": 7952,
       "width": 500
     },
     {
       "file": "card-variations-audit.html",
-      "x": 1591,
-      "y": -1297,
+      "x": -16,
+      "y": 5018,
       "width": 1440
     },
     {
       "file": "nav-updated-contextual-actions.html",
       "x": 3938,
-      "y": 3683,
+      "y": 7952,
       "width": 500
     },
     {
       "file": "nav-option-plus-left.html",
       "x": 4494,
-      "y": 3683,
+      "y": 7952,
       "width": 500
     },
     {
@@ -164,37 +164,31 @@
       "name": "chat-ai-collapsed"
     },
     {
-      "file": "card-variations-audit-copy.html",
-      "x": -3823,
-      "y": -2596,
-      "width": 1440
-    },
-    {
       "file": "card-variations-v2.html",
       "x": -4893,
       "y": -1267,
-      "width": 2958
+      "width": 2384
     }
   ],
   "texts": [
     {
-      "text": "Current designs",
+      "text": "Old designs",
       "x": -16,
-      "y": 3484,
-      "size": 72,
+      "y": 7614,
+      "size": 144,
       "id": "text-legacy-muc2kpol-1"
     },
     {
       "text": "Home",
       "x": -16,
-      "y": 3598,
+      "y": 7867,
       "size": 48,
       "id": "text-legacy-muc2kpol-2"
     },
     {
       "text": "Discover",
       "x": 414,
-      "y": 3598,
+      "y": 7867,
       "size": 48,
       "id": "text-legacy-muc2kpol-3"
     },
@@ -229,14 +223,14 @@
     {
       "text": "Archive",
       "x": 1020,
-      "y": 3484,
+      "y": 7753,
       "size": 72,
       "id": "text-legacy-muc2kpol-8"
     },
     {
       "text": "Current nav",
       "x": 3392,
-      "y": 3598,
+      "y": 7867,
       "size": 48,
       "id": "text-legacy-muc2kpol-9"
     },
@@ -250,14 +244,14 @@
     {
       "text": "Updated nav",
       "x": 3938,
-      "y": 3598,
+      "y": 7867,
       "size": 48,
       "id": "text-legacy-muc2kpol-11"
     },
     {
       "text": "Plus on left, centered title",
       "x": 4494,
-      "y": 3598,
+      "y": 7867,
       "size": 48,
       "id": "text-legacy-muc2kpol-12"
     },
@@ -288,6 +282,13 @@
       "y": 609,
       "size": 48,
       "id": "text-legacy-muc2kpol-17"
+    },
+    {
+      "text": "Archive",
+      "x": -16,
+      "y": 4795,
+      "size": 144,
+      "id": "text-mum2fuzd-1"
     }
   ]
 }

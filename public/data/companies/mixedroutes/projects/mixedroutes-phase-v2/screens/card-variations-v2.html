@@ -4,6 +4,7 @@
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap");
+  @import url("https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css");
 
   .cv2, .cv2 * { box-sizing: border-box; }
   .cv2 { padding: 34px 34px 44px; background: #eef2f5; color: #101724; font-family: "Geist", sans-serif; overflow-x: clip; }
@@ -27,8 +28,8 @@
   .cv2-change span { display: block; color: #5c6b7d; font-size: 12px; line-height: 1.4; }
 
   /* Bands and families */
-  .cv2-bands { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 40px; align-items: start; }
-  .cv2-cols { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 40px; align-items: start; margin-bottom: 0; }
+  .cv2-bands { display: grid; grid-template-columns: auto auto; justify-content: start; gap: 72px; align-items: start; }
+  .cv2-cols { display: grid; grid-auto-flow: column; grid-auto-columns: 326px; gap: 72px; align-items: start; margin-bottom: 0; }
   .cv2-fam { min-width: 0; }
   .cv2-fam-head { padding: 2px 2px 14px; border-bottom: 1px solid #dfe5ea; margin-bottom: 16px; }
   .cv2-fam-title { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
@@ -75,10 +76,6 @@
   .cv2-btn.sm { height: 28px; padding: 0 12px; font-size: 12px; }
   .cv2-btn.link { height: auto; padding: 0; background: none; color: #2563eb; font-size: 13px; }
   .cv2-card { border-radius: 22px; background: #fff; box-shadow: 0 2px 6px rgba(16,24,40,.04), 0 10px 26px rgba(16,24,40,.08); overflow: hidden; position: relative; }
-  .cv2-x { position: absolute; right: 8px; top: 8px; width: 28px; height: 28px; display: grid; place-items: center; color: #8a94a2; font-size: 16px; }
-  .cv2-chip { height: 22px; padding: 0 8px; border-radius: 999px; display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; white-space: nowrap; }
-  .cv2-chip.int { background: color-mix(in srgb, var(--int, #16a34a) 13%, #fff); color: color-mix(in srgb, var(--int, #16a34a) 78%, #101724); }
-  .cv2-chip.int i { font-size: 10px; opacity: .7; }
 
   /* Event + place tiles: flat, no chrome */
   .cv2-tiles { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px 14px; align-items: start; }
@@ -207,24 +204,12 @@
   .cv2-pair img + img { margin-left: -9px; }
 
   /* Prompts */
-  .cv2-pr { padding: 14px 42px 14px 14px; display: grid; grid-template-columns: auto 1fr; column-gap: 12px; row-gap: 10px; align-items: start; }
-  .cv2-pr-ic { grid-row: 1 / span 2; width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; font-size: 21px; background: color-mix(in srgb, var(--acc,#14b8a6) 14%, #fff); color: color-mix(in srgb, var(--acc,#14b8a6) 72%, #101724); object-fit: cover; }
+  .cv2-pr { padding: 14px; display: grid; grid-template-columns: auto 1fr; column-gap: 12px; row-gap: 10px; align-items: start; }
+  .cv2-pr-ic { grid-row: 1 / span 2; width: 44px; height: 44px; border-radius: 13px; object-fit: cover; }
   .cv2-pr .c { min-width: 0; }
   .cv2-pr strong { display: block; font-size: 15px; font-weight: 700; line-height: 1.3; }
-  .cv2-pr .c span { display: block; margin-top: 2px; color: #5c6b7d; font-size: 13px; line-height: 1.4; }
+  .cv2-pr .c span { display: block; margin-top: 2px; color: #5c6b7d; font-size: 13px; line-height: 1.35; }
   .cv2-pr .cv2-actions { grid-column: 2; }
-  .cv2-invites { padding: 13px 14px; display: flex; align-items: center; gap: 11px; }
-  .cv2-invites .c { flex: 1; min-width: 0; }
-  .cv2-invites strong { display: block; font-size: 15px; font-weight: 700; }
-  .cv2-invites small { display: block; color: #5c6b7d; font-size: 12px; margin-top: 2px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-  .cv2-count { min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; display: grid; place-items: center; background: #0ca678; color: #fff; font-size: 12px; font-weight: 700; }
-  .cv2-group-pr .item { display: flex; align-items: center; gap: 11px; padding: 12px 14px; }
-  .cv2-group-pr .item + .item { border-top: 1px solid #edf1f4; }
-  .cv2-group-pr .ic { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; font-size: 18px; flex-shrink: 0; background: color-mix(in srgb, var(--acc) 14%, #fff); color: color-mix(in srgb, var(--acc) 72%, #101724); }
-  .cv2-group-pr .c { flex: 1; min-width: 0; }
-  .cv2-group-pr strong { display: block; font-size: 14px; font-weight: 700; }
-  .cv2-group-pr small { display: block; color: #5c6b7d; font-size: 12px; margin-top: 1px; }
-  .cv2-group-pr .item > i { color: #8a94a2; font-size: 15px; }
   .cv2-teaser { border-radius: 22px; padding: 1.5px; background: linear-gradient(135deg,#14b8a6,#3b82f6); }
   .cv2-teaser .in { border-radius: 20.5px; background: linear-gradient(135deg,rgba(20,184,166,.07),rgba(59,130,246,.07)), #fff; padding: 13px 14px; display: flex; align-items: center; gap: 12px; }
   .cv2-teaser .sp { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg,#14b8a6,#3b82f6); color: #fff; font-size: 20px; flex-shrink: 0; }
@@ -232,16 +217,20 @@
   .cv2-teaser strong { display: block; font-size: 15px; font-weight: 700; }
   .cv2-teaser span { display: block; margin-top: 2px; color: #5c6b7d; font-size: 13px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
   .cv2-teaser .in > i { color: #3b82f6; font-size: 17px; }
-  .cv2-plus { height: 18px; padding: 0 6px; border-radius: 5px; display: inline-flex; align-items: center; gap: 3px; background: linear-gradient(135deg,#fde68a,#f59e0b); color: #5b3a00; font-size: 9px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
 
   /* Home updates: one card layout (Home v2 stack card), only icon, color, copy and action change */
-  .cv2-sc { position: relative; display: grid; grid-template-columns: auto 1fr; row-gap: 8px; column-gap: 14px; padding: 16px 46px 16px 16px; border-radius: 20px; background: #fff; border: 1px solid rgba(16,23,36,.08); box-shadow: 0 2px 6px rgba(16,24,40,.05), 0 14px 32px rgba(16,24,40,.1); }
+  .cv2-sc { position: relative; min-height: 117px; align-content: center; display: grid; grid-template-columns: auto 1fr; row-gap: 8px; column-gap: 14px; padding: 16px 46px 16px 16px; border-radius: 20px; background: #fff; border: 1px solid rgba(16,23,36,.08); box-shadow: 0 2px 6px rgba(16,24,40,.05), 0 14px 32px rgba(16,24,40,.1); }
   .cv2-sc .ic { grid-row: 1 / span 2; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 22px; background: color-mix(in srgb, var(--acc) 14%, #fff); color: color-mix(in srgb, var(--acc) 72%, #101724); }
   .cv2-sc .c { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
   .cv2-sc strong { font-size: 16px; font-weight: 700; line-height: 1.2; color: #1a2332; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .cv2-sc .c span { color: #5c6b7d; font-size: 14px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .cv2-sc .cta { grid-column: 2; justify-self: start; padding: 0; border: 0; background: none; color: #2563eb; font-size: 15px; font-weight: 700; line-height: 1; }
   .cv2-sc .x { position: absolute; top: 8px; right: 8px; width: 36px; height: 36px; display: grid; place-items: center; color: #858b94; font-size: 18px; }
+  .cv2-sc.welcome { background: linear-gradient(135deg,#14b8a6,#3b82f6); border-color: transparent; }
+  .cv2-sc.welcome .ic { background: rgba(255,255,255,.2); color: #fff; }
+  .cv2-sc.welcome strong, .cv2-sc.welcome .cta { color: #fff; }
+  .cv2-sc.welcome .c span, .cv2-sc.welcome .x { color: rgba(255,255,255,.85); }
+  .cv2-sc:not(:has(.cta)) .ic { grid-row: auto; }
   .cv2-sc-pile { display: grid; padding-bottom: 28px; }
   .cv2-sc-pile .cv2-sc { grid-area: 1 / 1; transform: translateY(calc(var(--i) * 14px)) scale(calc(1 - var(--i) * .04)); transform-origin: top center; }
   .cv2-sc-pile .back1 { z-index: 1; box-shadow: 0 3px 10px rgba(0,0,0,.05); }
@@ -249,59 +238,44 @@
   .cv2-sc-pile .cv2-sc:not(.back1):not(.back2) { z-index: 2; }
   .cv2-sc-pile .back1 > *, .cv2-sc-pile .back2 > * { visibility: hidden; }
 
-  /* People + status */
-  .cv2-status { padding: 12px 14px; display: flex; align-items: center; gap: 11px; }
-  .cv2-me { position: relative; width: 40px; height: 40px; flex-shrink: 0; }
-  .cv2-me img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
-  .cv2-me .dot, .cv2-mini .dot { position: absolute; right: -1px; bottom: -1px; width: 13px; height: 13px; border-radius: 50%; border: 2.5px solid #fff; background: var(--st, #22c55e); }
-  .cv2-status .c { flex: 1; min-width: 0; }
-  .cv2-status strong { display: block; font-size: 14px; font-weight: 700; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-  .cv2-status small { display: flex; align-items: center; gap: 5px; color: #5c6b7d; font-size: 12px; margin-top: 2px; }
-  .cv2-avail { display: flex; flex-wrap: wrap; gap: 6px; }
-  .cv2-avail span { height: 30px; padding: 0 11px; border-radius: 999px; background: #fff; border: 1px solid #dfe5ea; display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; color: #26324a; }
-  .cv2-avail span.on { border-color: #101724; box-shadow: inset 0 0 0 1px #101724; }
-  .cv2-avail b { width: 9px; height: 9px; border-radius: 50%; background: var(--st); }
-  .cv2-checkin { padding: 14px; display: flex; flex-direction: column; gap: 11px; }
-  .cv2-checkin .top { display: flex; align-items: center; gap: 11px; }
-  .cv2-checkin .pin { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; background: #dcfce7; color: #15803d; font-size: 20px; flex-shrink: 0; }
-  .cv2-checkin strong { display: block; font-size: 15px; font-weight: 700; }
-  .cv2-checkin small { display: block; color: #5c6b7d; font-size: 12px; margin-top: 2px; }
+  /* People */
+  .cv2-mini .dot { position: absolute; right: -1px; bottom: -1px; width: 13px; height: 13px; border-radius: 50%; border: 2.5px solid #fff; background: var(--st, #22c55e); }
   .cv2-rail { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
   .cv2-mini { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
-  .cv2-mini .wrap { position: relative; width: 64px; height: 64px; }
-  .cv2-mini .wrap img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
-  .cv2-mini .wrap img.sq { border-radius: 16px; }
+  .cv2-mini .wrap { position: relative; width: 52px; height: 52px; }
+  .cv2-mini .wrap img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
+  .cv2-mini .wrap img.sq { border-radius: 14px; }
   .cv2-mini .dot { width: 15px; height: 15px; border-color: #eef2f5; right: 1px; bottom: 1px; }
   .cv2-unread { position: absolute; right: -4px; bottom: -4px; min-width: 24px; height: 24px; padding: 0 5px; border: 2px solid #eef2f5; border-radius: 999px; display: grid; place-items: center; background: #0ca678; color: #fff; font-size: 12px; font-weight: 700; }
-  .cv2-mini strong { max-width: 100%; font-size: 14px; font-weight: 700; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .cv2-mini strong { max-width: 100%; font-size: 13px; font-weight: 700; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
   .cv2-mini small { margin-top: -5px; max-width: 100%; color: #5c6b7d; font-size: 12px; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
   .cv2-add { height: 28px; padding: 0 12px; border: 0; border-radius: 999px; background: #e1e3e6; color: #101724; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
-  .cv2-add.done { background: #fff; border: 1px solid #d6dce2; color: #5c6b7d; }
-  .cv2-into { padding: 12px 14px; display: flex; align-items: center; gap: 10px; }
-  .cv2-into .cv2-av img { width: 28px; height: 28px; margin-left: -9px; }
-  .cv2-into .cv2-av img:first-child { margin-left: 0; }
-  .cv2-into .c { flex: 1; min-width: 0; font-size: 13px; color: #5c6b7d; }
-  .cv2-into strong { color: #101724; }
+  .cv2-add.done { background: transparent; border: 1px solid #d3d9df; color: #8a94a2; }
+  .cv2-railrow { display: flex; flex-direction: column; gap: 12px; }
+  .cv2-railrow .hd { display: flex; align-items: center; justify-content: space-between; }
+  .cv2-railrow .hd strong { font-size: 16px; font-weight: 800; }
+  .cv2-railrow .hd .more { width: 32px; height: 32px; border-radius: 50%; background: #e1e3e6; color: #101724; display: grid; place-items: center; font-size: 16px; flex-shrink: 0; }
+  .cv2-railrow .cv2-add { margin-top: auto; }
 
   /* Interests + business */
-  .cv2-chiprow { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
   .cv2-static { color: #5c6b7d; font-size: 12px; font-weight: 600; }
-  .cv2-int-head { padding: 16px; background: linear-gradient(160deg, color-mix(in srgb, var(--int) 22%, #fff), color-mix(in srgb, var(--int) 8%, #fff)); display: flex; flex-direction: column; gap: 12px; }
+  .cv2-int-head { padding: 16px; background: linear-gradient(160deg, color-mix(in srgb, var(--int) 15%, #fff), color-mix(in srgb, var(--int) 5%, #fff)); display: flex; flex-direction: column; gap: 12px; }
   .cv2-int-head .top { display: flex; align-items: center; gap: 12px; }
   .cv2-int-head .emo { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: #fff; font-size: 28px; box-shadow: 0 3px 10px rgba(16,24,40,.08); }
   .cv2-int-head .c { flex: 1; min-width: 0; }
   .cv2-int-head strong { display: block; font-size: 19px; font-weight: 800; letter-spacing: -.01em; }
   .cv2-int-head small { display: block; color: #5c6b7d; font-size: 12px; margin-top: 2px; }
-  .cv2-int-head .cv2-chip { background: rgba(255,255,255,.75); color: #26324a; }
+  .cv2-int-head .cv2-btn.white { box-shadow: none; }
+  .cv2-int-friends { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: 14px; background: rgba(255,255,255,.7); color: #5c6b7d; font-size: 12px; }
+  .cv2-int-friends .cv2-av img { width: 24px; height: 24px; margin-left: -8px; }
+  .cv2-int-friends .cv2-av img:first-child { margin-left: 0; }
+  .cv2-int-friends strong { display: inline; font-size: inherit; font-weight: 700; letter-spacing: 0; color: #101724; }
   .cv2-biz .cover { height: 84px; background: center / cover no-repeat; }
   .cv2-biz .body { padding: 0 14px 14px; display: flex; flex-direction: column; gap: 10px; }
   .cv2-biz .logo { width: 52px; height: 52px; margin-top: -26px; border-radius: 15px; border: 3px solid #fff; background: #101724; color: #fff; display: grid; place-items: center; font-size: 22px; box-shadow: 0 3px 10px rgba(16,24,40,.12); }
   .cv2-biz strong { display: flex; align-items: center; gap: 5px; font-size: 16px; font-weight: 800; }
   .cv2-biz strong i { color: #2563eb; font-size: 16px; }
   .cv2-biz small { display: block; color: #5c6b7d; font-size: 12px; margin-top: 2px; }
-  .cv2-cap { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
-  .cv2-meter { height: 6px; border-radius: 999px; background: #eceff3; overflow: hidden; }
-  .cv2-meter b { display: block; height: 100%; width: 100%; background: linear-gradient(90deg,#fbbf24,#f59e0b); border-radius: inherit; }
 
   .cv2-rules { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
   .cv2-rule { display: grid; grid-template-columns: 94px 1fr; gap: 10px; font-size: 12px; line-height: 1.35; }
@@ -514,6 +488,30 @@
             <div class="cv2-obj"><span class="cv2-pin"><i class="ph-fill ph-map-pin"></i></span><div class="c"><strong>Ultra Coffeebar</strong><small>Coffee shop · 0.4 mi</small></div><button class="cv2-btn soft sm">Message</button></div>
           </div>
         </article>
+
+        <article class="cv2-spec">
+          <div class="cv2-spec-head"><span class="cv2-spec-name">Recent chats</span></div>
+          <div class="cv2-railrow">
+            <div class="hd"><strong>Recent chats</strong><span class="more"><i class="ph-bold ph-caret-right"></i></span></div>
+          <div class="cv2-rail">
+            <div class="cv2-mini"><span class="wrap"><img class="sq" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=120&q=80" alt="" /><span class="cv2-unread">3</span></span><strong>Weekend Crew</strong><small>Sara: who's in?</small></div>
+            <div class="cv2-mini"><span class="wrap"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="" /><span class="cv2-unread">1</span></span><strong>Sara</strong><small>See you at 7!</small></div>
+            <div class="cv2-mini"><span class="wrap"><img class="sq" src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=120&q=80" alt="" /></span><strong>Hiking Club</strong><small>Trail is open 🎉</small></div>
+          </div>
+          </div>
+        </article>
+
+        <article class="cv2-spec">
+          <div class="cv2-spec-head"><span class="cv2-spec-name">Suggested people</span></div>
+          <div class="cv2-railrow">
+            <div class="hd"><strong>Suggested people</strong><span class="more"><i class="ph-bold ph-caret-right"></i></span></div>
+          <div class="cv2-rail">
+            <div class="cv2-mini"><span class="wrap"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80" alt="" /></span><strong>Devon</strong><small>3 mutual</small><button class="cv2-add">Add</button></div>
+            <div class="cv2-mini"><span class="wrap"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="" /></span><strong>Maya</strong><small>Also into climbing</small><button class="cv2-add">Add</button></div>
+            <div class="cv2-mini"><span class="wrap"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=120&q=80" alt="" /></span><strong>Jordan</strong><small>From contacts</small><button class="cv2-add done"><i class="ph ph-check"></i>Added</button></div>
+          </div>
+          </div>
+        </article>
       </div>
     </section>
   </main>
@@ -529,204 +527,82 @@
       </header>
       <div class="cv2-stack">
 
-        <article class="cv2-spec">
-          <div class="cv2-spec-head"><span class="cv2-spec-name">Pending invites</span></div>
-          <div class="cv2-card cv2-invites"><span class="cv2-av"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=70&q=80" alt="" style="width:30px;height:30px;" /><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=70&q=80" alt="" style="width:30px;height:30px;" /></span><div class="c"><strong>2 invites waiting on you</strong><small>Hike at Craggy Gardens · Pizza night</small></div><span class="cv2-count">2</span><i class="ph ph-caret-right" style="color:#8a94a2;"></i></div>
-        
-          <p class="cv2-tmp same">Same</p>
-        </article>
-
-        <article class="cv2-spec">
-          <div class="cv2-spec-head"><span class="cv2-spec-name">Plan changed</span></div>
-          <div class="cv2-card cv2-pr" style="--acc:#2563eb;"><span class="cv2-x"><i class="ph ph-x"></i></span><span class="cv2-pr-ic"><i class="ph-fill ph-clock-clockwise"></i></span><div class="c"><strong>Pizza night moved to 8 PM</strong><span>Maya changed the time. You're going.</span></div><div class="cv2-actions"><button class="cv2-btn link">View plan</button></div></div>
-        
-          <p class="cv2-tmp new">New</p>
-        </article>
-
-        <article class="cv2-spec">
-          <div class="cv2-spec-head"><span class="cv2-spec-name">Setup</span></div>
-          <div class="cv2-card cv2-group-pr">
-            <div class="item" style="--acc:#14b8a6;"><span class="ic"><i class="ph-fill ph-bell-ringing"></i></span><div class="c"><strong>Turn on notifications</strong><small>So you never miss a plan update</small></div><i class="ph ph-caret-right"></i></div>
-            <div class="item" style="--acc:#3b82f6;"><span class="ic"><i class="ph-fill ph-user-plus"></i></span><div class="c"><strong>Invite your friends</strong><small>Planning is better together</small></div><i class="ph ph-caret-right"></i></div>
-          </div>
-        
-          <p class="cv2-tmp chg">Changed: was Home update banner stack, now one list</p>
-        </article>
 
 
         <article class="cv2-spec">
           <div class="cv2-spec-head"><span class="cv2-spec-name">Shared interest</span></div>
           <div class="cv2-card" style="padding:14px;display:flex;flex-direction:column;gap:12px;">
             <div class="cv2-who" style="font-size:14px;"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=90&q=80" alt="" style="width:42px;height:42px;" /><span>Sam wants to do more<br /><strong style="font-size:16px;">Hiking 🥾</strong></span></div>
-            <div class="cv2-actions" style="justify-content:flex-end;"><button class="cv2-btn soft sm">Not for me</button><button class="cv2-btn ink sm">Me too</button></div>
+            <div class="cv2-actions" style="justify-content:flex-end;"><button class="cv2-btn soft sm">Not for me</button><button class="cv2-btn pri sm">Me too</button></div>
           </div>
-        
-          <p class="cv2-tmp same">Same</p>
+        </article>
+
+        <article class="cv2-spec">
+          <div class="cv2-spec-head"><span class="cv2-spec-name">Suggested interest</span></div>
+          <div class="cv2-card">
+            <div class="cv2-int-head" style="--int:#e0483a;">
+              <div class="top"><span class="emo">🎸</span><div class="c"><strong>Live music</strong><small>Music · 42 events near you</small></div><button class="cv2-btn white sm">Follow</button></div>
+              <div class="cv2-int-friends"><span class="cv2-av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=70&q=80" alt="" /></span><span><strong>Sara, Sam + 4</strong> follow Live music</span></div>
+            </div>
+          </div>
         </article>
 
         <article class="cv2-spec">
           <div class="cv2-spec-head"><span class="cv2-spec-name">Saved event reminder</span></div>
-          <div class="cv2-card cv2-pr"><span class="cv2-x"><i class="ph ph-x"></i></span><img class="cv2-pr-ic" src="https://images.unsplash.com/photo-1527224857830-43a7acc85260?auto=format&fit=crop&w=100&q=80" alt="" /><div class="c"><strong>Comedy Festival is Friday</strong><span>You saved it. Plan it with friends?</span></div><div class="cv2-actions"><button class="cv2-btn pri sm">Plan it</button></div></div>
-        
-          <p class="cv2-tmp new">New</p>
+          <div class="cv2-card cv2-pr"><img class="cv2-pr-ic" src="https://images.unsplash.com/photo-1527224857830-43a7acc85260?auto=format&fit=crop&w=100&q=80" alt="" /><div class="c"><strong>Comedy Festival is Friday</strong><span>You saved it. Plan it with friends?</span></div><div class="cv2-actions"><button class="cv2-btn pri sm">Plan it</button></div></div>
         </article>
 
         <article class="cv2-spec">
           <div class="cv2-spec-head"><span class="cv2-spec-name">Group nudge</span></div>
-          <div class="cv2-card cv2-pr"><span class="cv2-x"><i class="ph ph-x"></i></span><img class="cv2-pr-ic" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=100&q=80" alt="" /><div class="c"><strong>Weekend Crew is quiet</strong><span>Nothing planned this month.</span></div><div class="cv2-actions"><button class="cv2-btn pri sm"><i class="ph-fill ph-sparkle"></i>Get ideas</button></div></div>
-        
-          <p class="cv2-tmp chg">Changed: dismiss added, also used for quiet friends</p>
+          <div class="cv2-card cv2-pr"><img class="cv2-pr-ic" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=100&q=80" alt="" /><div class="c"><strong>Weekend Crew is quiet</strong><span>Nothing planned this month.</span></div><div class="cv2-actions"><button class="cv2-btn pri sm"><i class="ph-fill ph-sparkle"></i>Get ideas</button></div></div>
         </article>
 
         <article class="cv2-spec">
           <div class="cv2-spec-head"><span class="cv2-spec-name">Weekend teaser</span></div>
           <div class="cv2-teaser"><div class="in"><span class="sp"><i class="ph-fill ph-sparkle"></i></span><div class="c"><strong>This weekend near Asheville</strong><span>Comedy, brunch, live music and more</span></div><i class="ph ph-caret-right"></i></div></div>
-        
-          <p class="cv2-tmp same">Same</p>
         </article>
 
-        <article class="cv2-spec">
-          <div class="cv2-spec-head"><span class="cv2-spec-name">Try Plus</span></div>
-          <div class="cv2-card cv2-pr" style="--acc:#f59e0b;"><span class="cv2-x"><i class="ph ph-x"></i></span><span class="cv2-pr-ic"><i class="ph-fill ph-crown-simple"></i></span><div class="c"><strong>Try Plus free for 7 days</strong><span>Unlimited asks and group ideas.</span></div><div class="cv2-actions"><button class="cv2-btn link">Start free trial</button></div></div>
-        
-          <p class="cv2-tmp new">New</p>
-        </article>
       </div>
     </section>
 
+
     <!-- HOME UPDATES -->
-    <section class="cv2-fam" style="--tint:#fdeee0;--tone:#c2680a;">
+    <section class="cv2-fam" style="--tint:#fce7f3;--tone:#be185d;">
       <header class="cv2-fam-head">
         <div class="cv2-fam-title"><span class="cv2-fam-icon"><i class="ph-fill ph-stack"></i></span><h3>Home updates</h3></div>
       </header>
       <div class="cv2-stack">
         <article class="cv2-spec">
           <div class="cv2-spec-head"><span class="cv2-spec-name">How it looks on Home</span></div>
-          <div class="cv2-sc-pile"><div class="cv2-sc back2" style="--i:2;--acc:#3b82f6;"><span class="x"><i class="ph ph-x"></i></span><span class="ic"><i class="ph-fill ph-users"></i></span><div class="c"><strong>Invite your friends</strong><span>Send a link and make planning better together.</span></div><button class="cta">Share invite</button></div><div class="cv2-sc back1" style="--i:1;--acc:#14b8a6;"><span class="x"><i class="ph ph-x"></i></span><span class="ic"><i class="ph-fill ph-bell-ringing"></i></span><div class="c"><strong>Notifications are off</strong><span>Turn them on so you never miss a plan update.</span></div><button class="cta">Turn on</button></div><div class="cv2-sc" style="--i:0;--acc:#0ca678;"><span class="x"><i class="ph ph-x"></i></span><span class="ic"><i class="ph-fill ph-envelope-simple"></i></span><div class="c"><strong>2 invites waiting on you</strong><span>Hike at Craggy Gardens · Pizza night</span></div><button class="cta">Reply</button></div></div>
+          <div class="cv2-sc-pile"><div class="cv2-sc back2" style="--i:2;--acc:#7c3aed;"><span class="x"><i class="ph ph-x"></i></span><span class="ic"><i class="ph-fill ph-users"></i></span><div class="c"><strong>Invite your friends</strong><span>Send a link and make planning better together.</span></div><button class="cta">Share invite</button></div><div class="cv2-sc back1" style="--i:1;--acc:#3b82f6;"><span class="x"><i class="ph ph-x"></i></span><span class="ic"><i class="ph-fill ph-bell-ringing"></i></span><div class="c"><strong>Notifications are off</strong><span>Turn them on so you never miss a plan update.</span></div><button class="cta">Turn on</button></div><div class="cv2-sc" style="--i:0;--acc:#0ca678;"><span class="x"><i class="ph ph-x"></i></span><span class="ic"><i class="ph-fill ph-envelope-simple"></i></span><div class="c"><strong>2 invites waiting on you</strong><span>Hike at Craggy Gardens · Pizza night</span></div><button class="cta">Reply</button></div></div>
+        </article>
+        <article class="cv2-spec">
+          <div class="cv2-spec-head"><span class="cv2-spec-name">Welcome</span></div>
+          <div class="cv2-sc welcome" style="--acc:#14b8a6;"><span class="x"><i class="ph ph-x"></i></span><span class="ic"><i class="ph-fill ph-hand-waving"></i></span><div class="c"><strong>Welcome to MixedRoutes</strong><span>Let's get you set up in a few quick steps.</span></div></div>
         </article>
         <article class="cv2-spec">
           <div class="cv2-spec-head"><span class="cv2-spec-name">Invites</span></div>
           <div class="cv2-sc" style="--acc:#0ca678;"><span class="x"><i class="ph ph-x"></i></span><span class="ic"><i class="ph-fill ph-envelope-simple"></i></span><div class="c"><strong>2 invites waiting on you</strong><span>Hike at Craggy Gardens · Pizza night</span></div><button class="cta">Reply</button></div>
         </article>
         <article class="cv2-spec">
+          <div class="cv2-spec-head"><span class="cv2-spec-name">Plus payment problem</span></div>
+          <div class="cv2-sc" style="--acc:#dc2626;"><span class="x"><i class="ph ph-x"></i></span><span class="ic"><i class="ph-fill ph-credit-card"></i></span><div class="c"><strong>Plus payment failed</strong><span>Update your card to keep Plus.</span></div><button class="cta">Update payment</button></div>
+        </article>
+        <article class="cv2-spec">
           <div class="cv2-spec-head"><span class="cv2-spec-name">Notifications off</span></div>
-          <div class="cv2-sc" style="--acc:#14b8a6;"><span class="x"><i class="ph ph-x"></i></span><span class="ic"><i class="ph-fill ph-bell-ringing"></i></span><div class="c"><strong>Notifications are off</strong><span>Turn them on so you never miss a plan update.</span></div><button class="cta">Turn on</button></div>
+          <div class="cv2-sc" style="--acc:#3b82f6;"><span class="x"><i class="ph ph-x"></i></span><span class="ic"><i class="ph-fill ph-bell-ringing"></i></span><div class="c"><strong>Notifications are off</strong><span>Turn them on so you never miss a plan update.</span></div><button class="cta">Turn on</button></div>
         </article>
         <article class="cv2-spec">
           <div class="cv2-spec-head"><span class="cv2-spec-name">Invite friends</span></div>
-          <div class="cv2-sc" style="--acc:#3b82f6;"><span class="x"><i class="ph ph-x"></i></span><span class="ic"><i class="ph-fill ph-users"></i></span><div class="c"><strong>Invite your friends</strong><span>Send a link and make planning better together.</span></div><button class="cta">Share invite</button></div>
+          <div class="cv2-sc" style="--acc:#7c3aed;"><span class="x"><i class="ph ph-x"></i></span><span class="ic"><i class="ph-fill ph-users"></i></span><div class="c"><strong>Invite your friends</strong><span>Send a link and make planning better together.</span></div><button class="cta">Share invite</button></div>
         </article>
+
         <article class="cv2-spec">
           <div class="cv2-spec-head"><span class="cv2-spec-name">Try Plus</span></div>
           <div class="cv2-sc" style="--acc:#ca8a04;"><span class="x"><i class="ph ph-x"></i></span><span class="ic"><i class="ph-fill ph-crown-simple"></i></span><div class="c"><strong>Try Plus free for 7 days</strong><span>Unlimited asks and group ideas.</span></div><button class="cta">Start free trial</button></div>
         </article>
       </div>
     </section>
-
-    <!-- PEOPLE + STATUS -->
-    <section class="cv2-fam" style="--tint:#e0f2fe;--tone:#0369a1;">
-      <header class="cv2-fam-head">
-        <div class="cv2-fam-title"><span class="cv2-fam-icon"><i class="ph-fill ph-users-three"></i></span><h3>People + status</h3></div>
-      </header>
-      <div class="cv2-stack">
-        <article class="cv2-spec">
-          <div class="cv2-spec-head"><span class="cv2-spec-name">Status line</span></div>
-          <div class="cv2-card cv2-status"><span class="cv2-me"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=90&q=80" alt="" /><span class="dot" style="--st:#14b8a6;"></span></span><div class="c"><strong>Down to hang · Coffee ☕</strong><small><span class="cv2-av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=60&q=80" alt="" style="width:16px;height:16px;" /><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=60&q=80" alt="" style="width:16px;height:16px;" /></span>2 friends nearby</small></div><i class="ph ph-caret-down" style="color:#8a94a2;"></i></div>
-        
-          <p class="cv2-tmp new">New</p>
-        </article>
-
-        <article class="cv2-spec">
-          <div class="cv2-spec-head"><span class="cv2-spec-name">Availability + activity</span></div>
-          <div class="cv2-avail" style="margin-bottom:8px;"><span style="--st:#22c55e;"><b></b>Online</span><span class="on" style="--st:#14b8a6;"><b></b>Down to hang</span><span style="--st:#f59e0b;"><b></b>Heads down</span><span style="--st:#a3adb9;"><b></b>Invisible</span></div>
-          <div class="cv2-avail"><span class="on">☕ Coffee</span><span>🥾 On a walk</span><span>🍻 Drinks</span><span>🎯 Trivia</span></div>
-        
-          <p class="cv2-tmp new">New</p>
-        </article>
-
-        <article class="cv2-spec">
-          <div class="cv2-spec-head"><span class="cv2-spec-name">Your check-in</span></div>
-          <div class="cv2-card cv2-checkin">
-            <div class="top"><span class="pin"><i class="ph-fill ph-map-pin"></i></span><div><strong>Ultra Coffeebar</strong><small>Since 4:15 PM · Clears in 2 hours</small></div></div>
-            <div class="cv2-foot"><span class="cv2-static"><i class="ph ph-users"></i> Friends can see this</span><button class="cv2-btn line sm">Check out</button></div>
-          </div>
-        
-          <p class="cv2-tmp new">New</p>
-        </article>
-
-        <article class="cv2-spec">
-          <div class="cv2-spec-head"><span class="cv2-spec-name">Recent chats</span></div>
-          <div class="cv2-rail">
-            <div class="cv2-mini"><span class="wrap"><img class="sq" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=120&q=80" alt="" /><span class="cv2-unread">3</span></span><strong>Weekend Crew</strong><small>Sara: who's in?</small></div>
-            <div class="cv2-mini"><span class="wrap"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="" /><span class="cv2-unread">1</span></span><strong>Sara</strong><small>See you at 7!</small></div>
-            <div class="cv2-mini"><span class="wrap"><img class="sq" src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=120&q=80" alt="" /></span><strong>Hiking Club</strong><small>Trail is open 🎉</small></div>
-          </div>
-        
-          <p class="cv2-tmp same">Same</p>
-        </article>
-
-        <article class="cv2-spec">
-          <div class="cv2-spec-head"><span class="cv2-spec-name">Suggested people</span></div>
-          <div class="cv2-rail">
-            <div class="cv2-mini"><span class="wrap"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80" alt="" /></span><strong>Devon</strong><small>3 mutual</small><button class="cv2-add">Add</button></div>
-            <div class="cv2-mini"><span class="wrap"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="" /></span><strong>Maya</strong><small>Also into climbing</small><button class="cv2-add">Add</button></div>
-            <div class="cv2-mini"><span class="wrap"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=120&q=80" alt="" /></span><strong>Jordan</strong><small>From contacts</small><button class="cv2-add done"><i class="ph ph-check"></i>Added</button></div>
-          </div>
-        
-          <p class="cv2-tmp chg">Changed: adds shared-interest reason</p>
-        </article>
-
-        <article class="cv2-spec">
-          <div class="cv2-spec-head"><span class="cv2-spec-name">Friends into this</span></div>
-          <div class="cv2-card cv2-into"><span class="cv2-av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=70&q=80" alt="" /><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=70&q=80" alt="" /></span><div class="c"><strong>Sara, Sam + 4</strong> are into live music</div><i class="ph ph-caret-right" style="color:#8a94a2;"></i></div>
-        
-          <p class="cv2-tmp new">New</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- INTERESTS, BUSINESS, PLUS -->
-    <section class="cv2-fam" style="--tint:#dcfce7;--tone:#15803d;">
-      <header class="cv2-fam-head">
-        <div class="cv2-fam-title"><span class="cv2-fam-icon"><i class="ph-fill ph-tag"></i></span><h3>Interests + pages</h3></div>
-      </header>
-      <div class="cv2-stack">
-        <article class="cv2-spec">
-          <div class="cv2-spec-head"><span class="cv2-spec-name">Interest chips</span></div>
-          <div class="cv2-card" style="padding:13px 14px;display:flex;flex-direction:column;gap:10px;">
-            <div class="cv2-chiprow"><span class="cv2-chip int" style="--int:#7c3aed;">🎷 Jazz <i class="ph ph-caret-right"></i></span><span class="cv2-chip int" style="--int:#16a34a;">🥾 Hiking <i class="ph ph-caret-right"></i></span><span class="cv2-chip int" style="--int:#ea580c;">Matches your Trivia <i class="ph ph-caret-right"></i></span></div>
-            <div class="cv2-chiprow"><span class="cv2-static">Coffee shop</span><span class="cv2-dot" style="color:#8a94a2;"></span><span class="cv2-static">Rooftop bar</span><span class="cv2-dot" style="color:#8a94a2;"></span><span class="cv2-static">Board games</span></div>
-          </div>
-        
-          <p class="cv2-tmp new">New</p>
-        </article>
-
-        <article class="cv2-spec">
-          <div class="cv2-spec-head"><span class="cv2-spec-name">Interest page header</span></div>
-          <div class="cv2-card">
-            <div class="cv2-int-head" style="--int:#7c3aed;">
-              <div class="top"><span class="emo">🎸</span><div class="c"><strong>Live music</strong><small>Music · 42 events near you</small></div><button class="cv2-btn ink sm">Follow</button></div>
-              <div class="cv2-chiprow"><span class="cv2-chip">Jazz</span><span class="cv2-chip">Bluegrass</span><span class="cv2-chip">Indie</span><span class="cv2-chip">Open mic</span></div>
-            </div>
-          </div>
-        
-          <p class="cv2-tmp new">New</p>
-        </article>
-
-        <article class="cv2-spec">
-          <div class="cv2-spec-head"><span class="cv2-spec-name">Plus limit</span></div>
-          <div class="cv2-card cv2-cap">
-            <div class="cv2-foot"><strong style="font-size:15px;">Ideas for Weekend Crew</strong><span class="cv2-plus"><i class="ph-fill ph-crown-simple"></i>Plus</span></div>
-            <div class="cv2-meter"><b></b></div>
-            <span style="color:#5c6b7d;font-size:13px;">You've used this week's free idea for this group.</span>
-            <div class="cv2-actions"><button class="cv2-btn pri sm">Get unlimited with Plus</button><button class="cv2-btn link">Maybe later</button></div>
-          </div>
-        
-          <p class="cv2-tmp new">New</p>
-        </article>
-      </div>
-    </section>
-
   </main>
   </div>
   </div>
