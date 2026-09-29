@@ -3,7 +3,7 @@
     {
       "id": "v2-app",
       "name": "MixedRoutes V2 app",
-      "description": "Clickable V2 app: Home (active, few friends, day one), Friend activity, Discover with filters and ask, Plans, Chats, You, and detail pages.",
+      "description": "Clickable V2 app: Home (active, few friends, day one), Discover with filters and ask, Plans, Chats, You, and detail pages.",
       "device": "mobile"
     }
   ]

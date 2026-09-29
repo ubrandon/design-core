@@ -8,7 +8,7 @@
 
   html, body { margin: 0; height: 100%; background: #ffffff; overflow: hidden; }
 
-  /* Screen CSS: Home, Friend activity, empty states (from home-v2-capped, home-v2-day-one, updates-all) */
+  /* Screen CSS: Home and empty states (from home-v2-capped, home-v2-day-one, updates-all) */
   .hm, .hm * { box-sizing: border-box; font-family: "Geist", sans-serif; margin: 0; }
   .hm { background: #ffffff; color: #1a2332; position: relative; overflow-x: clip; }
   .hm .content { padding: 0 16px; display: flex; flex-direction: column; gap: 16px; padding-bottom: 32px; }
@@ -244,7 +244,7 @@
   .hm .fp-row span { font-size: 13px; color: #5c6b7d; }
   .hm .fp-link { height: 44px; margin-top: 4px; border: 0; border-top: 1px solid #f1f4f7; background: none; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: 700; color: #101724; }
   .hm .status-pill.unset .me .dot { background: #c5ccd4; }
-  /* Friend activity is capped on Home; the rest lives on the Updates page */
+  /* Feed ends with a caught-up marker; older activity loads in place below */
   .hm .act-head .more { text-decoration: none; }
   .hm .act-more { height: 48px; border-radius: 999px; background: #f1f4f7; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 15px; font-weight: 700; color: #101724; text-decoration: none; }
   .hm .act-more i { font-size: 14px; color: #5c6b7d; }
@@ -280,11 +280,10 @@
   .hm .up-th { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
   .hm .up-all { height: 48px; border-top: 1px solid #f1f4f7; display: flex; align-items: center; justify-content: center; gap: 4px; font-size: 14px; font-weight: 700; color: #101724; text-decoration: none; }
   .hm .up-all i { font-size: 13px; color: #5c6b7d; }
-  /* Friend activity page: app header with large title, notification-style group labels */
+  /* Secondary page header: back + large title */
   .hm .nav-head { height: 56px; display: flex; align-items: center; gap: 2px; padding: 0 8px; background: #ffffff; }
   .hm .nav-head .back { width: 44px; height: 44px; display: grid; place-items: center; font-size: 22px; color: #1a2332; }
   .hm .nav-head h1 { font-size: 24px; font-weight: 700; line-height: 1.2; color: #1a2332; }
-  .hm .day-head { margin: 8px 0 -4px; font-size: 16px; font-weight: 700; letter-spacing: 0.05rem; text-transform: uppercase; color: #5c6b7d; }
 
   /* Screen CSS: Discover (from discover-for-you, discover-events, discover-events-filters) */
   .dc, .dc * { box-sizing: border-box; font-family: "Geist", sans-serif; margin: 0; }
@@ -486,7 +485,7 @@
   .dc .x-count button { color: #2563eb; font-weight: 700; margin-left: 4px; }
 
   /* Sheets */
-  .mrp .sheet-host { position: absolute; inset: 0; z-index: 20; pointer-events: none; }
+  .mrp .sheet-host { position: absolute; inset: 0; z-index: 20; pointer-events: none; background: transparent; }
   .mrp .sheet-host .scrim { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.32); opacity: 0; transition: opacity 0.28s ease; }
   .mrp .sheet-host.open { pointer-events: auto; }
   .mrp .sheet-host.open .scrim { opacity: 1; }
@@ -509,7 +508,8 @@
   .dc .sheet .x-pick strong { font-size: 15px; font-weight: 700; color: #101724; }
   .dc .sheet .x-pick span { font-size: 13px; color: #5c6b7d; }
   .dc .sheet .x-radio { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid rgba(32, 36, 42, 0.2); display: grid; place-items: center; flex-shrink: 0; color: #ffffff; font-size: 14px; }
-  .dc .sheet .x-pick.on .x-radio { background: #101724; border-color: #101724; }
+  .dc .sheet .x-pick .x-radio { color: transparent; }
+  .dc .sheet .x-pick.on .x-radio { background: #101724; border-color: #101724; color: #ffffff; }
   .dc .sheet .x-dot { width: 14px; height: 14px; border-radius: 50%; margin: 0 15px; flex-shrink: 0; }
   .dc .sheet .x-who { display: flex; gap: 10px; overflow-x: auto; margin: 0 -16px; padding: 2px 16px 4px; scrollbar-width: none; }
   .dc .sheet .x-who::-webkit-scrollbar { display: none; }
@@ -731,6 +731,15 @@
   .hm .x-refine button { height: 36px; padding: 0 14px; border-radius: 999px; border: 1.5px solid rgba(32, 36, 42, 0.16); background: #ffffff; font-size: 14px; font-weight: 600; color: #1a2332; display: inline-flex; align-items: center; gap: 6px; }
   .hm .x-refine button i { font-size: 14px; color: #3b82f6; }
   .hm .x-ask-dock { position: sticky; bottom: 0; padding: 10px 16px 22px; background: linear-gradient(to top, #ffffff 75%, rgba(255, 255, 255, 0)); }
+  .hm .caught-up { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 20px 0 12px; text-align: center; }
+  .hm .caught-up .cu-rule { align-self: stretch; display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .hm .caught-up .cu-rule::before, .hm .caught-up .cu-rule::after { content: ""; flex: 1; height: 1px; background: #e4e8ed; }
+  .hm .caught-up .cu-icon { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: #e6f6f0; color: #0ca678; font-size: 22px; line-height: 1; }
+  .hm .caught-up strong { font-size: 17px; font-weight: 700; color: #101724; line-height: 1.3; }
+  .hm .caught-up span { font-size: 14px; color: #5c6b7d; line-height: 1.35; }
+  .hm .caught-up + .act-more { margin-top: -4px; }
+  .hm .older { display: flex; flex-direction: column; gap: 16px; animation: mrpMsg 0.35s ease both; }
+  .hm .older-end { padding: 8px 0 4px; text-align: center; font-size: 14px; color: #8a94a2; }
   .hm .gs-row.done { animation: mrpDone 0.5s ease; }
   @keyframes mrpDone { 0% { background: #e6f6f0; } 100% { background: transparent; } }
   .hm .gs-card.all-done .gs-head strong { color: #0ca678; }
@@ -739,7 +748,6 @@
 <div class="hm mrp" id="app">
   <div class="views">
     <div class="view" id="view-home"></div>
-    <div class="view" id="view-activity"></div>
     <div class="view" id="view-notifications"></div>
     <div class="view dc" id="view-discover"></div>
     <div class="view" id="view-ask"></div>
@@ -1091,7 +1099,7 @@
     var r = S.rsvp[p.id], people = p.people.slice(0, 2);
     var btn = p.created ? '<button class="h2-btn glass"><i class="ph-fill ph-paper-plane-tilt" style="color:#93c5fd"></i>' + (p.people.length ? 'Invited' : 'Hosting') + '</button>' : r === 'maybe' ? '<button class="h2-btn glass maybe"><i class="ph-fill ph-question"></i>Maybe</button>' : '<button class="h2-btn glass"><i class="ph-fill ph-check-circle"></i>Going</button>';
     var media = p.art ? 'background: linear-gradient(135deg, ' + p.art.a1 + ', ' + p.art.a2 + ');' : planImg(p, 400);
-    return '<div class="h2-row" data-go="plan-' + p.id + '"><div class="amb" style="' + (p.art ? media : planImg(p, 500)) + '"></div><div class="shade"></div><div class="media" style="' + media + '"></div><div class="rc"><div class="rk">' + p.kick + '</div><div class="rt">' + p.title + '</div><div class="rm">' + (people.length ? avStack(people) : '') + '<span>' + p.going + '</span>' + btn + '</div></div></div>';
+    return '<div class="h2-row" data-go="plan-' + p.id + '"><div class="amb" style="' + (p.art ? media : planImg(p, 500)) + '"></div><div class="shade"></div><div class="media" style="' + media + '"></div><div class="rc"><div class="rk">' + p.kick.toUpperCase() + '</div><div class="rt">' + p.title + '</div><div class="rm">' + (people.length ? avStack(people) : '') + '<span>' + p.going + '</span>' + btn + '</div></div></div>';
   }
   function yourPlans(plans, all) {
     return '<section data-sec="plans"><div class="sec-head"><h2>' + (all ? 'Upcoming' : 'Your plans') + '</h2>' + (all ? '' : '<button class="more" data-act="tab" data-id="plans" aria-label="All plans"><i class="ph-bold ph-caret-right"></i></button>') + '</div>' + (S.invites.length ? inviteBanner() : '') + '<div class="h2-stack">' + (all ? plans : plans.slice(0, 3)).map(planRow).join('') + '</div></section>';
@@ -1141,7 +1149,13 @@
     return '<div class="teaser" data-act="teaser"><div class="inner"><span class="wk-fan"><img src="' + U('1464822759023-fed622ff2c3b', 120, 150) + '" alt="" /><img src="' + U('1488459716781-31db52582fe9', 120, 150) + '" alt="" /><img src="' + U('1470229722913-7c0e2dbbafd3', 120, 150) + '" alt="" /></span><div class="t-txt"><small class="wk-kick"><i class="ph-fill ph-sparkle"></i>This weekend</small><strong>12 picks near Asheville</strong><span>Live music, hikes, markets</span></div><i class="ph-bold ph-caret-right"></i></div></div>';
   }
   function friendsHead() {
-    return '<div class="sec-head act-head"><h2>From your friends</h2><button class="more" data-go="activity" aria-label="All friend activity"><i class="ph-bold ph-caret-right"></i></button></div>';
+    return '<div class="sec-head act-head"><h2>From your friends</h2></div>';
+  }
+  function olderHTML(ids) { return '<div class="older">' + ids.map(feedCard).join('') + '<div class="older-end">That\u2019s everything from the last 2 days</div></div>'; }
+  function caughtUp(older) {
+    S.olderIds = older;
+    return '<div class="caught-up" role="separator" aria-label="You\u2019re all caught up"><span class="cu-rule"><span class="cu-icon"><i class="ph-bold ph-check"></i></span></span><strong>You\u2019re all caught up</strong><span>You\u2019ve seen all new activity from friends</span></div>' +
+      (S.olderShown ? olderHTML(older) : '<a class="act-more" data-act="older">Show older activity<i class="ph-bold ph-caret-down"></i></a>');
   }
   function renderHome() {
     var plans = myPlans(), m = S.mode, h = homeToolbar() + '<div class="content">' + greet(plans);
@@ -1150,32 +1164,18 @@
     if (S.chats.length) h += recentChats();
     if (plans.length || S.invites.length) h += yourPlans(plans);
     if (m === 'active') {
-      h += friendsHead() + ['shindigAlex', 'marketPriya', 'ultraRiley', 'cindysMaya', 'liveMusic'].map(feedCard).join('');
-      h += '<a class="act-more" data-go="activity">See more friend activity<i class="ph-bold ph-caret-right"></i></a>';
-      h += suggested() + nudge() + teaser();
+      h += friendsHead() + ['shindigAlex', 'liveMusic', 'marketPriya'].map(feedCard).join('');
+      h += suggested() + feedCard('ultraRiley') + nudge() + feedCard('cindysMaya') + teaser() + caughtUp(['woodSam', 'jazzSara', 'jumboAlex', 'highlandMaya']);
     } else if (m === 'few') {
-      h += friendsHead() + feedCard('cindysSara') + suggested() + tileRail('🎉 Events nearby', ['e:shindig', 'e:wood', 'e:pickin'], 'discover-events') + teaser();
+      h += friendsHead() + feedCard('cindysSara') + suggested() + tileRail('🎉 Events nearby', ['e:shindig', 'e:wood', 'e:pickin'], 'discover-events') + teaser() + caughtUp(['woodSam']);
     } else {
       h += suggested() + tileRail('🎉 Events nearby', ['e:shindig', 'e:wood', 'e:pickin'], 'discover-events') + tileRail('📍 Popular places', ['l:jumbo', 'l:ultra', 'l:saltstraw'], 'discover-places') + interestsRow() + teaser();
     }
     $('view-home').innerHTML = h + '</div>';
   }
 
-  // ---------- Friend activity + notifications ----------
+  // ---------- Notifications ----------
   function navHead(title, right) { return '<div class="nav-head"><button class="back" data-act="back" aria-label="Back"><i class="ph-bold ph-caret-left"></i></button><h1>' + title + '</h1>' + (right ? '<span class="grow"></span>' + right : '') + '</div>'; }
-  function renderActivity() {
-    var h = navHead('Friend activity') + '<div class="content">';
-    if (S.mode === 'active') {
-      h += '<div class="day-head">Today</div>' + ['shindigAlex', 'marketPriya', 'ultraRiley', 'cindysMaya', 'woodSam', 'jazzSara'].map(feedCard).join('');
-      h += '<div class="day-head">Yesterday</div>' + ['liveMusic', 'jumboAlex', 'highlandMaya'].map(feedCard).join('');
-    } else if (S.mode === 'few') {
-      h += '<div class="day-head">Today</div>' + feedCard('cindysSara') + feedCard('woodSam');
-      h += '<div class="x-empty" style="margin-top:8px"><span class="emo">👀</span><strong>More friends, more to see</strong><span>Saves, plans, and reviews from friends show up here.</span><div class="btns"><button class="h2-btn ink" data-act="findfriends">Find friends</button></div></div>';
-    } else {
-      h += '<div class="x-empty"><span class="emo">👋</span><strong>Nothing here yet</strong><span>When friends save places or join plans, it shows up here.</span><div class="btns"><button class="h2-btn ink" data-act="findfriends">Find friends</button></div></div>';
-    }
-    $('view-activity').innerHTML = h + '</div>';
-  }
   function renderNotifs() {
     var list = NOTIFS[S.mode], seen = S.notifSeen;
     S.notifSeen = true;
@@ -1604,13 +1604,13 @@
 
   // ---------- Router ----------
   var ROOTS = { home: 'home', discover: 'discover', 'discover-events': 'discover', 'discover-places': 'discover', 'discover-plans': 'discover', plans: 'plans', chats: 'chats', you: 'you' };
-  var RENDER = { home: renderHome, activity: renderActivity, notifications: renderNotifs, discover: renderDiscover, ask: renderAsk, plans: renderPlans, chats: renderChats, chat: renderChat, you: renderYou, event: renderEvent, place: renderPlace, plan: renderPlan, person: renderPerson };
+  var RENDER = { home: renderHome, notifications: renderNotifs, discover: renderDiscover, ask: renderAsk, plans: renderPlans, chats: renderChats, chat: renderChat, you: renderYou, event: renderEvent, place: renderPlace, plan: renderPlan, person: renderPerson };
   var stack = [], scrolls = {}, cur = null, curHash = '', curTab = 'home';
   function parse(h) {
     if (ROOTS[h]) return { view: ROOTS[h], root: true, arg: h };
     var m = h.match(/^(event|place|plan|chat|person)-(.+)$/);
     if (m) return { view: m[1], arg: m[2] };
-    if (h === 'activity' || h === 'notifications' || h === 'ask') return { view: h, arg: h };
+    if (h === 'notifications' || h === 'ask') return { view: h, arg: h };
     if (h === 'ideas') return { view: 'ask', arg: 'ideas' };
     return null;
   }
@@ -1756,6 +1756,11 @@
     S.gsHidden = true;
     var card = document.querySelector('#view-home .gs-card');
     if (card) { card.style.transition = 'opacity .25s ease, transform .25s ease'; card.style.opacity = '0'; card.style.transform = 'translateY(-8px)'; setTimeout(function () { card.remove(); }, 260); }
+  };
+  A.older = function (el) {
+    S.olderShown = true;
+    var tmp = document.createElement('div'); tmp.innerHTML = olderHTML(S.olderIds || []);
+    el.replaceWith(tmp.firstChild);
   };
   A.teaser = function () { S.discoverFocus = 'weekend'; navigate('discover'); };
   A.status = openStatus;
