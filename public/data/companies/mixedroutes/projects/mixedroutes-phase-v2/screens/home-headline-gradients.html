@@ -29,7 +29,7 @@
   /* Greeting */
   .mrv2-home2 .greet { display: flex; flex-direction: column; gap: 4px; padding-top: 8px; }
   .mrv2-home2 .greet h1 { font-size: 36px; font-weight: 800; line-height: 1.15; }
-  .mrv2-home2 .greet h1 .grad { background: linear-gradient(90deg, #1749E5 0%, #7C5CFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .mrv2-home2 .greet h1 .grad { color: #1a2332; }
   .mrv2-home2 .greet h1 .name { color: #5c6b7d; }
   .mrv2-home2 .greet .subline { font-size: 16px; font-weight: 600; color: #5c6b7d; line-height: 1.4; }
   /* Up next: summary of coming plans, taps through to the Plans tab */
@@ -260,33 +260,39 @@
   .mrv2-home2 .fp-row span { font-size: 13px; color: #5c6b7d; }
   .mrv2-home2 .fp-link { height: 44px; margin-top: 4px; border: 0; border-top: 1px solid #f1f4f7; background: none; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: 700; color: #101724; }
   .mrv2-home2 .status-pill.unset .me .dot { background: #c5ccd4; }
-  /* Friend activity is capped on Home; the rest lives on the Updates page */
+  /* Feed ends with a caught-up marker; older activity loads in place below */
   .mrv2-home2 .act-head .more { text-decoration: none; }
   .mrv2-home2 .act-more { height: 48px; border-radius: 999px; background: #f1f4f7; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 15px; font-weight: 700; color: #101724; text-decoration: none; }
   .mrv2-home2 .act-more i { font-size: 14px; color: #5c6b7d; }
-  /* Get started checklist: new users only, replaces the banner stack while visible */
-  .mrv2-home2 .gs-card { padding: 16px 16px 6px; }
-  .mrv2-home2 .gs-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding-bottom: 6px; }
-  .mrv2-home2 .gs-head .c { display: flex; flex-direction: column; gap: 2px; }
-  .mrv2-home2 .gs-head strong { font-size: 17px; font-weight: 700; color: #101724; line-height: 1.3; }
-  .mrv2-home2 .gs-head span { font-size: 13px; color: #5c6b7d; }
-  .mrv2-home2 .gs-dismiss { border: 0; background: none; padding: 2px 0; font-size: 13px; font-weight: 600; color: #5c6b7d; }
-  .mrv2-home2 .gs-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; }
-  .mrv2-home2 .gs-row + .gs-row { border-top: 1px solid #f1f4f7; }
-  .mrv2-home2 .gs-ic { width: 40px; height: 40px; border-radius: 12px; background: #f1f4f7; display: grid; place-items: center; font-size: 20px; flex-shrink: 0; }
-  .mrv2-home2 .gs-row .c { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-  .mrv2-home2 .gs-row strong { font-size: 15px; font-weight: 700; color: #101724; }
-  .mrv2-home2 .gs-row .c span { font-size: 13px; color: #5c6b7d; line-height: 1.35; }
-  .mrv2-home2 .gs-go { color: #8a94a2; font-size: 15px; }
-  .mrv2-home2 .gs-row.done .gs-ic { background: #e6f6f0; color: #0ca678; font-size: 22px; }
-  .mrv2-home2 .gs-row.done strong { color: #8a94a2; text-decoration: line-through; font-weight: 600; }
-  /* Your interests row */
-  .mrv2-home2 .int-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .mrv2-home2 .int-chips span { height: 36px; padding: 0 14px; border-radius: 999px; background: #f1f4f7; display: inline-flex; align-items: center; font-size: 14px; font-weight: 600; color: #1a2332; }
-  .mrv2-home2 .status-pill.unset .me .dot { background: #c5ccd4; }
+  .mrv2-home2 .caught-up { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 20px 0 12px; text-align: center; }
+  .mrv2-home2 .caught-up .cu-rule { align-self: stretch; display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .mrv2-home2 .caught-up .cu-rule::before, .mrv2-home2 .caught-up .cu-rule::after { content: ""; flex: 1; height: 1px; background: #e4e8ed; }
+  .mrv2-home2 .caught-up .cu-icon { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: #e6f6f0; color: #0ca678; font-size: 22px; line-height: 1; }
+  .mrv2-home2 .caught-up strong { font-size: 17px; font-weight: 700; color: #101724; line-height: 1.3; }
+  .mrv2-home2 .caught-up span { font-size: 14px; color: #5c6b7d; line-height: 1.35; }
+  .mrv2-home2 .caught-up + .act-more { margin-top: -4px; }
+
+  /* Headline treatment options, V2 palette: blue #1749E5, lilac #C0AFFF, mint #A1E7CE, apricot #FFAC79 */
+  .hlv-sheet { background: #ffffff; display: flex; flex-direction: column; }
+  .hlv-sheet > div + div { border-top: 1px solid #e4e8ed; }
+  .hlv-sheet .hlv-label { font-family: "Geist", sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #8a94a2; margin: 0; padding: 16px 16px 4px; }
+
+  .hlv-sheet .mrv2-home2 .content { padding-bottom: 20px; }
+  .mrv2-home2 .greet h1 .hl-a { background: linear-gradient(90deg, #1749E5 0%, #7C5CFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .mrv2-home2 .greet h1 .hl-b { color: #101114; background: linear-gradient(180deg, transparent 50%, #FFAC79 50%, #FFD3B6 84%, transparent 84%); -webkit-box-decoration-break: clone; box-decoration-break: clone; padding: 0 2px; margin: 0 -2px; }
+  .mrv2-home2 .greet h1.hl-c { background: linear-gradient(100deg, #101114 0%, #101114 25%, #1749E5 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .mrv2-home2 .greet h1.hl-c span { color: transparent; }
+  .mrv2-home2 .hl-d-wash { background: radial-gradient(120% 90% at 0% 0%, rgba(192, 175, 255, 0.8) 0%, rgba(192, 175, 255, 0) 60%), radial-gradient(90% 80% at 100% 10%, rgba(23, 73, 229, 0.22) 0%, rgba(23, 73, 229, 0) 60%), radial-gradient(90% 70% at 70% 100%, rgba(161, 231, 206, 0.5) 0%, rgba(161, 231, 206, 0) 65%), #ffffff; }
+  .mrv2-home2 .hl-d-wash .toolbar { background: transparent; }
+  .mrv2-home2 .hl-d-wash .status-pill { background: rgba(255, 255, 255, 0.72); }
+  .mrv2-home2 .hl-d-wash .status-pill .dot { border-color: #ffffff; }
+  .mrv2-home2 .hl-d-wash .content { padding-bottom: 28px; }
 </style>
 
-<div class="mrv2-home2 home2fact" style="background: #ffffff;">
+<div class="hlv-sheet">
+<div>
+<p class="hlv-label">A · Blue to violet on the moment</p>
+<div class="mrv2-home2" style="background: #ffffff;">
   <div class="toolbar">
     <button class="status-pill" aria-label="Your status: Down to hang at Ultra Coffeebar. Change status"><span class="me"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><span class="dot"></span></span><span class="st"><strong>Down to hang</strong><small><i class="ph-fill ph-map-pin"></i>Ultra Coffeebar</small></span></button>
     <div class="actions">
@@ -297,190 +303,69 @@
 
   <div class="content">
     <div class="greet">
-      <h1><span class="grad">Evening</span>, Brandon</h1>
-      <h3 class="subline">Find something to do tonight 🌙</h3>
+      <h1><span class="hl-a">Tomorrow night</span>, Brandon</h1>
+      <h3 class="subline">Dinner at Bavette's · 7pm</h3>
     </div>
-
-    <div class="h2-card gs-card">
-      <div class="gs-head"><div class="c"><strong>Get started</strong><span>1 of 3</span></div><button class="gs-dismiss">Dismiss all</button></div>
-      <div class="gs-list">
-        <div class="gs-row done"><span class="gs-ic"><i class="ph-fill ph-check-circle"></i></span><div class="c"><strong>Add your first friend</strong></div></div>
-        <div class="gs-row"><span class="gs-ic">📅</span><div class="c"><strong>Make your first plan</strong><span>Coffee, tacos, or a night out. Anything goes.</span></div><i class="ph-bold ph-caret-right gs-go"></i></div>
-        <div class="gs-row"><span class="gs-ic">🧭</span><div class="c"><strong>Discover events and places</strong><span>Find one you like and turn it into a plan</span></div><i class="ph-bold ph-caret-right gs-go"></i></div>
-      </div>
-    </div>
-
-    <div class="sec-head act-head">
-      <h2>From your friends</h2>
-      <a class="more" href="#" aria-label="All friend activity"><i class="ph-bold ph-caret-right"></i></a>
-    </div>
-
-    <div class="h2-card fa-card">
-      <div class="fa-media" style="background-image: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=780&q=80'); background-position: center 60%;"><span class="h2-why"><i class="ph-fill ph-map-pin"></i><span>Nearby</span></span></div>
-      <div class="fa-body">
-        <div class="h2-who"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Sara</strong> saved this</span><time>6h</time></div>
-        <div class="fa-title">Cindy's Rooftop</div>
-        <div class="fa-foot"><span class="fa-meta"><i class="ph-fill ph-martini"></i><span>Rooftop bar · 0.4 mi</span></span><button class="h2-btn soft"><i class="ph-bold ph-bookmark-simple"></i>Save</button></div>
-      </div>
-    </div>
-
-    <section>
-      <div class="sec-head">
-        <h2>Suggested people</h2>
-        <span class="more"><i class="ph-bold ph-caret-right"></i></span>
-      </div>
-      <div class="rail rail-people">
-        <div class="mini-card">
-          <img class="av" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
-          <div class="txt"><strong>Devon</strong><span>3 mutual</span></div>
-          <button class="add-btn">Add</button>
-        </div>
-        <div class="mini-card">
-          <img class="av" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
-          <div class="txt"><strong>Maya</strong><span>Also into climbing</span></div>
-          <button class="add-btn">Add</button>
-        </div>
-        <div class="mini-card">
-          <img class="av" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
-          <div class="txt"><strong>Jordan</strong><span>From your contacts</span></div>
-          <button class="add-btn">Add</button>
-        </div>
-        <div class="mini-card">
-          <img class="av" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=144&h=144&q=80" alt="" />
-          <div class="txt"><strong>Alex</strong><span>2 mutual</span></div>
-          <button class="add-btn">Add</button>
-        </div>
-        <div class="tail">
-          <span class="circ"><i class="ph-bold ph-caret-right"></i></span>
-          <span>View more</span>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="sec-head">
-        <h2>🎉 Events nearby</h2>
-        <span class="more"><i class="ph-bold ph-caret-right"></i></span>
-      </div>
-      <div class="rail rail-places">
-        <div class="h2-tile"><div class="h2-photo" style="background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=400&q=80');"><span class="h2-save"><i class="ph ph-bookmark-simple"></i></span></div><div class="h2-tb"><div class="h2-t">Shindig on the Green</div><div class="h2-s">Sat · 5:00 PM</div></div></div>
-        <div class="h2-tile"><div class="h2-photo" style="background-image: url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=400&q=80');"><span class="h2-save"><i class="ph ph-bookmark-simple"></i></span></div><div class="h2-tb"><div class="h2-t">The Wood Brothers</div><div class="h2-s">Fri · 9:00 PM</div></div></div>
-        <div class="h2-tile"><div class="h2-photo" style="background-image: url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=400&q=80');"><span class="h2-save"><i class="ph ph-bookmark-simple"></i></span></div><div class="h2-tb"><div class="h2-t">Pickin' in the Park</div><div class="h2-s">Thu · 6:00 PM</div></div></div>
-        <div class="tail">
-          <span class="circ"><i class="ph-bold ph-caret-right"></i></span>
-          <span>View more</span>
-        </div>
-      </div>
-    </section>
-
-    <div class="teaser">
-      <div class="inner">
-        <span class="wk-fan"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=120&h=150&q=80" alt="" /><img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=120&h=150&q=80" alt="" /><img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=120&h=150&q=80" alt="" /></span>
-        <div class="t-txt">
-          <small class="wk-kick"><i class="ph-fill ph-sparkle"></i>This weekend</small>
-          <strong>12 picks near Asheville</strong>
-          <span>Live music, hikes, markets</span>
-        </div>
-        <i class="ph-bold ph-caret-right"></i>
-      </div>
-    </div>
-  </div>
-
-  <div class="tab-bar">
-    <span class="tab selected"><i class="ph-fill ph-house"></i></span>
-    <span class="tab discover"><i class="ph-bold ph-compass"></i></span>
-    <span class="tab"><span class="you-wrap"><img class="you" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><span class="dot"></span></span></span>
-    <span class="tab"><i class="ph-bold ph-calendar-blank"></i></span>
-    <span class="tab">
-      <span class="icon-wrap"><i class="ph-bold ph-chat"></i><span class="badge-dot">1</span></span>
-    </span>
   </div>
 </div>
+</div>
+<div>
+<p class="hlv-label">B · Interest highlight, food and drink</p>
+<div class="mrv2-home2" style="background: #ffffff;">
+  <div class="toolbar">
+    <button class="status-pill" aria-label="Your status: Down to hang at Ultra Coffeebar. Change status"><span class="me"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><span class="dot"></span></span><span class="st"><strong>Down to hang</strong><small><i class="ph-fill ph-map-pin"></i>Ultra Coffeebar</small></span></button>
+    <div class="actions">
+      <span class="tbtn" aria-label="Create plan"><i class="ph-bold ph-plus"></i></span>
+      <span class="tbtn" aria-label="Notifications, 2 unread"><i class="ph-bold ph-bell"></i><span class="badge-dot">2</span></span>
+    </div>
+  </div>
 
-<script>
-(function () {
-  var root = document.querySelector('.home2fact');
-  if (!root) return;
+  <div class="content">
+    <div class="greet">
+      <h1><span class="hl-b">Tomorrow night</span>, Brandon</h1>
+      <h3 class="subline">Dinner at Bavette's · 7pm</h3>
+    </div>
+  </div>
+</div>
+</div>
+<div>
+<p class="hlv-label">C · Ink to blue across the line</p>
+<div class="mrv2-home2" style="background: #ffffff;">
+  <div class="toolbar">
+    <button class="status-pill" aria-label="Your status: Down to hang at Ultra Coffeebar. Change status"><span class="me"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><span class="dot"></span></span><span class="st"><strong>Down to hang</strong><small><i class="ph-fill ph-map-pin"></i>Ultra Coffeebar</small></span></button>
+    <div class="actions">
+      <span class="tbtn" aria-label="Create plan"><i class="ph-bold ph-plus"></i></span>
+      <span class="tbtn" aria-label="Notifications, 2 unread"><i class="ph-bold ph-bell"></i><span class="badge-dot">2</span></span>
+    </div>
+  </div>
 
-  var stack = root.querySelector('.home-banner-stack');
-  if (stack) {
-    function cards() {
-      return Array.prototype.slice.call(stack.querySelectorAll('.home-banner-card:not(.is-leaving)'));
-    }
-    // Reassign depth classes and indexes so the next card rises to the front
-    function layout() {
-      var list = cards().sort(function (a, b) {
-        return parseInt(getComputedStyle(a).getPropertyValue('--card-index'), 10) - parseInt(getComputedStyle(b).getPropertyValue('--card-index'), 10);
-      });
-      list.forEach(function (card, i) {
-        card.style.setProperty('--card-index', i);
-        card.classList.toggle('is-top', i === 0);
-        card.classList.toggle('is-second', i === 1);
-        card.classList.toggle('is-third', i === 2);
-        if (i === 0) card.removeAttribute('aria-hidden');
-        else card.setAttribute('aria-hidden', 'true');
-      });
-      if (list.length) stack.setAttribute('aria-label', list.length + (list.length === 1 ? ' update' : ' updates'));
-      else stack.classList.add('is-empty');
-    }
-    stack.addEventListener('click', function (e) {
-      var btn = e.target.closest('.home-banner-dismiss, .home-banner-cta');
-      if (!btn) return;
-      var card = btn.closest('.home-banner-card');
-      if (!card || !card.classList.contains('is-top')) return;
-      card.classList.add('is-leaving');
-      setTimeout(function () {
-        card.remove();
-        layout();
-      }, 320);
-    });
-  }
+  <div class="content">
+    <div class="greet">
+      <h1 class="hl-c"><span>Tomorrow night</span>, Brandon</h1>
+      <h3 class="subline">Dinner at Bavette's · 7pm</h3>
+    </div>
+  </div>
+</div>
+</div>
+<div>
+<p class="hlv-label">D · Soft wash behind, ink type</p>
+<div class="mrv2-home2" style="background: #ffffff;">
+  <div class="hl-d-wash">
+  <div class="toolbar">
+    <button class="status-pill" aria-label="Your status: Down to hang at Ultra Coffeebar. Change status"><span class="me"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><span class="dot"></span></span><span class="st"><strong>Down to hang</strong><small><i class="ph-fill ph-map-pin"></i>Ultra Coffeebar</small></span></button>
+    <div class="actions">
+      <span class="tbtn" aria-label="Create plan"><i class="ph-bold ph-plus"></i></span>
+      <span class="tbtn" aria-label="Notifications, 2 unread"><i class="ph-bold ph-bell"></i><span class="badge-dot">2</span></span>
+    </div>
+  </div>
 
-  // Invite banner: tap to expand, respond to invites inline, banner leaves when done
-  var banner = root.querySelector('.invite-banner');
-  if (!banner) return;
-  var head = banner.querySelector('.invite-banner-head');
-  var title = banner.querySelector('.banner-title');
-  var sub = banner.querySelector('.banner-sub');
-  var avStack = banner.querySelector('.invite-banner-head .stack');
-
-  function rows() {
-    return Array.prototype.slice.call(banner.querySelectorAll('.invite-row:not(.is-leaving)'));
-  }
-
-  function refresh() {
-    var list = rows();
-    var n = list.length;
-    if (n === 0) {
-      title.textContent = 'All caught up';
-      sub.textContent = 'No invites waiting';
-      banner.classList.remove('is-open');
-      banner.classList.add('is-done');
-      setTimeout(function () { banner.classList.add('is-gone'); }, 1400);
-      setTimeout(function () { banner.remove(); }, 1800);
-      return;
-    }
-    title.textContent = n === 1 ? '1 invite waiting on you' : n + ' invites waiting on you';
-    sub.textContent = list.map(function (r) { return r.getAttribute('data-title'); }).join(' · ');
-    var avs = avStack.querySelectorAll('img');
-    for (var i = 0; i < avs.length; i++) avs[i].style.display = i < n ? '' : 'none';
-  }
-
-  head.addEventListener('click', function () {
-    var open = banner.classList.toggle('is-open');
-    head.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-
-  banner.addEventListener('click', function (e) {
-    var btn = e.target.closest('.invite-go, .invite-no');
-    if (!btn) return;
-    var row = btn.closest('.invite-row');
-    if (!row) return;
-    row.classList.add('is-leaving');
-    setTimeout(function () {
-      row.remove();
-      refresh();
-    }, 300);
-  });
-})();
-</script>
+  <div class="content">
+    <div class="greet">
+      <h1><span class="grad">Tomorrow night</span>, Brandon</h1>
+      <h3 class="subline">Dinner at Bavette's · 7pm</h3>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+</div>

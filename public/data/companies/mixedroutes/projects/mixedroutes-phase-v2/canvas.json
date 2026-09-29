@@ -56,25 +56,25 @@
     },
     {
       "file": "status-nav-identity.html",
-      "x": 7959,
+      "x": 3877,
       "y": -1297,
       "width": 390
     },
     {
       "file": "status-under-greeting.html",
-      "x": 7959,
+      "x": 3877,
       "y": -1086,
       "width": 390
     },
     {
       "file": "status-greeting-chips.html",
-      "x": 7959,
+      "x": 3877,
       "y": -834,
       "width": 390
     },
     {
       "file": "status-nav-avatar.html",
-      "x": 7959,
+      "x": 3877,
       "y": -556,
       "width": 390
     },
@@ -172,14 +172,14 @@
     {
       "file": "home-v2-quiet.html",
       "x": 2988,
-      "y": -1303,
+      "y": -1297,
       "width": 390,
       "name": "Home · few friends"
     },
     {
       "file": "home-v2-day-one.html",
-      "x": 3421,
-      "y": -1312,
+      "x": 3425,
+      "y": -1291,
       "width": 390,
       "name": "Home · day one"
     },
@@ -242,7 +242,7 @@
     },
     {
       "text": "Status ideas",
-      "x": 7959,
+      "x": 3877,
       "y": -1428,
       "size": 72,
       "id": "text-legacy-muc2kpol-6"

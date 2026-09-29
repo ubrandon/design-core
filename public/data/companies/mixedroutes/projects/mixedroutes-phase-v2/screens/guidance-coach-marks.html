@@ -4,83 +4,82 @@
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700;800&display=swap");
+  @import url("https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css");
 
   .mrv2-gmarks, .mrv2-gmarks * { box-sizing: border-box; font-family: "Geist", sans-serif; margin: 0; }
-  .mrv2-gmarks { background: #ffffff; color: #1a2332; position: relative; overflow: clip; min-height: 844px; }
-  .mrv2-gmarks .page { display: flex; flex-direction: column; gap: 18px; padding: 0 16px 40px; }
+  .mrv2-gmarks { background: #ffffff; color: #1a2332; position: relative; overflow: clip; height: 844px; }
 
-  .mrv2-gmarks .bg-toolbar { height: 56px; display: flex; align-items: center; justify-content: space-between; margin: 0 -16px; padding: 0 16px; }
-  .mrv2-gmarks .bg-toolbar .brand { display: flex; align-items: center; gap: 7px; }
-  .mrv2-gmarks .bg-toolbar .brand img { width: 34px; height: 34px; object-fit: contain; display: block; }
-  .mrv2-gmarks .bg-toolbar .brand span { font-size: 24px; font-weight: 700; }
-  .mrv2-gmarks .bg-toolbar .actions { display: flex; gap: 18px; font-size: 24px; color: #1a2332; }
-  .mrv2-gmarks h1 { font-size: 36px; font-weight: 800; line-height: 1.15; padding-top: 8px; }
-  .mrv2-gmarks h2 { font-size: 22px; font-weight: 700; }
-
-  .mrv2-gmarks .row-people { display: flex; gap: 12px; }
-  .mrv2-gmarks .row-people .pp { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 84px; }
-  .mrv2-gmarks .row-people img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; }
-  .mrv2-gmarks .row-people .sq { border-radius: 16px; }
-  .mrv2-gmarks .row-people strong { font-size: 14px; font-weight: 700; }
+  /* Current Home, plans section in view */
+  .mrv2-gmarks .toolbar { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 8px 0 16px; }
+  .mrv2-gmarks .status-pill { height: 44px; padding: 0 14px 0 4px; border-radius: 999px; background: #f1f4f7; display: inline-flex; align-items: center; gap: 9px; }
+  .mrv2-gmarks .status-pill .me { position: relative; width: 32px; height: 32px; }
+  .mrv2-gmarks .status-pill .me img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; display: block; }
+  .mrv2-gmarks .status-pill .dot { position: absolute; right: -2px; bottom: -2px; width: 12px; height: 12px; border-radius: 50%; background: #14b8a6; border: 2px solid #f1f4f7; }
+  .mrv2-gmarks .status-pill .st { display: flex; flex-direction: column; line-height: 1.2; }
+  .mrv2-gmarks .status-pill .st strong { font-size: 14px; font-weight: 700; }
+  .mrv2-gmarks .status-pill .st small { font-size: 12px; font-weight: 600; color: #5c6b7d; }
+  .mrv2-gmarks .toolbar .actions { display: flex; gap: 4px; }
+  .mrv2-gmarks .toolbar .tbtn { width: 44px; height: 44px; display: grid; place-items: center; font-size: 24px; color: #1a2332; }
+  .mrv2-gmarks .content { padding: 0 16px; display: flex; flex-direction: column; gap: 16px; }
+  .mrv2-gmarks .greet { display: flex; flex-direction: column; gap: 4px; padding-top: 8px; }
+  .mrv2-gmarks .greet h1 { font-size: 36px; font-weight: 800; line-height: 1.15; }
+  .mrv2-gmarks .greet h1 .grad { background: linear-gradient(90deg, #1749E5 0%, #7C5CFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .mrv2-gmarks .greet .subline { font-size: 16px; font-weight: 600; color: #5c6b7d; }
+  .mrv2-gmarks .sec-head { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+  .mrv2-gmarks .sec-head h2 { font-size: 22px; font-weight: 700; }
+  .mrv2-gmarks .sec-head .more { width: 36px; height: 36px; border-radius: 50%; background: #f1f4f7; display: grid; place-items: center; font-size: 18px; }
 
   /* Highlighted element sits above the scrim with a glow ring */
   .mrv2-gmarks .scrim { position: absolute; inset: 0; background: rgba(16, 23, 36, 0.62); z-index: 5; }
-  .mrv2-gmarks .spotlit { position: relative; z-index: 6; border-radius: 18px; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.55), 0 0 0 9px rgba(59, 130, 246, 0.35), 0 18px 48px rgba(16, 23, 36, 0.4); }
+  .mrv2-gmarks .spotlit { position: relative; z-index: 6; border-radius: 18px; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.55), 0 0 0 9px rgba(37, 99, 235, 0.35), 0 18px 48px rgba(16, 23, 36, 0.4); }
 
-  .mrv2-gmarks .invite-banner { border-radius: 18px; background: #ffffff; border: 1px solid rgba(16, 23, 36, 0.08); overflow: hidden; }
+  .mrv2-gmarks .invite-banner { border-radius: 18px; background: #ffffff; overflow: hidden; }
   .mrv2-gmarks .invite-head { display: flex; align-items: center; gap: 11px; padding: 11px 14px; }
   .mrv2-gmarks .invite-head .stack { display: flex; align-items: center; flex-shrink: 0; }
   .mrv2-gmarks .invite-head .stack img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 2px solid #ffffff; margin-left: -8px; }
   .mrv2-gmarks .invite-head .stack img:first-child { margin-left: 0; }
   .mrv2-gmarks .invite-head .b-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
-  .mrv2-gmarks .invite-head .b-txt strong { font-size: 15px; font-weight: 700; color: #101724; }
-  .mrv2-gmarks .invite-head .b-txt span { font-size: 13px; color: #5c6b7d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .mrv2-gmarks .invite-count { min-width: 24px; height: 24px; padding: 0 7px; border-radius: 999px; background: #0ca678; color: #ffffff; display: inline-grid; place-items: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .mrv2-gmarks .invite-head .b-txt strong { font-size: 15px; font-weight: 700; color: #101724; line-height: 1.3; }
+  .mrv2-gmarks .invite-head .b-txt span { font-size: 13px; color: #5c6b7d; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .mrv2-gmarks .invite-head .caret { color: #5c6b7d; font-size: 17px; flex-shrink: 0; }
 
   /* Tooltip bubble with arrow */
-  .mrv2-gmarks .tip { position: relative; z-index: 6; margin-top: 18px; border-radius: 20px; background: #ffffff; box-shadow: 0 18px 48px rgba(16, 23, 36, 0.4); padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 8px; }
-  .mrv2-gmarks .tip::before { content: ""; position: absolute; top: -8px; left: 44px; width: 16px; height: 16px; background: #ffffff; transform: rotate(45deg); border-radius: 3px; }
-  .mrv2-gmarks .tip .kicker { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #5c6b7d; }
+  .mrv2-gmarks .tip { position: relative; z-index: 6; margin-top: 2px; border-radius: 20px; background: #ffffff; box-shadow: 0 18px 48px rgba(16, 23, 36, 0.4); padding: 18px 18px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .mrv2-gmarks .tip::before { content: ""; position: absolute; top: -8px; left: 36px; width: 16px; height: 16px; background: #ffffff; transform: rotate(45deg); border-radius: 3px; }
+  .mrv2-gmarks .tip .kicker { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #5c6b7d; }
   .mrv2-gmarks .tip strong { font-size: 19px; font-weight: 800; color: #101724; }
   .mrv2-gmarks .tip p { font-size: 15px; color: #5c6b7d; line-height: 1.45; }
   .mrv2-gmarks .tip .foot { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
   .mrv2-gmarks .tip .dots { display: flex; gap: 6px; }
   .mrv2-gmarks .tip .dots span { width: 7px; height: 7px; border-radius: 50%; background: #d6dce3; }
-  .mrv2-gmarks .tip .dots span.on { width: 20px; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); }
-  .mrv2-gmarks .tip .btns { display: flex; align-items: center; gap: 12px; }
-  .mrv2-gmarks .tip .quiet { border: 0; background: none; color: #5c6b7d; font-size: 14px; font-weight: 600; }
-  .mrv2-gmarks .tip .next { height: 38px; padding: 0 18px; border: 0; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #fff; font-size: 14px; font-weight: 700; }
+  .mrv2-gmarks .tip .dots span.on { width: 20px; border-radius: 999px; background: #101724; }
+  .mrv2-gmarks .tip .btns { display: flex; align-items: center; gap: 4px; }
+  .mrv2-gmarks .tip .quiet { height: 44px; padding: 0 12px; border: 0; background: none; color: #5c6b7d; font-size: 14px; font-weight: 700; }
+  .mrv2-gmarks .tip .next { height: 40px; padding: 0 20px; border: 0; border-radius: 999px; background: #101724; color: #ffffff; font-size: 14px; font-weight: 700; }
 
-  .mrv2-gmarks .dim-plan { border-radius: 20px; overflow: hidden; position: relative; height: 112px; background-size: cover; background-position: center; }
-  .mrv2-gmarks .dim-plan .shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(16, 23, 36, 0.72), rgba(16, 23, 36, 0.08)); }
-  .mrv2-gmarks .dim-plan .ptxt { position: absolute; left: 14px; bottom: 12px; color: #ffffff; }
-  .mrv2-gmarks .dim-plan .ptxt small { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; opacity: 0.85; }
-  .mrv2-gmarks .dim-plan .ptxt strong { font-size: 18px; font-weight: 700; }
+  .mrv2-gmarks .plan { position: relative; overflow: hidden; height: 116px; border-radius: 20px; background: #1e2832; display: grid; grid-template-columns: 116px 1fr; color: #ffffff; isolation: isolate; }
+  .mrv2-gmarks .plan .amb { position: absolute; inset: 0; z-index: -1; background: center / cover no-repeat; filter: blur(70px) saturate(4) brightness(1.35); transform: scale(1.35); }
+  .mrv2-gmarks .plan .media { background: center / cover no-repeat; -webkit-mask-image: linear-gradient(to right, #000 48%, transparent 100%); mask-image: linear-gradient(to right, #000 48%, transparent 100%); }
+  .mrv2-gmarks .plan .rc { padding: 14px 14px 14px 0; display: flex; flex-direction: column; gap: 4px; }
+  .mrv2-gmarks .plan .rk { font-size: 12px; font-weight: 800; letter-spacing: 0.04em; opacity: 0.82; }
+  .mrv2-gmarks .plan .rt { font-size: 17px; font-weight: 800; }
 
   .mrv2-gmarks .note { position: absolute; left: 20px; right: 20px; bottom: 18px; z-index: 6; text-align: center; font-size: 13px; color: rgba(255, 255, 255, 0.85); line-height: 1.5; }
 </style>
 
-<div class="mrv2-gmarks" style="background: #ffffff;">
-  <div class="page">
-    <div class="bg-toolbar">
-      <div class="brand">
-        <img src="../../../design-system/mixedroutes-assets/icon-foreground.svg" alt="" />
-        <span>MixedRoutes</span>
-      </div>
-      <div class="actions"><i class="ph ph-user-plus"></i><i class="ph ph-bell"></i><i class="ph ph-gear-six"></i></div>
-    </div>
-    <h1>Evening, Brandon</h1>
+<div class="mrv2-gmarks">
+  <div class="toolbar" aria-hidden="true">
+    <span class="status-pill"><span class="me"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=96&h=96&q=80" alt="" /><span class="dot"></span></span><span class="st"><strong>Down to hang</strong><small>Ultra Coffeebar</small></span></span>
+    <div class="actions"><span class="tbtn"><i class="ph-bold ph-plus"></i></span><span class="tbtn"><i class="ph-bold ph-bell"></i></span></div>
+  </div>
 
-    <h2>Recent chats</h2>
-    <div class="row-people" aria-hidden="true">
-      <div class="pp"><img class="sq" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=144&h=144&q=80" alt="" /><strong>Weekend Crew</strong></div>
-      <div class="pp"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=144&h=144&q=80" alt="" /><strong>Sara</strong></div>
-      <div class="pp"><img class="sq" src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=144&h=144&q=80" alt="" /><strong>Hiking Club</strong></div>
-      <div class="pp"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=144&h=144&q=80" alt="" /><strong>Sam</strong></div>
+  <div class="content">
+    <div class="greet" aria-hidden="true">
+      <h1><span class="grad">Tomorrow night</span>, Brandon</h1>
+      <h3 class="subline">Dinner at Bavette's · 7pm</h3>
     </div>
 
-    <h2>Your plans</h2>
+    <div class="sec-head" aria-hidden="true"><h2>Your plans</h2><span class="more"><i class="ph-bold ph-caret-right"></i></span></div>
 
     <div class="spotlit">
       <div class="invite-banner">
@@ -93,8 +92,7 @@
             <strong>2 invites waiting on you</strong>
             <span>Hike at Craggy Gardens · Pizza night</span>
           </span>
-          <span class="invite-count">2</span>
-          <i class="ph ph-caret-right caret"></i>
+          <i class="ph-bold ph-caret-right caret"></i>
         </div>
       </div>
     </div>
@@ -112,10 +110,7 @@
       </div>
     </div>
 
-    <div class="dim-plan" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=760&h=280&q=80');" aria-hidden="true">
-      <span class="shade"></span>
-      <span class="ptxt"><small>SAT · 8:00 AM</small><strong>Sunrise trail hike</strong></span>
-    </div>
+    <div class="plan" aria-hidden="true"><div class="amb" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=70');"></div><div class="media" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80');"></div><div class="rc"><div class="rk">SAT · 8:00 AM</div><div class="rt">Sunrise trail hike</div></div></div>
   </div>
 
   <div class="scrim"></div>

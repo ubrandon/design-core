@@ -419,7 +419,7 @@
   .dc .sheet .show { margin-top: 8px; height: 50px; border: 0; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; font-size: 16px; font-weight: 700; }
 
   /* App shell */
-  .mrp { height: 100vh; height: 100dvh; position: relative; overflow: hidden; background: #ffffff; }
+  .mrp { height: 100vh; height: 100dvh; position: relative; overflow: clip; background: #ffffff; }
   :where(.mrp) button { border: 0; background: none; padding: 0; color: inherit; font: inherit; cursor: pointer; }
   :where(.mrp) input, :where(.mrp) textarea { font: inherit; color: inherit; }
   .mrp [data-go], .mrp [data-act] { cursor: pointer; -webkit-tap-highlight-color: transparent; }
@@ -442,7 +442,7 @@
   .hm .tab-bar .tab { color: #3b4551; }
   .hm .tab-bar .tab.selected { color: #101724; }
   .hm .tab-bar .you { box-shadow: 0 0 0 2px #ffffff, 0 0 0 3.5px transparent; transition: box-shadow 0.2s ease; }
-  .hm .tab-bar .tab.selected .you { box-shadow: 0 0 0 2px #ffffff, 0 0 0 3.5px #101724; }
+  .hm .tab-bar .tab.selected .you { box-shadow: 0 0 0 2px #ffffff, 0 0 0 3.5px #0891b2; }
   .hm .status-pill .dot, .hm .tab-bar .you-wrap .dot { background: var(--st, #14b8a6); }
 
   /* Press feedback */
@@ -492,7 +492,6 @@
   .mrp .sheet-host .sheet { max-height: 90%; overflow-y: auto; scrollbar-width: none; transform: translateY(105%); transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1); padding-bottom: 28px; }
   .mrp .sheet-host .sheet::-webkit-scrollbar { display: none; }
   .mrp .sheet-host.open .sheet { transform: none; }
-  .dc .sheet .show { background: #101724; }
   .dc .sheet .show:disabled { background: #c5ccd4; }
   .dc .sheet .tile, .dc .sheet .opt { cursor: pointer; }
   .dc .sheet .clear, .dc .sheet .x { cursor: pointer; }
@@ -578,61 +577,407 @@
   .hm .x-empty .btns { display: flex; gap: 8px; margin-top: 8px; }
   .hm .x-empty .h2-btn { height: 40px; padding: 0 18px; font-size: 14px; }
 
-  /* Detail pages */
-  .hm .x-hero { position: relative; height: 320px; background: #d9e1e7 center / cover no-repeat; }
-  .hm .x-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0) 32%); pointer-events: none; }
-  .hm .x-hero.art { display: grid; place-items: center; background: linear-gradient(135deg, var(--a1), var(--a2)); }
-  .hm .x-hero.art .disc { width: 96px; height: 96px; border-radius: 50%; background: rgba(255, 255, 255, 0.6); display: grid; place-items: center; font-size: 46px; color: var(--ac); box-shadow: 0 4px 16px rgba(16, 24, 40, 0.1); }
-  .hm .x-float { position: absolute; top: 12px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: grid; place-items: center; font-size: 20px; color: #101724; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16); }
-  .hm .x-float.l { left: 12px; }
-  .hm .x-float.r { right: 12px; }
-  .hm .x-float.r2 { right: 60px; }
-  .hm .x-float.on { color: #2563eb; }
-  .hm .x-body { position: relative; z-index: 1; margin-top: -24px; padding: 22px 16px 24px; border-radius: 24px 24px 0 0; background: #ffffff; display: flex; flex-direction: column; gap: 18px; }
-  .hm .x-head { display: flex; flex-direction: column; gap: 6px; }
-  .hm .x-kick { font-size: 13px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: #5c6b7d; }
-  .hm .x-title { font-size: 28px; font-weight: 800; line-height: 1.15; color: #101724; letter-spacing: -0.01em; }
-  .hm .x-sub { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 15px; color: #5c6b7d; }
-  .hm .x-sub i { font-size: 15px; }
-  .hm .x-sub .star { color: #f5a524; }
-  .hm .x-sub .sep { width: 3px; height: 3px; border-radius: 50%; background: #8a94a2; }
-  .hm .x-social { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 16px; background: #f1f4f7; font-size: 14px; color: #5c6b7d; line-height: 1.35; }
-  .hm .x-social strong { color: #101724; font-weight: 700; }
-  .hm .x-social .h2-av img { width: 28px; height: 28px; margin-left: -9px; border-color: #f1f4f7; }
-  .hm .x-social .h2-av img:first-child { margin-left: 0; }
-  .hm .x-p { font-size: 16px; line-height: 1.5; color: #1a2332; }
-  .hm .x-h { font-size: 18px; font-weight: 700; color: #101724; margin-bottom: -6px; }
-  .hm .x-info { display: flex; flex-direction: column; }
-  .hm .x-info-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; }
-  .hm .x-info-row + .x-info-row { border-top: 1px solid #f1f4f7; }
-  .hm .x-info-row .ic { width: 40px; height: 40px; border-radius: 12px; background: #f1f4f7; display: grid; place-items: center; font-size: 19px; color: #1a2332; flex-shrink: 0; }
-  .hm .x-info-row .c { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
-  .hm .x-info-row strong { font-size: 15px; font-weight: 700; color: #101724; }
-  .hm .x-info-row span { font-size: 13px; color: #5c6b7d; }
-  .hm .x-info-row > i { color: #8a94a2; font-size: 15px; }
-  .hm .x-review { display: flex; flex-direction: column; gap: 8px; padding: 14px; border-radius: 16px; border: 1px solid rgba(16, 23, 36, 0.08); }
-  .hm .x-review .fa-stars { font-size: 14px; }
-  .hm .x-cta { position: sticky; bottom: 0; z-index: 3; display: flex; gap: 10px; padding: 12px 16px 24px; background: linear-gradient(to top, #ffffff 72%, rgba(255, 255, 255, 0)); }
-  .hm .x-btn { flex: 1; height: 52px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; white-space: nowrap; }
-  .hm .x-btn.ink { background: #101724; color: #ffffff; }
-  .hm .x-btn.soft { background: #e1e3e6; color: #101724; }
-  .hm .x-btn.soft.on i { color: #2563eb; }
-  .hm .x-btn.done { background: #e1e3e6; color: #101724; }
-  .hm .x-btn.done i { color: #0ca678; }
-  .hm .x-btn.pri { background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; }
-  .hm .x-btn.fit { flex: 0 0 auto; padding: 0 22px; }
-  .hm .x-seg { display: flex; gap: 8px; }
-  .hm .x-seg button { flex: 1; height: 44px; border-radius: 999px; border: 1.5px solid rgba(32, 36, 42, 0.16); background: #ffffff; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: 700; color: #1a2332; transition: all 0.18s ease; }
-  .hm .x-seg button.on { background: #101724; border-color: #101724; color: #ffffff; }
-  .hm .x-seg button.on i { color: #4ade80; }
-  .hm .x-seg button.on.maybe i { color: #fbbf24; }
-  .hm .x-seg button.on.no i { color: #f87171; }
-  .hm .x-plan-hero { position: relative; height: 280px; overflow: hidden; background: #1e2832; isolation: isolate; }
-  .hm .x-plan-hero .amb { position: absolute; inset: 0; z-index: -2; background: center / cover no-repeat; filter: blur(60px) saturate(3) brightness(1.2); transform: scale(1.4); }
-  .hm .x-plan-hero .ph { position: absolute; inset: 0; background: center / cover no-repeat; -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 100%); mask-image: linear-gradient(to bottom, #000 45%, transparent 100%); }
-  .hm .x-plan-hero .cap { position: absolute; left: 16px; right: 16px; bottom: 36px; color: #ffffff; text-shadow: 0 0 16px rgba(0, 0, 0, 0.35); display: flex; flex-direction: column; gap: 6px; }
-  .hm .x-plan-hero .cap .x-kick { color: rgba(255, 255, 255, 0.86); }
-  .hm .x-plan-hero .cap .x-title { color: #ffffff; }
+  /* App pages: mirror ../mixed-routes (ActivityList, ActivityOverview, Profile, Notifications, ExternalEventView, PlaceDetailView, CreateActivityModal, BottomSheetModal) */
+  .hm .ichip { height: 36px; padding: 0 14px; border-radius: 50px; border: 1.5px solid rgba(32, 36, 42, 0.16); background: #ffffff; color: rgba(26, 35, 50, 0.87); font-size: 14px; display: inline-flex; align-items: center; gap: 7.11px; white-space: nowrap; flex-shrink: 0; }
+  .hm .ichip i { font-size: 18px; }
+  .hm .ichip.on { background: #e4eefe; border-color: #b9cef2; color: #234e8a; font-weight: 700; }
+  .hm .ichips { display: flex; gap: 8px; overflow-x: auto; margin: 0 -16px; padding: 0 16px; scrollbar-width: none; }
+  .hm .ichips::-webkit-scrollbar { display: none; }
+  .hm .ichips.wrap { flex-wrap: wrap; overflow: visible; margin: 0; padding: 0; }
+  .hm .a-h2 { font-size: 20px; font-weight: 700; color: #1a2332; }
+  .hm .a-btn { width: 100%; height: 48px; border-radius: 999px; font-size: 18px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .hm .a-btn.grad { background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; }
+  .hm .a-btn.grey { background: #e1e3e6; color: #1a2332; }
+  .hm .a-btn:disabled { opacity: 0.5; }
+  .hm .a-pill { height: 36px; padding: 0 20px; border-radius: 999px; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 7.11px; white-space: nowrap; }
+  .hm .a-pill.grey { background: #e1e3e6; color: #1a2332; }
+  .hm .a-pill.grad { background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; box-shadow: 0 2px 8px rgba(6, 182, 212, 0.35); }
+  .hm .a-pill i { font-size: 16px; }
+  .hm .a-pill.st { color: #ffffff; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1.5px solid var(--c); background: color-mix(in srgb, var(--c) 20%, rgba(0, 0, 0, 0.75)); }
+  .hm .a-pill.st i { font-size: 18px; color: var(--c); }
+  .hm .a-foot { position: sticky; bottom: 0; z-index: 4; display: flex; gap: 7.11px; padding: 10.67px 16px 20px; background: #ffffff; }
+  .hm .a-foot .a-btn { flex: 1; }
+  .hm .a-foot .a-save { width: 56px; height: 48px; border-radius: 999px; background: #e1e3e6; display: grid; place-items: center; font-size: 22px; color: #1a2332; flex-shrink: 0; }
+  .hm .a-foot .a-save.on { color: #06b6d4; }
+
+  /* ActivityCard (horizontal on Plans, vertical in profile carousels) */
+  .hm .ac { position: relative; width: 100%; min-height: 112px; display: flex; border-radius: 32px; background: #1d232b; color: #ffffff; overflow: hidden; isolation: isolate; text-align: left; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.09), 0 16px 40px rgba(0, 0, 0, 0.14); transition: transform 0.15s ease, opacity 0.15s ease; }
+  .hm .ac:active { transform: scale(0.985); opacity: 0.92; }
+  .hm .ac-bd { position: absolute; inset: 0; z-index: -1; background: center / cover no-repeat; filter: blur(56px) saturate(4); opacity: 0.85; transform: scale(1.6); }
+  .hm .ac-img { width: 124.8px; min-height: 112px; flex-shrink: 0; background: center / cover no-repeat; -webkit-mask-image: linear-gradient(to right, #000 55%, rgba(0, 0, 0, 0.95) 68%, rgba(0, 0, 0, 0.75) 79%, rgba(0, 0, 0, 0.45) 88%, rgba(0, 0, 0, 0.2) 95%, transparent); mask-image: linear-gradient(to right, #000 55%, rgba(0, 0, 0, 0.95) 68%, rgba(0, 0, 0, 0.75) 79%, rgba(0, 0, 0, 0.45) 88%, rgba(0, 0, 0, 0.2) 95%, transparent); }
+  .hm .ac-d { flex: 1; min-width: 0; padding: 20.74px 10.67px 20.74px 16px; display: flex; flex-direction: column; justify-content: center; gap: 7.11px; }
+  .hm .ac-date { font-size: 14px; font-weight: 800; line-height: 1; text-transform: uppercase; color: rgba(255, 255, 255, 0.75); }
+  .hm .ac-t { font-size: 20px; font-weight: 800; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .hm .ac-loc { min-height: 24px; display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 600; color: rgba(255, 255, 255, 0.9); min-width: 0; }
+  .hm .ac-loc i { font-size: 16px; flex-shrink: 0; }
+  .hm .ac-loc span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hm .ac-ppl { min-height: 20px; display: flex; align-items: center; gap: 10.67px; font-size: 14px; font-weight: 600; color: rgba(255, 255, 255, 0.9); }
+  .hm .mav { display: flex; align-items: center; flex-shrink: 0; }
+  .hm .mav img { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; border: 1.5px solid #ffffff; margin-left: -6px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.12)); }
+  .hm .mav img:first-child { margin-left: 0; }
+  .hm .ac.v { width: 280px; flex-shrink: 0; flex-direction: column; min-height: 0; }
+  .hm .ac.v .ac-img { width: 100%; min-height: 0; aspect-ratio: 2.4 / 1; -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent); mask-image: linear-gradient(to bottom, #000 55%, transparent); }
+  .hm .ac.v .ac-d { padding: 4px 16px 18px; justify-content: flex-start; }
+  .hm .ac-rail { display: flex; gap: 16px; overflow-x: auto; margin: -8px -16px -32px; padding: 8px 16px 40px; scrollbar-width: none; }
+  .hm .ac-rail::-webkit-scrollbar { display: none; }
+
+  /* BannerCard */
+  .hm .bcard { display: flex; align-items: center; gap: 16px; padding: 16px; border-radius: 16px; background: #ffffff; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.09), 0 16px 40px rgba(0, 0, 0, 0.14); text-align: left; width: 100%; }
+  .hm .bcard.empty { box-shadow: none; border: 1px dashed rgba(133, 139, 148, 0.45); }
+  .hm .bcard .emo { width: 44px; height: 44px; border-radius: 50%; background: rgba(133, 139, 148, 0.18); display: grid; place-items: center; font-size: 22px; flex-shrink: 0; }
+  .hm .bcard .emo.ic { background: #858b94; color: #ffffff; font-size: 24px; }
+  .hm .bcard .c { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3.16px; line-height: 1.4; }
+  .hm .bcard strong { font-size: 16px; font-weight: 700; color: #101724; }
+  .hm .bcard span { font-size: 14px; color: #5c6b7d; }
+  .hm .bcard > i { font-size: 20px; color: #a3a8b0; flex-shrink: 0; }
+
+  /* EmptyState with line art */
+  .hm .es { display: flex; flex-direction: column; align-items: center; gap: 10.67px; padding: 32px 16px; text-align: center; }
+  .hm .es img { width: 200px; height: 150px; object-fit: contain; }
+  .hm .es h1 { margin-top: 7.11px; font-size: 36px; font-weight: 800; line-height: 1.1; color: #1a2332; }
+  .hm .es p { font-size: 16px; color: #5c6b7d; line-height: 1.4; }
+
+  /* Plans tab */
+  .hm .pl-list { display: flex; flex-direction: column; gap: 16px; padding-bottom: 24px; }
+  .hm .pl-list .a-h2 { margin: 10.67px 0 -13.89px; }
+  .hm .pl-list .a-h2:first-child { margin-top: 0; }
+  .hm .pl-declined { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; padding: 7.11px 0; font-size: 16px; font-weight: 700; color: #858b94; }
+  .hm .pl-declined i { font-size: 16px; color: #a3a8b0; transition: transform 0.2s ease; }
+  .hm .pl-declined.open i { transform: rotate(180deg); }
+
+  /* ClearOverlayToolbar */
+  .hm .ovl { position: sticky; top: 0; z-index: 6; height: 56px; margin-bottom: -56px; display: flex; align-items: center; gap: 7.11px; padding: 0 16px; background: rgba(255, 255, 255, 0); transition: background 0.25s ease, box-shadow 0.25s ease; }
+  .hm .ovl .cb { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-size: 20px; color: #f8fafc; background: rgba(0, 0, 0, 0.56); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.24); flex-shrink: 0; transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease; }
+  .hm .ovl .ttl { flex: 1; min-width: 0; font-size: 20px; font-weight: 600; color: #1a2332; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0; transition: opacity 0.25s ease; }
+  .hm .ovl .ttl.own { font-size: 24px; font-weight: 700; opacity: 1; padding-left: 16px; }
+  .hm .ovl.solid { background: #ffffff; }
+  .hm .ovl.solid .cb { background: transparent; color: #101724; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .hm .ovl.solid .ttl { opacity: 1; }
+
+  /* Plan detail (ActivityOverview) */
+  .hm .pd-top { position: relative; min-height: 380px; padding: 121.5px 16px 120px; background: #f3f4f5 center / cover no-repeat; display: flex; flex-direction: column; align-items: center; text-align: center; isolation: isolate; }
+  .hm .pd-top::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.35) 25%, rgba(0, 0, 0, 0.6) 55%, rgba(0, 0, 0, 0.85) 100%); }
+  .hm .pd-top::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 200px; z-index: -1; background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.35) 45%, rgba(255, 255, 255, 0.85) 75%, #ffffff); }
+  .hm .pd-date { padding: 7.11px 10.67px; border-radius: 100px; background: rgba(0, 0, 0, 0.55); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.2); color: #ffffff; font-size: 14px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55); margin-bottom: 10.67px; }
+  .hm .pd-top h1 { font-size: 36px; font-weight: 800; line-height: 1.1; color: #ffffff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55); margin-bottom: 24px; }
+  .hm .pd-btns { width: 100%; max-width: 360px; display: flex; gap: 4.74px; }
+  .hm .pd-btns > * { flex: 1; }
+  .hm .pd-btns .new { margin-left: 2px; padding: 1px 6px; border-radius: 999px; background: #0ca678; color: #ffffff; font-size: 11px; font-weight: 700; }
+  .hm .pd-bottom { position: relative; z-index: 1; margin-top: -60px; padding: 0 16px 24px; display: flex; flex-direction: column; }
+  .hm .guests { display: flex; align-items: center; gap: 10.67px; padding: 6px 0; text-align: left; }
+  .hm .guests .stk { display: flex; flex-shrink: 0; }
+  .hm .guests .ga { position: relative; margin-left: -8px; }
+  .hm .guests .ga:first-child { margin-left: 0; }
+  .hm .guests .ga img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; display: block; box-shadow: 0 0 0 2px #ffffff; }
+  .hm .guests .ga .bdg { position: absolute; right: -4px; bottom: -4px; width: 24px; height: 24px; border-radius: 50%; background: #ffffff; display: grid; place-items: center; font-size: 22px; line-height: 1; }
+  .hm .guests .c { flex: 1; min-width: 0; text-align: right; display: flex; flex-direction: column; }
+  .hm .guests strong { font-size: 16px; font-weight: 700; color: #101724; }
+  .hm .guests span { font-size: 14px; color: #5c6b7d; }
+  .hm .guests > i { font-size: 20px; color: #5c6b7d; opacity: 0.8; }
+  .hm .pd-when { display: flex; align-items: center; gap: 7.11px; margin-top: 17.78px; font-size: 16px; font-weight: 700; color: #101724; }
+  .hm .pd-when i { font-size: 20px; }
+  .hm .pd-desc { margin-top: 16px; padding: 4px; font-size: 16px; line-height: 1.5; color: #1a2332; }
+  .hm .facets { margin-top: 16px; display: flex; flex-direction: column; gap: 16px; }
+  .hm .facet { border-radius: 24px; background: #f1f4f7; padding: 16px; }
+  .hm .facet .f-top { display: flex; align-items: flex-start; gap: 12px; }
+  .hm .facet .f-top .c { flex: 1; min-width: 0; }
+  .hm .facet h3 { font-size: 20px; font-weight: 700; color: #101724; margin-bottom: 7.11px; }
+  .hm .facet .f-sub { display: flex; align-items: flex-start; gap: 4px; font-size: 16px; color: #5c6b7d; line-height: 1.35; }
+  .hm .facet .f-sub i { font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+  .hm .facet .f-nav { width: 40px; height: 40px; border-radius: 8px; background: #e1e3e6; display: grid; place-items: center; font-size: 20px; color: #1a2332; flex-shrink: 0; }
+  .hm .facet .f-nav i { transform: rotate(90deg); }
+  .hm .facet .f-rate { display: flex; align-items: center; gap: 2px; margin-top: 16px; font-size: 16px; font-weight: 700; color: #101724; }
+  .hm .facet .f-rate b { margin-right: 6px; }
+  .hm .facet .f-rate i { font-size: 20px; color: #e8880a; }
+  .hm .facet .f-map { position: relative; height: 160px; margin-top: 10.67px; border-radius: 14px; overflow: hidden; background: linear-gradient(115deg, transparent 46%, #ffffff 46%, #ffffff 50%, transparent 50%), linear-gradient(20deg, transparent 58%, #fdf1c7 58%, #fdf1c7 62%, transparent 62%), linear-gradient(0deg, transparent 30%, #ffffff 30%, #ffffff 33%, transparent 33%), radial-gradient(circle at 78% 26%, #cfe8d1 0 34px, transparent 35px), #e8ecef; }
+  .hm .facet .f-map .pin { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -100%); font-size: 34px; color: #d0293e; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.25)); }
+  .hm .facet .f-map .go { position: absolute; right: 7px; bottom: 7px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.8); display: grid; place-items: center; font-size: 20px; color: #1a2332; }
+  .hm .missing { margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(32, 36, 42, 0.16); display: flex; flex-wrap: wrap; gap: 7.11px; }
+  .hm .opill { height: 44px; padding: 0 16px 0 10.67px; border-radius: 50px; border: 1.5px solid rgba(32, 36, 42, 0.16); display: inline-flex; align-items: center; gap: 7.11px; font-size: 16px; font-weight: 600; color: #5c6b7d; }
+  .hm .opill i { font-size: 20px; }
+  .hm .opill.dash { border-style: dashed; }
+
+  /* Profile */
+  .hm .pf-top { position: relative; padding: 88px 16px 36px; display: flex; flex-direction: column; align-items: center; text-align: center; isolation: isolate; }
+  .hm .pf-top::before { content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: -10px; z-index: -2; background: linear-gradient(to bottom, rgba(133, 139, 148, 0.4), rgba(133, 139, 148, 0.15) 70%, transparent); }
+  .hm .pf-top .bd { position: absolute; left: 0; right: 0; top: 0; bottom: -120px; z-index: -1; background: center / cover no-repeat; filter: blur(48px) saturate(1.2); opacity: 0.55; -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent); mask-image: linear-gradient(to bottom, #000 40%, transparent); }
+  .hm .pf-av { position: relative; }
+  .hm .pf-av img { width: 121.5px; height: 121.5px; border-radius: 50%; object-fit: cover; display: block; background: #68707a; }
+  .hm .pf-av .on { position: absolute; right: 6px; bottom: 6px; width: 25px; height: 25px; border-radius: 50%; background: #0ca678; border: 2px solid #ffffff; }
+  .hm .pf-top h1 { margin-top: 16px; font-size: 36px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.1; color: #1a2332; }
+  .hm .pf-meta { margin-top: 4.74px; display: flex; align-items: center; gap: 3.16px; font-size: 14px; color: #5c6b7d; }
+  .hm .pf-meta b { font-weight: 600; }
+  .hm .pf-meta .d { font-weight: 700; opacity: 0.6; }
+  .hm .pf-meta .j { opacity: 0.75; }
+  .hm .pf-top .a-pill.grey { margin-top: 16px; }
+  .hm .pf-btns { margin-top: 24px; width: 100%; max-width: 360px; display: flex; gap: 7.11px; }
+  .hm .pf-btns > * { flex: 1; }
+  .hm .pf-body { padding: 7.11px 16px 16px; display: flex; flex-direction: column; gap: 7.11px; }
+  .hm .fr-row { display: flex; align-items: center; margin: 10.67px 0 16px; padding-top: 4.74px; text-align: left; }
+  .hm .fr-row .stk { display: flex; }
+  .hm .fr-row .stk img, .hm .fr-row .stk .plus { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px #ffffff; margin-left: -8px; }
+  .hm .fr-row .stk img:first-child, .hm .fr-row .stk .plus:first-child { margin-left: 0; }
+  .hm .fr-row .stk .plus { display: grid; place-items: center; background: #68707a; color: #ffffff; font-size: 16px; font-weight: 700; }
+  .hm .fr-row .c { flex: 1; min-width: 0; margin-left: 10.67px; text-align: right; display: flex; flex-direction: column; }
+  .hm .fr-row strong { font-size: 16px; font-weight: 700; color: #101724; }
+  .hm .fr-row span { font-size: 14px; color: #5c6b7d; white-space: nowrap; }
+  .hm .fr-row > i { margin-left: 7.11px; font-size: 20px; color: #5c6b7d; opacity: 0.8; }
+  .hm .stb { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 10.67px; text-align: left; width: 100%; }
+  .hm .stb .circ { width: 36px; height: 36px; border-radius: 50%; background: #f1f4f7; color: #101724; display: grid; place-items: center; font-size: 18px; flex-shrink: 0; }
+  .hm .pf-sec { padding: 16px 0 10.67px; }
+  .hm .tiles { display: flex; gap: 10.67px; overflow-x: auto; margin: 0 -16px; padding: 0 16px; scrollbar-width: none; }
+  .hm .tiles::-webkit-scrollbar { display: none; }
+  .hm .tile { width: 104px; flex-shrink: 0; display: flex; flex-direction: column; gap: 4.74px; text-align: left; }
+  .hm .tile .ti { width: 80px; height: 80px; border-radius: 16px; background: rgba(133, 139, 148, 0.25) center / cover no-repeat; display: grid; place-items: center; font-size: 32px; }
+  .hm .tile .ti.round { border-radius: 50%; background: #e4e7eb; }
+  .hm .tile strong { font-size: 16px; font-weight: 700; color: #1a2332; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hm .tile span { font-size: 14px; color: #5c6b7d; }
+  .hm .tile small { font-size: 12.3px; font-weight: 600; color: #5c6b7d; }
+
+  /* Notifications */
+  .hm .a-head { position: sticky; top: 0; z-index: 5; height: 56px; display: flex; align-items: center; gap: 4px; padding: 0 8px 0 4px; background: #ffffff; }
+  .hm .a-head .ib { width: 48px; height: 48px; display: grid; place-items: center; font-size: 24px; color: #101724; flex-shrink: 0; }
+  .hm .a-head h1 { flex: 1; min-width: 0; font-size: 20px; font-weight: 600; color: #1a2332; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hm .a-head.big { padding-left: 16px; }
+  .hm .a-head.big h1 { font-size: 24px; font-weight: 800; }
+  .hm .nf-lbl { margin: 24px 0 7.11px; padding-left: 16px; font-size: 16px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #5c6b7d; }
+  .hm .nf-lbl:first-of-type { margin-top: 8px; }
+  .hm .nf { display: flex; align-items: flex-start; gap: 16px; padding: 10.67px 16px; }
+  .hm .nf.unread { background: rgba(6, 182, 212, 0.1); }
+  .hm .nf .av { position: relative; width: 48px; height: 48px; flex-shrink: 0; }
+  .hm .nf .av img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; display: block; }
+  .hm .nf .av .ic { width: 48px; height: 48px; border-radius: 50%; background: #68707a; color: #ffffff; display: grid; place-items: center; font-size: 24px; }
+  .hm .nf .c { flex: 1; min-width: 0; }
+  .hm .nf .c p { font-size: 16px; line-height: 1.4; color: #101724; }
+  .hm .nf .c small { display: block; margin-top: 4px; font-size: 14px; color: #5c6b7d; }
+  .hm .nf .r { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
+  .hm .nf time { font-size: 12px; font-weight: 700; color: #5c6b7d; }
+  .hm .nf.unread time { color: #0ca678; }
+  .hm .nf .dot { width: 10px; height: 10px; border-radius: 50%; background: #0ca678; }
+
+  /* Event + place detail (full-screen modals) */
+  .hm .md-hero { min-height: 270px; background: #f3f4f5 center / cover no-repeat; display: grid; place-items: center; font-size: 48px; color: #858b94; }
+  .hm .md-body { padding: 24px 16px 16px; }
+  .hm .md-body h1 { font-size: 36px; font-weight: 700; line-height: 1.2; color: #101724; margin-bottom: 24px; }
+  .hm .md-row { display: flex; align-items: center; gap: 7.11px; margin-bottom: 10.67px; font-size: 16px; font-weight: 700; color: #101724; }
+  .hm .md-row i { font-size: 20px; flex-shrink: 0; }
+  .hm .md-row.last { margin-bottom: 16px; }
+  .hm .md-desc { font-size: 16px; line-height: 1.45; color: #1a2332; }
+  .hm .md-h2 { margin: 36px 0 16px; font-size: 20px; font-weight: 700; color: #1a2332; }
+  .hm .md-stack { display: flex; flex-direction: column; gap: 16px; }
+  .hm .tix { display: flex; flex-direction: column; gap: 10.67px; margin-top: 16px; }
+  .hm .tix-row { display: flex; align-items: center; gap: 12px; padding: 6px 16px 6px 8px; border-radius: 16px; background: #ffffff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08), 0 10px 28px rgba(0, 0, 0, 0.12); }
+  .hm .tix-row .lg { width: 48px; height: 48px; border-radius: 8px; background: #e7ebef; display: grid; place-items: center; font-size: 22px; color: #026cdf; }
+  .hm .tix-row strong { flex: 1; font-size: 18px; font-weight: 600; text-transform: uppercase; color: #101724; }
+  .hm .tix-row i { font-size: 24px; color: #5c6b7d; }
+  .hm .v2-social { display: flex; align-items: center; gap: 10.67px; margin: 6px 0 16px; padding: 10.67px 12px; border-radius: 16px; background: #f1f4f7; font-size: 14px; color: #5c6b7d; }
+  .hm .v2-social strong { color: #101724; }
+  .hm .v2-social .c { flex: 1; min-width: 0; }
+  .hm .v2-social .h2-av img { width: 28px; height: 28px; margin-left: -9px; border-color: #f1f4f7; }
+  .hm .v2-social .h2-av img:first-child { margin-left: 0; }
+  .hm .pl-body h1 { margin-bottom: 10.67px; }
+  .hm .pl-desc { margin-bottom: 16px; font-size: 16px; line-height: 1.4; color: #5c6b7d; }
+  .hm .pl-rate { display: flex; align-items: center; flex-wrap: wrap; gap: 7.11px; font-size: 16px; color: #1a2332; }
+  .hm .pl-rate i { font-size: 18px; color: #d97706; }
+  .hm .pl-rate .m { color: #5c6b7d; }
+  .hm .pl-rate .open { color: #0ca678; font-weight: 700; }
+  .hm .pl-hours { display: flex; align-items: center; gap: 7.11px; margin-top: 10.67px; font-size: 16px; font-weight: 700; color: #1a2332; }
+  .hm .pl-hours i { font-size: 18px; color: #5c6b7d; }
+  .hm .pl-hours .cr { font-size: 16px; color: #1a2332; transition: transform 0.2s ease; }
+  .hm .pl-hours.open .cr { transform: rotate(180deg); }
+  .hm .hrs { display: none; margin-top: 10.67px; padding: 10.67px 16px; border-radius: 16px; background: #f1f4f7; }
+  .hm .hrs.open { display: block; }
+  .hm .hrs div { display: grid; grid-template-columns: 52px 1fr; padding: 7px 8px; font-size: 14px; color: #5c6b7d; border-radius: 8px; }
+  .hm .hrs div + div { border-top: 1px solid #d2d6db; }
+  .hm .hrs div.today { font-weight: 700; color: #101724; background: rgba(6, 182, 212, 0.12); border-top-color: transparent; }
+  .hm .qa { display: flex; gap: 8px; overflow-x: auto; margin: 10.67px -16px 16px; padding: 0 16px; scrollbar-width: none; }
+  .hm .qa::-webkit-scrollbar { display: none; }
+  .hm .qa .a-pill { padding: 0 18px; gap: 8px; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .hm .qa .a-pill i.rot { transform: rotate(90deg); }
+  .hm .qa .a-pill.v2 { background: #eaf1fe; color: #1e4fbf; }
+  .hm .amen-h { margin: 24px 0 10.67px; font-size: 16px; font-weight: 700; letter-spacing: 0.02em; color: #1a2332; }
+  .hm .amen { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hm .amen span { min-height: 30px; padding: 5px 12px; border-radius: 999px; background: #f1f4f7; font-size: 14px; color: #5c6b7d; }
+  .hm .rv { display: flex; flex-direction: column; gap: 8px; padding: 14px; border-radius: 16px; background: #ffffff; border: 1px solid rgba(32, 36, 42, 0.12); }
+  .hm .rv .fa-stars { font-size: 14px; }
+
+  /* Saved list */
+  .hm .sv-row { display: flex; align-items: center; gap: 12px; padding: 10.67px 16px; }
+  .hm .sv-row .th { width: 64px; height: 64px; border-radius: 12px; background: #e4e7eb center / cover no-repeat; flex-shrink: 0; }
+  .hm .sv-row .c { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .hm .sv-row strong { font-size: 16px; font-weight: 700; color: #101724; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hm .sv-row span { font-size: 14px; color: #5c6b7d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hm .sv-row .bm { font-size: 24px; color: #06b6d4; }
+
+  /* BottomSheetModal (app) */
+  .mrp .sheet-host.app .scrim { background: rgba(0, 0, 0, 0.7); }
+  .dc .sheet.app { border-radius: 16px 16px 0 0; padding: 16px 0 28px; box-shadow: none; }
+  .dc .sheet.app .ag { position: absolute; top: 5px; left: 50%; width: 36px; height: 5px; margin-left: -18px; border-radius: 8px; background: #c0c0be; }
+  .dc .sheet.app .ah { min-height: 48px; display: grid; grid-template-columns: 48px 1fr 48px; align-items: center; padding: 0 4px; }
+  .dc .sheet.app .ah h3 { text-align: center; font-size: 17px; font-weight: 600; color: #1a2332; }
+  .dc .sheet.app .ah .x { width: 48px; height: 48px; display: grid; place-items: center; font-size: 24px; color: #1a2332; cursor: pointer; }
+  .dc .sheet.app .ab { padding: 0 16px; }
+  .dc .sheet.app .ar { display: flex; align-items: center; gap: 16px; min-height: 52px; padding: 6px 0; font-size: 16px; color: #1a2332; cursor: pointer; }
+  .dc .sheet.app .ar > i:first-child { font-size: 20px; }
+  .dc .sheet.app .ar .c { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .dc .sheet.app .ar .c small { font-size: 14px; color: #5c6b7d; }
+  .dc .sheet.app .ar > .end { font-size: 20px; color: #a3a8b0; }
+  .dc .sheet.app .ar.red { color: #d0293e; }
+  .dc .sheet.app .ar .rad { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #c6cdd5; flex-shrink: 0; display: grid; place-items: center; }
+  .dc .sheet.app .ar.on .rad { border-color: #06b6d4; }
+  .dc .sheet.app .ar.on .rad::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: #06b6d4; }
+  .dc .sheet.app .ar.sel { background: #e4eefe; margin: 0 -16px; padding: 6px 16px; }
+  .dc .sheet.app .ar .emo { font-size: 20px; width: 24px; text-align: center; }
+  .dc .sheet.app .ar .bm { font-size: 26px; color: #5c6b7d; }
+  .dc .sheet.app .ar .bm.on { color: #06b6d4; }
+  .dc .sheet.app .adiv { height: 1px; background: rgba(32, 36, 42, 0.16); margin: 7.11px 0; }
+  .dc .sheet.app .asec { display: flex; align-items: center; justify-content: space-between; padding: 10.67px 0 4px; font-size: 16px; font-weight: 700; color: #1a2332; }
+  .dc .sheet.app .asec span { font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #e8880a; cursor: pointer; }
+  .dc .sheet.app .a-btn { margin-top: 16px; }
+  .dc .sheet.app .qp { display: flex; gap: 7.11px; overflow-x: auto; margin: 4px -16px 12px; padding: 0 16px; scrollbar-width: none; }
+  .dc .sheet.app .qp::-webkit-scrollbar { display: none; }
+  .dc .sheet.app .qp .ichip { cursor: pointer; }
+  .dc .sheet.app .cal { border-radius: 12px; background: #f1f4f7; padding: 12px; }
+  .dc .sheet.app .cal-h { display: flex; align-items: center; justify-content: space-between; padding: 0 4px 8px; font-size: 16px; font-weight: 700; color: #101724; }
+  .dc .sheet.app .cal-h button { width: 32px; height: 32px; display: grid; place-items: center; font-size: 18px; color: #1a2332; }
+  .dc .sheet.app .cal-g { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
+  .dc .sheet.app .cal-g .dw { font-size: 12px; font-weight: 700; color: #5c6b7d; padding: 4px 0; }
+  .dc .sheet.app .cal-g button { height: 38px; width: 38px; margin: 0 auto; border-radius: 50%; font-size: 15px; color: #101724; }
+  .dc .sheet.app .cal-g button.past { color: #a3a8b0; pointer-events: none; }
+  .dc .sheet.app .cal-g button.today { box-shadow: inset 0 0 0 2px rgba(16, 23, 36, 0.2); }
+  .dc .sheet.app .cal-g button.sel { background: #101724; color: #ffffff; font-weight: 700; }
+  .dc .sheet.app .times { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .dc .sheet.app .times .lbl { width: 100%; display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: #5c6b7d; }
+  .dc .sheet.app .times button { padding: 10.67px 16px; border-radius: 12px; border: 1.5px solid rgba(32, 36, 42, 0.16); background: #ffffff; font-size: 16px; color: #1a2332; }
+  .dc .sheet.app .times button.on { background: #e4eefe; border-color: #b9cef2; color: #234e8a; font-weight: 700; }
+  .dc .sheet.app .seg { display: flex; padding: 4.74px; border-radius: 999px; background: rgba(118, 118, 128, 0.12); }
+  .dc .sheet.app .seg button { flex: 1; height: 44px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 16px; font-weight: 600; color: #1a2332; }
+  .dc .sheet.app .seg button i { font-size: 18px; }
+  .dc .sheet.app .seg button.on { background: #ffffff; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07), 0 4px 12px rgba(0, 0, 0, 0.1); }
+  .dc .sheet.app .hint { margin: 10.67px 4px 4px; font-size: 14px; color: #5c6b7d; line-height: 1.4; }
+  .dc .sheet.app .tg { width: 51px; height: 31px; border-radius: 999px; background: #e4e7eb; position: relative; flex-shrink: 0; transition: background 0.2s ease; }
+  .dc .sheet.app .tg::after { content: ""; position: absolute; top: 2px; left: 2px; width: 27px; height: 27px; border-radius: 50%; background: #ffffff; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); transition: transform 0.2s ease; }
+  .dc .sheet.app .ar.on .tg { background: #0ca678; }
+  .dc .sheet.app .ar.on .tg::after { transform: translateX(20px); }
+  .dc .sheet.app .gl img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+
+  /* Status + check-in sheet (V2 check-in-flow.html) */
+  .dc .sheet.v2 { border-radius: 28px 28px 0 0; padding: 10px 18px 28px; display: flex; flex-direction: column; gap: 14px; }
+  .dc .sheet.v2 .handle { width: 40px; height: 4px; border-radius: 999px; background: #d6dce3; margin: 0 auto; }
+  .dc .sheet.v2 h3 { font-size: 22px; font-weight: 800; color: #101724; }
+  .dc .sheet.v2 .sub { font-size: 14px; color: #5c6b7d; margin-top: -8px; }
+  .dc .sheet.v2 .lbl { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #5c6b7d; margin-bottom: -4px; }
+  .dc .sheet.v2 .place-row { display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 16px; border: 1.5px solid rgba(32, 36, 42, 0.12); cursor: pointer; }
+  .dc .sheet.v2 .place-row.selected { border-color: #3b82f6; background: rgba(59, 130, 246, 0.05); }
+  .dc .sheet.v2 .place-row img { width: 44px; height: 44px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
+  .dc .sheet.v2 .place-row .p-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .dc .sheet.v2 .place-row strong { font-size: 15px; font-weight: 700; color: #101724; }
+  .dc .sheet.v2 .place-row span { font-size: 13px; color: #5c6b7d; }
+  .dc .sheet.v2 .place-row .radio { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #c6cdd5; flex-shrink: 0; display: grid; place-items: center; color: transparent; font-size: 13px; }
+  .dc .sheet.v2 .place-row.selected .radio { border: 0; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; }
+  .dc .sheet.v2 .doing { display: flex; gap: 7px; flex-wrap: wrap; }
+  .dc .sheet.v2 .doing .chip { height: 34px; padding: 0 13px; border-radius: 999px; border: 1.5px solid rgba(32, 36, 42, 0.16); background: #ffffff; color: #1a2332; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+  .dc .sheet.v2 .doing .chip.selected { background: #101724; border-color: #101724; color: #ffffff; }
+  .dc .sheet.v2 .doing .chip .sd { width: 10px; height: 10px; border-radius: 50%; }
+  .dc .sheet.v2 .audience { display: flex; align-items: center; gap: 11px; border-radius: 16px; background: #f6f8fa; padding: 12px 14px; }
+  .dc .sheet.v2 .audience .a-icon { width: 38px; height: 38px; border-radius: 50%; background: rgba(59, 130, 246, 0.12); color: #2563eb; display: grid; place-items: center; font-size: 19px; flex-shrink: 0; }
+  .dc .sheet.v2 .audience .a-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .dc .sheet.v2 .audience strong { font-size: 14px; font-weight: 700; color: #101724; }
+  .dc .sheet.v2 .audience span { font-size: 13px; color: #5c6b7d; line-height: 1.35; }
+  .dc .sheet.v2 .btn-grad { width: 100%; height: 50px; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; font-size: 16px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .dc .sheet.v2 .btn-grad:disabled { opacity: 0.5; }
+  .dc .sheet.v2 .checkout { align-self: center; font-size: 14px; font-weight: 600; color: #b42318; padding: 4px 8px; }
+
+  /* Write review page (V2 write-review.html) */
+  .hm .wrev .toolbar { height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; }
+  .hm .wrev .toolbar .close { width: 36px; height: 36px; margin-left: -6px; display: grid; place-items: center; color: #1a2332; font-size: 24px; }
+  .hm .wrev .toolbar .page-title { font-size: 20px; font-weight: 700; color: #1a2332; }
+  .hm .wrev .toolbar .spacer { width: 36px; }
+  .hm .wrev .page-content { padding: 4px 16px 32px; display: flex; flex-direction: column; gap: 18px; }
+  .hm .wrev .place { display: flex; align-items: center; gap: 13px; }
+  .hm .wrev .place img { width: 64px; height: 64px; border-radius: 18px; object-fit: cover; flex-shrink: 0; }
+  .hm .wrev .place .p-txt { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .hm .wrev .place strong { font-size: 22px; font-weight: 800; line-height: 1.2; color: #101724; }
+  .hm .wrev .place span { font-size: 14px; color: #5c6b7d; display: inline-flex; align-items: center; gap: 5px; }
+  .hm .wrev .stars-block { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 10px 0 2px; }
+  .hm .wrev .stars { display: flex; gap: 10px; }
+  .hm .wrev .stars button { font-size: 44px; line-height: 1; color: #e2e6ea; transition: transform 0.15s ease, color 0.15s ease; }
+  .hm .wrev .stars button.on { color: #f5a524; }
+  .hm .wrev .stars button:active { transform: scale(1.15); }
+  .hm .wrev .stars-word { min-height: 20px; font-size: 16px; font-weight: 700; color: #101724; }
+  .hm .wrev .quick-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .hm .wrev .quick-chips .chip { height: 36px; padding: 0 14px; border-radius: 999px; border: 1.5px solid rgba(32, 36, 42, 0.16); background: #ffffff; color: #1a2332; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+  .hm .wrev .quick-chips .chip.selected { background: #101724; border-color: #101724; color: #ffffff; }
+  .hm .wrev .field { border: 1.5px solid rgba(32, 36, 42, 0.16); border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .hm .wrev .field textarea { border: 0; outline: 0; resize: none; height: 72px; font-size: 16px; line-height: 1.5; color: #101724; }
+  .hm .wrev .field .count { align-self: flex-end; font-size: 12px; color: #8b98a8; }
+  .hm .wrev .add-photo { align-self: flex-start; height: 40px; padding: 0 16px; border: 1.5px dashed rgba(32, 36, 42, 0.24); border-radius: 999px; color: #3b4551; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 7px; }
+  .hm .wrev .audience { display: flex; align-items: center; gap: 11px; border-radius: 16px; background: #f6f8fa; padding: 12px 14px; }
+  .hm .wrev .audience .a-icon { width: 38px; height: 38px; border-radius: 50%; background: rgba(59, 130, 246, 0.12); color: #2563eb; display: grid; place-items: center; font-size: 19px; flex-shrink: 0; }
+  .hm .wrev .audience .a-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .hm .wrev .audience strong { font-size: 14px; font-weight: 700; color: #101724; }
+  .hm .wrev .audience span { font-size: 13px; color: #5c6b7d; line-height: 1.35; }
+  .hm .wrev .btn-grad { width: 100%; height: 50px; border-radius: 999px; background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; font-size: 16px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .hm .wrev .btn-grad:disabled { opacity: 0.5; }
+
+  /* Create plan modal (CreateActivityModal) */
+  .mrp .cm-host { position: absolute; inset: 0; z-index: 15; overflow: clip; background: #ffffff; transform: translateY(100%); transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1); display: flex; flex-direction: column; visibility: hidden; }
+  .mrp .cm-host.open { transform: none; visibility: visible; }
+  .hm .cm-body { flex: 1; overflow-y: auto; padding: 0 16px 24px; scrollbar-width: none; }
+  .hm .cm-body::-webkit-scrollbar { display: none; }
+  .hm .cm-banner { position: relative; height: 150px; border-radius: 24px; overflow: hidden; background: #1e73ab; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 24px; margin-bottom: 16px; }
+  .hm .cm-banner::before { content: ""; position: absolute; inset: 0; background: url("../../../../design-system/mixedroutes-assets/plan-default.png") center / cover; opacity: 0.3; }
+  .hm .cm-banner.img { height: 200px; }
+  .hm .cm-banner.img::before { opacity: 1; background: var(--img) center / cover; }
+  .hm .cm-banner button { position: relative; height: 44px; padding: 0 24px; border-radius: 999px; background: rgba(0, 0, 0, 0.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1.5px solid rgba(255, 255, 255, 0.2); color: #ffffff; font-size: 16px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4); }
+  .hm .cm-banner button i { font-size: 20px; }
+  .hm .cm-name { position: relative; margin-bottom: 16px; }
+  .hm .cm-name input { width: 100%; height: 64px; border: 1px solid transparent; outline: 0; border-radius: 32px; background: rgba(118, 118, 128, 0.12); padding: 0 56px 0 24px; font-size: 20px; color: #101724; }
+  .hm .cm-name input::placeholder { color: #5c6b7d; }
+  .hm .cm-name input:focus { border-color: #0891b2; box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.15); }
+  .hm .cm-name .clr { position: absolute; right: 20px; top: 22px; font-size: 20px; color: #5c6b7d; }
+  .hm .cm-sec { display: flex; flex-direction: column; gap: 24px; }
+  .hm .cm-sec h3 { font-size: 14px; font-weight: 700; letter-spacing: 0.05rem; text-transform: uppercase; color: #5c6b7d; }
+  .hm .cm-grp { display: flex; flex-direction: column; gap: 10.67px; }
+  .hm .cm-tags .ichip i { font-size: 18px; }
+  .hm .pf-card { display: flex; align-items: center; gap: 12px; padding: 16px; border-radius: 24px; background: #ffffff; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07), 0 4px 12px rgba(0, 0, 0, 0.1); text-align: left; width: 100%; }
+  .hm .pf-card .ic { width: 40px; height: 40px; border-radius: 8px; background: rgba(16, 23, 36, 0.08); display: grid; place-items: center; font-size: 24px; color: #5c6b7d; flex-shrink: 0; }
+  .hm .pf-card.filled .ic { background: #e4eefe; color: #234e8a; }
+  .hm .pf-card .c { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .hm .pf-card strong { font-size: 18px; font-weight: 700; color: #101724; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hm .pf-card span { font-size: 16px; color: #5c6b7d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hm .pf-card .end { width: 36px; height: 36px; border-radius: 50%; background: #e4eefe; color: #234e8a; display: grid; place-items: center; font-size: 20px; flex-shrink: 0; }
+  .hm .pf-card.filled .end { background: none; color: #5c6b7d; font-size: 22px; }
+  .hm .pf-card.gray { background: #f1f4f7; box-shadow: none; padding: 4.74px 7.11px 4.74px 16px; min-height: 64px; }
+  .hm .pf-card.gray .ic { background: none; color: #1a2332; }
+  .hm .pf-card.gray span { font-size: 14px; }
+  .hm .pf-card.gray > i { font-size: 20px; color: #5c6b7d; }
+  .hm .opills { display: flex; flex-wrap: wrap; gap: 7.11px; }
+  .hm .cm-search { position: relative; margin: 4px 0 12px; }
+  .hm .cm-search i { position: absolute; left: 16px; top: 14px; font-size: 20px; color: #858b94; }
+  .hm .cm-search input { width: 100%; height: 48px; border: 0; outline: 0; border-radius: 24px; background: rgba(118, 118, 128, 0.12); padding: 0 16px 0 48px; font-size: 16px; color: #101724; }
+  .hm .cm-search input::placeholder { color: #858b94; }
+  .hm .cm-lbl { margin: 16px 0 4px; font-size: 14px; font-weight: 600; text-transform: uppercase; color: #5c6b7d; }
+  .hm .cm-h { margin: 20px 0 6px; font-size: 18px; font-weight: 700; color: #101724; }
+  .hm .cm-res { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 6px 0; text-align: left; width: 100%; }
+  .hm .cm-res .tl { width: 54px; height: 54px; border-radius: 8px; display: grid; place-items: center; font-size: 26px; flex-shrink: 0; }
+  .hm .cm-res .tl.rec { width: 24px; height: 24px; font-size: 24px; color: #5c6b7d; margin: 0 15px; }
+  .hm .cm-res .c { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .hm .cm-res strong { font-size: 16px; font-weight: 700; color: #101724; }
+  .hm .cm-res span { font-size: 14px; color: #5c6b7d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hm .cm-res img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .hm .cm-res .ck { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid #c6cdd5; display: grid; place-items: center; color: transparent; font-size: 14px; flex-shrink: 0; }
+  .hm .cm-res.on .ck { background: #06b6d4; border-color: #06b6d4; color: #ffffff; }
+  .hm .cm-hint { margin-top: 16px; font-size: 14px; color: #5c6b7d; line-height: 1.4; }
+  .hm .cm-host .a-head .skip { padding: 0 12px; font-size: 16px; font-weight: 700; color: #1a2332; }
+  .hm .cm-layer { position: absolute; inset: 0; z-index: 10; background: #ffffff; display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1); }
+  .hm .cm-layer.open { transform: none; }
+
+  /* Modal routes slide up */
+  .mrp .view.anim-push.modal { animation-name: mrpUp; }
+  .mrp .view.anim-pop.modal { animation-name: mrpDown; }
+  @keyframes mrpUp { from { transform: translateY(100%); } to { transform: none; } }
+  @keyframes mrpDown { from { transform: none; } to { transform: translateY(100%); } }
 
   /* Chats: matches app MessageListItem, Chat page, MessageBubble, ChatComposer */
   .hm .x-clist { display: flex; flex-direction: column; gap: 4.74px; }
@@ -699,39 +1044,6 @@
   .hm .x-send.on { background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; }
   @keyframes mrpMsg { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
-  /* You + person */
-  .hm .x-me { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px 16px 0; text-align: center; }
-  .hm .x-me .avw { position: relative; }
-  .hm .x-me .avw img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; display: block; }
-  .hm .x-me .avw .dot { position: absolute; right: 4px; bottom: 4px; width: 20px; height: 20px; border-radius: 50%; background: var(--st, #14b8a6); border: 3px solid #ffffff; }
-  .hm .x-me h2 { font-size: 26px; font-weight: 800; color: #101724; margin-top: 4px; }
-  .hm .x-me .handle { font-size: 15px; color: #5c6b7d; }
-  .hm .x-me .status-pill { margin-top: 6px; }
-  .hm .x-me .btns { display: flex; gap: 8px; margin-top: 8px; width: 100%; }
-  .hm .x-stats { display: flex; border-radius: 20px; background: #f1f4f7; }
-  .hm .x-stat { flex: 1; padding: 14px 0; display: flex; flex-direction: column; align-items: center; gap: 2px; }
-  .hm .x-stat + .x-stat { box-shadow: inset 1px 0 0 rgba(16, 23, 36, 0.06); }
-  .hm .x-stat strong { font-size: 20px; font-weight: 800; color: #101724; }
-  .hm .x-stat span { font-size: 13px; color: #5c6b7d; }
-  .hm .int-chips span { cursor: pointer; transition: background 0.18s ease, color 0.18s ease; }
-  .hm .int-chips span.off { background: #ffffff; box-shadow: inset 0 0 0 1.5px rgba(32, 36, 42, 0.12); color: #8a94a2; }
-  .hm .x-demo { padding: 14px; border-radius: 20px; border: 1.5px dashed rgba(32, 36, 42, 0.18); display: flex; flex-direction: column; gap: 10px; }
-  .hm .x-demo .lbl { font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: #8a94a2; }
-  .hm .x-demo p { font-size: 13px; color: #5c6b7d; line-height: 1.4; }
-  .hm .x-demo .x-seg button { height: 38px; font-size: 13px; }
-  .hm .x-demo .reset { align-self: flex-start; font-size: 13px; font-weight: 700; color: #5c6b7d; }
-
-  /* Notifications */
-  .hm .x-notif { position: relative; display: flex; align-items: center; gap: 12px; padding: 12px 16px 12px 20px; }
-  .hm .x-notif .new { position: absolute; left: 7px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: #2563eb; }
-  .hm .x-notif > img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
-  .hm .x-notif .ic { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-size: 22px; background: #f1f4f7; flex-shrink: 0; }
-  .hm .x-notif .c { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-  .hm .x-notif .c span { font-size: 15px; line-height: 1.35; color: #5c6b7d; }
-  .hm .x-notif .c strong { color: #101724; font-weight: 700; }
-  .hm .x-notif time { font-size: 12px; color: #8a94a2; }
-  .hm .x-notif .th { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
-
   /* AI ask results */
   .hm .x-q { align-self: flex-end; max-width: 82%; padding: 10px 14px; border-radius: 20px 20px 6px 20px; background: #f1f4f7; font-size: 15px; font-weight: 600; color: #101724; }
   .hm .x-ai { display: flex; align-items: center; gap: 10px; font-size: 15px; color: #1a2332; line-height: 1.4; }
@@ -760,6 +1072,41 @@
   .hm .gs-row.done { animation: mrpDone 0.5s ease; }
   @keyframes mrpDone { 0% { background: #e6f6f0; } 100% { background: transparent; } }
   .hm .gs-card.all-done .gs-head strong { color: #0ca678; }
+
+  /* Profile prototype switcher */
+  .hm .x-demo { padding: 14px; border-radius: 20px; border: 1.5px dashed rgba(32, 36, 42, 0.18); display: flex; flex-direction: column; gap: 10px; }
+  .hm .x-demo .lbl { font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: #8a94a2; }
+  .hm .x-demo p { font-size: 13px; color: #5c6b7d; line-height: 1.4; }
+  .hm .x-seg { display: flex; gap: 8px; }
+  .hm .x-seg button { flex: 1; height: 38px; border-radius: 999px; border: 1.5px solid rgba(32, 36, 42, 0.16); background: #ffffff; font-size: 13px; font-weight: 700; color: #1a2332; }
+  .hm .x-seg button.on { background: #101724; border-color: #101724; color: #ffffff; }
+  .hm .x-demo .reset { align-self: flex-start; font-size: 13px; font-weight: 700; color: #5c6b7d; }
+
+  /* Headline greeting: moment word in blue to violet, rest stays ink (home-v2-capped) */
+  .hm .greet h1 .grad { background: linear-gradient(90deg, #1749E5 0%, #7C5CFF 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+  /* Safe areas: simulated iPhone status bar (47px) and home indicator (34px); touch devices use env() */
+  .mrp { --sat: 47px; --sab: 34px; }
+  @media (hover: none) and (pointer: coarse) { .mrp { --sat: env(safe-area-inset-top, 0px); --sab: env(safe-area-inset-bottom, 0px); } .mrp .sbar, .mrp .hbar { display: none; } }
+  .mrp .sbar { position: absolute; top: 0; left: 0; right: 0; z-index: 16; height: var(--sat); display: flex; align-items: center; justify-content: space-between; padding: 2px 26px 0 44px; background: #ffffff; color: #101724; font-size: 16px; font-weight: 600; pointer-events: none; transition: background 0.25s ease, color 0.25s ease; }
+  .mrp .sbar .ic { display: flex; align-items: center; gap: 6px; font-size: 17px; }
+  .mrp .sbar .ic .bat { font-size: 25px; }
+  .mrp.sb-clear .sbar { background: transparent; }
+  .mrp.sb-light .sbar { color: #ffffff; }
+  .mrp.cm-open .sbar { background: #ffffff; color: #101724; }
+  .mrp .hbar { position: absolute; left: 50%; bottom: 8px; z-index: 31; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: #101724; pointer-events: none; }
+  .mrp .toolbar, .mrp .x-top, .mrp .a-head, .mrp .x-chat-head, .mrp .nav-head, .mrp .ovl, .mrp .wrev .toolbar { height: calc(56px + var(--sat)); padding-top: var(--sat); }
+  .mrp .ovl { margin-bottom: calc(-56px - var(--sat)); }
+  .mrp .pf-top { padding-top: calc(72px + var(--sat)); }
+  .mrp .pd-top { padding-top: calc(96px + var(--sat)); }
+  .hm .tab-bar { padding-bottom: var(--sab); }
+  .mrp .view.root { padding-bottom: calc(72px + var(--sab)); }
+  .hm .a-foot { padding-bottom: calc(4px + var(--sab)); }
+  .hm .x-composer { padding-bottom: calc(4px + var(--sab)); }
+  .hm .x-ask-dock { padding-bottom: calc(10px + var(--sab)); }
+  .mrp .sheet-host .sheet { padding-bottom: calc(16px + var(--sab)); }
+  .mrp .toast { bottom: calc(72px + var(--sab)); }
+  .mrp.no-tabs .toast { bottom: calc(80px + var(--sab)); }
 </style>
 
 <div class="hm mrp" id="app">
@@ -776,10 +1123,15 @@
     <div class="view" id="view-place"></div>
     <div class="view" id="view-plan"></div>
     <div class="view" id="view-person"></div>
+    <div class="view" id="view-saved"></div>
+    <div class="view" id="view-review"></div>
   </div>
   <nav class="tab-bar" id="tabbar"></nav>
   <div class="sheet-host dc" id="sheet-host"><div class="scrim" data-act="sheet-close"></div><div class="sheet" id="sheet"></div></div>
+  <div class="cm-host" id="cm-host"></div>
   <div class="toast" id="toast"></div>
+  <div class="sbar" aria-hidden="true"><span>9:41</span><span class="ic"><i class="ph-fill ph-cell-signal-full"></i><i class="ph-bold ph-wifi-high"></i><i class="ph-fill ph-battery-full bat"></i></span></div>
+  <div class="hbar" aria-hidden="true"></div>
 </div>
 
 <script>
@@ -887,50 +1239,22 @@
     cindysSara: { kind: 'media', who: 'sara', verb: 'saved this', time: '6h', item: 'l:cindys', why: ['ph-map-pin', 'Nearby'], btn: 'save' }
   };
 
-  var NOTIFS = {
-    active: [
-      { who: 'maya', html: '<strong>Maya</strong> invited you to <strong>Pizza night</strong>', time: '20m', go: 'plans', th: '1513104890138-7c749659a591' },
-      { who: 'sam', html: '<strong>Sam</strong> invited you to <strong>Hike at Craggy Gardens</strong>', time: '1h', go: 'plans', th: '1551632811-561732d1e306' },
-      { who: 'sara', html: '<strong>Sara</strong> replied in <strong>Weekend Crew</strong>: who’s in for Sat?', time: '2h', go: 'chat-crew', old: true },
-      { who: 'alex', html: '<strong>Alex</strong> is going to <strong>Shindig on the Green</strong>', time: '3h', go: 'event-shindig', th: '1470229722913-7c0e2dbbafd3', old: true },
-      { who: 'riley', html: '<strong>Riley</strong> reviewed <strong>Ultra Coffeebar</strong> ★★★★★', time: '5h', go: 'place-ultra', th: '1509042239860-f550ce710b93', old: true }
-    ],
-    few: [
-      { who: 'sara', html: '<strong>Sara</strong> accepted your friend request', time: '2h', go: 'person-sara' },
-      { who: 'sam', html: '<strong>Sam</strong> joined from your contacts', time: '1d', go: 'person-sam' },
-      { icon: '👋', html: '<strong>Welcome to MixedRoutes.</strong> Plans are better with your people.', time: '2d', go: 'home', old: true }
-    ],
-    dayone: [
-      { icon: '👋', html: '<strong>Welcome to MixedRoutes.</strong> Plans are better with your people.', time: '5m', go: 'home' },
-      { who: 'devon', html: '<strong>Devon</strong> from your contacts is on MixedRoutes', time: '5m', go: 'person-devon' }
-    ]
-  };
-
   var MODES = {
     active: { friends: ['sara', 'sam', 'maya', 'alex', 'priya', 'riley'], chats: ['crew', 'sara', 'hiking', 'sam', 'priya'], unread: { crew: 3, sara: 1 }, plans: ['bavettes', 'sunrise', 'movienight'], invites: ['craggy', 'pizza'], banners: ['notif', 'plus'], gs: null, status: { s: 'hang', at: 'ultra' }, saved: { ultra: 1, brunch: 1 } },
     few: { friends: ['sara', 'sam'], chats: ['sara', 'sam'], unread: { sara: 1 }, msgs: { sara: [{ f: 'sara', t: "So glad you're on here!" }] }, plans: [], invites: [], banners: [], gs: { friend: true }, status: { s: 'hang', at: 'ultra' }, saved: {} },
     dayone: { friends: [], chats: [], unread: {}, plans: [], invites: [], banners: [], gs: {}, status: null, saved: {} }
   };
 
-  var BANNERS = {
-    notif: { accent: '#2563eb', icon: 'ph-bell-ringing', t: 'Notifications are off', s: 'Turn them on so you never miss a plan update.', cta: 'Turn on', toast: 'Notifications turned on' },
-    plus: { accent: '#ca8a04', icon: 'ph-crown-simple', t: 'Try Plus free for 7 days', s: 'Unlimited asks and group ideas.', cta: 'Start free trial', toast: 'Plus trial started' }
-  };
   var STATUS = {
+    online: { l: 'Online', c: '#0ca678' },
     hang: { l: 'Down to hang', c: '#14b8a6' },
-    tonight: { l: 'Free tonight', c: '#3b82f6' },
-    busy: { l: 'Heads down', c: '#c5ccd4' }
+    busy: { l: 'Heads down', c: '#d97706' },
+    invisible: { l: 'Invisible', c: '#c5ccd4' }
   };
   var NEARBY = [['ultra', '120 ft away'], ['jumbo', '0.3 mi away'], ['cindys', '0.4 mi away']];
   var ALL_INTERESTS = ['🎸 Live music', '🥾 Hiking', '☕ Coffee', '🍸 Cocktails', '🎲 Board games', '🎬 Movies', '🧗 Climbing', '🌮 Tacos', '🎨 Art', '🧘 Yoga'];
   var SUGGEST = ['devon', 'maya', 'jordan', 'alex', 'nina', 'marcus', 'sara', 'sam', 'priya', 'riley'];
   var SUGGEST_SUB = { devon: '3 mutual', maya: 'Also into climbing', jordan: 'From your contacts', alex: '2 mutual', nina: 'Also into coffee', marcus: '2 mutual', sara: 'From your contacts', sam: 'From your contacts', priya: '1 mutual', riley: '1 mutual' };
-  var WHEN = {
-    tonight: { l: 'Tonight', kick: 'TONIGHT · 7:00 PM', sort: 0.4, greet: 'Tonight', time: '7pm' },
-    tomorrow: { l: 'Tomorrow', kick: 'TOMORROW · 7:00 PM', sort: 1.1, greet: 'Tomorrow night', time: '7pm' },
-    sat: { l: 'Saturday', kick: 'SAT · 2:00 PM', sort: 3.4, greet: 'Saturday', time: '2pm' },
-    sun: { l: 'Sunday', kick: 'SUN · 11:00 AM', sort: 4.4, greet: 'Sunday', time: '11am' }
-  };
   var DAY_GREET = { today: 'Tonight', thu: 'Tomorrow', fri: 'Friday', sat: 'Saturday', sun: 'Sunday' };
   var REPLIES = ['Love it 🙌', "Yes! I'm in", 'Haha perfect', 'Works for me', '👍', "Let's do it", 'Ooh good call'];
   var WHY = {
@@ -949,7 +1273,7 @@
       gs: m.gs ? Object.assign({ friend: false, plan: false, discover: false }, m.gs) : null, gsHidden: false,
       status: m.status ? clone(m.status) : null, saved: clone(m.saved), joined: {}, sent: {}, following: {}, rsvp: {},
       created: [], notifSeen: false, filters: { events: {}, places: {} }, reviews: {}, interests: ['🎸 Live music', '🥾 Hiking', '☕ Coffee', '🍸 Cocktails'],
-      inviteOpen: false, ask: '', chatQ: ''
+      inviteOpen: false, ask: '', requests: mode === 'active' ? { nina: 1 } : {}, lists: { coffee: mode === 'active' ? { ultra: 1 } : {}, date: mode === 'active' ? { jumbo: 1, cindys: 1 } : {} }
     };
   }
   var startMode = 'active';
@@ -984,20 +1308,17 @@
   // ---------- Plans model ----------
   function eventPlan(id) {
     var e = E[id], friends = friendsOnly(e.going);
-    return { id: 'j-' + id, title: e.t, kick: e.k.toUpperCase(), img: e.img, art: e.art, people: friends, going: friends.length ? names(friends) + ' + you' : 'You + ' + (e.goingN || 12) + ' others', sort: e.sort, greet: DAY_GREET[e.day] === 'Tomorrow' ? 'Tomorrow night' : DAY_GREET[e.day] || 'Soon', sub: e.t + ' · ' + e.k.split('· ')[1].replace(':00', '').replace(' ', '').toLowerCase(), place: e.place, where: e.v, event: id, about: e.blurb };
+    return { id: 'j-' + id, at: eventAt(id), time: tShort(eventAt(id)), tags: EV_TAG[e.type] ? [EV_TAG[e.type]] : [], title: e.t, kick: e.k.toUpperCase(), img: e.img, art: e.art, people: friends, going: friends.length ? names(friends) + ' + you' : 'You + ' + (e.goingN || 12) + ' others', sort: e.sort, greet: DAY_GREET[e.day] === 'Tomorrow' ? 'Tomorrow night' : DAY_GREET[e.day] || 'Soon', sub: e.t + ' · ' + e.k.split('· ')[1].replace(':00', '').replace(' ', '').toLowerCase(), place: e.place, where: e.v, event: id, about: e.blurb };
   }
   function getPlan(id) {
-    if (PLANS[id]) return Object.assign({ id: id }, PLANS[id]);
+    if (PLANS[id]) return withAt(Object.assign({ id: id }, PLANS[id]));
     if (id.indexOf('j-') === 0 && E[id.slice(2)]) return eventPlan(id.slice(2));
-    if (PUB[id]) return Object.assign({ id: id, pub: true }, PUB[id]);
+    if (PUB[id]) return withAt(Object.assign({ id: id, pub: true }, PUB[id]));
     for (var i = 0; i < S.created.length; i++) if (S.created[i].id === id) return S.created[i];
     return null;
   }
   function myPlans() {
-    var ids = S.plans.concat(S.accepted);
-    Object.keys(S.joined).forEach(function (k) { if (S.joined[k]) ids.push(E[k] ? 'j-' + k : k); });
-    S.created.forEach(function (c) { ids.push(c.id); });
-    return ids.filter(function (id) { return !S.declined[id]; }).map(getPlan).filter(Boolean).sort(function (a, b) { return a.sort - b.sort; });
+    return planIds().filter(function (id, i, a) { return a.indexOf(id) === i && S.rsvp[id] !== 'no'; }).map(getPlan).filter(function (p) { return p && p.at && !p.past && dayDiff(p.at) >= 0; }).sort(function (a, b) { return a.at - b.at; });
   }
   function planImg(p, w, h) { return p.imgUrl ? "background-image: url('" + p.imgUrl + "');" : bg(p.img, w, h); }
 
@@ -1011,21 +1332,24 @@
     if (v === 'serp') return '<span class="save' + (on ? ' saved' : '') + '"' + a + '><i class="' + ic + '"></i></span>';
     if (v === 'row') return '<span class="save-btn' + (on ? ' saved' : '') + '"' + a + '><i class="' + ic + '"></i></span>';
     if (v === 'float') return '<button class="x-float r' + (on ? ' on' : '') + '"' + a + ' aria-label="Save"><i class="' + ic + '"></i></button>';
-    return '<button class="x-btn soft' + (on ? ' on' : '') + (v === 'bigfit' ? ' fit' : '') + '"' + a + '><i class="' + ic + '"></i>' + (on ? 'Saved' : 'Save') + '</button>';
+    if (v === 'hd' || v === 'hdl') return '<button class="ib"' + a + ' aria-label="Save"><i class="' + (on ? 'ph-fill' : 'ph') + ' ph-bookmark-simple" style="font-size: 22px;' + (on ? ' color: #06b6d4;' : '') + '"></i></button>';
+    return '<button class="a-save' + (on ? ' on' : '') + '"' + a + ' aria-label="Save"><i class="' + (on ? 'ph-fill' : 'ph') + ' ph-bookmark-simple"></i></button>';
   };
   R.join = function (id, v) {
     var on = !!S.joined[id], a = ' data-act="join" data-id="' + id + '" data-v="' + v + '"';
     if (v === 'glass') return '<button class="join-pill' + (on ? ' done' : '') + '"' + a + '>' + (on ? '<i class="ph-bold ph-check"></i>Going' : 'Join') + '</button>';
-    if (v === 'big') return '<button class="x-btn ' + (on ? 'done' : 'ink') + '"' + a + '>' + (on ? '<i class="ph-bold ph-check"></i>You’re going' : 'Join') + '</button>';
+    if (v === 'plan') return '<button class="a-pill grad" style="flex: 0 0 130px;"' + a + '>Join this plan</button>';
     return '<button class="h2-btn ' + (on ? 'done' : 'ink') + (v === 'sm' ? ' join-sm' : '') + '"' + a + '>' + (on ? '<i class="ph-bold ph-check"></i>Going' : 'Join') + '</button>';
   };
   R.add = function (id, v) {
-    var on = isFriend(id) ? 'friend' : S.sent[id] ? 'sent' : '', a = ' data-act="add" data-id="' + id + '" data-v="' + v + '"';
-    if (v === 'big') {
-      if (on === 'friend') return '<button class="x-btn soft" data-go="' + chatFor(id) + '"><i class="ph-bold ph-chat-circle"></i>Message</button>';
-      return '<button class="x-btn ' + (on ? 'soft' : 'ink') + '"' + a + '>' + (on ? '<i class="ph-bold ph-check"></i>Request sent' : '<i class="ph-bold ph-user-plus"></i>Add friend') + '</button>';
+    var fr = isFriend(id), req = S.requests && S.requests[id], sent = S.sent[id], a = ' data-act="add" data-id="' + id + '" data-v="' + v + '"';
+    if (v === 'pf') {
+      if (fr) return '<button class="a-pill st" style="--c: #2fd7a8;" data-act="toast" data-id="You\u2019re friends"><i class="ph-fill ph-check-circle"></i>Friends</button>';
+      if (req) return '<button class="a-pill grad"' + a + '><i class="ph-fill ph-user-plus"></i>Accept invite</button>';
+      if (sent) return '<button class="a-pill st" style="--c: #858b94;"' + a + '><i class="ph-fill ph-clock"></i>Invite sent</button>';
+      return '<button class="a-pill grad"' + a + '><i class="ph-fill ph-user-plus"></i>Add friend</button>';
     }
-    return '<button class="add-btn' + (on ? ' sent' : '') + '"' + a + '>' + (on === 'friend' ? 'Friends' : on ? 'Sent' : 'Add') + '</button>';
+    return '<button class="add-btn' + (fr || sent ? ' sent' : '') + '"' + a + '>' + (fr ? 'Friends' : req ? 'Accept' : sent ? 'Sent' : 'Add') + '</button>';
   };
   R.follow = function (id) {
     var on = !!S.following[id];
@@ -1059,25 +1383,16 @@
   function statusPill() {
     if (!S.status) return '<button class="status-pill unset" data-act="status" aria-label="Set your status"><span class="me"><img src="' + av('me') + '" alt="" /><span class="dot"></span></span><span class="st"><strong>Set a status</strong><small>Let friends know you’re free</small></span></button>';
     var st = STATUS[S.status.s];
-    return '<button class="status-pill" data-act="status" aria-label="Change status"><span class="me"><img src="' + av('me') + '" alt="" /><span class="dot" style="--st: ' + st.c + ';"></span></span><span class="st"><strong>' + st.l + '</strong><small>' + (S.status.at ? '<i class="ph-fill ph-map-pin"></i>' + L[S.status.at].t : 'Visible to friends') + '</small></span></button>';
+    return '<button class="status-pill" data-act="status" aria-label="Change status"><span class="me"><img src="' + av('me') + '" alt="" /><span class="dot" style="--st: ' + st.c + ';"></span></span><span class="st"><strong>' + st.l + '</strong><small>' + (S.status.at ? '<i class="ph-fill ph-map-pin"></i>' + L[S.status.at].t : S.status.doing || 'Visible to friends') + '</small></span></button>';
   }
-  function notifCount() { return S.notifSeen ? 0 : 2; }
   function homeToolbar() {
     var n = notifCount();
     return '<div class="toolbar">' + statusPill() + '<div class="actions"><button class="tbtn" data-act="create" aria-label="Create plan"><i class="ph-bold ph-plus"></i></button><button class="tbtn" data-go="notifications" aria-label="Notifications"><i class="ph-bold ph-bell"></i>' + (n ? '<span class="badge-dot">' + n + '</span>' : '') + '</button></div></div>';
   }
   function greet(plans) {
-    var p = plans[0];
-    if (p && S.mode === 'active') return '<div class="greet"><h1><span class="grad">' + p.greet + '</span>, Brandon</h1><h3 class="subline" data-go="plan-' + p.id + '">' + p.sub + '</h3></div>';
-    if (p) return '<div class="greet"><h1><span class="grad">Evening, Brandon</span></h1><h3 class="subline" data-go="plan-' + p.id + '">Up next: ' + p.sub + '</h3></div>';
-    return '<div class="greet"><h1><span class="grad">Evening, Brandon</span></h1><h3 class="subline">Find something to do tonight 🌙</h3></div>';
-  }
-  function bannerStack() {
-    var n = S.banners.length;
-    return '<div class="home-banner-stack" aria-label="' + n + ' updates">' + S.banners.map(function (b, i) {
-      var d = BANNERS[b], cls = i === 0 ? 'is-top' : i === 1 ? 'is-second' : 'is-third';
-      return '<div class="home-banner-card ' + cls + '" data-banner="' + b + '" style="--card-index: ' + i + '; --accent: ' + d.accent + ';"><button class="home-banner-dismiss" data-act="banner-x" aria-label="Dismiss"><i class="ph-bold ph-x"></i></button><div class="home-banner-icon"><i class="ph-fill ' + d.icon + '"></i></div><div class="home-banner-copy"><strong>' + d.t + '</strong><span>' + d.s + '</span></div><button class="home-banner-cta" data-act="banner-cta">' + d.cta + '</button></div>';
-    }).join('') + '</div>';
+    var p = plans[0], ph = p && S.mode === 'active' ? (p.greet || greetFor(p.at)) : 'Evening';
+    var sub = p ? (p.sub || p.title + ' · ' + tShort(p.at).toLowerCase().replace(' ', '')) : 'Find something to do tonight 🌙';
+    return '<div class="greet"><h1><span class="grad">' + ph + '</span>, Brandon</h1><h3 class="subline"' + (p ? ' data-go="plan-' + p.id + '"' : '') + '>' + (p && S.mode !== 'active' ? 'Up next: ' : '') + sub + '</h3></div>';
   }
   function gsCard() {
     var g = S.gs, n = (g.friend ? 1 : 0) + (g.plan ? 1 : 0) + (g.discover ? 1 : 0), all = n === 3;
@@ -1096,13 +1411,6 @@
     var c = CHATS[id], msgs = getMsgs(id), last = msgs[msgs.length - 1];
     var text = !last ? '' : last.sys ? last.sys : (last.f === 'me' ? 'You: ' : c.members ? P[last.f].name + ': ' : '') + last.t;
     return { name: c.person ? P[c.person].name : c.name, img: c.person ? av(c.person, 144) : (c.imgUrl || U(c.img, 144, 144)), sq: !!c.sq, last: text, time: c.time };
-  }
-  function recentChats() {
-    return '<section><div class="sec-head"><h2>Recent chats</h2><button class="more" data-act="tab" data-id="chats" aria-label="All chats"><i class="ph-bold ph-caret-right"></i></button></div><div class="rail rail-people">' +
-      S.chats.slice(0, 4).map(function (id) {
-        var m = chatMeta(id), u = S.unread[id];
-        return '<div class="mini-card" data-go="chat-' + id + '"><div class="av-wrap"><img class="av' + (m.sq ? ' av-sq' : '') + '" src="' + m.img + '" alt="" />' + (u ? '<span class="unread">' + u + '</span>' : '') + '</div><div class="txt"><strong>' + m.name + '</strong><span>' + m.last.replace(/^You: /, '') + '</span></div></div>';
-      }).join('') + (S.chats.length > 3 ? '<div class="tail" data-act="tab" data-id="chats"><span class="circ"><i class="ph-bold ph-caret-right"></i></span><span>View more</span></div>' : '') + '</div></section>';
   }
   function inviteBanner() {
     var list = S.invites.map(function (k) { return INVITES[k]; });
@@ -1165,8 +1473,8 @@
   function teaser() {
     return '<div class="teaser" data-act="teaser"><div class="inner"><span class="wk-fan"><img src="' + U('1464822759023-fed622ff2c3b', 120, 150) + '" alt="" /><img src="' + U('1488459716781-31db52582fe9', 120, 150) + '" alt="" /><img src="' + U('1470229722913-7c0e2dbbafd3', 120, 150) + '" alt="" /></span><div class="t-txt"><small class="wk-kick"><i class="ph-fill ph-sparkle"></i>This weekend</small><strong>12 picks near Asheville</strong><span>Live music, hikes, markets</span></div><i class="ph-bold ph-caret-right"></i></div></div>';
   }
-  function friendsHead() {
-    return '<div class="sec-head act-head"><h2>From your friends</h2></div>';
+  function friendsHead(t) {
+    return '<div class="sec-head act-head"><h2>' + t + '</h2></div>';
   }
   function olderHTML(ids) { return '<div class="older">' + ids.map(feedCard).join('') + '<div class="older-end">That\u2019s everything from the last 2 days</div></div>'; }
   function caughtUp(older) {
@@ -1177,14 +1485,12 @@
   function renderHome() {
     var plans = myPlans(), m = S.mode, h = homeToolbar() + '<div class="content">' + greet(plans);
     if (S.gs && !S.gsHidden) h += gsCard();
-    else if (S.banners.length) h += bannerStack();
-    if (S.chats.length) h += recentChats();
     if (plans.length || S.invites.length) h += yourPlans(plans);
     if (m === 'active') {
-      h += friendsHead() + ['shindigAlex', 'liveMusic', 'marketPriya'].map(feedCard).join('');
+      h += friendsHead('What\u2019s new') + ['shindigAlex', 'liveMusic', 'marketPriya'].map(feedCard).join('');
       h += suggested() + feedCard('ultraRiley') + nudge() + feedCard('cindysMaya') + teaser() + caughtUp(['woodSam', 'jazzSara', 'jumboAlex', 'highlandMaya']);
     } else if (m === 'few') {
-      h += friendsHead() + feedCard('cindysSara') + suggested() + tileRail('🎉 Events nearby', ['e:shindig', 'e:wood', 'e:pickin'], 'discover-events') + teaser() + caughtUp(['woodSam']);
+      h += friendsHead('From your friends') + feedCard('cindysSara') + suggested() + tileRail('🎉 Events nearby', ['e:shindig', 'e:wood', 'e:pickin'], 'discover-events') + teaser() + caughtUp(['woodSam']);
     } else {
       h += suggested() + tileRail('🎉 Events nearby', ['e:shindig', 'e:wood', 'e:pickin'], 'discover-events') + tileRail('📍 Popular places', ['l:jumbo', 'l:ultra', 'l:saltstraw'], 'discover-places') + interestsRow() + teaser();
     }
@@ -1193,13 +1499,6 @@
 
   // ---------- Notifications ----------
   function navHead(title, right) { return '<div class="nav-head"><button class="back" data-act="back" aria-label="Back"><i class="ph-bold ph-caret-left"></i></button><h1>' + title + '</h1>' + (right ? '<span class="grow"></span>' + right : '') + '</div>'; }
-  function renderNotifs() {
-    var list = NOTIFS[S.mode], seen = S.notifSeen;
-    S.notifSeen = true;
-    $('view-notifications').innerHTML = navHead('Notifications') + '<div>' + list.map(function (n) {
-      return '<div class="x-notif" data-go="' + n.go + '">' + (!seen && !n.old ? '<span class="new"></span>' : '') + (n.who ? '<img src="' + av(n.who) + '" alt="" />' : '<span class="ic">' + n.icon + '</span>') + '<div class="c"><span>' + n.html + '</span><time>' + n.time + '</time></div>' + (n.th ? '<img class="th" src="' + U(n.th, 120, 120) + '" alt="" />' : '') + '</div>';
-    }).join('') + '</div>';
-  }
 
   // ---------- Discover ----------
   var FILTERS = {
@@ -1336,17 +1635,6 @@
     }, 850);
   }
 
-  // ---------- Plans tab ----------
-  function renderPlans() {
-    var plans = myPlans(), h = '<div class="x-top"><h1>Plans</h1><div class="acts"><button class="tbtn" data-act="create" aria-label="New plan"><i class="ph-bold ph-plus"></i></button></div></div><div class="content">';
-    if (plans.length || S.invites.length) h += yourPlans(plans, true);
-    else h += '<div class="x-empty"><span class="emo">📅</span><strong>Nothing planned yet</strong><span>Start one yourself, or find something on Discover and turn it into a plan.</span><div class="btns"><button class="h2-btn ink" data-act="create">Make a plan</button><button class="h2-btn soft" data-act="tab" data-id="discover">Discover</button></div></div>';
-    var saved = Object.keys(S.saved).filter(function (k) { return S.saved[k] && E[k]; });
-    if (saved.length) h += '<section><div class="sec-head"><h2>Saved events</h2></div><div>' + saved.map(function (id) { var e = E[id]; return '<div class="x-row" data-go="event-' + id + '"><span class="th" style="' + (e.art ? 'background: linear-gradient(135deg,' + e.art.a1 + ',' + e.art.a2 + ')' : bg(e.img, 120, 120)) + '"></span><div class="c"><strong>' + e.t + '</strong><span>' + e.k + ' · ' + e.v + '</span></div><button class="h2-btn soft" data-act="create" data-item="e:' + id + '">Plan it</button></div>'; }).join('') + '</div></section>';
-    if (S.mode === 'active') h += '<section><div class="sec-head"><h2>Past</h2></div><div>' + PAST.map(function (p) { return '<div class="x-row"' + (p.place ? ' data-go="place-' + p.place + '"' : '') + '><span class="th" style="' + bg(p.img, 120, 120) + ' filter: saturate(0.6);"></span><div class="c"><strong>' + p.title + '</strong><span>' + p.when + '</span></div>' + (p.place ? '<button class="h2-btn soft" data-act="review" data-id="' + p.place + '"><i class="ph-bold ph-star"></i>Rate</button>' : '<i class="ph-bold ph-caret-right"></i>') + '</div>'; }).join('') + '</div></section>';
-    $('view-plans').innerHTML = h + '</div>';
-  }
-
   // ---------- Chats ----------
   function getMsgs(id) {
     if (!S.msgs[id]) {
@@ -1422,108 +1710,253 @@
     }, 1800);
   }
 
-  // ---------- You + person ----------
+  // ---------- Dates: today is Tue, Sep 29 2026 ----------
+  var TODAY = new Date(2026, 8, 29);
+  var DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], DOW_L = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], MON_L = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  function D(m, d, h, mi) { return new Date(2026, m, d, h || 0, mi || 0); }
+  function dayDiff(d) { return Math.round((new Date(d.getFullYear(), d.getMonth(), d.getDate()) - TODAY) / 864e5); }
+  function ord(n) { var s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
+  function dayWord(d) { var x = dayDiff(d); return x === 0 ? 'Today' : x === 1 ? 'Tomorrow' : x > 1 && x < 7 ? DOW_L[d.getDay()] : DOW[d.getDay()] + ', ' + MON[d.getMonth()] + ' ' + d.getDate(); }
+  function longDate(d) { return (dayDiff(d) === 0 ? 'Today' : DOW[d.getDay()]) + ', ' + MON[d.getMonth()] + ' ' + ord(d.getDate()); }
+  function tShort(dt) { var h = dt.getHours(), m = dt.getMinutes(), ap = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12; return h + (m ? ':' + (m < 10 ? '0' : '') + m : '') + ' ' + ap; }
+  function tLong(dt) { var h = dt.getHours(), m = dt.getMinutes(), ap = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12; return h + ':' + (m < 10 ? '0' : '') + m + ' ' + ap; }
+  function kickFor(at) { var x = dayDiff(at); return (x === 0 ? 'TODAY' : x === 1 ? 'TOMORROW' : DOW[at.getDay()].toUpperCase()) + ' · ' + tLong(at); }
+  function greetFor(at) { var x = dayDiff(at); return x === 0 ? 'Tonight' : x === 1 ? 'Tomorrow night' : DOW_L[at.getDay()]; }
+  function parseTime(t) { var m = t.match(/(\d+)(?::(\d+))? (AM|PM)/); return [+m[1] % 12 + (m[3] === 'PM' ? 12 : 0), +(m[2] || 0)]; }
+  var PLAN_AT = {
+    bavettes: [D(8, 30, 19), '7 PM - 9 PM', ['🍽️ Dinner']], sunrise: [D(9, 3, 8), '8 AM - 11 AM', ['🥾 Hiking']], movienight: [D(9, 4, 18, 30), '6:30 PM - 10 PM', ['🎬 Movies']],
+    craggyhike: [D(9, 3, 9), '9 AM', ['🥾 Hiking']], pizzanight: [D(9, 2, 18, 30), '6:30 PM', ['🍕 Pizza']], soccer: [D(9, 4, 16), '4 PM', ['⚽ Soccer']],
+    coffeewalk: [D(9, 3, 10), '10 AM', ['☕ Coffee']], yoga: [D(9, 2, 18), '6 PM', ['🧘 Yoga']], triviapast: [D(8, 24, 19), '7 PM', ['🧠 Trivia']], coffeepast: [D(8, 27, 10), '10 AM', ['☕ Coffee']]
+  };
+  PLANS.triviapast = { title: 'Trivia at The Well', img: '1543007630-9710e4a00a20', people: ['sara', 'sam', 'maya', 'alex'], going: '5 went', where: 'The Well', past: true, about: 'Third place again. Rematch soon.' };
+  PLANS.coffeepast = { title: 'Coffee at Ultra Coffeebar', img: '1509042239860-f550ce710b93', people: ['riley'], going: '2 went', place: 'ultra', past: true, about: 'Window seats, as promised.' };
+  var EV_DAY = { today: D(8, 29), thu: D(9, 1), fri: D(9, 2), sat: D(9, 3), sun: D(9, 4) };
+  var EV_TAG = { music: '🎸 Live music', food: '🍽️ Food & drink', outdoors: '🥾 Outdoors', arts: '🎨 Arts', comedy: '😂 Comedy' };
+  function eventAt(id) { var e = E[id], t = e.k.split('· ')[1] || '7:00 PM', hm = parseTime(t), b = EV_DAY[e.day]; return new Date(b.getFullYear(), b.getMonth(), b.getDate(), hm[0], hm[1]); }
+  function withAt(p) { var a = PLAN_AT[p.id]; if (a) { p.at = a[0]; p.time = a[1]; p.tags = a[2]; } return p; }
+  var PRICE = { cindys: '$$', ultra: '$', jumbo: '$$', saltstraw: '$', highland: '$$', wellplayed: '$', bavettes: '$$$' };
+  var HOURS = { cindys: '4 PM - 1 AM', ultra: '7 AM - 6 PM', jumbo: '5 PM - 2 AM', saltstraw: '11 AM - 11 PM', highland: '12 PM - 10 PM', wellplayed: '11 AM - 11 PM', bavettes: '5 PM - 11 PM' };
+  var AMEN = { coffee: ['📶 Free Wi-Fi', '🪑 Outdoor seating', '🐕 Dog friendly', '💳 Takes cards', '♿ Wheelchair accessible', '🥐 Pastries'], bars: ['🍸 Full bar', '🌇 Rooftop', '🎶 Live music', '💳 Takes cards', '♿ Wheelchair accessible', '🔞 21+ after 9 PM'], food: ['🥡 Takeout', '🪑 Outdoor seating', '👶 Good for kids', '💳 Takes cards', '♿ Wheelchair accessible'], games: ['🎲 Game library', '👥 Good for groups', '🍺 Beer and wine', '👶 Good for kids', '📶 Free Wi-Fi'] };
+  var LISTS = [{ id: 'coffee', e: '☕', t: 'Coffee spots', s: 'Private' }, { id: 'date', e: '🍸', t: 'Date night', s: 'Shared' }];
+  var GROUPS = { crew: { t: 'Weekend Crew', img: '1529156069898-49953e39b3ac', n: 5, members: ['sara', 'sam', 'maya', 'alex'] }, hiking: { t: 'Hiking Club', img: '1551632811-561732d1e306', n: 4, members: ['sam', 'jordan', 'priya'] } };
+  var NOTIF_V = {
+    active: [['Today', [{ u: 1, pl: '1513104890138-7c749659a591', html: 'You were invited to <strong>Pizza night</strong>.', t: '9:32 PM', go: 'plan-pizzanight' }, { u: 1, pl: '1551632811-561732d1e306', html: 'You were invited to <strong>Hike at Craggy Gardens</strong>.', t: '8:10 PM', go: 'plan-craggyhike' }, { who: 'nina', html: '<strong>Nina</strong> sent you a friend request.', t: '4:09 PM', go: 'person-nina' }]], ['Yesterday', [{ who: 'priya', html: '<strong>Priya</strong> has accepted your friend request.', t: 'Sep 28', go: 'person-priya' }]], ['Last 7 Days', [{ ic: 'ph-clock', html: '<strong>Outdoor movie night</strong> time changed.', sub: 'Sun • Oct 4 • 6:30 PM', t: 'Sep 26', go: 'plan-movienight' }]]],
+    few: [['Today', [{ u: 1, who: 'sara', html: '<strong>Sara</strong> has accepted your friend request.', t: '6:12 PM', go: 'person-sara' }]], ['Yesterday', [{ who: 'sam', html: '<strong>Sam</strong> from your contacts just joined MixedRoutes.', t: 'Sep 28', go: 'person-sam' }]]],
+    dayone: [['Today', [{ u: 1, who: 'devon', html: '<strong>Devon</strong> from your contacts just joined MixedRoutes.', t: '7:40 PM', go: 'person-devon' }, { u: 1, who: 'jordan', html: '<strong>Jordan</strong> from your contacts just joined MixedRoutes.', t: '7:38 PM', go: 'person-jordan' }]]]
+  };
+  var ONLINE = ['sara', 'maya', 'alex'];
+
+  // ---------- Shared app pieces ----------
+  function art(name) { return 'art/' + name + '-480.webp'; }
+  function emptyState(img, h, p) { return '<div class="es"><img src="' + art(img) + '" alt="" /><h1>' + h + '</h1><p>' + p + '</p></div>'; }
+  function bcard(emo, t, s, act, empty) { return '<button class="bcard' + (empty ? ' empty' : '') + '"' + (act || '') + '><span class="emo">' + emo + '</span><span class="c"><strong>' + t + '</strong><span>' + s + '</span></span>' + (act ? '<i class="ph-bold ph-caret-right"></i>' : '') + '</button>'; }
+  function planImgUrl(p, w) { return p.imgUrl || (p.img ? U(p.img, w || 400) : PLAN_DEFAULT); }
+  function acCard(p, v) {
+    var img = planImgUrl(p, v ? 600 : 300), loc = p.place ? L[p.place].t + ', NC' : p.where || '', ppl = p.people || [];
+    var label = p.created && !ppl.length ? 'Hosted by you' : p.going;
+    var faces = (p.pub && !S.joined[p.id] ? [] : ['me']).concat(ppl).slice(0, 5);
+    return '<button class="ac' + (v ? ' v' : '') + '" data-go="plan-' + p.id + '"><span class="ac-bd" style="background-image: url(\'' + img + '\');"></span><span class="ac-img" style="background-image: url(\'' + img + '\');"></span><span class="ac-d"><span class="ac-date">' + (p.at ? dayWord(p.at) : 'No date yet') + '</span><span class="ac-t">' + p.title + '</span>' + (loc ? '<span class="ac-loc"><i class="ph-fill ' + (p.place ? 'ph-storefront' : 'ph-map-pin') + '"></i><span>' + loc + '</span></span>' : '') + '<span class="ac-ppl"><span class="mav">' + faces.map(function (q) { return '<img src="' + av(q, 60) + '" alt="" />'; }).join('') + '</span><span>' + label + '</span></span></span></button>';
+  }
+  function stars(r) { var h = ''; for (var i = 1; i <= 5; i++) h += '<i class="ph-fill ' + (r >= i - 0.25 ? 'ph-star' : r >= i - 0.75 ? 'ph-star-half' : 'ph-star') + '"' + (r < i - 0.75 ? ' style="opacity: 0.3;"' : '') + '></i>'; return h; }
+  function locFacet(name, addr, r, go) {
+    return '<div class="facet"' + (go ? ' data-go="' + go + '"' : '') + '><div class="f-top"><div class="c"><h3>' + name + '</h3><div class="f-sub"><i class="ph-fill ph-map-pin"></i><span>' + addr + '</span></div></div><button class="f-nav" data-act="toast" data-id="Opens Maps" aria-label="Directions"><i class="ph-fill ph-navigation-arrow"></i></button></div>' + (r ? '<div class="f-rate"><b>' + r + '</b>' + stars(r) + '</div>' : '') + '<div class="f-map"><i class="ph-fill ph-map-pin pin"></i><span class="go"><i class="ph-fill ph-map-pin"></i></span></div></div>';
+  }
+  function aHead(title, close, extra) { return '<div class="a-head"><button class="ib" data-act="back" aria-label="' + (close ? 'Close' : 'Back') + '"><i class="ph-bold ' + (close ? 'ph-x' : 'ph-arrow-left') + '"></i></button><h1>' + title + '</h1>' + (extra || '') + '</div>'; }
+  function tileRow(items) { return '<div class="tiles">' + items.join('') + '</div>'; }
+  function groupTile(k) { var g = GROUPS[k]; return '<button class="tile" data-go="chat-' + k + '"><span class="ti" style="' + bg(g.img, 200, 200) + '"></span><strong>' + g.t + '</strong><span>' + g.n + ' members</span></button>'; }
+  function planIds() {
+    var ids = S.plans.concat(S.accepted);
+    Object.keys(S.joined).forEach(function (k) { if (S.joined[k]) ids.push(E[k] ? 'j-' + k : k); });
+    S.created.forEach(function (c) { ids.push(c.id); });
+    return ids;
+  }
+  function inviteFor(pid) { var r = null; S.invites.forEach(function (k) { if (INVITES[k].plan === pid) r = k; }); return r; }
+  function declinedPlans() { return planIds().filter(function (id) { return S.rsvp[id] === 'no'; }).map(getPlan).filter(Boolean); }
+  function ideaPlans() { return S.created.filter(function (c) { return !c.at; }); }
+  function pastPlans() { return S.mode === 'active' ? ['coffeepast', 'triviapast'].map(getPlan) : []; }
+  function upSection(dt) { var x = dayDiff(dt), w = TODAY.getDay(); return x <= 0 ? 'Today' : x === 1 ? 'Tomorrow' : x <= 6 - w ? 'This Week' : x <= 13 - w ? 'Next Week' : MON_L[dt.getMonth()]; }
+  function pastSection(dt) { var x = -dayDiff(dt), w = TODAY.getDay(); return x === 0 ? 'Today' : x === 1 ? 'Yesterday' : x <= w ? 'This Week' : x <= w + 7 ? 'Last Week' : MON_L[dt.getMonth()]; }
+  function grouped(list, fn) {
+    var h = '', last = '';
+    list.forEach(function (p) { var s = fn(p.at); if (s !== last) { h += '<h2 class="a-h2">' + s + '</h2>'; last = s; } h += acCard(p); });
+    return h;
+  }
+
+  // ---------- Plans tab (ActivityList) ----------
+  function renderPlans() {
+    var t = S.plansTab || 'upcoming';
+    var h = '<div class="x-top"><h1>Plans</h1><div class="acts"><button class="tbtn" data-act="create" aria-label="Create plan"><i class="ph-bold ph-plus"></i></button></div></div><div class="content" style="padding-top: 1.41px;">';
+    h += '<div class="ichips">' + [['upcoming', 'Upcoming', 'ph-calendar-blank'], ['ideas', 'Ideas', 'ph-bookmark-simple'], ['past', 'Past', 'ph-clock']].map(function (c) { var on = t === c[0]; return '<button class="ichip' + (on ? ' on' : '') + '" data-act="plans-tab" data-id="' + c[0] + '"><i class="' + (on ? 'ph-fill' : 'ph-bold') + ' ' + c[2] + '"></i>' + c[1] + '</button>'; }).join('') + '</div>';
+    if (t === 'upcoming') {
+      var plans = myPlans(), dec = declinedPlans();
+      if (S.invites.length) h += '<section data-sec="plans">' + inviteBanner() + '</section>';
+      if (plans.length || dec.length) {
+        h += '<div class="pl-list">' + grouped(plans, upSection);
+        if (dec.length) h += '<button class="pl-declined' + (S.showDeclined ? ' open' : '') + '" data-act="pl-declined">' + (S.showDeclined ? 'Hide declined plan' + (dec.length > 1 ? 's' : '') : 'Show ' + dec.length + ' declined plan' + (dec.length > 1 ? 's' : '')) + '<i class="ph-bold ph-caret-down"></i></button>' + (S.showDeclined ? dec.map(function (p) { return acCard(p); }).join('') : '');
+        h += bcard('🔭', 'More to explore', 'Discover events and places near you.', ' data-act="tab" data-id="discover"') + '</div>';
+      } else h += emptyState('calendar', 'No upcoming plans yet.', 'Create one from a place or event in Discover, or add a date to an idea to move it here.');
+    } else if (t === 'ideas') {
+      var ideas = ideaPlans();
+      h += ideas.length ? '<div class="pl-list"><h2 class="a-h2">Unscheduled Ideas</h2>' + ideas.map(function (p) { return acCard(p); }).join('') + '</div>' : emptyState('idea', 'No ideas saved yet.', 'Any plan without a date will wait here until it’s scheduled. Soon is not a plan.');
+    } else {
+      var past = pastPlans();
+      h += past.length ? '<div class="pl-list">' + grouped(past, pastSection) + '</div>' : emptyState('photos', 'No past plans yet.', 'Plans that happened land here, so you can look back anytime.');
+    }
+    $('view-plans').innerHTML = h + '</div>';
+  }
+
+  // ---------- Plan detail (ActivityOverview) ----------
+  function rsvpPill(id, r) {
+    var st = r === 'maybe' ? ['#858b94', 'ph-question', 'Maybe'] : r === 'no' ? ['#d0293e', 'ph-x-circle', 'Not going'] : ['#2fd7a8', 'ph-check-circle', 'Going'];
+    return '<button class="a-pill st" style="--c: ' + st[0] + ';" data-act="rsvp-open" data-id="' + id + '"><i class="ph-fill ' + st[1] + '"></i>' + st[2] + '</button>';
+  }
+  function badge(v) { return v === 'maybe' ? '<i class="ph-fill ph-question" style="color: #5c6b7d;"></i>' : v === 'no' ? '<i class="ph-fill ph-x-circle" style="color: #d0293e;"></i>' : v === 'pending' ? '' : '<i class="ph-fill ph-check-circle" style="color: #0ca678;"></i>'; }
+  function renderPlan(id) {
+    var p = getPlan(id); if (!p) { $('view-plan').innerHTML = aHead('Plan'); return; }
+    var mine = planIds().indexOf(id) > -1, invite = inviteFor(id), host = !!p.created, past = !!p.past, r = S.rsvp[id] || 'going';
+    var participant = mine || !!invite;
+    var h = '<div class="ovl"><button class="cb" data-act="back" aria-label="Back"><i class="ph-bold ph-caret-left"></i></button><span class="ttl">' + p.title + '</span>' + (participant && !past ? '<button class="cb" data-act="toast" data-id="Invite link copied" aria-label="Invite guests"><i class="ph-bold ph-user-plus"></i></button>' : '') + (host ? '<button class="cb" data-act="toast" data-id="Editing plans is not part of this prototype" aria-label="Edit plan"><i class="ph-bold ph-pencil-simple"></i></button>' : '') + '<button class="cb" data-act="plan-opts" data-id="' + id + '" aria-label="More options"><i class="ph-bold ph-dots-three-vertical"></i></button></div>';
+    var btns = '';
+    if (invite) btns = '<button class="a-pill grey" data-go="chat-p-' + id + '"><i class="ph-fill ph-chat-circle"></i>Chat</button><button class="a-pill grad" data-act="rsvp-open" data-id="' + id + '">RSVP</button>';
+    else if (!mine) btns = '<button class="a-pill grad" style="flex: 0 0 130px;" data-act="join" data-id="' + (id.indexOf('j-') === 0 ? id.slice(2) : id) + '" data-v="plan">Join this plan</button>';
+    else if (past) btns = '<button class="a-pill grey" data-go="chat-p-' + id + '"><i class="ph-fill ph-chat-circle"></i>Chat</button>';
+    else btns = '<button class="a-pill grey" data-go="chat-p-' + id + '"><i class="ph-fill ph-chat-circle"></i>Chat' + (id === 'bavettes' && getMsgs('p-bavettes').length < 3 ? '<span class="new">New</span>' : '') + '</button>' + rsvpPill(id, r);
+    h += '<div class="pd-top" style="background-image: url(\'' + planImgUrl(p, 800) + '\');">' + (p.at ? '<span class="pd-date">' + dayWord(p.at) + '</span>' : '') + '<h1>' + p.title + '</h1><div class="pd-btns">' + btns + '</div></div>';
+    var guests = (mine ? [['me', host ? 'going' : r]] : []).concat(p.people.map(function (q) { return [q, host ? 'pending' : 'going']; }));
+    h += '<div class="pd-bottom"><button class="guests" data-act="guests" data-id="' + id + '"><span class="stk">' + guests.slice(0, 5).map(function (g) { return '<span class="ga"><img src="' + av(g[0]) + '" alt="" />' + (badge(g[1]) ? '<span class="bdg">' + badge(g[1]) + '</span>' : '') + '</span>'; }).join('') + '</span><span class="c"><strong>' + guests.length + (guests.length === 1 ? ' guest' : ' guests') + '</strong><span>' + (participant && !past ? 'View and invite' : 'View guests') + '</span></span><i class="ph-bold ph-caret-right"></i></button>';
+    if (p.at) h += '<div class="pd-when"><i class="ph ph-calendar-blank"></i><span>' + longDate(p.at) + '</span><span>· ' + p.time + '</span></div>';
+    if (p.about) h += '<div class="pd-desc">' + p.about + '</div>';
+    h += '<div class="facets">';
+    if (p.tags && p.tags.length) h += '<div class="ichips wrap">' + p.tags.map(function (t) { return '<span class="ichip">' + t + '</span>'; }).join('') + '</div>';
+    if (p.place) h += locFacet(L[p.place].t, L[p.place].addr + ', Asheville, NC', L[p.place].r, 'place-' + p.place);
+    else if (p.where) h += locFacet(p.where, 'Asheville, NC', 0);
+    h += '</div>';
+    if (host && (!p.at || (!p.place && !p.where) || !p.about)) {
+      h += '<div class="missing">' + (!p.at ? '<button class="opill dash" data-act="toast" data-id="Editing plans is not part of this prototype"><i class="ph-bold ph-clock"></i>Set a time</button>' : '') + (!p.place && !p.where ? '<button class="opill dash" data-act="toast" data-id="Editing plans is not part of this prototype"><i class="ph-bold ph-map-pin"></i>Add a place</button>' : '') + (!p.about ? '<button class="opill dash" data-act="toast" data-id="Editing plans is not part of this prototype"><i class="ph-bold ph-note-pencil"></i>Add details</button>' : '') + '</div>';
+    }
+    $('view-plan').innerHTML = h + '</div>';
+  }
+
+  // ---------- Profile (own + other) ----------
   function renderYou() {
-    var saved = Object.keys(S.saved).filter(function (k) { return S.saved[k]; });
-    var h = '<div class="x-top"><h1>You</h1><div class="acts"><button class="tbtn" data-act="toast" data-id="Settings are not part of this prototype" aria-label="Settings"><i class="ph-bold ph-gear-six"></i></button></div></div><div class="content">';
-    h += '<div class="x-me"><span class="avw"><img src="' + av('me', 192) + '" alt="" /><span class="dot" style="--st: ' + statusColor() + ';"></span></span><h2>Brandon Unglaub</h2><span class="handle">@brandon · Asheville, NC</span>' + statusPill() + '</div>';
-    h += '<div class="x-stats"><div class="x-stat" data-act="findfriends"><strong>' + S.friends.length + '</strong><span>Friends</span></div><div class="x-stat" data-act="tab" data-id="plans"><strong>' + myPlans().length + '</strong><span>Plans</span></div><div class="x-stat"><strong>' + saved.length + '</strong><span>Saved</span></div></div>';
-    h += '<section><div class="sec-head"><h2>Your interests</h2><span class="x-sm">Tap to change</span></div><div class="int-chips">' + ALL_INTERESTS.map(function (i) { return '<span class="' + (S.interests.indexOf(i) > -1 ? '' : 'off') + '" data-act="interest" data-id="' + i + '">' + i + '</span>'; }).join('') + '</div></section>';
-    h += '<section><div class="sec-head"><h2>Saved</h2></div>' + (saved.length ? '<div>' + saved.map(function (id) {
-      var isE = !!E[id], d = isE ? E[id] : L[id];
-      return '<div class="x-row" data-go="' + (isE ? 'event-' : 'place-') + id + '"><span class="th" style="' + (d.art ? 'background: linear-gradient(135deg,' + d.art.a1 + ',' + d.art.a2 + ')' : bg(d.img, 120, 120, d.pos)) + '"></span><div class="c"><strong>' + d.t + '</strong><span>' + (isE ? d.k + ' · ' + d.v : d.cat + ' · ' + d.area) + '</span></div>' + R.save(id, 'row') + '</div>';
-    }).join('') + '</div>' : '<div class="x-empty"><span class="emo">🔖</span><strong>Nothing saved yet</strong><span>Tap the bookmark on any event or place to keep it here.</span></div>') + '</section>';
-    h += '<div class="x-demo"><span class="lbl">Prototype</span><p>Switch Home between the three states on the canvas. Keys 1, 2, 3 also work.</p><div class="x-seg">' + [['active', 'Active'], ['few', 'Few friends'], ['dayone', 'Day one']].map(function (m) { return '<button class="' + (S.mode === m[0] ? 'on' : '') + '" data-act="mode" data-id="' + m[0] + '">' + m[1] + '</button>'; }).join('') + '</div><button class="reset" data-act="mode" data-id="' + S.mode + '">Reset this state</button></div>';
+    var saved = Object.keys(S.saved).filter(function (k) { return S.saved[k]; }), fr = S.friends, plans = myPlans();
+    var h = '<div class="ovl"><span class="ttl own">You</span><button class="cb" data-act="findfriends" aria-label="Find people"><i class="ph-bold ph-user-plus"></i></button><button class="cb" data-act="toast" data-id="Settings are not part of this prototype" aria-label="Settings"><i class="ph-bold ph-gear-six"></i></button></div>';
+    h += '<div class="pf-top"><span class="bd" style="background-image: url(\'' + av('me', 400) + '\');"></span><span class="pf-av"><img src="' + av('me', 260) + '" alt="" /></span><h1>Brandon Unglaub</h1><div class="pf-meta"><b>@brandon</b><span class="d">·</span><span class="j">Joined Mar 2024</span></div><button class="a-pill grey" data-act="toast" data-id="Editing your profile is not part of this prototype"><i class="ph-fill ph-pencil-simple"></i>Edit profile</button></div>';
+    h += '<div class="pf-body"><button class="fr-row" data-act="findfriends"><span class="stk">' + (fr.length ? fr.slice(0, 6).map(function (q) { return '<img src="' + av(q) + '" alt="" />'; }).join('') : '<span class="plus">+</span>') + '</span><span class="c"><strong>' + (fr.length ? fr.length + (fr.length === 1 ? ' friend' : ' friends') : 'Your friends') + '</strong><span>' + (fr.length ? 'View and invite' : 'Find friends') + '</span></span><i class="ph-bold ph-caret-right"></i></button>';
+    var ints = S.editInts ? ALL_INTERESTS : S.interests;
+    h += '<div><button class="stb" data-act="edit-ints"><h2 class="a-h2">Interests</h2><span class="circ"><i class="ph-bold ' + (S.editInts ? 'ph-check' : 'ph-pencil-simple') + '"></i></span></button><div class="ichips wrap">' + ints.map(function (i) { return '<span class="ichip' + (S.editInts && S.interests.indexOf(i) > -1 ? ' on' : '') + '"' + (S.editInts ? ' data-act="interest" data-id="' + i + '"' : '') + '>' + i + '</span>'; }).join('') + '</div></div>';
+    h += '<div class="pf-sec"><div class="stb"><h2 class="a-h2">My Groups</h2><button class="circ" data-act="toast" data-id="Creating groups is not part of this prototype" aria-label="New group"><i class="ph-bold ph-plus"></i></button></div>' + (S.mode === 'active' ? tileRow([groupTile('crew'), groupTile('hiking')]) : '<button class="bcard empty" data-act="toast" data-id="Creating groups is not part of this prototype"><span class="emo ic"><i class="ph-fill ph-users"></i></span><span class="c"><strong>No groups yet</strong><span>Create a private space for plans, chat, and shared places.</span></span><i class="ph-bold ph-caret-right"></i></button>') + '</div>';
+    var lists = ['<button class="tile" data-go="saved"><span class="ti round">❤️</span><strong>Saved</strong><span>' + saved.length + (saved.length === 1 ? ' place' : ' places') + '</span><small>Private</small></button>'];
+    if (S.mode === 'active') LISTS.forEach(function (l) { var n = Object.keys(S.lists[l.id]).filter(function (k) { return S.lists[l.id][k]; }).length; lists.push('<button class="tile" data-act="toast" data-id="Lists are not part of this prototype"><span class="ti round">' + l.e + '</span><strong>' + l.t + '</strong><span>' + n + (n === 1 ? ' place' : ' places') + '</span><small>' + l.s + '</small></button>'); });
+    h += '<div class="pf-sec"><div class="stb"><h2 class="a-h2">Place lists</h2><button class="circ" data-act="toast" data-id="New lists are not part of this prototype" aria-label="New list"><i class="ph-bold ph-plus"></i></button></div>' + tileRow(lists) + '</div>';
+    h += '<div style="margin-top: 16px;"><h2 class="a-h2" style="margin-bottom: 10.67px;">Upcoming plans</h2>' + (plans.length ? '<div class="ac-rail">' + plans.map(function (p) { return acCard(p, true); }).join('') + '</div>' : bcard('🗓️', 'No upcoming plans', 'Make a new plan to get something on the calendar.', ' data-act="create"', true)) + '</div>';
+    var past = pastPlans();
+    if (past.length) h += '<div style="margin-top: 16px;"><h2 class="a-h2" style="margin-bottom: 10.67px;">Past plans</h2><div class="ac-rail">' + past.map(function (p) { return acCard(p, true); }).join('') + '</div></div>';
+    h += '<div class="x-demo" style="margin-top: 24px;"><span class="lbl">Prototype</span><p>Switch Home between the three states on the canvas. Keys 1, 2, 3 also work.</p><div class="x-seg">' + [['active', 'Active'], ['few', 'Few friends'], ['dayone', 'Day one']].map(function (m) { return '<button class="' + (S.mode === m[0] ? 'on' : '') + '" data-act="mode" data-id="' + m[0] + '">' + m[1] + '</button>'; }).join('') + '</div><button class="reset" data-act="mode" data-id="' + S.mode + '">Reset this state</button></div>';
     $('view-you').innerHTML = h + '</div>';
   }
   function renderPerson(id) {
     var p = P[id]; if (!p) return;
-    var fr = isFriend(id), mutual = S.friends.filter(function (f) { return f !== id; }).slice(0, 3);
-    var h = navHead('') + '<div class="content"><div class="x-me"><span class="avw"><img src="' + av(id, 192) + '" alt="" /></span><h2>' + p.full + '</h2><span class="handle">' + (fr ? 'Friends' : S.mode === 'dayone' ? 'From your contacts' : SUGGEST_SUB[id] || 'On MixedRoutes') + '</span><div class="btns">' + R.add(id, 'big') + (fr ? '<button class="x-btn ink" data-act="create" data-with="' + id + '"><i class="ph-bold ph-calendar-plus"></i>Make a plan</button>' : '') + '</div></div>';
-    if (!fr && mutual.length && S.mode !== 'dayone') h += '<div class="x-social">' + avStack(mutual, 60) + '<span><strong>' + mutual.map(function (m) { return P[m].name; }).join(', ') + '</strong> ' + (mutual.length === 1 ? 'is a' : 'are') + ' mutual' + (mutual.length === 1 ? ' friend' : ' friends') + '</span></div>';
-    h += '<section><div class="sec-head"><h2>Into</h2></div><div class="int-chips">' + (p.ints || []).map(function (i) { var shared = S.interests.indexOf(i) > -1; return '<span' + (shared ? ' style="background:#eaf1fe;color:#1e4fbf"' : '') + '>' + i + (shared ? ' · you too' : '') + '</span>'; }).join('') + '</div></section>';
-    if (fr) {
-      var acts = Object.keys(FEED).filter(function (k) { return FEED[k].who === id && k !== 'cindysSara' || (S.mode === 'few' && k === 'cindysSara' && id === 'sara'); });
-      if (acts.length) h += '<section><div class="sec-head"><h2>Recently</h2></div><div class="fa-stack">' + acts.map(feedCard).join('') + '</div></section>';
-    }
+    var fr = isFriend(id), plans = myPlans().filter(function (x) { return x.people.indexOf(id) > -1; });
+    var groups = S.mode === 'active' ? Object.keys(GROUPS).filter(function (k) { return GROUPS[k].members.indexOf(id) > -1; }) : [];
+    var h = '<div class="ovl"><button class="cb" data-act="back" aria-label="Back"><i class="ph-bold ph-caret-left"></i></button><span class="ttl">' + p.full + '</span><button class="cb" data-act="person-opts" data-id="' + id + '" aria-label="More options"><i class="ph-bold ph-dots-three"></i></button></div>';
+    h += '<div class="pf-top"><span class="bd" style="background-image: url(\'' + av(id, 400) + '\');"></span><span class="pf-av"><img src="' + av(id, 260) + '" alt="" />' + (fr && ONLINE.indexOf(id) > -1 ? '<span class="on"></span>' : '') + '</span><h1>' + p.full + '</h1><div class="pf-meta"><b>@' + id + '</b><span class="d">·</span><span class="j">Joined Jan 2024</span></div><div class="pf-btns"><button class="a-pill grey" data-go="' + chatFor(id) + '"><i class="ph-fill ph-chat-circle"></i>Chat</button>' + R.add(id, 'pf') + '</div></div>';
+    var ints = (p.ints || []).slice().sort(function (a, b) { return (S.interests.indexOf(b) > -1) - (S.interests.indexOf(a) > -1); });
+    h += '<div class="pf-body"><div style="margin-top: 10.67px;"><h2 class="a-h2" style="margin-bottom: 10.67px;">Interests</h2><div class="ichips wrap">' + ints.map(function (i) { return '<span class="ichip' + (S.interests.indexOf(i) > -1 ? ' on' : '') + '">' + i + '</span>'; }).join('') + '</div></div>';
+    if (groups.length) h += '<div class="pf-sec"><h2 class="a-h2" style="margin-bottom: 10.67px;">Mutual Groups</h2>' + tileRow(groups.map(groupTile)) + '</div>';
+    h += '<div style="margin-top: 16px;"><h2 class="a-h2" style="margin-bottom: 10.67px;">Upcoming plans</h2>' + (plans.length ? '<div class="ac-rail">' + plans.map(function (x) { return acCard(x, true); }).join('') + '</div>' : bcard('🗓️', 'No upcoming plans', 'New plans will show up here.', '', true)) + '</div>';
     $('view-person').innerHTML = h + '</div>';
   }
 
-  // ---------- Detail pages ----------
-  function heroMedia(d, extra) {
-    if (d.art) return '<div class="x-hero art" style="--a1: ' + d.art.a1 + '; --a2: ' + d.art.a2 + '; --ac: ' + d.art.ac + ';"><span class="disc"><i class="ph-fill ' + d.art.i + '"></i></span>' + extra + '</div>';
-    return '<div class="x-hero" style="' + bg(d.img, 800, 640, d.pos) + '">' + extra + '</div>';
+  // ---------- Notifications ----------
+  function notifCount() { if (S.notifSeen) return 0; var n = 0; NOTIF_V[S.mode].forEach(function (g) { g[1].forEach(function (x) { if (x.u) n++; }); }); return n; }
+  function renderNotifs() {
+    var seen = S.notifSeen, h = aHead('Notifications');
+    S.notifSeen = true;
+    NOTIF_V[S.mode].forEach(function (g) {
+      h += '<div class="nf-lbl">' + g[0] + '</div>' + g[1].map(function (n) {
+        var u = n.u && !seen, a = n.who ? '<img src="' + av(n.who) + '" alt="" />' : n.pl ? '<img src="' + U(n.pl, 120, 120) + '" alt="" />' : '<span class="ic"><i class="ph-bold ' + n.ic + '"></i></span>';
+        return '<div class="nf' + (u ? ' unread' : '') + '" data-go="' + n.go + '"><span class="av">' + a + '</span><div class="c"><p>' + n.html + '</p>' + (n.sub ? '<small>' + n.sub + '</small>' : '') + '</div><div class="r"><time>' + n.t + '</time>' + (u ? '<span class="dot"></span>' : '') + '</div></div>';
+      }).join('');
+    });
+    $('view-notifications').innerHTML = h;
   }
-  function floatBack() { return '<button class="x-float l" data-act="back" aria-label="Back"><i class="ph-bold ph-caret-left"></i></button>'; }
+
+  // ---------- Event detail (ExternalEventView) ----------
   function renderEvent(id) {
     var e = E[id]; if (!e) return;
-    var going = friendsOnly(e.going || []), savedBy = friendsOnly(e.savedBy || []), joinable = !!(e.going && going.length) || S.joined[id];
-    var h = heroMedia(e, floatBack() + R.save(id, 'float') + '<button class="x-float r2" data-act="toast" data-id="Link copied" aria-label="Share"><i class="ph-bold ph-export"></i></button>');
-    h += '<div class="x-body"><div class="x-head"><span class="x-kick">' + e.k + '</span><h1 class="x-title">' + e.t + '</h1><span class="x-sub"><i class="ph-fill ph-map-pin"></i>' + e.v + '<span class="sep"></span>' + e.d + ' mi</span></div>';
-    if (going.length || savedBy.length) h += '<div class="x-social">' + avStack(going.concat(savedBy).slice(0, 3), 60) + '<span>' + (going.length ? '<strong>' + names(going, going.length + (e.goingN || 0)) + '</strong> ' + (going.length + (e.goingN || 0) > 1 ? 'are' : 'is') + ' going' : '') + (going.length && savedBy.length ? ' · ' : '') + (savedBy.length ? '<strong>' + savedBy.map(function (s) { return P[s].name; }).join(', ') + '</strong> saved it' : '') + '</span></div>';
-    if (e.why) h += '<div class="x-why"><i class="ph-fill ph-sparkle"></i><span>' + e.why + '</span></div>';
-    h += '<p class="x-p">' + e.blurb + '</p><div class="x-info">';
-    h += '<div class="x-info-row"' + (e.place ? ' data-go="place-' + e.place + '"' : ' data-act="toast" data-id="Opens Maps"') + '><span class="ic"><i class="ph-bold ph-map-pin"></i></span><div class="c"><strong>' + e.v + '</strong><span>' + e.addr + '</span></div><i class="ph-bold ph-caret-right"></i></div>';
-    h += '<div class="x-info-row"><span class="ic"><i class="ph-bold ph-clock"></i></span><div class="c"><strong>' + e.k + '</strong><span>' + (e.weekly ? 'Every week' : 'One night only') + '</span></div></div>';
-    h += '<div class="x-info-row"' + (e.tickets ? ' data-act="toast" data-id="Opens Ticketmaster"' : '') + '><span class="ic"><i class="ph-bold ph-ticket"></i></span><div class="c"><strong>' + (e.price ? (e.tickets ? 'Tickets from $' : '$') + e.price : 'Free') + '</strong><span>' + (e.tickets ? 'Ticketmaster' : e.price ? 'Pay at the door' : 'No tickets needed') + '</span></div>' + (e.tickets ? '<i class="ph-bold ph-arrow-up-right"></i>' : '') + '</div>';
-    h += '</div></div><div class="x-cta">' + R.save(id, 'bigfit') + (joinable ? R.join(id, 'big') : '<button class="x-btn ink" data-act="create" data-item="e:' + id + '"><i class="ph-bold ph-calendar-plus"></i>Make it a plan</button>') + '</div>';
+    var at = eventAt(id), going = friendsOnly(e.going || []), savedBy = friendsOnly(e.savedBy || []);
+    var h = '<div class="a-head big"><h1>' + e.t + '</h1>' + R.save(id, 'hd') + '<button class="ib" data-act="back" aria-label="Close"><i class="ph-bold ph-x"></i></button></div>';
+    h += e.art ? '<div class="md-hero" style="background: linear-gradient(135deg, ' + e.art.a1 + ', ' + e.art.a2 + '); color: ' + e.art.ac + ';"><i class="ph-fill ' + e.art.i + '"></i></div>' : '<div class="md-hero" style="' + bg(e.img, 800, 540) + '"></div>';
+    h += '<div class="md-body"><h1>' + e.t + '</h1><div class="md-row"><i class="ph ph-calendar-blank"></i>' + DOW[at.getDay()] + ', ' + MON[at.getMonth()] + ' ' + at.getDate() + ' • ' + tLong(at) + '</div><div class="md-row last"><i class="ph ph-map-pin"></i>' + e.v + ', Asheville NC</div>';
+    if (going.length || savedBy.length) h += '<div class="v2-social">' + avStack(going.concat(savedBy).slice(0, 3), 60) + '<div class="c">' + (going.length ? '<strong>' + names(going, going.length + (e.goingN || 0)) + '</strong> ' + (going.length + (e.goingN || 0) > 1 ? 'are' : 'is') + ' going' : '<strong>' + savedBy.map(function (s) { return P[s].name; }).join(', ') + '</strong> saved it') + '</div>' + (going.length ? R.join(id, 'pill') : '') + '</div>';
+    h += '<div class="md-desc">' + e.blurb + '</div><h2 class="md-h2">' + (e.v ? 'Venue & Tickets' : 'Location & Tickets') + '</h2><div class="md-stack">' + locFacet(e.v, e.addr + ', Asheville, NC', e.place ? L[e.place].r : 0, e.place ? 'place-' + e.place : null);
+    if (e.tickets) h += '<div class="facet"><h3>Tickets</h3><div class="f-sub"><span>From 1 trusted seller</span></div><div class="tix"><button class="tix-row" data-act="toast" data-id="Opens Ticketmaster"><span class="lg"><i class="ph-fill ph-ticket"></i></span><strong>Ticketmaster</strong><i class="ph-bold ph-arrow-square-out"></i></button></div></div>';
+    h += '</div></div><div class="a-foot"><button class="a-btn grad" data-act="create" data-item="e:' + id + '">Plan this event</button></div>';
     $('view-event').innerHTML = h;
   }
+
+  // ---------- Place detail (PlaceDetailView) ----------
   function renderPlace(id) {
     var l = L[id]; if (!l) return;
-    var revs = (REVIEWS[id] || []).filter(function (r) { return isFriend(r.who); }), mine = S.reviews[id], lv = LOVED[id], lvf = lv ? friendsOnly(lv.who) : [];
-    var h = heroMedia(l, floatBack() + R.save(id, 'float') + '<button class="x-float r2" data-act="toast" data-id="Link copied" aria-label="Share"><i class="ph-bold ph-export"></i></button>');
-    h += '<div class="x-body"><div class="x-head"><span class="x-kick">' + l.cat + '</span><h1 class="x-title">' + l.t + '</h1><span class="x-sub"><i class="ph-fill ph-star star"></i>' + l.r + ' (' + l.n + ')<span class="sep"></span>' + l.area + '<span class="sep"></span>' + l.d + ' mi</span></div>';
-    if (lvf.length) h += '<div class="x-social">' + avStack(lvf, 60) + '<span><strong>' + lvf.map(function (p) { return P[p].name; }).join(', ') + '</strong> ' + (id === 'cindys' ? 'rated it 5★' : id === 'highland' ? 'checked in here' : 'saved it') + '</span></div>';
-    h += '<p class="x-p">' + l.blurb + '</p>';
+    var revs = (REVIEWS[id] || []).filter(function (r) { return isFriend(r.who); }), mine = S.reviews[id], hrs = HOURS[id] || '9 AM - 9 PM', here = S.status && S.status.at === id;
+    var h = '<div class="a-head"><button class="ib" data-act="back" aria-label="Back"><i class="ph-bold ph-arrow-left"></i></button><h1 style="font-size: 24px; font-weight: 800;">' + l.t + '</h1>' + R.save(id, 'hdl') + '</div>';
+    h += '<div class="md-hero" style="' + bg(l.img, 800, 540, l.pos) + '"></div><div class="md-body pl-body"><h1>' + l.t + '</h1><p class="pl-desc">' + l.blurb + '</p>';
+    h += '<div class="pl-rate"><i class="ph-fill ph-star"></i><span>' + l.r + '</span><span class="m">(' + l.n + ')</span><span class="m">·</span><span class="m">' + (PRICE[id] || '$$') + '</span><span class="m">·</span><span class="open">Open now</span></div>';
+    h += '<button class="pl-hours' + (S.hoursOpen ? ' open' : '') + '" data-act="hours"><i class="ph-bold ph-clock"></i>' + hrs + '<i class="ph-bold ph-caret-down cr"></i></button><div class="hrs' + (S.hoursOpen ? ' open' : '') + '">' + ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(function (d) { return '<div class="' + (d === 'Tue' ? 'today' : '') + '"><span>' + d + '</span><span>' + hrs + '</span></div>'; }).join('') + '</div>';
+    h += '<div class="qa"><button class="a-pill v2" data-go="review-' + id + '"><i class="ph-fill ph-star"></i>' + (mine ? 'Your rating' : 'Rate') + '</button><button class="a-pill v2" data-act="checkin-open" data-id="' + id + '"><i class="ph-fill ph-map-pin-area"></i>' + (here ? 'Checked in' : 'Check in') + '</button>' + [['ph-navigation-arrow rot', 'Directions'], ['ph-phone', 'Call'], ['ph-globe', 'Website'], ['ph-fork-knife', 'Menu'], ['ph-calendar-check', 'Reserve']].map(function (q) { return '<button class="a-pill grey" data-act="toast" data-id="' + q[1] + '"><i class="ph-fill ' + q[0] + '"></i>' + q[1] + '</button>'; }).join('') + '</div>';
+    h += locFacet(l.t, l.addr + ', Asheville, NC', 0);
     if (revs.length || mine) {
-      h += '<h3 class="x-h">From friends</h3>';
-      if (mine) h += '<div class="x-review"><div class="h2-who"><img src="' + av('me', 70) + '" alt="" /><span><strong>You</strong></span><time>Just now</time></div><span class="fa-stars">' + '★★★★★'.slice(0, mine.stars) + '</span>' + (mine.q ? '<span class="fa-quote">"' + mine.q + '"</span>' : '') + '</div>';
-      revs.forEach(function (r) { h += '<div class="x-review"><div class="h2-who"><img src="' + av(r.who, 70) + '" alt="" data-go="person-' + r.who + '" /><span><strong>' + P[r.who].name + '</strong></span><time>5h</time></div><span class="fa-stars">' + '★★★★★'.slice(0, r.stars) + '</span><span class="fa-quote">"' + r.q + '"</span></div>'; });
+      h += '<div class="amen-h">From friends</div><div class="md-stack" style="gap: 10.67px;">';
+      if (mine) h += '<div class="rv"><div class="h2-who"><img src="' + av('me', 70) + '" alt="" /><span><strong>You</strong></span><time>Just now</time></div><span class="fa-stars">' + '★★★★★'.slice(0, mine.stars) + '</span>' + (mine.q ? '<span class="fa-quote">"' + mine.q + '"</span>' : '') + '</div>';
+      revs.forEach(function (r) { h += '<div class="rv"><div class="h2-who"><img src="' + av(r.who, 70) + '" alt="" data-go="person-' + r.who + '" /><span><strong>' + P[r.who].name + '</strong></span><time>5h</time></div><span class="fa-stars">' + '★★★★★'.slice(0, r.stars) + '</span><span class="fa-quote">"' + r.q + '"</span></div>'; });
+      h += '</div>';
     }
-    h += '<div class="x-info"><div class="x-info-row" data-act="toast" data-id="Opens Maps"><span class="ic"><i class="ph-bold ph-map-pin"></i></span><div class="c"><strong>' + l.addr + '</strong><span>' + l.area + ' · ' + l.d + ' mi away</span></div><i class="ph-bold ph-arrow-up-right"></i></div>';
-    h += '<div class="x-info-row"><span class="ic"><i class="ph-bold ph-clock"></i></span><div class="c"><strong>' + l.hours + '</strong><span>Busiest around 7 PM</span></div></div>';
-    h += '<div class="x-info-row" data-act="checkin" data-id="' + id + '"><span class="ic"><i class="ph-bold ph-map-pin-area"></i></span><div class="c"><strong>' + (S.status && S.status.at === id ? 'You’re here' : 'Check in') + '</strong><span>' + (S.status && S.status.at === id ? 'Friends can see it on your status' : 'Let friends know you’re here') + '</span></div><i class="ph-bold ph-caret-right"></i></div>';
-    h += '<div class="x-info-row" data-act="review" data-id="' + id + '"><span class="ic"><i class="ph-bold ph-star"></i></span><div class="c"><strong>' + (mine ? 'Edit your rating' : 'Been here? Rate it') + '</strong><span>Friends see it on this place</span></div><i class="ph-bold ph-caret-right"></i></div></div>';
-    h += '</div><div class="x-cta">' + R.save(id, 'bigfit') + '<button class="x-btn ink" data-act="create" data-item="l:' + id + '"><i class="ph-bold ph-calendar-plus"></i>Make a plan here</button></div>';
+    h += '<div class="amen-h">Amenities</div><div class="amen">' + (AMEN[l.type] || AMEN.food).map(function (a) { return '<span>' + a + '</span>'; }).join('') + '</div>';
+    h += '</div><div class="a-foot"><button class="a-btn grad" data-act="create" data-item="l:' + id + '">Plan a visit</button>' + R.save(id, 'footl') + '</div>';
     $('view-place').innerHTML = h;
   }
-  function renderPlan(id) {
-    var p = getPlan(id); if (!p) { $('view-plan').innerHTML = navHead('Plan'); return; }
-    var mine = myPlans().some(function (x) { return x.id === id; }), invite = null;
-    S.invites.forEach(function (k) { if (INVITES[k].plan === id) invite = k; });
-    var img = p.imgUrl || (p.art ? null : U(p.img, 800, 600));
-    var hero = '<div class="x-plan-hero"><div class="amb" style="' + (img ? "background-image: url('" + img + "');" : 'background: linear-gradient(135deg,' + p.art.a1 + ',' + p.art.a2 + ');') + '"></div><div class="ph" style="' + (img ? "background-image: url('" + img + "');" : '') + '"></div>' + floatBack() + '<button class="x-float r" data-act="toast" data-id="Invite link copied" aria-label="Share"><i class="ph-bold ph-export"></i></button><div class="cap"><span class="x-kick">' + p.kick + '</span><h1 class="x-title">' + p.title + '</h1></div></div>';
-    var h = hero + '<div class="x-body">';
-    if (mine && !p.created && !p.pub) {
-      var r = S.rsvp[id] || 'going';
-      h += '<div class="x-seg"><button class="' + (r === 'going' ? 'on' : '') + '" data-act="rsvp" data-id="' + id + '" data-v="going"><i class="ph-fill ph-check-circle"></i>Going</button><button class="maybe ' + (r === 'maybe' ? 'on' : '') + '" data-act="rsvp" data-id="' + id + '" data-v="maybe"><i class="ph-fill ph-question"></i>Maybe</button><button class="no" data-act="rsvp" data-id="' + id + '" data-v="no"><i class="ph-fill ph-x-circle"></i>Can’t</button></div>';
-    }
-    if (invite) h += '<div class="x-social"><img src="' + av(INVITES[invite].from, 60) + '" alt="" style="width:28px;height:28px;border-radius:50%" /><span><strong>' + P[INVITES[invite].from].name + '</strong> invited you</span></div>';
-    var where = p.place ? L[p.place] : null;
-    h += '<div class="x-info">';
-    h += '<div class="x-info-row"' + (where ? ' data-go="place-' + p.place + '"' : '') + '><span class="ic"><i class="ph-bold ph-map-pin"></i></span><div class="c"><strong>' + (where ? where.t : p.where || 'Place to be decided') + '</strong><span>' + (where ? where.addr : p.where ? 'Tap for directions' : 'Add one in the chat') + '</span></div>' + (where ? '<i class="ph-bold ph-caret-right"></i>' : '') + '</div>';
-    if (p.event) h += '<div class="x-info-row" data-go="event-' + p.event + '"><span class="ic"><i class="ph-bold ph-ticket"></i></span><div class="c"><strong>Event details</strong><span>' + E[p.event].t + '</span></div><i class="ph-bold ph-caret-right"></i></div>';
-    h += '</div>';
-    if (p.about) h += '<p class="x-p">' + p.about + '</p>';
-    h += '<h3 class="x-h">' + (p.created ? 'Invited' : 'Who’s going') + '</h3><div>';
-    var meGoing = mine || S.joined[id];
-    if (meGoing) h += '<div class="x-row"><img class="th round" src="' + av('me') + '" alt="" /><div class="c"><strong>You</strong><span>' + (p.created ? 'Host' : S.rsvp[id] === 'maybe' ? 'Maybe' : 'Going') + '</span></div></div>';
-    p.people.forEach(function (q) { h += '<div class="x-row" data-go="person-' + q + '"><img class="th round" src="' + av(q) + '" alt="" /><div class="c"><strong>' + P[q].full + '</strong><span>' + (p.created ? 'Invited' : 'Going') + '</span></div><i class="ph-bold ph-caret-right"></i></div>'; });
-    if (p.pub) h += '<div class="x-row"><span class="th round" style="display:grid;place-items:center;background:#f1f4f7;font-size:14px;font-weight:700;color:#5c6b7d">+' + (parseInt(p.going.split('+ ')[1], 10) - p.people.length + 1 || 2) + '</span><div class="c"><strong>More people nearby</strong><span>Open to anyone</span></div></div>';
-    h += '</div></div>';
-    if (invite) h += '<div class="x-cta"><button class="x-btn soft" data-act="invite" data-id="' + invite + '" data-v="no">Can’t go</button><button class="x-btn ink" data-act="invite" data-id="' + invite + '" data-v="go"><i class="ph-bold ph-check"></i>Going</button></div>';
-    else if (p.pub && !S.joined[id]) h += '<div class="x-cta">' + R.join(id, 'big') + '</div>';
-    else h += '<div class="x-cta"><button class="x-btn soft fit" data-act="toast" data-id="Invite link copied"><i class="ph-bold ph-user-plus"></i>Invite</button><button class="x-btn ink" data-go="chat-p-' + id + '"><i class="ph-bold ph-chat-circle"></i>Open chat</button></div>';
-    $('view-plan').innerHTML = h;
+
+  // ---------- Saved list (SavedPlacesView) ----------
+  function renderSaved() {
+    var ids = Object.keys(S.saved).filter(function (k) { return S.saved[k]; });
+    var h = aHead('Saved');
+    h += ids.length ? '<div>' + ids.map(function (id) { var isE = !!E[id], d = isE ? E[id] : L[id]; return '<div class="sv-row" data-go="' + (isE ? 'event-' : 'place-') + id + '"><span class="th" style="' + (d.art ? 'background: linear-gradient(135deg, ' + d.art.a1 + ', ' + d.art.a2 + ');' : bg(d.img, 160, 160, d.pos)) + '"></span><div class="c"><strong>' + d.t + '</strong><span>' + (isE ? d.k + ' · ' + d.v : d.cat + ' · ' + d.area) + '</span></div><i class="ph-fill ph-bookmark-simple bm"></i></div>'; }).join('') + '</div>' : emptyState('heart', 'Nothing saved yet.', 'Tap the bookmark on a place or event to keep it here.');
+    $('view-saved').innerHTML = h;
+  }
+
+  // ---------- Write review (V2 write-review.html) ----------
+  var WORDS = ['', 'Not for me', 'It was OK', 'Pretty good', 'Really good', 'Loved it'];
+  function rvDraft(id) { if (!S.rvDraft) S.rvDraft = {}; if (!S.rvDraft[id]) { var m = S.reviews[id]; S.rvDraft[id] = m ? clone(m) : { stars: 0, tags: [], q: '' }; } return S.rvDraft[id]; }
+  function renderReview(id) {
+    var l = L[id]; if (!l) return;
+    var r = rvDraft(id);
+    var h = '<div class="wrev"><div class="toolbar"><button class="close" data-act="back" aria-label="Close"><i class="ph ph-x"></i></button><span class="page-title">Rate this place</span><span class="spacer"></span></div><main class="page-content">';
+    h += '<div class="place"><img src="' + U(l.img, 160, 160) + '" alt="" /><div class="p-txt"><strong>' + l.t + '</strong><span><i class="ph-fill ph-map-pin"></i>' + l.area + (S.saved[id] ? ' · Saved' : '') + '</span></div></div>';
+    h += '<div class="stars-block"><div class="stars">' + [1, 2, 3, 4, 5].map(function (i) { return '<button class="' + (i <= r.stars ? 'on' : '') + '" data-act="rv-star" data-id="' + i + '" aria-label="' + i + ' stars"><i class="ph-fill ph-star"></i></button>'; }).join('') + '</div><span class="stars-word">' + WORDS[r.stars] + '</span></div>';
+    h += '<div class="quick-chips">' + ['☕ Great coffee', '🪑 Good for working', '🎶 Nice playlist', '👥 Group friendly', '🌇 Great view'].map(function (t) { return '<span class="chip' + (r.tags.indexOf(t) > -1 ? ' selected' : '') + '" data-act="rv-tag" data-id="' + t + '">' + t + '</span>'; }).join('') + '</div>';
+    h += '<div class="field"><textarea id="rv-q" maxlength="280" placeholder="Anything friends should know?">' + r.q + '</textarea><span class="count" id="rv-n">' + r.q.length + ' / 280</span></div>';
+    h += '<button class="add-photo" data-act="toast" data-id="Photos are not part of this prototype"><i class="ph ph-camera"></i>Add a photo</button>';
+    h += '<div class="audience"><span class="a-icon"><i class="ph-fill ph-users"></i></span><div class="a-txt"><strong>Friends only</strong><span>Your review shows to friends on place cards and in their activity feed. It is never public.</span></div></div>';
+    h += '<button class="btn-grad" data-act="rv-go" data-id="' + id + '"' + (r.stars ? '' : ' disabled') + '><i class="ph-fill ph-star"></i>Post review</button></main></div>';
+    $('view-review').innerHTML = h;
   }
 
   // ---------- Sheets ----------
   var sheetState = null;
-  function openSheet(html) { $('sheet').innerHTML = html; $('sheet').scrollTop = 0; $('sheet-host').classList.add('open'); }
+  function openSheet(html, kind) {
+    var sh = $('sheet'), host = $('sheet-host');
+    sh.className = 'sheet' + (kind ? ' ' + kind : '');
+    host.classList.toggle('app', kind === 'app');
+    sh.innerHTML = html; sh.scrollTop = 0; host.classList.add('open');
+  }
   function closeSheet() { $('sheet-host').classList.remove('open'); sheetState = null; }
   function sheetHead(title, clear) { return '<div class="grab"></div><div class="s-head"><h3>' + title + '</h3><span class="r">' + (clear ? '<span class="clear" data-act="' + clear + '">Clear</span>' : '') + '<span class="x" data-act="sheet-close"><i class="ph ph-x"></i></span></span></div>'; }
+  function appHead(title) { return '<span class="ag"></span><div class="ah"><span></span><h3>' + title + '</h3><span class="x" data-act="sheet-close" aria-label="Close"><i class="ph-bold ph-x"></i></span></div>'; }
+  function appSheet(title, body) { $('sheet').innerHTML = (title ? appHead(title) : '<span class="ag"></span>') + '<div class="ab"' + (title ? '' : ' style="padding-top: 7.11px;"') + '>' + body + '</div>'; }
 
+  // Filter sheet (V2 discover-events-filters.html)
   function filterSheet() {
     var st = sheetState, cfg = FILTERS[st.kind], f = st.draft;
     var n = st.kind === 'events' ? filteredEvents(f).length : filteredPlaces(f).length;
@@ -1537,96 +1970,158 @@
     h += '<button class="show" data-act="filter-apply"' + (n ? '' : ' disabled') + '>' + (n ? 'Show ' + n + ' ' + cfg.noun : 'No ' + cfg.noun + ' match') + '</button>';
     $('sheet').innerHTML = h;
   }
-  function openFilter(kind) { sheetState = { type: 'filter', kind: kind, draft: clone(S.filters[kind]) }; openSheet(''); filterSheet(); }
+  function openFilter(kind) { sheetState = { type: 'filter', kind: kind, draft: clone(S.filters[kind]) }; openSheet('', ''); filterSheet(); }
 
-  function createSheet() {
-    var c = sheetState, friends = S.friends;
-    var h = sheetHead('New plan');
-    h += '<div class="grp"><input class="x-input" id="c-title" placeholder="What’s the plan?" value="' + (c.title || '').replace(/"/g, '&quot;') + '" autocomplete="off" />';
-    if (!c.item) h += '<div class="opts">' + ['☕ Coffee', '🌮 Tacos', '🍻 Drinks', '🥾 Hike', '🎬 Movie'].map(function (t) { return '<span class="opt" data-act="c-idea" data-id="' + t + '">' + t + '</span>'; }).join('') + '</div>';
-    h += '</div><div class="grp"><h4>When</h4><div class="opts">';
-    if (c.fixedWhen) h += '<span class="opt on"><i class="ph-fill ph-calendar-blank"></i>' + c.fixedWhen + '</span>';
-    else h += Object.keys(WHEN).map(function (k) { return '<span class="opt' + (c.when === k ? ' on' : '') + '" data-act="c-when" data-id="' + k + '">' + WHEN[k].l + '</span>'; }).join('');
-    h += '</div></div><div class="grp"><h4>Where</h4>';
-    if (c.whereFixed) h += '<div class="x-pick on"><span class="ic"><i class="ph-fill ph-map-pin"></i></span><div class="c"><strong>' + c.whereFixed + '</strong><span>' + (c.place ? L[c.place].addr : 'From the event') + '</span></div></div>';
-    else h += ['ultra', 'jumbo', 'cindys', 'wellplayed'].map(function (k) { var l = L[k]; return '<div class="x-pick' + (c.place === k ? ' on' : '') + '" data-act="c-place" data-id="' + k + '"><img src="' + U(l.img, 96, 96) + '" alt="" /><div class="c"><strong>' + l.t + '</strong><span>' + l.cat + ' · ' + l.d + ' mi</span></div><span class="x-radio"><i class="ph-bold ph-check"></i></span></div>'; }).join('');
-    h += '</div><div class="grp"><h4>Who</h4>';
-    if (friends.length) h += '<div class="x-who">' + friends.map(function (p) { return '<button class="' + (c.who.indexOf(p) > -1 ? 'on' : '') + '" data-act="c-who" data-id="' + p + '"><span class="avw"><img src="' + av(p) + '" alt="" /><span class="chk"><i class="ph-bold ph-check"></i></span></span>' + P[p].name + '</button>'; }).join('') + '</div>';
-    else h += '<div class="x-note"><i class="ph-bold ph-link"></i><div><strong>Invite by link</strong>You can share the plan with anyone once it’s made.</div></div>';
-    h += '</div><button class="show" data-act="c-go"' + ((c.title || '').trim() ? '' : ' disabled') + '>Create plan</button>';
-    $('sheet').innerHTML = h;
-  }
-  function openCreate(itemKey, withList) {
-    var c = { type: 'create', title: '', when: 'tonight', place: null, who: withList ? withList.filter(isFriend) : [], item: itemKey };
-    if (itemKey) {
-      var it = item(itemKey);
-      if (it.kind === 'e') { c.title = it.d.t; c.fixedWhen = it.d.k; c.whereFixed = it.d.v; c.place = it.d.place || null; c.event = it.id; }
-      else { c.title = 'Hang at ' + it.d.t; c.place = it.id; c.whereFixed = it.d.t; }
-      if (!c.who.length && it.kind === 'e' && E[it.id].going) c.who = friendsOnly(E[it.id].going);
-    }
-    sheetState = c; openSheet(''); createSheet();
-  }
-  function doCreate() {
-    var c = sheetState, n = S.created.length + 1, id = 'c' + n, w = WHEN[c.when], ev = c.event ? E[c.event] : null, pl = c.place ? L[c.place] : null;
-    var img = ev ? ev.img : pl ? pl.img : null;
-    var time = ev ? ev.k.split('· ')[1].replace(':00', '').replace(' ', '').toLowerCase() : w.time;
-    var plan = {
-      id: id, created: true, title: c.title.trim(), kick: ev ? ev.k.toUpperCase() : w.kick, img: img, art: ev && ev.art, imgUrl: img ? null : PLAN_DEFAULT,
-      people: c.who.slice(), going: c.who.length ? (c.who.length + 1) + ' invited' : 'Just you so far', sort: (ev ? ev.sort : w.sort) + n * 0.001,
-      greet: ev ? (DAY_GREET[ev.day] || 'Soon') : w.greet, sub: c.title.trim() + ' · ' + time, place: c.place, where: ev ? ev.v : null, event: c.event,
-      about: c.who.length ? 'Invites sent. You’ll see replies in the plan chat.' : 'Share the invite link to bring people in.'
-    };
-    S.created.push(plan);
-    var chatId = 'p-' + id;
-    ensureChat(chatId);
-    S.msgs[chatId] = clone(CHATS[chatId].msgs);
-    if (S.chats.indexOf(chatId) < 0) S.chats.unshift(chatId);
-    if (S.gs && !S.gs.plan) { S.gs.plan = true; S.gsJust = 'plan'; }
-    closeSheet();
-    toast(c.who.length ? 'Plan created, invites sent' : 'Plan created');
-    navigate('plan-' + id);
-  }
-
+  // Status + check-in (V2 check-in-flow.html)
+  var AVAIL = [['online', 'Online'], ['hang', 'Down to hang'], ['busy', 'Heads down'], ['invisible', 'Invisible']];
+  var DOING = ['☕ Coffee', '💻 Working', '🍻 Drinks', '🥾 On a walk'];
   function statusSheet() {
     var st = sheetState;
-    var h = sheetHead('Your status') + '<div class="s-sub">Friends see this on Home and your profile</div><div class="grp">';
-    h += Object.keys(STATUS).map(function (k) { var s = STATUS[k]; return '<div class="x-pick' + (st.s === k ? ' on' : '') + '" data-act="st-s" data-id="' + k + '"><span class="x-dot" style="background:' + s.c + '"></span><div class="c"><strong>' + s.l + '</strong><span>' + (k === 'hang' ? 'Open to join whatever' : k === 'tonight' ? 'Ping me for tonight' : 'Not free right now') + '</span></div><span class="x-radio"><i class="ph-bold ph-check"></i></span></div>'; }).join('');
-    h += '</div><div class="grp"><h4>Where are you?</h4>' + NEARBY.map(function (n) { var l = L[n[0]]; return '<div class="x-pick' + (st.at === n[0] ? ' on' : '') + '" data-act="st-at" data-id="' + n[0] + '"><img src="' + U(l.img, 96, 96, l.pos) + '" alt="" /><div class="c"><strong>' + l.t + '</strong><span>' + n[1] + '</span></div><span class="x-radio"><i class="ph-bold ph-check"></i></span></div>'; }).join('');
-    h += '<div class="x-pick' + (!st.at ? ' on' : '') + '" data-act="st-at" data-id=""><span class="ic"><i class="ph-bold ph-eye-slash"></i></span><div class="c"><strong>Don’t share where</strong><span>Only your status shows</span></div><span class="x-radio"><i class="ph-bold ph-check"></i></span></div></div>';
-    h += '<div class="x-row2">' + (S.status ? '<button class="show soft" data-act="st-clear">Clear</button>' : '') + '<button class="show" data-act="st-save">Save status</button></div>';
+    var h = '<span class="handle"></span><h3>Your status</h3><span class="sub">Friends see this on Home and your profile</span>';
+    h += '<div class="doing">' + AVAIL.map(function (a) { return '<span class="chip' + (st.s === a[0] ? ' selected' : '') + '" data-act="st-s" data-id="' + a[0] + '"><span class="sd" style="background: ' + STATUS[a[0]].c + ';"></span>' + a[1] + '</span>'; }).join('') + '</div>';
+    h += '<span class="lbl">Check in</span><span class="sub" style="margin-top: -10px;">Near you now</span>' + NEARBY.map(function (n) { var l = L[n[0]], on = st.at === n[0]; return '<div class="place-row' + (on ? ' selected' : '') + '" data-act="st-at" data-id="' + n[0] + '"><img src="' + U(l.img, 96, 96) + '" alt="" /><div class="p-txt"><strong>' + l.t + '</strong><span>' + n[1] + '</span></div><span class="radio"><i class="ph-bold ph-check"></i></span></div>'; }).join('');
+    h += '<div class="doing">' + DOING.map(function (d) { return '<span class="chip' + (st.doing === d ? ' selected' : '') + '" data-act="st-doing" data-id="' + d + '">' + d + '</span>'; }).join('') + '</div>';
+    h += '<div class="audience"><span class="a-icon"><i class="ph-fill ph-users"></i></span><div class="a-txt"><strong>Friends can see this</strong><span>' + (st.at ? 'Clears on its own after 2 hours, or check out anytime.' : 'Only friends see your status. Invisible hides your dot.') + '</span></div></div>';
+    h += '<button class="btn-grad" data-act="st-save">' + (st.at ? '<i class="ph-fill ph-map-pin"></i>Check in at ' + L[st.at].t : 'Save status') + '</button>';
+    if (S.status && S.status.at) h += '<button class="checkout" data-act="st-out">Check out of ' + L[S.status.at].t + '</button>';
+    else if (S.status) h += '<button class="checkout" style="color: #5c6b7d;" data-act="st-clear">Clear status</button>';
     $('sheet').innerHTML = h;
   }
-  function openStatus() { sheetState = { type: 'status', s: S.status ? S.status.s : 'hang', at: S.status ? S.status.at : '' }; openSheet(''); statusSheet(); }
+  function openStatus(at) { sheetState = { type: 'status', s: S.status ? S.status.s : 'hang', at: typeof at === 'string' ? at : S.status ? S.status.at : '', doing: S.status ? S.status.doing : '' }; openSheet('', 'v2'); statusSheet(); }
 
   function friendsSheet() {
     var list = SUGGEST.filter(function (p) { return !isFriend(p); });
-    var h = sheetHead('Find your people') + '<div class="x-link" data-act="toast" data-id="Invite link copied"><span class="ic"><i class="ph-bold ph-link"></i></span><div class="c"><strong>Share your invite link</strong><span>Friends who join are added right away</span></div><i class="ph-bold ph-copy"></i></div>';
-    h += '<div class="grp"><h4>' + (S.mode === 'dayone' ? 'From your contacts' : 'People you may know') + '</h4>' + list.map(function (p) { return '<div class="x-pick"><img src="' + av(p) + '" alt="" style="border-radius:50%" /><div class="c"><strong>' + P[p].full + '</strong><span>' + (S.mode === 'dayone' ? 'From your contacts' : SUGGEST_SUB[p]) + '</span></div>' + R.add(p, 'mini') + '</div>'; }).join('') + '</div>';
-    h += '<button class="show" data-act="sheet-close">Done</button>';
-    $('sheet').innerHTML = h;
+    if (S.requests && S.requests.nina) list = ['nina'].concat(list.filter(function (p) { return p !== 'nina'; }));
+    appSheet('Find people', '<div class="ar" data-act="toast" data-id="Invite link copied"><i class="ph-bold ph-link"></i><div class="c"><span>Share your invite link</span><small>Friends who join are added right away</small></div><i class="ph-bold ph-copy end"></i></div><div class="adiv"></div><div class="asec">' + (S.mode === 'dayone' ? 'From your contacts' : 'People you may know') + '</div>' + list.map(function (p) { return '<div class="ar gl"><img src="' + av(p) + '" alt="" /><div class="c"><span style="font-weight: 700;">' + P[p].full + '</span><small>' + (S.requests && S.requests[p] ? 'Sent you a friend request' : S.mode === 'dayone' ? 'From your contacts' : SUGGEST_SUB[p]) + '</small></div>' + R.add(p, 'mini') + '</div>'; }).join('') + '<button class="a-btn grey" data-act="sheet-close">Done</button>');
+  }
+  function openLists(id) { sheetState = { type: 'lists', id: id }; openSheet('', 'app'); listsSheet(); }
+  function listsSheet() {
+    var id = sheetState.id, on = !!S.saved[id];
+    var h = '<div class="ar' + (on ? ' sel' : '') + '" data-act="list-saved"><span class="emo">❤️</span><div class="c"><span style="font-weight: ' + (on ? 700 : 400) + ';">Saved</span><small>Private</small></div><i class="' + (on ? 'ph-fill' : 'ph') + ' ph-bookmark-simple bm' + (on ? ' on' : '') + '"></i></div><div class="adiv"></div><div class="asec">Place lists<span data-act="toast" data-id="New lists are not part of this prototype">New list</span></div>';
+    if (S.mode === 'active') h += LISTS.map(function (ls) { var inL = !!S.lists[ls.id][id]; return '<div class="ar" data-act="list-tog" data-id="' + ls.id + '"><span class="emo">' + ls.e + '</span><div class="c"><span>' + ls.t + '</span><small>' + ls.s + '</small></div><i class="' + (inL ? 'ph-fill ph-check-circle' : 'ph ph-plus-circle') + ' bm' + (inL ? ' on' : '') + '"></i></div>'; }).join('');
+    else h += '<button class="a-btn" style="border: 1px dashed rgba(16, 23, 36, 0.3); color: #1a2332; font-size: 16px;" data-act="toast" data-id="New lists are not part of this prototype"><i class="ph-bold ph-plus"></i>Create a list</button>';
+    appSheet('', h);
+  }
+  function rsvpSheet() {
+    var id = sheetState.id, cur = inviteFor(id) ? '' : (S.rsvp[id] || 'going');
+    appSheet('RSVP', [['going', 'Going', 'ph-check-circle', '#0ca678'], ['no', 'Not going', 'ph-x-circle', '#d0293e'], ['maybe', 'Maybe', 'ph-question', '#5c6b7d']].map(function (o) { return '<div class="ar' + (cur === o[0] ? ' on' : '') + '" data-act="rsvp-set" data-v="' + o[0] + '"><i class="ph-fill ' + o[2] + '" style="font-size: 24px; color: ' + o[3] + ';"></i><div class="c"><span>' + o[1] + '</span></div><span class="rad"></span></div>'; }).join(''));
+  }
+  function planOptsSheet() {
+    var id = sheetState.id, p = getPlan(id), host = p && p.created, mine = planIds().indexOf(id) > -1;
+    appSheet('Options', '<div class="ar" data-act="opt" data-v="share"><i class="ph-bold ph-share-network"></i><div class="c"><span>Share plan link</span></div><i class="ph-bold ph-caret-right end"></i></div>' + (mine && !host ? '<div class="ar" data-act="opt" data-v="leave"><i class="ph-bold ph-sign-out"></i><div class="c"><span>Leave plan</span></div><i class="ph-bold ph-caret-right end"></i></div>' : '') + '<div class="ar" data-act="opt" data-v="report"><i class="ph-bold ph-flag"></i><div class="c"><span>Report plan</span></div><i class="ph-bold ph-caret-right end"></i></div>' + (host ? '<div class="ar red" data-act="opt" data-v="delete"><i class="ph-bold ph-trash"></i><div class="c"><span>Delete plan</span></div><i class="ph-bold ph-caret-right end"></i></div>' : ''));
+  }
+  function guestsSheet() {
+    var id = sheetState.id, p = getPlan(id), mine = planIds().indexOf(id) > -1, r = S.rsvp[id] || 'going';
+    var rows = (mine ? [['me', p.created ? 'Host' : r === 'maybe' ? 'Maybe' : r === 'no' ? 'Not going' : 'Going']] : []).concat(p.people.map(function (q) { return [q, p.created ? 'Invited' : 'Going']; }));
+    appSheet('Guests', rows.map(function (g) { return '<div class="ar gl"' + (g[0] !== 'me' ? ' data-act="sheet-go" data-id="person-' + g[0] + '"' : '') + '><img src="' + av(g[0]) + '" alt="" /><div class="c"><span style="font-weight: 700;">' + (g[0] === 'me' ? 'You' : P[g[0]].full) + '</span><small>' + g[1] + '</small></div></div>'; }).join('') + (mine ? '<button class="a-btn grad" data-act="toast" data-id="Invite link copied"><i class="ph-bold ph-user-plus"></i>Invite friends</button>' : ''));
   }
 
-  var WORDS = ['', 'Not for me', 'It was OK', 'Pretty good', 'Really good', 'Loved it'];
-  function reviewSheet() {
-    var r = sheetState, l = L[r.place];
-    var h = sheetHead('Rate this place') + '<div class="x-place-head"><img src="' + U(l.img, 120, 120, l.pos) + '" alt="" /><div><strong>' + l.t + '</strong><span>' + l.cat + ' · ' + l.area + '</span></div></div>';
-    h += '<div class="x-stars">' + [1, 2, 3, 4, 5].map(function (i) { return '<button class="' + (i <= r.stars ? 'on' : '') + '" data-act="rv-star" data-id="' + i + '" aria-label="' + i + ' stars"><i class="ph-fill ph-star"></i></button>'; }).join('') + '</div><div class="x-stars-word">' + WORDS[r.stars] + '</div>';
-    h += '<div class="grp"><div class="opts">' + ['☕ Great coffee', '🪑 Good for working', '🎶 Nice playlist', '👥 Group friendly', '🌇 Great view'].map(function (t) { return '<span class="opt' + (r.tags.indexOf(t) > -1 ? ' on' : '') + '" data-act="rv-tag" data-id="' + t + '">' + t + '</span>'; }).join('') + '</div></div>';
-    h += '<div class="grp"><textarea class="x-input" id="rv-q" placeholder="Anything friends should know?">' + (r.q || '') + '</textarea></div>';
-    h += '<div class="x-note"><i class="ph-fill ph-users"></i><div><strong>Friends only</strong>Your review shows to friends on place cards and in their activity. It is never public.</div></div>';
-    h += '<button class="show" data-act="rv-go"' + (r.stars ? '' : ' disabled') + '>Post review</button>';
-    $('sheet').innerHTML = h;
+  // ---------- Create plan (CreateActivityModal) ----------
+  var BANNERS_IMG = ['1529156069898-49953e39b3ac', '1414235077428-338989a2e8c0', '1470229722913-7c0e2dbbafd3', '1464822759023-fed622ff2c3b'];
+  var CM_TAGS = ['🍽️ Food & drink', '🎸 Live music', '🥾 Outdoors'];
+  var PRIV = { invite: ['ph-lock', 'Private', 'Only people you invite can join'], friends: ['ph-users', 'Friends', 'Your friends can find and join'], anyone: ['ph-globe', 'Public', 'Anyone with the link can join'] };
+  var TYPE_TILE = { food: ['#fff1e6', '#d97706', 'ph-fork-knife'], coffee: ['#f3ebe4', '#92400e', 'ph-coffee'], bars: ['#f3e8ff', '#7c3aed', 'ph-martini'], games: ['#e0f2fe', '#0284c7', 'ph-game-controller'] };
+  function openCreate(itemKey, withList) {
+    var C = { step: 1, title: '', img: null, tags: [], date: null, time: null, place: null, where: null, privacy: 'invite', who: withList ? withList.filter(isFriend) : [], event: null, calM: 0, bn: 0 };
+    if (itemKey) {
+      var it = item(itemKey);
+      if (it.kind === 'e') { var at = eventAt(it.id); C.title = it.d.t; C.img = it.d.img ? U(it.d.img, 800) : null; C.date = new Date(at.getFullYear(), at.getMonth(), at.getDate()); C.time = tShort(at); C.place = it.d.place || null; C.where = it.d.place ? null : it.d.v; C.event = it.id; C.tags = EV_TAG[it.d.type] ? [EV_TAG[it.d.type]] : []; if (!C.who.length) C.who = friendsOnly(it.d.going || []); }
+      else { C.place = it.id; C.img = U(it.d.img, 800); }
+    }
+    S.draft = C;
+    renderCreate();
+    $('cm-host').classList.add('open'); $('app').classList.add('cm-open');
+  }
+  function closeCreate() { $('cm-host').classList.remove('open'); $('app').classList.remove('cm-open'); }
+  function whenCard(C) {
+    if (!C.date) return '<button class="pf-card" data-act="cm-when"><span class="ic"><i class="ph-bold ph-calendar-blank"></i></span><span class="c"><strong>When</strong><span>No time yet</span></span><span class="end"><i class="ph-bold ph-plus"></i></span></button>';
+    return '<button class="pf-card filled" data-act="cm-when"><span class="ic"><i class="ph-fill ph-calendar-blank"></i></span><span class="c"><strong>' + longDate(C.date) + '</strong><span>' + (C.time || 'No time yet') + '</span></span><span class="end"><i class="ph-bold ph-pencil-simple"></i></span></button>';
+  }
+  function whereCard(C) {
+    if (!C.place && !C.where) return '<button class="pf-card" data-act="cm-where"><span class="ic"><i class="ph-bold ph-map-pin"></i></span><span class="c"><strong>Where</strong><span>No place yet</span></span><span class="end"><i class="ph-bold ph-plus"></i></span></button>';
+    var name = C.place ? L[C.place].t : C.where, sub = C.place ? L[C.place].addr : 'Asheville, NC';
+    return '<button class="pf-card filled" data-act="cm-where"><span class="ic"><i class="ph-fill ph-map-pin"></i></span><span class="c"><strong>' + name + '</strong><span>' + sub + '</span></span><span class="end"><i class="ph-bold ph-pencil-simple"></i></span></button>';
+  }
+  function peopleRows(q) {
+    var C = S.draft, match = function (p) { return !q || P[p].full.toLowerCase().indexOf(q.toLowerCase()) > -1; };
+    var row = function (p) { var on = C.who.indexOf(p) > -1; return '<button class="cm-res' + (on ? ' on' : '') + '" data-act="cm-who" data-id="' + p + '"><img src="' + av(p) + '" alt="" /><span class="c"><strong>' + P[p].full + '</strong><span>@' + p + '</span></span><span class="ck"><i class="ph-bold ph-check"></i></span></button>'; };
+    var fr = S.friends.filter(match), sg = SUGGEST.filter(function (p) { return !isFriend(p) && match(p); }).slice(0, 4);
+    return (fr.length ? '<div class="cm-h">Invite friends</div>' + fr.map(row).join('') : '') + (sg.length ? '<div class="cm-h">Suggested people</div>' + sg.map(row).join('') : '');
+  }
+  function createLabel(C) { return C.privacy === 'anyone' ? 'Create public plan' : C.who.length ? 'Create & share' : 'Create private plan'; }
+  function whereRows(q) {
+    if (!q) return '<div class="cm-lbl">Recent</div>' + ['ultra', 'jumbo', 'bavettes'].map(function (k) { return '<button class="cm-res" data-act="cm-place" data-id="' + k + '"><i class="ph ph-map-pin tl rec"></i><span class="c"><strong>' + L[k].t + '</strong><span>' + L[k].addr + ', Asheville, NC</span></span></button>'; }).join('');
+    var ids = Object.keys(L).filter(function (k) { return (L[k].t + ' ' + L[k].cat).toLowerCase().indexOf(q.toLowerCase()) > -1; });
+    if (!ids.length) return '<div class="es" style="padding-top: 48px;"><img src="' + art('search') + '" alt="" onerror="this.remove()" /><h1 style="font-size: 24px;">Search locations</h1><p>Find the right spot to meet up.</p></div>';
+    return ids.map(function (k) { var tl = TYPE_TILE[L[k].type] || TYPE_TILE.food; return '<button class="cm-res" data-act="cm-place" data-id="' + k + '"><span class="tl" style="background: ' + tl[0] + '; color: ' + tl[1] + ';"><i class="ph-fill ' + tl[2] + '"></i></span><span class="c"><strong>' + L[k].t + '</strong><span>' + L[k].addr + ', Asheville, NC</span></span></button>'; }).join('');
+  }
+  function renderCreate() {
+    var C = S.draft, h;
+    if (C.step === 1) {
+      h = '<div class="a-head big"><h1>New plan</h1><button class="ib" data-act="cm-close" aria-label="Close"><i class="ph-bold ph-x"></i></button></div><div class="cm-body">';
+      h += C.img ? '<div class="cm-banner img" style="--img: url(\'' + C.img + '\');"><button data-act="cm-banner"><i class="ph-bold ph-image-square"></i>Change</button></div>' : '<div class="cm-banner"><button data-act="cm-banner"><i class="ph-bold ph-image-square"></i>Add banner</button></div>';
+      h += '<div class="cm-name"><input id="cm-title" type="text" placeholder="What are you planning?" value="' + C.title.replace(/"/g, '&quot;') + '" autocomplete="off" /></div>';
+      h += '<div class="cm-sec"><div class="ichips cm-tags">' + CM_TAGS.concat(C.tags.filter(function (t) { return CM_TAGS.indexOf(t) < 0; })).map(function (t) { var on = C.tags.indexOf(t) > -1; return '<button class="ichip' + (on ? ' on' : '') + '" data-act="cm-tag" data-id="' + t + '">' + t + '<i class="ph-bold ' + (on ? 'ph-x' : 'ph-plus') + '"></i></button>'; }).join('') + '<button class="ichip" data-act="toast" data-id="More tags are not part of this prototype">Add tags<i class="ph-bold ph-plus"></i></button></div>';
+      h += '<div class="cm-grp"><h3>Details</h3>' + whenCard(C) + whereCard(C) + '</div>';
+      h += '<div class="cm-grp"><h3>Anything else</h3><div class="opills">' + [['ph-text-align-left', 'Description'], ['ph-currency-dollar', 'Cost'], ['ph-backpack', 'What to bring'], ['ph-t-shirt', 'What to wear'], ['ph-link', 'Link']].map(function (o) { return '<button class="opill" data-act="toast" data-id="' + o[1] + ' is not part of this prototype"><i class="ph-bold ' + o[0] + '"></i>' + o[1] + '</button>'; }).join('') + '<button class="opill dash" data-act="toast" data-id="Custom fields are not part of this prototype"><i class="ph-bold ph-plus"></i>Custom</button></div></div>';
+      var pv = PRIV[C.privacy];
+      h += '<div class="cm-grp"><h3>Privacy</h3><button class="pf-card gray" data-act="cm-privacy"><span class="ic"><i class="ph-bold ' + pv[0] + '"></i></span><span class="c"><strong>' + pv[1] + '</strong><span>' + pv[2] + '</span></span><i class="ph-bold ph-caret-right"></i></button></div></div></div>';
+      h += '<div class="a-foot"><button class="a-btn grad" id="cm-next" data-act="cm-next"' + (C.title.trim() ? '' : ' disabled') + '>Continue</button></div>';
+    } else {
+      h = '<div class="a-head"><button class="ib" data-act="cm-back" aria-label="Back"><i class="ph-bold ph-caret-left"></i></button><h1>Who’s coming?</h1><button class="skip" data-act="cm-create" data-v="skip">Skip</button></div><div class="cm-body"><div class="cm-search"><i class="ph-bold ph-magnifying-glass"></i><input id="cm-q" type="text" placeholder="Search people" autocomplete="off" /></div><div id="cm-people">' + peopleRows('') + '</div><p class="cm-hint">Not seeing someone? Search by name above, or invite them by link.</p></div>';
+      h += '<div class="a-foot"><button class="a-btn grad" id="cm-go" data-act="cm-create">' + createLabel(C) + '</button></div>';
+    }
+    h += '<div class="cm-layer' + (C.whereOpen ? ' open' : '') + '" id="cm-where"><div class="a-head big"><h1>Where will you be?</h1><button class="ib" data-act="cm-where-close" aria-label="Close"><i class="ph-bold ph-x"></i></button></div><div class="cm-body"><div class="cm-search"><i class="ph-bold ph-magnifying-glass"></i><input id="cm-wq" type="text" placeholder="Search places..." autocomplete="off" /></div><div id="cm-wlist">' + whereRows('') + '</div></div></div>';
+    $('cm-host').innerHTML = h;
+  }
+  function whenSheet() {
+    var C = S.draft, base = new Date(2026, 8 + C.calM, 1), m = base.getMonth(), y = base.getFullYear(), days = new Date(y, m + 1, 0).getDate();
+    var h = '<div class="qp">' + [['0', 'Today', 'ph-sun'], ['1', 'Tomorrow', 'ph-arrow-bend-down-right'], ['3', 'This Fri', 'ph-calendar-check'], ['4', 'This Sat', 'ph-calendar-check']].map(function (q) { return '<button class="ichip" data-act="wh-q" data-id="' + q[0] + '"><i class="ph-bold ' + q[2] + '"></i>' + q[1] + '</button>'; }).join('') + '</div>';
+    h += '<div class="cal"><div class="cal-h"><button data-act="wh-m" data-id="-1" aria-label="Previous month"' + (C.calM <= 0 ? ' style="visibility: hidden;"' : '') + '><i class="ph-bold ph-caret-left"></i></button><span>' + MON_L[m] + ' ' + y + '</span><button data-act="wh-m" data-id="1" aria-label="Next month"><i class="ph-bold ph-caret-right"></i></button></div><div class="cal-g">' + ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(function (d) { return '<span class="dw">' + d + '</span>'; }).join('');
+    for (var i = 0; i < base.getDay(); i++) h += '<span></span>';
+    for (var d = 1; d <= days; d++) { var dt = new Date(y, m, d), x = dayDiff(dt), sel = C.date && C.date.getTime() === dt.getTime(); h += '<button class="' + (x < 0 ? 'past' : '') + (x === 0 ? ' today' : '') + (sel ? ' sel' : '') + '" data-act="wh-d" data-id="' + dt.getTime() + '">' + d + '</button>'; }
+    h += '</div></div>';
+    if (C.date) h += '<div class="times"><span class="lbl"><i class="ph-bold ph-clock"></i>Start time</span>' + ['10 AM', '12 PM', '6 PM', '7 PM', '9 PM'].concat(C.time && ['10 AM', '12 PM', '6 PM', '7 PM', '9 PM'].indexOf(C.time) < 0 ? [C.time] : []).map(function (t) { return '<button class="' + (C.time === t ? 'on' : '') + '" data-act="wh-t" data-id="' + t + '">' + t + '</button>'; }).join('') + '</div>';
+    h += '<button class="a-btn grey" data-act="wh-done">Done</button>';
+    appSheet(C.date ? longDate(C.date) : 'When', h);
+  }
+  function privacySheet() {
+    var C = S.draft;
+    appSheet('Who can join', '<div class="seg">' + [['invite', 'Invite only', 'ph-lock'], ['friends', 'Friends', 'ph-users'], ['anyone', 'Anyone', 'ph-globe']].map(function (o) { return '<button class="' + (C.privacy === o[0] ? 'on' : '') + '" data-act="pv-s" data-id="' + o[0] + '"><i class="ph-bold ' + o[2] + '"></i>' + o[1] + '</button>'; }).join('') + '</div><p class="hint">' + PRIV[C.privacy][2] + '.</p><div class="asec">Guests</div><div class="ar' + (C.guestInvite !== false ? ' on' : '') + '" data-act="pv-t" data-id="guestInvite"><div class="c"><span>Guests can invite</span></div><span class="tg"></span></div><div class="ar' + (C.linkAccess ? ' on' : '') + '" data-act="pv-t" data-id="linkAccess"><div class="c"><span>Plan link access</span></div><span class="tg"></span></div><button class="a-btn grey" data-act="sheet-close">Done</button>');
+  }
+  function doCreate(skip) {
+    var C = S.draft, n = S.created.length + 1, id = 'c' + n, at = null, pl = C.place ? L[C.place] : null;
+    if (C.date) { at = new Date(C.date.getTime()); var tm = parseTime(C.time || '7 PM'); at.setHours(tm[0], tm[1]); }
+    var who = skip ? [] : C.who.slice(), title = C.title.trim();
+    var plan = { id: id, created: true, title: title, imgUrl: C.img || (pl ? U(pl.img, 800) : PLAN_DEFAULT), people: who, going: who.length ? (who.length + 1) + ' invited' : 'Hosted by you', at: at, time: at ? (C.time || '7 PM') : null, place: C.place, where: C.where, event: C.event, tags: C.tags.slice(), about: '' };
+    if (at) { plan.kick = kickFor(at); plan.greet = greetFor(at); plan.sub = title + ' · ' + plan.time.toLowerCase().replace(' ', ''); }
+    S.created.push(plan);
+    var chatId = 'p-' + id;
+    ensureChat(chatId);
+    if (S.chats.indexOf(chatId) < 0) S.chats.unshift(chatId);
+    if (S.gs && !S.gs.plan) { S.gs.plan = true; S.gsJust = 'plan'; }
+    closeCreate(); closeSheet();
+    toast(!at ? 'Saved to Ideas' : who.length ? 'Plan created, invites sent' : 'Plan created');
+    navigate('plan-' + id);
   }
 
   // ---------- Router ----------
   var ROOTS = { home: 'home', discover: 'discover', 'discover-events': 'discover', 'discover-places': 'discover', 'discover-plans': 'discover', plans: 'plans', chats: 'chats', you: 'you' };
-  var RENDER = { home: renderHome, notifications: renderNotifs, discover: renderDiscover, ask: renderAsk, plans: renderPlans, chats: renderChats, chat: renderChat, you: renderYou, event: renderEvent, place: renderPlace, plan: renderPlan, person: renderPerson };
-  var stack = [], scrolls = {}, cur = null, curHash = '', curTab = 'home';
+  var RENDER = { saved: renderSaved, review: renderReview, home: renderHome, notifications: renderNotifs, discover: renderDiscover, ask: renderAsk, plans: renderPlans, chats: renderChats, chat: renderChat, you: renderYou, event: renderEvent, place: renderPlace, plan: renderPlan, person: renderPerson };
+  var stack = [], scrolls = {}, cur = null, curHash = '', curTab = 'home', curView = '';
+  var MODAL = { event: 1, place: 1, review: 1 };
+  function syncOvl(v) {
+    var o = v && v.querySelector('.ovl');
+    if (o) o.classList.toggle('solid', v.scrollTop > 150);
+    var clear = !!(o && !o.classList.contains('solid'));
+    $('app').classList.toggle('sb-clear', clear);
+    $('app').classList.toggle('sb-light', clear && curView === 'plan');
+  }
   function parse(h) {
     if (ROOTS[h]) return { view: ROOTS[h], root: true, arg: h };
-    var m = h.match(/^(event|place|plan|chat|person)-(.+)$/);
+    var m = h.match(/^(event|place|plan|chat|person|review)-(.+)$/);
     if (m) return { view: m[1], arg: m[2] };
-    if (h === 'notifications' || h === 'ask') return { view: h, arg: h };
+    if (h === 'notifications' || h === 'ask' || h === 'saved') return { view: h, arg: h };
     if (h === 'ideas') return { view: 'ask', arg: 'ideas' };
     return null;
   }
@@ -1641,7 +2136,7 @@
     if (!stack.length) stack = [h];
     var next = $('view-' + r.view), prev = cur;
     if (prev) scrolls[curHash] = prev.scrollTop;
-    document.querySelectorAll('.view').forEach(function (v) { if (v !== next && v !== prev) v.classList.remove('active', 'anim-push', 'anim-pop'); });
+    document.querySelectorAll('.view').forEach(function (v) { if (v !== next && v !== prev) v.classList.remove('active', 'anim-push', 'anim-pop', 'modal'); });
     if (r.root) curTab = ROOTS[h];
     RENDER[r.view](r.arg);
     next.classList.toggle('root', !!r.root);
@@ -1651,16 +2146,17 @@
     next.scrollTop = dir === 'push' ? 0 : (scrolls[h] || 0);
     if (prev && prev !== next) {
       if (dir === 'push') {
-        next.classList.add('anim-push');
-        next.addEventListener('animationend', function done() { next.removeEventListener('animationend', done); next.classList.remove('anim-push'); if (cur !== prev) prev.classList.remove('active'); });
+        next.classList.add('anim-push'); if (MODAL[r.view]) next.classList.add('modal');
+        next.addEventListener('animationend', function done() { next.removeEventListener('animationend', done); next.classList.remove('anim-push', 'modal'); if (cur !== prev) prev.classList.remove('active'); });
       } else if (dir === 'pop') {
-        prev.classList.add('anim-pop');
-        prev.addEventListener('animationend', function done() { prev.removeEventListener('animationend', done); prev.classList.remove('anim-pop'); if (cur !== prev) prev.classList.remove('active'); });
+        prev.classList.add('anim-pop'); if (MODAL[curView]) prev.classList.add('modal');
+        prev.addEventListener('animationend', function done() { prev.removeEventListener('animationend', done); prev.classList.remove('anim-pop', 'modal'); if (cur !== prev) prev.classList.remove('active'); });
       } else prev.classList.remove('active');
     } else if (prev === next && dir === 'none' && r.root) {
       next.classList.remove('anim-fade'); void next.offsetWidth; next.classList.add('anim-fade');
     }
-    cur = next; curHash = h;
+    cur = next; curHash = h; curView = r.view;
+    syncOvl(next);
     $('app').classList.toggle('no-tabs', !r.root);
     renderTabs(curTab);
     if (r.view === 'discover' && S.discoverFocus) {
@@ -1673,7 +2169,8 @@
     if (stack.length > 1) history.back();
     else navigate(curTab);
   }
-  function rerender() { var r = parse(curHash); if (r) { var st = cur.scrollTop; RENDER[r.view](r.arg); cur.scrollTop = st; } renderTabs(curTab); }
+  function rerender() { var r = parse(curHash); if (r) { var st = cur.scrollTop; RENDER[r.view](r.arg); cur.scrollTop = st; syncOvl(cur); } renderTabs(curTab); }
+  document.addEventListener('scroll', function (e) { if (e.target === cur) syncOvl(cur); }, true);
 
   // ---------- Actions ----------
   var A = {};
@@ -1686,7 +2183,8 @@
   A.chip = function (el) { navigate(el.getAttribute('data-id')); };
   A.toast = function (el) { toast(el.getAttribute('data-id'), 'ph-info'); };
   A.save = function (el) {
-    var id = el.getAttribute('data-id'), on = !S.saved[id];
+    var id = el.getAttribute('data-id'), v = el.getAttribute('data-v'), on = !S.saved[id];
+    if (v === 'hdl' || v === 'footl') { openLists(id); return; }
     S.saved[id] = on ? 1 : 0;
     sync('save', id);
     toast(on ? 'Saved to your list' : 'Removed from saved', on ? 'ph-bookmark-simple' : 'ph-x-circle');
@@ -1696,13 +2194,15 @@
     S.joined[id] = on;
     sync('join', id);
     toast(on ? 'You’re going to ' + t : 'You left ' + t, on ? 'ph-check-circle' : 'ph-x-circle');
-    if (curHash === 'plan-' + id) rerender();
+    if (curHash === 'plan-' + id || curHash === 'plan-j-' + id) rerender();
   };
   A.add = function (el) {
     var id = el.getAttribute('data-id');
     if (isFriend(id)) return;
+    if (S.requests[id]) { delete S.requests[id]; S.friends.push(id); sync('add', id); toast('You and ' + P[id].name + ' are now friends', 'ph-check-circle'); if (curHash === 'person-' + id) rerender(); return; }
     S.sent[id] = !S.sent[id];
     sync('add', id);
+    if (curHash === 'person-' + id) rerender();
     if (S.sent[id]) toast('Request sent to ' + P[id].name, 'ph-paper-plane-tilt');
     if (S.sent[id] && S.gs && !S.gs.friend) {
       S.gs.friend = true; S.gsJust = 'friend';
@@ -1715,21 +2215,6 @@
     sync('follow', id);
     if (S.following[id]) { toast('Following Live music', 'ph-music-notes'); if (S.interests.indexOf('🎸 Live music') < 0) S.interests.push('🎸 Live music'); }
   };
-  A['banner-x'] = function (el, cta) {
-    var card = el.closest('.home-banner-card'); if (!card || !card.classList.contains('is-top')) return;
-    var b = card.getAttribute('data-banner');
-    S.banners = S.banners.filter(function (x) { return x !== b; });
-    if (cta === true) toast(BANNERS[b].toast);
-    card.classList.add('is-leaving');
-    setTimeout(function () {
-      var stackEl = card.parentNode; card.remove();
-      if (!stackEl) return;
-      var cards = stackEl.querySelectorAll('.home-banner-card');
-      cards.forEach(function (c, i) { c.style.setProperty('--card-index', i); c.classList.toggle('is-top', i === 0); c.classList.toggle('is-second', i === 1); c.classList.toggle('is-third', i === 2); });
-      if (!cards.length) stackEl.classList.add('is-empty');
-    }, 320);
-  };
-  A['banner-cta'] = function (el) { A['banner-x'](el, true); };
   A['invite-toggle'] = function (el) {
     var b = el.closest('.invite-banner'); S.inviteOpen = !S.inviteOpen;
     b.classList.toggle('is-open', S.inviteOpen); el.setAttribute('aria-expanded', S.inviteOpen);
@@ -1737,7 +2222,7 @@
   A.invite = function (el) {
     var k = el.getAttribute('data-id'), go = el.getAttribute('data-v') === 'go', inv = INVITES[k];
     S.invites = S.invites.filter(function (x) { return x !== k; });
-    if (go) S.accepted.push(inv.plan);
+    S.accepted.push(inv.plan); if (!go) S.rsvp[inv.plan] = 'no';
     toast(go ? 'You’re going to ' + inv.t : 'Declined ' + inv.t, go ? 'ph-check-circle' : 'ph-x-circle');
     var row = el.closest('.invite-row');
     if (!row) { rerender(); return; }
@@ -1746,8 +2231,9 @@
     setTimeout(function () {
       row.remove();
       var left = banner.querySelectorAll('.invite-row').length;
-      var stackEl = sec.querySelector('.h2-stack'), all = curHash === 'plans';
-      if (stackEl) stackEl.innerHTML = (all ? myPlans() : myPlans().slice(0, 3)).map(planRow).join('');
+      if (curHash !== 'home') { rerender(); return; }
+      var stackEl = sec.querySelector('.h2-stack');
+      if (stackEl) stackEl.innerHTML = myPlans().slice(0, 3).map(planRow).join('');
       if (!left) {
         banner.querySelector('.banner-title').textContent = 'All caught up';
         banner.querySelector('.banner-sub').textContent = 'No invites waiting';
@@ -1779,31 +2265,18 @@
     el.replaceWith(tmp.firstChild);
   };
   A.teaser = function () { S.discoverFocus = 'weekend'; navigate('discover'); };
-  A.status = openStatus;
-  A.create = function (el) { var w = el.getAttribute('data-with'); openCreate(el.getAttribute('data-item'), w ? w.split(',') : null); };
+  A.status = function () { openStatus(); };
+  A['checkin-open'] = function (el) { openStatus(el.getAttribute('data-id')); };
+  A.create = function (el) { var w = el.getAttribute('data-with'); closeSheet(); openCreate(el.getAttribute('data-item'), w ? w.split(',') : null); };
   A.filter = function (el) { openFilter(el.getAttribute('data-id')); };
   A['filter-clear'] = function (el) { S.filters[el.getAttribute('data-id')] = {}; rerender(); };
-  A.findfriends = function () { sheetState = { type: 'friends' }; openSheet(''); friendsSheet(); };
-  A.review = function (el) { var id = el.getAttribute('data-id'), m = S.reviews[id]; sheetState = { type: 'review', place: id, stars: m ? m.stars : 0, tags: m ? m.tags.slice() : [], q: m ? m.q : '' }; openSheet(''); reviewSheet(); };
-  A.checkin = function (el) {
-    var id = el.getAttribute('data-id');
-    S.status = { s: S.status ? S.status.s : 'hang', at: id };
-    toast('Checked in at ' + L[id].t, 'ph-map-pin');
-    rerender();
-  };
-  A.rsvp = function (el) {
-    var id = el.getAttribute('data-id'), v = el.getAttribute('data-v');
-    if (v === 'no') {
-      S.declined[id] = true; if (E[id.slice(2)] && id.indexOf('j-') === 0) S.joined[id.slice(2)] = false;
-      toast('You’re out. We let the group know', 'ph-x-circle'); back(); return;
-    }
-    S.rsvp[id] = v; toast(v === 'maybe' ? 'Marked as maybe' : 'You’re going', v === 'maybe' ? 'ph-question' : 'ph-check-circle'); rerender();
-  };
+  A.findfriends = function () { sheetState = { type: 'friends' }; openSheet('', 'app'); friendsSheet(); };
   A.interest = function (el) {
     var i = el.getAttribute('data-id'), at = S.interests.indexOf(i);
     if (at > -1) S.interests.splice(at, 1); else S.interests.push(i);
-    el.classList.toggle('off', at > -1);
+    el.classList.toggle('on', at < 0);
   };
+  A['edit-ints'] = function () { S.editInts = !S.editInts; rerender(); };
   A.mode = function (el) { setMode(el.getAttribute('data-id')); };
   A['ask-sug'] = function (el) {
     var r = el.getAttribute('data-id');
@@ -1812,6 +2285,7 @@
     if (curHash === 'ask') applyRoute(); else navigate('ask');
   };
   A['sheet-close'] = closeSheet;
+  A['sheet-go'] = function (el) { closeSheet(); navigate(el.getAttribute('data-id')); };
   // Filter sheet
   A.fopt = function (el) {
     var g = el.getAttribute('data-id'), v = el.getAttribute('data-v'), f = sheetState.draft, grp = FILTERS[sheetState.kind].groups.filter(function (x) { return x.key === g; })[0];
@@ -1823,24 +2297,65 @@
   };
   A['filter-reset'] = function () { sheetState.draft = {}; filterSheet(); };
   A['filter-apply'] = function () { S.filters[sheetState.kind] = sheetState.draft; closeSheet(); rerender(); };
-  // Create sheet
-  function keepTitle() { var t = $('c-title'); if (t) sheetState.title = t.value; }
-  var IDEA_TITLES = { '☕ Coffee': 'Coffee', '🌮 Tacos': 'Taco night', '🍻 Drinks': 'Drinks', '🥾 Hike': 'Morning hike', '🎬 Movie': 'Movie night' };
-  A['c-idea'] = function (el) { keepTitle(); var t = el.getAttribute('data-id'); sheetState.title = IDEA_TITLES[t]; if (!sheetState.place && /Coffee/.test(t)) sheetState.place = 'ultra'; if (!sheetState.place && /Drinks/.test(t)) sheetState.place = 'jumbo'; createSheet(); };
-  A['c-when'] = function (el) { keepTitle(); sheetState.when = el.getAttribute('data-id'); createSheet(); };
-  A['c-place'] = function (el) { keepTitle(); var k = el.getAttribute('data-id'); sheetState.place = sheetState.place === k ? null : k; createSheet(); };
-  A['c-who'] = function (el) { keepTitle(); var p = el.getAttribute('data-id'), w = sheetState.who, at = w.indexOf(p); if (at > -1) w.splice(at, 1); else w.push(p); el.classList.toggle('on', at < 0); };
-  A['c-go'] = function () { keepTitle(); if ((sheetState.title || '').trim()) doCreate(); };
-  // Status sheet
+  // Plans + plan detail
+  A['plans-tab'] = function (el) { S.plansTab = el.getAttribute('data-id'); rerender(); cur.scrollTop = 0; };
+  A['pl-declined'] = function () { S.showDeclined = !S.showDeclined; rerender(); };
+  A['rsvp-open'] = function (el) { sheetState = { type: 'rsvp', id: el.getAttribute('data-id') }; openSheet('', 'app'); rsvpSheet(); };
+  A['rsvp-set'] = function (el) {
+    var id = sheetState.id, v = el.getAttribute('data-v'), inv = inviteFor(id), p = getPlan(id);
+    if (inv) { S.invites = S.invites.filter(function (x) { return x !== inv; }); if (S.accepted.indexOf(id) < 0) S.accepted.push(id); }
+    S.rsvp[id] = v === 'going' ? null : v;
+    closeSheet();
+    toast(v === 'going' ? 'You’re going to ' + p.title : v === 'maybe' ? 'Marked as maybe' : 'Marked as not going', v === 'going' ? 'ph-check-circle' : v === 'maybe' ? 'ph-question' : 'ph-x-circle');
+    rerender();
+  };
+  A['plan-opts'] = function (el) { sheetState = { type: 'opts', id: el.getAttribute('data-id') }; openSheet('', 'app'); planOptsSheet(); };
+  A.opt = function (el) {
+    var id = sheetState.id, v = el.getAttribute('data-v');
+    closeSheet();
+    if (v === 'share') toast('Plan link copied', 'ph-link');
+    else if (v === 'report') toast('Thanks, we’ll take a look', 'ph-flag');
+    else if (v === 'leave') { if (id.indexOf('j-') === 0) S.joined[id.slice(2)] = false; else S.rsvp[id] = 'no'; toast('You left the plan', 'ph-sign-out'); back(); }
+    else if (v === 'delete') { S.created = S.created.filter(function (c) { return c.id !== id; }); S.chats = S.chats.filter(function (c) { return c !== 'p-' + id; }); toast('Plan deleted', 'ph-trash'); back(); }
+  };
+  A.guests = function (el) { sheetState = { type: 'guests', id: el.getAttribute('data-id') }; openSheet('', 'app'); guestsSheet(); };
+  A['person-opts'] = function () { sheetState = { type: 'popts' }; openSheet('', 'app'); appSheet('Options', '<div class="ar" data-act="opt2" data-v="block"><i class="ph-bold ph-prohibit"></i><div class="c"><span>Block User</span></div><i class="ph-bold ph-caret-right end"></i></div><div class="ar" data-act="opt2" data-v="report"><i class="ph-bold ph-flag"></i><div class="c"><span>Report User</span></div><i class="ph-bold ph-caret-right end"></i></div>'); };
+  A.opt2 = function (el) { closeSheet(); toast(el.getAttribute('data-v') === 'block' ? 'Blocking is not part of this prototype' : 'Thanks, we’ll take a look', 'ph-info'); };
+  A.hours = function () { S.hoursOpen = !S.hoursOpen; rerender(); };
+  // Place lists
+  A['list-saved'] = function () { var id = sheetState.id, on = !S.saved[id]; S.saved[id] = on ? 1 : 0; sync('save', id); listsSheet(); toast(on ? 'Saved to Saved' : 'Removed from Saved', on ? 'ph-bookmark-simple' : 'ph-x-circle'); };
+  A['list-tog'] = function (el) { var id = sheetState.id, l = el.getAttribute('data-id'), on = !S.lists[l][id], ls = LISTS.filter(function (x) { return x.id === l; })[0]; S.lists[l][id] = on ? 1 : 0; listsSheet(); toast((on ? 'Saved to ' : 'Removed from ') + ls.t, on ? 'ph-check-circle' : 'ph-x-circle'); };
+  // Status + check-in
   A['st-s'] = function (el) { sheetState.s = el.getAttribute('data-id'); statusSheet(); };
-  A['st-at'] = function (el) { sheetState.at = el.getAttribute('data-id'); statusSheet(); };
-  A['st-save'] = function () { S.status = { s: sheetState.s, at: sheetState.at }; closeSheet(); toast('Status updated', 'ph-check-circle'); rerender(); };
+  A['st-at'] = function (el) { var id = el.getAttribute('data-id'); sheetState.at = sheetState.at === id ? '' : id; statusSheet(); };
+  A['st-doing'] = function (el) { var d = el.getAttribute('data-id'); sheetState.doing = sheetState.doing === d ? '' : d; statusSheet(); };
+  A['st-save'] = function () { var st = sheetState; S.status = { s: st.s, at: st.at, doing: st.doing }; closeSheet(); toast(st.at ? 'Checked in at ' + L[st.at].t : 'Status updated', st.at ? 'ph-map-pin' : 'ph-check-circle'); rerender(); };
+  A['st-out'] = function () { S.status.at = ''; closeSheet(); toast('Checked out', 'ph-sign-out'); rerender(); };
   A['st-clear'] = function () { S.status = null; closeSheet(); toast('Status cleared', 'ph-x-circle'); rerender(); };
-  // Review sheet
-  function keepReview() { var q = $('rv-q'); if (q) sheetState.q = q.value; }
-  A['rv-star'] = function (el) { keepReview(); sheetState.stars = +el.getAttribute('data-id'); reviewSheet(); };
-  A['rv-tag'] = function (el) { keepReview(); var t = el.getAttribute('data-id'), a = sheetState.tags, at = a.indexOf(t); if (at > -1) a.splice(at, 1); else a.push(t); el.classList.toggle('on', at < 0); };
-  A['rv-go'] = function () { keepReview(); var r = sheetState; S.reviews[r.place] = { stars: r.stars, tags: r.tags, q: r.q.trim() }; closeSheet(); toast('Review posted to friends', 'ph-star'); rerender(); };
+  // Write review page
+  A['rv-star'] = function (el) { rvDraft(curHash.slice(7)).stars = +el.getAttribute('data-id'); rerender(); };
+  A['rv-tag'] = function (el) { var r = rvDraft(curHash.slice(7)), t = el.getAttribute('data-id'), at = r.tags.indexOf(t); if (at > -1) r.tags.splice(at, 1); else r.tags.push(t); el.classList.toggle('selected', at < 0); };
+  A['rv-go'] = function (el) { var id = el.getAttribute('data-id'), r = rvDraft(id); S.reviews[id] = { stars: r.stars, tags: r.tags.slice(), q: r.q.trim() }; toast('Review posted to friends', 'ph-star'); back(); };
+  // Create plan modal
+  A['cm-close'] = function () { closeCreate(); };
+  A['cm-banner'] = function () { var C = S.draft; C.bn = (C.bn || 0) + 1; C.img = U(BANNERS_IMG[C.bn % BANNERS_IMG.length], 800); renderCreate(); };
+  A['cm-tag'] = function (el) { var t = el.getAttribute('data-id'), a = S.draft.tags, at = a.indexOf(t); if (at > -1) a.splice(at, 1); else a.push(t); renderCreate(); };
+  A['cm-when'] = function () { sheetState = { type: 'when' }; openSheet('', 'app'); whenSheet(); };
+  A['wh-q'] = function (el) { var d = new Date(TODAY.getTime()); d.setDate(d.getDate() + +el.getAttribute('data-id')); S.draft.date = d; if (!S.draft.time) S.draft.time = '7 PM'; whenSheet(); renderCreate(); };
+  A['wh-m'] = function (el) { S.draft.calM = Math.max(0, S.draft.calM + +el.getAttribute('data-id')); whenSheet(); };
+  A['wh-d'] = function (el) { S.draft.date = new Date(+el.getAttribute('data-id')); if (!S.draft.time) S.draft.time = '7 PM'; whenSheet(); renderCreate(); };
+  A['wh-t'] = function (el) { S.draft.time = el.getAttribute('data-id'); whenSheet(); renderCreate(); };
+  A['wh-done'] = function () { closeSheet(); renderCreate(); };
+  A['cm-where'] = function () { S.draft.whereOpen = true; $('cm-where').classList.add('open'); };
+  A['cm-where-close'] = function () { S.draft.whereOpen = false; $('cm-where').classList.remove('open'); };
+  A['cm-place'] = function (el) { S.draft.place = el.getAttribute('data-id'); S.draft.where = null; S.draft.whereOpen = false; renderCreate(); };
+  A['cm-privacy'] = function () { sheetState = { type: 'privacy' }; openSheet('', 'app'); privacySheet(); };
+  A['pv-s'] = function (el) { S.draft.privacy = el.getAttribute('data-id'); privacySheet(); renderCreate(); };
+  A['pv-t'] = function (el) { var k = el.getAttribute('data-id'), C = S.draft; C[k] = k === 'guestInvite' ? C[k] === false : !C[k]; privacySheet(); };
+  A['cm-next'] = function () { if (!S.draft.title.trim()) return; S.draft.step = 2; renderCreate(); };
+  A['cm-back'] = function () { S.draft.step = 1; renderCreate(); };
+  A['cm-who'] = function (el) { var p = el.getAttribute('data-id'), w = S.draft.who, at = w.indexOf(p); if (at > -1) w.splice(at, 1); else w.push(p); el.classList.toggle('on', at < 0); $('cm-go').textContent = createLabel(S.draft); };
+  A['cm-create'] = function (el) { doCreate(el.getAttribute('data-v') === 'skip'); };
 
   function setMode(m) {
     S = fresh(m);
@@ -1865,14 +2380,17 @@
   });
   document.addEventListener('input', function (e) {
     if (e.target.name === 'm') { var on = !!e.target.value.trim(); e.target.parentNode.classList.toggle('typing', on); var sb = e.target.form.querySelector('.x-send'); if (sb) sb.classList.toggle('on', on); }
-    if (e.target.id === 'c-title') { sheetState.title = e.target.value; var b = $('sheet').querySelector('[data-act="c-go"]'); if (b) b.disabled = !e.target.value.trim(); }
+    if (e.target.id === 'cm-title') { S.draft.title = e.target.value; var nb = $('cm-next'); if (nb) nb.disabled = !e.target.value.trim(); }
+    if (e.target.id === 'cm-q') $('cm-people').innerHTML = peopleRows(e.target.value);
+    if (e.target.id === 'cm-wq') $('cm-wlist').innerHTML = whereRows(e.target.value);
+    if (e.target.id === 'rv-q') { var rv = rvDraft(curHash.slice(7)); rv.q = e.target.value; $('rv-n').textContent = rv.q.length + ' / 280'; }
   });
   document.addEventListener('focusin', function (e) { var w = e.target.closest && e.target.closest('.ask-wrap'); if (w) w.classList.add('focus'); });
   document.addEventListener('focusout', function (e) { var w = e.target.closest && e.target.closest('.ask-wrap'); if (w) setTimeout(function () { w.classList.remove('focus'); }, 150); });
   document.addEventListener('mousedown', function (e) { if (e.target.closest('.x-sug')) e.preventDefault(); });
   document.addEventListener('keydown', function (e) {
     if (/INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
-    if (e.key === 'Escape' && sheetState) closeSheet();
+    if (e.key === 'Escape') { if (sheetState) closeSheet(); else closeCreate(); }
     var m = { '1': 'active', '2': 'few', '3': 'dayone' }[e.key];
     if (m) setMode(m);
   });
