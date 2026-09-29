@@ -33,9 +33,8 @@
   .mrv2-home2 .greet h1 .name { color: #5c6b7d; }
   .mrv2-home2 .greet .subline { font-size: 16px; font-weight: 600; color: #5c6b7d; line-height: 1.4; }
 
-
   /* Current app banner stack — full cards share one grid cell and step down in depth */
-  .mrv2-home2 .home-banner-stack { --stack-offset: 12px; position: relative; display: grid; align-items: end; padding: 8px 2px 28px; overflow: visible; }
+  .mrv2-home2 .home-banner-stack { --stack-offset: 12px; position: relative; display: grid; align-items: end; padding: 2px 2px 18px; overflow: visible; }
   .mrv2-home2 .home-banner-card { grid-area: 1 / 1; width: 100%; min-height: 124px; position: relative; display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; align-items: start; column-gap: 16px; row-gap: 8px; padding: 16px 48px 16px 16px; border-radius: 18px; background: #ffffff; border: 1px solid rgba(37, 99, 235, 0.32); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.09), 0 16px 40px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6); transform: translateY(calc(var(--card-index) * var(--stack-offset))) scale(calc(1 - var(--card-index) * 0.04)); transform-origin: top center; overflow: hidden; }
   .mrv2-home2 .home-banner-card.is-top { z-index: 3; }
   .mrv2-home2 .home-banner-card.is-second { z-index: 2; }
@@ -67,8 +66,7 @@
   .mrv2-home2 .rail { display: flex; align-items: stretch; overflow-x: auto; margin: -19px -16px -36px; padding: 24px 16px 56px; scrollbar-width: none; -ms-overflow-style: none; }
   .mrv2-home2 .rail::-webkit-scrollbar { display: none; }
   .mrv2-home2 .rail-cards { gap: 16px; }
-  .mrv2-home2 .rail-people { gap: 7px; padding-bottom: 8px; margin-bottom: 0; }
-
+  .mrv2-home2 .rail-people { gap: 7px; padding-top: 12px; padding-bottom: 0; margin-bottom: -7px; }
 
   /* Tail affordance */
   .mrv2-home2 .tail { width: 96px; margin: 0 24px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; }
@@ -87,11 +85,11 @@
   .mrv2-home2 .rail-people .add-btn { margin-top: auto; }
   .mrv2-home2 .add-btn { height: 32px; padding: 0 12px; border-radius: 999px; background: #e1e3e6; color: #101724; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; border: 0; box-shadow: none; }
 
-
   /* Card shell shared by the feed cards */
   .mrv2-home2 .h2-card { border-radius: 20px; background: #ffffff; border: 1px solid rgba(16, 23, 36, 0.08); box-shadow: 0 2px 6px rgba(16, 24, 40, 0.05), 0 10px 24px rgba(16, 24, 40, 0.08); overflow: hidden; position: relative; }
   .mrv2-home2 .h2-btn { height: 32px; padding: 0 14px; border-radius: 999px; border: 0; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
   .mrv2-home2 .h2-btn.pri { background: linear-gradient(145deg, #14b8a6, #3b82f6); color: #ffffff; }
+  .mrv2-home2 .h2-btn.ink { background: #101724; color: #ffffff; }
   .mrv2-home2 .h2-btn.soft { background: #e1e3e6; color: #101724; }
   .mrv2-home2 .h2-btn.white { background: #ffffff; color: #101724; }
   .mrv2-home2 .h2-av { display: flex; align-items: center; flex-shrink: 0; }
@@ -138,7 +136,6 @@
   .mrv2-home2 .fa-obj strong { font-size: 16px; font-weight: 700; line-height: 1.25; color: #101724; }
   .mrv2-home2 .fa-obj small { color: #5c6b7d; font-size: 13px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
   .mrv2-home2 .fa-act { gap: 11px; }
-  .mrv2-home2 .fa-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 12px; padding: 2px 0 4px; }
   .mrv2-home2 .h2-tile { min-width: 0; display: flex; flex-direction: column; }
   .mrv2-home2 .h2-s { color: #5c6b7d; font-size: 13px; line-height: 1.35; }
   .mrv2-home2 .fa-obj > img { width: 64px; height: 64px; border-radius: 14px; object-fit: cover; }
@@ -147,9 +144,42 @@
   .mrv2-home2 .fa-quote { color: #1a2332; font-size: 15px; line-height: 1.4; }
   .mrv2-home2 .fa-card--review .fa-body { gap: 11px; }
 
-  /* Event tiles */
-  .mrv2-home2 .rail-events { gap: 12px; }
-  .mrv2-home2 .h2-ev { width: 208px; flex-shrink: 0; display: flex; flex-direction: column; }
+  /* Home feed: one open stream under the fixed top */
+  .mrv2-home2 .feed-head { padding-top: 8px; }
+  .mrv2-home2 .feed-head h2 { font-size: 22px; font-weight: 700; line-height: 1.2; color: #1a2332; }
+  .mrv2-home2 .rail-places { gap: 12px; padding-top: 20px; padding-bottom: 36px; }
+  .mrv2-home2 .rail-places .h2-tile { width: 164px; flex-shrink: 0; }
+
+  /* Pending invites — compact banner under Your plans, expands inline */
+  .mrv2-home2.home2fact .invite-banner { border-radius: 18px; background: #ffffff; border: 1px solid rgba(16, 23, 36, 0.08); box-shadow: 0 2px 6px rgba(16, 24, 40, 0.05), 0 10px 24px rgba(16, 24, 40, 0.08); overflow: hidden; transition: opacity 0.3s ease, transform 0.3s ease; }
+  .mrv2-home2.home2fact .invite-banner.is-gone { opacity: 0; transform: translateY(-8px); pointer-events: none; }
+  .mrv2-home2.home2fact .invite-banner-head { width: 100%; display: flex; align-items: center; gap: 11px; padding: 11px 14px; border: 0; background: none; text-align: left; }
+  .mrv2-home2.home2fact .invite-banner-head .stack { display: flex; align-items: center; flex-shrink: 0; }
+  .mrv2-home2.home2fact .invite-banner-head .stack img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 2px solid #ffffff; margin-left: -8px; }
+  .mrv2-home2.home2fact .invite-banner-head .stack img:first-child { margin-left: 0; }
+  .mrv2-home2.home2fact .invite-banner-head .b-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+  .mrv2-home2.home2fact .invite-banner-head .b-txt strong { font-size: 15px; font-weight: 700; color: #101724; line-height: 1.3; }
+  .mrv2-home2.home2fact .invite-banner-head .b-txt span { font-size: 13px; color: #5c6b7d; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-home2.home2fact .invite-banner-head .caret { flex-shrink: 0; color: #5c6b7d; font-size: 17px; line-height: 1; transition: transform 0.25s ease; }
+  .mrv2-home2.home2fact .invite-banner.is-open .invite-banner-head .caret { transform: rotate(90deg); }
+  .mrv2-home2.home2fact .invite-banner-body { display: none; }
+  .mrv2-home2.home2fact .invite-banner.is-open .invite-banner-body { display: block; }
+  .mrv2-home2.home2fact .invite-row { display: flex; align-items: center; gap: 11px; padding: 11px 14px; border-top: 1px solid #f1f4f7; transition: opacity 0.28s ease, transform 0.28s ease; }
+  .mrv2-home2.home2fact .invite-row.is-leaving { opacity: 0; transform: translateX(12px); pointer-events: none; }
+  .mrv2-home2.home2fact .invite-row .av { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .mrv2-home2.home2fact .invite-row .r-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .mrv2-home2.home2fact .invite-row .r-txt strong { font-size: 15px; font-weight: 700; color: #101724; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-home2.home2fact .invite-row .r-txt span { font-size: 13px; color: #5c6b7d; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mrv2-home2.home2fact .invite-row .r-btns { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+  .mrv2-home2.home2fact .invite-go { height: 34px; padding: 0 14px; border: 0; border-radius: 999px; background: #101724; color: #ffffff; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 5px; }
+  .mrv2-home2.home2fact .invite-no { height: 34px; padding: 0 12px; border: 1.5px solid rgba(32, 36, 42, 0.16); border-radius: 999px; background: #ffffff; color: #1a2332; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; }
+  .mrv2-home2.home2fact .invite-banner-head .stack-check { display: none; width: 30px; height: 30px; place-items: center; color: #0ca678; font-size: 28px; line-height: 1; flex-shrink: 0; }
+  .mrv2-home2.home2fact .invite-banner.is-done .stack img { display: none; }
+  .mrv2-home2.home2fact .invite-banner.is-done .stack-check { display: grid; }
+  .mrv2-home2.home2fact .invite-banner.is-done .invite-banner-head .caret { display: none; }
+  .mrv2-home2.home2fact .invite-banner.is-done .invite-banner-head .b-txt strong { color: #0ca678; }
+
+  /* Place tiles */
   .mrv2-home2 .h2-photo { position: relative; aspect-ratio: 1.6 / 1; border-radius: 16px; overflow: hidden; background: #d9e1e7 center / cover no-repeat; }
   .mrv2-home2 .h2-photo .h2-why { position: absolute; left: 7px; bottom: 7px; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: #101724; box-shadow: 0 2px 8px rgba(16, 23, 36, 0.14); }
   .mrv2-home2 .h2-save { position: absolute; right: 8px; top: 8px; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: rgba(0, 0, 0, 0.55); color: #ffffff; font-size: 20px; }
@@ -182,7 +212,6 @@
   .mrv2-home2 .h2-int-friends .h2-av img { width: 24px; height: 24px; margin-left: -8px; }
   .mrv2-home2 .h2-int-friends .h2-av img:first-child { margin-left: 0; }
   .mrv2-home2 .h2-int-friends strong { color: #101724; }
-
 
   /* Ideas teaser */
   .mrv2-home2 .teaser { position: relative; border-radius: 24px; padding: 1.5px; background: linear-gradient(135deg, #14b8a6, #3b82f6); }
@@ -219,8 +248,8 @@
       <h3 class="subline">Dinner at Bavette's · 7pm</h3>
     </div>
 
-    <div class="home-banner-stack" aria-label="3 updates">
-      <div class="home-banner-card is-third" style="--card-index: 2; --accent: #ca8a04;" aria-hidden="true">
+    <div class="home-banner-stack" aria-label="2 updates">
+      <div class="home-banner-card is-second" style="--card-index: 1; --accent: #ca8a04;" aria-hidden="true">
         <button class="home-banner-dismiss" aria-label="Dismiss"><i class="ph-bold ph-x"></i></button>
         <div class="home-banner-icon"><i class="ph-fill ph-crown-simple"></i></div>
         <div class="home-banner-copy">
@@ -229,7 +258,7 @@
         </div>
         <button class="home-banner-cta">Start free trial</button>
       </div>
-      <div class="home-banner-card is-second" style="--card-index: 1; --accent: #2563eb;" aria-hidden="true">
+      <div class="home-banner-card is-top" style="--card-index: 0; --accent: #2563eb;">
         <button class="home-banner-dismiss" aria-label="Dismiss"><i class="ph-bold ph-x"></i></button>
         <div class="home-banner-icon"><i class="ph-fill ph-bell-ringing"></i></div>
         <div class="home-banner-copy">
@@ -237,15 +266,6 @@
           <span>Turn them on so you never miss a plan update.</span>
         </div>
         <button class="home-banner-cta">Turn on</button>
-      </div>
-      <div class="home-banner-card is-top" style="--card-index: 0; --accent: #0ca678;">
-        <button class="home-banner-dismiss" aria-label="Dismiss"><i class="ph-bold ph-x"></i></button>
-        <div class="home-banner-icon"><i class="ph-fill ph-envelope-simple"></i></div>
-        <div class="home-banner-copy">
-          <strong>2 invites waiting on you</strong>
-          <span>Hike at Craggy Gardens · Pizza night</span>
-        </div>
-        <button class="home-banner-cta">Reply</button>
       </div>
     </div>
 
@@ -293,6 +313,45 @@
         <h2>Your plans</h2>
         <span class="more"><i class="ph-bold ph-caret-right"></i></span>
       </div>
+
+      <div class="invite-banner">
+        <button class="invite-banner-head" aria-expanded="false">
+          <span class="stack">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+          </span>
+          <span class="stack-check"><i class="ph-fill ph-check-circle"></i></span>
+          <span class="b-txt">
+            <strong class="banner-title">2 invites waiting on you</strong>
+            <span class="banner-sub">Hike at Craggy Gardens · Pizza night</span>
+          </span>
+          <i class="ph-bold ph-caret-right caret"></i>
+        </button>
+        <div class="invite-banner-body">
+          <div class="invite-row" data-title="Hike at Craggy Gardens">
+            <img class="av" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+            <div class="r-txt">
+              <strong>Hike at Craggy Gardens 🥾</strong>
+              <span>Sam · Saturday 9:00 AM</span>
+            </div>
+            <div class="r-btns">
+              <button class="invite-go"><i class="ph-bold ph-check"></i>Going</button>
+              <button class="invite-no">Can't</button>
+            </div>
+          </div>
+          <div class="invite-row" data-title="Pizza night">
+            <img class="av" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=96&h=96&q=80" alt="" />
+            <div class="r-txt">
+              <strong>Pizza night 🍕</strong>
+              <span>Maya · Friday 6:30 PM</span>
+            </div>
+            <div class="r-btns">
+              <button class="invite-go"><i class="ph-bold ph-check"></i>Going</button>
+              <button class="invite-no">Can't</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="h2-stack">
         <div class="h2-row"><div class="amb" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=500&q=70');"></div><div class="shade"></div><div class="media" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=400&q=80');"></div><div class="rc"><div class="rk">TOMORROW · 7:00 PM</div><div class="rt">Dinner at Bavette's</div><div class="rm"><span class="h2-av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>3 going</span><button class="h2-btn glass"><i class="ph-fill ph-check-circle"></i>Going</button></div></div></div>
         <div class="h2-row"><div class="amb" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=70');"></div><div class="shade"></div><div class="media" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80');"></div><div class="rc"><div class="rk">SAT · 8:00 AM</div><div class="rt">Sunrise trail hike</div><div class="rm"><span class="h2-av"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>2 going</span><button class="h2-btn glass"><i class="ph-fill ph-check-circle"></i>Going</button></div></div></div>
@@ -300,72 +359,21 @@
       </div>
     </section>
 
-    <section>
-      <div class="sec-head">
-        <h2>Events this week</h2>
-        <span class="more"><i class="ph-bold ph-caret-right"></i></span>
+    <div class="feed-head"><h2>From your friends</h2></div>
+    <div class="h2-card fa-card">
+      <div class="fa-media" style="background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=780&q=80');"><span class="h2-why"><i class="ph-fill ph-sparkle"></i><span>You like live music</span></span></div>
+      <div class="fa-body">
+        <div class="h2-who"><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Alex</strong> is going</span><time>1h</time></div>
+        <div class="fa-title">Shindig on the Green</div>
+        <div class="fa-foot"><span class="fa-meta"><span>Sat · 5:00 PM · Pack Square</span></span><button class="h2-btn ink">Join</button></div>
       </div>
-      <div class="rail rail-events">
-        <div class="h2-ev">
-          <div class="h2-photo" style="background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=520&q=80');"><span class="h2-why"><i class="ph-fill ph-tag" style="color: #16a34a;"></i><span>Free</span></span><span class="h2-save"><i class="ph ph-bookmark-simple"></i></span></div>
-          <div class="h2-tb"><div class="h2-k">Tue · 8:00 PM</div><div class="h2-t">Songwriters in the round</div><div class="h2-m"><i class="ph-fill ph-map-pin"></i><span>The Grey Eagle</span></div></div>
-        </div>
-        <div class="h2-ev">
-          <div class="h2-photo" style="background-image: url('https://images.unsplash.com/photo-1527224857830-43a7acc85260?auto=format&fit=crop&w=520&q=80');"><span class="h2-why"><i class="ph-fill ph-clock" style="color: #f97316;"></i><span>Friday</span></span><span class="h2-save on"><i class="ph-fill ph-bookmark-simple"></i></span></div>
-          <div class="h2-tb"><div class="h2-k">Fri · 8:00 PM</div><div class="h2-t">Asheville Comedy Festival</div><div class="h2-m"><i class="ph-fill ph-map-pin"></i><span>Diana Wortham Theatre</span></div></div>
-        </div>
-        <div class="h2-ev">
-          <div class="h2-photo" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=520&q=80');"><span class="h2-why"><i class="ph-fill ph-sparkle"></i><span>Crew likes game night</span></span><span class="h2-save"><i class="ph ph-bookmark-simple"></i></span></div>
-          <div class="h2-tb"><div class="h2-k">Thu · 7:00 PM</div><div class="h2-t">Board game night</div><div class="h2-proof"><span class="h2-av"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>Priya + 3 going</span></div></div>
-        </div>
-        <div class="tail">
-          <span class="circ"><i class="ph-bold ph-caret-right"></i></span>
-          <span>View more</span>
-        </div>
+    </div>
+
+    <div class="h2-card fa-card">
+      <div class="fa-body fa-act">
+        <div class="h2-who"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Priya</strong> + 3 are going</span><time>3h</time></div>
+        <div class="fa-obj"><img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=160&q=80" alt="" /><div class="c"><strong>Farmers market brunch</strong><small>Sun · 11:00 AM · River Arts</small></div><button class="h2-btn ink">Join</button></div>
       </div>
-    </section>
-
-    <section>
-      <div class="sec-head">
-        <h2>Friend activity</h2>
-        <span class="more"><i class="ph-bold ph-caret-right"></i></span>
-      </div>
-      <div class="fa-stack">
-        <div class="h2-card fa-card">
-          <div class="fa-media" style="background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=780&q=80');"><span class="h2-why"><i class="ph-fill ph-sparkle"></i><span>You like live music</span></span></div>
-          <div class="fa-body">
-            <div class="h2-who"><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Alex</strong> is going</span><time>1h</time></div>
-            <div class="fa-title">Shindig on the Green</div>
-            <div class="fa-foot"><span class="fa-meta"><span>Sat · 5:00 PM · Pack Square</span></span><button class="h2-btn pri">Join</button></div>
-          </div>
-        </div>
-
-        <div class="h2-card fa-card">
-          <div class="fa-body fa-act">
-            <div class="h2-who"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Priya</strong> + 3 are going</span><time>3h</time></div>
-            <div class="fa-obj"><img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=160&q=80" alt="" /><div class="c"><strong>Farmers market brunch</strong><small>Sun · 11:00 AM · River Arts</small></div><button class="h2-btn pri">Join</button></div>
-          </div>
-        </div>
-
-        <div class="fa-tiles">
-          <div class="h2-tile"><div class="h2-photo" style="background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=400&q=80');"><span class="h2-save"><i class="ph ph-bookmark-simple"></i></span></div><div class="h2-tb"><div class="h2-t">Little Jumbo</div><div class="h2-s">Cocktail bar</div><div class="h2-proof"><span class="h2-av"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>Jordan saved it</span></div></div></div>
-          <div class="h2-tile"><div class="h2-photo" style="background-image: url('https://images.unsplash.com/photo-1560008581-09826d1de69e?auto=format&fit=crop&w=400&q=80');"><span class="h2-save"><i class="ph ph-bookmark-simple"></i></span></div><div class="h2-tb"><div class="h2-t">Salt &amp; Straw</div><div class="h2-s">Ice cream</div><div class="h2-proof"><span class="h2-av"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>Devon saved it</span></div></div></div>
-        </div>
-
-        <div class="h2-card fa-card fa-card--review">
-          <div class="fa-body">
-            <div class="h2-who"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Riley</strong> reviewed <strong>Ultra Coffeebar</strong></span><time>5h</time></div>
-            <div class="fa-obj"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=160&q=80" alt="" /><div class="c"><span class="fa-stars">★★★★★</span><span class="fa-quote">"Best cortado in town, grab the window seats."</span></div></div>
-            <div class="fa-foot"><span class="fa-meta"><i class="ph-fill ph-coffee"></i><span>Coffee shop · Downtown</span></span><button class="h2-btn soft"><i class="ph-bold ph-bookmark-simple"></i>Save</button></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="h2-card h2-pr">
-      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=120&q=80" alt="" />
-      <div class="c"><strong>Weekend Crew is quiet</strong><span>Nothing planned this month.</span></div>
-      <button class="h2-btn pri"><i class="ph-fill ph-sparkle"></i>Get ideas</button>
     </div>
 
     <section>
@@ -400,6 +408,36 @@
         </div>
       </div>
     </section>
+
+    <section>
+      <div class="sec-head">
+        <h2>Friends saved</h2>
+        <span class="more"><i class="ph-bold ph-caret-right"></i></span>
+      </div>
+      <div class="rail rail-places">
+        <div class="h2-tile"><div class="h2-photo" style="background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=400&q=80');"><span class="h2-save"><i class="ph ph-bookmark-simple"></i></span></div><div class="h2-tb"><div class="h2-t">Little Jumbo</div><div class="h2-s">Cocktail bar</div><div class="h2-proof"><span class="h2-av"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>Jordan saved it</span></div></div></div>
+        <div class="h2-tile"><div class="h2-photo" style="background-image: url('https://images.unsplash.com/photo-1560008581-09826d1de69e?auto=format&fit=crop&w=400&q=80');"><span class="h2-save"><i class="ph ph-bookmark-simple"></i></span></div><div class="h2-tb"><div class="h2-t">Salt &amp; Straw</div><div class="h2-s">Ice cream</div><div class="h2-proof"><span class="h2-av"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>Devon saved it</span></div></div></div>
+        <div class="h2-tile"><div class="h2-photo" style="background-image: url('https://images.unsplash.com/photo-1544413660-299165566b1d?auto=format&fit=crop&w=400&q=80');"><span class="h2-save"><i class="ph ph-bookmark-simple"></i></span></div><div class="h2-tb"><div class="h2-t">Cindy's Rooftop</div><div class="h2-s">Rooftop bar</div><div class="h2-proof"><span class="h2-av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=60&q=80" alt="" /><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=60&q=80" alt="" /></span><span>Maya + 3 saved it</span></div></div></div>
+        <div class="tail">
+          <span class="circ"><i class="ph-bold ph-caret-right"></i></span>
+          <span>View more</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="h2-card fa-card fa-card--review">
+      <div class="fa-body">
+        <div class="h2-who"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=70&q=80" alt="" /><span><strong>Riley</strong> reviewed <strong>Ultra Coffeebar</strong></span><time>5h</time></div>
+        <div class="fa-obj"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=160&q=80" alt="" /><div class="c"><span class="fa-stars">★★★★★</span><span class="fa-quote">"Best cortado in town, grab the window seats."</span></div></div>
+        <div class="fa-foot"><span class="fa-meta"><i class="ph-fill ph-coffee"></i><span>Coffee shop · Downtown</span></span><button class="h2-btn soft"><i class="ph-bold ph-bookmark-simple"></i>Save</button></div>
+      </div>
+    </div>
+
+    <div class="h2-card h2-pr">
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=120&q=80" alt="" />
+      <div class="c"><strong>Weekend Crew is quiet</strong><span>Nothing planned this month.</span></div>
+      <button class="h2-btn pri"><i class="ph-fill ph-sparkle"></i>Get ideas</button>
+    </div>
 
     <div class="h2-card h2-int" style="--int: #e0483a;">
       <div class="top"><span class="emo">🎸</span><div class="c"><strong>Live music</strong><small>Music · 42 events near you</small></div><button class="h2-btn white">Follow</button></div>
@@ -467,5 +505,52 @@
       }, 320);
     });
   }
+
+  // Invite banner: tap to expand, respond to invites inline, banner leaves when done
+  var banner = root.querySelector('.invite-banner');
+  if (!banner) return;
+  var head = banner.querySelector('.invite-banner-head');
+  var title = banner.querySelector('.banner-title');
+  var sub = banner.querySelector('.banner-sub');
+  var avStack = banner.querySelector('.invite-banner-head .stack');
+
+  function rows() {
+    return Array.prototype.slice.call(banner.querySelectorAll('.invite-row:not(.is-leaving)'));
+  }
+
+  function refresh() {
+    var list = rows();
+    var n = list.length;
+    if (n === 0) {
+      title.textContent = 'All caught up';
+      sub.textContent = 'No invites waiting';
+      banner.classList.remove('is-open');
+      banner.classList.add('is-done');
+      setTimeout(function () { banner.classList.add('is-gone'); }, 1400);
+      setTimeout(function () { banner.remove(); }, 1800);
+      return;
+    }
+    title.textContent = n === 1 ? '1 invite waiting on you' : n + ' invites waiting on you';
+    sub.textContent = list.map(function (r) { return r.getAttribute('data-title'); }).join(' · ');
+    var avs = avStack.querySelectorAll('img');
+    for (var i = 0; i < avs.length; i++) avs[i].style.display = i < n ? '' : 'none';
+  }
+
+  head.addEventListener('click', function () {
+    var open = banner.classList.toggle('is-open');
+    head.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  banner.addEventListener('click', function (e) {
+    var btn = e.target.closest('.invite-go, .invite-no');
+    if (!btn) return;
+    var row = btn.closest('.invite-row');
+    if (!row) return;
+    row.classList.add('is-leaving');
+    setTimeout(function () {
+      row.remove();
+      refresh();
+    }, 300);
+  });
 })();
 </script>
